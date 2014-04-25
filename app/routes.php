@@ -13,5 +13,5 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return '<h1> Team Laravel :) </h1>'
 });
