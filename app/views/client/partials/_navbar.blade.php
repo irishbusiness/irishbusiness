@@ -4,15 +4,15 @@
 			<div class="header-top-left container-8">
 				<div class="user-links">
 					<div class="login">
-						<a href="#" id="login-link" class="login-link">Login</a>
-						<form id="login-form" class="login-form">
+						<a href="{{ URL::to('login') }}" id="login-link" class="login-link">Client Login</a>
+						<!-- <form id="login-form" class="login-form">
 							<input class="text-input-grey" type="text" placeholder="Login">
 							<input class="text-input-grey" type="text" placeholder="Password">
-							<a href="#" class="password-restore">Forgot Password?</a>
+							<a href="{{ URL::to('forgot-password') }}" class="password-restore">Forgot Password?</a>
 							<input class="button-2-colorful" type="submit" value="Login">
-						</form>
+						</form> -->
 					</div>
-					<div class="register">
+				<!-- 	<div class="register">
 						<a href="#" id="register-link" class="register-link">Register</a>
 						<form id="register-form" class="register-form">
 							<input class="text-input-grey" type="text" placeholder="Login">
@@ -24,7 +24,7 @@
 							<div href="#" class="fields-required">All Fields Are Required</div>
 							<input class="button-2-colorful" type="submit" value="Register">
 						</form>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<div class="header-top-right container-16">
