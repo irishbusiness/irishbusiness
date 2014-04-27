@@ -15,3 +15,6 @@ Route::get('/', function()
 {
 	return View::make('client.home');
 });
+Route::get('register', function(){
+	return View::make('client.register');
+});

@@ -87,8 +87,7 @@
 							<div></div>
 						</li>
 						<li class="first active">
-							<a href="{{ URL::to('/') }}">HOME</a>
-							
+							<a href="{{ URL::to('/') }}">HOME</a>	
 						</li>
 						<!-- <li class="neighbour-right">
 							<a href="companies-listing.php">FEATURES</a> -->
