@@ -9,30 +9,27 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
 
-<link rel="stylesheet" href="css/jquery-ui-1.10.3.custom.min.css" />
-<link rel="stylesheet" href="css/jquery-selectbox.css" />
-<link rel="stylesheet" href="css/responsive-grid.css" />
-<link rel="stylesheet" href="css/styles.css" />
-<link id="theme-color" rel="stylesheet" href="css/green.css" />
-<link rel="stylesheet" href="css/header-1.css" />
-<link rel="stylesheet" href="css/responsive.css" />
+{{ HTML::style('css/jquery-ui-1.10.3.custom.min.css'); }}
+{{ HTML::style('css/jquery-selectbox.css'); }}
+{{ HTML::style('css/responsive-grid.css'); }}
+{{ HTML::style('css/styles.css'); }}
+{{ HTML::style('css/green.css', array('id' => 'theme-color')); }}
+{{ HTML::style('css/header-1.css'); }}
+{{ HTML::style('css/responsive.css'); }}
+<!--[if lt IE 9]>{{ HTML::style('css/styles-ie8-and-down.css'); }}<![endif]-->
 
-		<!--[if lt IE 9]>
-			<link rel="stylesheet" href="css/styles-ie8-and-down.css" />
-			<![endif]-->
-
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="scripts/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="scripts/jquery-ui-1.10.3.custom.min.js"></script>
-<script type="text/javascript" src="scripts/jquery.colorbox-min.js"></script>
-<script type="text/javascript" src="scripts/jquery.gomap-1.3.2.min.js"></script>
-<script type="text/javascript" src="scripts/map.js"></script>
-<script type="text/javascript" src="scripts/jquery.selectbox-0.6.1.js"></script>
-<script type="text/javascript" src="scripts/jquery.tweet.js"></script>
-<script type="text/javascript" src="scripts/jflickrfeed.min.js"></script>
-<script type="text/javascript" src="scripts/superfish.js"></script>
-<script type="text/javascript" src="scripts/jquery.mobilemenu.min.js"></script>
-<script type="text/javascript" src="scripts/jquery.placeholder.min.js"></script>
-<script type="text/javascript" src="scripts/scripts.js"></script>
+{{ HTML::script('http://maps.google.com/maps/api/js?sensor=false'); }}
+{{ HTML::script('scripts/jquery-1.10.2.min.js'); }}
+{{ HTML::script('scripts/jquery-ui-1.10.3.custom.min.js'); }}
+{{ HTML::script('scripts/jquery.colorbox-min.js'); }}
+{{ HTML::script('scripts/jquery.gomap-1.3.2.min.js'); }}
+{{ HTML::script('scripts/map.js'); }}
+{{ HTML::script('scripts/jquery.selectbox-0.6.1.js'); }}
+{{ HTML::script('scripts/jquery.tweet.js'); }}
+{{ HTML::script('scripts/jflickrfeed.min.js'); }}
+{{ HTML::script('scripts/superfish.js'); }}
+{{ HTML::script('scripts/jquery.mobilemenu.min.js'); }}
+{{ HTML::script('scripts/jquery.placeholder.min.js'); }}
+{{ HTML::script('scripts/scripts.js'); }}
 
 			
