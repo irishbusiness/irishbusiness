@@ -29,7 +29,7 @@
 			</div>
 			<div class="header-top-right container-16">
 				<div class="social-links block">
-					<a href="http://www.facebook.com">
+					<a href="{{ URL::to('http://www.facebook.com') }}">
 						<img src="images/facebook-icon.png" alt="" />
 					</a>
 					<a href="http://www.google.com">
