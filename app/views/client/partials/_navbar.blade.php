@@ -32,19 +32,19 @@
 					<a href="{{ URL::to('http://www.facebook.com') }}">
 						<img src="images/facebook-icon.png" alt="" />
 					</a>
-					<a href="http://www.google.com">
+					<a href="{{ URL::to('http://www.google.com') }}">
 						<img src="images/google-icon.png" alt="" />
 					</a>
-					<a href="http://www.twitter.com">
+					<a href="{{ URL::to('http://www.twitter.com') }}">
 						<img src="images/twitter-icon.png" alt="" />
 					</a>
-					<a href="http://www.linkedin.com">
+					<a href="{{ URL::to('http://www.linkedin.com') }}">
 						<img src="images/linkedin-icon.png" alt="" />
 					</a>
-					<a href="http://www.pinterest.com">
+					<a href="{{ URL::to('http://www.pinterest.com') }}">
 						<img src="images/pinterest-icon.png" alt="" />
 					</a>
-					<a href="http://www.dribbble.com">
+					<a href="{{ URL::to('http://www.dribbble.com') }}">
 						<img src="images/dribbble-icon.png" alt="" />
 					</a>
 				</div>
@@ -55,6 +55,7 @@
 					<a href="#" class="it">IT</a>
 					<a href="#" class="de">DE</a>
 				</div>
+
 			</div>
 		</div><!-- end of .zone-header-top -->
 	</div><!-- end of .header-top-wrapper -->
@@ -69,7 +70,7 @@
 			</div>
 			<div class="header-right container-18">
 				<div class="adverisement block">
-					<a href="http://themeforest.net/">
+					<a href="{{ URL::to('http://themeforest.net/') }}">
 						<img src="images/content/banner.jpg" alt="" />
 					</a>
 				</div>
@@ -86,11 +87,11 @@
 							<div></div>
 						</li>
 						<li class="first active">
-							<a href="index.php">HOME</a>
+							<a href="{{ URL::to('/') }}">HOME</a>
 							
 						</li>
-						<li class="neighbour-right">
-							<a href="companies-listing.php">FEATURES</a>
+						<!-- <li class="neighbour-right">
+							<a href="companies-listing.php">FEATURES</a> -->
 							<!-- <ul>
 								<li class="first">
 									<a href="companies-listing.php">Companies Listing</a>
@@ -126,22 +127,15 @@
 									<a href="portfolio-4.php">Portfolio (4 columns)</a>
 								</li>
 							</ul> -->
+						<!-- </li> -->
+						<li class="">
+							<a href="{{ URL::to('blog') }}">BLOG</a>	
 						</li>
 						<li class="">
-							<a href="about-us.php">ABOUT US</a>
-						</li>
-						<li class="">
-							<a href="price-register.php">SUBMIT LISTING</a>
-						</li>
-						<li class="">
-							<a href="blog.php">BLOG</a>
-							
-						</li>
-						<li class="">
-							<a href="contact-us.php">CONTACT US</a>
+							<a href="{{ URL::to('contact-us') }}">CONTACT US</a>
 						</li>
 						<li class="last">
-							<a href="index.php">PURCHASE THIS THEME</a>
+							<a href="{{ URL::to('register') }}">Register</a>
 						</li>
 						<li class="empty">
 							<div></div>
