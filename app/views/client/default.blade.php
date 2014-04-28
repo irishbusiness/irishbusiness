@@ -13,8 +13,10 @@
 		<div class="content-wrapper">
 			<div class="zone-content equalize zone clearfix">
 				<div class="content-container container-16">
+				<br><br><br><br>
 					@yield('content')
 				</div><!-- end of .content-container -->
+				<br><br><br><br>
 				@include('client.partials._sidebar')
 			</div><!-- end of .zone-content -->
 		</div><!-- end of .content-wrapper -->

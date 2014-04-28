@@ -5,26 +5,7 @@
 				<div class="user-links">
 					<div class="login">
 						<a href="{{ URL::to('login') }}" id="login-link" class="login-link">Client Login</a>
-						<!-- <form id="login-form" class="login-form">
-							<input class="text-input-grey" type="text" placeholder="Login">
-							<input class="text-input-grey" type="text" placeholder="Password">
-							<a href="{{ URL::to('forgot-password') }}" class="password-restore">Forgot Password?</a>
-							<input class="button-2-colorful" type="submit" value="Login">
-						</form> -->
 					</div>
-				<!-- 	<div class="register">
-						<a href="#" id="register-link" class="register-link">Register</a>
-						<form id="register-form" class="register-form">
-							<input class="text-input-grey" type="text" placeholder="Login">
-							<input class="text-input-grey" type="text" placeholder="Company Name">
-							<input class="text-input-grey" type="text" placeholder="Contact Person Name">
-							<input class="text-input-grey" type="text" placeholder="E-mail">
-							<input class="text-input-grey" type="text" placeholder="Password">
-							<input class="text-input-grey" type="text" placeholder="Repeat Password">
-							<div href="#" class="fields-required">All Fields Are Required</div>
-							<input class="button-2-colorful" type="submit" value="Register">
-						</form>
-					</div> -->
 				</div>
 			</div>
 			<div class="header-top-right container-16">
@@ -48,39 +29,18 @@
 						<img src="images/dribbble-icon.png" alt="" />
 					</a>
 				</div>
-
-				<div class="languages block">
-					<a href="#" class="en current">EN</a>
-					<a href="#" class="fr">FR</a>
-					<a href="#" class="it">IT</a>
-					<a href="#" class="de">DE</a>
-				</div>
-
 			</div>
 		</div><!-- end of .zone-header-top -->
 	</div><!-- end of .header-top-wrapper -->
-	<div class="header-wrapper">
-		<div class="zone-header zone clearfix">
-			<div class="header-left container-6">
-				<div class="logo block">
-					<a href="index.php">
-						<img src="images/logo.png" alt="" />
-					</a>
-				</div>
-			</div>
-			<div class="header-right container-18">
-				<div class="adverisement block">
-					<a href="{{ URL::to('http://themeforest.net/') }}">
-						<img src="images/content/banner.jpg" alt="" />
-					</a>
-				</div>
-			</div>
-		</div><!-- end of .zone-header -->
-	</div><!-- end of .header-wrapper -->
-
+	
 	<div class="main-menu-wrapper">
 		<div class="zone-main-menu zone clearfix">
 			<div class="main-menu-container container-24">
+			<div class="header-left container-7"><br>
+                <a href="http://irishbusiness.ie">
+               		<img src="http://irishbusiness.ie/wp-content/uploads/2014/01/IrishBusiness.png" alt="Home » IrishBusiness.ie">
+                </a>
+  			   </div>
 				<div class="main-menu block">
 					<ul id="sf-menu menu">
 						<li class="empty neighbour-left">
@@ -89,44 +49,7 @@
 						<li class="first active">
 							<a href="{{ URL::to('/') }}">HOME</a>	
 						</li>
-						<!-- <li class="neighbour-right">
-							<a href="companies-listing.php">FEATURES</a> -->
-							<!-- <ul>
-								<li class="first">
-									<a href="companies-listing.php">Companies Listing</a>
-								</li>
-								<li class="">
-									<a href="shortcodes.php">Shortcodes</a>
-								</li>
-								<li class="">
-									<a href="company-page.php">Company Page</a>
-								</li>
-								<li class="">
-									<a href="company-page-2.php">Company Page 2</a>
-								</li>
-								<li class="">
-									<a href="company-page-3.php">Company Page (Complex Ratings)</a>
-								</li>
-								<li class="">
-									<a href="company-tabs.php">Company Page (With Tabs)</a>
-								</li>
-								<li class="">
-									<a href="single-project.php">Single Project</a>
-								</li>
-								<li class="">
-									<a href="portfolio-1.php">Portfolio (1 column)</a>
-								</li>
-								<li class="">
-									<a href="portfolio-2.php">Portfolio (2 columns)</a>
-								</li>
-								<li class="">
-									<a href="portfolio-3.php">Portfolio (3 columns)</a>
-								</li>
-								<li class="last">
-									<a href="portfolio-4.php">Portfolio (4 columns)</a>
-								</li>
-							</ul> -->
-						<!-- </li> -->
+						
 						<li class="">
 							<a href="{{ URL::to('blog') }}">BLOG</a>	
 						</li>
@@ -144,4 +67,20 @@
 			</div>
 		</div><!-- end of .zone-main-menu -->
 	</div><!-- end of .main-menu-wrapper -->
+
+	<div class="search-wrapper clearfix">
+    <div class="zone-search zone clearfix">
+        <div class="search-container container-24">
+            <div class="search block">
+                <form role="search" id="default-search" class="default-search clearfix" action="http://irishbusiness.ie">
+                    <input type="text" name="s" id="search-what" class="text-input-black input-text" placeholder="Insert company name" style="width:38%;height:40px">
+                    <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+                    <input type="text" id="search-where" class="text-input-black input-text ui-autocomplete-input" name="where" placeholder="Select a location" autocomplete="off" style="width:38%;height:40px">
+                    <input type="text" id="scategory-input-default" style="display: none;" name="cat">
+                    <input type="submit" class="submit" value="search" name="search_simple">
+                </form>
+           	</div>
+        </div>
+    </div><!-- end of .zone-search -->
+</div>
 </header>
