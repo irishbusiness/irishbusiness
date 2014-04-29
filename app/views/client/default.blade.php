@@ -8,8 +8,8 @@
 <body>	
 
 	@include('client.partials._navbar') 
-	
 	<section class="section content boxed">
+	@yield('searchbar')
 		<div class="content-wrapper">
 			<div class="zone-content equalize zone clearfix">
 				<div class="content-container container-16">

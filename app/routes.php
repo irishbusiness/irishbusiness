@@ -23,6 +23,3 @@ Route::get('register', function(){
 Route::get('login', function(){
 	return View::make('client.login');
 });
-Route::get('env', function(){
-	dd(App::environment());
-});
