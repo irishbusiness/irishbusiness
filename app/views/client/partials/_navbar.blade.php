@@ -46,22 +46,26 @@
 						<li class="empty neighbour-left">
 							<div></div>
 						</li>
-						<li class="first active">
+						<li {{ (Request::is('/') ? ' class="first active"' : '') }}>
 							<a href="{{ URL::to('/') }}">HOME</a>	
 						</li>
 						
-						<li class="">
+						<li {{ (Request::is('blog*') ? ' class="first active"' : '') }}>
 							<a href="{{ URL::to('blog') }}">BLOG</a>	
 						</li>
-						<li class="">
+
+						<li {{ (Request::is('contact-us*') ? ' class="first active"' : '') }}>
 							<a href="{{ URL::to('contact-us') }}">CONTACT US</a>
 						</li>
-						<li class="last">
+						
+						<li {{ (Request::is('register*') ? ' class="first active"' : '') }}>
 							<a href="{{ URL::to('register') }}">Register</a>
 						</li>
+						
 						<li class="empty">
 							<div></div>
 						</li>
+				
 					</ul>
 				</div>
 			</div>

@@ -16,6 +16,14 @@ Route::get('/', function()
 	return View::make('client.home');
 });
 
+Route::get('blog', function(){
+	return View::make('client.blog');
+});
+
+Route::get('contact-us', function(){
+	return View::make('client.contact-us');
+});
+
 Route::get('register', function(){
 	return View::make('client.register');
 });
@@ -23,3 +31,4 @@ Route::get('register', function(){
 Route::get('login', function(){
 	return View::make('client.login');
 });
+

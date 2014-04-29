@@ -11,11 +11,11 @@
 	            {{ Form::text('business_name', null, array('class' => 'text-input-grey', 'placeholder' => 'Business Name')) }}<br><br>
 			<span class="text-colorful">Business Address</span><br>
 				{{ Form::text('address1', null, array('class' => 'text-input-grey', 'placeholder' => 'Business Address *')) }}
-            <br>
+            <br><br>
             	{{ Form::text('address2', null, array('class' => 'text-input-grey', 'placeholder' => 'Business Address *')) }}
-            <br>
+            <br><br>
             	{{ Form::text('address3', null, array('class' => 'text-input-grey', 'placeholder' => 'Business Address *')) }}
-          	<br>
+          	<br><br>
           		{{ Form::text('address4', null, array('class' => 'text-input-grey', 'placeholder' => 'Business Address *')) }}	
             <br><br>
             <span class="text-colorful">First Name</span><br>
