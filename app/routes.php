@@ -32,3 +32,6 @@ Route::get('login', function(){
 	return View::make('client.login');
 });
 
+Route::get('settings', function(){
+	return View::make('client.settings');
+});
