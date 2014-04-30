@@ -67,7 +67,7 @@
                     {{ Form::textarea('googleAccount', null, array('class' => 'text-input-grey')) }}
              <br><br>
 
-            	{{ Form::submit('Submit', array('class' => 'button-2-colorful')) }}
+            	{{ Form::submit('Update', array('class' => 'button-2-colorful')) }}
         {{ Form::close() }}
         </form>
 	</div>

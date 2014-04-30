@@ -1,12 +1,7 @@
 <html lang="en">
-<head>
-	
 	@yield('links')
 	@include('client.partials._header')
-
-</head>
 <body>	
-
 	@include('client.partials._navbar') 
 	<section class="section content boxed">
 	@yield('searchbar')
@@ -21,9 +16,7 @@
 			</div><!-- end of .zone-content -->
 		</div><!-- end of .content-wrapper -->
 	</section>
-	
 	@include('client.partials._footer') 
 	@yield('scripts')
-
 </body>
 </html>
