@@ -32,6 +32,8 @@ Route::get('login', function(){
 	return View::make('client.login');
 });
 
-Route::get('settings', function(){
-	return View::make('client.settings');
-});
+Route::get('settings', 'BusinessController@index');
+
+
+Route::get('register', 'UsersController@create');
+Route::post('register', 'UsersController@store');
