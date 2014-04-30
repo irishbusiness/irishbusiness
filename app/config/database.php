@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'irishbusiness',
 			'username'  => 'root',
-			'password'  => 'laravel123',
+			'password'  => 'chiefz23',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
