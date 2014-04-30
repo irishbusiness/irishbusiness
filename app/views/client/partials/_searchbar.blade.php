@@ -100,3 +100,4 @@
 
                 </div><!-- end of .zone-search -->
             </div><!-- end of .search-wrapper -->
+    </section>
