@@ -63,16 +63,16 @@
 <div></div>
 </li>
 <li {{ (Request::is('/') ? ' class="first active"' : '') }}>
-<a href="/">HOME</a>
+<a href="{{ URL::to('/') }}">HOME</a>
 </li>
 <li {{ (Request::is('blog*') ? ' class="first active"' : '') }}>
-<a href="about-us.html">BLOG</a>
+<a href="{{ URL::to('blog') }}">BLOG</a>
 </li>
 <li {{ (Request::is('contact-us*') ? ' class="first active"' : '') }}>
-<a href="price-register.html">CONTACT US</a>
+<a href="{{ URL::to('contact-us') }}">CONTACT US</a>
 </li>
 <li {{ (Request::is('register*') ? ' class="first active"' : '') }}>
-<a href="blog.html">REGISTER</a>
+<a href="{{ URL::to('register') }}">REGISTER</a>
 </div>
 </div>
 </div>

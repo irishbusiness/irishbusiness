@@ -1,8 +1,5 @@
 @extends('client.default')
 
-@section('searchbar')
-	@include('client.partials._searchbar')
-@stop
 
 @section('content')
 	<div class="contact-us block">
