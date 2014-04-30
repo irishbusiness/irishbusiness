@@ -73,7 +73,7 @@
 </li>
 <li {{ (Request::is('register*') ? ' class="first active"' : '') }}>
 <a href="{{ URL::to('register') }}">REGISTER</a>
-</div>
+</li>
 </div>
 </div>
 </div>

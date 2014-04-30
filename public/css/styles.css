@@ -75,6 +75,11 @@
 
 @import url(http://fonts.googleapis.com/css?family=Patua+One);
 
+.fixObsoleteIframe {
+	width:650;
+	height:393; 
+}
+
 .clearfix:after {
 	content: ".";
 	display: block;
