@@ -25,9 +25,10 @@ $app = new Illuminate\Foundation\Application;
 */
 
 $env = $app->detectEnvironment(array(
-	'local' => array('teamlaravel.com'),
+	'local' => array('localhost'),
 	'zem' => array('DreymeToul'),
 	'jiriko' => array('koyji-PC'),
+	'teamlaravel' => array('teamlaravel.com'),
 ));
 
 /*
