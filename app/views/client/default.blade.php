@@ -1,6 +1,4 @@
-<html lang="en">
-	@yield('links')
-	@include('client.partials._header')
+@include('client.partials._header')
 <body>	
 	@include('client.partials._navbar') 
 	<section class="section content boxed">
