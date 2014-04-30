@@ -14,7 +14,7 @@ class CreateProductAndServicesTable extends Migration {
 	{
 		Schema::create('product_and_services', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('business_id');
+			$table->integer('business_id')->unsigned()->index();
 			$table->string('description');
 			$table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
 			$table->timestamps();
