@@ -8,11 +8,9 @@
 		<div class="content-wrapper">
 			<div class="zone-content equalize zone clearfix">
 				<div class="content-container container-16">
-				
 					@yield('content')
 				</div><!-- end of .content-container -->
-				
-				@include('client.partials._sidebar')
+								@include('client.partials._sidebar')
 			</div><!-- end of .zone-content -->
 		</div><!-- end of .content-wrapper -->
 	</section>
