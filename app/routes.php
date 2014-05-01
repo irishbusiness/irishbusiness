@@ -32,6 +32,7 @@ Route::get('login', function(){
 	return View::make('client.login');
 });
 
+
 Route::get('settings', 'BusinessesController@sample');
 Route::post('settings', 'BusinessesController@store');
 Route::post('search','BusinessesController@search');
@@ -40,3 +41,19 @@ Route::get('register', 'UsersController@create');
 Route::post('register', 'UsersController@store');
 Route::post('category', 'CategoriesController@store');
 Route::post('ajaxCategory','CategoriesController@tempAdd');
+
+Route::get('company-tabs-page', function(){
+	return View::make('client.company-tabs-page');
+});
+
+Route::get('clone-of-index', function(){
+	return View::make('client.clone-of-index');
+});
+Route::get('settings', 'BusinessController@index');
+
+
+Route::get('register', 'UsersController@create');
+Route::post('register', 'UsersController@store');
+Route::get('login', 'SessionsController@create');
+Route::post('login', 'SessionsController@store');
+
