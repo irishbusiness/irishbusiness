@@ -88,7 +88,7 @@ class BusinessesController extends \BaseController {
 
 		foreach($categories as $category)
 		{
-			$business->category()->attach($category);
+			$business->categories()->attach($category);
 		}
 		
 		return Redirect::to('/listings');
