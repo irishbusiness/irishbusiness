@@ -3,6 +3,6 @@
 class Category extends Form {
 
 	protected $rules = [
-		'name' => 'required|alpha|unique:categories'
+		'name' => 'required|unique:categories'
 	];
 } 
