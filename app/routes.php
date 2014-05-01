@@ -32,6 +32,13 @@ Route::get('login', function(){
 	return View::make('client.login');
 });
 
+Route::get('company-tabs-page', function(){
+	return View::make('client.company-tabs-page');
+});
+
+Route::get('clone-of-index', function(){
+	return View::make('client.clone-of-index');
+});
 Route::get('settings', 'BusinessController@index');
 
 
