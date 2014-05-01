@@ -49,7 +49,7 @@ Route::get('company-tabs-page', function(){
 Route::get('clone-of-index', function(){
 	return View::make('client.clone-of-index');
 });
-Route::get('settings', 'BusinessController@index');
+
 
 
 Route::get('register', 'UsersController@create');
