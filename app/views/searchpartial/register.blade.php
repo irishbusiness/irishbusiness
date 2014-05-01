@@ -53,7 +53,7 @@
 			<div class="row">
 				<div class="large-12 columns">
 				
-					{{ Form::submit('Submit','', ['class' => 'button radius'])  }}
+					{{ Form::submit('Submit', ['class' => 'button radius tiny'])  }}
 						
 					{{ Form::close() }}
 				</div>

@@ -5,7 +5,7 @@ use Hash;
 
 class UserRepository {
 
-	protected $registerForm;
+	
 
 	function __construct()
 	{

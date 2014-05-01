@@ -6,7 +6,7 @@
 		<h1>Settings</h1>
 	</div>
 	<div class="comment-message">
-		{{ Form::open(array( 'class' => 'comment-message-form')) }}
+		{{ Form::open(array('action' => 'BusinessesController@store', 'class' => 'comment-message-form')) }}
             <span class="text-colorful">Business Name</span><br>
 	            {{ Form::text('business_name', null, array('class' => 'text-input-grey', 'placeholder' => 'Business Name')) }}<br><br>
 			<span class="text-colorful">Business Address</span><br>

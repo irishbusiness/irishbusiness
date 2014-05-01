@@ -1,15 +1,22 @@
 <?php
 
+use IrishBusiness\Repositories\CategoryRepository;
+
 class BusinessesController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+	protected $category;
+
+	function __construct(CategoryRepository $category)
+	{
+		
+		$this->category = $category;
+	}
+
 	public function index()
 	{
-		//
+		$businesses = Business::all();
+		return View::make('searchpartial.listings')->with('title','Listings')
+		->with('businesses',$businesses);
 	}
 
 	/**
@@ -22,6 +29,38 @@ class BusinessesController extends \BaseController {
 		//
 	}
 
+	public function search()
+	{
+
+		$name = Input::get('name');
+		$category = Input::get('category');
+		$locations = explode(' ',Input::get('location'));
+		$query1 = '';
+		foreach($locations as $location)
+		{
+			$string = preg_replace('/,/', '', $location);
+			$query1 .= " and address1 like '%$string%'"; 
+		}
+		
+		$business5 = Business::whereRaw("name like '%$name%' $query1")->whereHas('categories', function($q) use($category)
+		{
+		    $q->where('name', 'like', '%'.$category.'%');		     
+		})->get();
+		
+		return View::make('searchpartial.result')->with('businesses',$business5);
+	}
+
+	public function sample()
+	{
+		$categories = $this->category->getCategories();
+		Session::forget('category');
+		
+		return View::make('searchpartial.settings')->with('title','Settings')
+		->with('categories',$categories);
+		
+	}
+
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -30,6 +69,30 @@ class BusinessesController extends \BaseController {
 	public function store()
 	{
 		//
+		$address = Input::get('address1') . ',' . Input::get('address2') . ',' . Input::get('address3')  . ',' .Input::get('address4');
+		
+		
+
+		$business = new Business;
+		$business->name = Input::get('businessname');
+		$business->address1 = $address;
+		$business->user_id = 2;
+		$business->save();
+
+		$id = $business->id;
+
+		$business = Business::findOrFail($id);
+
+		$categories = Session::get('categories');
+		Session::forget('categories');
+
+		foreach($categories as $category)
+		{
+			$business->category()->attach($category);
+		}
+		
+		return Redirect::to('/listings');
+	
 	}
 
 	/**

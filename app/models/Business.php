@@ -1,5 +1,10 @@
 <?php
 
 class Business extends \Eloquent {
-	protected $fillable = [];
+	protected $table = 'businesses';
+
+	public function categories()
+	{
+		return $this->belongsToMany('Category')->withTimestamps();;
+	}
 }

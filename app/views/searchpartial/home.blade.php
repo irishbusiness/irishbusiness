@@ -6,5 +6,21 @@
     </div>
     @endif
 
-    {{dd(Auth::user()->toArray())}}
+    <h1>huehue</h1>
+    <h3> {{$address}}</h3>
+	<?php 
+
+		$addressarr= explode(',' , $address);
+
+	?>
+
+	@foreach($addressarr as $address)
+		{{$address . '<br/>'}}
+	@endforeach
+
+	@foreach($categories as $category)
+		{{$category . '<br/>'}}
+	@endforeach
+
+	{{$name}}
 @stop
