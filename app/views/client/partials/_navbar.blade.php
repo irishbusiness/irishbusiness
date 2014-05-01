@@ -7,13 +7,7 @@
 
 <div class="user-links">
 <div class="login">
-<a href="#" id="login-link" class="login-link">Login</a>
-<form id="login-form" class="login-form">
-<input class="text-input-grey" type="text" placeholder="Login">
-<input class="text-input-grey" type="text" placeholder="Password">
-<a href="#" class="password-restore">Forgot Password?</a>
-<input class="button-2-colorful" type="submit" value="Login">
-</form>
+<a href="{{ URL::to('login') }}" id="login-link" class="login-link">Login</a>
 </div>
 </div>
 
