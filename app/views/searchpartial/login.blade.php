@@ -4,7 +4,7 @@
 	<div class=" colorbg large-6 columns  large-offset-3">
 		<div class="row center">
 			<div class="large-12-columns">
-				<h1 > Register </h1>
+				<h1 > Login </h1>
 			</div>
 		</div>
 			<hr />

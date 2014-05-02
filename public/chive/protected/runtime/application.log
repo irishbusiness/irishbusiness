@@ -1,0 +1,70 @@
+2014/04/28 07:32:49 [error] [exception.CDbException] could not find driver
+2014/04/28 07:33:20 [error] [exception.CDbException] could not find driver
+2014/04/28 07:38:47 [error] [exception.CDbException] SQLSTATE[28000] [1045] Access denied for user 'user'@'localhost' (using password: YES)
+2014/04/28 08:39:27 [error] [exception.CDbException] SQLSTATE[28000] [1045] Access denied for user 'user'@'localhost' (using password: YES)
+2014/04/28 08:56:11 [error] [exception.CDbException] SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)
+2014/05/01 20:08:28 [error] [exception.CDbException] SQLSTATE[28000] [1045] Access denied for user 'user'@'localhost' (using password: YES)
+2014/05/01 20:08:35 [error] [exception.CDbException] SQLSTATE[28000] [1045] Access denied for user 'user'@'localhost' (using password: YES)
+2014/05/01 20:08:40 [error] [exception.CDbException] SQLSTATE[28000] [1045] Access denied for user 'user'@'localhost' (using password: YES)
+2014/05/01 20:08:43 [error] [exception.CDbException] SQLSTATE[28000] [1045] Access denied for user 'user'@'localhost' (using password: YES)
+2014/05/01 20:08:49 [error] [exception.CDbException] SQLSTATE[28000] [1045] Access denied for user 'user'@'localhost' (using password: YES)
+2014/05/02 09:28:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/loading.gif".' in /var/www/laravel/public/chive/yii/web/CWebApplication.php:328
+Stack trace:
+#0 /var/www/laravel/public/chive/yii/web/CWebApplication.php(121): CWebApplication->runController('images/loading....')
+#1 /var/www/laravel/public/chive/yii/base/CApplication.php(135): CWebApplication->processRequest()
+#2 /var/www/laravel/public/chive/index.php(105): CApplication->run()
+#3 {main} REQUEST_URI=/chive/index.php/images/loading.gif
+2014/05/02 09:29:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/loading.gif".' in /var/www/laravel/public/chive/yii/web/CWebApplication.php:328
+Stack trace:
+#0 /var/www/laravel/public/chive/yii/web/CWebApplication.php(121): CWebApplication->runController('images/loading....')
+#1 /var/www/laravel/public/chive/yii/base/CApplication.php(135): CWebApplication->processRequest()
+#2 /var/www/laravel/public/chive/index.php(105): CApplication->run()
+#3 {main} REQUEST_URI=/chive/index.php/images/loading.gif
+2014/05/02 09:29:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/loading.gif".' in /var/www/laravel/public/chive/yii/web/CWebApplication.php:328
+Stack trace:
+#0 /var/www/laravel/public/chive/yii/web/CWebApplication.php(121): CWebApplication->runController('images/loading....')
+#1 /var/www/laravel/public/chive/yii/base/CApplication.php(135): CWebApplication->processRequest()
+#2 /var/www/laravel/public/chive/index.php(105): CApplication->run()
+#3 {main} REQUEST_URI=/chive/index.php/images/loading.gif
+2014/05/02 09:29:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/loading.gif".' in /var/www/laravel/public/chive/yii/web/CWebApplication.php:328
+Stack trace:
+#0 /var/www/laravel/public/chive/yii/web/CWebApplication.php(121): CWebApplication->runController('images/loading....')
+#1 /var/www/laravel/public/chive/yii/base/CApplication.php(135): CWebApplication->processRequest()
+#2 /var/www/laravel/public/chive/index.php(105): CApplication->run()
+#3 {main} REQUEST_URI=/chive/index.php/images/loading.gif
+2014/05/02 09:29:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/loading.gif".' in /var/www/laravel/public/chive/yii/web/CWebApplication.php:328
+Stack trace:
+#0 /var/www/laravel/public/chive/yii/web/CWebApplication.php(121): CWebApplication->runController('images/loading....')
+#1 /var/www/laravel/public/chive/yii/base/CApplication.php(135): CWebApplication->processRequest()
+#2 /var/www/laravel/public/chive/index.php(105): CApplication->run()
+#3 {main} REQUEST_URI=/chive/index.php/images/loading.gif
+2014/05/02 09:29:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/loading.gif".' in /var/www/laravel/public/chive/yii/web/CWebApplication.php:328
+Stack trace:
+#0 /var/www/laravel/public/chive/yii/web/CWebApplication.php(121): CWebApplication->runController('images/loading....')
+#1 /var/www/laravel/public/chive/yii/base/CApplication.php(135): CWebApplication->processRequest()
+#2 /var/www/laravel/public/chive/index.php(105): CApplication->run()
+#3 {main} REQUEST_URI=/chive/index.php/images/loading.gif
+2014/05/02 09:37:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/loading.gif".' in /var/www/laravel/public/chive/yii/web/CWebApplication.php:328
+Stack trace:
+#0 /var/www/laravel/public/chive/yii/web/CWebApplication.php(121): CWebApplication->runController('images/loading....')
+#1 /var/www/laravel/public/chive/yii/base/CApplication.php(135): CWebApplication->processRequest()
+#2 /var/www/laravel/public/chive/index.php(105): CApplication->run()
+#3 {main} REQUEST_URI=/chive/index.php/images/loading.gif
+2014/05/02 09:37:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/loading.gif".' in /var/www/laravel/public/chive/yii/web/CWebApplication.php:328
+Stack trace:
+#0 /var/www/laravel/public/chive/yii/web/CWebApplication.php(121): CWebApplication->runController('images/loading....')
+#1 /var/www/laravel/public/chive/yii/base/CApplication.php(135): CWebApplication->processRequest()
+#2 /var/www/laravel/public/chive/index.php(105): CApplication->run()
+#3 {main} REQUEST_URI=/chive/index.php/images/loading.gif
+2014/05/02 09:45:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/loading.gif".' in /var/www/laravel/public/chive/yii/web/CWebApplication.php:328
+Stack trace:
+#0 /var/www/laravel/public/chive/yii/web/CWebApplication.php(121): CWebApplication->runController('images/loading....')
+#1 /var/www/laravel/public/chive/yii/base/CApplication.php(135): CWebApplication->processRequest()
+#2 /var/www/laravel/public/chive/index.php(105): CApplication->run()
+#3 {main} REQUEST_URI=/chive/index.php/images/loading.gif
+2014/05/02 09:47:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/loading.gif".' in /var/www/laravel/public/chive/yii/web/CWebApplication.php:328
+Stack trace:
+#0 /var/www/laravel/public/chive/yii/web/CWebApplication.php(121): CWebApplication->runController('images/loading....')
+#1 /var/www/laravel/public/chive/yii/base/CApplication.php(135): CWebApplication->processRequest()
+#2 /var/www/laravel/public/chive/index.php(105): CApplication->run()
+#3 {main} REQUEST_URI=/chive/index.php/images/loading.gif
