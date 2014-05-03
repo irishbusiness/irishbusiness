@@ -1,35 +1,19 @@
 @extends('searchpartial.default')
 @section('content')
 
-<?php
-	/*$business5 = Business::whereRaw('name', 'like', '%%')->where('address1', 'like', '%strets%')->where('address1', 'like', '%45%')*/
-	$business5 = Business::whereRaw("name like '%%' and address1 like '%stret%' and address1 like '%45%'")->whereHas('categories', function($q)
-	{
-	    $q->where('name', 'like', '%sex%');
-	    //$q->whereRaw("name like '%more%' and name like '%sex%'");
-	     
-	})->get();
-
-?>
-@foreach ($business5 as $bus)
-	{{$bus->name}}
-@endforeach
 
 <div class="row">
 	{{ Form::open(array('action' => 'BusinessesController@search')) }}
-	<div class="large-3 columns">
-		{{ Form::text('name','', [
-						"placeholder" => "businessname"]) }}
-	</div>
-	<div class="large-3 columns">
-		{{ Form::text('location','', [
-						"placeholder" => "location"]) }}
-	</div>
-	<div class="large-3 columns">
+	
+	<div class="large-4 columns">
 		{{ Form::text('category','', [
-						"placeholder" => "category"]) }}
+						"placeholder" => "what?"]) }}
 	</div>
-	<div class="large-3 columns">
+	<div class="large-4 columns">
+		{{ Form::text('location','', [
+						"placeholder" => "where?"]) }}
+	</div>
+	<div class="large-4 columns">
 		{{ Form::submit('Submit', ['class' => 'button radius tiny'])  }}
 	</div>
 	{{Form::close()}}
@@ -50,6 +34,19 @@
 					@foreach($business->categories as $category)
 						{{$category->name . ' '}}
 					@endforeach
+				</p>
+				<?php $keywords = explode(',',$business->address2);?>
+				<p><strong> Keywords:</strong> 	
+				@foreach ($keywords as $keyword)
+						   {{'<br/>' . $keyword }}
+				@endforeach
+				</p>
+				<hr/>
+				<p><strong> Locations Served:</strong> 	
+				<?php $locations = explode(',',$business->address3);?>
+				@foreach ($locations as $location)
+						   {{'<br/>' . $location }}
+				@endforeach
 				</p>
 				<hr/>
 			@endforeach

@@ -3,10 +3,12 @@
 		@if($businesses->isEmpty())
 			<h1> No Results Found! </h1>
 		@else
+		<ul>
 			@foreach($businesses as $business)
-				{{$business->name}}
+				<li>{{$business->name}}</li>
 				
 			@endforeach
+		</ul>
 		@endif
 	</div>
 </div>
