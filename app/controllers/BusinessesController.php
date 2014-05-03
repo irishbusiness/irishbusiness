@@ -32,21 +32,34 @@ class BusinessesController extends \BaseController {
 	public function search()
 	{
 
-		$name = Input::get('name');
-		$category = Input::get('category');
-		$locations = explode(' ',Input::get('location'));
-		$query1 = '';
-		foreach($locations as $location)
+		
+		$category = trim(Input::get('category'));
+		$addresses = explode(' ',Input::get('location'));
+		if(count($addresses)>0)
+		$query1 = 'and ';
+		foreach($addresses as $address)
 		{
-			$string = preg_replace('/,/', '', $location);
-			$query1 .= " and address1 like '%$string%'"; 
+			$query1 .= '(';
+			$string = trim(preg_replace('/,/', '', $address));
+			$query1 .= "businesses.address1 like '%$string%' or businesses.address3 like '%$string%'"; 
+			$query1 .= ')and ';
 		}
-		
-		$business5 = Business::whereRaw("name like '%$name%' $query1")->whereHas('categories', function($q) use($category)
+		$query1 .= "businesses.address3 like '%%'";
+
+		$business5 = Business::WhereHas('categories', function($q) use($category,$query1)
 		{
-		    $q->where('name', 'like', '%'.$category.'%');		     
+		      $q->whereRaw("(name like '%$category%' or businesses.name like '%$category%' or businesses.address2 like '%$category%')  $query1");	     
 		})->get();
-		
+
+	/*	$business5 = Business::WhereHas('categories', function($q) use($category)
+		{
+		      $q->whereRaw("name like '%$category%' or businesses.name like '%$category%'");	     
+		})->WhereRaw("name like '%' $query1")->get();*/
+		/*$business5 = Business::WhereHas('categories', function($q) use($category)
+		{
+		      $q->whereRaw("MATCH(name) AGAINST('+*$category*' IN BOOLEAN MODE)");    
+		})->get();*/
+
 		return View::make('searchpartial.result')->with('businesses',$business5);
 	}
 
@@ -76,6 +89,8 @@ class BusinessesController extends \BaseController {
 		$business = new Business;
 		$business->name = Input::get('businessname');
 		$business->address1 = $address;
+		$business->address2 = Input::get('keywords');
+		$business->address3 = Input::get('locations');
 		$business->user_id = 2;
 		$business->save();
 

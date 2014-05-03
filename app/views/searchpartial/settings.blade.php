@@ -66,6 +66,23 @@
 				{{$errors->first('businessname','<span class="error">:message</span>')}}
 			</div>
 		</div>
+			<div class="row">
+			<div class="large-12 columns">
+				{{ Form::label('keywords', "Keywords (please separate keywords by a comma.)") }}
+				{{ Form::text('keywords','', [
+				"placeholder" => "office, airplane, house"]) }}
+				{{$errors->first('businessname','<span class="error">:message</span>')}}
+			</div>
+		</div>
+		
+			<div class="row">
+			<div class="large-12 columns">
+				{{ Form::label('locations', "Locations Served (please separate keywords by a comma.)") }}
+				{{ Form::text('locations','', [
+				"placeholder" => "iraq, iran, new york"]) }}
+				{{$errors->first('businessname','<span class="error">:message</span>')}}
+			</div>
+		</div>
 		<div class="row">
 			<div class="large-6 columns">
 				{{ Form::select('categories',$categories,"",['id' => 'categories']) }}
