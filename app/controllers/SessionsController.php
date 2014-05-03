@@ -6,7 +6,7 @@ use IrishBusiness\Repositories\UserRepository;
 
 class SessionsController extends \BaseController {
 
-	protected $registerForm;
+	protected $loginForm;
 	protected $user;
 
 	function __construct(Login $loginForm, UserRepository $user)
@@ -22,8 +22,13 @@ class SessionsController extends \BaseController {
 		{
 			$this->loginForm->validate(Input::all());
 
-			$this->user->authenticate(Input::all());
-		}
+			$returnMessage = $this->user->authenticate(Input::all());
+	
+			if($returnMessage == true){
+			return Redirect::to('settings')->withFlashMessage('You logged in as ' . ucwords(Input::get('username')))->with('title','IrishBusiness.ie | Settings');
+			}
+			return Redirect::back()->withInput()->withErrors('Invalid Username and/or Password');
+		}	
 		catch(FormValidationException  $e)
 		{
 			return Redirect::back()->withInput()->withErrors($e->getErrors());

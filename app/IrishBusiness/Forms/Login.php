@@ -3,7 +3,7 @@
 class Login extends Form {
 
 	protected $rules = [
-		'username' => 'required|unique:users',
+		'username' => 'required',
 		'password' => 'required',
 	];
 } 

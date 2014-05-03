@@ -1,7 +1,6 @@
 @include('client.partials._header')
 <body>	
 	@include('client.partials._navbar') 
-	@include('client.partials._searchbarclone')
 	<section class="section content boxed">
 	@yield('searchbar')
 		<div class="content-wrapper">
@@ -9,7 +8,7 @@
 				<div class="content-container container-16">
 					@yield('content')
 				</div><!-- end of .content-container -->
-				@include('client.partials._sidebar')
+				
 			</div><!-- end of .zone-content -->
 		</div><!-- end of .content-wrapper -->
 	</section>
