@@ -35,7 +35,7 @@ class BusinessesController extends \BaseController {
 		
 		$category = trim(Input::get('category'));
 		$addresses = explode(' ',Input::get('location'));
-		if(count($addresses)>0)
+		
 		$query1 = 'and ';
 		foreach($addresses as $address)
 		{
