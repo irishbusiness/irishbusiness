@@ -35,7 +35,7 @@ class BusinessesController extends \BaseController {
 		
 		$category = trim(Input::get('category'));
 		$addresses = explode(' ',Input::get('location'));
-		if(count($addresses)>0)
+		
 		$query1 = 'and ';
 		foreach($addresses as $address)
 		{
@@ -60,7 +60,9 @@ class BusinessesController extends \BaseController {
 		      $q->whereRaw("MATCH(name) AGAINST('+*$category*' IN BOOLEAN MODE)");    
 		})->get();*/
 
-		return View::make('searchpartial.result')->with('businesses',$business5);
+		return View::make('searchpartial.result')->with('businesses',$business5)
+		->with('category',$category)
+		->with('location',Input::get('location'));
 	}
 
 	public function sample()

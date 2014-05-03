@@ -51,6 +51,9 @@ Route::get('clone-of-index', function(){
 });
 
 
+Route::get('listing/{id}/{category?}/{location?}', function($id){
+	return Business::find($id)->toArray();
+});
 
 Route::get('register', 'UsersController@create');
 Route::post('register', 'UsersController@store');
