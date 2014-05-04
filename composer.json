@@ -19,6 +19,7 @@
 			"app/database/seeds",
 			"app/tests/TestCase.php"
 		],
+		"files":["app/helpers.php"],
 		"psr-4": {
 			"IrishBusiness\\": "app/IrishBusiness" 
 		}
