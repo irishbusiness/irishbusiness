@@ -5,8 +5,7 @@
 		@else
 		<ul>
 			@foreach($businesses as $business)
-				<li> {{'<a href = "listing/' . $business->id . ((trim($category)!='') ? '/' . $category : '') .  ((trim($location)!='') ? '/' . $location : '' ) .'">' . $business->name . '</a>' }}</li>
-				
+					<li>{{HTML::link('listing/'. $business->id . ((trim($category)!='') ? '/' . $category : '') .  ((trim($location)!='') ? '/' . $location : '' ), $business->name ) }}</li>			
 			@endforeach
 		</ul>
 		@endif
