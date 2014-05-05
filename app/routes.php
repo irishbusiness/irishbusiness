@@ -36,6 +36,10 @@ Route::get('login', function(){
 	return View::make('client.login');
 });
 
+Route::get('searchresults', function(){
+	return View::make('client.searchresults');
+});
+
 
 Route::get('settings', 'BusinessesController@sample');
 Route::post('settings', 'BusinessesController@store');

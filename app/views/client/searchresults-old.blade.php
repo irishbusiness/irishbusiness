@@ -1,7 +1,20 @@
-@extends('client.layouts.default')
+<?php include('_header.php'); ?>
 
-@section('actual-body-content')
-	<div class="content-wrapper">
+
+		<section class="section content boxed">
+
+			<?php include('_searchbar.php'); ?>
+
+			<div class="slideshow-wrapper">
+				<img src="images/slideshow/spacer.png" alt="" />
+			</div>
+
+			<div class="industries-tabs-wrapper">
+				<div class="zone-industries-tabs zone clearfix">
+				</div><!-- end of .zone-industries-tabs -->
+			</div><!-- end of .industries-tabs-wrapper -->
+
+			<div class="content-wrapper">
 				<div class="zone-content equalize zone clearfix">
 
 					<div class="content-container container-16">
@@ -83,7 +96,17 @@
 
 					</div><!-- end of .content-container -->
 
+
+					<?php include('_sidebar.php'); ?>
+
 				</div><!-- end of .zone-content -->
 				
 			</div><!-- end of .content-wrapper -->
-@stop
+
+		</section>
+
+		<?php include('_footer.php'); ?>
+		<?php include('_includes.php'); ?>
+	</body>
+
+</html>
