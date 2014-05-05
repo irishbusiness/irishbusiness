@@ -40,6 +40,10 @@ Route::get('searchresults', function(){
 	return View::make('client.searchresults');
 });
 
+Route::get('tabs', function(){
+	return View::make('client.tabs');
+});
+
 
 Route::get('settings', 'BusinessesController@sample');
 Route::post('settings', 'BusinessesController@store');

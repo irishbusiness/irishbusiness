@@ -1,8 +1,22 @@
-@extends('client.layouts.tabs-layout')
+<?php include('_header.php'); ?>
 
-@section('actual-body-content')
-	
-		
+
+		<section class="section content boxed">
+
+			<?php include('_searchbar.php'); ?>
+
+			<div class="slideshow-wrapper">
+				<img src="images/slideshow/spacer.png" alt="" />
+			</div>
+
+			<div class="industries-tabs-wrapper">
+				<div class="zone-industries-tabs zone clearfix">
+				</div><!-- end of .zone-industries-tabs -->
+			</div><!-- end of .industries-tabs-wrapper -->
+
+			<div class="content-wrapper">
+				<div class="zone-content equalize zone clearfix">
+					<div class="content-container container-16">
 
 
 					<div class="company-tabs-wrapper">
@@ -2314,4 +2328,20 @@
 				</div><!-- end of .zone-company-content -->
 			</div><!-- end of .company-content-wrapper -->
 
-@stop
+
+
+					</div><!-- end of .content-container -->
+
+					
+
+				</div><!-- end of .zone-content -->
+				
+			</div><!-- end of .content-wrapper -->
+
+		</section>
+
+		<?php include('_footer.php'); ?>
+		<?php include('_includes.php'); ?>
+	</body>
+
+</html>
