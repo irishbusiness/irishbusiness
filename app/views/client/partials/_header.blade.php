@@ -96,25 +96,17 @@
 								<li class="empty neighbour-left">
 									<div></div>
 								</li>
-								<li class="first active">
-									<a href="index-header7.html">HOME</a>
+								<li {{ (Request::is('/') ? ' class="first active"' : '') }}>
+									<a href="{{ URL::to('/') }}">HOME</a>
 								</li>
-																<li class="">
-									<a href="about-us.html">ABOUT US</a>
+								<li {{ (Request::is('bloglist*') ? ' class="first active"' : '') }}>
+									<a href="{{ URL::to('bloglist') }}">BLOG</a>
 								</li>
-								<li class="">
-									<a href="price-register.html">SUBMIT LISTING</a>
+								<li {{ (Request::is('contact-us*') ? ' class="first active"' : '') }}>
+									<a href="{{ URL::to('contact-us')}}">CONTACT US</a>
 								</li>
-								<li class="">
-									<a href="blog.html">BLOG</a>
-									<ul>
-										<li class="first last">
-											<a href="blog-post.html">Blog post</a>
-										</li>
-									</ul>
-								</li>
-								<li class="last">
-									<a href="contact-us.php">Register</a>
+								<li {{ (Request::is('register*') ? ' class="first active"' : '') }}>
+									<a href="{{ URL::to('register') }}">REGISTER</a>
 								</li>
 								<li class="empty">
 									<div></div>
