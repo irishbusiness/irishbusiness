@@ -20,6 +20,10 @@ Route::get('bloglist', function(){
 	return View::make('client.bloglist');
 });
 
+Route::get('blogpost', function(){
+	return View::make('client.blogpost');
+});
+
 Route::get('contact-us', function(){
 	return View::make('client.contact-us');
 });
