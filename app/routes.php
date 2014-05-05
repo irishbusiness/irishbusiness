@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-	return View::make('client.home');
+	return View::make('client.index');
 });
 
 Route::get('blog', function(){

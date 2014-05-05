@@ -281,7 +281,7 @@ jQuery(window).load(function(){
 	***/
 
 	jQuery("#twitter-feed").tweet({
-		username: "envato",
+		username: "_IrishBusiness",
 		template: "{avatar}{text}",
 		count: 2,
 		avatar_size: 24,

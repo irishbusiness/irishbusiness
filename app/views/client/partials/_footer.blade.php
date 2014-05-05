@@ -1,4 +1,4 @@
-<footer class="section boxed">
+		<footer class="section boxed">
 
 			<div class="footer-wrapper">
 				<div class="zone-footer zone clearfix">
@@ -6,7 +6,7 @@
 					<div class="footer-container container-24">
 
 						<div class="website-short-description block">
-							<img src="images/logo-small.png" class="logo" alt="" />
+							<img src="images/IrishBusiness_footer.png" class="logo" alt="" />
 							<div class="description-text">
 								Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam sit amet lectus quis est congue mollis.
 							</div>
@@ -50,7 +50,7 @@
 
 					<div class="copyright-left-container container-12">
 
-						<div class="copyright block">&copy; All Rights Reserved. Design by www.uou.ch.</div>
+						<div class="copyright block">&copy; 2014 IrishBusiness.ie. All Rights Reserved.</div>
 
 					</div>
 

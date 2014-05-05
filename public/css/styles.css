@@ -86,7 +86,7 @@
 
 body {
 	font-family: "Titillium Web";
-	background: url(../images/content/city.jpg) center top;
+	background: url(../images/content/irish-business.jpg) center top;
 	background-attachment: fixed;
 	font-size: 14px;
 	color: #4d4d4d;
@@ -95,17 +95,17 @@ body {
 }
 
 body.background-1 {
-	background: url(../images/content/city.jpg) center top;
+	background: url(../images/content/irish-business.jpg) center top;
 	background-attachment: fixed;
 }
 
 body.background-2 {
-	background: url(../images/content/earth.jpg) center top;
+	background: url(../images/content/irish-business.jpg) center top;
 	background-attachment: fixed;
 }
 
 body.background-3 {
-	background: url(../images/content/ny.jpg) center top;
+	background: url(../images/content/irish-business.jpg) center top;
 	background-attachment: fixed;
 }
 
@@ -1419,14 +1419,20 @@ ul.ui-autocomplete {
 	.slideshow .slides img {
 		display: block;
 		width: auto;
-		height: 620px;
+		height: 350px;
+	}
+
+	.slideshow .slides2 img {
+		display: block;
+		width: auto;
+		height: 50px;
 	}
 
 	.slideshow .flex-direction-nav a {
-		width: 80px;
+		width: 50px;
 		height: 104px;
 		opacity: 1;
-		margin-top: -52px;
+		margin-top: -17px;
 		z-index: 5;
 	}
 
@@ -3853,4 +3859,18 @@ ul.entries-list {
 	padding: 21px 0;
 	border: none;
 	border-left: none;
+}
+
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
