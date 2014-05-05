@@ -16,8 +16,8 @@ Route::get('/', function()
 	return View::make('client.index');
 });
 
-Route::get('blog', function(){
-	return View::make('client.blog');
+Route::get('bloglist', function(){
+	return View::make('client.bloglist');
 });
 
 Route::get('contact-us', function(){
