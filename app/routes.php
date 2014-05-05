@@ -16,8 +16,12 @@ Route::get('/', function()
 	return View::make('client.index');
 });
 
-Route::get('blog', function(){
-	return View::make('client.blog');
+Route::get('bloglist', function(){
+	return View::make('client.bloglist');
+});
+
+Route::get('blogpost', function(){
+	return View::make('client.blogpost');
 });
 
 Route::get('contact-us', function(){
