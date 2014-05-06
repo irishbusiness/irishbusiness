@@ -9,6 +9,12 @@ function isEmpty($search)
 	} 
 	return '';
 }
+function isResult($text)
+{
+	if(Request::path()==='search')
+		return $text;
+	return '';
+}
 
 
 

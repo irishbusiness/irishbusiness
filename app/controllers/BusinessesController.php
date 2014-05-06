@@ -59,7 +59,8 @@ class BusinessesController extends \BaseController {
 		{
 		      $q->whereRaw("MATCH(name) AGAINST('+*$category*' IN BOOLEAN MODE)");    
 		})->get();*/
-
+		Session::put('category', Input::get('category'));
+		Session::put('location', Input::get('location'));
 		return View::make('client.searchresults')->with('businesses',$business5)
 		->with('category',$category)
 		->with('location',Input::get('location'));
