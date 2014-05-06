@@ -26,7 +26,7 @@
 									<div class="listing-rating">Rating: 99%</div>
 									<div class="listing-title">{{$business->name}}</div>
 									<div class="listing-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam.</div>
-									<a href="#" class="listing-read-more">Read More</a>
+									{{HTML::link('listing/'. $business->id . isEmpty($category) .  isEmpty($location), 'Read More',['class' => 'listing-read-more' ] ) }}
 								</div>
 							</div>
 							@endforeach

@@ -44,6 +44,12 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
+Route::filter('removeSession',function(){
+	Session::forget('category');
+	Session::forget('location');
+	return Redirect::intended();
+});
+
 /*
 |--------------------------------------------------------------------------
 | Guest Filter
