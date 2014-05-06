@@ -35,6 +35,7 @@ class BusinessesController extends \BaseController {
 		
 		$category = trim(Input::get('category'));
 		$addresses = explode(' ',Input::get('location'));
+		$selected = Input::get('category-default');
 		
 		$query1 = 'and ';
 		foreach($addresses as $address)
@@ -63,7 +64,8 @@ class BusinessesController extends \BaseController {
 		Session::put('location', Input::get('location'));
 		return View::make('client.searchresults')->with('businesses',$business5)
 		->with('category',$category)
-		->with('location',Input::get('location'));
+		->with('location',Input::get('location'))
+		->with('selected',$selected);
 	}
 
 	public function sample()
