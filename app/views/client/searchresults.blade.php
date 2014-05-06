@@ -17,61 +17,19 @@
 									<a href="#">3</a>
 								</div>
 							</div>
+							@foreach($businesses as $business)
 							<div class="company-listing clearfix">
 								<a href="#" class="listing-image">
 									<img src="images/content/crayons.png" alt="" />
 								</a>
 								<div class="listing-body">
 									<div class="listing-rating">Rating: 99%</div>
-									<div class="listing-title">Yellow Idea Company</div>
+									<div class="listing-title">{{$business->name}}</div>
 									<div class="listing-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam.</div>
 									<a href="#" class="listing-read-more">Read More</a>
 								</div>
 							</div>
-							<div class="company-listing clearfix">
-								<a href="#" class="listing-image">
-									<img src="images/content/coins.png" alt="" />
-								</a>
-								<div class="listing-body">
-									<div class="listing-rating">Rating: 83%</div>
-									<div class="listing-title">Green Idea Company</div>
-									<div class="listing-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam.</div>
-									<a href="#" class="listing-read-more">Read More</a>
-								</div>
-							</div>
-							<div class="company-listing clearfix">
-								<a href="#" class="listing-image">
-									<img src="images/content/text.png" alt="" />
-								</a>
-								<div class="listing-body">
-									<div class="listing-rating">Rating: 50%</div>
-									<div class="listing-title">Orange Idea Company</div>
-									<div class="listing-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam.</div>
-									<a href="#" class="listing-read-more">Read More</a>
-								</div>
-							</div>
-							<div class="company-listing clearfix">
-								<a href="#" class="listing-image">
-									<img src="images/content/sky.png" alt="" />
-								</a>
-								<div class="listing-body">
-									<div class="listing-rating">Rating: 33%</div>
-									<div class="listing-title">Blue Idea Company</div>
-									<div class="listing-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam.</div>
-									<a href="#" class="listing-read-more">Read More</a>
-								</div>
-							</div>
-							<div class="company-listing clearfix">
-								<a href="#" class="listing-image">
-									<img src="images/content/crayons.png" alt="" />
-								</a>
-								<div class="listing-body">
-									<div class="listing-rating">Rating: 0%</div>
-									<div class="listing-title">Red Idea Company</div>
-									<div class="listing-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam.</div>
-									<a href="#" class="listing-read-more">Read More</a>
-								</div>
-							</div>
+							@endforeach
 							<div class="pagination">
 								<div class="pagination-buttons">
 									<a href="#" class="current-page">1</a>
