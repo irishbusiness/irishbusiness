@@ -18,7 +18,7 @@ $(document).ready(function () {
 	$('#twitter-feed').html(headerHTML + loadingHTML);
 	
 	 
-    $.getJSON('http://' + window.location.hostname + '/gettweets', 
+    $.getJSON('http://' + window.location.hostname +'/gettweets', 
         function(feeds) {   
 		   //alert(feeds);
             var feedHTML = '';
@@ -52,7 +52,7 @@ $(document).ready(function () {
 				 
 				 //Generate twitter feed HTML based on selected options
 				 if (((showretweets == true) || ((isaretweet == false) && (showretweets == false))) && ((showdirecttweets == true) || ((showdirecttweets == false) && (isdirect == false)))) { 
-				 	feedHTML += '<div class="twitter-feed"><ul class="twitterul">';
+				 	feedHTML += '<ul class="twitterul">';
 				 	feedHTML += '<li class="twitterprofile"><a href="https://twitter.com/'+tweetusername+'/status/'+tweetid+'" target="_blank">@'+twitterprofile+'</li><li><a href="https://twitter.com/'+tweetusername+'/status/'+tweetid+'" target="_blank">'+relative_time(feeds[i].created_at)+'</a></li>';
 					if ((feeds[i].text.length > 1) && (displayCounter <= displaylimit)) {             
 						if (showtweetlinks == true) {
@@ -80,7 +80,7 @@ $(document).ready(function () {
 						feedHTML += '</div>';*/
 						displayCounter++;
 					}
-					feedHTML += '</ul></div>';  
+					feedHTML += '</ul>';  
 				 }
             }
              
