@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-		"laracasts/utilities": "1.0"
+		"laracasts/utilities": "1.0",
+		"thujohn/twitter": "dev-master"
 	},
 	"require-dev": {
     "way/generators": "2.*"
