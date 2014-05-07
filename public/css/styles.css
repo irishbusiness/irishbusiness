@@ -3874,3 +3874,18 @@ ul.entries-list {
 	width: 100%;
 	height: 100%;
 }
+
+.twitterul{
+	list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.tweetpic{
+	float: left;
+	margin-right: 10px;
+}
+.twitterprofile{
+	float: left;
+	margin-right: 60px;
+	color: #98b709;
+}

@@ -280,13 +280,13 @@ jQuery(window).load(function(){
 	12. Adding Twitter feed to the website footer.
 	***/
 
-	jQuery("#twitter-feed").tweet({
+	/*jQuery("#twitter-feed").tweet({
 		username: "_IrishBusiness",
 		template: "{avatar}{text}",
 		count: 2,
 		avatar_size: 24,
 		loading_text: "Loading tweets..."
-	});
+	});*/
 
 	/***
 	13. Adding Flickr feed to the website footer.
