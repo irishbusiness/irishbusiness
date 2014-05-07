@@ -24,8 +24,9 @@ $(document).ready(function () {
 	loadingHTML += '<div id="loading-container"><img src="images/ajax-loader.gif" width="32" height="32" alt="tweet loader" /></div>';
 	
 	$('#twitter-feed').html(headerHTML + loadingHTML);
+	
 	 
-    $.getJSON('http://localhost:8000/twitter', 
+    $.getJSON('http://' + window.location.hostname + "/twitter", 
         function(feeds) {   
 		   //alert(feeds);
             var feedHTML = '';
