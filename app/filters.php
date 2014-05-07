@@ -13,6 +13,7 @@
 
 View::share('selected', '');
 
+
 App::before(function($request)
 {
 	//

@@ -33,7 +33,7 @@
 
 	@include('client.partials._footer')
 	@include('client.partials._includes')
-
+	@yield('scripts')
 </section>
 
 </body>

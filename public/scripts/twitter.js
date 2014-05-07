@@ -1,11 +1,3 @@
-@extends('searchpartial.default')
-@section('content')
-<div class="twitter-feed block">
-	<h3 class="title">Recent Tweets</h3>
-	<div id="twitter-feed"></div>
-</div>
-
-<script>
 $(document).ready(function () {
     var displaylimit = 3;
     var twitterprofile = "_IrishBusiness";
@@ -19,14 +11,14 @@ $(document).ready(function () {
 	
 	var headerHTML = '';
 	var loadingHTML = '';
-	headerHTML += '<a href="https://twitter.com/" target="_blank"><img src="images/twitter-bird-light.png" width="34" style="float:left;padding:3px 12px 0px 6px" alt="twitter bird" /></a>';
-	headerHTML += '<h1>'+screenname+' <span style="font-size:13px"><a href="https://twitter.com/'+twitterprofile+'" target="_blank">@'+twitterprofile+'</a></span></h1>';
-	loadingHTML += '<div id="loading-container"><img src="images/ajax-loader.gif" width="32" height="32" alt="tweet loader" /></div>';
-	
+	/*headerHTML += '<a href="https://twitter.com/" target="_blank"><img src="images/twitter-bird-light.png" width="34" style="float:left;padding:3px 12px 0px 6px" alt="twitter bird" /></a>';*/
+	/*headerHTML += '<li href="https://twitter.com/'+twitterprofile+'" target="_blank">@'+twitterprofile+'<a href="https://twitter.com/'+tweetusername+'/status/'+tweetid+'" target="_blank">'+relative_time(feeds[i].created_at)+'</a> </li>';*/
+/*	loadingHTML += '<div id="loading-container"><img src="images/ajax-loader.gif" width="32" height="32" alt="tweet loader" /></div>';
+	*/
 	$('#twitter-feed').html(headerHTML + loadingHTML);
 	
 	 
-    $.getJSON('http://' + window.location.hostname + "/twitter", 
+    $.getJSON('http://' + window.location.hostname + '/gettweets', 
         function(feeds) {   
 		   //alert(feeds);
             var feedHTML = '';
@@ -60,6 +52,8 @@ $(document).ready(function () {
 				 
 				 //Generate twitter feed HTML based on selected options
 				 if (((showretweets == true) || ((isaretweet == false) && (showretweets == false))) && ((showdirecttweets == true) || ((showdirecttweets == false) && (isdirect == false)))) { 
+				 	feedHTML += '<div class="twitter-feed"><ul class="twitterul">';
+				 	feedHTML += '<li class="twitterprofile"><a href="https://twitter.com/'+tweetusername+'/status/'+tweetid+'" target="_blank">@'+twitterprofile+'</li><li><a href="https://twitter.com/'+tweetusername+'/status/'+tweetid+'" target="_blank">'+relative_time(feeds[i].created_at)+'</a></li>';
 					if ((feeds[i].text.length > 1) && (displayCounter <= displaylimit)) {             
 						if (showtweetlinks == true) {
 							status = addlinks(status);
@@ -68,10 +62,12 @@ $(document).ready(function () {
 						if (displayCounter == 1) {
 							feedHTML += headerHTML;
 						}
-									 
-						feedHTML += '<div class="twitter-article" id="tw'+displayCounter+'">'; 										                 
-						feedHTML += '<div class="twitter-pic"><a href="https://twitter.com/'+tweetusername+'" target="_blank"><img src="'+profileimage+'"images/twitter-feed-icon.png" width="42" height="42" alt="twitter icon" /></a></div>';
-						feedHTML += '<div class="twitter-text"><p><span class="tweetprofilelink"><strong><a href="https://twitter.com/'+tweetusername+'" target="_blank">'+tweetscreenname+'</a></strong> <a href="https://twitter.com/'+tweetusername+'" target="_blank">@'+tweetusername+'</a></span><span class="tweet-time"><a href="https://twitter.com/'+tweetusername+'/status/'+tweetid+'" target="_blank">'+relative_time(feeds[i].created_at)+'</a></span><br/>'+status+'</p>';
+							 
+			/*			feedHTML += '<div class="twitter-article twitter-feed" id="tw'+displayCounter+'">'; 										                */ 
+						feedHTML += '<li class="tweet_avatar tweetpic"><a href="https://twitter.com/'+tweetusername+'" target="_blank"><img src="'+profileimage+'"images/twitter-feed-icon.png" width="42" height="42" alt="twitter icon" /></a></li>';
+						/*feedHTML += '<div class="twitter-text"><p><span class="tweetprofilelink"><strong><a href="https://twitter.com/'+tweetusername+'" target="_blank">'+tweetscreenname+'</a></strong> <a href="https://twitter.com/'+tweetusername+'" target="_blank">@'+tweetusername+'</a></span><span class="tweet-time"><a href="https://twitter.com/'+tweetusername+'/status/'+tweetid+'" target="_blank">'+relative_time(feeds[i].created_at)+'</a></span><br/>'+status+'</p>';
+						*/
+						feedHTML +='<li class="tweet_text">' + status+'</li>';
 						
 						if ((isaretweet == true) && (showretweetindicator == true)) {
 							feedHTML += '<div id="retweet-indicator"></div>';
@@ -80,10 +76,11 @@ $(document).ready(function () {
 							feedHTML += '<div id="twitter-actions"><div class="intent" id="intent-reply"><a href="https://twitter.com/intent/tweet?in_reply_to='+tweetid+'" title="Reply"></a></div><div class="intent" id="intent-retweet"><a href="https://twitter.com/intent/retweet?tweet_id='+tweetid+'" title="Retweet"></a></div><div class="intent" id="intent-fave"><a href="https://twitter.com/intent/favorite?tweet_id='+tweetid+'" title="Favourite"></a></div></div>';
 						}
 						
-						feedHTML += '</div>';
-						feedHTML += '</div>';
+				/*		feedHTML += '</div>';
+						feedHTML += '</div>';*/
 						displayCounter++;
-					}   
+					}
+					feedHTML += '</ul></div>';  
 				 }
             }
              
@@ -178,6 +175,3 @@ $(document).ready(function () {
     }
      
 });
-
-</script>
-@stop

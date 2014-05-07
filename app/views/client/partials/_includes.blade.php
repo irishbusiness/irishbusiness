@@ -4,7 +4,7 @@
 		<script type="text/javascript" src="scripts/jquery.flexslider-min.js"></script>
 		<script type="text/javascript" src="scripts/slider.js"></script>
 		<script type="text/javascript" src="scripts/jquery.selectbox-0.6.1.js"></script>
-		<script type="text/javascript" src="scripts/jquery.tweet.js"></script>
+		<script type="text/javascript" src="scripts/twitter.js"></script>
 		<script type="text/javascript" src="scripts/jflickrfeed.min.js"></script>
 		<script type="text/javascript" src="scripts/superfish.js"></script>
 		<script type="text/javascript" src="scripts/jquery.mobilemenu.min.js"></script>
