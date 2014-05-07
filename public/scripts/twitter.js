@@ -53,7 +53,7 @@ $(document).ready(function () {
 				 //Generate twitter feed HTML based on selected options
 				 if (((showretweets == true) || ((isaretweet == false) && (showretweets == false))) && ((showdirecttweets == true) || ((showdirecttweets == false) && (isdirect == false)))) { 
 				 	feedHTML += '<ul class="twitterul">';
-				 	feedHTML += '<li class="twitterprofile"><a href="https://twitter.com/'+tweetusername+'/status/'+tweetid+'" target="_blank">@'+twitterprofile+'</li><li><a href="https://twitter.com/'+tweetusername+'/status/'+tweetid+'" target="_blank">'+relative_time(feeds[i].created_at)+'</a></li>';
+				 	feedHTML += '<li class="twitterprofile" style="float: left;margin-right: 60px"><a href="https://twitter.com/'+tweetusername+'/status/'+tweetid+'" target="_blank">@'+twitterprofile+'</li><li><a href="https://twitter.com/'+tweetusername+'/status/'+tweetid+'" target="_blank">'+relative_time(feeds[i].created_at)+'</a></li>';
 					if ((feeds[i].text.length > 1) && (displayCounter <= displaylimit)) {             
 						if (showtweetlinks == true) {
 							status = addlinks(status);
@@ -64,7 +64,7 @@ $(document).ready(function () {
 						}
 							 
 			/*			feedHTML += '<div class="twitter-article twitter-feed" id="tw'+displayCounter+'">'; 										                */ 
-						feedHTML += '<li class="tweet_avatar tweetpic"><a href="https://twitter.com/'+tweetusername+'" target="_blank"><img src="'+profileimage+'"images/twitter-feed-icon.png" width="42" height="42" alt="twitter icon" /></a></li>';
+						feedHTML += '<li class="tweet_avatar tweetpic" style="float: left;margin-right: 10px"><a href="https://twitter.com/'+tweetusername+'" target="_blank"><img src="'+profileimage+'"images/twitter-feed-icon.png" width="42" height="42" alt="twitter icon" /></a></li>';
 						/*feedHTML += '<div class="twitter-text"><p><span class="tweetprofilelink"><strong><a href="https://twitter.com/'+tweetusername+'" target="_blank">'+tweetscreenname+'</a></strong> <a href="https://twitter.com/'+tweetusername+'" target="_blank">@'+tweetusername+'</a></span><span class="tweet-time"><a href="https://twitter.com/'+tweetusername+'/status/'+tweetid+'" target="_blank">'+relative_time(feeds[i].created_at)+'</a></span><br/>'+status+'</p>';
 						*/
 						feedHTML +='<li class="tweet_text">' + status+'</li>';
