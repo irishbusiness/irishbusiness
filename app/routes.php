@@ -10,6 +10,14 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::get('twitter2',function(){
+	return View::make('searchpartial.twitterjs')->with('title','haha');
+});
+
+Route::get('twitter', function()
+{
+    return Twitter::getUserTimeline(array('screen_name' => '_IrishBusiness', 'count' => 3, 'format' => 'json'));
+});
 
 Route::get('/', function()
 {
