@@ -3881,11 +3881,11 @@ ul.entries-list {
   margin: 0;
 }
 .tweetpic{
-	float: left;
-	margin-right: 10px;
+	float: left !important;
+	margin-right: 10px !important;
 }
 .twitterprofile{
-	float: left;
-	margin-right: 60px;
-	color: #98b709;
+	float: left !important;
+	margin-right: 60px !important;
+	color: #98b709 !important;
 }
