@@ -1,21 +1,11 @@
-@if ($paginator->getLastPage() > 1)
-<?php $previousPage = ($paginator->getCurrentPage() > 1) ? $paginator->getCurrentPage() - 1 : 1; ?>  
-<div class="pagination">
-<div class="pagination-buttons">  
-  <a href="{{ $paginator->getUrl($previousPage) }}"
-    class="item{{ ($paginator->getCurrentPage() == 1) ? ' current-page' : '' }}">
-    <i class="icon left arrow"></i> Previous
-  </a>
-  @for ($i = 1; $i <= $paginator->getLastPage(); $i++)
-  <a href="{{ $paginator->getUrl($i) }}"
-    class="item{{ ($paginator->getCurrentPage() == $i) ? ' active' : '' }}">
-      {{ $i }}
-  </a>
-  @endfor
-  <a href="{{ $paginator->getUrl($paginator->getCurrentPage()+1) }}"
-    class="item{{ ($paginator->getCurrentPage() == $paginator->getLastPage()) ? ' current-page' : '' }}">
-    Next <i class="icon right arrow"></i>
-  </a>
-</div>
-</div>  
-@endif
+<?php
+	$presenter = new \IrishBusiness\Presenter\ZemPresenter($paginator);
+?>
+
+<?php if ($paginator->getLastPage() > 1): ?>
+	<div class="pagination">
+	<div class="pagination-buttons">
+			<?php echo $presenter->render(); ?>
+	</div>
+	</div>
+<?php endif; ?>
