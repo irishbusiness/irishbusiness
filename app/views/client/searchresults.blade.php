@@ -31,7 +31,6 @@
 								</div>
 							</div>
 							@endforeach
-							{{ $businesses->links() }}
 						</div>
 
 					</div><!-- end of .content-container -->
