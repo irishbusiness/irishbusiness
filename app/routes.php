@@ -85,6 +85,7 @@ Route::get('admin_settings_socialmedia', function(){
 Route::get('settings', 'BusinessesController@sample');
 Route::post('settings', 'BusinessesController@store');
 Route::post('search','BusinessesController@search');
+Route::get('search', 'BusinessController@search');
 Route::get('listings','BusinessesController@index');
 Route::get('register', 'UsersController@create');
 Route::post('register', 'UsersController@store');
