@@ -17,7 +17,7 @@
 									<a href="#">3</a>
 								</div>
 							</div> -->
-							{{ $businesses->links() }}
+							{{ $businesses->appends(array('category' => $category,'location' =>$location))->links() }}
 							@foreach($businesses as $business)
 							<div class="company-listing clearfix">
 								<a href="#" class="listing-image">
