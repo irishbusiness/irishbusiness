@@ -2,7 +2,7 @@
 				<div class="zone-search zone clearfix">
 					<div class="search-container container-24">
 						<div class="search block">
-								{{ Form::open(array('action' => 'BusinessesController@search','id' =>'default-search', 'class' => 'default-search clearfix')) }}
+								{{ Form::open(array('action' => 'BusinessesController@search','id' =>'default-search', 'class' => 'default-search clearfix', 'method' => 'get')) }}
 								{{ Form::text('category',isResult(Session::get('category')), ["placeholder" => "What are you looking for?", 'id' => 'search-what', 'class' => 'text-input-black input-text']) }}
 								{{ Form::text('location',isResult(Session::get('location')), ["placeholder" => "Where are you looking for it?", 'id' => 'search-what', 'class' => 'text-input-black input-text']) }}
 							
