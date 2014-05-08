@@ -37,7 +37,7 @@ class BusinessesController extends \BaseController {
 		// $addresses = explode(' ',Input::get('location'));
 		// $selected = Input::get('category-default');
 		
-		if (intval(Input::get('page')>0)){
+		if (intval(Input::get('page'))>0){
 			$category = Session::get('category');
 			$addresses = Session::get('addresses');
 		}else{
