@@ -74,42 +74,42 @@
 								<li class="empty">
 									<div></div>
 								</li>
-								<li class="first">
-									<a href="index.html">CLIENT MANAGEMENT</a>
+								<li {{ (Request::is('admin_manage_cancellations') ? ' class="first active"' : '') }}>
+									<a href="{{ URL::to('admin_manage_cancelletions') }}">CLIENT MANAGEMENT</a>
 									<ul>
 										<li class="first last">
-											<a href="index-street-view.html">MANAGE CANCELLATIONS</a>
+											<a href="{{ URL::to('admin_manage_cancellations') }}">MANAGE CANCELLATIONS</a>
 										</li>
 									</ul>
 								</li>
-								<li class="">
-									<a href="companies-listing.html">SETTINGS</a>
+								<li {{ (Request::is('admin_settings_general') ? ' class="first active"' : '') }}>
+									<a href="{{ URL::to('admin_settings_general') }}">SETTINGS</a>
 									<ul>
 										<li class="first">
-											<a href="companies-listing.html">GENERAL</a>
+											<a href="{{ URL::to('admin_settings_general') }}">GENERAL</a>
 										</li>
 										<li class="">
-											<a href="shortcodes.html">SOCIAL MEDIA</a>
+											<a href="{{ URL::to('admin_settings_socialmedia') }}">SOCIAL MEDIA</a>
 										</li>
 										<li class="">
-											<a href="company-page.html">PAYMENT GATEWAY</a>
+											<a href="{{ URL::to('admin_payment_gateway') }}">PAYMENT GATEWAY</a>
 										</li>
 										<li class="">
-											<a href="company-page-2.html">MANAGE CATEGORIES</a>
+											<a href="{{ URL::to('admin_manage_categories') }}">MANAGE CATEGORIES</a>
 										</li>
 										<li class="">
-											<a href="company-page-2.html">MANAGE REGIONS</a>
+											<a href="{{ URL::to('admin_manage_regions') }}">MANAGE REGIONS</a>
 										</li>
 										<li class="last">
-											<a href="company-page-3.html">MANAGE STAFF</a>
+											<a href="{{ URL::to('admin_manage_staff') }}">MANAGE STAFF</a>
 										</li>
 									</ul>
 								</li>
 								<li class="">
-									<a href="about-us.html">CHANGE PASSWORD</a>
+									<a href="{{ URL::to('admin_change_password') }}">CHANGE PASSWORD</a>
 								</li>
 								<li class="neighbour-right">
-									<a href="contact-us.php">LOGOUT</a>
+									<a href="{{ URL::to('admin_logout') }}">LOGOUT</a>
 								</li>
 								<li class="empty">
 									<div></div>
@@ -117,11 +117,6 @@
 							</ul>
 			
 					</div>
-
-
-
-
-
 
 					</div>
 
