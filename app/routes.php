@@ -50,6 +50,37 @@ Route::get('tabs', function(){
 	return View::make('client.tabs');
 });
 
+Route::get('admin_manage_cancellations',function(){
+	return View::make('admin.admin_manage_cancellations');
+});
+
+Route::get('admin_manage_categories',function(){
+	return View::make('admin.admin_manage_categories');
+});
+
+Route::get('admin_manage_clients', function(){
+	return View::make('admin.admin_manage_clients');
+});
+
+Route::get('admin_manage_regions', function(){
+	return View::make('admin.admin_manage_regions');
+});
+
+Route::get('admin_manage_staff', function(){
+	return View::make('admin.admin_manage_staff');
+});
+
+Route::get('admin_payment_gateway', function(){
+	return View::make('admin.admin_payment_gateway');
+});
+
+Route::get('admin_settings_general', function(){
+	return View::make('admin.admin_settings_general');
+});
+
+Route::get('admin_settings_socialmedia', function(){
+	return View::make('admin.admin_settings_socialmedia');
+});
 
 Route::get('settings', 'BusinessesController@sample');
 Route::post('settings', 'BusinessesController@store');
