@@ -33,10 +33,20 @@ class BusinessesController extends \BaseController {
 	{
 
 		
-		$category = trim(Input::get('category'));
-		$addresses = explode(' ',Input::get('location'));
-		$selected = Input::get('category-default');
+		// $category = trim(Input::get('category'));
+		// $addresses = explode(' ',Input::get('location'));
+		// $selected = Input::get('category-default');
 		
+		if (intval(Input::get('page')>0)){
+			$category = Session::get('category');
+			$addresses = Session::get('addresses');
+		}else{
+			 $category = trim(Input::get('category'));
+			  $addresses = explode(' ',Input::get('location'));
+			  $selected = Input::get('category-default');
+		}
+
+
 		$query1 = 'and ';
 		foreach($addresses as $address)
 		{
