@@ -11,7 +11,7 @@
 	<div class="comments block">						
 		<div class="comment-message">
 			<div class="comment-message-title">
-				<span class="text-colorful">Inset/span> Manage Categories Code Here
+				<span class="text-colorful">Insert</span> Manage Categories Code Here
 			</div>
 		</div>
 
