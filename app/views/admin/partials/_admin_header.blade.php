@@ -75,7 +75,7 @@
 									<div></div>
 								</li>
 								<li {{ (Request::is('admin_manage_cancellations') ? ' class="first active"' : '') }}>
-									<a href="{{ URL::to('admin_manage_cancelletions') }}">CLIENT MANAGEMENT</a>
+									<a href="{{ URL::to('admin_manage_cancellations') }}">CLIENT MANAGEMENT</a>
 									<ul>
 										<li class="first last">
 											<a href="{{ URL::to('admin_manage_cancellations') }}">MANAGE CANCELLATIONS</a>
