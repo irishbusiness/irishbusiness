@@ -24,12 +24,4 @@ function isSelected($keyword,$selected)
 	return '';
 }
 
-
-
-
-
-
-
-
-
 ?>

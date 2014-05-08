@@ -10,13 +10,14 @@
 							<div class="block-title">
 								<h1>Search Results</h1>
 							</div>
-							<div class="pagination">
+							<!-- <div class="pagination">
 								<div class="pagination-buttons">
 									<a href="#" class="current-page">1</a>
 									<a href="#">2</a>
 									<a href="#">3</a>
 								</div>
-							</div>
+							</div> -->
+							{{ $businesses->links() }}
 							@foreach($businesses as $business)
 							<div class="company-listing clearfix">
 								<a href="#" class="listing-image">
