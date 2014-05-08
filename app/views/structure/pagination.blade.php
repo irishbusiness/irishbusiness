@@ -1,7 +1,7 @@
 @if ($paginator->getLastPage() > 1)
 <?php $previousPage = ($paginator->getCurrentPage() > 1) ? $paginator->getCurrentPage() - 1 : 1; ?>  
-<div class="ui pagination menu">
-<div class="">  
+<div class="pagination">
+<div class="pagination-buttons">  
   <a href="{{ $paginator->getUrl($previousPage) }}"
     class="item{{ ($paginator->getCurrentPage() == 1) ? ' current-page' : '' }}">
     <i class="icon left arrow"></i> Previous
