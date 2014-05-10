@@ -100,8 +100,11 @@
 										<li class="">
 											<a href="{{ URL::to('admin_manage_regions') }}">MANAGE REGIONS</a>
 										</li>
-										<li class="last">
+										<li class="">
 											<a href="{{ URL::to('admin_manage_staff') }}">MANAGE STAFF</a>
+										</li>
+										<li class="last">
+											<a href="{{ URL::to('admin_manage_blog') }}">MANAGE BLOG</a>
 										</li>
 									</ul>
 								</li>
