@@ -24,7 +24,14 @@
 									<img src="images/content/crayons.png" alt="" />
 								</a>
 								<div class="listing-body">
-									<div class="listing-rating">Rating: 99%</div>
+									<!-- <div class="listing-rating">Rating: 99%</div> -->
+									<div class="rating-stars rated">
+											<div class="star star-1"></div>
+											<div class="star star-2"></div>
+											<div class="star star-3"></div>
+											<div class="star star-4"></div>
+											<div class="star star-5 current"></div>
+									</div>
 									<div class="listing-title">{{$business->name}}</div>
 									<div class="listing-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam.</div>
 									{{HTML::link('listing/'. $business->id . isEmpty($category) .  isEmpty($location), 'Read More',['class' => 'listing-read-more' ] ) }}
