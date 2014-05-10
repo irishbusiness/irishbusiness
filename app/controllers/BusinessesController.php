@@ -59,7 +59,7 @@ class BusinessesController extends \BaseController {
 		$business5 = Business::WhereHas('categories', function($q) use($category,$query1)
 		{
 		      $q->whereRaw("(name like '%$category%' or businesses.name like '%$category%' or businesses.address2 like '%$category%')  $query1");	     
-		})->paginate(1);
+		})->paginate(15);
 
 	/*	$business5 = Business::WhereHas('categories', function($q) use($category)
 		{
