@@ -10,7 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-// fasil first commit 
+
 
 Route::get('gettweets', function()
 {
