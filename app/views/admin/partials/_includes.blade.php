@@ -10,3 +10,4 @@
 		<script type="text/javascript" src="scripts/jquery.mobilemenu.min.js"></script>
 		<script type="text/javascript" src="scripts/jquery.placeholder.min.js"></script>
 		<script type="text/javascript" src="scripts/scripts.js"></script>
+        <script src="scripts/redactor.js"></script>
