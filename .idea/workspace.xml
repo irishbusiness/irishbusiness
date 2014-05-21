@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="219ed501-4a55-4355-a849-cf1b49f64c9c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/partials/_admin_header.blade.php" afterPath="$PROJECT_DIR$/app/views/admin/partials/_admin_header.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/partials/_includes.blade.php" afterPath="$PROJECT_DIR$/app/views/admin/partials/_includes.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/admin_manage_blog.blade.php" afterPath="$PROJECT_DIR$/app/views/admin/admin_manage_blog.blade.php" />
-    </list>
+    <list default="true" id="219ed501-4a55-4355-a849-cf1b49f64c9c" name="Default" comment="" />
     <ignored path="irishbusiness.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="admin_manage_blog.blade.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="admin_manage_blog.blade.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/admin/admin_manage_blog.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="49" selection-start="319" selection-end="319" vertical-scroll-proportion="0.44144145" vertical-offset="0" max-vertical-offset="924">
+            <state line="14" column="49" selection-start="319" selection-end="319" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="924">
               <folding />
             </state>
           </provider>
@@ -45,19 +41,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://G:/xampp/htdocs/editor/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="54" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1904">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_includes.blade.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/admin/partials/_includes.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="8" selection-start="2" selection-end="77" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="532">
+            <state line="22" column="0" selection-start="506" selection-end="506" vertical-scroll-proportion="0.608" vertical-offset="84" max-vertical-offset="1904">
               <folding />
             </state>
           </provider>
@@ -280,7 +267,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="0" />
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -354,13 +341,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://G:/xampp/htdocs/editor/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="54" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1904">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/admin/partials/_includes.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="8" selection-start="2" selection-end="77" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="532">
@@ -391,7 +371,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/admin/admin_manage_blog.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="49" selection-start="319" selection-end="319" vertical-scroll-proportion="0.44144145" vertical-offset="0" max-vertical-offset="924">
+        <state line="14" column="49" selection-start="319" selection-end="319" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="924">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/redactor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="134" column="25" selection-start="2810" selection-end="2810" vertical-scroll-proportion="2.4110718" vertical-offset="1705" max-vertical-offset="118020">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <marker date="1394024100000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1394024100000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1394024100000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1394024100000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1394024100000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1394024100000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1394024100000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1394024100000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1394024100000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1394024100000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1394024100000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1394024100000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1394024100000" expanded="false" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://G:/xampp/htdocs/editor/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="506" selection-end="506" vertical-scroll-proportion="0.608" vertical-offset="84" max-vertical-offset="1904">
           <folding />
         </state>
       </provider>
