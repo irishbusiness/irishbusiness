@@ -16,11 +16,45 @@
 		<link rel="stylesheet" href="css/header-7.css" />
 		<link rel="stylesheet" href="css/responsive-grid.css" />
 		<link rel="stylesheet" href="css/responsive.css" />
+        <link rel="stylesheet" href="scripts/redactor.css" />
 
-		<!--[if lt IE 9]>
+        <!--[if lt IE 9]>
 			<link rel="stylesheet" href="css/styles-ie8-and-down.css" />
 		<![endif]-->
 
+        <script type="text/javascript" src="scripts/jquery-1.10.2.min.js"></script>
+
+        <style type="text/css">
+            body .redactor_toolbar li a.redactor_btn_button1 {
+                background: url(img/button1.png) no-repeat;
+            }
+        </style>
+
+        <script type="text/javascript">
+
+            function testButton(obj, event, key)
+            {
+                obj.execCommand('underline');
+            }
+
+            $(document).ready(
+                function()
+                {
+                    var buttons = ['formatting', '|', 'bold', 'italic', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', '|', 'image', 'video', 'file', 'link', '|', 'horizontalrule'];
+
+                    $('#redactor').redactor({
+                        focus: true,
+                        buttons: buttons,
+                        buttonsCustom: {
+                            button1: {
+                                title: 'Button',
+                                callback: testButton
+                            }
+                        }
+                    });
+                }
+            );
+        </script>
 
 
 	</head>
