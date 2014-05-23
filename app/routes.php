@@ -23,7 +23,8 @@ Route::get('/', function()
 });
 
 Route::get('bloglist', function(){
-	return View::make('client.bloglist');
+    $blogs = Blog::all();
+	return View::make('client.bloglist', compact('blogs'));
 });
 
 Route::get('blogpost', function(){
