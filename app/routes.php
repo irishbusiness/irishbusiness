@@ -86,6 +86,8 @@ Route::get('admin_manage_blog', function(){
 	return View::make('admin.admin_manage_blog');
 });
 
+Route::post('admin_manage_blog', 'BlogController@store');
+
 Route::get('settings', 'BusinessesController@sample');
 Route::post('settings', 'BusinessesController@store');
 // Route::post('search','BusinessesController@search');
