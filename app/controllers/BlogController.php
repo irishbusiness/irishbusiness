@@ -6,6 +6,7 @@ class BlogController extends \BaseController {
     {
            $blog = new Blog;
            $blog->title = Input::get('title');
+           $blog->subtitle = Input::get('subtitle');
            $blog->body = Input::get('content');
            $blog->save();
 

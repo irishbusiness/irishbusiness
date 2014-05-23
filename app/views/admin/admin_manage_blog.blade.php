@@ -13,11 +13,19 @@
 		<div class="comment-message">
             <div id="page">
                 {{ Form::open(array('method' => 'post', 'action' => 'BlogController@store')) }}
+
                 <div style="text-align:center;">
                 <br><br>
                 {{ Form::label('title', "Title", ["class"=> "text-colorful"]) }}<br>
                 {{ Form::text('title', '', ['class' => 'text-input-grey', 'placeholder' => 'Title']) }}
                 <br><br>
+                </div>
+
+                <div style="text-align:center;">
+
+                    {{ Form::label('subtitle', "Subtitle", ["class"=> "text-colorful"]) }}<br>
+                    {{ Form::text('subtitle', '', ['class' => 'text-input-grey', 'placeholder' => 'Title']) }}
+                    <br><br>
                 </div>
                     <textarea id="redactor" name="content">
                         <h2>Hello and Welcome</h2>
