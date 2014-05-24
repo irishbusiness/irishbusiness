@@ -18,6 +18,7 @@ class CreateSalespersonsTable extends Migration {
 			$table->string('password');
 			$table->string('coupon')->unique();
             $table->string('phone');
+            $table->string('access_level');
 			$table->timestamps();
 		});
 	}

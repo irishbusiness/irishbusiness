@@ -13,4 +13,15 @@ class BlogController extends \BaseController {
           return stripslashes(Input::get('content'));
     }
 
+    public function show($id)
+    {
+        $blog = Blog::find($id);
+        return View::make('client.blogpost');
+//        return $id;
+    }
+
+    public function bloglist(){
+        $blogs = Blog::all();
+        return View::make('client.bloglist', compact('blogs'));
+    }
 }

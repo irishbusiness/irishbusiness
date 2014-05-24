@@ -22,10 +22,9 @@ Route::get('/', function()
 	return View::make('client.index');
 });
 
-Route::get('bloglist', function(){
-    $blogs = Blog::all();
-	return View::make('client.bloglist', compact('blogs'));
-});
+Route::get('bloglist', 'BlogController@bloglist');
+
+Route::get('blog/{id}', 'BlogController@show');
 
 Route::get('blogpost', function(){
 	return View::make('client.blogpost');
