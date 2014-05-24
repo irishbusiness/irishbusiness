@@ -16,7 +16,7 @@ class BlogController extends \BaseController {
     public function show($id)
     {
         $blog = Blog::find($id);
-        return View::make('client.blogpost');
+        return View::make('client.blogpost', compact('blog'));
 //        return $id;
     }
 

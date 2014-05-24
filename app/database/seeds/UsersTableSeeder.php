@@ -6,7 +6,7 @@ class UsersTableSeeder extends Seeder {
     {
         User::create([
             'stripe_id' =>  '',
-            'active'    =>  0,
+            'active'    =>  1,
             'email'     =>  'lourdrivera123@gmail.com',
             'password'  =>  Hash::make('1235'),
             'phone'     =>  '09095331440',

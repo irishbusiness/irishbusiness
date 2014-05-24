@@ -10,20 +10,21 @@ class CreateMainSettingsTable extends Migration {
 	 *
 	 * @return void
 	 */
-	public function up()
-	{
-		Schema::create('main_settings', function(Blueprint $table) {
-			$table->increments('id');
-			$table->string('domain_name');
-			$table->string('admin_email')->unique();
-			$table->boolean('view_statistics')->default(1);
-			$table->string('analytics_code');
-			$table->string('footer_text');
-			$table->boolean('allow_statistics')->default(1);
-			$table->boolean('reviews_approval')->default(0);
-			$table->timestamps();
-		});
-	}
+    public function up()
+    {
+        Schema::create('main_settings', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('domain_name');
+            $table->string('admin_email')->unique();
+            $table->integer('search_result_per_page');
+            $table->boolean('view_statistics')->default(1);
+            $table->string('analytics_code');
+            $table->string('footer_text');
+            $table->boolean('allow_statistics')->default(1);
+            $table->boolean('reviews_approval')->default(0);
+            $table->timestamps();
+        });
+    }
 
 
 	/**

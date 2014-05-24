@@ -1,6 +1,6 @@
 <?php
 
-class DatabaseSeeder extends Seeder {
+class BusinessesTableSeeder extends Seeder {
     public function run()
     {
         Business::create([
@@ -8,14 +8,14 @@ class DatabaseSeeder extends Seeder {
             'keywords'  => 'office, airplane, house',
             'locations' => 'iraq, iran, new york',
             'phone' =>  '09095331440',
-            'website'  => 'novatel',
+            'website'  => 'novatel.com',
             'email' =>  'lourdrivera123@gmail.com',
-            'mon_fri'   =>  '',
-            'sat'   =>  '',
+            'mon_fri'   =>  '9am - 5pm',
+            'sat'   =>  '10am - 5pm',
             'facebook'  =>  '',
             'twitter'   =>  '',
             'google'    =>  '',
-            'user_id'   =>  1
+            'user_id'   =>  User::first()->id
 
         ]);
     }
