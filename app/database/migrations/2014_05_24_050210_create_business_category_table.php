@@ -15,9 +15,9 @@ class CreateBusinessCategoryTable extends Migration {
 		Schema::create('business_category', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('business_id')->unsigned()->index();
-			$table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
 			$table->integer('category_id')->unsigned()->index();
-			$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('business_id')->references('id')->on('businesses')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}

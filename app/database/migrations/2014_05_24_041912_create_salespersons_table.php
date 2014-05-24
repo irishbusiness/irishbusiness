@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateBlogsTable extends Migration {
+class CreateSalespersonsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,12 @@ class CreateBlogsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('blogs', function(Blueprint $table) {
+		Schema::create('salespersons', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('title');
-            $table->string('subtitle');
-			$table->string('body');
+			$table->string('email')->unique();
+			$table->string('password');
+			$table->string('coupon')->unique();
+            $table->string('phone');
 			$table->timestamps();
 		});
 	}
@@ -29,7 +30,7 @@ class CreateBlogsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('blogs');
+		Schema::drop('salespersons');
 	}
 
 }
