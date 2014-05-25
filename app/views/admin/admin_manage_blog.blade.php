@@ -12,8 +12,7 @@
 		<div class="comments block">						
 		<div class="comment-message">
             <div id="page">
-                {{ Form::open(array('method' => 'post', 'action' => 'BlogController@store')) }}
-
+                {{ Form::open(array('method' => 'post', 'action' => 'BlogController@store', 'files' => true)) }}
                 <div style="text-align:center;">
                 <br><br>
                 {{ Form::label('title', "Title", ["class"=> "text-colorful"]) }}<br>
@@ -23,8 +22,8 @@
 
                 <div style="text-align:center;">
 
-                    {{ Form::label('subtitle', "Subtitle", ["class"=> "text-colorful"]) }}<br>
-                    {{ Form::text('subtitle', '', ['class' => 'text-input-grey', 'placeholder' => 'Title']) }}
+                    {{ Form::label('blogheader', "Blog Header", ["class"=> "text-colorful"]) }}<br>
+                    {{ Form::file('blogheaderimage') }}
                     <br><br>
                 </div>
                     <textarea id="redactor" name="content">
