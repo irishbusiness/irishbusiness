@@ -10,7 +10,7 @@
 						<h1>{{ $blog->title }}</h1>
 					</div>
 					<div class="blog-post-image">
-						<img src="{{ URL::asset('images/content/nest.jpg') }}" alt="" />
+						<img src="{{ URL::asset($blog->blogheaderimage) }}" alt="" />
 					</div>
 					<div class="blog-post-subtitle">
 						{{ $blog->subtitle }}
@@ -39,7 +39,7 @@
 								<img src="{{ URL::asset('images/dribbble-icon.png') }}" alt="" />
 							</a>
 						</div>
-						<div class="blog-post-author text-colorful">Admin</div>
+						<div class="blog-post-author text-colorful">{{ $blog->author }}</div>
 						<div class="blog-post-category text-colorful">Uncategorized</div>
 					</div>
 				</div>
