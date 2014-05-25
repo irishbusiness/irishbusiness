@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="219ed501-4a55-4355-a849-cf1b49f64c9c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/client/partials/_footer.blade.php" afterPath="$PROJECT_DIR$/app/views/client/partials/_footer.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/client/partials/_sidebar.blade.php" afterPath="$PROJECT_DIR$/app/views/client/partials/_sidebar.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/client/partials/_slider.blade.php" afterPath="$PROJECT_DIR$/app/views/client/partials/_slider.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/client/blogpost.blade.php" afterPath="$PROJECT_DIR$/app/views/client/blogpost.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database/migrations/2014_05_24_050414_create_main_settings_table.php" afterPath="$PROJECT_DIR$/app/database/migrations/2014_05_24_050414_create_main_settings_table.php" />
     </list>
     <ignored path="irishbusiness.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,10 +28,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="blogpost.blade.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="blogpost.blade.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/client/blogpost.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="26" selection-start="428" selection-end="428" vertical-scroll-proportion="0.39227167" vertical-offset="94" max-vertical-offset="3432">
+            <state line="5" column="23" selection-start="165" selection-end="165" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3432">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2014_05_24_050414_create_main_settings_table.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_05_24_050414_create_main_settings_table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="35" selection-start="555" selection-end="555" vertical-scroll-proportion="0.26643598" vertical-offset="396" max-vertical-offset="1551">
               <folding />
             </state>
           </provider>
@@ -162,7 +166,6 @@
         <option value="$PROJECT_DIR$/app/database/seeds/UsersTableSeeder.php" />
         <option value="$PROJECT_DIR$/app/models/User.php" />
         <option value="$PROJECT_DIR$/app/database/seeds/BusinessesTableSeeder.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2014_05_24_050414_create_main_settings_table.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2014_05_24_050201_create_blogs_table.php" />
         <option value="$PROJECT_DIR$/app/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/app/database/seeds/BlogsTableSeeder.php" />
@@ -175,6 +178,7 @@
         <option value="$PROJECT_DIR$/app/views/client/partials/_slider.blade.php" />
         <option value="$PROJECT_DIR$/app/views/client/partials/_footer.blade.php" />
         <option value="$PROJECT_DIR$/app/views/client/blogpost.blade.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2014_05_24_050414_create_main_settings_table.php" />
       </list>
     </option>
   </component>
@@ -327,6 +331,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="irishbusiness" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="irishbusiness" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="irishbusiness" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="irishbusiness" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -375,7 +419,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2484375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36953124" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -586,11 +630,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_05_24_050414_create_main_settings_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="19" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1485" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_05_24_151551_create_salespersonlogs_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="37" selection-start="411" selection-end="411" vertical-scroll-proportion="-0.0046838406" vertical-offset="532" max-vertical-offset="1386" />
@@ -746,7 +785,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/client/blogpost.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="26" selection-start="428" selection-end="428" vertical-scroll-proportion="0.39227167" vertical-offset="94" max-vertical-offset="3432">
+        <state line="5" column="23" selection-start="165" selection-end="165" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3432">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2014_05_24_050414_create_main_settings_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="35" selection-start="555" selection-end="555" vertical-scroll-proportion="0.26643598" vertical-offset="396" max-vertical-offset="1551">
           <folding />
         </state>
       </provider>
