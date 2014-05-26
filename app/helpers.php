@@ -24,4 +24,12 @@ function isSelected($keyword,$selected)
 	return '';
 }
 
+function isClient($email)
+{
+	if(User::where('email','=',$email)->first())
+		return true;
+
+	return false;
+}
+
 ?>

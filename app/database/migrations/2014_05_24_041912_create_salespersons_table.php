@@ -16,6 +16,7 @@ class CreateSalespersonsTable extends Migration {
 			$table->string('coupon')->unique();
             $table->string('phone');
             $table->string('access_level');
+            $table->string('remember_token')->nullable();
             $table->integer('tl')->unsigned(); //teamleader id
             $table->integer('st')->unsigned()->default(0); //sales team id
 			$table->timestamps();

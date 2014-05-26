@@ -1,11 +1,10 @@
 <?php namespace IrishBusiness\Repositories;
 
-use User;
+use SalesPerson;
 use Hash;
 use Auth;
 use Redirect;
-class UserRepository {
-
+class SalesRepository {
 
 	public function create($input)
 	{
@@ -27,7 +26,7 @@ class UserRepository {
 			"password" => $input["password"]
 		];
 		
-		return Auth::user()->attempt($credentials);
+		return Auth::salesperson()->attempt($credentials);
 	}
 
 
