@@ -17,7 +17,7 @@ class CreateSalespersonsTable extends Migration {
             $table->string('phone');
             $table->string('access_level');
             $table->integer('tl')->unsigned(); //teamleader id
-            $table->integer('st')->unsigned(); //sales team id
+            $table->integer('st')->unsigned()->default(0); //sales team id
 			$table->timestamps();
 		});
 	}
