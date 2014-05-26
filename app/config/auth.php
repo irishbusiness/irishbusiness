@@ -3,13 +3,13 @@
 return array(
 
     'multi' => array(
-        'account' => array(
-            'driver' => 'eloquent',
-            'model' => 'Account'
-        ),
         'user' => array(
-            'driver' => 'database',
-            'table' => 'users'
+            'driver' => 'eloquent',
+            'model' => 'users'
+        ),
+        'salesperson' => array(
+            'driver' => 'eloquent',
+            'model' => 'salespersons'
         )
     ),
 
