@@ -48,11 +48,16 @@ class BlogController extends \BaseController {
     {
         $blog = Blog::find($id);
         return View::make('client.blogpost', compact('blog'));
-//        return $id;
     }
 
-    public function bloglist(){
+    public function index()
+    {
         $blogs = Blog::all();
         return View::make('client.bloglist', compact('blogs'));
+    }
+
+    public function create()
+    {
+        return View::make('admin.admin_manage_blog');
     }
 }
