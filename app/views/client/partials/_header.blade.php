@@ -37,12 +37,19 @@
 						<div class="user-links">
 							<div class="login">
 								<a href="#" id="login-link" class="login-link">Login</a>
-								<form id="login-form" class="login-form">
-									<input class="text-input-grey" type="text" placeholder="Login">
-									<input class="text-input-grey" type="text" placeholder="Password">
+								
+								<!-- <form id="login-form" class="login-form"> -->
+								{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
+									<!-- <input class="text-input-grey" type="text" placeholder="Login"> -->
+									{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
+									<!-- <input class="text-input-grey" type="text" placeholder="Password"> -->
+									{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
+									<span id="errordiv" style="font-size:12px;color:red;display:block;margin-top:-10px;margin-bottom:5px">
+									</span>
 									<a href="#" class="password-restore">Forgot Password?</a>
 									<input class="button-2-colorful" type="submit" value="Login">
-								</form>
+									
+								{{Form::close()}}
 							</div>
 						</div>
 

@@ -27,11 +27,11 @@ class SessionsController extends \BaseController {
 			if($returnMessage == true){
 			return Redirect::to('settings')->withFlashMessage('You logged in as ' . ucwords(Input::get('username')))->with('title','IrishBusiness.ie | Settings');
 			}
-			return Redirect::back()->withInput()->withErrors('Invalid Username and/or Password');
+			return Redirect::back()->withInput()->withErrors('Invalid Username and/or Password')->with('errorNotify','wrong email/password combination');
 		}	
 		catch(FormValidationException  $e)
 		{
-			return Redirect::back()->withInput()->withErrors($e->getErrors());
+			return Redirect::back()->withInput()->withErrors($e->getErrors())->with('errorNotify','wrong email/password combination')->withInput();
 		}
 	}
 
