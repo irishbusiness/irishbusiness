@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="" lang="en">
+<html class="" lang="en"  ng-app="app">
 
 	<head>
 
@@ -8,15 +8,18 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
 
-		<link rel="stylesheet" href="css/flexslider.css" />
-		<link rel="stylesheet" href="css/jquery-ui-1.10.3.custom.min.css" />
-		<link rel="stylesheet" href="css/jquery-selectbox.css" />
-		<link rel="stylesheet" href="css/styles.css" />
-		<link id="theme-color" rel="stylesheet" href="css/green.css" />
-		<link rel="stylesheet" href="css/header-7.css" />
-		<link rel="stylesheet" href="css/responsive-grid.css" />
-		<link rel="stylesheet" href="css/responsive.css" />
-        <link rel="stylesheet" href="scripts/redactor.css" />
+		
+		{{ HTML::style("css/flexslider.css") }}
+		{{ HTML::style("css/flexslider.css") }}
+		{{ HTML::style("css/jquery-ui-1.10.3.custom.min.css") }}
+		{{ HTML::style("css/jquery-selectbox.css") }}
+		{{ HTML::style("css/styles.css") }}
+		{{ HTML::style("css/green.css") }}
+		{{ HTML::style("css/header-7.css") }}
+		{{ HTML::style("css/responsive-grid.css") }}
+		{{ HTML::style("scripts/redactor.css") }}
+		{{ HTML::style("css/xeditable.css") }}
+		
 
         <!--[if lt IE 9]>
 			<link rel="stylesheet" href="css/styles-ie8-and-down.css" />

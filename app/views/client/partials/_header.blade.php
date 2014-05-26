@@ -7,6 +7,7 @@
 
 						<div class="user-links">
 							<div class="login">
+								@if(Auth::check())
 								<a href="#" id="login-link" class="login-link">Login</a>
 								
 								<!-- <form id="login-form" class="login-form"> -->
@@ -19,7 +20,7 @@
 									</span>
 									<a href="#" class="password-restore">Forgot Password?</a>
 									<input class="button-2-colorful" type="submit" value="Login">
-									
+								@endif	
 								{{Form::close()}}
 							</div>
 						</div>

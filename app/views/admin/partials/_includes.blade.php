@@ -1,13 +1,15 @@
-		<script type="text/javascript" src="scripts/jquery-1.10.2.min.js"></script>
-		<script type="text/javascript" src="scripts/jquery-ui-1.10.3.custom.min.js"></script>
-		<script type="text/javascript" src="scripts/jquery.colorbox-min.js"></script>
-		<script type="text/javascript" src="scripts/jquery.flexslider-min.js"></script>
-		<script type="text/javascript" src="scripts/slider.js"></script>
-		<script type="text/javascript" src="scripts/jquery.selectbox-0.6.1.js"></script>
-		<script type="text/javascript" src="scripts/jquery.tweet.js"></script>
-		<script type="text/javascript" src="scripts/jflickrfeed.min.js"></script>
-		<script type="text/javascript" src="scripts/superfish.js"></script>
-		<script type="text/javascript" src="scripts/jquery.mobilemenu.min.js"></script>
-		<script type="text/javascript" src="scripts/jquery.placeholder.min.js"></script>
-		<script type="text/javascript" src="scripts/scripts.js"></script>
-        <script src="scripts/redactor.js"></script>
+{{ HTML::script('scripts/jquery-1.10.2.min.js') }}
+{{ HTML::script('scripts/jquery-ui-1.10.3.custom.min.js') }}
+{{ HTML::script('scripts/jquery.colorbox-min.js') }}
+{{ HTML::script('scripts/jquery.flexslider-min.js') }}
+{{ HTML::script('scripts/slider.js') }}
+{{ HTML::script('scripts/jquery.selectbox-0.6.1.js') }}
+{{ HTML::script('scripts/jquery.tweet.js') }}
+{{ HTML::script('scripts/jflickrfeed.min.js') }}
+{{ HTML::script('scripts/superfish.js') }}
+{{ HTML::script('scripts/jquery.mobilemenu.min.js') }}
+{{ HTML::script('scripts/jquery.placeholder.min.js') }}
+{{ HTML::script('scripts/scripts.js') }}
+{{ HTML::script('scripts/redactor.js') }}
+{{ HTML::script('scripts/xeditable.js') }}
+{{ HTML::script('scripts/exeditable.min.js') }}
