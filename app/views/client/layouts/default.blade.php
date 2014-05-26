@@ -49,7 +49,7 @@
 	@include('client.partials._includes')
 	@if(Session::has('errorNotify'))
 		<script>
-			$('#login-form').show();
+			$('#login-form').slideDown(500);
 			$('#errordiv').text('{{Session::get('errorNotify')}}');
 		</script>
 	@endif

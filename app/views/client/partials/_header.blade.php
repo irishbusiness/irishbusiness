@@ -15,7 +15,7 @@
 									{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
 									<!-- <input class="text-input-grey" type="text" placeholder="Password"> -->
 									{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
-									<span id="errordiv" style="font-size:12px;color:red;display:block;margin-top:-10px;margin-bottom:5px">
+									<span id="errordiv" >
 									</span>
 									<a href="#" class="password-restore">Forgot Password?</a>
 									<input class="button-2-colorful" type="submit" value="Login">
