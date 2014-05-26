@@ -1,12 +1,12 @@
-		<script type="text/javascript" src="{{ URL::asset('scripts/jquery-1.10.2.min.js') }}"></script>
-		<script type="text/javascript" src="{{ URL::asset('scripts/jquery-ui-1.10.3.custom.min.js') }}"></script>
-		<script type="text/javascript" src="{{ URL::asset('scripts/jquery.colorbox-min.js') }}"></script>
-		<script type="text/javascript" src="{{ URL::asset('scripts/jquery.flexslider-min.js') }}"></script>
-		<script type="text/javascript" src="{{ URL::asset('scripts/slider.js') }}"></script>
-		<script type="text/javascript" src="{{ URL::asset('scripts/jquery.selectbox-0.6.1.js') }}"></script>
-		<script type="text/javascript" src="{{ URL::asset('scripts/twitter.js') }}"></script>
-		<script type="text/javascript" src="{{ URL::asset('scripts/jflickrfeed.min.js') }}"></script>
-		<script type="text/javascript" src="{{ URL::asset('scripts/superfish.js') }}"></script>
-		<script type="text/javascript" src="{{ URL::asset('scripts/jquery.mobilemenu.min.js') }}"></script>
-		<script type="text/javascript" src="{{ URL::asset('scripts/jquery.placeholder.min.js') }}"></script>
-		<script type="text/javascript" src="{{ URL::asset('scripts/scripts.js') }}"></script>
+        {{ HTML::script('scripts/jquery-1.10.2.min.js') }}
+        {{ HTML::script('scripts/jquery-ui-1.10.3.custom.min.js') }}
+        {{ HTML::script('scripts/jquery.colorbox-min.js') }}
+        {{ HTML::script('scripts/jquery.flexslider-min.js') }}
+        {{ HTML::script('scripts/slider.js') }}
+        {{ HTML::script('scripts/jquery.selectbox-0.6.1.js') }}
+        {{ HTML::script('scripts/twitter.js') }}
+        {{ HTML::script('scripts/jflickrfeed.min.js') }}
+        {{ HTML::script('scripts/superfish.js') }}
+        {{ HTML::script('scripts/jquery.mobilemenu.min.js') }}
+        {{ HTML::script('scripts/jquery.placeholder.min.js') }}
+        {{ HTML::script('scripts/scripts.js') }}

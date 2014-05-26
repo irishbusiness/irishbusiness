@@ -11,6 +11,13 @@
 |
 */
 
+//bloglist = localhost:8000/blog    method=get
+//blogpost = localhost:8000/blog/{id}   method=get
+//editblogpost = localhost:8000/blog/{id}/edit  method=get
+//addblog   =   localhost:8000/blog/    => method=post
+//updateblog   =   localhost:8000/blog/    => method=put
+
+Route::resource('blog', 'BlogController');
 
 Route::get('gettweets', function()
 {
@@ -22,13 +29,13 @@ Route::get('/', function()
 	return View::make('client.index');
 });
 
-Route::get('bloglist', 'BlogController@bloglist');
-
-Route::get('blog/{id}', 'BlogController@show');
-
-Route::get('blogpost', function(){
-	return View::make('client.blogpost');
-});
+//Route::get('bloglist', 'BlogController@bloglist');
+//
+//Route::get('blog/{id}', 'BlogController@show');
+//
+//Route::get('blogpost', function(){
+//	return View::make('client.blogpost');
+//});
 
 Route::get('contact-us', function(){
 	return View::make('client.contact-us');
