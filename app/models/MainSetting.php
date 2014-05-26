@@ -9,7 +9,7 @@ class MainSetting extends Eloquent {
 	public static $rules = [
 		"domain_name" => "required",
    		"admin_email" => "required",
-   		"search_result_per_page" => "required",
+   		"search_result_per_page" => "required|integer",
    		"view_statistics" => "required",
    		"analytics_code" => "required",
    		"footer_text" => "required",

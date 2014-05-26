@@ -13,19 +13,11 @@ class SettingsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$settings = MainSetting::orderBy('created_at', 'desc')->take(1)->get();
+		$settings = MainSetting::orderBy('created_at', 'desc')->first();
+		// $set = $settings->toArray();
+		// return dd($settings->domain_name);
 		return View::make('admin.admin_settings_general')->with('settings', $settings);
-	}
-
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
+		// return array_search("domain_name", $set);
 	}
 
 
@@ -42,61 +34,79 @@ class SettingsController extends \BaseController {
             return Redirect::back()->withInput()->withErrors($this->settings->errors);
         }
 
-       	$save = MainSetting::create([
-       		"headerlogo" => Input::file("headerlogo"),
-       		"footerlogo" => Input::file("footerlogo"),
-       		"domain_name" => Input::get("domain_name"),
-       		"admin_email" => Input::get("admin_email"),
-       		"search_result_per_page" => Input::get("search_result_per_page"),
-       		"view_statistics" => Input::get("view_statistics"),
-       		"analytics_code" => Input::get("analytics_code"),
-       		"footer_text" => Input::get("footer_text"),
-       		"allow_statistics" => Input::get("allow_statistics"),
-       		"reviews_approval" => Input::get("reviews_approval")
-       	]);
+        $mainsettings = new MainSetting;
 
-        if($save){
-        	var_dump(Input::get("footerlogo"));
-			return Redirect::to('/admin_settings_general')->with('message', "New Settings has been updated.");
+        $mainsettings->domain_name = Input::get("domain_name");
+        $mainsettings->admin_email = Input::get("admin_email");
+        $mainsettings->search_result_per_page = Input::get("search_result_per_page");
+        $mainsettings->view_statistics = Input::get("view_statistics");
+        $mainsettings->analytics_code = Input::get("analytics_code");
+        $mainsettings->footer_text = Input::get("footer_text");
+        $mainsettings->allow_statistics = Input::get("allow_statistics");
+        $mainsettings->reviews_approval = Input::get("reviews_approval");
+
+        $imageError1 = "";
+        $imageError2 = "";
+
+
+        if(Input::hasFile("headerlogo")){
+        	$image = Input::file("headerlogo");
+        	$destinationPath = public_path().'/images/logo/header/';
+			$extension = $image->getClientOriginalExtension(); 
+			$filename = md5(date('YmdHis')).".".$extension;
+
+			if ($image->getMimeType() == 'image/png'
+                || $image->getMimeType() == 'image/jpg'
+                || $image->getMimeType() == 'image/gif'
+                || $image->getMimeType() == 'image/jpeg'
+                || $image->getMimeType() == 'image/pjpeg'
+                || $image->getMimeType() == 'image/png')
+			{
+                $upload_success = $image->move($destinationPath, $filename);
+                if($upload_success){
+                	$mainsettings->headerlogo  =   public_path().'/images/logo/header/'.$filename;
+                }
+            } else {
+                $mainsettings->headerlogo  =   public_path().'/images/logo/header/default.png';
+                $imageError1 = "It seems the header logo isn't valid.";
+            }
         }
+
+        if(Input::hasFile("footerlogo")){
+        	$image = Input::file("footerlogo");
+        	$destinationPath = public_path().'/images/logo/footer/';
+			$extension = $image->getClientOriginalExtension(); 
+			$filename = md5(date('YmdHis')).".".$extension;
+
+			if ($image->getMimeType() == 'image/png'
+                || $image->getMimeType() == 'image/jpg'
+                || $image->getMimeType() == 'image/gif'
+                || $image->getMimeType() == 'image/jpeg'
+                || $image->getMimeType() == 'image/pjpeg'
+                || $image->getMimeType() == 'image/png')
+			{
+                $upload_success = $image->move($destinationPath, $filename);
+                if($upload_success){
+                	$mainsettings->footerlogo  =   public_path().'/images/logo/footer/'.$filename;
+                }
+            } else {
+                $mainsettings->footerlogo  =   public_path().'/images/logo/footer/default.png';
+                $imageError2 = "It seems the footer logo isn't valid.";
+            }
+        }
+
+        $successmsg = "Settings has been updated.";
+        $failedmsg = "Unable to save your settings this time.";
+
+        if($mainsettings->save()){
+        	return View::make('admin.admin_settings_general')->with('successmsg', $successmsg)->with('imageError1', $imageError1)
+        		->with('imageError2', $imageError2);
+        }else {
+        	return Redirect::to('/admin_settings_general')->with('failedmsg', $failedmsg)->withInput();
+        }
+
+        echo "filename=".$filename."<br>";
 	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
 
 	/**
 	 * Remove the specified resource from storage.
