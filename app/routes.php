@@ -118,6 +118,7 @@ Route::post('login', 'SessionsController@store');
 Route::post('login2', 'SessionsController@salesLogin');
 Route::post("admin_settings_general", 'SettingsController@store');
 Route::get('admin_settings_general', 'SettingsController@index');
+Route::get('admin_settings_subscription', 'SubscriptionController@index');
 
 Route::get('clear',function(){
 	Auth::user()->logout();

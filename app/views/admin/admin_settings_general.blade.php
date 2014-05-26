@@ -19,16 +19,18 @@
 					</div>
 					<div class="thin-separator"></div>	
 					<div class="form-group">
-						{{ Form::text("domain_name", $settings->domain_name, ["class"=>"text-input-grey full", "placeholder"=>"Domain name"]) }}
+						{{ Form::text("domain_name", $settings->domain_name, ["class"=>"text-input-grey full", "placeholder"=>"Domain name", 
+							"required"=>"required"]) }}
 						{{$errors->first('domain_name','<span class="error">:message</span>')}}
 					</div>
 					<div class="form-group">
-						{{ Form::text("admin_email", $settings->admin_email, ["class"=>"text-input-grey full", "placeholder"=>"Admin Email"]) }}
+						{{ Form::text("admin_email", $settings->admin_email, ["class"=>"text-input-grey full", "placeholder"=>"Admin Email",
+							"required"=>"required"]) }}
 						{{ $errors->first('admin_email','<span class="error">:message</span>') }}
 					</div>
 					<div class="form-group">
 						{{ Form::text("search_result_per_page", $settings->search_result_per_page, ["class"=>"text-input-grey full", 
-							"placeholder"=>"Search results per page", "id"=>"settings_search_result_per_page"]) }}
+							"placeholder"=>"Search results per page", "id"=>"settings_search_result_per_page", "required"=>"required"]) }}
 						{{ $errors->first('search_result_per_page','<span class="error">:message</span>') }}
 					</div>
 					<div class="form-group">
@@ -49,7 +51,8 @@
 					</div>
 					<div class="form-group"> 
 						{{ Form::select("reviews_approval", ["1"=>"Require Approval Before Reviews Are Published", 
-						"0"=>"Reviews Are Published Immediately"], $settings->reviews_approval, ['id' => 'categories', 'class' => 'text-input-grey full']) }}
+						"0"=>"Reviews Are Published Immediately"], $settings->reviews_approval, ['id' => 'categories', 
+							'class' => 'text-input-grey full']) }}
 					</div>
 					<div class="thin-separator"></div>	
 					<div class="form-group  align-right">
