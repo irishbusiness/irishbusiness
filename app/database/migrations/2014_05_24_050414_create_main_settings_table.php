@@ -14,8 +14,11 @@ class CreateMainSettingsTable extends Migration {
 	{
 		Schema::create('main_settings', function(Blueprint $table) {
 			$table->increments('id');
+			$table->string("headerlogo");
+			$table->string("footerlogo");
 			$table->string('domain_name');
-			$table->string('admin_email')->unique();
+			$table->string('admin_email');
+			$table->integer("search_result_per_page");
 			$table->boolean('view_statistics')->default(1);
 			$table->string('analytics_code');
 			$table->string('footer_text');

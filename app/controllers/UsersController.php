@@ -28,7 +28,7 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('searchpartial.register')->with('title','IrishBusiness.ie | Register');
+		return View::make('admin.admin_register')->with('title','IrishBusiness.ie | Register');
 	}
 
 	/**

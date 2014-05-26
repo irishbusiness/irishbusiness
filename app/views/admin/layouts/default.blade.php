@@ -2,11 +2,6 @@
 		<section class="section content boxed">
 
 			@include('admin.partials._searchbar')
-
-			<div class="slideshow-wrapper">
-				<img src="images/slideshow/spacer.png" alt="" />
-			</div>
-
 			<div class="industries-tabs-wrapper">
 				<div class="zone-industries-tabs zone clearfix">
 				</div><!-- end of .zone-industries-tabs -->

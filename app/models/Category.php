@@ -7,7 +7,5 @@ class Category extends Eloquent {
 	public function businesses()
 	{
 		return $this->belongsToMany('Business')->withTimestamps();;
-	}
-
-	
+	}	
 }

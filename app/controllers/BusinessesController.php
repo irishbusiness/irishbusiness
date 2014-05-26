@@ -51,14 +51,14 @@ class BusinessesController extends \BaseController {
 		{
 			$query1 .= '(';
 			$string = trim(preg_replace('/,/', '', $address));
-			$query1 .= "businesses.address1 like '%$string%' or businesses.address3 like '%$string%'"; 
+			$query1 .= "businesses.address like '%$string%' or businesses.locations like '%$string%'"; 
 			$query1 .= ')and ';
 		}
-		$query1 .= "businesses.address3 like '%%'";
+		$query1 .= "businesses.locations like '%%'";
 
 		$business5 = Business::WhereHas('categories', function($q) use($category,$query1)
 		{
-		      $q->whereRaw("(name like '%$category%' or businesses.name like '%$category%' or businesses.address2 like '%$category%')  $query1");	     
+		      $q->whereRaw("(name like '%$category%' or businesses.name like '%$category%' or businesses.keywords like '%$category%')  $query1");	     
 		})->paginate(3);
 
 	/*	$business5 = Business::WhereHas('categories', function($q) use($category)
@@ -82,7 +82,9 @@ class BusinessesController extends \BaseController {
 		$categories = $this->category->getCategories();
 		Session::forget('category');
 		
-		return View::make('searchpartial.settings')->with('title','Settings')
+		// return View::make('searchpartial.settings')->with('title','Settings')
+		// ->with('categories',$categories);
+		return View::make('client.settings')->with('title','Settings')
 		->with('categories',$categories);
 		
 	}
@@ -102,9 +104,9 @@ class BusinessesController extends \BaseController {
 
 		$business = new Business;
 		$business->name = Input::get('businessname');
-		$business->address1 = $address;
-		$business->address2 = Input::get('keywords');
-		$business->address3 = Input::get('locations');
+		$business->address = $address;
+		$business->keywords = Input::get('keywords');
+		$business->locations = Input::get('locations');
 		$business->user_id = 2;
 		$business->save();
 

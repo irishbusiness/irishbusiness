@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'irishbusiness',
 			'username'  => 'root',
-			'password'  => 'chiefz23',
+			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

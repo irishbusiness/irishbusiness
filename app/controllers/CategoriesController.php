@@ -29,7 +29,26 @@ class CategoriesController extends \BaseController {
 			return $category;	
 		}
 		
-		return 'somethings wrong';
+		return 'Something went wrong';
+	}
+
+	public function categoryRemove(){
+		if(Request::ajax()){
+			$id = Input::get('category');
+			// Session::pop('categories', $id);
+			$categories = Session::get('categories');
+			foreach ( $categories as $category ) {
+				if(!$category = $id){
+					Session::push("newcategories", $category);
+				}
+			}
+			Session::forget("categories");
+			Session::push("categories", Session::get("newcategories"));
+			$category = \Category::findOrFail($id);
+			return $category;
+		}
+
+		return 'Something went wrong';
 	}
 
 	public function index()

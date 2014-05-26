@@ -75,9 +75,7 @@ Route::get('admin_payment_gateway', function(){
 	return View::make('admin.admin_payment_gateway');
 });
 
-Route::get('admin_settings_general', function(){
-	return View::make('admin.admin_settings_general');
-});
+
 
 Route::get('admin_settings_socialmedia', function(){
 	return View::make('admin.admin_settings_socialmedia');
@@ -98,6 +96,7 @@ Route::get('register', 'UsersController@create');
 Route::post('register', 'UsersController@store');
 Route::post('category', 'CategoriesController@store');
 Route::post('ajaxCategory','CategoriesController@tempAdd');
+Route::post('ajaxCategoryRemove','CategoriesController@categoryRemove');
 
 Route::get('company-tabs-page', function(){
 	return View::make('client.company-tabs-page');
@@ -116,4 +115,6 @@ Route::get('register', 'UsersController@create');
 Route::post('register', 'UsersController@store');
 Route::get('login', 'SessionsController@create');
 Route::post('login', 'SessionsController@store');
+Route::post("admin_settings_general", 'SettingsController@store');
+Route::get('admin_settings_general', 'SettingsController@index');
 
