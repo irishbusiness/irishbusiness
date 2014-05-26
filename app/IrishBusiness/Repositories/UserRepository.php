@@ -21,7 +21,6 @@ class UserRepository {
 		$user->firstname = $input['firstname'];
 		$user->lastname = $input['lastname'];
 		$user->password = Hash::make($input['password']);
-		$user->username = $input['username'];
 		$user->password = $input['phone'];
 		$user->email = $input['email'];
 		$user->save();
@@ -42,5 +41,7 @@ class UserRepository {
 		}
 		
 	}
+
+	
 
 }

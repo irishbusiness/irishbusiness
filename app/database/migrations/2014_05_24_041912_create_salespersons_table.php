@@ -11,9 +11,13 @@ class CreateSalespersonsTable extends Migration {
 			$table->increments('id');
 			$table->string('email')->unique();
 			$table->string('password');
+			$table->string('firstname');
+			$table->string('lastname');
 			$table->string('coupon')->unique();
             $table->string('phone');
             $table->string('access_level');
+            $table->integer('tl')->unsigned(); //teamleader id
+            $table->integer('st')->unsigned(); //sales team id
 			$table->timestamps();
 		});
 	}
