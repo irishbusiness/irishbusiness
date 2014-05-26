@@ -36,13 +36,6 @@
                     {{$errors->first('email','<span class="error">:message</span>')}}
                 </div>
                 <div class="form-group">
-                    {{ Form::label('username', "Username", ["required"=>"required", "class"=> "text-colorful"]) }}
-                    <br>
-                    {{ Form::text('username', '', ["required"=>"required", "class"=>"text-input-grey full",
-                        "placeholder"=>"Username"]) }}
-                    {{$errors->first('username','<span class="error">:message</span>')}}
-                </div>
-                <div class="form-group">
                     {{ Form::label('password', "Password", ["required"=>"required", "class"=> "text-colorful"]) }}
                     <br>
                     {{ Form::password('password', ["required"=>"required", "class"=>"text-input-grey full",
