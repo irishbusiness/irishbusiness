@@ -7,7 +7,7 @@
 	{{ HTML::script('http://code.jquery.com/jquery-1.11.0.min.js'); }}
 	{{ HTML::script('http://code.jquery.com/jquery-migrate-1.2.1.min.js'); }}
 	{{ HTML::script('http://cdn.foundation5.zurb.com/foundation.js'); }}
-	
+
 
 	<style>
 		.center{
@@ -29,7 +29,7 @@
 </head>
 <body>
 	@yield('content')
-
+	
 	@yield('scripts')
 </body>
 </html>

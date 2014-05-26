@@ -33,7 +33,14 @@
 
 	@include('client.partials._footer')
 	@include('client.partials._includes')
+	@if(Session::has('errorNotify'))
+		<script>
+			$('#login-form').show();
+			$('#errordiv').text('{{Session::get('errorNotify')}}');
+		</script>
+	@endif
 	@yield('scripts')
+
 </section>
 
 </body>
