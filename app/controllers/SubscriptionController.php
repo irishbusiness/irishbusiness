@@ -9,7 +9,7 @@ class SubscriptionController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return View::make("admin.admin_settings_subscription");
 	}
 
 
