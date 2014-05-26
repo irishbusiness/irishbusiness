@@ -3,35 +3,36 @@
 use IrishBusiness\Forms\Login;
 use IrishBusiness\Forms\FormValidationException;
 use IrishBusiness\Repositories\UserRepository;
-
+use IrishBusiness\Repositories\SalesRepository;
 class SessionsController extends \BaseController {
 
 	protected $loginForm;
 	protected $user;
+	protected $sales;
 
-	function __construct(Login $loginForm, UserRepository $user)
+	function __construct(Login $loginForm, UserRepository $user,SalesRepository $sales)
 	{
 		$this->loginForm = $loginForm;
 		$this->user = $user;
+		$this->sales = $sales;
 
 	}
 
 	public function store()
 	{
-		/*$credentials = [
-			"email" => Input::get("email"),
-			"password" => Input::get("password")
-		];
-		var_dump($this->user->authenticate(Input::all()));
 		
-		dd(Auth::user()->attempt($credentials));*/
 		try
 		{
-			$this->loginForm->validate(Input::all());
-	
 			if($this->user->authenticate(Input::all())){
+				Auth::salesperson()->logout();
 				return Redirect::to('settings')->withFlashMessage('You logged in as ' . ucwords(Input::get('username')))->with('title','IrishBusiness.ie | Settings');
 			}
+
+			if($this->sales->authenticate(Input::all())&&Auth::salesperson()->guest()){
+				Auth::user()->logout();
+				return Redirect::to('settings')->withFlashMessage('You logged in as ' . ucwords(Input::get('username')))->with('title','IrishBusiness.ie | Settings');
+			}
+
 			return Redirect::back()->withInput()->withErrors('Invalid Username and/or Password')->with('errorNotify','wrong email/password combination');
 		}	
 		catch(FormValidationException  $e)
@@ -40,9 +41,15 @@ class SessionsController extends \BaseController {
 		}
 	}
 
-	public function create()
+	public function salesLogin()
 	{
-		return View::make('searchpartial.login')->with('title','IrishBusiness.ie | Login');
+
+		if($this->sales->authenticate(Input::all())){
+			Auth::user()->logout();
+			return Redirect::to('settings')->withFlashMessage('You logged in as ' . ucwords(Input::get('username')))->with('title','IrishBusiness.ie | Settings');
+		}
+
+		return Redirect::back()->withInput()->withErrors('Invalid Username and/or Password')->with('errorNotify','wrong email/password combination');
 	}
 
 }

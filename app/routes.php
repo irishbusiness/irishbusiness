@@ -11,13 +11,6 @@
 |
 */
 
-//bloglist = localhost:8000/blog    method=get
-//blogpost = localhost:8000/blog/{id}   method=get
-//editblogpost = localhost:8000/blog/{id}/edit  method=get
-//addblog   =   localhost:8000/blog/    => method=post
-//updateblog   =   localhost:8000/blog/    => method=put
-
-Route::resource('blog', 'BlogController');
 
 Route::get('gettweets', function()
 {
@@ -29,13 +22,13 @@ Route::get('/', function()
 	return View::make('client.index');
 });
 
-//Route::get('bloglist', 'BlogController@bloglist');
-//
-//Route::get('blog/{id}', 'BlogController@show');
-//
-//Route::get('blogpost', function(){
-//	return View::make('client.blogpost');
-//});
+Route::get('bloglist', 'BlogController@bloglist');
+
+Route::get('blog/{id}', 'BlogController@show');
+
+Route::get('blogpost', function(){
+	return View::make('client.blogpost');
+});
 
 Route::get('contact-us', function(){
 	return View::make('client.contact-us');
@@ -117,10 +110,16 @@ Route::get('listing/{id}/{category?}/{location?}', function($id){
 	return Business::find($id)->toArray();
 });
 
+
 Route::get('register', 'UsersController@create');
 Route::post('register', 'UsersController@store');
 Route::get('login', 'SessionsController@create');
 Route::post('login', 'SessionsController@store');
+Route::post('login2', 'SessionsController@salesLogin');
 Route::post("admin_settings_general", 'SettingsController@store');
 Route::get('admin_settings_general', 'SettingsController@index');
 
+Route::get('clear',function(){
+	Auth::user()->logout();
+	Auth::salesperson()->logout();
+});
