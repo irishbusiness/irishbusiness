@@ -3937,3 +3937,7 @@ textarea.comment-message-main.text-input-grey.full {
 	padding: 0 2%;
 	margin: 20px 0 20px;
 }
+#errordiv
+{
+	font-size:12px;color:red;display:block;margin-top:-15px;margin-bottom:5px;
+}

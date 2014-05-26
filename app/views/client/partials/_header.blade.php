@@ -1,32 +1,3 @@
-<!doctype html>
-<html class="" lang="en">
-
-	<head>
-
-		<meta charset="utf-8">
-		<title>Glocal</title>
-
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-
-		<link rel="stylesheet" href="{{ URL::asset('css/flexslider.css') }}" />
-		<link rel="stylesheet" href="{{ URL::asset('css/jquery-ui-1.10.3.custom.min.css') }}" />
-		<link rel="stylesheet" href="{{ URL::asset('css/jquery-selectbox.css') }}" />
-		<link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}" />
-		<link id="theme-color" rel="stylesheet" href="{{ URL::asset('css/green.css') }}" />
-		<link rel="stylesheet" href="{{ URL::asset('css/header-7.css') }}" />
-		<link rel="stylesheet" href="{{ URL::asset('css/responsive-grid.css') }}" />
-		<link rel="stylesheet" href="{{ URL::asset('css/responsive.css') }}" />
-
-		<!--[if lt IE 9]>
-			<link rel="stylesheet" href="{{ URL::asset('css/styles-ie8-and-down.css') }}" />
-		<![endif]-->
-
-
-
-	</head>
-
-	<body>
-
 			<header class="section header-2 boxed">
 
 			<div class="header-top-wrapper">
@@ -44,7 +15,7 @@
 									{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
 									<!-- <input class="text-input-grey" type="text" placeholder="Password"> -->
 									{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
-									<span id="errordiv" style="font-size:12px;color:red;display:block;margin-top:-10px;margin-bottom:5px">
+									<span id="errordiv" >
 									</span>
 									<a href="#" class="password-restore">Forgot Password?</a>
 									<input class="button-2-colorful" type="submit" value="Login">
