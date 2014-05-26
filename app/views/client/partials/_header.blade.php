@@ -1,27 +1,30 @@
 			<header class="section header-2 boxed">
-
 			<div class="header-top-wrapper">
 				<div class="zone-header-top zone clearfix">
-
 					<div class="header-top-left container-8">
-
 						<div class="user-links">
 							<div class="login">
-								@if(Auth::check())
-								<a href="#" id="login-link" class="login-link">Login</a>
-								
-								<!-- <form id="login-form" class="login-form"> -->
-								{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
-									<!-- <input class="text-input-grey" type="text" placeholder="Login"> -->
+								@if(Auth::user()->guest())
+									<a href="#" id="login-link" class="login-link">Login</a>
+									{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
 									{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
-									<!-- <input class="text-input-grey" type="text" placeholder="Password"> -->
 									{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
 									<span id="errordiv" >
 									</span>
 									<a href="#" class="password-restore">Forgot Password?</a>
 									<input class="button-2-colorful" type="submit" value="Login">
-								@endif	
-								{{Form::close()}}
+									{{Form::close()}}
+								@else
+									<a href="#" id="login-link" class="login-link">Login to Sales</a>
+									{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
+									{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
+									{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
+									<span id="errordiv" >
+									</span>
+									<a href="#" class="password-restore">Forgot Password?</a>
+									<input class="button-2-colorful" type="submit" value="Login">
+									{{Form::close()}}
+								@endif					
 							</div>
 						</div>
 

@@ -18,14 +18,19 @@ class SessionsController extends \BaseController {
 
 	public function store()
 	{
+		/*$credentials = [
+			"email" => Input::get("email"),
+			"password" => Input::get("password")
+		];
+		var_dump($this->user->authenticate(Input::all()));
+		
+		dd(Auth::user()->attempt($credentials));*/
 		try
 		{
 			$this->loginForm->validate(Input::all());
-
-			$returnMessage = $this->user->authenticate(Input::all());
 	
-			if($returnMessage == true){
-			return Redirect::to('settings')->withFlashMessage('You logged in as ' . ucwords(Input::get('username')))->with('title','IrishBusiness.ie | Settings');
+			if($this->user->authenticate(Input::all())){
+				return Redirect::to('settings')->withFlashMessage('You logged in as ' . ucwords(Input::get('username')))->with('title','IrishBusiness.ie | Settings');
 			}
 			return Redirect::back()->withInput()->withErrors('Invalid Username and/or Password')->with('errorNotify','wrong email/password combination');
 		}	

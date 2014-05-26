@@ -21,7 +21,7 @@ class UserRepository {
 		$user->firstname = $input['firstname'];
 		$user->lastname = $input['lastname'];
 		$user->password = Hash::make($input['password']);
-		$user->password = $input['phone'];
+		$user->phone = $input['phone'];
 		$user->email = $input['email'];
 		$user->save();
 
@@ -31,17 +31,13 @@ class UserRepository {
 	public function authenticate($input)
 	{
 		$credentials = [
-			"username" => $input["username"],
-			"password" => $input["password"],
+			"email" => $input["email"],
+			"password" => $input["password"]
 		];
-		if (Auth::attempt($credentials)){
-			return true;
-		} else {
-			return false;
-		}
 		
+		return Auth::user()->attempt($credentials);
 	}
 
-	
+
 
 }
