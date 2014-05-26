@@ -7,41 +7,39 @@
 
 				<div class="blog-post block">
 					<div class="block-title">
-						<h1>Post Title Goes Here</h1>
+						<h1>{{ $blog->title }}</h1>
 					</div>
 					<div class="blog-post-image">
-						<img src="images/content/nest.jpg" alt="" />
+						<img src="{{ URL::asset($blog->blogheaderimage) }}" alt="" />
 					</div>
 					<div class="blog-post-subtitle">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem.
+						{{ $blog->subtitle }}
 					</div>
 					<div class="blog-post-body">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus. Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam sit amet lectus quis est congue mollis. Phasellus congue lacus eget neque. Phasellus ornare, ante vitae consectetuer consequat, purus sapien ultricies dolor, et mollis pede metus eget nisi. Praesent sodales velit quis augue. Cras suscipit, urna at aliquam rhoncus, urna quam viverra nisi, in interdum massa nibh nec erat.</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus. Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam sit amet lectus quis est congue mollis. Phasellus congue lacus eget neque. Phasellus ornare, ante vitae consectetuer consequat, purus sapien ultricies dolor, et mollis pede metus eget nisi. Praesent sodales velit quis augue. Cras suscipit, urna at aliquam rhoncus, urna quam viverra nisi, in interdum massa nibh nec erat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus. Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam sit amet lectus quis est congue mollis. Phasellus congue lacus eget neque. Phasellus ornare, ante vitae consectetuer consequat, purus sapien ultricies dolor, et mollis pede metus eget nisi. Praesent sodales velit quis augue. Cras suscipit, urna at aliquam rhoncus, urna quam viverra nisi, in interdum massa nibh nec erat.</p>
-						<p>Phasellus congue lacus eget neque. Phasellus ornare, ante vitae consectetuer consequat, purus sapien ultricies dolor, et mollis pede metus eget nisi. Praesent sodales velit quis augue. Cras suscipit, urna at aliquam rhoncus, urna quam viverra nisi, in interdum massa nibh nec erat.</p>
+					    {{ stripslashes($blog->body) }}
 					</div>
 					<div class="blog-post-info">
 						<div class="social-links">
 							<a href="http://www.facebook.com">
-								<img src="images/facebook-icon.png" alt=""/>
+								<img src="{{ URL::asset('images/facebook-icon.png') }}" alt=""/>
 							</a>
 							<a href="http://www.google.com">
-								<img src="images/google-icon.png" alt="" />
+								<img src="{{ URL::asset('images/google-icon.png') }}" alt="" />
 							</a>
 							<a href="http://www.twitter.com">
-								<img src="images/twitter-icon.png" alt="" />
+								<img src="{{ URL::asset('images/twitter-icon.png') }}" alt="" />
 							</a>
 							<a href="http://www.linkedin.com">
-								<img src="images/linkedin-icon.png" alt="" />
+								<img src="{{ URL::asset('images/linkedin-icon.png') }}" alt="" />
 							</a>
 							<a href="http://www.pinterest.com">
-								<img src="images/pinterest-icon.png" alt="" />
+								<img src="{{ URL::asset('images/pinterest-icon.png') }}" alt="" />
 							</a>
 							<a href="http://www.dribbble.com">
-								<img src="images/dribbble-icon.png" alt="" />
+								<img src="{{ URL::asset('images/dribbble-icon.png') }}" alt="" />
 							</a>
 						</div>
-						<div class="blog-post-author text-colorful">Admin</div>
+						<div class="blog-post-author text-colorful">{{ $blog->author }}</div>
 						<div class="blog-post-category text-colorful">Uncategorized</div>
 					</div>
 				</div>
@@ -53,7 +51,7 @@
 					<div class="comments-tree">
 						<div class="comment">
 							<div class="user-picture">
-								<img src="images/content/crayons.png" alt="" />
+								<img src="{{ URL::asset('images/content/crayons.png') }}" alt="" />
 							</div>
 							<div class="comment-body">
 								<div class="comment-author">
@@ -66,7 +64,7 @@
 						</div>
 						<div class="comment reply">
 							<div class="user-picture">
-								<img src="images/content/crayons.png" alt="" />
+								<img src=" {{ URL::asset('images/content/crayons.png') }}" alt="" />
 							</div>
 							<div class="comment-body">
 								<div class="comment-author">

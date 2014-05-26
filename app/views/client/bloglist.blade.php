@@ -14,14 +14,37 @@
 					<div class="blog-post-preview">
 						<div class="blog-post-preview-left">
 							<div class="blog-post-date">
-								<div class="day">10</div>
-								<div class="month">April</div>
-								<div class="year">2013</div>
+								<div class="day">{{ $blog->created_at->format('d') }}</div>
+								<div class="month">{{ $blog->created_at->format('F') }}</div>
+								<div class="year">{{ $blog->created_at->format('Y') }}</div>
 							</div>
 						</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 						<div class="blog-post-preview-right">
 							<div class="blog-post-image">
-								<img src="images/content/sunglasses.jpg" alt="" />
+								<img src={{ URL::asset($blog->blogheaderimage) }} alt="" />
 							</div>
 							<div class="blog-post-description clearfix">
 								<div class="blog-post-title-comments">
@@ -30,8 +53,8 @@
 								</div>
 								<div class="blog-post-excerpt">{{ (strlen($blog->body) > 100) ? substr($blog->body,0,100) : stripslashes($blog->body) }}</div>
 								<div class="blog-post-links">
-									<a href="{{ URL::to('') }}" class="read-more-link">Read More</a>
-									<div class="blog-post-author text-colorful">Admin</div>
+									<a href="{{ URL::to('blog/'.$blog->id) }}" class="read-more-link">Read More</a>
+									<div class="blog-post-author text-colorful">{{ $blog->author }}</div>
 									<div class="blog-post-category text-colorful">Uncategorized</div>
 								</div>
 							</div>

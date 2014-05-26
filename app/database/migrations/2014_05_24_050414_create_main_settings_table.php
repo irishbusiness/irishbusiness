@@ -10,6 +10,7 @@ class CreateMainSettingsTable extends Migration {
 	 *
 	 * @return void
 	 */
+
 	public function up()
 	{
 		Schema::create('main_settings', function(Blueprint $table) {
@@ -27,7 +28,6 @@ class CreateMainSettingsTable extends Migration {
 			$table->timestamps();
 		});
 	}
-
 
 	/**
 	 * Reverse the migrations.

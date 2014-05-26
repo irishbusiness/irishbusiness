@@ -6,7 +6,7 @@
 					<div class="footer-container container-24">
 
 						<div class="website-short-description block">
-							<img src="images/IrishBusiness_footer.png" class="logo" alt="" />
+							<img src="{{ URL::asset('images/IrishBusiness_footer.png') }}" class="logo" alt="" />
 							<div class="description-text">
 								Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam sit amet lectus quis est congue mollis.
 							</div>
@@ -58,22 +58,22 @@
 
 						<div class="social-links block">
 							<a href="http://www.facebook.com">
-								<img src="images/facebook-icon.png" alt="" />
+								<img src="{{ URL::asset('images/facebook-icon.png') }}" alt="" />
 							</a>
 							<a href="http://www.google.com">
-								<img src="images/google-icon.png" alt="" />
+								<img src="{{ URL::asset('images/google-icon.png') }}" alt="" />
 							</a>
 							<a href="http://www.twitter.com">
-								<img src="images/twitter-icon.png" alt="" />
+								<img src="{{ URL::asset('images/twitter-icon.png')}}" alt="" />
 							</a>
 							<a href="http://www.linkedin.com">
-								<img src="images/linkedin-icon.png" alt="" />
+								<img src="{{ URL::asset('images/linkedin-icon.png') }}" alt="" />
 							</a>
 							<a href="http://www.pinterest.com">
-								<img src="images/pinterest-icon.png" alt="" />
+								<img src="{{ URL::asset('images/pinterest-icon.png') }}" alt="" />
 							</a>
 							<a href="http://www.dribbble.com">
-								<img src="images/dribbble-icon.png" alt="" />
+								<img src="{{ URL::asset('images/dribbble-icon.png') }}" alt="" />
 							</a>
 						</div>
 

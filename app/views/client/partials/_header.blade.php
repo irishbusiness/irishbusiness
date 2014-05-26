@@ -8,17 +8,17 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
 
-		<link rel="stylesheet" href="css/flexslider.css" />
-		<link rel="stylesheet" href="css/jquery-ui-1.10.3.custom.min.css" />
-		<link rel="stylesheet" href="css/jquery-selectbox.css" />
-		<link rel="stylesheet" href="css/styles.css" />
-		<link id="theme-color" rel="stylesheet" href="css/green.css" />
-		<link rel="stylesheet" href="css/header-7.css" />
-		<link rel="stylesheet" href="css/responsive-grid.css" />
-		<link rel="stylesheet" href="css/responsive.css" />
+		<link rel="stylesheet" href="{{ URL::asset('css/flexslider.css') }}" />
+		<link rel="stylesheet" href="{{ URL::asset('css/jquery-ui-1.10.3.custom.min.css') }}" />
+		<link rel="stylesheet" href="{{ URL::asset('css/jquery-selectbox.css') }}" />
+		<link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}" />
+		<link id="theme-color" rel="stylesheet" href="{{ URL::asset('css/green.css') }}" />
+		<link rel="stylesheet" href="{{ URL::asset('css/header-7.css') }}" />
+		<link rel="stylesheet" href="{{ URL::asset('css/responsive-grid.css') }}" />
+		<link rel="stylesheet" href="{{ URL::asset('css/responsive.css') }}" />
 
 		<!--[if lt IE 9]>
-			<link rel="stylesheet" href="css/styles-ie8-and-down.css" />
+			<link rel="stylesheet" href="{{ URL::asset('css/styles-ie8-and-down.css') }}" />
 		<![endif]-->
 
 
@@ -52,22 +52,22 @@
 
 						<div class="social-links block">
 							<a href="http://www.facebook.com">
-								<img src="images/facebook-icon.png" alt="" />
+								<img src="{{ URL::asset('images/facebook-icon.png') }}" alt="" />
 							</a>
 							<a href="http://www.google.com">
-								<img src="images/google-icon.png" alt="" />
+								<img src="{{ URL::asset('images/google-icon.png') }}" alt="" />
 							</a>
 							<a href="http://www.twitter.com">
-								<img src="images/twitter-icon.png" alt="" />
+								<img src="{{ URL::asset('images/twitter-icon.png') }}" alt="" />
 							</a>
 							<a href="http://www.linkedin.com">
-								<img src="images/linkedin-icon.png" alt="" />
+								<img src="{{ URL::asset('images/linkedin-icon.png') }}" alt="" />
 							</a>
 							<a href="http://www.pinterest.com">
-								<img src="images/pinterest-icon.png" alt="" />
+								<img src="{{ URL::asset('images/pinterest-icon.png') }}" alt="" />
 							</a>
 							<a href="http://www.dribbble.com">
-								<img src="images/dribbble-icon.png" alt="" />
+								<img src="{{ URL::asset('images/dribbble-icon.png') }}" alt="" />
 							</a>
 						</div>
 
@@ -83,7 +83,7 @@
 
 						<div class="logo block">
 							<a href="index-header7.html">
-								<img src="images/logo-2.png" alt="" />
+								<img src="{{ URL::asset('images/logo-2.png') }}" alt="" />
 							</a>
 						</div>
 
@@ -113,10 +113,8 @@
 								</li>
 							</ul>
 						</div>
-
+						</div>
 					</div>
-
 				</div><!-- end of .zone-header -->
 			</div><!-- end of .header-wrapper -->
-
 		</header>
