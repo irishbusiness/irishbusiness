@@ -45,10 +45,9 @@ class UsersController extends \BaseController {
 			$this->registerForm->validate(Input::all());
 
 			$id = $this->user->create(Input::all());
-			Auth::loginUsingId($id);
-
+			
 			return Redirect::to('settings')->withFlashMessage('Thank you for registering ' . ucwords(Input::get('firstname')) .'! You have been logged in.')
-			->with('title','IrishBusiness.ie | Settings')->with('errorNotify','yes');
+			->with('title','IrishBusiness.ie | Settings');
 		}
 		catch(FormValidationException  $e)
 		{

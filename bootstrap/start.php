@@ -28,6 +28,7 @@ $env = $app->detectEnvironment(array(
 	'local' => array('localhost'),
 	'zem' => array('DreymeToul'),
 	'jiriko' => array('koyji-PC'),
+	'dexter' => array('DexsTear'),
 	'teamlaravel' => array('teamlaravel.com'),
 ));
 

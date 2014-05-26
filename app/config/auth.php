@@ -5,11 +5,11 @@ return array(
     'multi' => array(
         'user' => array(
             'driver' => 'eloquent',
-            'model' => 'users'
+            'model' => 'User'
         ),
         'salesperson' => array(
             'driver' => 'eloquent',
-            'model' => 'salespersons'
+            'model' => 'Salesperson'
         )
     ),
 
