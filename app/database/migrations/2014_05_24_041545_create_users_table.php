@@ -16,6 +16,8 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
 			$table->string('stripe_id');
 			$table->boolean('active')->default(0);
+			$table->string('firstname');
+			$table->string('lastname');
 			$table->string('email')->unique();
 			$table->string('password');
             $table->string('phone');
