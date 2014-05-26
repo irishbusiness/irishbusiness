@@ -43,8 +43,8 @@ class SettingsController extends \BaseController {
         }
 
        	$save = MainSetting::create([
-       		// "headerlogo" => Input::get("headerlogo"),
-       		// "footerlogo" => Input::get("footerlogo"),
+       		"headerlogo" => Input::file("headerlogo"),
+       		"footerlogo" => Input::file("footerlogo"),
        		"domain_name" => Input::get("domain_name"),
        		"admin_email" => Input::get("admin_email"),
        		"search_result_per_page" => Input::get("search_result_per_page"),
