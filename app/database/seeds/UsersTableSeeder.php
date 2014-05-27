@@ -6,10 +6,13 @@ class UsersTableSeeder extends Seeder {
     {
         User::create([
             'stripe_id' =>  '',
-            'active'    =>  1,
+            'firstname' =>  'John',
+            'lastname'  =>  'Doe',
+            'confirmed' =>  1,
             'email'     =>  'lourdrivera123@gmail.com',
-            'password'  =>  Hash::make('1235'),
+            'password'  =>  Hash::make('1234'),
             'phone'     =>  '09095331440',
+            'remember_token'  =>  '',
         ]);
     }
 

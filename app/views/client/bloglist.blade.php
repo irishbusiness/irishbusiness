@@ -5,7 +5,6 @@
 		<div class="zone-content equalize zone clearfix">
 			<div class="content-container container-16">
 
-
 				<div class="blog block">
 					<div class="block-title">
 						<h1>Blog</h1>
@@ -19,29 +18,6 @@
 								<div class="year">{{ $blog->created_at->format('Y') }}</div>
 							</div>
 						</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 						<div class="blog-post-preview-right">
 							<div class="blog-post-image">
 								<img src={{ URL::asset($blog->blogheaderimage) }} alt="" />
