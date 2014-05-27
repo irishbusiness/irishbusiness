@@ -20,7 +20,6 @@
     {{ HTML::style("scripts/redactor.css") }}
     {{ HTML::style("css/xeditable.css") }}
 
-
     <!--[if lt IE 9]>
     <link rel="stylesheet" href="css/styles-ie8-and-down.css" />
     <![endif]-->
@@ -31,7 +30,6 @@
             background: url(img/button1.png) no-repeat;
         }
     </style>
-
     <script type="text/javascript">
 
         function testButton(obj, event, key)
@@ -57,7 +55,6 @@
             }
         );
     </script>
-
 
 </head>
 

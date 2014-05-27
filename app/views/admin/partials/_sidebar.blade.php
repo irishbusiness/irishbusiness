@@ -7,14 +7,14 @@
 							<ul class="entries-list">
 								<li class="clearfix">
 									<a href="#" class="thumbnail">
-										<img src="images/content/sky.png" alt="" />
+                                        {{ HTML::image('images/content/sky.png') }}
 									</a>
 									<a href="#" class="entry-title">Company Name</a>
 									<div class="entry-excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
 								</li>
 								<li class="clearfix">
 									<a href="#" class="thumbnail">
-										<img src="images/content/text.png" alt="" />
+                                        {{ HTML::image('images/content/text.png') }}
 									</a>
 									<a href="#" class="entry-title">Another Company</a>
 									<div class="entry-excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
@@ -22,10 +22,10 @@
 							</ul>
 							<div class="two-images-banner clearfix">
 								<a href="#">
-									<img src="images/content/crayons.png" alt="" />
+                                    {{ HTML::image('images/content/crayons.png') }}
 								</a>
 								<a href="#">
-									<img src="images/content/coins.png" alt="" />
+                                    {{ HTML::image('images/content/coins.png') }}
 								</a>
 							</div>
 						</div>
@@ -37,14 +37,14 @@
 							<ul class="entries-list">
 								<li class="clearfix">
 									<a href="#" class="thumbnail">
-										<img src="images/content/coins.png" alt="" />
+                                        {{ HTML::image('images/content/coins.png') }}
 									</a>
 									<a href="#" class="entry-title">Lorem Ipsum</a>
 									<div class="entry-excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
 								</li>
 								<li class="clearfix">
 									<a href="#" class="thumbnail">
-										<img src="images/content/crayons.png" alt="" />
+                                        {{ HTML::image('images/content/crayons.png') }}
 									</a>
 									<a href="#" class="entry-title">Dolor Sit Amet</a>
 									<div class="entry-excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
@@ -52,7 +52,7 @@
 							</ul>
 							<div class="one-image-banner">
 								<a href="#">
-									<img src="images/content/handshake.png" alt="" />
+                                    {{ HTML::image('images/content/handshake.png') }}
 								</a>
 							</div>
 						</div>

@@ -30,7 +30,7 @@
 
 						<div class="logo block">
 							<a href="#">
-								<img src="images/logo-2.png" alt="" />
+                                {{ HTML::image('images/logo-2.png') }}
 							</a>
 						</div>
 

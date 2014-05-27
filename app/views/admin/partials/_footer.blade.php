@@ -6,7 +6,7 @@
 					<div class="footer-container container-24">
 
 						<div class="website-short-description block">
-							<img src="images/IrishBusiness_footer.png" class="logo" alt="" />
+                            {{ HTML::image('images/IrishBusiness_footer.png', '', ['class' => 'logo']) }}
 							<div class="description-text">
 								Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam sit amet lectus quis est congue mollis.
 							</div>
@@ -58,22 +58,22 @@
 
 						<div class="social-links block">
 							<a href="http://www.facebook.com">
-								<img src="images/facebook-icon.png" alt="" />
+                                {{ HTML::image('images/facebook-icon.png') }}
 							</a>
 							<a href="http://www.google.com">
-								<img src="images/google-icon.png" alt="" />
+                                {{ HTML::image('images/google-icon.png') }}
 							</a>
 							<a href="http://www.twitter.com">
-								<img src="images/twitter-icon.png" alt="" />
+                                {{ HTML::image('images/twitter-icon.png') }}
 							</a>
 							<a href="http://www.linkedin.com">
-								<img src="images/linkedin-icon.png" alt="" />
+                                {{ HTML::image('images/linkedin-icon.png') }}
 							</a>
 							<a href="http://www.pinterest.com">
-								<img src="images/pinterest-icon.png" alt="" />
+                                {{ HTML::image('images/pinterest-icon.png') }}
 							</a>
 							<a href="http://www.dribbble.com">
-								<img src="images/dribbble-icon.png" alt="" />
+                                {{ HTML::image('images/dribbble-icon.png') }}
 							</a>
 						</div>
 
