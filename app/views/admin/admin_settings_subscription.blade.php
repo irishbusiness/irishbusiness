@@ -71,7 +71,7 @@
 								</div>
 							</div>
 						@endforeach
-					@elseif
+					@else
 						<span class="error-empty">There's no subscription yet.</span>
 					@endif
 				</div>
