@@ -13,8 +13,25 @@ class SettingsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$settings = MainSetting::orderBy('created_at', 'desc')->first();
-		return View::make('admin.admin_settings_general')->with('settings', $settings);
+        $c = MainSetting::count();
+		if($c>0){
+            $settings = MainSetting::orderBy('created_at', 'desc')->first();
+            return View::make('admin.admin_settings_general')->with('settings', $settings->toArray()); 
+        }
+
+       $settings = array(
+            "domain_name" => "",
+            "admin_email" => "",
+            "search_result_per_page" => "",
+            "view_statistics" => "",
+            "analytics_code" => "",
+            "footer_text" => "",
+            "allow_statistics" => "",
+            "reviews_approval" => "",
+       );
+
+       return View::make('admin.admin_settings_general')->with('settings', $settings);
+
 	}
 
 
@@ -96,8 +113,9 @@ class SettingsController extends \BaseController {
         $failedmsg = "Unable to save your settings this time.";
 
         if($mainsettings->save()){
-        	return View::make('admin.admin_settings_general')->with('successmsg', $successmsg)->with('imageError1', $imageError1)
-        		->with('imageError2', $imageError2);
+           $settings = MainSetting::orderBy('created_at', 'desc')->first();
+            return View::make('admin.admin_settings_general')->with('settings', $settings->toArray())
+                ->with('successmsg', $successmsg)->with('imageError1', $imageError1);
         }else {
         	return Redirect::to('/admin_settings_general')->with('failedmsg', $failedmsg)->withInput();
         }
