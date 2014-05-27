@@ -109,18 +109,24 @@ class CategoriesController extends \BaseController {
 				$data = ["id"=>$id, "name"=>$name];
 
 				return $data;
-			}else{
-				$id = Input::get("id");
 
-				$category = \Category::findOrFail($id);
+			}
+			
+			$id = Input::get("id");
+			$name = Input::get("name");
+
+			$category = \Category::findOrFail($id);
+			
+			if( $operation=="delete" ){
 				$category->delete();
-
 				return "deleted";
 			}
-
-			return "Something went wrong.";
+			$name = Input::get("name");
+			$category->name = $name;
+			$category->save();
 			
-
+			$data = ["id"=>$id, "name"=>$name];
+			return $data;
 		}
 	}
 

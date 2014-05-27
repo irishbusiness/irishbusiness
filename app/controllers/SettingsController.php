@@ -29,8 +29,6 @@ class SettingsController extends \BaseController {
             "allow_statistics" => "",
             "reviews_approval" => "",
        );
-        // array(5) { ["id"]=> int(75) ["name"]=> string(9) "123456789" ["created_at"]=> string(19) "2014-05-27 18:33:23" ["updated_at"]=> string(19) "2014-05-27 18:33:23" ["deleted_at"]=> NULL }
-        // $settings = Category::orderBy('created_at', 'desc')->first();
 
        return View::make('admin.admin_settings_general')->with('settings', $settings);
 
@@ -115,12 +113,9 @@ class SettingsController extends \BaseController {
         $failedmsg = "Unable to save your settings this time.";
 
         if($mainsettings->save()){
-        	// return View::make('admin.admin_settings_general')->with('successmsg', $successmsg)->with('imageError1', $imageError1)
-        	// 	->with('imageError2', $imageError2);
            $settings = MainSetting::orderBy('created_at', 'desc')->first();
             return View::make('admin.admin_settings_general')->with('settings', $settings->toArray())
                 ->with('successmsg', $successmsg)->with('imageError1', $imageError1);
-            //  ->with('imageError2', $imageError2);; 
         }else {
         	return Redirect::to('/admin_settings_general')->with('failedmsg', $failedmsg)->withInput();
         }

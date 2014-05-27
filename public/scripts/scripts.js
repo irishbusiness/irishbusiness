@@ -464,7 +464,7 @@ jQuery(window).resize(function() {
 });
 
 // js for General Settings
-$(window).load(function() {
+$(document).ready(function() {
 	$("#btn-cancel-edit").hide();
     $("#settings_search_result_per_page, input[data-type='number']").keydown(function(event) {
         // Allow: backspace, delete, tab, escape, enter and .
@@ -552,7 +552,12 @@ $(window).load(function() {
 		e.preventDefault();
 		$("#table-categories tbody").prepend("<tr><td><input type='text' class='cat-input-text' placeholder='Category name' name='name'><span class='category-name'></span></td><td><a href='#' class='bs-btn btn-info save-category'>Save</a> <a href='#' class='bs-btn btn-danger cancel-category'>Cancel</a> </td></tr>");
 	
-		cancelCategory();
+		$('a.cancel-category').click(function(e){
+			e.preventDefault();
+			$(this).parent('td').parent('tr').fadeOut(function(){
+				$(this).remove();
+			});
+		});
 
 		$('a.save-category').click(function(e){
 			e.preventDefault();
@@ -584,21 +589,33 @@ $(window).load(function() {
 				})
 				.done(function(data)
 				{
-					$("#table-categories tbody").prepend('<tr data-id="'+data.id+'"><td><span class="category-name">'+data.name+'</span></td><td><a href="#" class="bs-btn btn-info btn-edit-category" data-id="'+data.id+'">Edit</a> <a href="#" class="bs-btn btn-danger btn-delete-category" data-id="'+data.id+'">Delete</a></td></tr>');
-					deleteCategory();
-					editCategory();
+					$("#table-categories tbody").prepend('<tr data-id="'+data.id+'"><td><span class="category-name">'+data.name+'</span></td><td><a href="#" class="bs-btn btn-info btn-edit-category" onclick="editCategory($(this))" data-id="'+data.id+'">Edit</a> <a href="#" onclick="deleteCategory($(this))" data-id="'+data.id+'" class="bs-btn btn-danger btn-delete-category" data-id="'+data.id+'">Delete</a></td></tr>');
 				});
 			}
 		});
 
 	});
-	editCategory();
-	deleteCategory();
-});
-
-
-function deleteCategory(){
-	$(".btn-delete-category").click(function(e){
+	
+	// delete category
+	// $(".btn-delete-category").click(function(e){
+	// 	e.preventDefault();
+	// 	var id = $(this).attr("data-id");
+	// 	$.ajax({
+	// 		url: "/categoryAjax",
+	// 		type: "post",
+	// 		data: { id: id, op: 'delete' },
+	// 		beforeSend: function(){
+	// 			console.log(id);
+	// 		}
+	// 	}).done(function(data){
+	// 		if(data == "deleted"){
+	// 			$("tr[data-id='"+id+"']").fadeOut(function(){
+	// 				$(this).remove();
+	// 			});
+	// 		}
+	// 	});
+	// });
+	$(".btn-delete-category").on('click', function(e){
 		e.preventDefault();
 		var id = $(this).attr("data-id");
 		$.ajax({
@@ -616,27 +633,162 @@ function deleteCategory(){
 			}
 		});
 	});
-}
 
-function editCategory(){
-	$(".btn-edit-category").click(function(e){
-		e.preventDefault();
-		var id = $(this).attr("data-id");
-		var name = $(this).parent("td").prev("td").children("span").text();
-		var oldhtml = $(this).parent("td").prev("td").parent("tr").html();
-		$(this).parent("td").prev("td").parent("tr").html("<td><input type='text' class='cat-input-text' value='"+name+"' placeholder='Category name' name='name'><span class='category-name'></span></td><td><a href='#' class='bs-btn btn-info save-category'>Save</a> <a href='#' class='bs-btn btn-danger cancel-category'>Cancel</a></td>");
-			
-	});
-}
+	// edit category
+	// $(".btn-edit-category").click(function(e){
+	// 	e.preventDefault();
+	// 	var id = $(this).attr("data-id");
+	// 	var name = $(this).parent("td").prev("td").children("span").text();
+
+	// 	$(this).parent("td").prev("td").fadeOut();
+	// 	$(this).parent("td").fadeOut();
+
+	// 	$("tr[data-id='"+id+"']").append("<td><input type='text' class='cat-input-text' value='"+name+"' placeholder='Category name' name='name'><span class='category-name'></span></td><td><a href='#' class='bs-btn btn-info save-category' onclick='saveCategory($(this))'>Save</a> <a href='#' class='bs-btn btn-danger cancel-category'>Cancel</a></td>");
+	// 	$(this).parent("td").prev("td").fadeOut();
+	// 	$(this).parent("td").fadeOut();
+	// 	// if user cancels delete option
+
+	// 	$('a.save-category').click(function(e){
+	// 		e.preventDefault();
+	// 		var str = $.trim(generateString(20));
+	// 		$(this).parent("td").prev("td").parent("tr").attr("data-close", str);
+	// 		var obj = $(this).parent("td").prev("td").children("input[name='name']");
+	// 		var name = $.trim(obj.val());
+
+	// 		if( name=="" || name==null || name==undefined ){
+	// 			$("tr[data-close='"+str+"']").append("<td><span class='alert alert-error' id='"+str+"'>Please provide valid category name.</span></td>");
+	// 			$("#"+str).parent("td").fadeOut(3400, "linear", function(){
+	// 				$(this).remove();
+	// 			});
+	// 		}else{
+	// 			$("tr[data-close='"+str+"']").fadeOut();
+	// 			$("tr[data-close='"+str+"']").remove();
+
+	// 			$.ajax(
+	// 			{
+	// 				url: "/categoryAjax",       
+	// 				type: "post",
+	// 				data: { name: name, op: 'add' },
+	// 				beforeSend: function()
+	// 				{
+	// 					console.log(name);
+	// 				}
+
+
+	// 			})
+	// 			.done(function(data)
+	// 			{
+	// 				$("#table-categories tbody").prepend('<tr data-id="'+data.id+'"><td><span class="category-name">'+data.name+'</span></td><td><a href="#" class="bs-btn btn-info btn-edit-category" onclick="editCategory($(this))" data-id="'+data.id+'">Edit</a> <a href="#" onclick="deleteCategory($(this))" data-id="'+data.id+'" class="bs-btn btn-danger btn-delete-category" data-id="'+data.id+'">Delete</a></td></tr>');
+	// 			});
+	// 		}
+	// 	});
+
+	// 	$('a.cancel-category').click(function(e){
+	// 		e.preventDefault();
+	// 		$(this).parent('td').next("td").fadeOut(function(){
+	// 			$(this).remove();
+	// 		});
+	// 		$(this).parent('td').prev("td").fadeOut(function(){
+	// 			$(this).remove();
+	// 		});
+	// 		$(this).parent('td').fadeOut(function(){
+	// 			$(this).remove();
+	// 			$(this).parent("td").prev("td").fadeIn();
+	// 			$(this).parent("td").fadeIn();
+	// 		});
+	// 	});
+	// 	// ---
+	// });
+
+});
+
 
 function cancelCategory(){
+	
+}
+
+function editCategory(obj){
+	var id = obj.attr("data-id");
+	var name = obj.parent("td").prev("td").children("span").text();
+	// obj.parent("td").prev("td").attr("data-close", str);
+
+	obj.parent("td").prev("td").fadeOut();
+	obj.parent("td").fadeOut();
+
+	$("tr[data-id='"+id+"']").append("<td><input type='text' class='cat-input-text' value='"+name+"' placeholder='Category name' name='name'><span class='category-name'></span></td><td><a href='#' class='bs-btn btn-info save-category'>Save</a> <a href='#' class='bs-btn btn-danger cancel-category'>Cancel</a></td>");
+	obj.parent("td").prev("td").fadeOut();
+	obj.parent("td").fadeOut();
+
+	$('a.save-category').click(function(e){
+		e.preventDefault();
+		var str = $.trim(generateString(20));
+		$(this).parent("td").prev("td").parent("tr").attr("data-close", str);
+		var obj = $(this).parent("td").prev("td").children("input[name='name']");
+		var name = $.trim(obj.val());
+
+		if( name=="" || name==null || name==undefined ){
+			$("tr[data-close='"+str+"']").append("<td><span class='alert alert-error' id='"+str+"'>Please provide valid category name.</span></td>");
+			$("#"+str).parent("td").fadeOut(3400, "linear", function(){
+				$(this).remove();
+			});
+		}else{
+			$("tr[data-close='"+str+"']").fadeOut();
+			$("tr[data-close='"+str+"']").remove();
+
+			$.ajax(
+			{
+				url: "/categoryAjax",       
+				type: "post",
+				data: { name: name, op: 'edit', id: id },
+				beforeSend: function()
+				{
+					console.log(name);
+				}
+
+
+			})
+			.done(function(data)
+			{
+				$("#table-categories tbody").prepend('<tr data-id="'+data.id+'"><td><span class="category-name">'+data.name+'</span></td><td><a href="#" class="bs-btn btn-info btn-edit-category" onclick="editCategory($(this))" data-id="'+data.id+'">Edit</a> <a href="#" onclick="deleteCategory($(this))" data-id="'+data.id+'" class="bs-btn btn-danger btn-delete-category" data-id="'+data.id+'">Delete</a></td></tr>');
+			});
+		}
+	});
+
+	// if user cancels delete option
+
 	$('a.cancel-category').click(function(e){
 		e.preventDefault();
-		$(this).parent('td').parent('tr').fadeOut();
-		$(this).parent('td').parent('tr').remove();
+		$(this).parent('td').next("td").fadeOut(function(){
+			$(this).remove();
+		});
+		$(this).parent('td').prev("td").fadeOut(function(){
+			$(this).remove();
+		});
+		$(this).parent('td').fadeOut(function(){
+			$(this).remove();
+			obj.parent("td").prev("td").fadeIn();
+			obj.parent("td").fadeIn();
+		});
 	});
 }
 
+function deleteCategory(obj){
+	var id = obj.attr("data-id");
+	$.ajax({
+		url: "/categoryAjax",
+		type: "post",
+		data: { id: id, op: 'delete' },
+		beforeSend: function(){
+			console.log(id);
+		}
+	}).done(function(data){
+		if(data == "deleted"){
+			$("tr[data-id='"+id+"']").fadeOut(function(){
+				$(this).remove();
+			});
+		}
+	});
+}
 
 function generateString(len)
 	{
