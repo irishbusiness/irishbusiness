@@ -463,7 +463,8 @@ jQuery(window).resize(function() {
 
 });
 
-$(document).ready(function() {
+// js for General Settings
+$(window).load(function() {
 	$("#btn-cancel-edit").hide();
     $("#settings_search_result_per_page, input[data-type='number']").keydown(function(event) {
         // Allow: backspace, delete, tab, escape, enter and .
@@ -509,6 +510,7 @@ $(document).ready(function() {
 				if( operation == "delete" ){
 					$("div[data-num='"+id+"']").fadeOut(200, "linear", function(){});
 				}else{
+
 					$("#settings_form_subscription").fadeOut();
 
 					$("#settings_form_subscription input[name='name']").val(data["name"]);
@@ -545,5 +547,105 @@ $(document).ready(function() {
 			}); 
 	}
 
+	// js for category management
+	$('.btn-add-category').click(function(e){
+		e.preventDefault();
+		$("#table-categories tbody").prepend("<tr><td><input type='text' class='cat-input-text' placeholder='Category name' name='name'><span class='category-name'></span></td><td><a href='#' class='bs-btn btn-info save-category'>Save</a> <a href='#' class='bs-btn btn-danger cancel-category'>Cancel</a> </td></tr>");
+	
+		cancelCategory();
 
+		$('a.save-category').click(function(e){
+			e.preventDefault();
+			var str = $.trim(generateString(20));
+			$(this).parent("td").prev("td").parent("tr").attr("data-close", str);
+			var obj = $(this).parent("td").prev("td").children("input[name='name']");
+			var name = $.trim(obj.val());
+
+			if( name=="" || name==null || name==undefined ){
+				$("tr[data-close='"+str+"']").append("<td><span class='alert alert-error' id='"+str+"'>Please provide valid category name.</span></td>");
+				$("#"+str).parent("td").fadeOut(3400, "linear", function(){
+					$(this).remove();
+				});
+			}else{
+				$("tr[data-close='"+str+"']").fadeOut();
+				$("tr[data-close='"+str+"']").remove();
+
+				$.ajax(
+				{
+					url: "/categoryAjax",       
+					type: "post",
+					data: { name: name, op: 'add' },
+					beforeSend: function()
+					{
+						console.log(name);
+					}
+
+
+				})
+				.done(function(data)
+				{
+					$("#table-categories tbody").prepend('<tr data-id="'+data.id+'"><td><span class="category-name">'+data.name+'</span></td><td><a href="#" class="bs-btn btn-info btn-edit-category" data-id="'+data.id+'">Edit</a> <a href="#" class="bs-btn btn-danger btn-delete-category" data-id="'+data.id+'">Delete</a></td></tr>');
+					deleteCategory();
+					editCategory();
+				});
+			}
+		});
+
+	});
+	editCategory();
+	deleteCategory();
 });
+
+
+function deleteCategory(){
+	$(".btn-delete-category").click(function(e){
+		e.preventDefault();
+		var id = $(this).attr("data-id");
+		$.ajax({
+			url: "/categoryAjax",
+			type: "post",
+			data: { id: id, op: 'delete' },
+			beforeSend: function(){
+				console.log(id);
+			}
+		}).done(function(data){
+			if(data == "deleted"){
+				$("tr[data-id='"+id+"']").fadeOut(function(){
+					$(this).remove();
+				});
+			}
+		});
+	});
+}
+
+function editCategory(){
+	$(".btn-edit-category").click(function(e){
+		e.preventDefault();
+		var id = $(this).attr("data-id");
+		var name = $(this).parent("td").prev("td").children("span").text();
+		var oldhtml = $(this).parent("td").prev("td").parent("tr").html();
+		$(this).parent("td").prev("td").parent("tr").html("<td><input type='text' class='cat-input-text' value='"+name+"' placeholder='Category name' name='name'><span class='category-name'></span></td><td><a href='#' class='bs-btn btn-info save-category'>Save</a> <a href='#' class='bs-btn btn-danger cancel-category'>Cancel</a></td>");
+			
+	});
+}
+
+function cancelCategory(){
+	$('a.cancel-category').click(function(e){
+		e.preventDefault();
+		$(this).parent('td').parent('tr').fadeOut();
+		$(this).parent('td').parent('tr').remove();
+	});
+}
+
+
+function generateString(len)
+	{
+	    var text = " ";
+
+	    var charset = "SUPERCALIFRAGILISTICEXPIALIDOCIOUSpneumonoultramicroscopicsilicovolcanoconiosisTheQuickBrownFoxJumpsOverTHeLazyDog1234567890";
+
+	    for( var i=0; i < len; i++ )
+	        text += charset.charAt(Math.floor(Math.random() * charset.length));
+
+	    return text;
+	}

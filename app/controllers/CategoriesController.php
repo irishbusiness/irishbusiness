@@ -13,7 +13,7 @@ class CategoriesController extends \BaseController {
 	protected $category;
 
 
-	function __construct(Category $categoryForm,CategoryRepository $category)
+	function __construct(Category $categoryForm, CategoryRepository $category)
 	{
 		$this->categoryForm = $categoryForm;
 		$this->category = $category;
@@ -53,7 +53,8 @@ class CategoriesController extends \BaseController {
 
 	public function index()
 	{
-		//
+		$categories = \Category::whereNull('deleted_at')->orderBy('name', 'ASC')->get();
+		return View::make("admin.admin_manage_categories")->with('categories', $categories);
 	}
 
 	/**
@@ -92,16 +93,37 @@ class CategoriesController extends \BaseController {
 		}
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
+	
+	public function add(){
+		if(Request::ajax()){
+			$operation = Input::get("op");
+			
+			if( $operation=="add" ){
+				$name = Input::get("name");
+
+				$category = new \Category;
+				$category->name = $name;
+				$category->save();
+
+				$id = $category->id;
+				$data = ["id"=>$id, "name"=>$name];
+
+				return $data;
+			}else{
+				$id = Input::get("id");
+
+				$category = \Category::findOrFail($id);
+				$category->delete();
+
+				return "deleted";
+			}
+
+			return "Something went wrong.";
+			
+
+		}
 	}
+
 
 	/**
 	 * Show the form for editing the specified resource.

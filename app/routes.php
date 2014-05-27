@@ -123,6 +123,7 @@ Route::post('admin_settings_subscription', 'SubscriptionController@store');
 Route::post('editSubscription', 'SubscriptionController@edit');
 
 Route::get('admin_manage_categories', 'CategoriesController@index');
+Route::post('categoryAjax', 'CategoriesController@add');
 
 Route::get('clear',function(){
 	Auth::user()->logout();
