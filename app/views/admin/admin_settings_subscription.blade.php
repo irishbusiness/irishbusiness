@@ -8,6 +8,10 @@
 		<div class="comments block">						
 			<div class="comment-message">
 				<div id="addnew_subscription">
+					<h2 id="subscription-title-option">Create new subscription</h2>
+					<div class="error">
+						{{ $errors->first('msgerror', '<span class="error">:msgerror</span>') }}
+					</div>
 					{{ Form::open(array( "action" => "SubscriptionController@store", 'method' => 'post', "id" => "settings_form_subscription" )) }}
 						<div class="form-group">
 							{{ Form::label("name", "Name", ["class"=>"text-colorful"]) }}
@@ -39,23 +43,47 @@
 							{{$errors->first('max_categories','<span class="error">:message</span>')}}
 						</div>
 						<div class="form-group">
-							{{ Form::label("duration", "Duration", ["class"=>"text-colorful"]) }}
+							{{ Form::label("duration", "Duration", ["class"=>"text-colorful"]) }}<br>
 							{{ Form::select("duration", ["free"=>"Free", "monthly"=>"Monthly", "yearly"=>"Yearly", "forever"=>"Forever"],
 								"", ["class"=>"text-input-grey"]) }}
 						</div>
 						<div class="form-group align-right">
-							{{ Form::submit("Add", ["class"=>"button-2-colorful"]) }}
+							{{ Form::submit("Create", ["class"=>"button-2-colorful"]) }}
 						</div>
 					{{ Form::close() }}
 				</div>
-				<div id="listof_subscriptions"></div>
+				<div class="thin-separator"></div>	
+				<div id="listof_subscriptions">
+					<h2 id="listof_subscriptions-title">List of Subscriptions</h2><br/>
+					@foreach($subscriptions as $subscription)
+						<div class="subscription-container">
+							<h3 class="subscription-name">{{ $subscription->name }}</h3>
+							<div class="subscription-info">
+								<div class="subscription-duration">{{ $subscription->duration }}</div>
+								<div class="subscription-price">${{ $subscription->price }}</div>
+								<div class="subscription-option">
+									<a href="#" class="option-button" data-id="{{ $subscription->id }}" data-type="edit">Edit</a>
+									<a href="#" class="option-button" data-id="{{ $subscription->id }}" data-type="delete">Delete</a>
+								</div>
+							</div>
+						</div>
+					@endforeach
+				</div>
 			</div>
 		</div>
 	@stop
 	@section('scripts')
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$("#settings_form_subscription").
+				$(".option-button").click(function(e){
+					e.preventDefault();
+					var id = $(this).attr("data-id");
+					var operation = $(this).attr("data-type");
+
+					if( operation == "delete" ){
+						
+					}
+				});
 			});
 		</script>
 	@stop

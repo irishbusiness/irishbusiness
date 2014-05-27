@@ -43,7 +43,18 @@ class SubscriptionController extends \BaseController {
             return Redirect::back()->withInput()->withErrors($this->subscriptions->errors);
         }
 
-        
+        $subscription = new Subscription;
+        $subscription->name = Input::get("name");
+        $subscription->price = Input::get("price");
+        $subscription->duration = Input::get("duration");
+        $subscription->blogs_limit = Input::get("blogs_limit");
+        $subscription->max_location = Input::get("max_location");
+        $subscription->max_categories = Input::get("max_categories");
+        if($subscription->save()){
+        	return View::make("admin.admin_settings_subscription")->withFlashMessage("msgsuccess", "New Subscription has been added.");
+        }
+
+        return Redirect::back()->withInput()->with('msgerror', "Sorry, we can't process your request right now.");
 	}
 
 

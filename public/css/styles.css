@@ -3907,7 +3907,7 @@ ul.entries-list {
 	height: 100%;
 }
 
-/*  */
+/*  Custom CSS */
 .form-group {
 	margin: 8px;
 }
@@ -3929,7 +3929,7 @@ ul.entries-list {
 	color: red;
 	cursor: pointer;
 }
-textarea.comment-message-main.text-input-grey.full {
+.comment-message-main.text-input-grey.full {
 	width: 96%;
 	min-height: 100px;
 	resize: none;
@@ -3940,4 +3940,39 @@ textarea.comment-message-main.text-input-grey.full {
 #errordiv
 {
 	font-size:12px;color:red;display:block;margin-top:-15px;margin-bottom:5px;
+}
+
+#listof_subscriptions {
+	display: inline-block;
+	max-width: 640px;
+}
+
+.subscription-container {
+	margin-right: 2px;
+	margin-left: 10px;
+	display: inline-block;
+	margin-bottom: 20px;
+	border: 1px solid;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 3px;
+	border-bottom: 3px solid #98b709;
+	border-radius: 4px;
+}
+
+.subscription-name {
+	border-bottom: 1px solid black;
+	text-align: center;
+}
+
+.subscription-option {
+	border-top: 1px solid rgba(128, 128, 128, 0.26);
+}
+
+.option-button {
+	margin-right: 4px;
+}
+
+#subscription-title-option, #listof_subscriptions-title {
+	margin-left: 8px;
 }
