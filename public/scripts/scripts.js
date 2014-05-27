@@ -507,7 +507,7 @@ $(document).ready(function() {
 			}
 			}).done(function(data){
 				if( operation == "delete" ){
-					$("div[data-num='"+id+"']").fadeOut(1400, "linear", function(){});
+					$("div[data-num='"+id+"']").fadeOut(200, "linear", function(){});
 				}else{
 					$("#settings_form_subscription").fadeOut();
 
