@@ -3976,3 +3976,11 @@ ul.entries-list {
 #subscription-title-option, #listof_subscriptions-title {
 	margin-left: 8px;
 }
+
+.erro-empty {
+	margin-left: 8px;
+}
+
+.subscription-duration {
+	text-transform: uppercase;
+}

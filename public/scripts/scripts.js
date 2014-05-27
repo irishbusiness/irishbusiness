@@ -464,6 +464,7 @@ jQuery(window).resize(function() {
 });
 
 $(document).ready(function() {
+	$("#btn-cancel-edit").hide();
     $("#settings_search_result_per_page, input[data-type='number']").keydown(function(event) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ( $.inArray(event.keyCode,[46,8,9,27,13,190]) !== -1 ||
@@ -481,4 +482,68 @@ $(document).ready(function() {
             }   
         }
     });
+
+    $(".option-button").click(function(e){
+		e.preventDefault();
+		var id = $(this).attr("data-id");
+		var operation = $(this).attr("data-type");
+		if(operation == "delete"){
+			if(confirm("Are you sure you want to delete this subscription?")){
+				subs_continue(id,operation);
+			}
+		}else{
+			subs_continue(id,operation);
+		}
+		
+	});
+
+	function subs_continue(id,operation){
+		$.ajax({
+			url: "/editSubscription",       
+			type: "post",
+			data: { sid: id, op: operation},
+			beforeSend: function(){
+				// console.log(category);
+			}
+			}).done(function(data){
+				if( operation == "delete" ){
+					$("div[data-num='"+id+"']").fadeOut(1400, "linear", function(){});
+				}else{
+					$("#settings_form_subscription").fadeOut();
+
+					$("#settings_form_subscription input[name='name']").val(data["name"]);
+					$("#settings_form_subscription input[name='price']").val(data["price"]);
+					$("#settings_form_subscription input[name='blogs_limit']").val(data["blogs_limit"]);
+					$("#settings_form_subscription input[name='max_location']").val(data["max_location"]);
+					$("#settings_form_subscription input[name='max_categories']").val(data["max_categories"]);
+
+					$("#settings_form_subscription #duration option[value='"+data["duration"]+"']").selected;
+					$("#subscription-title-option").text("Edit Subscription - "+data["name"].toUpperCase());
+					
+					$("#hidden_num").attr("name", "num");
+					$("#hidden_num").val(data["id"]);
+
+					$("#btn-create-subscription").val("Save");
+					$("#btn-cancel-edit").show();
+					$("#settings_form_subscription").fadeIn();
+					// If the user cancels 
+					$("#btn-cancel-edit").click(function(e){
+						e.preventDefault();
+						$("#settings_form_subscription").fadeOut();
+						$("#btn-cancel-edit").hide();
+						$("#settings_form_subscription input").val("");
+						$("#btn-create-subscription").val("Create");
+						$("#btn-cancel-edit").fadeOut();
+						$("#subscription-title-option").text("Create new subscription");
+						$("#settings_form_subscription").fadeIn();
+						$("#hidden_num").removeAttr("name");
+						$("#hidden_num").val("");
+
+					})
+				}
+				console.log(data);
+			}); 
+	}
+
+
 });

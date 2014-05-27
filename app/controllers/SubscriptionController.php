@@ -13,7 +13,7 @@ class SubscriptionController extends \BaseController {
 	 */
 	public function index()
 	{
-		$subscriptions = Subscription::all();
+		$subscriptions = $this->subscriptions->whereIs_deleted(0)->orderBy('price', 'ASC')->get();
 		return View::make("admin.admin_settings_subscription")->with("subscriptions", $subscriptions);
 		
 	}
@@ -43,18 +43,27 @@ class SubscriptionController extends \BaseController {
             return Redirect::back()->withInput()->withErrors($this->subscriptions->errors);
         }
 
-        $subscription = new Subscription;
+        if(Input::has("num")){
+        	$subscription = Subscription::findOrFail(Input::get("num"));
+        }else{
+        	$subscription = new Subscription;
+        }
+
         $subscription->name = Input::get("name");
         $subscription->price = Input::get("price");
         $subscription->duration = Input::get("duration");
         $subscription->blogs_limit = Input::get("blogs_limit");
         $subscription->max_location = Input::get("max_location");
         $subscription->max_categories = Input::get("max_categories");
-        if($subscription->save()){
-        	return View::make("admin.admin_settings_subscription")->withFlashMessage("msgsuccess", "New Subscription has been added.");
+        $success = $subscription->save();
+        if($success){
+        	$subscriptions = $this->subscriptions->whereIs_deleted(0)->orderBy('price', 'ASC')->get();
+        	return View::make("admin.admin_settings_subscription")
+        		->withFlashMessage("msgsuccess", "New Subscription has been added.")->with('subscriptions', $subscriptions);
         }
 
-        return Redirect::back()->withInput()->with('msgerror', "Sorry, we can't process your request right now.");
+        return Redirect::back()->withInput()->with('msgerror', "Sorry, we can't process your request right now.")
+        	->with('subscriptions', $subscriptions);
 	}
 
 
@@ -76,9 +85,25 @@ class SubscriptionController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit()
 	{
-		//
+		if(Request::ajax())
+		{
+			$id = Input::get('sid');
+			$operation = Input::get("op");
+
+			$subscription = Subscription::findOrFail($id);
+			if( $operation == "delete" ){
+				$subscription->is_deleted = 1;
+				$subscription->save();
+
+				return "deleted";
+			}
+
+			return $subscription->toArray();
+		}
+		
+		return 'Something went wrong';
 	}
 
 
