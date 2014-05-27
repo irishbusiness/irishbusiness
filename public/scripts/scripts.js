@@ -464,7 +464,7 @@ jQuery(window).resize(function() {
 });
 
 $(document).ready(function() {
-    $("#settings_search_result_per_page").keydown(function(event) {
+    $("#settings_search_result_per_page, input[data-type='number']").keydown(function(event) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ( $.inArray(event.keyCode,[46,8,9,27,13,190]) !== -1 ||
              // Allow: Ctrl+A

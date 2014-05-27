@@ -14,10 +14,7 @@ class SettingsController extends \BaseController {
 	public function index()
 	{
 		$settings = MainSetting::orderBy('created_at', 'desc')->first();
-		// $set = $settings->toArray();
-		// return dd($settings->domain_name);
 		return View::make('admin.admin_settings_general')->with('settings', $settings);
-		// return array_search("domain_name", $set);
 	}
 
 

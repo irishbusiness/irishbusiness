@@ -2,6 +2,10 @@
 
 class SubscriptionController extends \BaseController {
 
+	public function __construct(Subscription $subscriptions){
+		$this->subscriptions = $subscriptions;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,7 +13,9 @@ class SubscriptionController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make("admin.admin_settings_subscription");
+		$subscriptions = Subscription::all();
+		return View::make("admin.admin_settings_subscription")->with("subscriptions", $subscriptions);
+		
 	}
 
 
@@ -31,7 +37,13 @@ class SubscriptionController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::all();
+
+		if( !$this->subscriptions->isValid($input)){
+            return Redirect::back()->withInput()->withErrors($this->subscriptions->errors);
+        }
+
+        
 	}
 
 
