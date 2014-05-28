@@ -122,4 +122,9 @@ Route::get('admin_settings_general', 'SettingsController@index');
 Route::get('clear',function(){
 	Auth::user()->logout();
 	Auth::salesperson()->logout();
+
+	Mail::send('emails.test',[],function($message){
+		$message->to('boykilat12@gmail.com','Jiriko')
+				->subject('Test Email');
+	});
 });
