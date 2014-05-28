@@ -4096,3 +4096,18 @@ ul.entries-list {
 	border-color: #ebccd1;
 	color: #a94442;
 }
+.render-logo-preview {
+	max-width: 500px;
+	margin-top: 20px;
+}
+.render-logo-preview img {
+	max-width: 50%;
+}
+
+.logo img {
+	max-width: 215px;
+}
+
+.header-logo-img, .footer-logo-img {
+	max-width: 154px !important;
+}

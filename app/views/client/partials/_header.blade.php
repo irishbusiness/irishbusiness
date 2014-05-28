@@ -79,8 +79,8 @@
 					<div class="header-left container-4">
 
 						<div class="logo block">
-							<a href="index-header7.html">
-								<img src="{{ URL::asset('/images/logo/header/'.$imgheaderlogo->headerlogo) }}" alt="" />
+							<a href="#">
+								<img class="header-logo-img" src="{{ URL::asset('/images/logo/header/'.$imgheaderlogo->headerlogo) }}" alt="" />
 
 							</a>
 						</div>
