@@ -4108,8 +4108,12 @@ ul.entries-list {
 	max-width: 215px;
 }
 
-.header-logo-img, .footer-logo-img {
+.header-logo-img{
 	max-width: 154px !important;
+}
+
+.footer-logo-img {
+	max-width: 215px !important;
 }
 
 .half {
