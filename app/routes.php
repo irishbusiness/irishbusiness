@@ -22,6 +22,8 @@ Route::get('/', function()
 	return View::make('client.index');
 });
 
+// Route::get('/', 'HomeController@index');
+
 Route::resource('blog', 'BlogController');
 
 Route::get('bloglist', 'BlogController@bloglist');

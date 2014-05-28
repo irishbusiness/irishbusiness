@@ -20,6 +20,8 @@ class SettingsController extends \BaseController {
         }
 
        $settings = array(
+            "headerlogo" => "",
+            "footerlogo" => "",
             "domain_name" => "",
             "admin_email" => "",
             "search_result_per_page" => "",
@@ -43,6 +45,8 @@ class SettingsController extends \BaseController {
 	public function store()
 	{
 		$input = Input::all();
+
+         $oldsettings = MainSetting::orderBy('created_at', 'desc')->first();
 
 		if( !$this->settings->isValid($input)){
             return Redirect::back()->withInput()->withErrors($this->settings->errors);
@@ -78,12 +82,14 @@ class SettingsController extends \BaseController {
 			{
                 $upload_success = $image->move($destinationPath, $filename);
                 if($upload_success){
-                	$mainsettings->headerlogo  =   public_path().'/images/logo/header/'.$filename;
+                	$mainsettings->headerlogo  =   $filename;
                 }
             } else {
-                $mainsettings->headerlogo  =   public_path().'/images/logo/header/default.png';
+                $mainsettings->headerlogo  =  'default.png';
                 $imageError1 = "It seems the header logo isn't valid.";
             }
+        }else {
+            $mainsettings->headerlogo = $oldsettings->headerlogo;
         }
 
         if(Input::hasFile("footerlogo")){
@@ -101,12 +107,14 @@ class SettingsController extends \BaseController {
 			{
                 $upload_success = $image->move($destinationPath, $filename);
                 if($upload_success){
-                	$mainsettings->footerlogo  =   public_path().'/images/logo/footer/'.$filename;
+                	$mainsettings->footerlogo  =  $filename;
                 }
             } else {
-                $mainsettings->footerlogo  =   public_path().'/images/logo/footer/default.png';
+                $mainsettings->footerlogo  =  'default.png';
                 $imageError2 = "It seems the footer logo isn't valid.";
             }
+        }else {
+            $mainsettings->footerlogo = $oldsettings->footerlogo;
         }
 
         $successmsg = "Settings has been updated.";
