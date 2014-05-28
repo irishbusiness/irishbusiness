@@ -4111,3 +4111,19 @@ ul.entries-list {
 .header-logo-img, .footer-logo-img {
 	max-width: 154px !important;
 }
+
+.half {
+	max-width: 300px;
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 500px;
+}
+
+#form-register {
+	padding-left: 22px;
+	padding-bottom: 12px;
+	padding-top: 10px;
+}
