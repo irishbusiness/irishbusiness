@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateProductAndServicesTable extends Migration {
+class CreateBlogsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,14 @@ class CreateProductAndServicesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('product_and_services', function(Blueprint $table) {
+		Schema::create('blogs', function(Blueprint $table) {
 			$table->increments('id');
+			$table->string('title');
+			$table->string('blogheaderimage');
+			$table->string('body');
+			$table->string('author');
 			$table->integer('business_id')->unsigned()->index();
-			$table->string('description');
-			$table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
+            $table->foreign('business_id')->references('id')->on('businesses')->onUpdate('cascade')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}
@@ -29,7 +32,7 @@ class CreateProductAndServicesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('product_and_services');
+		Schema::drop('blogs');
 	}
 
 }

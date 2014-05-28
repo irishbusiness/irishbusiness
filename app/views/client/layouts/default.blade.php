@@ -1,3 +1,16 @@
+<!doctype html>
+<html class="" lang="en">
+
+	<head>
+
+		<meta charset="utf-8">
+		<title>Glocal</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+		@include('client.partials._styles')
+	</head>
+
+	<body>
 @include('client.partials._header')
 
 <section class="section content boxed">
@@ -33,7 +46,14 @@
 
 	@include('client.partials._footer')
 	@include('client.partials._includes')
+	@if(Session::has('errorNotify'))
+		<script>
+			$('#login-form').slideDown(500);
+			$('#errordiv').text('{{Session::get('errorNotify')}}');
+		</script>
+	@endif
 	@yield('scripts')
+
 </section>
 
 </body>

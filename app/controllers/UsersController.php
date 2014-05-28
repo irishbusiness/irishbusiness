@@ -28,7 +28,7 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('searchpartial.register')->with('title','IrishBusiness.ie | Register');
+		return View::make('admin.admin_register')->with('title','IrishBusiness.ie | Register');
 	}
 
 	/**
@@ -45,8 +45,7 @@ class UsersController extends \BaseController {
 			$this->registerForm->validate(Input::all());
 
 			$id = $this->user->create(Input::all());
-			Auth::loginUsingId($id);
-
+			
 			return Redirect::to('settings')->withFlashMessage('Thank you for registering ' . ucwords(Input::get('firstname')) .'! You have been logged in.')
 			->with('title','IrishBusiness.ie | Settings');
 		}

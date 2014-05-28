@@ -13,7 +13,7 @@ class CategoriesController extends \BaseController {
 	protected $category;
 
 
-	function __construct(Category $categoryForm,CategoryRepository $category)
+	function __construct(Category $categoryForm, CategoryRepository $category)
 	{
 		$this->categoryForm = $categoryForm;
 		$this->category = $category;
@@ -29,12 +29,32 @@ class CategoriesController extends \BaseController {
 			return $category;	
 		}
 		
-		return 'somethings wrong';
+		return 'Something went wrong';
+	}
+
+	public function categoryRemove(){
+		if(Request::ajax()){
+			$id = Input::get('category');
+			// Session::pop('categories', $id);
+			$categories = Session::get('categories');
+			foreach ( $categories as $category ) {
+				if(!$category = $id){
+					Session::push("newcategories", $category);
+				}
+			}
+			Session::forget("categories");
+			Session::push("categories", Session::get("newcategories"));
+			$category = \Category::findOrFail($id);
+			return $category;
+		}
+
+		return 'Something went wrong';
 	}
 
 	public function index()
 	{
-		//
+		$categories = \Category::whereNull('deleted_at')->orderBy('name', 'ASC')->get();
+		return View::make("admin.admin_manage_categories")->with('categories', $categories);
 	}
 
 	/**
@@ -73,16 +93,43 @@ class CategoriesController extends \BaseController {
 		}
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
+	
+	public function add(){
+		if(Request::ajax()){
+			$operation = Input::get("op");
+			
+			if( $operation=="add" ){
+				$name = Input::get("name");
+
+				$category = new \Category;
+				$category->name = $name;
+				$category->save();
+
+				$id = $category->id;
+				$data = ["id"=>$id, "name"=>$name];
+
+				return $data;
+
+			}
+			
+			$id = Input::get("id");
+			$name = Input::get("name");
+
+			$category = \Category::findOrFail($id);
+			
+			if( $operation=="delete" ){
+				$category->delete();
+				return "deleted";
+			}
+			$name = Input::get("name");
+			$category->name = $name;
+			$category->save();
+			
+			$data = ["id"=>$id, "name"=>$name];
+			return $data;
+		}
 	}
+
 
 	/**
 	 * Show the form for editing the specified resource.

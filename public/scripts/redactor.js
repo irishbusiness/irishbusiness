@@ -156,7 +156,7 @@ var RLANG = {
 
 			imageGetJson: false, // url (ex. /folder/images.json ) or false
 
-			imageUpload: 'image_upload.php', // handler script
+			imageUpload: '../../image_upload.php', // handler script
 			imageUploadCallback: false, // function
 			imageUploadErrorCallback: false, // function
 
@@ -3325,7 +3325,7 @@ var RLANG = {
 				var html = '';
 				if (link !== true)
 				{
-					html = '<p><img src="' + json.filelink + '" /></p>';
+					html = '<p><img src="../../' + json.filelink + '" /></p>';
 				}
 				else
 				{
