@@ -20,6 +20,7 @@ class CreateSubscriptionsTable extends Migration {
 			$table->integer('blogs_limit')->default(3);
 			$table->integer('max_location')->default(3);
 			$table->integer('max_categories')->default(3);
+			$table->boolean("is_deleted")->default(false);
 			$table->timestamps();
 		});
 	}

@@ -22,6 +22,10 @@ Route::get('/', function()
 	return View::make('client.index');
 });
 
+// Route::get('/', 'HomeController@index');
+
+Route::resource('blog', 'BlogController');
+
 Route::get('bloglist', 'BlogController@bloglist');
 
 Route::get('blog/{id}', 'BlogController@show');
@@ -52,10 +56,6 @@ Route::get('tabs', function(){
 
 Route::get('admin_manage_cancellations',function(){
 	return View::make('admin.admin_manage_cancellations');
-});
-
-Route::get('admin_manage_categories',function(){
-	return View::make('admin.admin_manage_categories');
 });
 
 Route::get('admin_manage_clients', function(){
@@ -116,8 +116,16 @@ Route::post('register', 'UsersController@store');
 Route::get('login', 'SessionsController@create');
 Route::post('login', 'SessionsController@store');
 Route::post('login2', 'SessionsController@salesLogin');
+
 Route::post("admin_settings_general", 'SettingsController@store');
 Route::get('admin_settings_general', 'SettingsController@index');
+
+Route::get('admin_settings_subscription', 'SubscriptionController@index');
+Route::post('admin_settings_subscription', 'SubscriptionController@store');
+Route::post('editSubscription', 'SubscriptionController@edit');
+
+Route::get('admin_manage_categories', 'CategoriesController@index');
+Route::post('categoryAjax', 'CategoriesController@add');
 
 Route::get('clear',function(){
 	Auth::user()->logout();

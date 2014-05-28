@@ -7,6 +7,14 @@
 
 				<div class="blog-post block">
 					<div class="block-title">
+                        {{--  Show this button if the admin is logged in--}}
+                        {{ Form::open(['method' => 'DELETE', 'action' => ['BlogController@destroy', $blog->id]]) }}
+                        {{ HTML::link('blog/'.$blog->id.'/edit', 'edit', ['class'=>'button-2-colorful']) }}
+                            {{ Form::submit('Delete', ['class' => 'button-2-colorful', 'onclick' => 'return confirm("Are you sure you want to delete this blog?")'])}}
+                        {{ Form::close() }}
+                        <br><br>
+
+                        {{-- end --}}
 						<h1>{{ $blog->title }}</h1>
 					</div>
 					<div class="blog-post-image">

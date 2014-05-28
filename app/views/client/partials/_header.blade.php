@@ -79,8 +79,9 @@
 					<div class="header-left container-4">
 
 						<div class="logo block">
-							<a href="index-header7.html">
-								<img src="{{ URL::asset('images/logo-2.png') }}" alt="" />
+							<a href="#">
+								<img class="header-logo-img" src="{{ URL::asset('/images/logo/header/'.$imgheaderlogo->headerlogo) }}" alt="" />
+
 							</a>
 						</div>
 
@@ -96,8 +97,8 @@
 								<li {{ (Request::is('/') ? ' class="first active"' : '') }}>
 									<a href="{{ URL::to('/') }}">HOME</a>
 								</li>
-								<li {{ (Request::is('bloglist*') ? ' class="first active"' : '') }}>
-									<a href="{{ URL::to('bloglist') }}">BLOG</a>
+								<li {{ (Request::is('blog*') ? ' class="first active"' : '') }}>
+									<a href="{{ URL::to('blog') }}">BLOG</a>
 								</li>
 								<li {{ (Request::is('contact-us*') ? ' class="first active"' : '') }}>
 									<a href="{{ URL::to('contact-us')}}">CONTACT US</a>

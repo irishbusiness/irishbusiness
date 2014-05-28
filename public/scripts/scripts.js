@@ -462,3 +462,296 @@ jQuery(window).resize(function() {
 	jQuery('#subscription-options').equalHeights(450, 1);
 
 });
+
+// js for General Settings
+$(document).ready(function() {
+	$("#btn-cancel-edit").hide();
+    $("#settings_search_result_per_page, input[data-type='number']").keydown(function(event) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ( $.inArray(event.keyCode,[46,8,9,27,13,190]) !== -1 ||
+             // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) || 
+             // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+                 // let it happen, don't do anything
+                 return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                event.preventDefault(); 
+            }   
+        }
+    });
+
+
+    $(".option-button").click(function(e){
+		e.preventDefault();
+		var id = $(this).attr("data-id");
+		var operation = $(this).attr("data-type");
+		if(operation == "delete"){
+			if(confirm("Are you sure you want to delete this subscription?")){
+				subs_continue(id,operation);
+			}
+		}else{
+			subs_continue(id,operation);
+		}
+		
+	});
+
+	function subs_continue(id,operation){
+		$.ajax({
+			url: "/editSubscription",       
+			type: "post",
+			data: { sid: id, op: operation},
+			beforeSend: function(){
+				// console.log(category);
+			}
+			}).done(function(data){
+				if( operation == "delete" ){
+					$("div[data-num='"+id+"']").fadeOut(200, "linear", function(){});
+				}else{
+
+					$("#settings_form_subscription").fadeOut();
+
+					$("#settings_form_subscription input[name='name']").val(data["name"]);
+					$("#settings_form_subscription input[name='price']").val(data["price"]);
+					$("#settings_form_subscription input[name='blogs_limit']").val(data["blogs_limit"]);
+					$("#settings_form_subscription input[name='max_location']").val(data["max_location"]);
+					$("#settings_form_subscription input[name='max_categories']").val(data["max_categories"]);
+
+					$("#settings_form_subscription #duration option[value='"+data["duration"]+"']").selected;
+					$("#subscription-title-option").text("Edit Subscription - "+data["name"].toUpperCase());
+					
+					$("#hidden_num").attr("name", "num");
+					$("#hidden_num").val(data["id"]);
+
+					$("#btn-create-subscription").val("Save");
+					$("#btn-cancel-edit").show();
+					$("#settings_form_subscription").fadeIn();
+					// If the user cancels 
+					$("#btn-cancel-edit").click(function(e){
+						e.preventDefault();
+						$("#settings_form_subscription").fadeOut();
+						$("#btn-cancel-edit").hide();
+						$("#settings_form_subscription input").val("");
+						$("#btn-create-subscription").val("Create");
+						$("#btn-cancel-edit").fadeOut();
+						$("#subscription-title-option").text("Create new subscription");
+						$("#settings_form_subscription").fadeIn();
+						$("#hidden_num").removeAttr("name");
+						$("#hidden_num").val("");
+
+					})
+				}
+				console.log(data);
+			}); 
+	}
+
+	// js for category management
+	$('.btn-add-category').click(function(e){
+		e.preventDefault();
+		$("#table-categories tbody").prepend("<tr><td><input type='text' class='cat-input-text' placeholder='Category name' name='name'><span class='category-name'></span></td><td><a href='#' class='bs-btn btn-info save-category'>Save</a> <a href='#' class='bs-btn btn-danger cancel-category'>Cancel</a> </td></tr>");
+	
+		$('a.cancel-category').click(function(e){
+			e.preventDefault();
+			$(this).parent('td').parent('tr').fadeOut(function(){
+				$(this).remove();
+			});
+		});
+
+		$('a.save-category').click(function(e){
+			e.preventDefault();
+			var str = $.trim(generateString(20));
+			$(this).parent("td").prev("td").parent("tr").attr("data-close", str);
+			var obj = $(this).parent("td").prev("td").children("input[name='name']");
+			var name = $.trim(obj.val());
+
+			if( name=="" || name==null || name==undefined ){
+				$("tr[data-close='"+str+"']").append("<td><span class='alert alert-error' id='"+str+"'>Please provide valid category name.</span></td>");
+				$("#"+str).parent("td").fadeOut(3400, "linear", function(){
+					$(this).remove();
+				});
+			}else{
+				$("tr[data-close='"+str+"']").fadeOut();
+				$("tr[data-close='"+str+"']").remove();
+
+				$.ajax(
+				{
+					url: "/categoryAjax",       
+					type: "post",
+					data: { name: name, op: 'add' },
+					beforeSend: function()
+					{
+						console.log(name);
+					}
+
+
+				})
+				.done(function(data)
+				{
+					$("#table-categories tbody").prepend('<tr data-id="'+data.id+'"><td><span class="category-name">'+data.name+'</span></td><td><a href="#" class="bs-btn btn-info btn-edit-category" onclick="editCategory($(this))" data-id="'+data.id+'">Edit</a> <a href="#" onclick="deleteCategory($(this))" data-id="'+data.id+'" class="bs-btn btn-danger btn-delete-category" data-id="'+data.id+'">Delete</a></td></tr>');
+				});
+			}
+		});
+
+	});
+	
+	// delete category
+	$(".btn-delete-category").on('click', function(e){
+		e.preventDefault();
+		var id = $(this).attr("data-id");
+		$.ajax({
+			url: "/categoryAjax",
+			type: "post",
+			data: { id: id, op: 'delete' },
+			beforeSend: function(){
+				console.log(id);
+			}
+		}).done(function(data){
+			if(data == "deleted"){
+				$("tr[data-id='"+id+"']").fadeOut(function(){
+					$(this).remove();
+				});
+			}
+		});
+	});
+
+});
+
+
+function cancelCategory(){
+	
+}
+
+function editCategory(obj){
+	var id = obj.attr("data-id");
+	var name = obj.parent("td").prev("td").children("span").text();
+	// obj.parent("td").prev("td").attr("data-close", str);
+
+	obj.parent("td").prev("td").fadeOut();
+	obj.parent("td").fadeOut();
+
+	$("tr[data-id='"+id+"']").append("<td><input type='text' class='cat-input-text' value='"+name+"' placeholder='Category name' name='name'><span class='category-name'></span></td><td><a href='#' class='bs-btn btn-info save-category'>Save</a> <a href='#' class='bs-btn btn-danger cancel-category'>Cancel</a></td>");
+	obj.parent("td").prev("td").fadeOut();
+	obj.parent("td").fadeOut();
+
+	$('a.save-category').click(function(e){
+		e.preventDefault();
+		var str = $.trim(generateString(20));
+		$(this).parent("td").prev("td").parent("tr").attr("data-close", str);
+		var obj = $(this).parent("td").prev("td").children("input[name='name']");
+		var name = $.trim(obj.val());
+
+		if( name=="" || name==null || name==undefined ){
+			$("tr[data-close='"+str+"']").append("<td><span class='alert alert-error' id='"+str+"'>Please provide valid category name.</span></td>");
+			$("#"+str).parent("td").fadeOut(3400, "linear", function(){
+				$(this).remove();
+			});
+		}else{
+			$("tr[data-close='"+str+"']").fadeOut();
+			$("tr[data-close='"+str+"']").remove();
+
+			$.ajax(
+			{
+				url: "/categoryAjax",       
+				type: "post",
+				data: { name: name, op: 'edit', id: id },
+				beforeSend: function()
+				{
+					console.log(name);
+				}
+
+
+			})
+			.done(function(data)
+			{
+				$("#table-categories tbody").prepend('<tr data-id="'+data.id+'"><td><span class="category-name">'+data.name+'</span></td><td><a href="#" class="bs-btn btn-info btn-edit-category" onclick="editCategory($(this))" data-id="'+data.id+'">Edit</a> <a href="#" onclick="deleteCategory($(this))" data-id="'+data.id+'" class="bs-btn btn-danger btn-delete-category" data-id="'+data.id+'">Delete</a></td></tr>');
+			});
+		}
+	});
+
+	// if user cancels delete option
+
+	$('a.cancel-category').click(function(e){
+		e.preventDefault();
+		$(this).parent('td').next("td").fadeOut(function(){
+			$(this).remove();
+		});
+		$(this).parent('td').prev("td").fadeOut(function(){
+			$(this).remove();
+		});
+		$(this).parent('td').fadeOut(function(){
+			$(this).remove();
+			obj.parent("td").prev("td").fadeIn();
+			obj.parent("td").fadeIn();
+		});
+	});
+}
+
+function deleteCategory(obj){
+	var id = obj.attr("data-id");
+	$.ajax({
+		url: "/categoryAjax",
+		type: "post",
+		data: { id: id, op: 'delete' },
+		beforeSend: function(){
+			console.log(id);
+		}
+	}).done(function(data){
+		if(data == "deleted"){
+			$("tr[data-id='"+id+"']").fadeOut(function(){
+				$(this).remove();
+			});
+		}
+	});
+}
+
+function generateString(len)
+{
+    var text = " ";
+
+    var charset = "SUPERCALIFRAGILISTICEXPIALIDOCIOUSpneumonoultramicroscopicsilicovolcanoconiosisTheQuickBrownFoxJumpsOverTHeLazyDog1234567890";
+
+    for( var i=0; i < len; i++ )
+        text += charset.charAt(Math.floor(Math.random() * charset.length));
+
+    return text;
+}
+
+function readURL(obj) {
+	var name = obj.attr("name");
+	console.log(name);
+	console.log(obj);
+	if (obj.files && obj.files[0]) {
+	    var reader = new FileReader();
+	    
+	    reader.onload = function (e) {
+	        $('#img-render-'+name).attr('src', e.target.result);
+	    }
+	    
+	    reader.readAsDataURL(obj.files[0]);
+	}
+}
+
+function showPreview(e) {
+    var $input = $(this);
+    var name = $(this).attr("name");
+    console.log(name);
+    var inputFiles = this.files;
+    if(inputFiles == undefined || inputFiles.length == 0) return;
+    var inputFile = inputFiles[0];
+
+    var reader = new FileReader();
+    reader.onload = function(event) {
+        $("#img-render-"+name).attr("src", event.target.result);
+    };
+    reader.onerror = function(event) {
+        alert("I AM ERROR: " + event.target.error.code);
+    };
+    reader.readAsDataURL(inputFile);
+}
+
+$(function(){
+    $("#footerlogo, #headerlogo").change(showPreview);
+})

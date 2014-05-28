@@ -5,6 +5,7 @@ class BusinessesTableSeeder extends Seeder {
     {
         Business::create([
             'name'  =>  'Sample Business',
+            'address'   =>  'galway, ireland',
             'keywords'  => 'office, airplane, house',
             'locations' => 'iraq, iran, new york',
             'phone' =>  '09095331440',
