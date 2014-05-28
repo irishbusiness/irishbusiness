@@ -80,7 +80,8 @@
 
 						<div class="logo block">
 							<a href="index-header7.html">
-								<img src="{{ URL::asset('images/logo-2.png') }}" alt="" />
+								<img src="{{ URL::asset('/images/logo/header/'.$imgheaderlogo->headerlogo) }}" alt="" />
+
 							</a>
 						</div>
 

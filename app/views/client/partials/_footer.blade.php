@@ -6,7 +6,7 @@
 					<div class="footer-container container-24">
 
 						<div class="website-short-description block">
-							<img src="{{ URL::asset('images/IrishBusiness_footer.png') }}" class="logo" alt="" />
+							<img src="{{ URL::asset(public_path().'/images/logo/footer/'.$imgfooterlogo) }}" class="logo" alt="" />
 							<div class="description-text">
 								Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam sit amet lectus quis est congue mollis.
 							</div>

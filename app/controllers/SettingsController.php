@@ -78,10 +78,10 @@ class SettingsController extends \BaseController {
 			{
                 $upload_success = $image->move($destinationPath, $filename);
                 if($upload_success){
-                	$mainsettings->headerlogo  =   public_path().'/images/logo/header/'.$filename;
+                	$mainsettings->headerlogo  =   $filename;
                 }
             } else {
-                $mainsettings->headerlogo  =   public_path().'/images/logo/header/default.png';
+                $mainsettings->headerlogo  =  'default.png';
                 $imageError1 = "It seems the header logo isn't valid.";
             }
         }
@@ -101,10 +101,10 @@ class SettingsController extends \BaseController {
 			{
                 $upload_success = $image->move($destinationPath, $filename);
                 if($upload_success){
-                	$mainsettings->footerlogo  =   public_path().'/images/logo/footer/'.$filename;
+                	$mainsettings->footerlogo  =  $filename;
                 }
             } else {
-                $mainsettings->footerlogo  =   public_path().'/images/logo/footer/default.png';
+                $mainsettings->footerlogo  =  'default.png';
                 $imageError2 = "It seems the footer logo isn't valid.";
             }
         }
