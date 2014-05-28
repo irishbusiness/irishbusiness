@@ -22,6 +22,8 @@ Route::get('/', function()
 	return View::make('client.index');
 });
 
+// Route::get('/', 'HomeController@index');
+
 Route::resource('blog', 'BlogController');
 
 Route::get('bloglist', 'BlogController@bloglist');
@@ -130,4 +132,9 @@ Route::put('socialmediaAjax', 'SocialMediaController@update');
 Route::get('clear',function(){
 	Auth::user()->logout();
 	Auth::salesperson()->logout();
+
+	Mail::send('emails.test',[],function($message){
+		$message->to('boykilat12@gmail.com','Jiriko')
+				->subject('Test Email');
+	});
 });

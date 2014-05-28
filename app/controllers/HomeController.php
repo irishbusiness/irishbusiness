@@ -15,9 +15,26 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function index()
 	{
-		return View::make('hello');
+		$c = MainSetting::count();
+		if($c>0){
+            $settings = MainSetting::orderBy('created_at', 'desc')->first();
+            return View::make('admin.admin_settings_general')->with('settings', $settings->toArray()); 
+        }
+
+       $settings = array(
+            "domain_name" => "",
+            "admin_email" => "",
+            "search_result_per_page" => "",
+            "view_statistics" => "",
+            "analytics_code" => "",
+            "footer_text" => "",
+            "allow_statistics" => "",
+            "reviews_approval" => "",
+       );
+
+       return View::make('admin.admin_settings_general')->with('settings', $settings);
 	}
 
 }

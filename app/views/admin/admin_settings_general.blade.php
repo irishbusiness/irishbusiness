@@ -1,4 +1,4 @@
-@extends('admin.layouts.default')
+@extends('client.layouts.default')
 	@section('actual-body-content')
 		<div class="blog-post block">
 			<div class="block-title">
@@ -10,12 +10,18 @@
 				{{ Form::open(array('action' => 'SettingsController@store', 'enctype'=>'multipart/form-data', 'method'=>'post')) }}
 					<div class="form-group">
 						{{ Form::label("headerlogo", "Header Logo", ["class"=>"text-colorful"]) }}
-						{{ Form::input("file", "headerlogo", "", ["class"=>"text-input-grey"]) }}
+						{{ Form::input("file", "headerlogo", $settings['footerlogo'], ["class"=>"text-input-grey", "onchange"=>"readURL($(this))" ]) }}
+						<div class="render-logo-preview">
+							<img src="" id="img-render-headerlogo">
+						</div>
 					</div>
 					<div class="thin-separator"></div>	
 					<div class="form-group">
 						{{ Form::label("footerlogo", "Footer Logo", ["class"=>"text-colorful"]) }}
-						{{ Form::input("file", "footerlogo", "", ["class"=>"text-input-grey"]) }}
+						{{ Form::input("file", "footerlogo", $settings['footerlogo'], ["class"=>"text-input-grey", "onchange"=>"readURL($(this))" ]) }}
+						<div class="render-logo-preview">
+							<img src="" id="img-render-footerlogo">
+						</div>
 					</div>
 					<div class="thin-separator"></div>	
 					<div class="form-group">
