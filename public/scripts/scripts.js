@@ -801,3 +801,60 @@ function generateString(len)
 
 	    return text;
 	}
+
+//admin_settings_socialmedia functions
+
+$('.social-link').click(function(){
+    var placeholder = $(this).attr('data-placeholder');
+    var value   =   $(this).attr('data-value');
+    var socialtype = $(this).data('socialtype');
+    console.log(socialtype);
+
+    //place the data-socialtype to the appended input
+    if( value == "" ){
+        $('.social-textfield').html('<input type="url" class="text-input-grey full" name="socialinput" placeholder="'+placeholder+'" required> <button type="submit" class="bs-btn btn-info save-social">Save</button>');
+    } else {
+        $('.social-textfield').html('<input type="url" class="text-input-grey full" name="socialinput" placeholder="'+placeholder+'" value="'+value+'" required> <a href = "#" class="bs-btn btn-info save-social" data-socialtype="'+socialtype+'">Save</a>');
+        $('a.save-social').click(function(e){
+            e.preventDefault();
+            socialaction($(this));
+        });
+    }
+    });
+
+function socialaction(obj){
+    var str = $.trim(generateString(20));
+    var socialLink = $.trim(obj.prev('input').val());
+    var socialtype   =   obj.data('socialtype');
+
+    if(socialLink == "" || socialLink==null || socialLink==undefined)
+    {
+        $('.social-textfield').append('<span class="alert alert-error" id="'+str+'">Please provide valid link</span>');
+        $("#"+str).fadeOut(3400, "linear", function(){
+           $(this).remove();
+        });
+    } else {
+        $('.social-textfield').children('input').fadeOut();
+
+        $('.social-textfield').children('a').fadeOut();
+
+        $.ajax(
+            {
+                url: "/socialmediaAjax",
+                type: "put",
+                data: { socialLink: socialLink, socialtype: socialtype},
+                beforeSend: function()
+                {
+                    console.log(socialLink+' '+socialtype);
+                }
+            })
+            .done(function(data)
+            {
+                $('[name="socialinput"]').val('static value');
+                $('.social-textfield').append('<span class="alert alert-success" id="'+str+'">'+socialtype+' link changed to '+socialLink+'</span>');
+                $("#"+str).fadeOut(4500, "linear", function(){
+                    $(this).remove();
+                });
+            });
+    }
+}

@@ -75,7 +75,8 @@ Route::get('admin_payment_gateway', function(){
 
 
 Route::get('admin_settings_socialmedia', function(){
-	return View::make('admin.admin_settings_socialmedia');
+    $social =   SocialMedia::first();
+	return View::make('admin.admin_settings_socialmedia', compact('social'));
 });
 
 Route::get('admin_manage_blog', function(){
@@ -124,6 +125,7 @@ Route::post('editSubscription', 'SubscriptionController@edit');
 
 Route::get('admin_manage_categories', 'CategoriesController@index');
 Route::post('categoryAjax', 'CategoriesController@add');
+Route::put('socialmediaAjax', 'SocialMediaController@update');
 
 Route::get('clear',function(){
 	Auth::user()->logout();

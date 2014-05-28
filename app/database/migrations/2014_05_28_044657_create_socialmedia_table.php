@@ -14,7 +14,12 @@ class CreateSocialmediaTable extends Migration {
 	{
 		Schema::create('socialmedia', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('link');
+			$table->string('facebook');
+			$table->string('google');
+		    $table->string('twitter');
+            $table->string('linkedin');
+            $table->string('pinterest');
+			$table->string('dribbble');
 			$table->timestamps();
 		});
 	}
