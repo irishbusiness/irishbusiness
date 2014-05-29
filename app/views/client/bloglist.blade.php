@@ -27,8 +27,12 @@
 									<a href="#" class="blog-post-comments">0</a>
 									<a href="blog-post.html" class="blog-post-title">{{ $blog->title }}</a>
 								</div>
-								<div class="blog-post-excerpt">{{ (strlen($blog->body) > 100) ? substr($blog->body,0,100) : stripslashes($blog->body) }}</div>
-								<div class="blog-post-links">
+								<div class="blog-post-excerpt">
+                                    <div class="blog-post-image">
+                                        {{ (strlen($blog->body) > 100) ? substr($blog->body,0,100) : stripslashes($blog->body) }}
+                                    </div>
+                                </div>
+                                <div class="blog-post-links">
 									<a href="{{ URL::to('blog/'.$blog->id) }}" class="read-more-link">Read More</a>
 									<div class="blog-post-author text-colorful">{{ $blog->author }}</div>
 									<div class="blog-post-category text-colorful">Uncategorized</div>

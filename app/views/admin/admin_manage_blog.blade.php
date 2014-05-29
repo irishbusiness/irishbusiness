@@ -31,7 +31,7 @@
                         <p>Sample Body Content</p>
                     </textarea>
                     <br>
-                    <p><input type="submit" value="Send" name="send" class="button-2-colorful"/></p>
+                    <p><input type="submit" value="Save" name="send" class="button-2-colorful"/></p>
                 {{ Form::close() }}
             </div>
 		</div>
