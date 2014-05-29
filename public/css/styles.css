@@ -4109,7 +4109,9 @@ ul.entries-list {
 }
 
 .header-logo-img{
-	max-width: 154px !important;
+	max-width: 186% !important;
+	width: 212px!important;
+	height: 46px!important;
 }
 
 .footer-logo-img {
