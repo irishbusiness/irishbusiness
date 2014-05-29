@@ -752,13 +752,6 @@ function showPreview(e) {
     reader.readAsDataURL(inputFile);
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	    return text;
-	}
-=======
->>>>>>> 1c36a4d59323db452bfb11fdc2a0f2747a55d4b6
-
 //admin_settings_socialmedia functions
 
 $('.social-link').click(function(){
