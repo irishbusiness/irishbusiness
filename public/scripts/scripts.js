@@ -752,9 +752,6 @@ function showPreview(e) {
     reader.readAsDataURL(inputFile);
 }
 
-<<<<<<< HEAD
-	    return text;
-	}
 
 //admin_settings_socialmedia functions
 
