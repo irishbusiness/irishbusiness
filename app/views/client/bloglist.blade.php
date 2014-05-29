@@ -34,8 +34,6 @@
                                 </div>
                                 <div class="blog-post-links">
 									<a href="{{ URL::to('blog/'.$blog->id) }}" class="read-more-link">Read More</a>
-									<div class="blog-post-author text-colorful">{{ $blog->author }}</div>
-									<div class="blog-post-category text-colorful">Uncategorized</div>
 								</div>
 							</div>
 						</div>
