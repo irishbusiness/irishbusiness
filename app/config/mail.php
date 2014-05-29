@@ -16,7 +16,6 @@ return array(
 	*/
 
 	'driver' => 'smtp',
-
 	/*
 	|--------------------------------------------------------------------------
 	| SMTP Host Address
@@ -54,7 +53,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => null, 'name' => null),
+	'from' => array('address' => 'irishbusiness@sandbox8f1a2697ef9b4a0481908c50a4558ed8.mailgun.org', 'name' => 'jikoyko'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +79,7 @@ return array(
 	|
 	*/
 
-	'username' => null,
+	'username' => 'postmaster@sandbox8f1a2697ef9b4a0481908c50a4558ed8.mailgun.org',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +92,7 @@ return array(
 	|
 	*/
 
-	'password' => null,
+	'password' => '0-h42rm4xz02',
 
 	/*
 	|--------------------------------------------------------------------------

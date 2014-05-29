@@ -24,7 +24,8 @@ class UserRepository {
 	{
 		$credentials = [
 			"email" => $input["email"],
-			"password" => $input["password"]
+			"password" => $input["password"],
+			"confirmed" => 1
 		];
 		
 		return Auth::user()->attempt($credentials);
