@@ -3,7 +3,7 @@
 @section("actual-body-content")
 
         <!-- general settings tab -->
-            @include('client.companytabs.general_settings')
+            @include('client.companytabs.business_settings')
 
         <!-- reviews tab -->
             @include('client.companytabs.reviews') <!-- this is temporarily the coupon tab -->

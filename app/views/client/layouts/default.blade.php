@@ -7,7 +7,39 @@
 		<title>Glocal</title>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-		@include('client.partials._styles')
+        {{ HTML::script('scripts/jquery-1.10.2.min.js') }}
+        <style type="text/css">
+            body .redactor_toolbar li a.redactor_btn_button1 {
+                background: url(img/button1.png) no-repeat;
+            }
+        </style>
+
+        <script type="text/javascript">
+
+            function testButton(obj, event, key)
+            {
+                obj.execCommand('underline');
+            }
+
+            $(document).ready(
+                function()
+                {
+                    var buttons = ['formatting', '|', 'bold', 'italic', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', '|', 'image', 'video', 'file', 'link', '|', 'horizontalrule'];
+
+                    $('#redactor').redactor({
+                        focus: true,
+                        buttons: buttons,
+                        buttonsCustom: {
+                            button1: {
+                                title: 'Button',
+                                callback: testButton
+                            }
+                        }
+                    });
+                }
+            );
+        </script>
+        @include('client.partials._styles')
 	</head>
 
 	<body>
