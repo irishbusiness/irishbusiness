@@ -1,3 +1,5 @@
+<?php $imgfooterlogo = new Illuminate\Support\Collection; 
+	$imgfooterlogo->footerlogo = '';?>
 		<footer class="section boxed">
 
 			<div class="footer-wrapper">

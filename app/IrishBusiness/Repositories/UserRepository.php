@@ -4,8 +4,21 @@ use User;
 use Hash;
 use Auth;
 use Redirect;
+use Activation;
 class UserRepository {
 
+	public function activate($token)
+	{
+
+		$activation =Activation::with('user')->where('token','=',$token)->first(); 	
+		$user = $activation->user;
+		//confirm user
+		$user->confirmed =1;
+		$user->save();
+
+		//delete activation code
+		$activation->delete();
+	}
 
 	public function create($input)
 	{
@@ -17,7 +30,17 @@ class UserRepository {
 		$user->email = $input['email'];
 		$user->save();
 
-		return $user->id;
+		$this->addConfirmToken($user->email);
+
+		return $user;
+	}
+
+	protected function addConfirmToken($email)
+	{
+		$token = new Activation;
+		$token->token = md5(uniqid($email, true));
+		$user = User::where('email', '=' ,$email)->first();
+		$user->activation()->save($token);
 	}
 
 	public function authenticate($input)

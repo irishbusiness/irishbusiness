@@ -13,12 +13,21 @@ class UsersController extends \BaseController {
 	{
 		$this->registerForm = $registerForm;
 		$this->user = $user;
-
+		Event::listen('user.signup','IrishBusiness\Mailers\ClientMailer@confirm');
 	}
 
-	public function index()
+	public function activate($token)
 	{
-		//
+		try
+		{
+			$this->user->activate($token);	
+		}
+		catch(Exception $e)
+		{
+			return Redirect::to('/');
+		}
+
+		return 'Thanks';
 	}
 
 	/**
@@ -44,8 +53,10 @@ class UsersController extends \BaseController {
 		{
 			$this->registerForm->validate(Input::all());
 
-			$id = $this->user->create(Input::all());
+			$user = $this->user->create(Input::all());
 			
+			Event::fire('user.signup',[$user]);
+
 			return Redirect::to('settings')->withFlashMessage('Thank you for registering ' . ucwords(Input::get('firstname')) .'! You have been logged in.')
 			->with('title','IrishBusiness.ie | Settings');
 		}
