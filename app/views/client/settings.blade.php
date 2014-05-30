@@ -1,6 +1,7 @@
 @extends("client.layouts.default")
 
 @section("actual-body-content")
+
         <!-- general settings tab -->
             @include('client.companytabs.general_settings')
 

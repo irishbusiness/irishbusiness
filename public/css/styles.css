@@ -3914,16 +3914,18 @@ ul.entries-list {
 .align-right {
 	text-align: right;
 }
+
 .category {
-	background-color: rgb(193, 193, 203);
-	border-radius: 15px;
-	padding: 0px 10px 0px 10px;
-	margin-right: 10px;
+	padding-top: 0px !important;
+	padding-bottom: 0px  !important;
+	margin-right: 4px;
 }
 .remove {
 	font-size: 8px;
 	margin-top: 0px;
 	position: absolute;
+	padding-left: 4px;
+	font-weight: bolder;
 }
 .remove:hover {
 	color: red;
@@ -4140,4 +4142,7 @@ ul.entries-list {
 	padding-left: 22px;
 	padding-bottom: 12px;
 	padding-top: 10px;
+}
+.header-right.container-20 {
+	margin-top: 13px;
 }

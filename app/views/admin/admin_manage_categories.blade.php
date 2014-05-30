@@ -24,8 +24,8 @@
 					<tr data-id="{{ $category->id }}">
 						<td><span class="category-name">{{ $category->name }}</span></td>
 						<td>
-							<a href="#" class="bs-btn btn-info btn-edit-category" onclick="editCategory($(this))" data-id="{{$category->id}}">Edit</a>
-							<a href="#" class="bs-btn btn-danger btn-delete-category" data-id="{{$category->id}}">Delete</a>
+							<a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="editCategory($(this))" data-id="{{$category->id}}">Edit</a>
+							<a href="javascript:void(0)" class="bs-btn btn-danger btn-delete-category" data-id="{{$category->id}}">Delete</a>
 						</td>
 					</tr>
 					@endforeach
