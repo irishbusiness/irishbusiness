@@ -107,7 +107,7 @@ class BusinessesController extends \BaseController {
 		$business->address = $address;
 		$business->keywords = Input::get('keywords');
 		$business->locations = Input::get('locations');
-		$business->user_id = 2;
+		$business->user_id = 1;
 		$business->save();
 
 		$id = $business->id;
