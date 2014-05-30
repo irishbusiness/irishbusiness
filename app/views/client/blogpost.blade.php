@@ -15,7 +15,7 @@
 						<h1>{{ $blog->title }}</h1>
 					</div>
 					<div class="blog-post-image">
-						<img src="{{ URL::asset($blog->blogheaderimage) }}" alt="" />
+						<img src="{{ URL::asset('/images/content/'.$blog->blogheaderimage) }}" alt="" />
 					</div>
 					<div class="blog-post-subtitle">
 						{{ $blog->subtitle }}

@@ -4286,3 +4286,74 @@ div.company-page-map div.company-page-map-container {
 .padding-left-19 {
 	padding-left: 19px;
 }
+.blog .blog-post-preview .blog-post-preview-right .blog-post-image img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.blog .blog-post-preview .blog-post-preview-right {
+	margin-left: 80px;
+}
+
+.blog .blog-post-preview .blog-post-preview-right {
+	border-left: 5px solid #98B709;
+}
+
+.blog .blog-post-preview .blog-post-preview-left {
+	float: left;
+}
+
+.blog .blog-post-preview .blog-post-preview-left .blog-post-date .day {
+	width: 80px;
+	line-height: 35px;
+	font-family: "Patua One";
+	font-size: 2.57143em;
+	color: #ffffff;
+	text-align: center;
+	padding-top: 12px;
+	border-top-left-radius: 3px;
+}
+
+.blog .blog-post-preview .blog-post-preview-left .blog-post-date .month {
+	width: 80px;
+	line-height: 18px;
+	font-family: "Patua One";
+	color: #ffffff;
+	text-align: center;
+}
+
+.blog .blog-post-preview .blog-post-preview-left .blog-post-date .year {
+	width: 80px;
+	line-height: 22px;
+	color: #ffffff;
+	text-align: center;
+	padding-bottom: 12px;
+	border-bottom-left-radius: 3px;
+}
+
+.blog .blog-post-preview .blog-post-preview-left .blog-post-date {
+	background: url(../images/post-date-background.png) no-repeat right top;
+	padding: 3px 0;
+	margin-top: 7px;
+}
+
+.blog .blog-post-preview {
+	margin-top: 40px;
+}
+
+.blog .blog-post-preview .blog-post-preview-right .blog-post-description .blog-post-title {
+	display: block;
+	font-family: "Patua One";
+	font-size: 1.2857em;
+	padding: 14px 20px;
+	margin-right: 75px;
+}
+
+.blog .blog-post-preview .blog-post-preview-right .blog-post-description .blog-post-links .read-more-link {
+	float: right;
+	line-height: 50px;
+	background: url(../images/link-arrow.png) no-repeat left center;
+	padding-left: 10px;
+	margin-right: 20px;
+}
