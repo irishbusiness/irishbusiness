@@ -53,7 +53,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'irishbusiness@sandbox8f1a2697ef9b4a0481908c50a4558ed8.mailgun.org', 'name' => 'jikoyko'),
+	'from' => array('address' => 'irishbusiness@sandbox8f1a2697ef9b4a0481908c50a4558ed8.mailgun.org', 'name' => 'Irishbusiness.ie'),
 
 	/*
 	|--------------------------------------------------------------------------

@@ -5,6 +5,7 @@
     	}
     ?>
 		<header class="section header-2 boxed">
+
 			<div class="header-top-wrapper">
 				<div class="zone-header-top zone clearfix">
 					<div class="header-top-left container-8">
@@ -18,7 +19,7 @@
 									{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
 									<span id="errordiv" >
 									</span>
-									<a href="#" class="password-restore">Forgot Password?</a>
+									<a href="/password/remind" class="password-restore">Forgot Password?</a>
 									<input class="button-2-colorful" type="submit" value="Login">
 									{{Form::close()}}
 
@@ -31,7 +32,7 @@
 										{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
 										<span id="errordiv" >
 										</span>
-										<a href="#" class="password-restore">Forgot Password?</a>
+										<a href="/password/remind" class="password-restore">Forgot Password?</a>
 										<input class="button-2-colorful" type="submit" value="Login">
 										{{Form::close()}}
 									@endif
@@ -42,7 +43,7 @@
 									{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
 									<span id="errordiv" >
 									</span>
-									<a href="#" class="password-restore">Forgot Password?</a>
+									<a href="/password/remind" class="password-restore">Forgot Password?</a>
 									<input class="button-2-colorful" type="submit" value="Login">
 									{{Form::close()}}	
 								@endif			

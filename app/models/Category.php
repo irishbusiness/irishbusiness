@@ -3,7 +3,7 @@
 class Category extends Eloquent {
 
 	protected $table = 'categories';
-	protected $softDelete = true;
+	/*protected $softDelete = true;*/
 
 	protected $rules = [
 		"name" => "required|unique:categories"

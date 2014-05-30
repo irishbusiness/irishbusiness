@@ -4,6 +4,7 @@
    	 	$imgfooterlogo->footerlogo = 'default.png';
 	}
 ?>
+
 		<footer class="section boxed">
 
 			<div class="footer-wrapper">
