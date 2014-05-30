@@ -19,7 +19,7 @@
 												</div>
 												<div class="blog-post-description clearfix">
 													<div class="blog-post-title-comments">
-														<a href="blog-post.html" class="blog-post-title">{{ $blog->title }}</a>
+														<a href="blog/{{ $blog->id }}" class="blog-post-title">{{ $blog->title }}</a>
 													</div>
 													<div class="blog-post-excerpt">{{ Str::limit($blog->body, 255) }}</div>
 													<div class="blog-post-links">
