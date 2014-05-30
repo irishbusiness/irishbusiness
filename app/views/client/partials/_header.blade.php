@@ -1,10 +1,11 @@
-<?php $imgheaderlogo = new Illuminate\Support\Collection;
-	  $imgheaderlogo->headerlogo ='';
-	  
-	  
-	  
- ?>
-			<header class="section header-2 boxed">
+    <?php
+    	if(is_null($imgheaderlogo)){
+    		$imgheaderlogo = new \Illuminate\Support\Collection;
+       	 	$imgheaderlogo->headerlogo = 'default.png';
+    	}
+    ?>
+		<header class="section header-2 boxed">
+
 			<div class="header-top-wrapper">
 				<div class="zone-header-top zone clearfix">
 					<div class="header-top-left container-8">

@@ -114,7 +114,11 @@ class SettingsController extends \BaseController {
                 $imageError2 = "It seems the footer logo isn't valid.";
             }
         }else {
-            $mainsettings->footerlogo = $oldsettings->footerlogo;
+            if($oldsettings->footerlogo){
+                $mainsettings->footerlogo = "";
+            }else{
+                $mainsettings->footerlogo = $oldsettings->footerlogo;
+            }
         }
 
         $successmsg = "Settings has been updated.";

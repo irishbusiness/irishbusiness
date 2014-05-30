@@ -10,7 +10,6 @@
 
 
     {{ HTML::style("css/flexslider.css") }}
-    {{ HTML::style("css/flexslider.css") }}
     {{ HTML::style("css/jquery-ui-1.10.3.custom.min.css") }}
     {{ HTML::style("css/jquery-selectbox.css") }}
     {{ HTML::style("css/styles.css") }}
@@ -18,9 +17,6 @@
     {{ HTML::style("css/header-7.css") }}
     {{ HTML::style("css/responsive-grid.css") }}
     {{ HTML::style("scripts/redactor.css") }}
-    {{ HTML::style("css/xeditable.css") }}
-
-
     <!--[if lt IE 9]>
     <link rel="stylesheet" href="css/styles-ie8-and-down.css" />
     <![endif]-->
@@ -31,7 +27,6 @@
             background: url(img/button1.png) no-repeat;
         }
     </style>
-
     <script type="text/javascript">
 
         function testButton(obj, event, key)
@@ -57,7 +52,6 @@
             }
         );
     </script>
-
 
 </head>
 

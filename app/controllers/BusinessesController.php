@@ -89,7 +89,6 @@ class BusinessesController extends \BaseController {
 		
 	}
 
-
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -99,15 +98,47 @@ class BusinessesController extends \BaseController {
 	{
 		//
 		$address = Input::get('address1') . ',' . Input::get('address2') . ',' . Input::get('address3')  . ',' .Input::get('address4');
-		
-		
-
 		$business = new Business;
 		$business->name = Input::get('businessname');
 		$business->address = $address;
 		$business->keywords = Input::get('keywords');
 		$business->locations = Input::get('locations');
-		$business->user_id = 2;
+		$business->phone    =   Input::get('phone');
+		$business->website    =   Input::get('website');
+		$business->email    =   Input::get('email');
+        $business->business_description    =   Input::get('business_description');
+		$business->profile_description   =   Input::get('profile_description');
+		$business->mon_fri   =   Input::get('mon_fri');
+		$business->sat   =   Input::get('sat');
+		$business->facebook   =   Input::get('facebook');
+		$business->twitter  =   Input::get('twitter');
+		$business->google  =   Input::get('google');
+        $business->user_id = Auth::user()->get()->id;
+
+        // logo
+        if( Input::hasFile('logo'))
+        {
+            $dir = $dir = public_path().'/images/companylogos/';
+            $image  =   Input::file('logo');
+            $imagename = md5(date('YmdHis')).'.jpg';
+            $filename = $dir.$imagename;
+
+            if ($image->getMimeType() == 'image/png'
+                || $image->getMimeType() == 'image/jpg'
+                || $image->getMimeType() == 'image/gif'
+                || $image->getMimeType() == 'image/jpeg'
+                || $image->getMimeType() == 'image/pjpeg')
+            {
+                $image->move($dir, $filename);
+                $business->logo  =   'images/companylogos/'.$imagename;
+            } else {
+                $business->logo  =   'images/companylogos/'.$imagename;
+            }
+
+        } else {
+            $business->logo  =   'images/companylogos/sample_company.jpg';
+        }
+
 		$business->save();
 
 		$id = $business->id;
@@ -117,13 +148,21 @@ class BusinessesController extends \BaseController {
 		$categories = Session::get('categories');
 		Session::forget('categories');
 
-		foreach($categories as $category)
+		if($categories != ''){
+        foreach($categories as $category)
 		{
 			$business->categories()->attach($category);
 		}
-		
+        }
 		return Redirect::to('/listings');
 	
+	}
+
+	public function companytab(){
+		$id = 2;
+		$businessinfo = Business::findOrFail($id)->first();
+		// $businessinfo = Business::all();
+		return View::make('client.company-tab')->with('businessinfo', $businessinfo);
 	}
 
 	/**

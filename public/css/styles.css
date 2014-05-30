@@ -3914,16 +3914,18 @@ ul.entries-list {
 .align-right {
 	text-align: right;
 }
+
 .category {
-	background-color: rgb(193, 193, 203);
-	border-radius: 15px;
-	padding: 0px 10px 0px 10px;
-	margin-right: 10px;
+	padding-top: 0px !important;
+	padding-bottom: 0px  !important;
+	margin-right: 4px;
 }
 .remove {
 	font-size: 8px;
 	margin-top: 0px;
 	position: absolute;
+	padding-left: 4px;
+	font-weight: bolder;
 }
 .remove:hover {
 	color: red;
@@ -4096,6 +4098,14 @@ ul.entries-list {
 	border-color: #ebccd1;
 	color: #a94442;
 }
+
+.alert-success {
+    background-color: #d9edf7;
+    border-color: #d9edf7;
+    color: white;
+    font-weight: bold;
+}
+
 .render-logo-preview {
 	max-width: 500px;
 	margin-top: 20px;
@@ -4109,7 +4119,9 @@ ul.entries-list {
 }
 
 .header-logo-img{
-	max-width: 154px !important;
+	max-width: 186% !important;
+	width: 212px!important;
+	height: 46px!important;
 }
 
 .footer-logo-img {
@@ -4118,6 +4130,10 @@ ul.entries-list {
 
 .half {
 	max-width: 300px;
+}
+
+.one-fourth {
+	max-width: 176px;
 }
 
 .center {
@@ -4131,6 +4147,146 @@ ul.entries-list {
 	padding-bottom: 12px;
 	padding-top: 10px;
 }
+
 .status{
 	margin-left:30px;
+}
+.header-right.container-20 {
+	margin-top: 13px;
+}
+
+.share-this li a.facebook {
+	background: #FFFFFF url(../images/facebook-icon-grey.png) no-repeat center center;
+}
+
+.share-this li a.twitter {
+	background: #FFFFFF url(../images/twitter-icon-grey.png) no-repeat center center;
+}
+
+.share-this li a.google {
+	background: #FFFFFF url(../images/google-icon-grey.png) no-repeat center center;
+}
+
+.share-this li a {
+	border: 1px solid #E7E7E7;
+	margin-left: -1px;
+	display: block;
+	height: 49px;
+	width: 49px;
+}
+
+.share-this ul {
+	margin: 15px 20px 20px 21px;
+	padding: 0;
+	clear: both;
+	min-height: 50px;
+	display: inline-flex;
+	list-style-type: none;
+}
+
+div.sidebar-container div.company-page-block {
+	margin-top: 20px;
+}
+
+div.company-page-block table td.detail-label {
+	width: 45%;
+	font-family: "Patua One", Tahoma;
+}
+
+.rating-send .comment-message-main {
+	margin: 20px 0;
+	min-height: 100px;
+	overflow: auto;
+	padding: 0 9%;
+	resize: none;
+	width: 82%;
+}
+
+.rating-send {
+	padding: 20px;
+}
+
+.ratings {
+	float: left;
+	width: 30%;
+	padding-left: 20px;
+}
+
+.text-input-grey {
+	border: 1px solid;
+}
+
+.footer-widget ul li a, .text-green {
+	color: #809c02;
+}
+
+.comment-respond h3 {
+	border-bottom: 1px solid #E7E7E7;
+	padding: 15px 20px;
+}
+
+div.company-page-map div.company-page-map-container {
+	margin: 20px 20px 0 20px;
+	padding: 3px;
+	border: 1px solid #e7e7e7;
+	background: white;
+}
+
+.range-of-services ul li {
+	list-style-image: none;
+	list-style: none;
+	float: left;
+	line-height: 20px;
+	display: block;
+	padding: 5px 10px;
+	background: #FFFFFF;
+	background: -moz-linear-gradient(top, #FFFFFF 0%, #e6e6e6 100%);
+	background: -webkit-linear-gradient(top, #FFFFFF 0%,#e6e6e6 100%);
+	background: -o-linear-gradient(top, #FFFFFF 0%,#e6e6e6 100%);
+	background: linear-gradient(top, #FFFFFF 0%,#e6e6e6 100%);
+	margin: 0 10px 10px 0;
+	border-radius: 5px;
+	box-shadow: 0 1px 3px #8c8c8c;
+}
+
+.range-of-services ul {
+	margin: 0;
+	padding: 0;
+	clear: both;
+}
+
+.your-rating {
+	font-size: 16px !important;
+}
+
+.divkeywords, .divlocations {
+	margin-bottom: 20px;
+}
+
+.clear {
+	clear: both;
+	height: 0;
+}
+
+.company-page-map {
+	position: relative;
+	overflow: hidden;
+	-webkit-transform: translateZ(0px);
+	background-color: rgb(229, 227, 223);
+}
+
+#tab-nav {
+	margin-left: 8px;
+}
+
+#company-inner-container {
+	padding: 40px;
+}
+
+.margin-18 {
+	margin-top: -18px;
+}
+
+.padding-left-19 {
+	padding-left: 19px;
 }

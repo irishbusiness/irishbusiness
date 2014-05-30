@@ -25,11 +25,11 @@ Equal Heights function.
 			currentBlock = currentBlock + 1;
 		}
 		// Equalizing heights of columns.
-		if (jQuery('body').width() > browserWidth - scrollbar) {
-			jQuery(this).children().css('min-height', equalHeight + additionalHeight);
-		} else {
-			jQuery(this).children().css('min-height', 'auto');
-		}
+		// if (jQuery('body').width() > browserWidth - scrollbar) {
+		// 	jQuery(this).children().css('min-height', equalHeight + additionalHeight);
+		// } else {
+		// 	jQuery(this).children().css('min-height', 'auto');
+		// }
 	};
 })(jQuery);
 
@@ -505,7 +505,7 @@ $(document).ready(function() {
 			type: "post",
 			data: { sid: id, op: operation},
 			beforeSend: function(){
-				// console.log(category);
+				console.log(category);
 			}
 			}).done(function(data){
 				if( operation == "delete" ){
@@ -544,7 +544,7 @@ $(document).ready(function() {
 
 					})
 				}
-				console.log(data);
+				// console.log(data);
 			}); 
 	}
 
@@ -562,6 +562,7 @@ $(document).ready(function() {
 
 		$('a.save-category').click(function(e){
 			e.preventDefault();
+			$(this).attr("class", "bs-btn btn-info");
 			var str = $.trim(generateString(20));
 			$(this).parent("td").prev("td").parent("tr").attr("data-close", str);
 			var obj = $(this).parent("td").prev("td").children("input[name='name']");
@@ -583,16 +584,17 @@ $(document).ready(function() {
 					data: { name: name, op: 'add' },
 					beforeSend: function()
 					{
-						console.log(name);
+						// console.log(name);
 					}
 
 
 				})
 				.done(function(data)
 				{
-					$("#table-categories tbody").prepend('<tr data-id="'+data.id+'"><td><span class="category-name">'+data.name+'</span></td><td><a href="#" class="bs-btn btn-info btn-edit-category" onclick="editCategory($(this))" data-id="'+data.id+'">Edit</a> <a href="#" onclick="deleteCategory($(this))" data-id="'+data.id+'" class="bs-btn btn-danger btn-delete-category" data-id="'+data.id+'">Delete</a></td></tr>');
+					$("#table-categories tbody").prepend('<tr data-id="'+data.id+'"><td><span class="category-name">'+data.name+'</span></td><td><a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="editCategory($(this))" data-id="'+data.id+'">Edit</a> <a href="javascript:void(0)" onclick="deleteCategory($(this))" data-id="'+data.id+'" class="bs-btn btn-danger btn-delete-category" data-id="'+data.id+'">Delete</a></td></tr>');
 				});
 			}
+			$(this).attr("class", "bs-btn btn-info save-category");
 		});
 
 	});
@@ -606,7 +608,7 @@ $(document).ready(function() {
 			type: "post",
 			data: { id: id, op: 'delete' },
 			beforeSend: function(){
-				console.log(id);
+				// console.log(id);
 			}
 		}).done(function(data){
 			if(data == "deleted"){
@@ -632,10 +634,9 @@ function editCategory(obj){
 	obj.parent("td").prev("td").fadeOut();
 	obj.parent("td").fadeOut();
 
+	var x = 0;
 	$("tr[data-id='"+id+"']").append("<td><input type='text' class='cat-input-text' value='"+name+"' placeholder='Category name' name='name'><span class='category-name'></span></td><td><a href='#' class='bs-btn btn-info save-category'>Save</a> <a href='#' class='bs-btn btn-danger cancel-category'>Cancel</a></td>");
-	obj.parent("td").prev("td").fadeOut();
-	obj.parent("td").fadeOut();
-
+	
 	$('a.save-category').click(function(e){
 		e.preventDefault();
 		var str = $.trim(generateString(20));
@@ -659,14 +660,14 @@ function editCategory(obj){
 				data: { name: name, op: 'edit', id: id },
 				beforeSend: function()
 				{
-					console.log(name);
+					// console.log(name);
 				}
 
 
 			})
 			.done(function(data)
 			{
-				$("#table-categories tbody").prepend('<tr data-id="'+data.id+'"><td><span class="category-name">'+data.name+'</span></td><td><a href="#" class="bs-btn btn-info btn-edit-category" onclick="editCategory($(this))" data-id="'+data.id+'">Edit</a> <a href="#" onclick="deleteCategory($(this))" data-id="'+data.id+'" class="bs-btn btn-danger btn-delete-category" data-id="'+data.id+'">Delete</a></td></tr>');
+				$("#table-categories tbody").prepend('<tr data-id="'+data.id+'"><td><span class="category-name">'+data.name+'</span></td><td><a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="editCategory($(this))" data-id="'+data.id+'">Edit</a> <a href="javascript:void(0)" onclick="deleteCategory($(this))" data-id="'+data.id+'" class="bs-btn btn-danger btn-delete-category" data-id="'+data.id+'">Delete</a></td></tr>');
 			});
 		}
 	});
@@ -696,7 +697,7 @@ function deleteCategory(obj){
 		type: "post",
 		data: { id: id, op: 'delete' },
 		beforeSend: function(){
-			console.log(id);
+			// console.log(id);
 		}
 	}).done(function(data){
 		if(data == "deleted"){
@@ -721,8 +722,8 @@ function generateString(len)
 
 function readURL(obj) {
 	var name = obj.attr("name");
-	console.log(name);
-	console.log(obj);
+	// console.log(name);
+	// console.log(obj);
 	if (obj.files && obj.files[0]) {
 	    var reader = new FileReader();
 	    
@@ -737,7 +738,7 @@ function readURL(obj) {
 function showPreview(e) {
     var $input = $(this);
     var name = $(this).attr("name");
-    console.log(name);
+    // console.log(name);
     var inputFiles = this.files;
     if(inputFiles == undefined || inputFiles.length == 0) return;
     var inputFile = inputFiles[0];
@@ -752,6 +753,96 @@ function showPreview(e) {
     reader.readAsDataURL(inputFile);
 }
 
+//admin_settings_socialmedia functions
+
+$('.social-link').click(function(){
+    var placeholder = $(this).attr('data-placeholder');
+    var value   =   $(this).attr('data-value');
+    var socialtype = $(this).data('socialtype');
+    // console.log(socialtype);
+
+    //place the data-socialtype to the appended input
+    if( value == "" ){
+        $('.social-textfield').html('<input type="url" class="text-input-grey full" name="socialinput" placeholder="'+placeholder+'" required> <button type="submit" class="bs-btn btn-info save-social">Save</button>');
+    } else {
+        $('.social-textfield').html('<input type="url" class="text-input-grey full" name="socialinput" placeholder="'+placeholder+'" value="'+value+'" required> <a href = "#" class="bs-btn btn-info save-social" data-socialtype="'+socialtype+'">Save</a>');
+        $('a.save-social').click(function(e){
+            e.preventDefault();
+            socialaction($(this));
+        });
+    }
+    });
+
+function socialaction(obj){
+    var str = $.trim(generateString(20));
+    var socialLink = $.trim(obj.prev('input').val());
+    var socialtype   =   obj.data('socialtype');
+
+    if(socialLink == "" || socialLink==null || socialLink==undefined)
+    {
+        $('.social-textfield').append('<span class="alert alert-error" id="'+str+'">Please provide valid link</span>');
+        $("#"+str).fadeOut(3400, "linear", function(){
+           $(this).remove();
+        });
+    } else {
+        $('.social-textfield').children('input').fadeOut();
+
+        $('.social-textfield').children('a').fadeOut();
+
+        $.ajax(
+            {
+                url: "/socialmediaAjax",
+                type: "put",
+                data: { socialLink: socialLink, socialtype: socialtype},
+                beforeSend: function()
+                {
+                    // console.log(socialLink+' '+socialtype);
+                }
+            })
+            .done(function(data)
+            {
+                $('[name="socialinput"]').val('static value');
+                $('.social-textfield').append('<span class="alert alert-success" id="'+str+'">'+socialtype+' link changed to '+socialLink+'</span>');
+                $("#"+str).fadeOut(4500, "linear", function(){
+                    $(this).remove();
+                });
+            });
+    }
+}
+
 $(function(){
     $("#footerlogo, #headerlogo").change(showPreview);
-})
+});
+
+jQuery(function() {
+	var $homeurl = jQuery('#get_homeurl').data('homeurl');
+	var $divlist = jQuery('#events_list');
+	var contentDiv  = jQuery('#ajax_load_event');
+	var eventlink = $divlist.find('ul li a');
+	var eventlinkid = $divlist.find('ul li');
+	var eventdaylink = $divlist.find('a');
+	jQuery(document).ready(function(){
+	        eventlink.click(function(data){
+	        var idevent = $(this).parent('div').parent('div').parent('li').attr('class');
+	        var loadingwheel = $('<img style="padding: 40px 20px;" src="'+$homeurl+'/images/loader.gif" width="50px" height="50px" />');
+	        var ajaxdiv = jQuery('.ajax-content');
+	        var urlpost = '?get=event';
+	        ajaxContent = $('<div class="ajax-content"></div>').append(loadingwheel);
+	        contentDiv.find('>').hide();
+	        contentDiv.append(ajaxContent);
+	        jQuery.post(
+	            urlpost,
+	            {
+	                action : 'get_event',
+	                idevent : idevent
+	            },
+	            function( response ) {
+	                ajaxContent = $('<div class="ajax-content"></div>').append(response);
+	                contentDiv.find('>').hide();
+	                contentDiv.append(ajaxContent);
+	            }
+	        )
+	    return false;
+	    });
+	});
+});

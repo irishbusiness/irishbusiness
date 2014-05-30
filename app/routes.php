@@ -77,7 +77,8 @@ Route::get('admin_payment_gateway', function(){
 
 
 Route::get('admin_settings_socialmedia', function(){
-	return View::make('admin.admin_settings_socialmedia');
+    $social =   SocialMedia::first();
+	return View::make('admin.admin_settings_socialmedia', compact('social'));
 });
 
 Route::get('admin_manage_blog', function(){
@@ -91,8 +92,12 @@ Route::post('settings', 'BusinessesController@store');
 // Route::post('search','BusinessesController@search');
 Route::get('search', 'BusinessesController@search');
 Route::get('listings','BusinessesController@index');
+// Route::get('company-tab', 'BusinessesController@companytab');
+Route::get('company', 'BusinessesController@companytab');
+
 Route::get('register', 'UsersController@create');
 Route::post('register', 'UsersController@store');
+
 Route::post('category', 'CategoriesController@store');
 Route::post('ajaxCategory','CategoriesController@tempAdd');
 Route::post('ajaxCategoryRemove','CategoriesController@categoryRemove');
@@ -126,12 +131,14 @@ Route::post('editSubscription', 'SubscriptionController@edit');
 
 Route::get('admin_manage_categories', 'CategoriesController@index');
 Route::post('categoryAjax', 'CategoriesController@add');
+Route::put('socialmediaAjax', 'SocialMediaController@update');
 
 Route::get('clear',function(){
 	Auth::user()->logout();
 	Auth::salesperson()->logout();
 
 });
+
 
 Route::get('register/activate/{token}','UsersController@activate');
 
@@ -173,3 +180,8 @@ Route::post('test',function(){
 
 	return 'Thank you for your purchasing our services.';
 });
+
+Route::get('resetMigration', function(){
+    return View::make('db_resetScript');
+});
+

@@ -5,7 +5,7 @@
  
  
 // files storage folder
-$dir = 'images/';
+$dir = 'images/blog/';
  
 $_FILES['file']['type'] = strtolower($_FILES['file']['type']);
  

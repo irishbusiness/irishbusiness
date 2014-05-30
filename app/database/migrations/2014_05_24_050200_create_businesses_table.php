@@ -21,6 +21,9 @@ class CreateBusinessesTable extends Migration {
 			$table->string('phone');
 			$table->string('website');
 			$table->string('email')->unique();
+			$table->string('logo');
+			$table->text('business_description');
+			$table->text('profile_description');
 			$table->string('mon_fri');
 			$table->string('sat');
 			$table->string('facebook');

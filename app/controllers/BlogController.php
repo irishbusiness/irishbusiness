@@ -36,8 +36,7 @@ class BlogController extends \BaseController {
     public function store()
     {
         // files storage folder
-        $dir = public_path().'/images/';
-        $image = Input::file('blogheaderimage');
+        $dir = public_path().'/images/blog/';
         $author =   'Static Author';
         $business_id    =  1;
 
@@ -61,13 +60,13 @@ class BlogController extends \BaseController {
                 || $image->getMimeType() == 'image/pjpeg')
             {
                 $image->move($dir, $filename);
-                $blog->blogheaderimage  =   'images/'.$imagename;
+                $blog->blogheaderimage  =   'images/blog/'.$imagename;
             } else {
-                $blog->blogheaderimage  =   'images/'.$imagename;
+                $blog->blogheaderimage  =   'images/blog/'.$imagename;
             }
 
         } else {
-            $blog->blogheaderimage  =   'images/2c651c1d7d13e007931855fa4a6c963b.jpg';
+            $blog->blogheaderimage  =   'images/blog/COMING-SOON.jpg';
         }
 
         $blog->save();
@@ -79,7 +78,7 @@ class BlogController extends \BaseController {
     public function update($id)
     {
         // files storage folder
-        $dir = public_path().'/images/';
+        $dir = public_path().'/images/blog/';
         $image = Input::file('blogheaderimage');
         $author =   'Static Author';
         $business_id    =  1;
@@ -105,9 +104,9 @@ class BlogController extends \BaseController {
             {
                 $image->move($dir, $filename);
                 unlink(public_path().'/'.$blog->blogheaderimage);
-                $blog->blogheaderimage  =   'images/'.$imagename;
+                $blog->blogheaderimage  =   'images/blog/'.$imagename;
             } else {
-                $blog->blogheaderimage  =   'images/'.$imagename;
+                $blog->blogheaderimage  =   'images/blog/'.$imagename;
             }
 
         }
