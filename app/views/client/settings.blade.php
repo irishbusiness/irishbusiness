@@ -3,7 +3,7 @@
 @section("actual-body-content")
 	<div class="blog-post block">
 			<div class="block-title">
-				<h1>Business Settings</h1>
+				<h1>General Settings</h1>
 			</div>
 		</div>
 

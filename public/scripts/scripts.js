@@ -25,11 +25,11 @@ Equal Heights function.
 			currentBlock = currentBlock + 1;
 		}
 		// Equalizing heights of columns.
-		if (jQuery('body').width() > browserWidth - scrollbar) {
-			jQuery(this).children().css('min-height', equalHeight + additionalHeight);
-		} else {
-			jQuery(this).children().css('min-height', 'auto');
-		}
+		// if (jQuery('body').width() > browserWidth - scrollbar) {
+		// 	jQuery(this).children().css('min-height', equalHeight + additionalHeight);
+		// } else {
+		// 	jQuery(this).children().css('min-height', 'auto');
+		// }
 	};
 })(jQuery);
 
@@ -811,4 +811,37 @@ function socialaction(obj){
 }
 $(function(){
     $("#footerlogo, #headerlogo").change(showPreview);
+});
+
+jQuery(function() {
+	var $homeurl = jQuery('#get_homeurl').data('homeurl');
+	var $divlist = jQuery('#events_list');
+	var contentDiv  = jQuery('#ajax_load_event');
+	var eventlink = $divlist.find('ul li a');
+	var eventlinkid = $divlist.find('ul li');
+	var eventdaylink = $divlist.find('a');
+	jQuery(document).ready(function(){
+	        eventlink.click(function(data){
+	        var idevent = $(this).parent('div').parent('div').parent('li').attr('class');
+	        var loadingwheel = $('<img style="padding: 40px 20px;" src="'+$homeurl+'/images/loader.gif" width="50px" height="50px" />');
+	        var ajaxdiv = jQuery('.ajax-content');
+	        var urlpost = '?get=event';
+	        ajaxContent = $('<div class="ajax-content"></div>').append(loadingwheel);
+	        contentDiv.find('>').hide();
+	        contentDiv.append(ajaxContent);
+	        jQuery.post(
+	            urlpost,
+	            {
+	                action : 'get_event',
+	                idevent : idevent
+	            },
+	            function( response ) {
+	                ajaxContent = $('<div class="ajax-content"></div>').append(response);
+	                contentDiv.find('>').hide();
+	                contentDiv.append(ajaxContent);
+	            }
+	        )
+	    return false;
+	    });
+	});
 });

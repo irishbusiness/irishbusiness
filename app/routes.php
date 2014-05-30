@@ -92,8 +92,12 @@ Route::post('settings', 'BusinessesController@store');
 // Route::post('search','BusinessesController@search');
 Route::get('search', 'BusinessesController@search');
 Route::get('listings','BusinessesController@index');
+// Route::get('company-tab', 'BusinessesController@companytab');
+Route::get('company', 'BusinessesController@companytab');
+
 Route::get('register', 'UsersController@create');
 Route::post('register', 'UsersController@store');
+
 Route::post('category', 'CategoriesController@store');
 Route::post('ajaxCategory','CategoriesController@tempAdd');
 Route::post('ajaxCategoryRemove','CategoriesController@categoryRemove');

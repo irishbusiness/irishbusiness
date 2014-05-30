@@ -126,6 +126,13 @@ class BusinessesController extends \BaseController {
 	
 	}
 
+	public function companytab(){
+		$id = 2;
+		$businessinfo = Business::findOrFail($id)->first();
+		// $businessinfo = Business::all();
+		return View::make('client.company-tab')->with('businessinfo', $businessinfo);
+	}
+
 	/**
 	 * Display the specified resource.
 	 *
