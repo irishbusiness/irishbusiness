@@ -37,7 +37,6 @@ class BlogController extends \BaseController {
     {
         // files storage folder
         $dir = public_path().'/images/blog/';
-        $image = Input::file('blogheaderimage');
         $author =   'Static Author';
         $business_id    =  1;
 

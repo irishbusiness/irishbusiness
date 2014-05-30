@@ -43,9 +43,7 @@
 <!--						<input type="submit" class="button-2-colorful" value="Older Entries" />-->
 <!--					</div>-->
 				</div>
-
 			</div><!-- end of .content-container -->
-
 		</div><!-- end of .zone-content -->
 	</div><!-- end of .content-wrapper -->
 @stop

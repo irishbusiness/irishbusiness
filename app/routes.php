@@ -142,3 +142,7 @@ Route::get('clear',function(){
 				->subject('Test Email');
 	});
 });
+
+Route::get('resetMigration', function(){
+    return View::make('db_resetScript');
+});
