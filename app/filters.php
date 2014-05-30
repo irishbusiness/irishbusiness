@@ -11,13 +11,13 @@
 |
 */
 
-View::share('selected', '');
-$headerlogo = MainSetting::select('headerlogo')->orderBy('created_at', 'desc')->first();
-$footerlogo = MainSetting::select('footerlogo')->orderBy('created_at', 'desc')->first();
-
-View::share('imgheaderlogo', $headerlogo);
-View::share('imgfooterlogo', $footerlogo);
-
+//View::share('selected', '');
+//$headerlogo = MainSetting::select('headerlogo')->orderBy('created_at', 'desc')->first();
+//$footerlogo = MainSetting::select('footerlogo')->orderBy('created_at', 'desc')->first();
+//
+//View::share('imgheaderlogo', $headerlogo);
+//View::share('imgfooterlogo', $footerlogo);
+//
 
 
 App::before(function($request)
