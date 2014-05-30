@@ -41,7 +41,6 @@
         </script>
         @include('client.partials._styles')
 	</head>
-
 	<body>
 @include('client.partials._header')
 
@@ -61,7 +60,7 @@
 			<div class="zone-content equalize zone clearfix">
 
 			<!-- actual body content -->
-                @if(Request::is('settings*'))
+                @if(Request::is('/settings*'))
                 <div class="content-container container-24">
                     <div class="company-tabs-wrapper">
                         <div class="zone-company-tabs zone clearfix">
@@ -79,6 +78,8 @@
                         </div>
                         <!-- end of .zone-company-tabs -->
                     </div>
+                @else
+                    <div class="content-container container-16">
                 @endif
 
 				@yield('actual-body-content')

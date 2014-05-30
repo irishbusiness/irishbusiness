@@ -7,7 +7,7 @@
             </div>
         </div>
 
-        {{ Form::open(array('action' => 'BusinessesController@store')) }}
+        {{ Form::open(array('action' => 'BusinessesController@store', 'files' => true)) }}
         <div class="form-group">
             {{ Form::label('businessname', 'Business Name', ["class"=>"text-colorful"]) }}
             {{ Form::text('businessname','', [
@@ -89,9 +89,9 @@
 
         <!-- profile description here must be a wysiwyg -->
         <div class="form-group">
-            {{ Form::label('product_description', "Product Description",
+            {{ Form::label('profile_description', "Profile Description",
             ["class"=>"text-colorful"]) }}
-            {{ Form::textarea('product_description', '<h2>Product Description</h2>', ["id" => "redactor"]) }}
+            {{ Form::textarea('profile_description', '<h2>Profile Description</h2>', ["id" => "redactor"]) }}
             {{$errors->first('businessname','<span class="error">:message</span>')}}
         </div>
 
