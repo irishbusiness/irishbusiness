@@ -808,6 +808,7 @@ function socialaction(obj){
             });
     }
 }
+
 $(function(){
     $("#footerlogo, #headerlogo").change(showPreview);
 });
