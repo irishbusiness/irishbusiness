@@ -4119,7 +4119,7 @@ ul.entries-list {
 }
 
 .header-logo-img{
-	max-width: 186% !important;
+	max-width: none !important;
 	width: 212px!important;
 	height: 46px!important;
 }
