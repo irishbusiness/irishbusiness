@@ -185,3 +185,9 @@ Route::get('resetMigration', function(){
     return View::make('db_resetScript');
 });
 
+Route::get('sales',function(){
+	return View::make('sales.index');
+});
+Route::get('sales/invite',function(){
+	return View::make('sales.invite');
+});

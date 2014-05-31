@@ -102,17 +102,17 @@
     							<div></div>
     						</li>
     						<li {{ (Request::is('/') ? ' class="first active"' : '') }}>
-    							<a href="{{ URL::to('/') }}">HOME</a>
+    							<a href="{{ URL::to('/sales/invite') }}">Invite</a>
     						</li>
-    						<li {{ (Request::is('blog*') ? ' class="first active"' : '') }}>
-    							<a href="{{ URL::to('blog') }}">BLOG</a>
-    						</li>
-    						<li {{ (Request::is('contact-us*') ? ' class="first active"' : '') }}>
-    							<a href="{{ URL::to('contact-us')}}">CONTACT US</a>
-    						</li>
-    						<li {{ (Request::is('register*') ? ' class="first active"' : '') }}>
-    							<a href="{{ URL::to('register') }}">REGISTER</a>
-    						</li>
+    						<!-- <li {{ (Request::is('blog*') ? ' class="first active"' : '') }}>
+                                <a href="{{ URL::to('blog') }}">BLOG</a>
+                            </li>
+                            <li {{ (Request::is('contact-us*') ? ' class="first active"' : '') }}>
+                                <a href="{{ URL::to('contact-us')}}">CONTACT US</a>
+                            </li>
+                            <li {{ (Request::is('register*') ? ' class="first active"' : '') }}>
+                                <a href="{{ URL::to('register') }}">REGISTER</a>
+                            </li> -->
     						<li class="empty">
     							<div></div>
     						</li>

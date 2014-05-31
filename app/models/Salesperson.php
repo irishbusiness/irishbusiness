@@ -64,6 +64,9 @@ class Salesperson extends \Eloquent implements UserInterface, RemindableInterfac
         return $this->email;
     }
 
-
+    public function type()
+    {
+        return $this->belongsTo('Commission');
+    }
 
 }
