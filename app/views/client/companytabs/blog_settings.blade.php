@@ -61,37 +61,13 @@
         </div>
         <!-- end of remark -->
 
-         <table class="table" id="table-categories">
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Action</th>
-                <th><a href="#company-tabs-blog" class="bs-btn btn-success btn-add-blog">Add new</a></th>
-            </tr>
-            </thead>
-            <tbody>
-
-            @if(isset($blogs) && !is_null($blogs))
-            @foreach($blogs as $blog)
-            <tr data-id="{{ $blog->id }}">
-                <td><a href="blog/{{ $blog->id }}"><span class="category-name">{{ $blog->title }}</span></a></td>
-                <td>
-                    <a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="editBlog($(this))" data-id="{{ $blog->id }}">Edit</a>
-                    <a href="javascript:void(0)" class="bs-btn btn-danger btn-delete-blog" data-id="{{ $blog->id }}">Delete</a>
-                </td>
-            </tr>
-            @endforeach
-            @endif
-            </tbody>
-        </table>
-
         <!-- remarks for update/edit form -->
         <!--
         <div class="comments block" id="editblog" style="display:none;">
             <div class="comment-message">
                 <div id="page">
                     <center><h1>Edit Blog</h1></center>
-                    {{ Form::open(array('method' => 'put', 'files' => true)) }}
+                    {{ Form::open([ 'id' => 'editBlogForm', 'method' => 'put', 'files' => true ]) }}
                     <div>
                         {{ Form::label('title', "Title", ["class"=> "text-colorful"]) }}<br>
                         {{ Form::text('title', '', ['class' => 'text-input-grey', 'placeholder' => 'Title', 'id' => 'titleedit']) }}
@@ -100,9 +76,9 @@
 
                     <div>
                         {{ Form::label('blogheader', "Blog Header", ["class"=> "text-colorful"]) }}
-                        {{ Form::file('blogheaderimage', ["id"=>"btn-editblog-settings-logo"]) }}
+                        {{ Form::file('blogheaderimagedit', ["id"=>"btn-editblog-settings-logo"]) }}
                         <div class="render-blogheader-logo-preview">
-                            <img src="" id="img-render-blogheaderimage">
+                            <img src="" id="img-render-blogheaderimageedit">
                         </div>
                     </div>
                     <div class="form-group">
@@ -141,5 +117,29 @@
         </div>
         -->
         <!-- end of remark-->
+
+        <table class="table" id="table-categories">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Action</th>
+                <th><a href="#company-tabs-blog" class="bs-btn btn-success btn-add-blog">Add new</a></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            @if(isset($blogs) && !is_null($blogs))
+            @foreach($blogs as $blog)
+            <tr data-id="{{ $blog->id }}">
+                <td><a href="blog/{{ $blog->id }}"><span class="category-name">{{ $blog->title }}</span></a></td>
+                <td>
+                    <a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="editBlog($(this))" data-id="{{ $blog->id }}">Edit</a>
+                    <a href="javascript:void(0)" class="bs-btn btn-danger btn-delete-blog" data-id="{{ $blog->id }}">Delete</a>
+                </td>
+            </tr>
+            @endforeach
+            @endif
+            </tbody>
+        </table>
     </div>
 </div>

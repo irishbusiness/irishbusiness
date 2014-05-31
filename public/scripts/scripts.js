@@ -890,6 +890,7 @@ function editBlog(obj) {
         $('#googleedit').val(data['google']);
         $('#twitteredit').val(data['twitter']);
         $('#linkedinedit').val(data['linkedin']);
+        $('').attr('src', data['blogheaderimage']);
 
         $(document).ready(
             function()
@@ -996,9 +997,8 @@ $(document).ready(function() {
 
           function completeHandler(e)
           {
-             alert('complete');
              if(e.status == 'saved'){
-
+             	$('#addblog').fadeOut(500, 'linear');
 				$('#addblog').prepend('<center><span class="alert alert-success" id="'+str+'" style="font-size:20px;color:green">New Blog Post has been added</span></center><br>');
 				$("#"+str).fadeOut(2000, "linear", function(){
                 	$(this).remove();
