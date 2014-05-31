@@ -958,11 +958,10 @@ $(document).ready(function(){
 
 		$("tr[data-id='"+id+"'] td[data-id='td-editable"+id+"']").append('<span class="edit-commission" data-close="'+str+'"><input type="text" class="cat-input-text half inline" value="'+val+'" data-type="number" name="commission" required="required" id="commission" data-id="'+id+'"> <a href="javascript:void(0)" class="bs-btn btn-info save-commission">Save</a> <a href="javascript:void(0)" class="bs-btn btn-danger cancel-commission" data-close="'+str+'">Cancel</a></span>');
 		
-
 		// Cancel Commission Edit
 		$(".cancel-commission").click(function(e){
 			var str =$(this).attr("data-close");
-			
+
 			$("span[data-close='"+str+"']").fadeOut(function(){
 				$(this).prev("span").fadeIn();
 				$(this).remove();
@@ -975,9 +974,6 @@ $(document).ready(function(){
 			var oldcommissioon = $(this).prev("input").parent("span").prev("span").text();
 			var newcommission = $(this).prev("input").val();
 			var close = $(this).next("a").attr("data-close");
-
-			console.log("old="+oldcommissioon);
-			console.log("new="+newcommission);
 
 			$.ajax(
 			{
