@@ -13,14 +13,14 @@
     <div class="comment-message">
         <div id="page">
             {{ Form::open(array('method' => 'put', 'route' => ['blog.update', $blog->id], 'files' => true)) }}
-            <div style="text-align:center;">
+            <div>
                 <br><br>
                 {{ Form::label('title', "Title", ["class"=> "text-colorful"]) }}<br>
                 {{ Form::text('title', $blog->title, ['class' => 'text-input-grey', 'placeholder' => 'Title']) }}
                 <br><br>
             </div>
 
-            <div style="text-align:center;">
+            <div>
                 {{ Form::label('blogheader', "Blog Header", ["class"=> "text-colorful"]) }}<br>
 
                 <div class="blog-post block">
