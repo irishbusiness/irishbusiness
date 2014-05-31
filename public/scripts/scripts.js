@@ -906,29 +906,15 @@ $(document).ready(function(){
 // js for stars rating
 	$("div.rating-stars.star").click(function(){
 		var x = $(this).attr("data-rated");
-		console.log(x);
-		if(x=="false"){
-			$(this).attr("data-rated", "true");
-			$(this).attr("class", "rating-stars star rated");
-			$(this).prev(".rating-stars.star").each(function(){
-				$(this).attr("data-rated", "true");
-				$(this).attr("class", "rating-stars star rated");
-			})
-			$(this).next(".rating-stars.star").each(function(){
-				$(this).attr("data-rated", "false");
-				$(this).attr("class", "rating-stars star");
-			})
-		}else{
-			$(this).attr("data-rated", "false");
-			$(this).attr("class", "rating-stars star");
-			$(this).prev(".rating-stars.star").each(function(){
-				$(this).attr("data-rated", "true");
-				$(this).attr("class", "rating-stars star rated");
-			})
-			$(this).next(".rating-stars.star").each(function(){
-				$(this).attr("data-rated", "false");
-				$(this).attr("class", "rating-stars star");
-			})
+
+		var id = parseInt($(this).attr("data-star-id"));
+
+		for(var y=id; y>=1; y--){
+			$("div[data-star-id='"+y+"']").attr("class", "rating-stars star rated");
+		}
+		var id2 = id+1;
+		for(var z = id2; z<=5; z++){
+			$("div[data-star-id='"+z+"']").attr("class", "rating-stars star");
 		}
 	});
 

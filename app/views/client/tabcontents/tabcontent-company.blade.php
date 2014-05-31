@@ -89,7 +89,7 @@
 						<div class="company-info clearfix">
 							<div class="company-info-social">
 								<div class="compnay-photo">
-									<img width="500" height="302" src="{{ URL::asset('/images/companylogos/'.$businessinfo->logo) }}" class="attachment-post-thumbnail wp-post-image" alt="{{ $businessinfo->name }}-logo">
+									<img width="500" height="302" src="{{ URL::asset($businessinfo->logo) }}" class="attachment-post-thumbnail wp-post-image" alt="{{ $businessinfo->name }}-logo">
 								</div>
 								<a href="{{ $businessinfo->facebook }}" class="facebook" target="_blank"></a>
 								<a href="{{ $businessinfo->twitter }}" class="twitter" target="_blank"></a>
