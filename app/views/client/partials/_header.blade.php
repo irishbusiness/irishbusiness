@@ -118,7 +118,6 @@
 								</li>
 							</ul>
 						</div>
-						</div>
 					</div>
 				</div><!-- end of .zone-header -->
 			</div><!-- end of .header-wrapper -->

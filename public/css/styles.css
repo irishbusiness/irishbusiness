@@ -1109,7 +1109,7 @@ ul.list-check {
 		display: inline-block;
 		width: 13px;
 		height: 12px;
-		background: url(../images/star-grey.png) no-repeat center center;
+		background: url(../images/star_grey.png) no-repeat center center;
 	}
 
 	.rating-stars.interactive .star {
@@ -1124,7 +1124,7 @@ ul.list-check {
 	.rating-stars.rated .star.current + .star + .star,
 	.rating-stars.rated .star.current + .star + .star + .star,
 	.rating-stars.rated .star.current + .star + .star + .star + .star{
-		background: url(../images/star-grey.png) no-repeat center center;
+		background: url(../images/star_grey.png) no-repeat center center;
 	}
 
 /************************

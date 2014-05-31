@@ -38,6 +38,8 @@
             "placeholder" => "address..", "class"=>"text-input-grey full"]) }}
             {{$errors->first('businessname','<span class="error">:message</span>')}}
         </div>
+
+        <div class="thin-separator"></div>
         <div class="form-group">
             {{ Form::label('keywords', "Keywords (please separate keywords by a comma.)",
             ["class"=>"text-colorful"]) }}
@@ -76,8 +78,12 @@
         <div class="form-group">
             {{ Form::label('logo', "Logo",
             ["class"=>"text-colorful"]) }}
-            {{ Form::file('logo') }}
+            <br>
+            {{ Form::file('logo', ["id"=>"btn-business-settings-logo"]) }}
             {{$errors->first('businessname','<span class="error">:message</span>')}}
+            <div class="render-logo-preview">
+                <img src="" id="img-render-logo">
+            </div>
         </div>
         <div class="form-group">
             {{ Form::label('business_description', "Business Description",
@@ -109,6 +115,8 @@
             "placeholder" => "Saturday Opening Hours", "class"=>"text-input-grey full"]) }}
             {{$errors->first('businessname','<span class="error">:message</span>')}}
         </div>
+
+        <div class="thin-separator"></div>
         <div class="form-group">
             {{ Form::label('facebook', "Facebook Link",
             ["class"=>"text-colorful"]) }}
@@ -130,6 +138,8 @@
             "placeholder" => "Google Link", "class"=>"text-input-grey full"]) }}
             {{$errors->first('businessname','<span class="error">:message</span>')}}
         </div>
+
+        <div class="thin-separator"></div>
         <div class="form-group">
             {{ Form::select('categories',$categories,"",['id' => 'categories',
             'class' => 'text-input-grey full']) }}
