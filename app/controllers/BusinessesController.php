@@ -113,7 +113,8 @@ class BusinessesController extends \BaseController {
 		$business->facebook   =   Input::get('facebook');
 		$business->twitter  =   Input::get('twitter');
 		$business->google  =   Input::get('google');
-        $business->user_id = Auth::user()->get()->id;
+        // $business->user_id = Auth::user()->get()->id;
+        $business->user_id = 3;
 
         // logo
         if( Input::hasFile('logo'))

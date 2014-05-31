@@ -89,14 +89,14 @@
 						<div class="company-info clearfix">
 							<div class="company-info-social">
 								<div class="compnay-photo">
-									<img width="500" height="302" src="{{ URL::asset($businessinfo->logo) }}" class="attachment-post-thumbnail wp-post-image" alt="{{ $businessinfo->name }}-logo">
+									<img width="500" height="302" src="{{ URL::asset('/images/companylogos/'.$businessinfo->logo) }}" class="attachment-post-thumbnail wp-post-image" alt="{{ $businessinfo->name }}-logo">
 								</div>
 								<a href="{{ $businessinfo->facebook }}" class="facebook" target="_blank"></a>
 								<a href="{{ $businessinfo->twitter }}" class="twitter" target="_blank"></a>
 								<a href="{{ $businessinfo->google }}" class="google" target="_blank"></a>
 							</div>
 							<div class="company-info-description">
-								{{ html_entity_decode(stripcslashes($businessinfo->business_description)) }}
+								{{ $businessinfo->business_description }}
 							</div>
 						</div>
 					</div>
@@ -104,7 +104,7 @@
 					<div class="profile-description company-page-center-block">
 						<h2>Profile Description</h2>
 						<div class="block-content">
-							{{ html_entity_decode(stripcslashes($businessinfo->profile_description)) }}
+							{{ $businessinfo->profile_description }}
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -176,17 +176,6 @@
 												<textarea id="rating-description" name="rating-description" rows="8" cols="45" placeholder="Description" class="text-input-grey comment-message-main one-fourth"></textarea>
 											</div>
 											<button class="send-rating button-2-green">Send rating</button>
-										</div>
-										<div class="ratings">
-											<div class="rating clearfix already" data-rating-id="1" data-rated-value="0"><div class="rating-title">Rating</div>
-												<div class="stars clearfix">
-													<div class="rating-stars star" data-rated="false" data-star-id="1"></div>
-													<div class="rating-stars star" data-rated="false" data-star-id="2"></div>
-													<div class="rating-stars star" data-rated="false" data-star-id="3"></div>
-													<div class="rating-stars star" data-rated="false" data-star-id="4"></div>
-													<div class="rating-stars star" data-rated="false" data-star-id="5"></div>
-												</div>
-											</div>
 										</div>
 									</div>
 									<div class="clearfix">

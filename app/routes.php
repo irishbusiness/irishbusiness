@@ -129,6 +129,9 @@ Route::get('admin_settings_subscription', 'SubscriptionController@index');
 Route::post('admin_settings_subscription', 'SubscriptionController@store');
 Route::post('editSubscription', 'SubscriptionController@edit');
 
+Route::get('admin_manage_commission', 'SettingsController@show_commission');
+Route::post('commissionAjax', 'SettingsController@edit_commission');
+
 Route::get('admin_manage_categories', 'CategoriesController@index');
 Route::post('categoryAjax', 'CategoriesController@add');
 Route::put('socialmediaAjax', 'SocialMediaController@update');
@@ -187,3 +190,9 @@ Route::post('test',function(){
 Route::get('resetMigration', function(){
     return View::make('db_resetScript');
 });
+
+
+Route::get('sales', 'salespersonsController@index');
+Route::get('sales/invite','salespersonsController@invite');
+
+Route::post('sales/invite','salespersonsController@store');

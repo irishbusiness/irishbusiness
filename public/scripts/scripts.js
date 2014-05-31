@@ -24,7 +24,7 @@ Equal Heights function.
 			}
 			currentBlock = currentBlock + 1;
 		}
-		// Equalizing heights of columns.
+		// // Equalizing heights of columns.
 		// if (jQuery('body').width() > browserWidth - scrollbar) {
 		// 	jQuery(this).children().css('min-height', equalHeight + additionalHeight);
 		// } else {
@@ -1019,5 +1019,110 @@ $(document).ready(function() {
 			}
           }   
 	});
+
+});
+
+$(document).ready(function(){
+// js for stars rating
+	$("div.rating-stars.star").click(function(){
+		var x = $(this).attr("data-rated");
+
+		var id = parseInt($(this).attr("data-star-id"));
+
+		for(var y=id; y>=1; y--){
+			$("div[data-star-id='"+y+"']").attr("class", "rating-stars star rated");
+		}
+		var id2 = id+1;
+		for(var z = id2; z<=5; z++){
+			$("div[data-star-id='"+z+"']").attr("class", "rating-stars star");
+		}
+	});
+
+
+// js for manage commissions
+	
+	$(".btn-edit-commission").click(function(e){
+		editCommission($(this));
+	});
+
+	
+
+	function editCommission(obj){
+		if(obj.parent("td").prev("td").children("span.edit-commission").is(":visible")){
+			return false;
+		}
+
+		var id = obj.attr("data-id");
+		var name = obj.parent("td").prev("td").children("span:first").html();
+
+		var val =obj.parent("td").prev("td[data-id='td-editable"+id+"']").children("span").text();
+		obj.parent("td").prev("td[data-id='td-editable"+id+"']").children("span").fadeOut();
+
+		var x = 0;
+		var str = $.trim(generateString(20));
+
+
+		$("tr[data-id='"+id+"'] td[data-id='td-editable"+id+"']").append('<span class="edit-commission" data-close="'+str+'"><input type="text" class="cat-input-text half inline" value="'+val+'" data-type="number" name="commission" required="required" id="commission" data-id="'+id+'"> <a href="javascript:void(0)" class="bs-btn btn-info save-commission">Save</a> <a href="javascript:void(0)" class="bs-btn btn-danger cancel-commission" data-close="'+str+'">Cancel</a></span>');
+		
+		// Cancel Commission Edit
+		$(".cancel-commission").click(function(e){
+			var str =$(this).attr("data-close");
+
+			$("span[data-close='"+str+"']").fadeOut(function(){
+				$(this).prev("span").fadeIn();
+				$(this).remove();
+			});
+		});
+
+		// Save Editted Commission
+		$(".save-commission").click(function(){
+			var id = $(this).prev("input").attr("data-id");
+			var oldcommissioon = $(this).prev("input").parent("span").prev("span").text();
+			var newcommission = $(this).prev("input").val();
+			var close = $(this).next("a").attr("data-close");
+
+			$.ajax(
+			{
+				url: "/commissionAjax",       
+				type: "post",
+				data: { commission: newcommission, id: id }
+			})
+			.done(function(data)
+			{
+				$("span[data-close='"+close+"']").fadeOut(function(){
+					if(data=="Changes saved."){
+						$(this).prev("span").html(newcommission);
+					}else{
+						alert(data);
+						$(this).prev("span").html(newcommission);
+					}
+					$(this).prev("span").fadeIn();
+					$(this).remove();
+				});
+			});
+		});
+
+		onlynumbers($("input[data-type='number']"));
+	}
+
+	function onlynumbers(obj){
+		obj.keydown(function(event) {
+        // Allow: backspace, delete, tab, escape, enter and .
+	        if ( $.inArray(event.keyCode,[46,8,9,27,13,190]) !== -1 ||
+	             // Allow: Ctrl+A
+	            (event.keyCode == 65 && event.ctrlKey === true) || 
+	             // Allow: home, end, left, right
+	            (event.keyCode >= 35 && event.keyCode <= 39)) {
+	                 // let it happen, don't do anything
+	                 return;
+	        }
+	        else {
+	            // Ensure that it is a number and stop the keypress
+	            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+	                event.preventDefault(); 
+	            }   
+	        }
+		});
+	}
 
 });

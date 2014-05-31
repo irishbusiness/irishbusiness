@@ -4070,6 +4070,7 @@ ul.entries-list {
 }
 
 .cat-input-text {
+	text-align: center;
 	display: block;
 	width: 100%;
 	height: 20px;
@@ -4378,3 +4379,55 @@ div.company-page-map div.company-page-map-container {
 	padding-right: 15px;
 }
 
+.rating-stars.star {
+	display: inline-block;
+	height: 12px;
+	width: 13px;
+	background-repeat: no-repeat;
+	background: url(../images/star_grey.png );
+	cursor: pointer;
+}
+
+.rating-stars.star:hover {
+	background: url(../images/star_yellow.png );
+}
+
+.rating-stars.star.rated {
+	background: url(../images/star_yellow.png );
+}
+
+#company-page-map {
+	overflow: hidden;
+}
+
+.sidebar-container .contact-details {
+	margin: 0 5px 20px;
+}
+
+.rating-details {
+	float: left;
+	width: 50%;
+}
+
+td.detail {
+	word-break: break-word;
+}
+
+
+
+.alert-error2 {
+	background-color: #f2dede;
+	border-color: #ebccd1;
+	color: #a94442;
+	display: block;
+	margin-top: 5px;
+	width: 70%;
+	padding-left: 12px;
+
+.cat-input-text.half {
+	width: 50%;
+}
+
+.inline {
+	display: inline-block;
+}

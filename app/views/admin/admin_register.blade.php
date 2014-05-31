@@ -35,7 +35,7 @@
                     <br>
                     {{ Form::text('phone', '', ["required"=>"required", "class"=>"text-input-grey half",
                         "placeholder"=>"Phone number"]) }}
-                    {{$errors->first('email','<span class="error">:message</span>')}}
+                    {{$errors->first('phone','<span class="error">:message</span>')}}
                 </div>
                 <div class="form-group">
                     {{ Form::label('password', "Password", ["required"=>"required", "class"=> "text-colorful"]) }}
