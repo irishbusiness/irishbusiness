@@ -16,7 +16,7 @@ class CreateBlogsTable extends Migration {
 			$table->increments('id');
 			$table->string('title');
 			$table->string('blogheaderimage');
-			$table->string('body');
+			$table->text('body');
 			$table->string('author');
 			$table->integer('business_id')->unsigned()->index();
             $table->foreign('business_id')->references('id')->on('businesses')->onUpdate('cascade')->onDelete('cascade');
