@@ -11,6 +11,7 @@
 |
 */
 
+
 View::share('selected', '');
 // $headerlogo = MainSetting::select('headerlogo')->orderBy('created_at', 'desc')->first();
 // $footerlogo = MainSetting::select('footerlogo')->orderBy('created_at', 'desc')->first();
@@ -97,4 +98,9 @@ Route::filter('csrf', function()
 	{
 		throw new Illuminate\Session\TokenMismatchException;
 	}
+});
+
+
+Validator::extend('alpha_space', function($attr, $value) {
+    return preg_match('/^([a-z\x20])+$/i', $value);
 });

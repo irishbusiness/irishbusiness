@@ -187,9 +187,7 @@ Route::get('resetMigration', function(){
 });
 
 
-Route::get('sales',function(){
-	return View::make('sales.index');
-});
-Route::get('sales/invite',function(){
-	return View::make('sales.invite');
-});
+Route::get('sales', 'salespersonsController@index');
+Route::get('sales/invite','salespersonsController@invite');
+
+Route::post('sales/invite','salespersonsController@store');

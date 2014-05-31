@@ -4411,3 +4411,14 @@ div.company-page-map div.company-page-map-container {
 td.detail {
 	word-break: break-word;
 }
+
+
+.alert-error2 {
+	background-color: #f2dede;
+	border-color: #ebccd1;
+	color: #a94442;
+	display: block;
+	margin-top: 5px;
+	width: 70%;
+	padding-left: 12px;
+}

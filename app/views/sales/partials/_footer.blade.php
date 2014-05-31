@@ -1,8 +1,8 @@
 <?php
-	if(is_null($imgfooterlogo)){
+	/*if(is_null($imgfooterlogo)){*/
 		$imgfooterlogo = new \Illuminate\Support\Collection;
    	 	$imgfooterlogo->footerlogo = 'default.png';
-	}
+	/*}*/
 ?>
 
 		<footer class="section boxed">

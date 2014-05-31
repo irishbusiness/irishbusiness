@@ -89,7 +89,7 @@
 
 			<!-- sidebar -->
              @if(!Request::is('settings*'))
-			    @include('client.partials._sidebar')
+			    @include('sales.partials._sidebar')
              @endif
 			<!-- sidebar -->
 
@@ -97,8 +97,8 @@
 		</div>
 	<!-- actual body -->
 
-	@include('client.partials._footer')
-	@include('client.partials._includes')
+	@include('sales.partials._footer')
+	@include('sales.partials._includes')
 	@if(Session::has('errorNotify'))
 		<script>
 			$('#login-form').slideDown(500);

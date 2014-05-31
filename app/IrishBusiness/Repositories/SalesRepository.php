@@ -4,19 +4,22 @@ use SalesPerson;
 use Hash;
 use Auth;
 use Redirect;
+use Commission;
 class SalesRepository {
 
 	public function create($input)
 	{
-		$user = new User;
-		$user->firstname = $input['firstname'];
-		$user->lastname = $input['lastname'];
-		$user->password = Hash::make($input['password']);
-		$user->phone = $input['phone'];
-		$user->email = $input['email'];
-		$user->save();
+		$password = str_random(8);
+		$salesperson = new SalesPerson;
+		$salesperson->firstname = $input['firstname'];
+		$salesperson->lastname = $input['lastname'];
+		$salesperson->password = Hash::make($password);
+		$salesperson->phone = $input['phone'];
+		$salesperson->email = $input['email'];
+		$salesperson->access_level = $input['type'];
+		$salesperson->save();
 
-		return $user->id;
+		return $salesperson->id;
 	}
 
 	public function authenticate($input)
@@ -27,6 +30,19 @@ class SalesRepository {
 		];
 		
 		return Auth::salesperson()->attempt($credentials);
+	}
+
+	public function getCommissions()
+	{
+		$commissionsraw = Commission::all();
+		$commissions = [];
+
+		foreach($commissionsraw as $commission)
+		{
+			$commissions[$commission->id] = $commission->type;
+		}
+
+		return $commissions;
 	}
 
 

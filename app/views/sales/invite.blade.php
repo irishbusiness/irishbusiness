@@ -16,29 +16,29 @@
                 <br/>
                 <span class="alert-error status">{{Session::get('error')}} </span>
             @endif
-            {{ Form::open(array('url'=>'/sales/invite','method' => 'post', "id"=>"form-register")) }}
+            {{ Form::open(array('url'=>'sales/invite','method' => 'post', "id"=>"form-register")) }}
                
 
                 <div class="form-group">
                     {{ Form::label('email', "Email", ["required"=>"required", "class"=> "text-colorful"]) }}
                     <br>
                     {{ Form::email('email', '', ["required"=>"required", "class"=>"text-input-grey half",
-                        "placeholder"=>"your_email@example.com"]) }}
-                    {{$errors->first('email','<span class="error">:message</span>')}}
+                        "placeholder"=>"email"]) }}
+                    {{$errors->first('email','<span class="alert-error2">:message</span>')}}
                 </div>
                 <div class="form-group">
                 {{ Form::label('firstname', "Firstname", ["required"=>"required", "class"=> "text-colorful"]) }}
                 <br>
                 {{ Form::text('firstname', '', ["required"=>"required", "class"=>"text-input-grey half",
                     "placeholder"=>"Firstname"]) }}
-                {{$errors->first('firstname','<span class="error">:message</span>')}}
+                    {{$errors->first('firstname','<span class="alert-error2">Please enter your firstname.</span>')}}
                 </div>
                 <div class="form-group">
                     {{ Form::label('lastname', "Lastname", ["required"=>"required", "class"=> "text-colorful"]) }}
                     <br>
                     {{ Form::text('lastname', '', ["required"=>"required", "class"=>"text-input-grey half",
                         "placeholder"=>"Lastname"]) }}
-                    {{$errors->first('lastname','<span class="error">:message</span>')}}
+                    {{$errors->first('lastname','<span class="alert-error2">Please enter your lastname.</span>')}}
                 </div>
                 <div class="form-group">
                     {{ Form::label('phone', "Phone", ["required"=>"required", "class"=> "text-colorful"]) }}
@@ -47,7 +47,14 @@
                         "placeholder"=>"Phone number"]) }}
                     {{$errors->first('phone','<span class="error">:message</span>')}}
                 </div>
+                  <div class="form-group">
+                    {{ Form::label('type', "Type", ["required"=>"required", "class"=> "text-colorful"]) }}
+                    <br>
+                    {{ Form::select('type', $commissions, ["required"=>"required", "class"=>"text-input-grey half"]) }}
+                    {{$errors->first('phone','<span class="error">:message</span>')}}
+                </div>
                 <div class="form-group">
+                	<br/>
                     {{ Form::submit("Submit", ["required"=>"required", "class"=>"button-2-colorful"]) }}
                 </div>
             {{ Form::close() }}

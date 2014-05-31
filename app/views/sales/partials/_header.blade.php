@@ -1,8 +1,8 @@
     <?php
-    if(is_null($imgheaderlogo)){
+    /*if(is_null($imgheaderlogo)){*/
     	$imgheaderlogo = new \Illuminate\Support\Collection;
     	$imgheaderlogo->headerlogo = 'default.png';
-    }
+    /*}*/
     ?>
     <header class="section header-2 boxed">
 
