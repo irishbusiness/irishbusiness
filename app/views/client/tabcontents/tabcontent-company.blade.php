@@ -172,6 +172,17 @@
 											<div class="detail">
 												<input id="rating-name" name="rating-name" type="text" placeholder="Name" class="text-input-grey one-fourth">
 											</div>
+											<div class="ratings">
+												<div class="rating clearfix already" data-rating-id="1" data-rated-value="0"><div class="rating-title">Rating</div>
+													<div class="stars clearfix">
+														<div class="rating-stars star" data-star-id="1"></div>
+														<div class="rating-stars star" data-star-id="2"></div>
+														<div class="rating-stars star" data-star-id="3"></div>
+														<div class="rating-stars star" data-star-id="4"></div>
+														<div class="rating-stars star" data-star-id="5"></div>
+													</div>
+												</div>
+											</div>
 											<div class="detail">
 												<textarea id="rating-description" name="rating-description" rows="8" cols="45" placeholder="Description" class="text-input-grey comment-message-main one-fourth"></textarea>
 											</div>

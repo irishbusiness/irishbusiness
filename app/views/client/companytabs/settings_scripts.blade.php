@@ -22,7 +22,7 @@
                     })
                     .done(function(data)
                     {
-                        $('.showCategory').append('<span class="category" data-id="'+data.id+'"> '+ data.name +
+                        $('.showCategory').append('<span class="bs-btn btn-success category" data-id="'+data.id+'"> '+ data.name +
                             '<span class="remove" data-id="'+data.id+'" data-text="'+data.name+'" title="remove this category">x</span></span>');
                         $('#categories').find('option:selected').remove();
                     })
