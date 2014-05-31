@@ -135,6 +135,31 @@ class SettingsController extends \BaseController {
         echo "filename=".$filename."<br>";
 	}
 
+    public function show_commission(){
+        $commissions = Commission::all();
+        return View::make("admin.admin_settings_commission")->with('commissions', $commissions);
+    }
+
+    public function edit_commission(){
+        if(Request::ajax()){
+            $id = Input::get('id');
+            $newvalue = Input::get("commission");
+
+            $commissions = Commission::find($id);
+            $commissions->commission = floatval($newvalue);
+            
+            $success = $commissions->save();
+
+            if($success){
+                return "Changes saved.";
+            }
+
+            return "Changes not saved.";
+        }
+
+        return 'Something went wrong';
+    }
+
 	/**
 	 * Remove the specified resource from storage.
 	 *

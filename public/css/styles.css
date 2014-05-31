@@ -4070,6 +4070,7 @@ ul.entries-list {
 }
 
 .cat-input-text {
+	text-align: center;
 	display: block;
 	width: 100%;
 	height: 20px;
@@ -4413,6 +4414,7 @@ td.detail {
 }
 
 
+
 .alert-error2 {
 	background-color: #f2dede;
 	border-color: #ebccd1;
@@ -4421,4 +4423,11 @@ td.detail {
 	margin-top: 5px;
 	width: 70%;
 	padding-left: 12px;
+
+.cat-input-text.half {
+	width: 50%;
+}
+
+.inline {
+	display: inline-block;
 }
