@@ -4370,3 +4370,9 @@ div.company-page-map div.company-page-map-container {
 .render-blogheader-logo-preview img {
 	max-width: 90%;
 }
+
+.a-btn {
+	padding: 6px;
+	padding-left: 15px;
+	padding-right: 15px;
+}

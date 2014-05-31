@@ -31,7 +31,7 @@
                 {{ Form::file('blogheaderimage') }}
                 <br><br>
             </div>
-            {{ Form::textarea('content', $blog->body, ['id' => 'redactor']) }}
+            {{ Form::textarea('content', html_entity_decode(stripcslashes($blog->body)), ['id' => 'redactor']) }}
             <br>
             <p><input type="submit" value="Save" name="save" class="button-2-colorful"/>
             {{ Form::close() }}

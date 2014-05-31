@@ -15,13 +15,13 @@
 											</div>
 											<div class="blog-post-preview-right">
 												<div class="blog-post-image">
-													<img src="{{ URL::asset('/images/content/'.$blog->blogheaderimage) }}" alt="" />
+													<img src="{{ URL::asset($blog->blogheaderimage) }}" alt="" />
 												</div>
 												<div class="blog-post-description clearfix">
 													<div class="blog-post-title-comments">
 														<a href="blog/{{ $blog->id }}" class="blog-post-title">{{ $blog->title }}</a>
 													</div>
-													<div class="blog-post-excerpt">{{ Str::limit($blog->body, 255) }}</div>
+													<div class="blog-post-excerpt">{{ Str::limit(html_entity_decode(stripcslashes($blog->body)), 255) }}</div>
 													<div class="blog-post-links">
 														<a href="blog/{{ $blog->id }}" class="read-more-link">Read More</a>
 													</div>

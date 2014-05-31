@@ -24,7 +24,7 @@ class BlogController extends \BaseController {
 
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::orderBy('created_at', 'desc')->get();
         return View::make('client.bloglist', compact('blogs'));
     }
 
@@ -45,7 +45,8 @@ class BlogController extends \BaseController {
         $blog->google = Input::get('google');
         $blog->twitter = Input::get('twitter');
         $blog->linkedin = Input::get('linkedin');
-        $blog->business_id  =   Auth::user()->user()->business->id;
+        // $blog->business_id  =   Auth::user()->user()->business->id;
+        $blog->business_id = 2;
 
         //check if the file isset
         if( Input::hasFile('blogheaderimage'))
@@ -89,7 +90,8 @@ class BlogController extends \BaseController {
         $blog->google = Input::get('google');
         $blog->twitter = Input::get('twitter');
         $blog->linkedin = Input::get('linkedin');
-        $blog->business_id  =   Auth::user()->user()->business->id;
+        // $blog->business_id  =   Auth::user()->user()->business->id;
+        $blog->business_id = 2;
 
         //check if the file isset
         if( Input::hasFile('blogheaderimage'))
@@ -105,7 +107,7 @@ class BlogController extends \BaseController {
                 || $image->getMimeType() == 'image/pjpeg')
             {
                 $image->move($dir, $filename);
-                unlink(public_path().'/'.$blog->blogheaderimage);
+                // unlink(public_path().'/'.$blog->blogheaderimage);
                 $blog->blogheaderimage  =   'images/blog/'.$imagename;
             } else {
                 $blog->blogheaderimage  =   'images/blog/'.$imagename;

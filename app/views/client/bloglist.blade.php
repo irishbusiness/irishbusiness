@@ -20,7 +20,7 @@
 						</div>
 						<div class="blog-post-preview-right">
 							<div class="blog-post-image">
-								<img src="{{ URL::asset('/images/content/'.$blog->blogheaderimage) }}" alt="" />
+								<img src="{{ URL::asset($blog->blogheaderimage) }}" alt="" />
 							</div>
 							<div class="blog-post-description clearfix">
 								<div class="blog-post-title-comments">
@@ -29,7 +29,7 @@
 								</div>
 								<div class="blog-post-excerpt">
                                     <div class="blog-post-image">
-                                        {{ (strlen($blog->body) > 100) ? substr($blog->body,0,100) : stripslashes($blog->body) }}
+                                        {{ Str::limit(html_entity_decode(stripcslashes($blog->body)), 255) }}
                                     </div>
                                 </div>
                                 <div class="blog-post-links">

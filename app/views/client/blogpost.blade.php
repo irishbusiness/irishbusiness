@@ -8,14 +8,14 @@
 				<div class="blog-post block">
 					<div class="block-title">
                         {{ Form::open(['method' => 'DELETE', 'action' => ['BlogController@destroy', $blog->id]]) }}
-                        {{ HTML::link('blog/'.$blog->id.'/edit', 'edit', ['class'=>'button-2-colorful']) }}
+                        {{ HTML::link('blog/'.$blog->id.'/edit', 'Edit', ['class'=>'button-2-colorful a-btn']) }}
                         {{ Form::submit('Delete', ['class' => 'button-2-colorful', 'onclick' => 'return confirm("Are you sure you want to delete this blog?")'])}}
                         {{ Form::close() }}
                         <br><br>
 						<h1>{{ $blog->title }}</h1>
 					</div>
 					<div class="blog-post-image">
-						<img src="{{ URL::asset('/images/content/'.$blog->blogheaderimage) }}" alt="" />
+						<img src="{{ URL::asset($blog->blogheaderimage) }}" alt="" />
 					</div>
 					<div class="blog-post-subtitle">
 						{{ $blog->subtitle }}
@@ -23,7 +23,7 @@
 					<div class="blog-post-body">
                         <div class="blog-post block">
                             <div class="blog-post-image">
-					             {{ stripslashes($blog->body) }}
+                            	{{ html_entity_decode(stripcslashes($blog->body)) }}
                             </div>
                         </div>
 					</div>
