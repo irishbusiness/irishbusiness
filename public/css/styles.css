@@ -4070,6 +4070,7 @@ ul.entries-list {
 }
 
 .cat-input-text {
+	text-align: center;
 	display: block;
 	width: 100%;
 	height: 20px;
@@ -4410,4 +4411,12 @@ div.company-page-map div.company-page-map-container {
 
 td.detail {
 	word-break: break-word;
+}
+
+.cat-input-text.half {
+	width: 50%;
+}
+
+.inline {
+	display: inline-block;
 }
