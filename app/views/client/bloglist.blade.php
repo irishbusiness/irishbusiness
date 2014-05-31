@@ -20,7 +20,7 @@
 						</div>
 						<div class="blog-post-preview-right">
 							<div class="blog-post-image">
-								<img src={{ URL::asset($blog->blogheaderimage) }} alt="" />
+								<img src="{{ URL::asset('/images/content/'.$blog->blogheaderimage) }}" alt="" />
 							</div>
 							<div class="blog-post-description clearfix">
 								<div class="blog-post-title-comments">

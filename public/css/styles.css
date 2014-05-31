@@ -4119,7 +4119,7 @@ ul.entries-list {
 }
 
 .header-logo-img{
-	max-width: 186% !important;
+	max-width: none !important;
 	width: 212px!important;
 	height: 46px!important;
 }
@@ -4130,6 +4130,10 @@ ul.entries-list {
 
 .half {
 	max-width: 300px;
+}
+
+.one-fourth {
+	max-width: 176px;
 }
 
 .center {
@@ -4143,6 +4147,217 @@ ul.entries-list {
 	padding-bottom: 12px;
 	padding-top: 10px;
 }
+
+.status{
+	margin-left:30px;
+}
 .header-right.container-20 {
 	margin-top: 13px;
+}
+
+.share-this li a.facebook {
+	background: #FFFFFF url(../images/facebook-icon-grey.png) no-repeat center center;
+}
+
+.share-this li a.twitter {
+	background: #FFFFFF url(../images/twitter-icon-grey.png) no-repeat center center;
+}
+
+.share-this li a.google {
+	background: #FFFFFF url(../images/google-icon-grey.png) no-repeat center center;
+}
+
+.share-this li a {
+	border: 1px solid #E7E7E7;
+	margin-left: -1px;
+	display: block;
+	height: 49px;
+	width: 49px;
+}
+
+.share-this ul {
+	margin: 15px 20px 20px 21px;
+	padding: 0;
+	clear: both;
+	min-height: 50px;
+	display: inline-flex;
+	list-style-type: none;
+}
+
+div.sidebar-container div.company-page-block {
+	margin-top: 20px;
+}
+
+div.company-page-block table td.detail-label {
+	width: 45%;
+	font-family: "Patua One", Tahoma;
+}
+
+.rating-send .comment-message-main {
+	margin: 20px 0;
+	min-height: 100px;
+	overflow: auto;
+	padding: 0 9%;
+	resize: none;
+	width: 82%;
+}
+
+.rating-send {
+	padding: 20px;
+}
+
+.ratings {
+	float: left;
+	width: 30%;
+	padding-left: 20px;
+}
+
+.text-input-grey {
+	border: 1px solid;
+}
+
+.footer-widget ul li a, .text-green {
+	color: #809c02;
+}
+
+.comment-respond h3 {
+	border-bottom: 1px solid #E7E7E7;
+	padding: 15px 20px;
+}
+
+div.company-page-map div.company-page-map-container {
+	margin: 20px 20px 0 20px;
+	padding: 3px;
+	border: 1px solid #e7e7e7;
+	background: white;
+}
+
+.range-of-services ul li {
+	list-style-image: none;
+	list-style: none;
+	float: left;
+	line-height: 20px;
+	display: block;
+	padding: 5px 10px;
+	background: #FFFFFF;
+	background: -moz-linear-gradient(top, #FFFFFF 0%, #e6e6e6 100%);
+	background: -webkit-linear-gradient(top, #FFFFFF 0%,#e6e6e6 100%);
+	background: -o-linear-gradient(top, #FFFFFF 0%,#e6e6e6 100%);
+	background: linear-gradient(top, #FFFFFF 0%,#e6e6e6 100%);
+	margin: 0 10px 10px 0;
+	border-radius: 5px;
+	box-shadow: 0 1px 3px #8c8c8c;
+}
+
+.range-of-services ul {
+	margin: 0;
+	padding: 0;
+	clear: both;
+}
+
+.your-rating {
+	font-size: 16px !important;
+}
+
+.divkeywords, .divlocations {
+	margin-bottom: 20px;
+}
+
+.clear {
+	clear: both;
+	height: 0;
+}
+
+.company-page-map {
+	position: relative;
+	overflow: hidden;
+	-webkit-transform: translateZ(0px);
+	background-color: rgb(229, 227, 223);
+}
+
+#tab-nav {
+	margin-left: 8px;
+}
+
+#company-inner-container {
+	padding: 40px;
+}
+
+.margin-18 {
+	margin-top: -18px;
+}
+
+.padding-left-19 {
+	padding-left: 19px;
+}
+.blog .blog-post-preview .blog-post-preview-right .blog-post-image img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.blog .blog-post-preview .blog-post-preview-right {
+	margin-left: 80px;
+}
+
+.blog .blog-post-preview .blog-post-preview-right {
+	border-left: 5px solid #98B709;
+}
+
+.blog .blog-post-preview .blog-post-preview-left {
+	float: left;
+}
+
+.blog .blog-post-preview .blog-post-preview-left .blog-post-date .day {
+	width: 80px;
+	line-height: 35px;
+	font-family: "Patua One";
+	font-size: 2.57143em;
+	color: #ffffff;
+	text-align: center;
+	padding-top: 12px;
+	border-top-left-radius: 3px;
+}
+
+.blog .blog-post-preview .blog-post-preview-left .blog-post-date .month {
+	width: 80px;
+	line-height: 18px;
+	font-family: "Patua One";
+	color: #ffffff;
+	text-align: center;
+}
+
+.blog .blog-post-preview .blog-post-preview-left .blog-post-date .year {
+	width: 80px;
+	line-height: 22px;
+	color: #ffffff;
+	text-align: center;
+	padding-bottom: 12px;
+	border-bottom-left-radius: 3px;
+}
+
+.blog .blog-post-preview .blog-post-preview-left .blog-post-date {
+	background: url(../images/post-date-background.png) no-repeat right top;
+	padding: 3px 0;
+	margin-top: 7px;
+}
+
+.blog .blog-post-preview {
+	margin-top: 40px;
+}
+
+.blog .blog-post-preview .blog-post-preview-right .blog-post-description .blog-post-title {
+	display: block;
+	font-family: "Patua One";
+	font-size: 1.2857em;
+	padding: 14px 20px;
+	margin-right: 75px;
+}
+
+.blog .blog-post-preview .blog-post-preview-right .blog-post-description .blog-post-links .read-more-link {
+	float: right;
+	line-height: 50px;
+	background: url(../images/link-arrow.png) no-repeat left center;
+	padding-left: 10px;
+	margin-right: 20px;
 }

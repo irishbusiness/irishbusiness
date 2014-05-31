@@ -32,4 +32,46 @@ function isClient($email)
 	return false;
 }
 
-?>
+if ( !function_exists('mysql_escape'))
+{
+    function mysql_escape($inp)
+    { 
+        if(is_array($inp)) return array_map(__METHOD__, $inp);
+
+        if(!empty($inp) && is_string($inp)) { 
+            return str_replace(array('\\', "\0", "\n", "\r", "'", '"', "\x1a"), array('\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z'), $inp); 
+        } 
+
+        return $inp; 
+    }
+}
+
+function globalXssClean()
+{
+    // Recursive cleaning for array [] inputs, not just strings.
+    $sanitized = arrayStripTags(Input::get());
+    Input::merge($sanitized);
+}
+ 
+function arrayStripTags($array)
+{
+    $result = array();
+ 
+    foreach ($array as $key => $value) {
+        // Don't allow tags on key either, maybe useful for dynamic forms.
+        $key = mysql_escape(htmlentities($key));
+ 
+        // If the value is an array, we will just recurse back into the
+        // function to keep stripping the tags out of the array,
+        // otherwise we will set the stripped value.
+        if (is_array($value)) {
+            $result[$key] = arrayStripTags($value);
+        } else {
+            // I am using strip_tags(), you may use htmlentities(),
+            // also I am doing trim() here, you may remove it, if you wish.
+            $result[$key] = trim(mysql_escape(htmlentities($value)));
+        }
+    }
+ 
+    return $result;
+}

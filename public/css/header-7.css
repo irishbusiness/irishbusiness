@@ -176,6 +176,7 @@ HEADER ELEMENTS STYLES
 	margin: 0;
 	text-align: center;
 	background-color: transparent;
+	float: right;
 }
 
 	.main-menu ul li {
