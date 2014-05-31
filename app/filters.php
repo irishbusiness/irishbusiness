@@ -26,6 +26,7 @@ if(Auth::user()->check())
 
 
 
+
 App::before(function($request)
 {
 	
