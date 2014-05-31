@@ -89,7 +89,7 @@
             <div class="comment-message">
                 <div id="page">
                     <center><h1>Edit Blog</h1></center>
-                    {{ Form::open(array('method' => 'put', 'route' => ['blog.update', $blog->id], 'files' => true)) }}
+                    {{ Form::open(array('method' => 'put', 'files' => true)) }}
                     <div>
                         {{ Form::label('title', "Title", ["class"=> "text-colorful"]) }}<br>
                         {{ Form::text('title', '', ['class' => 'text-input-grey', 'placeholder' => 'Title', 'id' => 'titleedit']) }}
