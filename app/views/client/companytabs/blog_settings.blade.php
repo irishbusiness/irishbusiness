@@ -52,7 +52,8 @@
                     </div>
                     {{ Form::textarea('content', '<h3>Description of the Blog<h3>', ['id' => 'redactor1']) }}
                     <br>
-                    <p><input id="addBlogButton" type="submit" value="Save" name="send" class="button-2-colorful"/></p>
+                    <p><input id="addBlogButton" type="submit" value="Save" name="send" class="button-2-colorful"/>
+                    <input id="cancel-add-blog" type="button" value="Cancel" class="button-2-colorful"></p>
                     {{ Form::close() }}
                 </div>
             </div>

@@ -1126,3 +1126,7 @@ $(document).ready(function(){
 	}
 
 });
+
+$('#cancel-add-blog').click(function(){
+	$('#addblog').fadeOut(500, 'linear');
+});
