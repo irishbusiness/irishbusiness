@@ -811,7 +811,7 @@ function socialaction(obj){
 }
 
 $(function(){
-    $("#footerlogo, #headerlogo, #btn-business-settings-logo").change(showPreview);
+    $("#footerlogo, #headerlogo, #btn-business-settings-logo, #btn-blog-settings-logo, #btn-editblog-settings-logo").change(showPreview);
 });
 
 $('.btn-add-blog').click(function(){
