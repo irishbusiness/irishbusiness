@@ -22,6 +22,8 @@ View::share('imgfooterlogo', $footerlogo);
 
 App::before(function($request)
 {
+	
+	globalXssClean();
 	//
 });
 
