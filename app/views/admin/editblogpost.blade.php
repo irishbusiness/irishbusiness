@@ -13,14 +13,14 @@
     <div class="comment-message">
         <div id="page">
             {{ Form::open(array('method' => 'put', 'route' => ['blog.update', $blog->id], 'files' => true)) }}
-            <div style="text-align:center;">
+            <div>
                 <br><br>
-                {{ Form::label('title', "Title", ["class"=> "text-colorful"]) }}<br>
-                {{ Form::text('title', $blog->title, ['class' => 'text-input-grey', 'placeholder' => 'Title']) }}
+                {{ Form::label('title', "Blog Title", ["class"=> "text-colorful"]) }}<br>
+                {{ Form::text('title', $blog->title, ['class' => 'text-input-grey', 'placeholder' => 'Blog Title']) }}
                 <br><br>
             </div>
 
-            <div style="text-align:center;">
+            <div>
                 {{ Form::label('blogheader', "Blog Header", ["class"=> "text-colorful"]) }}<br>
 
                 <div class="blog-post block">
@@ -31,7 +31,7 @@
                 {{ Form::file('blogheaderimage') }}
                 <br><br>
             </div>
-            {{ Form::textarea('content', $blog->body, ['id' => 'redactor']) }}
+            {{ Form::textarea('content', html_entity_decode(stripcslashes($blog->body)), ['id' => 'redactor']) }}
             <br>
             <p><input type="submit" value="Save" name="save" class="button-2-colorful"/>
             {{ Form::close() }}

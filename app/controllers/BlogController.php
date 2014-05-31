@@ -2,6 +2,9 @@
 
 class BlogController extends \BaseController {
 
+    public function __contruct() {
+
+    }
     public function show($id)
     {
         $blog = Blog::find($id);
@@ -24,7 +27,7 @@ class BlogController extends \BaseController {
 
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::orderBy('created_at', 'desc')->get();
         return View::make('client.bloglist', compact('blogs'));
     }
 
@@ -37,14 +40,16 @@ class BlogController extends \BaseController {
     {
         // files storage folder
         $dir = public_path().'/images/blog/';
-        $author =   'Static Author';
-        $business_id    =  1;
 
         $blog = new Blog;
         $blog->title = Input::get('title');
         $blog->body = Input::get('content');
-        $blog->business_id  =   $business_id;
-        $blog->author  =   $author;
+        $blog->facebook = Input::get('facebook');
+        $blog->google = Input::get('google');
+        $blog->twitter = Input::get('twitter');
+        $blog->linkedin = Input::get('linkedin');
+        // $blog->business_id  =   Auth::user()->user()->business->id;
+        $blog->business_id = 2;
 
         //check if the file isset
         if( Input::hasFile('blogheaderimage'))
@@ -80,14 +85,16 @@ class BlogController extends \BaseController {
         // files storage folder
         $dir = public_path().'/images/blog/';
         $image = Input::file('blogheaderimage');
-        $author =   'Static Author';
-        $business_id    =  1;
 
         $blog = Blog::findOrFail($id);
         $blog->title = Input::get('title');
         $blog->body = Input::get('content');
-        $blog->business_id  =   $business_id;
-        $blog->author  =   $author;
+        $blog->facebook = Input::get('facebook');
+        $blog->google = Input::get('google');
+        $blog->twitter = Input::get('twitter');
+        $blog->linkedin = Input::get('linkedin');
+        // $blog->business_id  =   Auth::user()->user()->business->id;
+        $blog->business_id = 2;
 
         //check if the file isset
         if( Input::hasFile('blogheaderimage'))
@@ -103,7 +110,8 @@ class BlogController extends \BaseController {
                 || $image->getMimeType() == 'image/pjpeg')
             {
                 $image->move($dir, $filename);
-                unlink(public_path().'/'.$blog->blogheaderimage);
+                // unlink(public_path().'/'.$blog->blogheaderimage);
+
                 $blog->blogheaderimage  =   'images/blog/'.$imagename;
             } else {
                 $blog->blogheaderimage  =   'images/blog/'.$imagename;
@@ -115,5 +123,14 @@ class BlogController extends \BaseController {
 
 //        return stripslashes(Input::get('content'));
         return Redirect::to('/blog/'.$blog->id);
+    }
+
+    public function yeah(){
+        if(Request::ajax())
+        {
+          $id = Input::get('id');
+          $blog =   Blog::findOrFail($id);
+          return $blog;
+        }
     }
 }

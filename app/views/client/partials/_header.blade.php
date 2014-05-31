@@ -4,6 +4,7 @@
     	$imgheaderlogo->headerlogo = 'default.png';
     }
     ?>
+
     <header class="section header-2 boxed">
 
     	<div class="header-top-wrapper">

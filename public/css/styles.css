@@ -489,7 +489,7 @@ ul.list-check {
 	line-height: 30px;
 	height: 30px;
 	color: #999999;
-	padding: 0 9%;
+	padding: 0 3%;
 	border: none;
 	border-radius: 20px;
 	box-shadow: 0 0 5px #bababa inset;
@@ -1109,7 +1109,7 @@ ul.list-check {
 		display: inline-block;
 		width: 13px;
 		height: 12px;
-		background: url(../images/star-grey.png) no-repeat center center;
+		background: url(../images/star_grey.png) no-repeat center center;
 	}
 
 	.rating-stars.interactive .star {
@@ -1124,7 +1124,7 @@ ul.list-check {
 	.rating-stars.rated .star.current + .star + .star,
 	.rating-stars.rated .star.current + .star + .star + .star,
 	.rating-stars.rated .star.current + .star + .star + .star + .star{
-		background: url(../images/star-grey.png) no-repeat center center;
+		background: url(../images/star_grey.png) no-repeat center center;
 	}
 
 /************************
@@ -1215,6 +1215,7 @@ section.content {
 
 .company-tabs-content {
 	display: none;
+	padding: 40px;
 }
 
 #company-tabs-page {
@@ -4361,3 +4362,19 @@ div.company-page-map div.company-page-map-container {
 	padding-left: 10px;
 	margin-right: 20px;
 }
+
+.render-blogheader-logo-preview {
+	max-width: none;
+	margin-top: 20px;
+}
+
+.render-blogheader-logo-preview img {
+	max-width: 90%;
+}
+
+.a-btn {
+	padding: 6px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+

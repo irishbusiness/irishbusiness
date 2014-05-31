@@ -8,7 +8,10 @@ class BlogsTableSeeder extends Seeder {
             'title' =>  'Zemiel Title',
             'blogheaderimage'   => 'images/blog/COMING-SOON.jpg',
             'body'    =>  '<h1>Sample Title</h1><p>Sample Body</p>',
-            'author'     =>  'zemiel',
+            'facebook' => 'http://facebook.com/parokniedgar',
+            'google' => 'http://google.com/parokniedgar',
+            'twitter' => 'http://twitter.com/parokniedgar',
+            'linkedin' => 'http://linkedin.com/parokniedgar',
             'business_id'  =>  Business::first()->id,
         ]);
     }

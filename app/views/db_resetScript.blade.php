@@ -10,5 +10,4 @@ $mysqli->query('create database irishbusiness');
 system('php artisan migrate');
 system('php artisan db:seed');
 
-
 ?>
