@@ -48,7 +48,6 @@ if ( !function_exists('mysql_escape'))
 
 function globalXssClean()
 {
-	/*dd(mysql_escape("'"));*/
     // Recursive cleaning for array [] inputs, not just strings.
     $sanitized = arrayStripTags(Input::get());
     Input::merge($sanitized);
