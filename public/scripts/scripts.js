@@ -24,7 +24,7 @@ Equal Heights function.
 			}
 			currentBlock = currentBlock + 1;
 		}
-		// Equalizing heights of columns.
+		// // Equalizing heights of columns.
 		// if (jQuery('body').width() > browserWidth - scrollbar) {
 		// 	jQuery(this).children().css('min-height', equalHeight + additionalHeight);
 		// } else {
@@ -899,5 +899,37 @@ jQuery(function() {
 	        )
 	    return false;
 	    });
+	});
+});
+
+// js for stars rating
+
+$(document).ready(function(){
+	$("div.rating-stars.star").click(function(){
+		var x = $(this).attr("data-rated");
+		console.log(x);
+		if(x=="false"){
+			$(this).attr("data-rated", "true");
+			$(this).attr("class", "rating-stars star rated");
+			$(this).prev(".rating-stars.star").each(function(){
+				$(this).attr("data-rated", "true");
+				$(this).attr("class", "rating-stars star rated");
+			})
+			$(this).next(".rating-stars.star").each(function(){
+				$(this).attr("data-rated", "false");
+				$(this).attr("class", "rating-stars star");
+			})
+		}else{
+			$(this).attr("data-rated", "false");
+			$(this).attr("class", "rating-stars star");
+			$(this).prev(".rating-stars.star").each(function(){
+				$(this).attr("data-rated", "true");
+				$(this).attr("class", "rating-stars star rated");
+			})
+			$(this).next(".rating-stars.star").each(function(){
+				$(this).attr("data-rated", "false");
+				$(this).attr("class", "rating-stars star");
+			})
+		}
 	});
 });

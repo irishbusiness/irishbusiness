@@ -4378,3 +4378,36 @@ div.company-page-map div.company-page-map-container {
 	padding-right: 15px;
 }
 
+.rating-stars.star {
+	display: inline-block;
+	height: 12px;
+	width: 13px;
+	background-repeat: no-repeat;
+	background: url(../images/star_grey.png );
+	cursor: pointer;
+}
+
+.rating-stars.star:hover {
+	background: url(../images/star_yellow.png );
+}
+
+.rating-stars.star.rated {
+	background: url(../images/star_yellow.png );
+}
+
+#company-page-map {
+	overflow: hidden;
+}
+
+.sidebar-container .contact-details {
+	margin: 0 5px 20px;
+}
+
+.rating-details {
+	float: left;
+	width: 50%;
+}
+
+td.detail {
+	word-break: break-word;
+}
