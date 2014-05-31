@@ -133,6 +133,8 @@ Route::get('admin_manage_categories', 'CategoriesController@index');
 Route::post('categoryAjax', 'CategoriesController@add');
 Route::put('socialmediaAjax', 'SocialMediaController@update');
 Route::get('blogAjax', 'BlogController@yeah');
+Route::post('addBlogAjax', 'BlogController@addBlogAjax');
+Route::delete('deleteBlogAjax', 'BlogController@deleteBlogAjax');
 
 Route::get('clear',function(){
 	Auth::user()->logout();

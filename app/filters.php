@@ -20,7 +20,7 @@ View::share('imgfooterlogo', $footerlogo);
 
 if(Auth::user()->check())
 {
-    $blogs = Blog::where('business_id', '=', Auth::user()->user()->business->id)->get();
+    $blogs = Blog::where('business_id', '=', Auth::user()->user()->business->id)->orderBy('created_at', 'desc')->get();
     View::share('blogs', $blogs);
 }
 

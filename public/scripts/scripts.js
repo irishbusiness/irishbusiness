@@ -821,14 +821,57 @@ $('.btn-add-blog').click(function(){
 
 $('.btn-delete-blog').click(function(){
       var id = $(this).attr('data-id');
+      var str = $.trim(generateString(20));
     $.ajax({
-        url: "/blog/"+id,
+        url: 'deleteBlogAjax',
         type: "DELETE",
-        data: { id: id }
+        data: { id: id },
+		dataType 	: 'json',
+		encode      : true
     }).done(function(data){
+    	if(data.status == 'deleted') {
 
+    		$("tr[data-id='"+id+"']").fadeOut(function(){
+				$(this).remove();
+			});
+
+    		$("tr[data-id='"+id+"']").append('<td><center><span class="alert alert-success" id="'+str+'" style="color:green">A Blog Post has been deleted</span></center><br></td>');
+				$("#"+str).fadeOut(2000, "linear", function(){
+                	$(this).remove();
+        		});	
+    	
+    	} else {
+    		$('#addblog').prepend('<center><span class="alert alert-error" id="'+str+'" style="font-size:20px;color:red">We are having a problem saving your blog</span></center><br>');
+    	}
     });
 });
+
+function deleteBlog(obj) {
+	var id = obj.attr('data-id');
+      var str = $.trim(generateString(20));
+    $.ajax({
+        url: 'deleteBlogAjax',
+        type: "DELETE",
+        data: { id: id },
+		dataType 	: 'json',
+		encode      : true
+    }).done(function(data){
+    	if(data.status == 'deleted') {
+
+    		$("tr[data-id='"+id+"']").fadeOut(function(){
+				obj.remove();
+			});
+
+    		$("tr[data-id='"+id+"']").append('<td><center><span class="alert alert-success" id="'+str+'" style="color:green">A Blog Post has been deleted</span></center><br></td>');
+				$("#"+str).fadeOut(2000, "linear", function(){
+                	obj.remove();
+        		});	
+    	
+    	} else {
+    		$('#addblog').prepend('<center><span class="alert alert-error" id="'+str+'" style="font-size:20px;color:red">We are having a problem saving your blog</span></center><br>');
+    	}
+	});
+}
 
 function editBlog(obj) {
     var id = obj.attr("data-id");
@@ -900,4 +943,81 @@ jQuery(function() {
 	    return false;
 	    });
 	});
+});
+
+$(document).ready(function() {
+
+	// process the form
+	$('#addBlogForm').submit(function(event) {
+
+          var formData = new FormData($('#addBlogForm')[0]);
+          var token = $('#addBlogForm > input[name="_token"]').val();
+          formData.append('_token',token);
+          var str = $.trim(generateString(20));
+
+               $.ajax({
+                      url: '/addBlogAjax',  //Server script to process data
+                      type: 'POST',
+                      xhr: function() {  // Custom XMLHttpRequest
+                          var myXhr = $.ajaxSettings.xhr();
+                          if(myXhr.upload){ // Check if upload property exists
+                              myXhr.upload.addEventListener('progress',progressHandler, false); // For handling the progress of the upload
+                          }
+                          return myXhr;
+                      },
+                      //Ajax events
+                      // beforeSend: beforeSendHandler,
+                      success: completeHandler,
+                      //error: errorHandler,
+
+                      // Form data
+                      data: formData,
+                      
+                      //Options to tell jQuery not to process data or worry about content-type.
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      dataType 	: 'json', // what type of data do we expect back from the server
+                  		encode	: true
+                  });
+            
+          return false;
+
+          function beforeSendHandler()
+          {
+            $('#addblog').fadeOut(500, 'linear');
+          }
+         
+          function progressHandler(e){
+              if(e.lengthComputable){
+                 $('.meter').width(Math.floor(e.loaded/e.total*100) + '%');
+              }
+          }  
+
+          function completeHandler(e)
+          {
+             alert('complete');
+             if(e.status == 'saved'){
+
+				$('#addblog').prepend('<center><span class="alert alert-success" id="'+str+'" style="font-size:20px;color:green">New Blog Post has been added</span></center><br>');
+				$("#"+str).fadeOut(2000, "linear", function(){
+                	$(this).remove();
+        		});	
+
+        		$("#table-categories tbody").prepend('<tr data-id="'+e.id+'"><td><span class="category-name">'+e.title+'</span></td><td><a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="editBlog($(this))" data-id="'+e.id+'">Edit</a> <a href="javascript:void(0)" data-id="'+e.id+'" onclick="deleteBlog($(this))" class="bs-btn btn-danger btn-delete-blog" data-id="'+e.id+'">Delete</a></td></tr>');
+
+        		$('#addTitle').val('');
+				$('#addFacebook').val('');
+				$('#addGoogle').val('');
+				$('#addTwitter').val('');
+				$('#addLinkedin').val('');
+				$('#img-render-blogheaderimage').attr('src', '');
+				$('#btn-blog-settings-logo').val('');
+
+			} else {
+				$('#addblog').prepend('<center><span class="alert alert-error" id="'+str+'" style="font-size:20px;color:red">We are having a problem saving your blog</span></center><br>');
+			}
+          }   
+	});
+
 });
