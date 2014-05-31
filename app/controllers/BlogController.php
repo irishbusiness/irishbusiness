@@ -2,6 +2,9 @@
 
 class BlogController extends \BaseController {
 
+    public function __contruct() {
+
+    }
     public function show($id)
     {
         $blog = Blog::find($id);
@@ -108,6 +111,7 @@ class BlogController extends \BaseController {
             {
                 $image->move($dir, $filename);
                 // unlink(public_path().'/'.$blog->blogheaderimage);
+
                 $blog->blogheaderimage  =   'images/blog/'.$imagename;
             } else {
                 $blog->blogheaderimage  =   'images/blog/'.$imagename;

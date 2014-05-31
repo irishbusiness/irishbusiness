@@ -15,8 +15,8 @@
             {{ Form::open(array('method' => 'put', 'route' => ['blog.update', $blog->id], 'files' => true)) }}
             <div>
                 <br><br>
-                {{ Form::label('title', "Title", ["class"=> "text-colorful"]) }}<br>
-                {{ Form::text('title', $blog->title, ['class' => 'text-input-grey', 'placeholder' => 'Title']) }}
+                {{ Form::label('title', "Blog Title", ["class"=> "text-colorful"]) }}<br>
+                {{ Form::text('title', $blog->title, ['class' => 'text-input-grey', 'placeholder' => 'Blog Title']) }}
                 <br><br>
             </div>
 

@@ -15,8 +15,8 @@
                 {{ Form::open(array('method' => 'post', 'action' => 'BlogController@store', 'files' => true)) }}
                 <div style="text-align:center;">
                 <br><br>
-                {{ Form::label('title', "Title", ["class"=> "text-colorful"]) }}<br>
-                {{ Form::text('title', '', ['class' => 'text-input-grey', 'placeholder' => 'Title']) }}
+                {{ Form::label('title', "Blog Title", ["class"=> "text-colorful"]) }}<br>
+                {{ Form::text('title', '', ['class' => 'text-input-grey', 'placeholder' => 'Blog Title']) }}
                 <br><br>
                 </div>
 
