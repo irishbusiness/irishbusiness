@@ -36,6 +36,29 @@
                             }
                         }
                     });
+
+                    $('#redactor1').redactor({
+                    focus: true,
+                    buttons: buttons,
+                    buttonsCustom: {
+                        button1: {
+                            title: 'Button',
+                            callback: testButton
+                        }
+                    }
+                });
+
+                $('#redactor2').redactor({
+                focus: true,
+                buttons: buttons,
+                buttonsCustom: {
+                    button1: {
+                        title: 'Button',
+                        callback: testButton
+                    }
+                }
+            });
+
                 }
             );
         </script>
@@ -60,7 +83,7 @@
 			<div class="zone-content equalize zone clearfix">
 
 			<!-- actual body content -->
-                @if(Request::is('/settings*'))
+                @if(Request::is('settings*'))
                 <div class="content-container container-24">
                     <div class="company-tabs-wrapper">
                         <div class="zone-company-tabs zone clearfix">
@@ -71,6 +94,9 @@
                                     </li>
                                     <li class="">
                                         <a class="company-tabs-custom" href="#">COUPON</a>
+                                    </li>
+                                    <li class="">
+                                        <a class="company-tabs-blog" href="#">BLOG</a>
                                     </li>
                                 </ul>
                             </div>

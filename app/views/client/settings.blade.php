@@ -4,6 +4,9 @@
         <!-- general settings tab -->
             @include('client.companytabs.business_settings')
 
+        <!-- blog_settings tab -->
+            @include('client.companytabs.blog_settings')
+
         <!-- reviews tab -->
             @include('client.companytabs.reviews') <!-- this is temporarily the coupon tab -->
 @stop

@@ -132,6 +132,7 @@ Route::post('editSubscription', 'SubscriptionController@edit');
 Route::get('admin_manage_categories', 'CategoriesController@index');
 Route::post('categoryAjax', 'CategoriesController@add');
 Route::put('socialmediaAjax', 'SocialMediaController@update');
+Route::get('blogAjax', 'BlogController@yeah');
 
 Route::get('clear',function(){
 	Auth::user()->logout();
@@ -184,4 +185,3 @@ Route::post('test',function(){
 Route::get('resetMigration', function(){
     return View::make('db_resetScript');
 });
-

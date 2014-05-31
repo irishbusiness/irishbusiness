@@ -814,6 +814,61 @@ $(function(){
     $("#footerlogo, #headerlogo, #btn-business-settings-logo").change(showPreview);
 });
 
+$('.btn-add-blog').click(function(){
+    $('#addblog').css('display', 'block');
+    $('#editblog').css('display', 'none');
+});
+
+$('.btn-delete-blog').click(function(){
+      var id = $(this).attr('data-id');
+    $.ajax({
+        url: "/blog/"+id,
+        type: "DELETE",
+        data: { id: id }
+    }).done(function(data){
+
+    });
+});
+
+function editBlog(obj) {
+    var id = obj.attr("data-id");
+    $.ajax({
+        url: "/blogAjax",
+        type: "get",
+        data: { id: id },
+        beforeSend: function(){
+            console.log(id);
+        }
+    }).done(function(data){
+        $('#editblog').css('display', 'block');
+        $('#addblog').css('display', 'none');
+        $('#titleedit').val(data['title']);
+        $('#facebookedit').val(data['facebook']);
+        $('#googleedit').val(data['google']);
+        $('#twitteredit').val(data['twitter']);
+        $('#linkedinedit').val(data['linkedin']);
+
+        $(document).ready(
+            function()
+            {
+                $('#redactorplaceholder').html('<textarea id="redactor2" name="content">'+ data['body'] +'</textarea>');
+                var buttons = ['formatting', '|', 'bold', 'italic', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', '|', 'image', 'video', 'file', 'link', '|', 'horizontalrule'];
+                $('#redactor2').redactor({
+                    focus: true,
+                    buttons: buttons,
+                    buttonsCustom: {
+                        button1: {
+                            title: 'Button',
+                            callback: testButton
+                        }
+                    }
+                });
+            });
+
+                console.log(data['body']);
+    });
+}
+
 jQuery(function() {
 	var $homeurl = jQuery('#get_homeurl').data('homeurl');
 	var $divlist = jQuery('#events_list');

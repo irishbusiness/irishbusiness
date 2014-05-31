@@ -7,4 +7,9 @@ class Business extends \Eloquent {
 	{
 		return $this->belongsToMany('Category')->withTimestamps();;
 	}
+
+    public function user()
+    {
+        return $this->belongsTo('user');
+    }
 }
