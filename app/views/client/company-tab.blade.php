@@ -12,8 +12,11 @@
 	                <li class="">
 	                    <a class="company-tabs-coupon" href="#">COUPON</a>
 	                </li>
-	                 <li class="">
+	                <li class="">
 	                    <a class="company-tabs-blog" href="#">BLOG</a>
+	                </li>
+	                <li class="">
+	                    <a class="company-tabs-review" href="#">REVIEWS</a>
 	                </li>
 	            </ul>
 	        </div>
@@ -29,6 +32,7 @@
 			@include('client.tabcontents.tabcontent-company')
 			@include('client.tabcontents.tabcontent-coupon')
 			@include('client.tabcontents.tabcontent-blog')
+			@include('client.tabcontents.tabcontent-review')
 		</div>
 		<!-- end of .company-inner-container -->
 	</div>

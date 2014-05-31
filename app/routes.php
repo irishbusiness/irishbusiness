@@ -94,6 +94,7 @@ Route::get('search', 'BusinessesController@search');
 Route::get('listings','BusinessesController@index');
 // Route::get('company-tab', 'BusinessesController@companytab');
 Route::get('company', 'BusinessesController@companytab');
+Route::post('company', 'ReviewsController@store');
 
 Route::get('register', 'UsersController@create');
 Route::post('register', 'UsersController@store');

@@ -32,9 +32,5 @@
 								@else
 
 								@endif
-								<div class="older-posts">
-									<input type="submit" class="button-2-colorful" value="Older Entries" />
-								</div>
 							</div>
-						</div>	
-					</div><!-- end of .content-container -->
+						</div>
