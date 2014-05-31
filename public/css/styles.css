@@ -4361,3 +4361,12 @@ div.company-page-map div.company-page-map-container {
 	padding-left: 10px;
 	margin-right: 20px;
 }
+
+.render-blogheader-logo-preview {
+	max-width: none;
+	margin-top: 20px;
+}
+
+.render-blogheader-logo-preview img {
+	max-width: 90%;
+}

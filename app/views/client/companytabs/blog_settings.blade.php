@@ -45,7 +45,10 @@
 
                     <div>
                         {{ Form::label('blogheader', "Blog Header", ["class"=> "text-colorful"]) }}
-                        {{ Form::file('blogheaderimage') }}
+                        {{ Form::file('blogheaderimage', ["id"=>"btn-blog-settings-logo"]) }}
+                        <div class="render-blogheader-logo-preview">
+                            <img src="" id="img-render-blogheaderimage">
+                        </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('facebook', "Facebook",
@@ -98,7 +101,10 @@
 
                     <div>
                         {{ Form::label('blogheader', "Blog Header", ["class"=> "text-colorful"]) }}
-                        {{ Form::file('blogheaderimage') }}
+                        {{ Form::file('blogheaderimage', ["id"=>"btn-editblog-settings-logo"]) }}
+                        <div class="render-blogheader-logo-preview">
+                            <img src="" id="img-render-blogheaderimage">
+                        </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('facebook', "Facebook",
