@@ -18,6 +18,12 @@ $footerlogo = MainSetting::select('footerlogo')->orderBy('created_at', 'desc')->
 View::share('imgheaderlogo', $headerlogo);
 View::share('imgfooterlogo', $footerlogo);
 
+if(Auth::user()->check())
+{
+    $blogs = Blog::where('business_id', '=', Auth::user()->user()->business->id)->get();
+    View::share('blogs', $blogs);
+}
+
 
 
 App::before(function($request)

@@ -37,14 +37,15 @@ class BlogController extends \BaseController {
     {
         // files storage folder
         $dir = public_path().'/images/blog/';
-        $author =   'Static Author';
-        $business_id    =  1;
 
         $blog = new Blog;
         $blog->title = Input::get('title');
         $blog->body = Input::get('content');
-        $blog->business_id  =   $business_id;
-        $blog->author  =   $author;
+        $blog->facebook = Input::get('facebook');
+        $blog->google = Input::get('google');
+        $blog->twitter = Input::get('twitter');
+        $blog->linkedin = Input::get('linkedin');
+        $blog->business_id  =   Auth::user()->user()->business->id;
 
         //check if the file isset
         if( Input::hasFile('blogheaderimage'))
@@ -80,14 +81,15 @@ class BlogController extends \BaseController {
         // files storage folder
         $dir = public_path().'/images/blog/';
         $image = Input::file('blogheaderimage');
-        $author =   'Static Author';
-        $business_id    =  1;
 
         $blog = Blog::findOrFail($id);
         $blog->title = Input::get('title');
         $blog->body = Input::get('content');
-        $blog->business_id  =   $business_id;
-        $blog->author  =   $author;
+        $blog->facebook = Input::get('facebook');
+        $blog->google = Input::get('google');
+        $blog->twitter = Input::get('twitter');
+        $blog->linkedin = Input::get('linkedin');
+        $blog->business_id  =   Auth::user()->user()->business->id;
 
         //check if the file isset
         if( Input::hasFile('blogheaderimage'))
@@ -115,5 +117,14 @@ class BlogController extends \BaseController {
 
 //        return stripslashes(Input::get('content'));
         return Redirect::to('/blog/'.$blog->id);
+    }
+
+    public function yeah(){
+        if(Request::ajax())
+        {
+          $id = Input::get('id');
+          $blog =   Blog::findOrFail($id);
+          return $blog;
+        }
     }
 }

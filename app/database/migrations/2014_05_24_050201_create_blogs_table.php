@@ -17,7 +17,10 @@ class CreateBlogsTable extends Migration {
 			$table->string('title');
 			$table->string('blogheaderimage');
 			$table->string('body');
-			$table->string('author');
+            $table->string('facebook');
+            $table->string('google');
+            $table->string('twitter');
+            $table->string('linkedin');
 			$table->integer('business_id')->unsigned()->index();
             $table->foreign('business_id')->references('id')->on('businesses')->onUpdate('cascade')->onDelete('cascade');
 			$table->timestamps();
