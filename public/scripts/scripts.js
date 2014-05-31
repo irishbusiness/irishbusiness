@@ -505,7 +505,7 @@ $(document).ready(function() {
 			type: "post",
 			data: { sid: id, op: operation},
 			beforeSend: function(){
-				console.log(category);
+				// console.log(category);
 			}
 			}).done(function(data){
 				if( operation == "delete" ){
