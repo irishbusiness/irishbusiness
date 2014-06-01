@@ -32,8 +32,8 @@ class ReviewsController extends \BaseController {
 	 */
 	public function store()
 	{	
-		$user_id = 3;
-		$business_id = 2;
+		$user_id = 1;
+		$business_id = 1;
 		$name = Input::get("rating-name");
 		$rating = Input::get("rating");
 		$description = Input::get("rating-description");
