@@ -15,16 +15,21 @@
 View::share('selected', '');
 $headerlogo = MainSetting::select('headerlogo')->orderBy('created_at', 'desc')->first();
 $footerlogo = MainSetting::select('footerlogo')->orderBy('created_at', 'desc')->first();
+$recentlyaddedcompany = Business::orderBy('created_at', 'desc')->limit(3)->get();
+$recentlyaddedblog	=	Blog::orderBy('created_at', 'desc')->limit(3)->get();
 
 View::share('imgheaderlogo', $headerlogo);
 View::share('imgfooterlogo', $footerlogo);
-/*
+View::share('recentlyaddedcompany', $recentlyaddedcompany);
+View::share('recentlyaddedblog', $recentlyaddedblog);
+
+
 if(Auth::user()->check())
 {
     $blogs = Blog::where('business_id', '=', Auth::user()->user()->business->id)->orderBy('created_at', 'desc')->get();
     View::share('blogs', $blogs);
 }
-*/
+
 
 
 

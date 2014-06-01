@@ -16,7 +16,7 @@
 								<tr class="detail">
 									<td class="detail-label"> Name </td>
 									<td class="detail">
-										{{ $businessinfo->name }}
+										{{ html_entity_decode(stripcslashes($businessinfo->name)) }}
 									</td>
 								</tr>
 								<tr class="detail">
@@ -85,7 +85,7 @@
 				<!-- end of .company-sidebar-container -->
 				<div class="company-content-container container-16 margin-18">
 					<div class="company-tabs-single-company block">
-						<h1>{{ $businessinfo->name }}</h1>
+						<h1>{{ html_entity_decode(stripcslashes($businessinfo->name)) }}</h1>
 						<div class="company-info clearfix">
 							<div class="company-info-social">
 								<div class="compnay-photo">

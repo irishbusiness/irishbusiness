@@ -83,7 +83,7 @@
 			<div class="zone-content equalize zone clearfix">
 
 			<!-- actual body content -->
-                @if(Request::is('settings*'))
+                @if(Request::is('settings*') || Request::is('company*'))
                 <div class="content-container container-24">
                     <div class="company-tabs-wrapper">
                         <div class="zone-company-tabs zone clearfix">
@@ -93,11 +93,18 @@
                                         <a class="company-tabs-page" href="#">COMPANY</a>
                                     </li>
                                     <li class="">
-                                        <a class="company-tabs-custom" href="#">COUPON</a>
+                                        <a class="company-tabs-coupon" href="#">COUPON</a>
                                     </li>
                                     <li class="">
                                         <a class="company-tabs-blog" href="#">BLOG</a>
                                     </li>
+                                    @if(Request::is('company*'))
+                                        @if(count($reviews))
+                                        <li class="">
+                                            <a class="company-tabs-review" href="#">REVIEWS</a>
+                                        </li>
+                                        @endif
+                                    @endif
                                 </ul>
                             </div>
                             <!-- end of .company-tabs-container -->

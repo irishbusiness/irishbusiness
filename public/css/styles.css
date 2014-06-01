@@ -4410,7 +4410,7 @@ div.company-page-map div.company-page-map-container {
 }
 
 td.detail {
-	word-break: break-word;
+	word-wrap: break-word;
 }
 
 
@@ -4423,7 +4423,7 @@ td.detail {
 	margin-top: 5px;
 	width: 70%;
 	padding-left: 12px;
-
+}	
 .cat-input-text.half {
 	width: 50%;
 }

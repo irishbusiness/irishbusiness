@@ -115,7 +115,10 @@ class BusinessesController extends \BaseController {
 		$business->twitter  =   Input::get('twitter');
 		$business->google  =   Input::get('google');
         // $business->user_id = Auth::user()->get()->id;
-        $business->user_id = 3;
+        $business->user_id = 1;
+
+
+        $business->slug = Input::get('businessurl');
 
         // logo
         if( Input::hasFile('logo'))
@@ -161,10 +164,21 @@ class BusinessesController extends \BaseController {
 	}
 
 	public function companytab(){
-		$id = 2;
-		$blog_id = 2;
+		$id = 1;
+		$blog_id = 1;
 		$reviews = Review::orderBy("created_at", "desc")->get();
 		$businessinfo = Business::findOrFail($id)->first();
+		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
+		// $businessinfo = Business::all();
+		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
+			->with('reviews', $reviews);
+	}
+
+	public function companytab2($name){
+		$id = 1;
+		$blog_id = 1;
+		$reviews = Review::orderBy("created_at", "desc")->get();
+		$businessinfo = Business::whereSlug($name)->first();
 		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
 		// $businessinfo = Business::all();
 		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
