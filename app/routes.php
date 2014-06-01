@@ -183,3 +183,7 @@ Route::get('try',function(){
 	return dd(is_null(User::with('subscription')->find(1)->first()->subscription->first()));
 	
 });
+
+// Route::get('notfound', function(){
+// 	return Response::view('', [], '');
+// });
