@@ -6,12 +6,13 @@
 
 @section('actual-body-content')
 	<form action="" method="POST">
+  <input type="hidden" name="subscription" value="{{$subscription->id}}" />
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_F0bkFgh1SfZrRcMKfBfFpuqN"
     data-amount="2000"
     data-name="IrishBusiness.ie"
-    data-description="Silver Package"
+    data-description="{{$subscription->name}}"
     data-image="/128x128.png">
   </script>
 </form>

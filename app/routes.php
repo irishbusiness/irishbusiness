@@ -163,33 +163,10 @@ Route::get('/password/reset/{type}/{token}','ClientPasswordController@reset');
 Route::post('/password/reset/{type}/{token}','ClientPasswordController@saveReset');
 
 
-Route::get('test',function(){
+Route::get('buy', 'PaymentsController@index');
+Route::post('buy','PaymentsController@store');
 
-	return View::make('client.buy');
-});
-Route::post('test',function(){
 
-	
-	Stripe::setApiKey(Config::get('stripe.secret_key'));
-
-	// Get the credit card details submitted by the form
-	$token = $_POST['stripeToken'];
-
-	// Create the charge on Stripe's servers - this will charge the user's card
-	try {
-	$charge = Stripe_Charge::create(array(
-	  "amount" => 1000, // amount in cents, again
-	  "currency" => "eur",
-	  "card" => $token,
-	  "description" => "payinguser@example.com")
-	);
-	} catch(Stripe_CardError $e) {
-	  // The card has been declined
-		var_dump($e);
-	}
-
-	return 'Thank you for your purchasing our services.';
-});
 
 Route::get('resetMigration', function(){
     return View::make('db_resetScript');
@@ -200,3 +177,9 @@ Route::get('sales', 'salespersonsController@index');
 Route::get('sales/invite','salespersonsController@invite');
 
 Route::post('sales/invite','salespersonsController@store');
+
+Route::get('try',function(){
+	
+	return dd(is_null(User::with('subscription')->find(1)->first()->subscription->first()));
+	
+});

@@ -3,9 +3,15 @@
 use SalesPerson;
 use Hash;
 use Auth;
-use Redirect;
-use Commission;
-class SalesRepository {
+use Subscription;
+
+
+class PaymentsRepository {
+
+	public function getSubscription($id)
+	{
+		return Subscription::find($id);
+	}
 
 	public function create($input)
 	{

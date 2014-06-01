@@ -14,7 +14,7 @@ class SalesPersonsController extends \BaseController {
 	{
 		$this->inviteForm = $inviteForm;
 		$this->salesperson = $salesperson;
-		/*Event::listen('user.signup','IrishBusiness\Mailers\ClientMailer@confirm');*/
+		Event::listen('salesperson.invite','IrishBusiness\Mailers\SalesPersonMailer@invite');
 	}
 
 	function index()
@@ -50,7 +50,7 @@ class SalesPersonsController extends \BaseController {
 
 			$user = $this->salesperson->create(Input::all());
 			
-			/*Event::fire('user.signup',[$user]);*/
+			Event::fire('salesperson.invite',[$user]);
 
 			return Redirect::to('sales')->withFlashMessage('Thank you for registering ' . ucwords(Input::get('firstname')) .'! You have been logged in.')
 			->with('title','IrishBusiness.ie | Settings');

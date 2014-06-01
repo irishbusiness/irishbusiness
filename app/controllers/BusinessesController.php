@@ -10,6 +10,7 @@ class BusinessesController extends \BaseController {
 	{
 		
 		$this->category = $category;
+		$this->beforeFilter('subscribed',['only' => ['sample']]);
 	}
 
 	public function index()

@@ -23,5 +23,10 @@ class Subscription extends \Eloquent {
 
 		$this->errors = $validation->messages();
 		return false;
+	}
+
+	public function user()
+	{
+		return $this->belongsToMany('User');
 	} 
 }
