@@ -138,6 +138,7 @@ Route::put('socialmediaAjax', 'SocialMediaController@update');
 Route::get('blogAjax', 'BlogController@yeah');
 Route::post('addBlogAjax', 'BlogController@addBlogAjax');
 Route::delete('deleteBlogAjax', 'BlogController@deleteBlogAjax');
+Route::post('updateBlogAjax','BlogController@updateBlogAjax');
 
 Route::get('clear',function(){
 	Auth::user()->logout();
