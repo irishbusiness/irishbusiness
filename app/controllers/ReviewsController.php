@@ -46,7 +46,7 @@ class ReviewsController extends \BaseController {
 		$review->user_id = $user_id;
 
 		if($review->save()){
-			return Redirect::to("/company")->with('message', "Your review has been submitted.");
+			return Redirect::to("/company#company-tabs-review")->with('message', "Your review has been submitted.");
 		}
 	}
 
