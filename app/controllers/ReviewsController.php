@@ -34,6 +34,8 @@ class ReviewsController extends \BaseController {
 	{	
 		$user_id = 1;
 		$business_id = 1;
+
+		$businessinfo = Business::findOrFail($business_id)->first();
 		$name = Input::get("rating-name");
 		$rating = Input::get("rating");
 		$description = Input::get("rating-description");
@@ -46,7 +48,7 @@ class ReviewsController extends \BaseController {
 		$review->user_id = $user_id;
 
 		if($review->save()){
-			return Redirect::to("/company#company-tabs-review")->with('message', "Your review has been submitted.");
+			return Redirect::to("/company/".$businessinfo->slug."/#company-tabs-review")->with('message', "Your review has been submitted.");
 		}
 	}
 
