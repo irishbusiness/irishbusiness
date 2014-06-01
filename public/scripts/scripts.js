@@ -886,9 +886,30 @@ if(confirm('Are you sure you want to delete this blog?')){
 
 function editBlog(obj) {
     var id = obj.attr("data-id");
-    $("tr[data-id='"+id+"']").fadeOut(function(){
-				obj.remove();
-	});
+    $("tr[data-id='"+id+"']").fadeOut();
+
+	console.log("last-click-id="+id);
+
+	console.log("cancel-btn="+$("#cancel-blog-edit").attr("data-id"));
+	console.log("display= "+$("#cancel-blog-edit").css("display"));
+	
+	if($("#cancel-blog-edit").css("display")=="inline-block"){
+
+		var tae = $("#cancel-blog-edit").attr("data-id");
+		$("tr[data-id='"+tae+"']").fadeIn(function(){
+					// obj.remove();
+		});
+	}
+
+	// if($('#cancel-blog-edit').is(':visible')){
+
+	// 	console.log("visible ko");
+	// 	var id2 = $(this).attr('data-id');
+	// 	var title = $(this).attr('data-title');
+	// 	$("tr[data-id='"+id2+"']").fadeIn();
+	// 	// $("#table-categories tbody").prepend('<tr data-id="'+id+'"><td><span class="category-name">'+title+'</span></td><td><a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="editBlog($(this))" data-id="'+id+'">Edit</a> <a href="javascript:void(0)" data-id="'+id+'" onclick="deleteBlog($(this))" class="bs-btn btn-danger btn-delete-blog" data-id="'+id+'">Delete</a></td></tr>');
+	// 	console.log(id + " "+ title);
+	// }
 
     $.ajax({
         url: "/blogAjax",
@@ -1180,7 +1201,13 @@ function cancelBlog() {
 $('#cancel-blog-edit').click(function(){
 	var id = $('#cancel-blog-edit').attr('data-id');
 	var title = $('#cancel-blog-edit').attr('data-title');
-	$("#table-categories tbody").prepend('<tr data-id="'+id+'"><td><span class="category-name">'+title+'</span></td><td><a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="editBlog($(this))" data-id="'+id+'">Edit</a> <a href="javascript:void(0)" data-id="'+id+'" onclick="deleteBlog($(this))" class="bs-btn btn-danger btn-delete-blog" data-id="'+id+'">Delete</a></td></tr>');
+	
+	if($("#cancel-blog-edit").css("display")=="inline-block"){
+		var id = $("#cancel-blog-edit").attr("data-id");
+		$("tr[data-id='"+id+"']").fadeIn(function(){
+					// obj.remove();
+		});
+	}
 });
 
 $(document).ready(function() {

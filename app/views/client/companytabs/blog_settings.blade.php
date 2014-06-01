@@ -27,10 +27,10 @@
             @if(isset($blogs) && !is_null($blogs))
             @foreach($blogs as $blog)
             <tr data-id="{{ $blog->id }}">
-                <td><a href="blog/{{ $blog->id }}"><span class="category-name">{{ $blog->title }}</span></a></td>
+                <td><a href="blog/{{ $blog->id }}"><span class="category-name">{{ stripcslashes($blog->title) }}</span></a></td>
                 <td>
                     <a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="editBlog($(this))" data-id="{{ $blog->id }}">Edit</a>
-                    <a href="javascript:void(0)" class="bs-btn btn-danger btn-delete-blog" data-id="{{ $blog->id }}">Delete</a>
+                    <a href="javascript:void(0)" class="bs-btn btn-danger btn-delete-blog" data-title="{{ stripcslashes($blog->title) }}" data-id="{{ $blog->id }}">Delete</a>
                 </td>
             </tr>
             @endforeach
