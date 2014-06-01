@@ -40,9 +40,9 @@ class PaymentsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$subscription = $this->payment->getSubscription(Input::get('subscription'));
-		$subscription = $this->payment->getSubscription(3);
-		if(is_null($subscription)) return App::abort(404);
+		$subscription = $this->payments->getSubscription(Input::get('subscription'));
+		$subscription = $this->payments->getSubscription(3);
+		if(is_null($subscription)) return Response::make("Page not found!", 404);
 		
 
 		$token = Input::get('stripeToken');
