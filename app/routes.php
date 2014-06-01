@@ -138,7 +138,7 @@ Route::post('commissionAjax', 'SettingsController@edit_commission');
 Route::get('admin_manage_categories', 'CategoriesController@index');
 Route::post('categoryAjax', 'CategoriesController@add');
 Route::put('socialmediaAjax', 'SocialMediaController@update');
-Route::get('blogAjax', 'BlogController@yeah');
+Route::get('blogAjax', 'BlogController@blogAjax');
 Route::post('addBlogAjax', 'BlogController@addBlogAjax');
 Route::delete('deleteBlogAjax', 'BlogController@deleteBlogAjax');
 Route::post('updateBlogAjax','BlogController@updateBlogAjax');

@@ -19,6 +19,7 @@ class BusinessesTableSeeder extends Seeder {
             'facebook'  =>  'http://facebook.com/zemiels-ihaw-ihaw',
             'twitter'   =>  'http://twitter.com/zemiels-ihaw-ihaw',
             'google'    =>  'http://google.com/zemiels-ihaw-ihaw',
+            'slug'      =>  'zemiels-ihaw-ihaw',
             'user_id'   =>  User::first()->id
         ]);
     }

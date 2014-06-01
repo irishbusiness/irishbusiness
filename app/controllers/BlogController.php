@@ -125,11 +125,12 @@ class BlogController extends \BaseController {
         return Redirect::to('/blog/'.$blog->id);
     }
 
-    public function yeah(){
+    public function blogAjax(){
         if(Request::ajax())
         {
           $id = Input::get('id');
           $blog =   Blog::findOrFail($id);
+          $blog->body = html_entity_decode(stripcslashes($blog->body));
           return $blog;
         }
     }
