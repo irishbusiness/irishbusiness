@@ -1049,11 +1049,37 @@ $(document).ready(function(){
 
 		for(var y=id; y>=1; y--){
 			$("div[data-star-id='"+y+"']").attr("class", "rating-stars star rated");
+			$("div[data-star-id='"+y+"']").attr("data-rated", "true");
+		}
+		var id2 = id+1;
+		for(var z = id2; z<=5; z++){
+			$("div[data-star-id='"+z+"']").attr("class", "rating-stars star");
+			$("div[data-star-id='"+z+"']").attr("data-rated", "false");
+		}
+	});
+
+	$("div.rating-stars.star").mouseenter(function(){
+		var x = $(this).attr("data-rated");
+
+		var id = parseInt($(this).attr("data-star-id"));
+
+		for(var y=id; y>=1; y--){
+			$("div[data-star-id='"+y+"']").attr("class", "rating-stars star rated");
 		}
 		var id2 = id+1;
 		for(var z = id2; z<=5; z++){
 			$("div[data-star-id='"+z+"']").attr("class", "rating-stars star");
 		}
+	});
+
+	$("div.rating-stars.star").mouseout(function(){
+		$("div.rating-stars.star[data-rated='false']").each(function(){
+			$(this).attr("class", "rating-stars star");
+		});
+
+		$("div.rating-stars.star[data-rated='true']").each(function(){
+			$(this).attr("class", "rating-stars star rated");
+		});
 	});
 
 
