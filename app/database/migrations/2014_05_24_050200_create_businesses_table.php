@@ -29,6 +29,7 @@ class CreateBusinessesTable extends Migration {
 			$table->string('facebook');
 			$table->string('twitter');
 			$table->string('google');
+			$table->string('slug')->unique();
 			$table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

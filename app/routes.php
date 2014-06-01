@@ -93,7 +93,9 @@ Route::post('settings', 'BusinessesController@store');
 Route::get('search', 'BusinessesController@search');
 Route::get('listings','BusinessesController@index');
 // Route::get('company-tab', 'BusinessesController@companytab');
+
 Route::get('company', 'BusinessesController@companytab');
+Route::get('company/{name}', 'BusinessesController@companytab2');
 Route::post('company', 'ReviewsController@store');
 
 Route::get('register', 'UsersController@create');
