@@ -17,9 +17,11 @@ class SalesRepository {
 		$salesperson->phone = $input['phone'];
 		$salesperson->email = $input['email'];
 		$salesperson->access_level = $input['type'];
+		$salesperson->coupon = str_random(3) . time();
 		$salesperson->save();
+		$salesperson->passwordraw = $password;
 
-		return $salesperson->id;
+		return $salesperson;
 	}
 
 	public function authenticate($input)
@@ -44,7 +46,5 @@ class SalesRepository {
 
 		return $commissions;
 	}
-
-
 
 }

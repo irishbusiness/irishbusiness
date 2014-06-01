@@ -18,13 +18,13 @@ $footerlogo = MainSetting::select('footerlogo')->orderBy('created_at', 'desc')->
 
 View::share('imgheaderlogo', $headerlogo);
 View::share('imgfooterlogo', $footerlogo);
-
+/*
 if(Auth::user()->check())
 {
     $blogs = Blog::where('business_id', '=', Auth::user()->user()->business->id)->orderBy('created_at', 'desc')->get();
     View::share('blogs', $blogs);
 }
-
+*/
 
 
 
@@ -61,6 +61,21 @@ Route::filter('auth', function()
 Route::filter('auth.basic', function()
 {
 	return Auth::basic();
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Subscription
+|--------------------------------------------------------------------------
+|
+*/
+
+Route::filter('subscribed', function()
+{
+	if (is_null(User::with('subscription')->find(1)->first()->subscription->first()))
+		return Redirect::to('test');
+	
 });
 
 

@@ -197,3 +197,9 @@ Route::get('sales', 'salespersonsController@index');
 Route::get('sales/invite','salespersonsController@invite');
 
 Route::post('sales/invite','salespersonsController@store');
+
+Route::get('try',function(){
+	
+	return dd(is_null(User::with('subscription')->find(1)->first()->subscription->first()));
+	
+});

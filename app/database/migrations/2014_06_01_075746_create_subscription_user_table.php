@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateBusinessSubscriptionTable extends Migration {
+class CreateSubscriptionUserTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,13 @@ class CreateBusinessSubscriptionTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('business_subscription', function(Blueprint $table) {
+		Schema::create('subscription_user', function(Blueprint $table)
+		{
 			$table->increments('id');
-			$table->integer('user_id')->unsigned()->index();
-			$table->foreign('user_id')->references('id')->on('businesses')->onDelete('cascade');
 			$table->integer('subscription_id')->unsigned()->index();
 			$table->foreign('subscription_id')->references('id')->on('subscriptions')->onDelete('cascade');
+			$table->integer('user_id')->unsigned()->index();
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}
@@ -30,7 +31,7 @@ class CreateBusinessSubscriptionTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('business_subscription');
+		Schema::drop('subscription_user');
 	}
 
 }

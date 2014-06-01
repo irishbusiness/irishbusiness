@@ -23,21 +23,25 @@ class SessionsController extends \BaseController {
 		
 		try
 		{
+
 			if($this->user->authenticate(Input::all())){
 				Auth::salesperson()->logout();
 				return Redirect::to('settings')->withFlashMessage('You logged in as ' . ucwords(Input::get('username')))->with('title','IrishBusiness.ie | Settings');
+				
 			}
-
-			if($this->sales->authenticate(Input::all())&&Auth::salesperson()->guest()){
+			elseif($this->sales->authenticate(Input::all())){
 				Auth::user()->logout();
-				return Redirect::to('settings')->withFlashMessage('You logged in as ' . ucwords(Input::get('username')))->with('title','IrishBusiness.ie | Settings');
+				return Redirect::to('sales')->withFlashMessage('You logged in as ' . ucwords(Input::get('username')))->with('title','IrishBusiness.ie | Settings');
+				
 			}
 
-			return Redirect::back()->withInput()->withErrors('Invalid Username and/or Password')->with('errorNotify','wrong email/password combination');
+			
+
+			return Redirect::back()->withInput()->with('errorNotify','wrong email/password combination')->withInput();
 		}	
 		catch(FormValidationException  $e)
 		{
-			return Redirect::back()->withInput()->withErrors($e->getErrors())->with('errorNotify','wrong email/password combination')->withInput();
+			return Redirect::back()->withInput()->withErrors($e->getErrors())->with('errorNotify','wrong email/password combination');
 		}
 	}
 
