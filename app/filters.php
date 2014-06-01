@@ -15,9 +15,11 @@
 View::share('selected', '');
 $headerlogo = MainSetting::select('headerlogo')->orderBy('created_at', 'desc')->first();
 $footerlogo = MainSetting::select('footerlogo')->orderBy('created_at', 'desc')->first();
+$recentlyadded = Business::orderBy('created_at', 'desc')->limit(2)->get();
 
 View::share('imgheaderlogo', $headerlogo);
 View::share('imgfooterlogo', $footerlogo);
+View::share('recentlyadded', $recentlyadded);
 
 if(Auth::user()->check())
 {

@@ -144,6 +144,16 @@
             {{ Form::select('categories',$categories,"",['id' => 'categories',
             'class' => 'text-input-grey full']) }}
         </div>
+
+        <div class="thin-separator"></div>
+        <div class="form-group">
+            {{ Form::label('businessurl', "Business URL (".Request::root()."/your-business-name)",
+            ["class"=>"text-colorful"]) }}<br/>
+            {{ Form::text('businessurl','', [
+            "placeholder" => "your-business-name", "class"=>"text-input-grey full"]) }}
+            {{$errors->first('businessname','<span class="error">:message</span>')}}
+        </div>
+
         <div class="form-group">
             <div class="showCategory"></div>
         </div>

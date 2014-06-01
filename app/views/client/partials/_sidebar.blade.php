@@ -5,20 +5,15 @@
 								<h3>Recently Added</h3>
 							</div>
 							<ul class="entries-list">
-								<li class="clearfix">
-									<a href="#" class="thumbnail">
-										<img src="{{ URL::asset('images/content/sky.png') }}" alt="" />
+								@foreach($recentlyadded as $recent)
+									<li class="clearfix">
+									<a href="URL::action('TagsController@viewnotesbytags', array('tagname' => $tag->title )) }}" class="thumbnail">
+										<img src="{{ URL::asset($recent->logo) }}" alt="" />
 									</a>
 									<a href="#" class="entry-title">Company Name</a>
 									<div class="entry-excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-								</li>
-								<li class="clearfix">
-									<a href="#" class="thumbnail">
-										<img src="{{ URL::asset('images/content/text.png') }}" alt="" />
-									</a>
-									<a href="#" class="entry-title">Another Company</a>
-									<div class="entry-excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-								</li>
+								</li>	
+								@endforeach
 							</ul>
 							<div class="two-images-banner clearfix">
 								<a href="#">

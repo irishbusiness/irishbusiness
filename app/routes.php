@@ -93,7 +93,9 @@ Route::post('settings', 'BusinessesController@store');
 Route::get('search', 'BusinessesController@search');
 Route::get('listings','BusinessesController@index');
 // Route::get('company-tab', 'BusinessesController@companytab');
+
 Route::get('company', 'BusinessesController@companytab');
+Route::get('company/{name}', 'BusinessesController@companytab2');
 Route::post('company', 'ReviewsController@store');
 
 Route::get('register', 'UsersController@create');
@@ -139,6 +141,7 @@ Route::put('socialmediaAjax', 'SocialMediaController@update');
 Route::get('blogAjax', 'BlogController@yeah');
 Route::post('addBlogAjax', 'BlogController@addBlogAjax');
 Route::delete('deleteBlogAjax', 'BlogController@deleteBlogAjax');
+Route::post('updateBlogAjax','BlogController@updateBlogAjax');
 
 Route::get('clear',function(){
 	Auth::user()->logout();
