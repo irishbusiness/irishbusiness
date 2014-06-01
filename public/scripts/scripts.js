@@ -1045,6 +1045,8 @@ $(document).ready(function(){
 
 		var id = parseInt($(this).attr("data-star-id"));
 
+		$("#fi-rating").val(id);
+
 		for(var y=id; y>=1; y--){
 			$("div[data-star-id='"+y+"']").attr("class", "rating-stars star rated");
 		}

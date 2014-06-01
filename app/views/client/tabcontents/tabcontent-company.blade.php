@@ -167,15 +167,17 @@
 											</div>
 										</div>
 									</div>
-									<div class="rating-ipnuts">
+									{{ Form::open(array('action' => 'ReviewsController@store', "id"=>"form-review")) }}
+									<div class="rating-inputs">
 										<div class="rating-details">
 											<div class="detail">
-												<input id="rating-name" name="rating-name" type="text" placeholder="Name" class="text-input-grey one-fourth">
+												{{ Form::text("rating-name", "", ["id"=>"rating-name", "placeholder"=>"Name", "class"=>"text-input-grey one fourth"]) }}
 											</div>
 											<div class="detail">
-												<textarea id="rating-description" name="rating-description" rows="8" cols="45" placeholder="Description" class="text-input-grey comment-message-main one-fourth"></textarea>
+												{{ Form::textarea("rating-description", "", ["id"=>"rating-description", "rows"=>"8", "cols"=>"45", 
+													"placeholder"=>"Description", "class"=>"text-input-grey comment-message-main one-fourth"]) }}
 											</div>
-											<button class="send-rating button-2-green">Send rating</button>
+											{{ Form::input("submit", "submit", "Send rating", ["class"=>"send-rating button-2-green"]) }}
 										</div>
 										<div class="ratings">
 											<div class="rating clearfix already" data-rating-id="1" data-rated-value="0"><div class="rating-title">Rating</div>
@@ -189,6 +191,8 @@
 											</div>
 										</div>
 									</div>
+									{{ Form::input("hidden", "rating", "", ["id"=>"fi-rating"]) }}
+									{{ Form::close() }}
 									<div class="clearfix">
 									</div>
 								</div>

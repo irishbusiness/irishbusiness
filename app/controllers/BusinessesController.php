@@ -162,11 +162,12 @@ class BusinessesController extends \BaseController {
 	public function companytab(){
 		$id = 2;
 		$blog_id = 2;
-
+		$reviews = Review::orderBy("created_at", "desc")->get();
 		$businessinfo = Business::findOrFail($id)->first();
 		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
 		// $businessinfo = Business::all();
-		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs);
+		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
+			->with('reviews', $reviews);
 	}
 
 	/**
