@@ -8,7 +8,10 @@
             @include('client.companytabs.blog_settings')
 
         <!-- reviews tab -->
-            @include('client.companytabs.reviews') <!-- this is temporarily the coupon tab -->
+            @include('client.companytabs.coupons')<!-- this is temporarily the coupon tab -->
+
+        <!-- reviews tab -->
+        	@include('client.companytabs.reviews')
 @stop
 
 @section('scripts')
