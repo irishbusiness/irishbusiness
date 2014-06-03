@@ -12,6 +12,7 @@ class BlogsTableSeeder extends Seeder {
             'google' => 'http://google.com/parokniedgar',
             'twitter' => 'http://twitter.com/parokniedgar',
             'linkedin' => 'http://linkedin.com/parokniedgar',
+            'slug' => 'zemiel-title',
             'business_id'  =>  Business::first()->id,
         ]);
     }

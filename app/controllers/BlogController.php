@@ -3,17 +3,19 @@
 class BlogController extends \BaseController {
 
     public function __contruct() {
-
+        $this->beforeFilter('csrf', ['on' => 'post']);
     }
+
     public function show($id)
     {
-        $blog = Blog::find($id);
+        $blog = Blog::where('slug', '=', $id)->first();
         return View::make('client.blogpost', compact('blog'));
+       
     }
 
     public function edit($id)
     {
-        $blog = Blog::findOrFail($id);
+        $blog = Blog::whereSlug($id)->first();
         return View::make('admin.editblogpost', compact('blog'));
     }
 
@@ -145,6 +147,7 @@ class BlogController extends \BaseController {
             $blog->twitter = Input::get('twitter');
             $blog->linkedin = Input::get('linkedin');
             $blog->body = Input::get('content');
+            $blog->slug = Input::get('blogurl');
             $blog->business_id = 1;
             // $blog->business_id = Auth::user()->user()->id;
 
@@ -205,6 +208,7 @@ class BlogController extends \BaseController {
             $blog->google = Input::get('google');
             $blog->twitter = Input::get('twitter');
             $blog->linkedin = Input::get('linkedin');
+            $blog->slug = Input::get('blogurl');
             // $blog->business_id  =   Auth::user()->user()->business->id;
             $blog->business_id = 1;
 

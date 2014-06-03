@@ -9,8 +9,9 @@ class BusinessesController extends \BaseController {
 	function __construct(CategoryRepository $category)
 	{
 		$this->category = $category;
-		$this->beforeFilter('subscribed',['only' => ['sample']]);
-		$this->beforeFilter('user', ['only' => ['sample']]);
+		// $this->beforeFilter('user', ['only' => ['sample']]);
+		// $this->beforeFilter('subscribed',['only' => ['sample']]);
+		$this->beforeFilter('csrf', ['on' => 'post']);
 	}
 
 	public function index()

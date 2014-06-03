@@ -42,7 +42,12 @@
                     </div>
                     <div id="redactorplaceholder">
                     </div>
-
+                     <div class="form-group">
+                        {{ Form::label('blogurl', "Blog URL (".Request::root()."/your-blog-name)",
+                        ["class"=>"text-colorful"]) }}<br>
+                        {{ Form::text('blogurl','', [
+                        "placeholder" => "your-blog-name ( Optional )", "class"=>"text-input-grey full", 'id' => 'editblogurl', 'required']) }}
+                    </div>
                     <br>
                     <p><input type="submit" value="Save" name="send" class="button-2-colorful"/>
                     <input id="cancel-blog-edit" data-id="" data-title="" onclick="cancelBlog()" type="button" value="Cancel" class="button-2-colorful"></p>

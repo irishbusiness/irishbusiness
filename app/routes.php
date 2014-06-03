@@ -24,6 +24,9 @@ Route::get('/', function()
 
 // Route::get('/', 'HomeController@index');
 
+Route::model('blog/{id}', 'Blog');
+Route::model('blog/{id}/edit', 'Blog');
+
 Route::resource('blog', 'BlogController');
 
 Route::get('bloglist', 'BlogController@bloglist');

@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                                 <div class="blog-post-links">
-									<a href="{{ URL::to('blog/'.$blog->id) }}" class="read-more-link">Read More</a>
+									<a href="{{ URL::to('blog/'.$blog->slug) }}" class="read-more-link">Read More</a>
 								</div>
 							</div>
 						</div>
