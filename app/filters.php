@@ -79,7 +79,7 @@ Route::filter('auth.basic', function()
 Route::filter('subscribed', function()
 {
 	if (is_null(User::with('subscription')->find(1)->first()->subscription->first()))
-		return Redirect::to('test');
+		return Redirect::to('buy');
 	
 });
 

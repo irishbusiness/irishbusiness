@@ -184,6 +184,7 @@ Route::get('try',function(){
 	
 });
 
-// Route::get('notfound', function(){
-// 	return Response::view('', [], '');
-// });
+
+Route::get('notfound', function(){
+	return View::make('pagenotfound');
+});
