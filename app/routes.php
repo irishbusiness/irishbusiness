@@ -183,3 +183,8 @@ Route::get('try',function(){
 	return dd(is_null(User::with('subscription')->find(1)->first()->subscription->first()));
 	
 });
+
+App::missing(function($exception)
+{
+    return View::make('notfound');
+});
