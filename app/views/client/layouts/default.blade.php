@@ -4,8 +4,8 @@
 	<head>
 
 		<meta charset="utf-8">
-		<title>Glocal</title>
-
+        @yield('title')
+        
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         {{ HTML::script('scripts/jquery-1.10.2.min.js') }}
         <style type="text/css">

@@ -186,7 +186,7 @@ Route::get('try',function(){
 
 App::missing(function($exception)
 {
-    return View::make('notfound');
+    return View::make('pagenotfound');
 });
 Route::get('notfound', function(){
 	return View::make('pagenotfound');
