@@ -125,3 +125,7 @@ Route::filter('csrf', function()
 Validator::extend('alpha_space', function($attr, $value) {
     return preg_match('/^([a-z\x20])+$/i', $value);
 });
+
+Route::filter('user', function(){
+	if(!Auth::user()->check()) return Redirect::to('/');
+});

@@ -147,6 +147,8 @@ Route::get('clear',function(){
 	Auth::user()->logout();
 	Auth::salesperson()->logout();
 
+	return Redirect::to('/');
+
 });
 
 
