@@ -188,3 +188,6 @@ App::missing(function($exception)
 {
     return View::make('notfound');
 });
+Route::get('notfound', function(){
+	return View::make('pagenotfound');
+});
