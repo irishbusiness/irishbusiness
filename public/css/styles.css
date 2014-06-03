@@ -4432,3 +4432,8 @@ td.detail {
 .inline {
 	display: inline-block;
 }
+
+.edit-company {
+	float: right;
+	font-size: large;
+}

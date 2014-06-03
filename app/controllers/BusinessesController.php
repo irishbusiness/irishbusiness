@@ -10,7 +10,7 @@ class BusinessesController extends \BaseController {
 	{
 		
 		$this->category = $category;
-		$this->beforeFilter('subscribed',['only' => ['sample']]);
+		// $this->beforeFilter('subscribed',['only' => ['sample']]);
 	}
 
 	public function index()
@@ -166,8 +166,8 @@ class BusinessesController extends \BaseController {
 	public function companytab(){
 		$id = 1;
 		$blog_id = 1;
-		$reviews = Review::orderBy("created_at", "desc")->get();
 		$businessinfo = Business::findOrFail($id)->first();
+		$reviews = Review::whereBusiness_id($businessinfo->id)->orderBy("created_at", "desc")->get();
 		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
 		// $businessinfo = Business::all();
 		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
@@ -183,6 +183,18 @@ class BusinessesController extends \BaseController {
 		// $businessinfo = Business::all();
 		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
 			->with('reviews', $reviews);
+	}
+
+	public function editcompany($slug){
+		$businessinfo = Business::whereSlug($slug)->first();
+		$categories = $this->category->getCategories();
+		
+		$selected_categories = $businessinfo->categories;
+		$addresses = $businessinfo->address;
+		$addresses = explode(",", $addresses);
+
+		return View::make("client.editcompany")->with("businessinfo", $businessinfo)->with("addresses", $addresses)
+			->with("categories", $categories)->with('selected_categories', $selected_categories);
 	}
 
 	/**
@@ -215,7 +227,68 @@ class BusinessesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$old_businessinfo = Business::whereId($id)->first();
+
+		$address = Input::get('address1') . ',' . Input::get('address2') . ',' . Input::get('address3')  . ',' .Input::get('address4');
+		$business = Business::whereId($id)->first();
+		$business->name = Input::get('businessname');
+		$business->address = $address;
+		$business->keywords = Input::get('keywords');
+		$business->locations = Input::get('locations');
+		$business->phone    =   Input::get('phone');
+		$business->website    =   Input::get('website');
+		$business->email    =   Input::get('email');
+        $business->business_description    =   Input::get('business_description');
+		$business->profile_description   =   Input::get('profile_description');
+		$business->mon_fri   =   Input::get('mon_fri');
+		$business->sat   =   Input::get('sat');
+		$business->facebook   =   Input::get('facebook');
+		$business->twitter  =   Input::get('twitter');
+		$business->google  =   Input::get('google');
+
+
+        $business->slug = Input::get('businessurl');
+
+        // logo
+        if( Input::hasFile('logo'))
+        {
+            $dir = $dir = public_path().'/images/companylogos/';
+            $image  =   Input::file('logo');
+            $imagename = md5(date('YmdHis')).'.jpg';
+            $filename = $dir.$imagename;
+
+            if ($image->getMimeType() == 'image/png'
+                || $image->getMimeType() == 'image/jpg'
+                || $image->getMimeType() == 'image/gif'
+                || $image->getMimeType() == 'image/jpeg'
+                || $image->getMimeType() == 'image/pjpeg')
+            {
+                $image->move($dir, $filename);
+                $business->logo  =   'images/companylogos/'.$imagename;
+            } else {
+                $business->logo  =   'images/companylogos/'.$imagename;
+            }
+
+        } else {
+            $business->logo  =   $old_businessinfo->logo;
+        }
+
+		$business->save();
+
+		$id = $old_businessinfo->id;
+
+		$business = Business::findOrFail($id);
+
+		$categories = Session::get('categories');
+		Session::forget('categories');
+
+		if($categories != ''){
+	        foreach($categories as $category)
+			{
+				$business->categories()->attach($category);
+			}
+        }
+		return Redirect::to('/company/'.$business->slug);
 	}
 
 	/**
