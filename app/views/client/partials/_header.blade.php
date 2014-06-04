@@ -1,7 +1,7 @@
     <?php
-    if(is_null($imgheaderlogo)){
-    	$imgheaderlogo = new \Illuminate\Support\Collection;
-    	$imgheaderlogo->headerlogo = 'default.png';
+    if(is_null($recentsettings)){
+    	$recentsettings = new \Illuminate\Support\Collection;
+    	$recentsettings->headerlogo = 'default.png';
     }
     ?>
 
@@ -99,7 +99,7 @@
 
     				<div class="logo block">
     					<a href="#">
-    						<img class="header-logo-img" src="{{ URL::asset('/images/logo/header/'.$imgheaderlogo->headerlogo) }}" alt="" />
+    						<img class="header-logo-img" src="{{ URL::asset('/images/logo/header/'.$recentsettings->headerlogo) }}" alt="" />
 
     					</a>
     				</div>
