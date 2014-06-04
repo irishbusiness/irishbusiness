@@ -28,7 +28,9 @@
 	<ul>
 		<li>slug for the settings  - Done</li>
 		<li>populate social links with real data - Done</li>
-		<li>disable guests or non owners to edit blogs</li>
+		<li>remove edit/delete blog directly from the blogpost - Done</li>
+		<li>Add main_setting seeder - Done</li>
+		<li>Add business_category seeder</li>
 		<li>admin blog</li>
 	</ul>
 
