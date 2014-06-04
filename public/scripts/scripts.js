@@ -1289,4 +1289,12 @@ $(document).ready(function() {
           }   
 	});
 
+	
+	$("#logintosendreview").click(function(e){
+		e.preventDefault();
+		jQuery('#login-form').toggle();
+		$("#login-form input[name='email']").focus();
+		jQuery('#register-form').hide();
+	});
+
 });
