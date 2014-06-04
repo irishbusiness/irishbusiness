@@ -26,8 +26,9 @@
 	<hr/>
 	<h3>Zem </h3>
 	<ul>
-		<li>slug for the settings </li>
-		<li>populate social links with real data</li>
+		<li>slug for the settings  - Done</li>
+		<li>populate social links with real data - Done</li>
+		<li>disable guests or non owners to edit blogs</li>
 		<li>admin blog</li>
 	</ul>
 
