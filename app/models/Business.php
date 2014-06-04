@@ -5,7 +5,7 @@ class Business extends \Eloquent {
 
 	public function categories()
 	{
-		return $this->belongsToMany('Category')->withTimestamps();;
+		return $this->belongsToMany('Category')->withTimestamps();
 	}
 
     public function user()

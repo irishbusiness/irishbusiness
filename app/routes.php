@@ -180,6 +180,11 @@ Route::post('sales/invite','salespersonsController@store');
 
 Route::get('try',function(){
 	
-	return dd(is_null(User::with('subscription')->find(1)->first()->subscription->first()));
+	/*return dd(is_null(User::with('subscription')->find(1)->first()->subscription->first()));*/
+
+	$user = User::find(1);
+
+	$user->subscription()->attach(2);
+
 	
 });

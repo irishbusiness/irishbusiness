@@ -26,8 +26,8 @@ View::share('recentlyaddedblog', $recentlyaddedblog);
 
 if(Auth::user()->check())
 {
-    $blogs = Blog::where('business_id', '=', Auth::user()->user()->business->id)->orderBy('created_at', 'desc')->get();
-    View::share('blogs', $blogs);
+    /*$blogs = Blog::where('business_id', '=', Auth::user()->user()->business->id)->orderBy('created_at', 'desc')->get();*/
+    /*View::share('blogs', $blogs);*/
 }
 
 
@@ -79,7 +79,7 @@ Route::filter('auth.basic', function()
 Route::filter('subscribed', function()
 {
 	if (is_null(User::with('subscription')->find(1)->first()->subscription->first()))
-		return Redirect::to('test');
+		return Redirect::to('buy');
 	
 });
 

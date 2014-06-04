@@ -20,18 +20,21 @@ class SessionsController extends \BaseController {
 
 	public function store()
 	{
+
+		if(!$this->user->isConfirmed(Input::get('email')))
+			return Redirect::back()->withInput()->with('errorNotify','wrong email/password combination');
 		
 		try
 		{
 
 			if($this->user->authenticate(Input::all())){
 				Auth::salesperson()->logout();
-				return Redirect::to('settings')->withFlashMessage('You logged in as ' . ucwords(Input::get('username')))->with('title','IrishBusiness.ie | Settings');
+				return Redirect::to('settings')->with('title','IrishBusiness.ie | Settings');
 				
 			}
 			elseif($this->sales->authenticate(Input::all())){
 				Auth::user()->logout();
-				return Redirect::to('sales')->withFlashMessage('You logged in as ' . ucwords(Input::get('username')))->with('title','IrishBusiness.ie | Settings');
+				return Redirect::to('sales')->with('title','IrishBusiness.ie | Settings');
 				
 			}
 

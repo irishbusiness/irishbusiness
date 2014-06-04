@@ -91,7 +91,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     public function subscription()
     {
-        return $this->belongsToMany('Subscription');
+        return $this->belongsToMany('Subscription')->withTimeStamps();
     }
 
 }
