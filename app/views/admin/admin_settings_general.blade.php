@@ -12,7 +12,7 @@
 						{{ Form::label("headerlogo", "Header Logo", ["class"=>"text-colorful"]) }}
 						{{ Form::input("file", "headerlogo", $settings['footerlogo'], ["class"=>"text-input-grey", "onchange"=>"readURL($(this))" ]) }}
 						<div class="render-logo-preview">
-							<img src="" id="img-render-headerlogo">
+							<img src="{{ URL::asset('/images/logo/header/'.$settings['headerlogo']) }}" id="img-render-headerlogo">
 						</div>
 					</div>
 					<div class="thin-separator"></div>	
@@ -20,7 +20,7 @@
 						{{ Form::label("footerlogo", "Footer Logo", ["class"=>"text-colorful"]) }}
 						{{ Form::input("file", "footerlogo", $settings['footerlogo'], ["class"=>"text-input-grey", "onchange"=>"readURL($(this))" ]) }}
 						<div class="render-logo-preview">
-							<img src="" id="img-render-footerlogo">
+							<img src="{{ URL::asset('/images/logo/footer/'.$settings['footerlogo']) }}" id="img-render-footerlogo">
 						</div>
 					</div>
 					<div class="thin-separator"></div>	

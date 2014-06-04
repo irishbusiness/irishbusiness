@@ -3778,6 +3778,7 @@ ul.entries-list {
 	.website-short-description .description-text {
 		line-height: 18px;
 		color: #a6a6a6;
+		word-wrap: break-word;
 	}
 
 /* "TWITTER FEED" BLOCK */

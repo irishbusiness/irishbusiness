@@ -15,7 +15,7 @@
 						<div class="website-short-description block">
 							<img class="footer-logo-img" src="{{ URL::asset('/images/logo/footer/'.$imgfooterlogo->footerlogo) }}" alt="" />
 							<div class="description-text">
-								Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam sit amet lectus quis est congue mollis.
+								<p>{{ $footertext->footer_text }}</p>
 							</div>
 						</div>
 
