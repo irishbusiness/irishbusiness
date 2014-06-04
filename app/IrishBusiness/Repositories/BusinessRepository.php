@@ -1,6 +1,7 @@
 <?php namespace IrishBusiness\Repositories;
 
 use Business;
+use Auth;
 
 class BusinessRepository {
 
@@ -26,8 +27,8 @@ class BusinessRepository {
 		$business->facebook   =   $input['facebook'];
 		$business->twitter  =   $input['twitter'];
 		$business->google  =   $input['google'];
-        // $business->user_id = Auth::user()->get()->id;
-        $business->user_id = 1;
+        $business->user_id = Auth::user()->user()->id;
+        // $business->user_id = 1;
 
 
         $business->slug = $input['slug'];

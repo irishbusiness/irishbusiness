@@ -142,7 +142,7 @@
         <div class="thin-separator"></div>
         <div class="form-group">
             {{ Form::select('categories',$categories,"",['id' => 'categories',
-            'class' => 'text-input-grey full']) }}
+            'class' => 'text-input-grey full', 'required' => 'required']) }}
         </div>
         <div class="form-group">
             <div class="showCategory"></div>

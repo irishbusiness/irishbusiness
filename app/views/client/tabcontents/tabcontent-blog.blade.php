@@ -19,11 +19,11 @@
 												</div>
 												<div class="blog-post-description clearfix">
 													<div class="blog-post-title-comments">
-														<a href="blog/{{ $blog->id }}" class="blog-post-title">{{ $blog->title }}</a>
+														<a href="{{ URL::to('blog/'.$blog->slug) }}" class="blog-post-title">{{ html_entity_decode(stripcslashes($blog->title)) }}</a>
 													</div>
 													<div class="blog-post-excerpt">{{ Str::limit(html_entity_decode(stripcslashes($blog->body)), 255) }}</div>
 													<div class="blog-post-links">
-														<a href="blog/{{ $blog->id }}" class="read-more-link">Read More</a>
+														<a href="{{ URL::to('blog/'.$blog->slug) }}" class="read-more-link">Read More</a>
 													</div>
 												</div>
 											</div>

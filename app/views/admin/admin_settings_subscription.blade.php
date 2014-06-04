@@ -14,30 +14,30 @@
 					</div>
 					{{ Form::open(array( "action" => "SubscriptionController@store", 'method' => 'post', "id" => "settings_form_subscription" )) }}
 						<div class="form-group">
-							{{ Form::label("name", "Name", ["class"=>"text-colorful"]) }}
+							{{ Form::label("name", "Name", ["class"=>"text-colorful"]) }}<br>
 							{{ Form::text("name", "", ["class"=>"text-input-grey full", "required"=>"required", "placeholder"=>"Subscription Name" ]) }}
 							{{$errors->first('name','<span class="error">:message</span>')}}
 						</div>
 						<div class="form-group">
-							{{ Form::label("price", "Price", ["class"=>"text-colorful"]) }}
+							{{ Form::label("price", "Price", ["class"=>"text-colorful"]) }}<br>
 							{{ Form::text("price", "", ["class"=>"text-input-grey full", "required"=>"required", "placeholder"=>"Price", 
 								"data-type"=>"number" ]) }}
 							{{$errors->first('price','<span class="error">:message</span>')}}
 						</div>
 						<div class="form-group">
-							{{ Form::label("blogs_limit", "Blogs Limit", ["class"=>"text-colorful"]) }}
+							{{ Form::label("blogs_limit", "Blogs Limit", ["class"=>"text-colorful"]) }}<br>
 							{{ Form::text("blogs_limit", "", ["class"=>"text-input-grey full", "placeholder"=>"Blogs Limit",
 								 "data-type"=>"number", "required"=>"required" ]) }}
 							{{$errors->first('blogs_limit','<span class="error">:message</span>')}}
 						</div>
 						<div class="form-group">
-							{{ Form::label("max_location", "Maximum Locations", ["class"=>"text-colorful"]) }}
+							{{ Form::label("max_location", "Maximum Locations", ["class"=>"text-colorful"]) }}<br>
 							{{ Form::text("max_location", "", ["class"=>"text-input-grey full", "placeholder"=>"Maximum Locations", 
 								"data-type"=>"number", "required"=>"required" ]) }}
 							{{$errors->first('max_location','<span class="error">:message</span>')}}
 						</div>	
 						<div class="form-group">
-							{{ Form::label("max_categories", "Maximum Categories", ["class"=>"text-colorful"]) }}
+							{{ Form::label("max_categories", "Maximum Categories", ["class"=>"text-colorful"]) }}<br>
 							{{ Form::text("max_categories", "", ["class"=>"text-input-grey full", "placeholder"=>"Maximum Categories", 
 								"data-type"=>"number", "required"=>"required" ]) }}
 							{{$errors->first('max_categories','<span class="error">:message</span>')}}

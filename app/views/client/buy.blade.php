@@ -7,31 +7,28 @@
 @section('actual-body-content')
 @if(is_null($subscription))
   <h1> nothing here </h1>
-  <form action="" method="POST">
-  <input type="hidden" name="subscription" value="1" />
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_F0bkFgh1SfZrRcMKfBfFpuqN"
-    data-amount="2000"
-    data-name="IrishBusiness.ie"
-    data-description="haha"
-    data-image="/128x128.png">
-  </script>
-</form>
 @else
-	<form action="" method="POST">
-  <input type="hidden" name="subscription" value="{{$subscription->id}}" />
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_F0bkFgh1SfZrRcMKfBfFpuqN"
-    data-amount="2000"
-    data-name="IrishBusiness.ie"
-    data-description="{{$subscription->name}}"
-    data-image="/128x128.png">
-  </script>
-</form>
-@endif
-
+    <div class="subscription-container" data-num="{{ $subscription->id }}">
+      <h3 class="subscription-name">{{ $subscription->name }}</h3>
+      <div class="subscription-info">
+        <div class="subscription-duration">{{ $subscription->duration }}</div>
+        <div class="subscription-price">${{ $subscription->price }}</div>
+        <div class="subscription-option">
+          <form action="" method="POST">
+            <input type="hidden" name="subscription" value="{{$subscription->id}}" />
+            <script
+              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="pk_test_F0bkFgh1SfZrRcMKfBfFpuqN"
+              data-amount="{{ ($subscription->price)*100 }}"
+              data-name="IrishBusiness.ie"
+              data-description="{{$subscription->name}}"
+              data-image="{{ URL::asset('/images/logo/header/default.png') }}">
+            </script>
+          </form>
+        </div>
+      </div>
+    </div>
+  @endif
 @stop
 
 @section('scripts')

@@ -20,7 +20,7 @@
 							@foreach($businesses as $business)
 							<div class="company-listing clearfix">
 								<a href="#" class="listing-image">
-									<img src="images/content/crayons.png" alt="" />
+									<img src="{{ URL::asset($business->logo) }}" alt="" />
 								</a>
 								<div class="listing-body">
 									<!-- <div class="listing-rating">Rating: 99%</div> -->
@@ -34,8 +34,9 @@
 									</div>
 									</div>
 									<div class="listing-title">{{$business->name}}</div>
-									<div class="listing-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam.</div>
-									{{HTML::link('listing/'. $business->id . isEmpty($category) .  isEmpty($location), 'Read More',['class' => 'listing-read-more' ] ) }}
+									<div class="listing-text">{{ $business->business_description }}</div>
+									{{HTML::link('company/'. $business->slug . isEmpty($category) .  isEmpty($location), 'Read More',['class' => 'listing-read-more' ] ) }}
+
 								</div>
 							</div>
 							@endforeach

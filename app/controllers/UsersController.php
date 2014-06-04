@@ -27,7 +27,7 @@ class UsersController extends \BaseController {
 			return Redirect::to('/');
 		}
 
-		return 'Thanks';
+		return View::make('client.confirm')->withTitle('title','Thank you.');
 	}
 
 	/**

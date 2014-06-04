@@ -19,7 +19,8 @@ class BusinessesController extends \BaseController {
 		$this->business = $business;
 		$this->registerbusiness = $registerbusiness;
 		$this->updatebusiness = $updatebusiness;
-		// $this->beforeFilter('user', ['only' => ['sample']]);
+		$this->beforeFilter('user', ['only' => ['sample']]);
+		$this->beforeFilter('subscribed', ['only' => ['sample']]);
 		$this->beforeFilter('csrf', ['on' => 'post']);
 	}
 
@@ -117,7 +118,7 @@ class BusinessesController extends \BaseController {
 				}
 			}
 
-			return Redirect::to('/listings');
+			return Redirect::to('/company/'.$business->slug);
 		}
 		catch(FormValidationException  $e)
 		{
@@ -148,7 +149,8 @@ class BusinessesController extends \BaseController {
 			return Response::view('pagenotfound');
 		}
 
-		$reviews = $businessinfo->reviews()->orderBy('created_at', 'desc')->get();
+		// $reviews = $businessinfo->reviews()->orderBy('created_at', 'desc')->get();
+		$reviews = Review::where('business_id', '=', $businessinfo->id)->orderBy('created_at', 'desc')->get();
 
 		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
 
@@ -171,14 +173,6 @@ class BusinessesController extends \BaseController {
 
 		$notselected_categories = $this->category->getCategories();
 
-		// echo "<pre>";
-		// print_r($categories);
-		// echo "</pre>";
-		// echo "<hr>";
-		// echo "<pre>";
-		// print_r($selected_categories);
-		// echo "</pre>";
-		// echo "<hr>";
 		for($x=1; $x<count($categories); $x++){
 			// echo "<hr>";
 			for($y=0; $y<count($selected_categories); $y++){
@@ -188,16 +182,6 @@ class BusinessesController extends \BaseController {
 			}
 			
 		}
-		// echo "<pre>";
-		// print_r($notselected_categories);
-		// echo "</pre>";
-		// dd("tae");
-		
-
-		// echo "<pre>";
-		// 	print_r($selected_categoriesraw);
-		// echo "</pre>";
-		// dd("tae");
 
 		$addresses = $businessinfo->address;
 		$addresses = explode(",", $addresses);

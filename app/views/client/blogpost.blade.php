@@ -12,7 +12,7 @@
                         {{ Form::submit('Delete', ['class' => 'button-2-colorful', 'onclick' => 'return confirm("Are you sure you want to delete this blog?")'])}}
                         {{ Form::close() }}
                         <br><br>
-						<h1>{{ $blog->title }}</h1>
+						<h1>{{ html_entity_decode(stripcslashes($blog->title)) }}</h1>
 					</div>
 					<div class="blog-post-image">
 						<img src="{{ URL::asset($blog->blogheaderimage) }}" alt="" />

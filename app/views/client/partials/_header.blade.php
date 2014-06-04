@@ -112,7 +112,11 @@
     							<a href="{{ URL::to('contact-us')}}">CONTACT US</a>
     						</li>
     						<li {{ (Request::is('register*') ? ' class="first active"' : '') }}>
-    							<a href="{{ URL::to('register') }}">REGISTER</a>
+    						@if(Auth::user()->guest())
+                                <a href="{{ URL::to('register') }}">REGISTER</a>
+                            @else
+                                <a href="{{ URL::to('clear') }}">LOGOUT</a>
+                            @endif
     						</li>
     						<li class="empty">
     							<div></div>

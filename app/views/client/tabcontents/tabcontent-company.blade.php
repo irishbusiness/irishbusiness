@@ -172,7 +172,7 @@
 											</div>
 										</div>
 									</div>
-									{{ Form::open(array('action' => 'ReviewsController@store', "id"=>"form-review")) }}
+									{{ Form::open(array('action' => array('ReviewsController@store', $businessinfo->id), "id"=>"form-review", 'method'=>'post')) }}
 									<div class="rating-inputs">
 										<div class="rating-details">
 											<div class="detail">

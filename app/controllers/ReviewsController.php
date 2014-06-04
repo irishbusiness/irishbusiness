@@ -30,21 +30,19 @@ class ReviewsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($id)
 	{	
-		$user_id = 1;
-		$business_id = 1;
-
-		$businessinfo = Business::findOrFail($business_id)->first();
-		$name = Input::get("rating-name");
+		$user_id = Auth::user()->user()->id;
+		$businessinfo = Business::find($id);
 		$rating = Input::get("rating");
 		$description = Input::get("rating-description");
+		$name = Input::get("rating-name");
 
 		$review = new Review;
 		$review->name = $name;
 		$review->rating = $rating;
 		$review->description = $description;
-		$review->business_id = $business_id;
+		$review->business_id = $id;
 		$review->user_id = $user_id;
 
 		if($review->save()){

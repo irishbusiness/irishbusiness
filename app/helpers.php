@@ -77,7 +77,9 @@ function arrayStripTags($array)
 }
 
 function isOwner($slug){
-    if(Auth::user()->guest()) return false;
+    if(Auth::user()->guest()){
+        return false;
+    } 
     
     $id = Auth::user()->user()->id;
     $business = Business::whereSlug($slug)->first();
