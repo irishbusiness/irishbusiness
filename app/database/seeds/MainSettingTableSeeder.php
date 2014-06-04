@@ -9,12 +9,12 @@ class MainSettingTableSeeder extends Seeder {
             'footerlogo' => 'images/logo/footer/default.png',
             'domain_name' => 'teamlaravel.com',
             'admin_email' => 'dec@irishbusiness.ie',
-            'search_results_per_page' => 3,
+            'search_result_per_page' => 3,
             'view_statistics' => 1,
             'analytics_code' => '9012',
             'footer_text' => 'Welcome to Irishbusiness',
             'allow_statistics' => 1,
-            'review_approval' => 0,
+            'reviews_approval' => 0,
         ]);
     }
 

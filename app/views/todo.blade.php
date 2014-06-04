@@ -30,7 +30,7 @@
 		<li>populate social links with real data - Done</li>
 		<li>remove edit/delete blog directly from the blogpost - Done</li>
 		<li>Add main_setting seeder - Done</li>
-		<li>Add business_category seeder</li>
+		<li>Add business_category seeder - Done</li>
 		<li>admin blog</li>
 	</ul>
 
