@@ -188,6 +188,9 @@ Route::get('sales/invite','SalesPersonsController@invite');
 
 Route::post('sales/invite','SalesPersonsController@store');
 
+Route::get('sales/password/edit','SalesPersonsController@changePassword');
+Route::post('sales/password/edit','SalesPersonsController@updatePassword');
+
 Route::get('try',function(){
 	
 	/*return dd(is_null(User::with('subscription')->find(1)->first()->subscription->first()));*/
@@ -205,4 +208,8 @@ App::missing(function($exception)
 });
 Route::get('notfound', function(){
 	return View::make('pagenotfound');
+});
+
+Route::get('todo',function(){
+	return View::make('todo');
 });
