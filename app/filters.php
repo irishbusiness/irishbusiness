@@ -34,7 +34,12 @@ if(Auth::user()->check())
     View::share('blogs', (is_null($blogs) ? '' : $blogs));
 
     // $reviews = Review::where('business_id', '=', Auth::user()->user()->business->id)->orderBy('created_at', 'desc')->get();
+
      View::share('reviews', '');
+
+
+     // View::share('reviews', $reviews);
+    // View::share('reviews', '');
 
 }
 

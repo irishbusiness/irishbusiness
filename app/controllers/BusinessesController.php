@@ -3,6 +3,7 @@
 use IrishBusiness\Repositories\CategoryRepository;
 use IrishBusiness\Repositories\BusinessRepository;
 use IrishBusiness\Forms\RegisterBusiness;
+use IrishBusiness\Forms\UpdateBusiness;
 use IrishBusiness\Forms\FormValidationException;
 
 class BusinessesController extends \BaseController {
@@ -11,11 +12,13 @@ class BusinessesController extends \BaseController {
 	protected $business;
 	protected $registerbusiness;
 
-	function __construct(CategoryRepository $category, BusinessRepository $business, RegisterBusiness $registerbusiness)
+	function __construct(CategoryRepository $category, BusinessRepository $business, RegisterBusiness $registerbusiness,
+			UpdateBusiness $updatebusiness)
 	{
 		$this->category = $category;
 		$this->business = $business;
 		$this->registerbusiness = $registerbusiness;
+		$this->updatebusiness = $updatebusiness;
 		// $this->beforeFilter('user', ['only' => ['sample']]);
 		$this->beforeFilter('csrf', ['on' => 'post']);
 	}
@@ -139,12 +142,16 @@ class BusinessesController extends \BaseController {
 	public function companytab2($name){
 		$id = 1;
 		$blog_id = 1;
-		// $reviews = Review::orderBy("created_at", "desc")->get();
+
 		$businessinfo = Business::whereSlug($name)->first();
+		if(is_null($businessinfo)){
+			return Response::view('pagenotfound');
+		}
+
 		$reviews = $businessinfo->reviews()->orderBy('created_at', 'desc')->get();
-		// return dd($reviews);
+
 		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
-		// $businessinfo = Business::all();
+
 		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
 			->with('reviews', $reviews);
 	}
@@ -152,26 +159,51 @@ class BusinessesController extends \BaseController {
 	public function editcompany($slug){
 		$businessinfo = Business::whereSlug($slug)->first();
 		
+		if( is_null($businessinfo) ){
+			return Response::view('pagenotfound');
+		}
+
 		$categories = $this->category->getCategories();
 		
 		$selected_categories = $businessinfo->categories;
 		$selected_categories = $selected_categories->toArray();
-		// foreach ($selected_categories as $selected_category) {
-		  // echo $selected_category->category_id;
-			// echo "<pre>";
-			// print_r($selected_categories->toArray());
-			// echo "</pre>";
-		// // }
+		$selected_categoriesraw = $businessinfo->categories;
 
+		$notselected_categories = $this->category->getCategories();
+
+		// echo "<pre>";
+		// print_r($categories);
+		// echo "</pre>";
+		// echo "<hr>";
+		// echo "<pre>";
+		// print_r($selected_categories);
+		// echo "</pre>";
+		// echo "<hr>";
+		for($x=1; $x<count($categories); $x++){
+			// echo "<hr>";
+			for($y=0; $y<count($selected_categories); $y++){
+				if($categories[$x] === $selected_categories[$y]["name"]){
+					unset($notselected_categories[$x]);
+				}
+			}
+			
+		}
+		// echo "<pre>";
+		// print_r($notselected_categories);
+		// echo "</pre>";
 		// dd("tae");
+		
 
-		// dd($selected_categories->toArray());
+		// echo "<pre>";
+		// 	print_r($selected_categoriesraw);
+		// echo "</pre>";
+		// dd("tae");
 
 		$addresses = $businessinfo->address;
 		$addresses = explode(",", $addresses);
 
 		return View::make("client.editcompany")->with("businessinfo", $businessinfo)->with("addresses", $addresses)
-			->with("categories", $categories)->with('selected_categories', $selected_categories);
+			->with("categories", $notselected_categories)->with('selected_categories', $selected_categories);
 	}
 
 	/**
@@ -204,68 +236,19 @@ class BusinessesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$old_businessinfo = Business::whereId($id)->first();
+		try
+		{
+			$this->updatebusiness->validate(Input::all());
 
-		$address = Input::get('address1') . ',' . Input::get('address2') . ',' . Input::get('address3')  . ',' .Input::get('address4');
-		$business = Business::whereId($id)->first();
-		$business->name = Input::get('businessname');
-		$business->address = $address;
-		$business->keywords = Input::get('keywords');
-		$business->locations = Input::get('locations');
-		$business->phone    =   Input::get('phone');
-		$business->website    =   Input::get('website');
-		$business->email    =   Input::get('email');
-        $business->business_description    =   Input::get('business_description');
-		$business->profile_description   =   Input::get('profile_description');
-		$business->mon_fri   =   Input::get('mon_fri');
-		$business->sat   =   Input::get('sat');
-		$business->facebook   =   Input::get('facebook');
-		$business->twitter  =   Input::get('twitter');
-		$business->google  =   Input::get('google');
-
-
-        $business->slug = Input::get('businessurl');
-
-        // logo
-        if( Input::hasFile('logo'))
-        {
-            $dir = $dir = public_path().'/images/companylogos/';
-            $image  =   Input::file('logo');
-            $imagename = md5(date('YmdHis')).'.jpg';
-            $filename = $dir.$imagename;
-
-            if ($image->getMimeType() == 'image/png'
-                || $image->getMimeType() == 'image/jpg'
-                || $image->getMimeType() == 'image/gif'
-                || $image->getMimeType() == 'image/jpeg'
-                || $image->getMimeType() == 'image/pjpeg')
-            {
-                $image->move($dir, $filename);
-                $business->logo  =   'images/companylogos/'.$imagename;
-            } else {
-                $business->logo  =   'images/companylogos/'.$imagename;
-            }
-
-        } else {
-            $business->logo  =   $old_businessinfo->logo;
-        }
-
-		$business->save();
-
-		$id = $old_businessinfo->id;
-
-		$business = Business::findOrFail($id);
-
-		$categories = Session::get('categories');
-		Session::forget('categories');
-
-		if($categories != ''){
-	        foreach($categories as $category)
-			{
-				$business->categories()->attach($category);
-			}
-        }
-		return Redirect::to('/company/'.$business->slug);
+			$slug = $this->business->update(Input::all(), $id);
+			
+			return Redirect::to('/company/'.$slug);
+		}
+		catch(FormValidationException  $e)
+		{
+			
+			return Redirect::back()->withInput()->withErrors($e->getErrors());
+		}
 	}
 
 	/**

@@ -103,6 +103,7 @@ Route::post('company', 'ReviewsController@store');
 
 Route::get('edit/company/{slug}', 'BusinessesController@editcompany');
 Route::post('edit/company/{slug}', 'BusinessesController@update');
+Route::post('ajaxUpdateCategoryRemove', 'BusinessesController@update_category_remove');
 
 Route::get('register', 'UsersController@create');
 Route::post('register', 'UsersController@store');
