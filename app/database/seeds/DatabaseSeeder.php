@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder {
         $this->call('SocialMediaTableSeeder');
         $this->call('CategoriesTableSeeder');
         $this->call('SubscriptionsTableSeeder');
+        $this->call('MainSettingTableSeeder');
+        $this->call('BusinessesCategoryTableSeeder');
 	}
 
 }

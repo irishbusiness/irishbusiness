@@ -755,36 +755,43 @@ function showPreview(e) {
 
 //admin_settings_socialmedia functions
 
-$('.social-link').click(function(){
+$('.social-link').click(function(e){
+	e.preventDefault();
     var placeholder = $(this).attr('data-placeholder');
     var value   =   $(this).attr('data-value');
     var socialtype = $(this).data('socialtype');
     // console.log(socialtype);
 
     //place the data-socialtype to the appended input
-    if( value == "" ){
-        $('.social-textfield').html('<input type="url" class="text-input-grey full" name="socialinput" placeholder="'+placeholder+'" required> <button type="submit" class="bs-btn btn-info save-social">Save</button>');
-    } else {
-        $('.social-textfield').html('<input type="url" class="text-input-grey full" name="socialinput" placeholder="'+placeholder+'" value="'+value+'" required> <a href = "#" class="bs-btn btn-info save-social" data-socialtype="'+socialtype+'">Save</a>');
-        $('a.save-social').click(function(e){
-            e.preventDefault();
-            socialaction($(this));
-        });
-    }
+    // if( value == "" ){
+    //     $('.social-textfield').html('<input type="url" class="text-input-grey full" name="socialinput" placeholder="'+placeholder+'" required> <button type="submit" class="bs-btn btn-info save-social">Save</button>');
+    // 	$('.save-social').click(function(e){
+    //         e.preventDefault();
+    //         socialaction($(this));
+    //     });
+    // } else {
+    //     $('.social-textfield').html('<input type="url" class="text-input-grey full" name="socialinput" placeholder="'+placeholder+'" value="'+value+'" required> <a href = "#" class="bs-btn btn-info save-social" data-socialtype="'+socialtype+'">Save</a>');
+    //     $('a.save-social').click(function(e){
+    //         e.preventDefault();
+    //         socialaction($(this));
+    //     });
+    // }
+
+    $('.social-textfield').html('<input type="url" class="text-input-grey full" name="socialinput" placeholder="'+placeholder+'" value="'+value+'" required> <a href = "#" class="bs-btn btn-info save-social" data-socialtype="'+socialtype+'">Save</a>');
+    $('a.save-social').click(function(e){
+        e.preventDefault();
+        socialaction($(this));
+    });
+
     });
 
 function socialaction(obj){
     var str = $.trim(generateString(20));
     var socialLink = $.trim(obj.prev('input').val());
+
     var socialtype   =   obj.data('socialtype');
 
-    if(socialLink == "" || socialLink==null || socialLink==undefined)
-    {
-        $('.social-textfield').append('<span class="alert alert-error" id="'+str+'">Please provide valid link</span>');
-        $("#"+str).fadeOut(3400, "linear", function(){
-           $(this).remove();
-        });
-    } else {
+  	if(/^(http|https|ftp):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test(socialLink)) {
         $('.social-textfield').children('input').fadeOut();
 
         $('.social-textfield').children('a').fadeOut();
@@ -802,11 +809,16 @@ function socialaction(obj){
             .done(function(data)
             {
                 $('[name="socialinput"]').val('static value');
-                $('.social-textfield').append('<span class="alert alert-success" id="'+str+'">'+socialtype+' link changed to '+socialLink+'</span>');
-                $("#"+str).fadeOut(4500, "linear", function(){
+                $('.social-textfield').append('<span style="color:black;font-weight:normal;" class="alert alert-success" id="'+str+'">'+socialtype+' link changed to '+socialLink+'</span>');
+                $("#"+str).fadeOut(6500, "linear", function(){
                     $(this).remove();
                 });
             });
+    }else{
+    	$('.social-textfield').append('<span class="alert alert-error" id="'+str+'">Please provide valid link</span>');
+        $("#"+str).fadeOut(3400, "linear", function(){
+           $(this).remove();
+        });
     }
 }
 

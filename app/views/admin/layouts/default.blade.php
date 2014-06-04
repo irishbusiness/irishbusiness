@@ -49,6 +49,17 @@
                         }
                     }
                 });
+
+                $('#redactor1').redactor({
+                    focus: true,
+                    buttons: buttons,
+                    buttonsCustom: {
+                        button1: {
+                            title: 'Button',
+                            callback: testButton
+                        }
+                    }
+                });
             }
         );
     </script>
@@ -67,13 +78,18 @@
 
 			<div class="content-wrapper">
 				<div class="zone-content equalize zone clearfix">
-					<div class="content-container container-16">
-
+                @if(Request::is('admin_manage_blog'))
+					<div class="content-container container-24">
+                @else
+                    <div class="content-container container-16">
+                @endif    
 					@yield('actual-body-content')
 
 					</div><!-- end of .content-container -->
 
-					@include('admin.partials._sidebar')
+					 @if(!Request::is('admin_manage_blog'))
+                        @include('client.partials._sidebar')
+                     @endif
 
 				</div><!-- end of .zone-content -->
 				
