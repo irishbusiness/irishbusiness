@@ -17,21 +17,22 @@
 									<a href="#">3</a>
 								</div>
 							</div> -->
+							<?php $x=0; ?>
 							@foreach($businesses as $business)
 							<div class="company-listing clearfix">
 								<a href="#" class="listing-image">
 									<img src="{{ URL::asset($business->logo) }}" alt="" />
 								</a>
 								<div class="listing-body">
-									<!-- <div class="listing-rating">Rating: 99%</div> -->
+
 									<div class="listing-rating">
-									<div class="rating-stars rated">
-											<div class="star star-1"></div>
-											<div class="star star-2"></div>
-											<div class="star star-3"></div>
-											<div class="star star-4"></div>
-											<div class="star star-5 current"></div>
-									</div>
+										<div class="rating-stars {{ (round($rating[$x]) > 0 ? 'rated' : '') }}">
+											<div class="star star-1 {{ (round($rating[$x]) == 1 ? 'current' : '') }}"></div>
+											<div class="star star-2 {{ (round($rating[$x]) == 2 ? 'current' : '') }}"></div>
+											<div class="star star-3 {{ (round($rating[$x]) == 3 ? 'current' : '') }}"></div>
+											<div class="star star-4 {{ (round($rating[$x]) == 4 ? 'current' : '') }}"></div>
+											<div class="star star-5 {{ (round($rating[$x]) == 5 ? 'current' : '') }}"></div>
+										</div>
 									</div>
 									<div class="listing-title">{{$business->name}}</div>
 									<div class="listing-text">{{ $business->business_description }}</div>
@@ -39,6 +40,7 @@
 
 								</div>
 							</div>
+							<?php $x++; ?>
 							@endforeach
 							{{ $businesses->appends(array('category' => $category,'location' =>$location))->links() }}
 						</div>
