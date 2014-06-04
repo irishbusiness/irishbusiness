@@ -182,10 +182,10 @@ Route::get('resetMigration', function(){
 });
 
 
-Route::get('sales', 'salespersonsController@index');
-Route::get('sales/invite','salespersonsController@invite');
+Route::get('sales', 'SalesPersonsController@index');
+Route::get('sales/invite','SalesPersonsController@invite');
 
-Route::post('sales/invite','salespersonsController@store');
+Route::post('sales/invite','SalesPersonsController@store');
 
 Route::get('try',function(){
 	
