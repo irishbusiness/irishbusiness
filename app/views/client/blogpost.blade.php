@@ -8,7 +8,7 @@
 				<div class="blog-post block">
 					<div class="block-title">
                         {{ Form::open(['method' => 'DELETE', 'action' => ['BlogController@destroy', $blog->id]]) }}
-                        {{ HTML::link('blog/'.$blog->id.'/edit', 'Edit', ['class'=>'button-2-colorful a-btn']) }}
+                        {{ HTML::link('blog/'.$blog->slug.'/edit', 'Edit', ['class'=>'button-2-colorful a-btn']) }}
                         {{ Form::submit('Delete', ['class' => 'button-2-colorful', 'onclick' => 'return confirm("Are you sure you want to delete this blog?")'])}}
                         {{ Form::close() }}
                         <br><br>

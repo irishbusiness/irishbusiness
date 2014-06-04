@@ -75,3 +75,15 @@ function arrayStripTags($array)
  
     return $result;
 }
+
+function isOwner($slug){
+    if(Auth::user()->guest()) return false;
+    
+    $id = Auth::user()->user()->id;
+    $business = Business::whereSlug($slug)->first();
+
+    if ($id == $business->user_id)
+        return true;
+    return false;
+
+}

@@ -4,6 +4,8 @@ use SalesPerson;
 use Hash;
 use Auth;
 use Subscription;
+use User;
+
 
 
 class PaymentsRepository {
@@ -13,44 +15,13 @@ class PaymentsRepository {
 		return Subscription::find($id);
 	}
 
-	public function create($input)
+	public function attach($subscription)
 	{
-		$password = str_random(8);
-		$salesperson = new SalesPerson;
-		$salesperson->firstname = $input['firstname'];
-		$salesperson->lastname = $input['lastname'];
-		$salesperson->password = Hash::make($password);
-		$salesperson->phone = $input['phone'];
-		$salesperson->email = $input['email'];
-		$salesperson->access_level = $input['type'];
-		$salesperson->coupon = str_random(3) . time();
-		$salesperson->save();
-		$salesperson->passwordraw = $password;
+		$user = Auth::user()->user();
 
-		return $salesperson;
+		$user->subscription()->attach($subscription);
+
+		return $user;
 	}
-
-	public function authenticate($input)
-	{
-		$credentials = [
-			"email" => $input["email"],
-			"password" => $input["password"]
-		];
-		
-		return Auth::salesperson()->attempt($credentials);
-	}
-
-	public function getCommissions()
-	{
-		$commissionsraw = Commission::all();
-		$commissions = [];
-
-		foreach($commissionsraw as $commission)
-		{
-			$commissions[$commission->id] = $commission->type;
-		}
-
-		return $commissions;
-	}
-
+	
 }

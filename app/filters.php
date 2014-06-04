@@ -26,8 +26,16 @@ View::share('recentlyaddedblog', $recentlyaddedblog);
 
 if(Auth::user()->check())
 {
+
     /*$blogs = Blog::where('business_id', '=', Auth::user()->user()->business->id)->orderBy('created_at', 'desc')->get();*/
     /*View::share('blogs', $blogs);*/
+
+    $blogs = Blog::where('business_id', '=', Auth::user()->user()->business->id)->orderBy('created_at', 'desc')->get();
+    View::share('blogs', (is_null($blogs) ? '' : $blogs));
+
+    // $reviews = Review::where('business_id', '=', Auth::user()->user()->business->id)->orderBy('created_at', 'desc')->get();
+     View::share('reviews', '');
+
 }
 
 
@@ -101,6 +109,7 @@ Route::filter('guest', function()
 	if (Auth::check()) return Redirect::to('/');
 });
 
+
 /*
 |--------------------------------------------------------------------------
 | CSRF Protection Filter
@@ -123,4 +132,8 @@ Route::filter('csrf', function()
 
 Validator::extend('alpha_space', function($attr, $value) {
     return preg_match('/^([a-z\x20])+$/i', $value);
+});
+
+Route::filter('user', function(){
+	if(!Auth::user()->check()) return Redirect::to('/');
 });

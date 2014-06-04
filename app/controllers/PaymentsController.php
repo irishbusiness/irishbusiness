@@ -11,9 +11,15 @@ class PaymentsController extends \BaseController {
 	{
 		
 		$this->payments = $payments;
+		Event::listen('user.subscribe','IrishBusiness\Mailers\ClientMailer@subscribe');
 		
 	}
 
+
+
+	/**
+	 *  BUY VIEW 
+	 */
 
 	public function index()
 	{
@@ -21,48 +27,48 @@ class PaymentsController extends \BaseController {
 		return View::make('client.buy')->withSubscription($subscription);
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /payments/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+
 
 	/**
-	 * Store a newly created resource in storage.
-	 * POST /payments
-	 *
-	 * @return Response
+	 *  PAYMENT STRIPE STORE 
 	 */
+	
+
 	public function store()
 	{
 		$subscription = $this->payments->getSubscription(Input::get('subscription'));
-		$subscription = $this->payments->getSubscription(3);
-		if(is_null($subscription)) return Response::make("Page not found!", 404);
+		
+		
+		if(is_null($subscription)) return Response::view('pagenotfound');
 		
 
 		$token = Input::get('stripeToken');
 		$email = Input::get('stripeEmail');
 		Stripe::setApiKey(Config::get('stripe.secret_key'));
 
-	
-
 		// Create the charge on Stripe's servers - this will charge the user's card
-		try {
+		try 
+		{
 			$charge = Stripe_Charge::create(array(
 			  "amount" => $subscription->price, // amount in cents, again
 			  "currency" => "eur",
 			  "card" => $token,
 			  "description" => $email)
 			);
-		} catch(Stripe_CardError $e) {
+
+			$user = $this->payments->attach($subscription);
+
+			Event::fire('user.subscribe',[$user]);
+			return Redirect::to('settings')->with('flash_message','Thank you for subscribing to Irishbusiness! You can now add your business.');
+		
+		} 
+		catch(Stripe_CardError $e) 
+		{
 		  // The card has been declined
-			var_dump($e);
+			return dd($e);
 		}
+
+		
 	}
 
 	/**

@@ -1196,6 +1196,7 @@ section.content {
 
 	.sidebar-container .block {
 		margin-top: 40px;
+		padding-bottom: 10px;
 	}
 
 .company-sidebar-container .block {
@@ -4413,8 +4414,6 @@ td.detail {
 	word-wrap: break-word;
 }
 
-
-
 .alert-error2 {
 	background-color: #f2dede;
 	border-color: #ebccd1;
@@ -4430,4 +4429,14 @@ td.detail {
 
 .inline {
 	display: inline-block;
+}
+
+.edit-company {
+	float: right;
+	font-size: large;
+}
+
+.block {
+	display: block;
+	margin-top: 10px;
 }

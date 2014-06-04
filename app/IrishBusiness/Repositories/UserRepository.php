@@ -57,9 +57,10 @@ class UserRepository {
 	public function isConfirmed($email)
 	{
 		$user = User::whereEmail($email)->first();
-
-		if($user->confirmed == 1)
-			return true;
+		if(!is_null($user))
+		{	
+			if($user->confirmed == 1) return true;
+		}
 		return false;
 	}
 

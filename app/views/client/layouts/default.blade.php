@@ -4,8 +4,8 @@
 	<head>
 
 		<meta charset="utf-8">
-		<title>Glocal</title>
-
+        @yield('title')
+        
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         {{ HTML::script('scripts/jquery-1.10.2.min.js') }}
         <style type="text/css">
@@ -83,6 +83,8 @@
 			<div class="zone-content equalize zone clearfix">
 
 			<!-- actual body content -->
+
+            
                 @if(Request::is('settings*') || Request::is('company*'))
                 <div class="content-container container-24">
                     <div class="company-tabs-wrapper">
@@ -93,17 +95,15 @@
                                         <a class="company-tabs-page" href="#">COMPANY</a>
                                     </li>
                                     <li class="">
-                                        <a class="company-tabs-coupon" href="#">COUPON</a>
-                                    </li>
-                                    <li class="">
                                         <a class="company-tabs-blog" href="#">BLOG</a>
                                     </li>
-                                    @if(Request::is('company*'))
-                                        @if(count($reviews))
+                                    <li class="">
+                                        <a class="company-tabs-coupon" href="#">COUPON</a>
+                                    </li>
+                                    @if('company*')
                                         <li class="">
                                             <a class="company-tabs-review" href="#">REVIEWS</a>
                                         </li>
-                                        @endif
                                     @endif
                                 </ul>
                             </div>

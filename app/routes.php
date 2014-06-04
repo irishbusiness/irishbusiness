@@ -24,6 +24,9 @@ Route::get('/', function()
 
 // Route::get('/', 'HomeController@index');
 
+Route::model('blog/{id}', 'Blog');
+Route::model('blog/{id}/edit', 'Blog');
+
 Route::resource('blog', 'BlogController');
 
 Route::get('bloglist', 'BlogController@bloglist');
@@ -98,6 +101,9 @@ Route::get('company', 'BusinessesController@companytab');
 Route::get('company/{name}', 'BusinessesController@companytab2');
 Route::post('company', 'ReviewsController@store');
 
+Route::get('edit/company/{slug}', 'BusinessesController@editcompany');
+Route::post('edit/company/{slug}', 'BusinessesController@update');
+
 Route::get('register', 'UsersController@create');
 Route::post('register', 'UsersController@store');
 
@@ -147,6 +153,8 @@ Route::get('clear',function(){
 	Auth::user()->logout();
 	Auth::salesperson()->logout();
 
+	return Redirect::to('/');
+
 });
 
 
@@ -187,4 +195,12 @@ Route::get('try',function(){
 	$user->subscription()->attach(2);
 
 	
+});
+
+App::missing(function($exception)
+{
+    return View::make('pagenotfound');
+});
+Route::get('notfound', function(){
+	return View::make('pagenotfound');
 });
