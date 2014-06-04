@@ -190,9 +190,22 @@ class BusinessesController extends \BaseController {
 
 	public function editcompany($slug){
 		$businessinfo = Business::whereSlug($slug)->first();
+		
 		$categories = $this->category->getCategories();
 		
 		$selected_categories = $businessinfo->categories;
+		$selected_categories = $selected_categories->toArray();
+		// foreach ($selected_categories as $selected_category) {
+		  // echo $selected_category->category_id;
+			// echo "<pre>";
+			// print_r($selected_categories->toArray());
+			// echo "</pre>";
+		// // }
+
+		// dd("tae");
+
+		// dd($selected_categories->toArray());
+
 		$addresses = $businessinfo->address;
 		$addresses = explode(",", $addresses);
 
