@@ -90,7 +90,8 @@ Route::get('admin_manage_blog', function(){
 
 Route::post('admin_manage_blog', 'BlogController@store');
 
-Route::get('settings', 'BusinessesController@sample');
+Route::model('settings/{businessSlug}', 'Business');
+Route::get('settings/{businessSlug}', 'BusinessesController@sample');
 Route::post('settings', 'BusinessesController@store');
 // Route::post('search','BusinessesController@search');
 Route::get('search', 'BusinessesController@search');
@@ -187,6 +188,9 @@ Route::get('sales/invite','SalesPersonsController@invite');
 
 Route::post('sales/invite','SalesPersonsController@store');
 
+Route::get('sales/password/edit','SalesPersonsController@changePassword');
+Route::post('sales/password/edit','SalesPersonsController@updatePassword');
+
 Route::get('try',function(){
 	
 	/*return dd(is_null(User::with('subscription')->find(1)->first()->subscription->first()));*/
@@ -204,4 +208,8 @@ App::missing(function($exception)
 });
 Route::get('notfound', function(){
 	return View::make('pagenotfound');
+});
+
+Route::get('todo',function(){
+	return View::make('todo');
 });

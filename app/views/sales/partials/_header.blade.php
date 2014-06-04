@@ -101,7 +101,10 @@
     						<li class="empty neighbour-left">
     							<div></div>
     						</li>
-    						<li {{ (Request::is('/') ? ' class="first active"' : '') }}>
+                            <li {{ (Request::is('sales/password/edit*') ? ' class="first active"' : '') }}>
+                                <a href="{{ URL::to('/sales/password/edit') }}">Password Change</a>
+                            </li>
+    						<li {{ (Request::is('sales/invite*') ? ' class="first active"' : '') }}>
     							<a href="{{ URL::to('/sales/invite') }}">Invite</a>
     						</li>
     						<!-- <li {{ (Request::is('blog*') ? ' class="first active"' : '') }}>

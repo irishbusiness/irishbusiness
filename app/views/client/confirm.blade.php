@@ -5,8 +5,8 @@
 @stop
 
 @section('actual-body-content')
- <h1> Thank you for confirming your email.</h1>
-  <h1>You can now Login!</h1>
+ <h4> Thank you for confirming your email.</h4>
+  <h4>You can now Login!</h4>
 @stop
 
 @section('scripts')

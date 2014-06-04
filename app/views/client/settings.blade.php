@@ -14,7 +14,7 @@
         	@include('client.companytabs.reviews')
 
         <!-- reviews tab -->
-            @include('client.companytabs.coupons')<!-- this is temporarily the coupon tab -->
+            @include('client.companytabs.coupons')
 @stop
 
 @section('scripts')
