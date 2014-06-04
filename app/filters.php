@@ -17,7 +17,7 @@ $headerlogo = MainSetting::select('headerlogo')->orderBy('created_at', 'desc')->
 $footerlogo = MainSetting::select('footerlogo')->orderBy('created_at', 'desc')->first();
 $recentlyaddedcompany = Business::orderBy('created_at', 'desc')->limit(3)->get();
 $recentlyaddedblog	=	Blog::orderBy('created_at', 'desc')->limit(3)->get();
-$socialmedia = SocialMedia::all();
+$socialmedia = SocialMedia::first();
 
 View::share('imgheaderlogo', $headerlogo);
 View::share('imgfooterlogo', $footerlogo);

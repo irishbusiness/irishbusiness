@@ -54,26 +54,37 @@
     			</div>
 
     			<div class="header-top-right container-16">
-
     				<div class="social-links block">
-    					<a href="http://www.facebook.com">
+                    @if($socialmedia->facebook != '')
+    					<a href="{{ $socialmedia->facebook }}">
     						<img src="{{ URL::asset('images/facebook-icon.png') }}" alt="" />
     					</a>
-    					<a href="http://www.google.com">
+                    @endif
+                    @if($socialmedia->google != '')
+    					<a href="{{ $socialmedia->google }}">
     						<img src="{{ URL::asset('images/google-icon.png') }}" alt="" />
     					</a>
-    					<a href="http://www.twitter.com">
+                    @endif
+                    @if($socialmedia->twitter != '')
+    					<a href="{{ $socialmedia->twitter }}">
     						<img src="{{ URL::asset('images/twitter-icon.png') }}" alt="" />
     					</a>
-    					<a href="http://www.linkedin.com">
+                    @endif
+                    @if($socialmedia->linkedin != '')
+    					<a href="{{ $socialmedia->linkedin }}">
     						<img src="{{ URL::asset('images/linkedin-icon.png') }}" alt="" />
     					</a>
-    					<a href="http://www.pinterest.com">
+                    @endif
+                    @if($socialmedia->pinterest != '')
+    					<a href="{{ $socialmedia->pinterest }}">
     						<img src="{{ URL::asset('images/pinterest-icon.png') }}" alt="" />
     					</a>
-    					<a href="http://www.dribbble.com">
+                    @endif
+                    @if($socialmedia->dribbble != '')
+    					<a href="{{ $socialmedia->dribbble }}">
     						<img src="{{ URL::asset('images/dribbble-icon.png') }}" alt="" />
     					</a>
+                    @endif
     				</div>
 
     			</div>
