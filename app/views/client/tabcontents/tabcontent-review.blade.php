@@ -11,23 +11,13 @@
 												<div class="review-author">
 													<span class="author">{{ $review->name }}</span> - <span class="date">{{ date("F j, Y",strtotime($review->created_at))." at ".date("g:i a",strtotime($review->created_at)) }}</span>
 												</div>
-												@if( $review->rating == 0 )
-													<div class="rating-stars">
-														<div class="star"></div>
-														<div class="star"></div>
-														<div class="star"></div>
-														<div class="star"></div>
-														<div class="star"></div>
-													</div>
-												@else
-													<div class="rating-stars rated">
-														<div class="star star-1 {{ ($review->rating == 1 ? 'current' : '') }} "></div>
-														<div class="star star-2 {{ ($review->rating == 2 ? 'current' : '') }} "></div>
-														<div class="star star-3 {{ ($review->rating == 3 ? 'current' : '') }} "></div>
-														<div class="star star-4 {{ ($review->rating == 4 ? 'current' : '') }} "></div>
-														<div class="star star-5 {{ ($review->rating == 5 ? 'current' : '') }} "></div>
-													</div>
-												@endif
+												<div class="rating-stars {{ ($review->rating > 0 ? 'rated' : '') }}">
+													<div class="star star-1 {{ ($review->rating == 1 ? 'current' : '') }} "></div>
+													<div class="star star-2 {{ ($review->rating == 2 ? 'current' : '') }} "></div>
+													<div class="star star-3 {{ ($review->rating == 3 ? 'current' : '') }} "></div>
+													<div class="star star-4 {{ ($review->rating == 4 ? 'current' : '') }} "></div>
+													<div class="star star-5 {{ ($review->rating == 5 ? 'current' : '') }} "></div>
+												</div>
 												<div class="review-text">
 													{{ html_entity_decode(stripcslashes($review->description)) }}
 												</div>

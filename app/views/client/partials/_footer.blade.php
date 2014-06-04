@@ -1,7 +1,7 @@
 <?php
-	if(is_null($imgfooterlogo)){
-		$imgfooterlogo = new \Illuminate\Support\Collection;
-   	 	$imgfooterlogo->footerlogo = 'default.png';
+	if(is_null($recentsettings)){
+		$recentsettings = new \Illuminate\Support\Collection;
+   	 	$recentsettings->footerlogo = 'default.png';
 	}
 ?>
 
@@ -13,9 +13,9 @@
 					<div class="footer-container container-24">
 
 						<div class="website-short-description block">
-							<img class="footer-logo-img" src="{{ URL::asset('/images/logo/footer/'.$imgfooterlogo->footerlogo) }}" alt="" />
+							<img class="footer-logo-img" src="{{ URL::asset('/images/logo/footer/'.$recentsettings->footerlogo) }}" alt="" />
 							<div class="description-text">
-								<p>{{ $footertext->footer_text }}</p>
+								<p>{{ $recentsettings->footer_text }}</p>
 							</div>
 						</div>
 
