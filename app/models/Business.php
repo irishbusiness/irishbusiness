@@ -12,4 +12,9 @@ class Business extends \Eloquent {
     {
         return $this->belongsTo('user');
     }
+
+    public function reviews()
+    {
+    	return $this->hasMany('Review', 'business_id');
+    }
 }

@@ -4414,8 +4414,6 @@ td.detail {
 	word-wrap: break-word;
 }
 
-
-
 .alert-error2 {
 	background-color: #f2dede;
 	border-color: #ebccd1;
@@ -4436,4 +4434,9 @@ td.detail {
 .edit-company {
 	float: right;
 	font-size: large;
+}
+
+.block {
+	display: block;
+	margin-top: 10px;
 }

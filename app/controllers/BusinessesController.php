@@ -1,35 +1,31 @@
 <?php
 
 use IrishBusiness\Repositories\CategoryRepository;
+use IrishBusiness\Repositories\BusinessRepository;
+use IrishBusiness\Forms\RegisterBusiness;
+use IrishBusiness\Forms\FormValidationException;
 
 class BusinessesController extends \BaseController {
 
 	protected $category;
+	protected $business;
+	protected $registerbusiness;
 
-	function __construct(CategoryRepository $category)
+	function __construct(CategoryRepository $category, BusinessRepository $business, RegisterBusiness $registerbusiness)
 	{
 		$this->category = $category;
-		$this->beforeFilter('user', ['only' => ['sample']]);
-		$this->beforeFilter('subscribed',['only' => ['sample']]);
-		$this->beforeFilter('csrf', ['on' => 'post']);
+		$this->business = $business;
+		$this->registerbusiness = $registerbusiness;
 		// $this->beforeFilter('user', ['only' => ['sample']]);
+		$this->beforeFilter('csrf', ['on' => 'post']);
 	}
 
 	public function index()
 	{
-		$businesses = Business::all();
+		$businesses = $this->business->getAll();
+
 		return View::make('searchpartial.listings')->with('title','Listings')
 		->with('businesses',$businesses);
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
 	}
 
 	public function search()
@@ -99,69 +95,32 @@ class BusinessesController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
-		$address = Input::get('address1') . ',' . Input::get('address2') . ',' . Input::get('address3')  . ',' .Input::get('address4');
-		$business = new Business;
-		$business->name = Input::get('businessname');
-		$business->address = $address;
-		$business->keywords = Input::get('keywords');
-		$business->locations = Input::get('locations');
-		$business->phone    =   Input::get('phone');
-		$business->website    =   Input::get('website');
-		$business->email    =   Input::get('email');
-        $business->business_description    =   Input::get('business_description');
-		$business->profile_description   =   Input::get('profile_description');
-		$business->mon_fri   =   Input::get('mon_fri');
-		$business->sat   =   Input::get('sat');
-		$business->facebook   =   Input::get('facebook');
-		$business->twitter  =   Input::get('twitter');
-		$business->google  =   Input::get('google');
-        // $business->user_id = Auth::user()->get()->id;
-        $business->user_id = 1;
 
-
-        $business->slug = Input::get('businessurl');
-
-        // logo
-        if( Input::hasFile('logo'))
-        {
-            $dir = $dir = public_path().'/images/companylogos/';
-            $image  =   Input::file('logo');
-            $imagename = md5(date('YmdHis')).'.jpg';
-            $filename = $dir.$imagename;
-
-            if ($image->getMimeType() == 'image/png'
-                || $image->getMimeType() == 'image/jpg'
-                || $image->getMimeType() == 'image/gif'
-                || $image->getMimeType() == 'image/jpeg'
-                || $image->getMimeType() == 'image/pjpeg')
-            {
-                $image->move($dir, $filename);
-                $business->logo  =   'images/companylogos/'.$imagename;
-            } else {
-                $business->logo  =   'images/companylogos/'.$imagename;
-            }
-
-        } else {
-            $business->logo  =   'images/companylogos/sample_company.jpg';
-        }
-
-		$business->save();
-
-		$id = $business->id;
-
-		$business = Business::findOrFail($id);
-
-		$categories = Session::get('categories');
-		Session::forget('categories');
-
-		if($categories != ''){
-        foreach($categories as $category)
+		try
 		{
-			$business->categories()->attach($category);
+			$this->registerbusiness->validate(Input::all());
+
+			$business_id = $this->business->create(Input::all());
+
+			$business = Business::findOrFail($business_id);
+
+			$categories = Session::get('categories');
+			Session::forget('categories');
+
+			if($categories != ''){
+				foreach($categories as $category)
+				{
+					$business->categories()->attach($category);
+				}
+			}
+
+			return Redirect::to('/listings');
 		}
-        }
-		return Redirect::to('/listings');
+		catch(FormValidationException  $e)
+		{
+			
+			return Redirect::back()->withInput()->withErrors($e->getErrors());
+		}
 	
 	}
 
@@ -169,7 +128,8 @@ class BusinessesController extends \BaseController {
 		$id = 1;
 		$blog_id = 1;
 		$businessinfo = Business::findOrFail($id)->first();
-		$reviews = Review::whereBusiness_id($businessinfo->id)->orderBy("created_at", "desc")->get();
+		$reviews = $businessinfo->reviews()->orderBy('created_at', 'desc')->get();
+		// $reviews = Review::whereBusiness_id($businessinfo->id)->orderBy("created_at", "desc")->get();
 		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
 		// $businessinfo = Business::all();
 		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
@@ -179,8 +139,10 @@ class BusinessesController extends \BaseController {
 	public function companytab2($name){
 		$id = 1;
 		$blog_id = 1;
-		$reviews = Review::orderBy("created_at", "desc")->get();
+		// $reviews = Review::orderBy("created_at", "desc")->get();
 		$businessinfo = Business::whereSlug($name)->first();
+		$reviews = $businessinfo->reviews()->orderBy('created_at', 'desc')->get();
+		// return dd($reviews);
 		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
 		// $businessinfo = Business::all();
 		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
