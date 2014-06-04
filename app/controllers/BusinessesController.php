@@ -80,15 +80,21 @@ class BusinessesController extends \BaseController {
 		->with('selected',$selected);
 	}
 
-	public function sample()
+	public function sample($businessSlug)
 	{
+		$business = Business::whereSlug($businessSlug)->first();
+		$blogs = $business->blogs()->get();
+		$reviews = $business->reviews()->orderBy('created_at', 'desc')->get();
 		$categories = $this->category->getCategories();
 		Session::forget('category');
 		
 		// return View::make('searchpartial.settings')->with('title','Settings')
 		// ->with('categories',$categories);
 		return View::make('client.settings')->with('title','Settings')
-		->with('categories',$categories);
+		->with('categories',$categories)
+		->with('business', $business)
+		->with('blogs', $blogs)
+		->with('reviews', $reviews);
 		
 	}
 

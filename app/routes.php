@@ -90,7 +90,8 @@ Route::get('admin_manage_blog', function(){
 
 Route::post('admin_manage_blog', 'BlogController@store');
 
-Route::get('settings', 'BusinessesController@sample');
+Route::model('settings/{businessSlug}', 'Business');
+Route::get('settings/{businessSlug}', 'BusinessesController@sample');
 Route::post('settings', 'BusinessesController@store');
 // Route::post('search','BusinessesController@search');
 Route::get('search', 'BusinessesController@search');
