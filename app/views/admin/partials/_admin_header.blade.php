@@ -1,3 +1,9 @@
+ <?php
+    if(is_null($recentsettings)){
+    	$recentsettings = new \Illuminate\Support\Collection;
+    	$recentsettings->headerlogo = 'default.png';
+    }
+?>
 			<header class="section header-2 boxed">
 
 			<div class="header-top-wrapper">
@@ -30,7 +36,7 @@
 
 						<div class="logo block">
 							<a href="#">
-                                {{ HTML::image('images/logo-2.png') }}
+                                {{ HTML::image(URL::asset('/images/logo/header/'.$recentsettings->headerlogo), "", ["class"=>"header-logo-img"]) }}
 							</a>
 						</div>
 

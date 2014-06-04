@@ -1,3 +1,9 @@
+<?php
+	if(is_null($recentsettings)){
+		$recentsettings = new \Illuminate\Support\Collection;
+   	 	$recentsettings->footerlogo = 'default.png';
+	}
+?>
 		<footer class="section boxed">
 
 			<div class="footer-wrapper">
@@ -6,9 +12,9 @@
 					<div class="footer-container container-24">
 
 						<div class="website-short-description block">
-                            {{ HTML::image('images/IrishBusiness_footer.png', '', ['class' => 'logo']) }}
+                            {{ HTML::image(URL::asset('/images/logo/footer/'.$recentsettings->footerlogo), '', ['class' => 'logo']) }}
 							<div class="description-text">
-								Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est. Etiam sit amet lectus quis est congue mollis.
+								{{ $recentsettings->footer_text }}
 							</div>
 						</div>
 
