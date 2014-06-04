@@ -147,7 +147,11 @@
 	            'class' => 'text-input-grey full']) }}
 	        </div>
 	        <div class="form-group">
-	            <div class="showCategory"></div>
+	            <div class="showCategory">
+	            	@for($x=0; $x<count($selected_categories); $x++)
+	            		<span data-id="{{ $selected_categories[$x]["id"] }}" class="bs-btn btn-success category">{{ $selected_categories[$x]["name"] }}</span>
+	            	@endfor
+	            </div>
 	        </div>
 
 	        <div class="thin-separator"></div>
@@ -164,4 +168,8 @@
 	        {{ Form::close() }}
 	    </div>
 	</div>
+@stop
+@section('scripts')
+        <!-- the long scripts -->
+        @include('client.companytabs.settings_scripts')
 @stop

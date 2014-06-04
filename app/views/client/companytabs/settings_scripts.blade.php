@@ -42,7 +42,9 @@
                 }
             })
                 .done(function(data){
-                    $("span[data-id='"+category+"']").remove();
+                    $("span[data-id='"+category+"']").fadeOut(function(){
+                        $("span[data-id='"+category+"']").remove();
+                    });
                 })
         });
     });
