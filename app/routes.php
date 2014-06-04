@@ -208,3 +208,7 @@ App::missing(function($exception)
 Route::get('notfound', function(){
 	return View::make('pagenotfound');
 });
+
+Route::get('todo',function(){
+	return View::make('todo');
+});
