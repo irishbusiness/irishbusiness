@@ -38,6 +38,11 @@ class BlogController extends \BaseController {
         return View::make('admin.admin_manage_blog');
     }
 
+    public function manageblog(){
+        $blogs = Blog::orderBy('created_at', 'desc')->get();
+        return View::make('admin.admin_manage_blog')->with('blogs', $blogs);
+    }
+
     public function store()
     {
         // files storage folder
