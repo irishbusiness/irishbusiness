@@ -896,20 +896,8 @@ function editBlog(obj) {
 	if($("#cancel-blog-edit").css("display")=="inline-block"){
 
 		var tae = $("#cancel-blog-edit").attr("data-id");
-		$("tr[data-id='"+tae+"']").fadeIn(function(){
-					// obj.remove();
-		});
+		$("tr[data-id='"+tae+"']").fadeIn();
 	}
-
-	// if($('#cancel-blog-edit').is(':visible')){
-
-	// 	console.log("visible ko");
-	// 	var id2 = $(this).attr('data-id');
-	// 	var title = $(this).attr('data-title');
-	// 	$("tr[data-id='"+id2+"']").fadeIn();
-	// 	// $("#table-categories tbody").prepend('<tr data-id="'+id+'"><td><span class="category-name">'+title+'</span></td><td><a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="editBlog($(this))" data-id="'+id+'">Edit</a> <a href="javascript:void(0)" data-id="'+id+'" onclick="deleteBlog($(this))" class="bs-btn btn-danger btn-delete-blog" data-id="'+id+'">Delete</a></td></tr>');
-	// 	console.log(id + " "+ title);
-	// }
 
     $.ajax({
         url: "/blogAjax",
@@ -929,7 +917,8 @@ function editBlog(obj) {
         $('#img-render-blogheaderimageedit').attr('src', data['blogheaderimage']);
         $('#cancel-blog-edit').attr('data-id', data['id']);
         $('#cancel-blog-edit').attr('data-title', data['title']);
-
+        $('#editblogurl').val(data['slug']);
+        
         $(document).ready(
             function()
             {
@@ -989,8 +978,8 @@ $(document).ready(function() {
 	$('#addBlogForm').submit(function(event) {
 
           var formData = new FormData($('#addBlogForm')[0]);
-          var token = $('#addBlogForm > input[name="_token"]').val();
-          formData.append('_token',token);
+          // var token = $('#addBlogForm > input[name="_token"]').val();
+          // formData.append('_token',token);
           var str = $.trim(generateString(20));
 
                $.ajax({

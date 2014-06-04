@@ -7,10 +7,10 @@
 							<ul class="entries-list">
 								@foreach($recentlyaddedcompany as $recentcompany)
 									<li class="clearfix">
-										<a href="#" class="thumbnail">
+										<a href="{{ URL::to('/company/'.$recentcompany->slug) }}" class="thumbnail">
 											<img src="{{ URL::asset($recentcompany->logo) }}" alt="" />
 										</a>
-										<a href="#" class="entry-title">{{ html_entity_decode(stripcslashes($recentcompany->name)) }}</a>
+										<a href="{{ URL::to('/company/'.$recentcompany->slug) }}" class="entry-title">{{ html_entity_decode(stripcslashes($recentcompany->name)) }}</a>
 										<div class="entry-excerpt">{{ Str::limit(html_entity_decode(stripcslashes($recentcompany->business_description)), 50) }}</div>
 									</li>	
 								@endforeach
@@ -32,11 +32,11 @@
 							<ul class="entries-list">
 							@foreach($recentlyaddedblog as $recentblog)
 								<li class="clearfix">
-									<a href="#" class="thumbnail">
+									<a href="{{ URL::to('/blog/'.$recentblog->slug) }}" class="thumbnail">
 										<img src="{{ URL::asset($recentblog->blogheaderimage) }}" alt="" />
 									</a>
-									<a href="#" class="entry-title">{{ $recentblog->title }}</a>
-									<div class="entry-excerpt">{{ Str::limit(strip_tags($recentblog->body) , 50) }}</div>
+									<a href="{{ URL::to('/blog/'.$recentblog->slug) }}" class="entry-title">{{ stripcslashes($recentblog->title) }}</a>
+									<div class="entry-excerpt">{{ Str::limit(stripcslashes(strip_tags(html_entity_decode($recentblog->body))) , 50) }}</div>
 								</li>
 							@endforeach
 							</ul>
