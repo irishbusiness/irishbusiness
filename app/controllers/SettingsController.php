@@ -114,22 +114,14 @@ class SettingsController extends \BaseController {
                 $imageError2 = "It seems the footer logo isn't valid.";
             }
         }else {
-            if($oldsettings->footerlogo){
-                $mainsettings->footerlogo = "";
-            }else{
-                $mainsettings->footerlogo = $oldsettings->footerlogo;
-            }
+            $mainsettings->footerlogo = $oldsettings->footerlogo;
         }
-
-        $successmsg = "Settings has been updated.";
-        $failedmsg = "Unable to save your settings this time.";
 
         if($mainsettings->save()){
            $settings = MainSetting::orderBy('created_at', 'desc')->first();
-            return View::make('admin.admin_settings_general')->with('settings', $settings->toArray())
-                ->with('successmsg', $successmsg)->with('imageError1', $imageError1);
+            return Redirect::to("/admin_settings_general")->with("flash_message", "Your new settings has been updated.");
         }else {
-        	return Redirect::to('/admin_settings_general')->with('failedmsg', $failedmsg)->withInput();
+        	return Redirect::to('/admin_settings_general')->with("flash_message", "Sorry, we can't update your settings right now.")->withInput();
         }
 
         echo "filename=".$filename."<br>";
