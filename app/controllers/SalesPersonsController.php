@@ -69,9 +69,9 @@ class SalesPersonsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function changePassword()
 	{
-		//
+		return View::make('sales.changepassword')->withTitle('changePassword');
 	}
 
 	/**
@@ -80,9 +80,10 @@ class SalesPersonsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function updatePassword()
 	{
-		//
+		
+		dd(Input::all());
 	}
 
 	/**
