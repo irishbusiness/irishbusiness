@@ -24,28 +24,6 @@ View::share('recentlyaddedcompany', $recentlyaddedcompany);
 View::share('recentlyaddedblog', $recentlyaddedblog);
 
 
-// if(Auth::user()->check())
-// {
-
-    /*$blogs = Blog::where('business_id', '=', Auth::user()->user()->business->id)->orderBy('created_at', 'desc')->get();*/
-    /*View::share('blogs', $blogs);*/
-
-    // $blogs = Blog::where('business_id', '=', Auth::user()->user()->business->id)->orderBy('created_at', 'desc')->get();
-    // View::share('blogs', (is_null($blogs) ? '' : $blogs));
-
-    // $reviews = Review::where('business_id', '=', Auth::user()->user()->business->id)->orderBy('created_at', 'desc')->get();
-
-     // View::share('reviews', '');
-
-
-     // View::share('reviews', $reviews);
-    // View::share('reviews', '');
-
-// }
-
-
-
-
 App::before(function($request)
 {
 	
