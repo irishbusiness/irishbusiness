@@ -19,8 +19,8 @@ class BusinessesController extends \BaseController {
 		$this->business = $business;
 		$this->registerbusiness = $registerbusiness;
 		$this->updatebusiness = $updatebusiness;
-		$this->beforeFilter('user', ['only' => ['sample']]);
-		$this->beforeFilter('subscribed', ['only' => ['sample']]);
+		$this->beforeFilter('user', ['only' => ['sample', 'sample2']]);
+		$this->beforeFilter('subscribed', ['only' => ['sample', 'sample2']]);
 		$this->beforeFilter('csrf', ['on' => 'post']);
 	}
 
