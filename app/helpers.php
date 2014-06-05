@@ -89,3 +89,26 @@ function isOwner($slug){
     return false;
 
 }
+
+function hasBusiness()
+{
+    if(Auth::user()->check())
+        {
+            $business = Auth::user()->user()->business;
+            if (!is_null($business))
+                return true;
+        }
+
+        return false;
+    
+}
+
+function businessSlug(){
+
+        if(Auth::user()->check())
+        {
+            $business = Auth::user()->user()->business;
+            if (!is_null($business))
+                return $business->slug;
+        }
+    }
