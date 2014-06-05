@@ -100,7 +100,7 @@
                                     <li class="">
                                         <a class="company-tabs-coupon" href="#">COUPON</a>
                                     </li>
-                                    @if(Request::is('company*'))
+                                    @if(isset($reviews) && !is_null($reviews))
                                         @if(count($reviews))
                                         <li class="">
                                             <a class="company-tabs-review" href="#">REVIEWS</a>
