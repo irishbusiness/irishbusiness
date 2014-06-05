@@ -196,9 +196,12 @@ Route::get('try',function(){
 	
 	/*return dd(is_null(User::with('subscription')->find(1)->first()->subscription->first()));*/
 
-	$user = User::find(1);
-
-	$user->subscription()->attach(2);
+	if(Auth::user()->check())
+		{
+			$business = Auth::user()->user()->business;
+			if (!is_null($business))
+				return Redirect::to('edit/company/'.$business->slug);
+		}
 
 	
 });

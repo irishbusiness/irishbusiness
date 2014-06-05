@@ -71,14 +71,27 @@ Route::filter('auth.basic', function()
 
 Route::filter('subscribed', function()
 {
-	$id = 0;
 	if(Auth::user()->check())
+	{
 		$id = Auth::user()->user()->id;
-	if (is_null(User::with('subscription')->find($id)->subscription->first()))
-		return Redirect::to('buy');
-	
+		if (is_null(Auth::user()->user()->subscription->first()))
+			return Redirect::to('buy');
+	}
+
 });
 
+
+Route::filter('hasBusiness', function(){
+
+		if(Auth::user()->check())
+		{
+			$business = Auth::user()->user()->business;
+			if (!is_null($business))
+				return Redirect::to('edit/company/'.$business->slug);
+		}
+	
+		
+});
 
 
 /*
