@@ -111,7 +111,8 @@ class BusinessesController extends \BaseController {
 		Session::forget('category');
 
 		return View::make('client.settings')->with('title','Settings')
-		->with('categories', $categories);
+		->with('categories', $categories)
+		->with('reviews', NULL);
 	}
 
 	/**
@@ -172,7 +173,7 @@ class BusinessesController extends \BaseController {
 		}
 
 		// $reviews = $businessinfo->reviews()->orderBy('created_at', 'desc')->get();
-		$reviews = Review::where('business_id', '=', $businessinfo->id)->orderBy('created_at', 'desc')->get();
+		$reviews = $businessinfo->reviews()->orderBy('created_at', 'desc')->get();
 
 		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
 

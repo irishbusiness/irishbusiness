@@ -172,7 +172,7 @@
 											</div>
 										</div>
 									</div>
-									@unless (Auth::check())
+									@if (Auth::user()->guest())
 										<div class="rating-inputs">
 											<div class="rating-details">
 												<button id="logintosendreview" class="button-2-green">Login</button> or  
@@ -184,11 +184,11 @@
 									<div class="rating-inputs">
 										<div class="rating-details">
 											<div class="detail">
-												{{ Form::text("rating-name", "", ["id"=>"rating-name", "placeholder"=>"Name", "class"=>"text-input-grey one fourth"]) }}
+												{{ Form::text("rating-name", "", ["id"=>"rating-name", "placeholder"=>"Name", "class"=>"text-input-grey one fourth", "required"=>"required"]) }}
 											</div>
 											<div class="detail">
 												{{ Form::textarea("rating-description", "", ["id"=>"rating-description", "rows"=>"8", "cols"=>"45", 
-													"placeholder"=>"Description", "class"=>"text-input-grey comment-message-main one-fourth"]) }}
+													"placeholder"=>"Description", "class"=>"text-input-grey comment-message-main one-fourth", "required"=>"required"]) }}
 											</div>
 											{{ Form::input("submit", "submit", "Send rating", ["class"=>"send-rating button-2-green"]) }}
 										</div>
@@ -206,7 +206,7 @@
 									</div>
 									{{ Form::input("hidden", "rating", "", ["id"=>"fi-rating"]) }}
 									{{ Form::close() }}
-									@endunless
+									@endif
 									<div class="clearfix">
 									</div>
 								</div>

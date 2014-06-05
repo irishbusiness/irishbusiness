@@ -20,7 +20,6 @@
 	<ul>
 		<li>Google Maps</li>
 		<li>Multiple Business Branches</li>
-		<li> Coupon Builder </li>
 	</ul>
 	<hr/>
 	<h3>Zem </h3>
@@ -31,6 +30,8 @@
 		<li>Add main_setting seeder - Done</li>
 		<li>Add business_category seeder - Done</li>
 		<li>admin blog - Done</li>
+		<li> Coupon Builder </li>
+		<li>Reviews tab (backend)</li>
 	</ul>
 
 </body>
