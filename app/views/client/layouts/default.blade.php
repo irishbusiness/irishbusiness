@@ -100,11 +100,13 @@
                                     <li class="">
                                         <a class="company-tabs-coupon" href="#">COUPON</a>
                                     </li>
+                                    @if(isset($reviews) && !is_null($reviews))
                                         @if(count($reviews))
                                         <li class="">
                                             <a class="company-tabs-review" href="#">REVIEWS</a>
                                         </li>
                                         @endif
+                                    @endif
                                 </ul>
                             </div>
                             <!-- end of .company-tabs-container -->
