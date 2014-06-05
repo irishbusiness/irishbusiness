@@ -838,7 +838,7 @@ $('.btn-delete-blog').click(function(){
 	      		var str = $.trim(generateString(20));
 	    	$.ajax({
 		        
-		        url: 'deleteBlogAjax',
+		        url: '/deleteBlogAjax',
 		        type: "DELETE",
 		        data: { id: id },
 				dataType 	: 'json',

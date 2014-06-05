@@ -31,7 +31,8 @@
 		<li>Add business_category seeder - Done</li>
 		<li>admin blog - Done</li>
 		<li>Fix navbar for logged in users - Done</li>
-		<li>Transfer Edit to company tabs</li>
+		<li>Transfer Edit to company tabs - Done</li>
+		<li>populate recent post with real data in footer</li>
 		<li> Coupon Builder </li>
 		<li>Reviews tab (backend)</li>
 	</ul>

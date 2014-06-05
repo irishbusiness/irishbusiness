@@ -1,4 +1,4 @@
-	<div id="company-tabs-page" class="company-tabs-content" style="display: block;">
+<div id="company-tabs-page" class="company-tabs-content" style="display: block;">
 	    <div class="portfolio-container container-24">
 
 	        <div class="blog-post block">
@@ -88,7 +88,7 @@
 	            {{ Form::label('business_description', "Business Description",
 	            ["class"=>"text-colorful"]) }}<br/>
 	            {{ Form::textarea('business_description', html_entity_decode(stripcslashes($business->business_description)), [
-	            "placeholder" => "business_description", "class"=>"text-input-grey full", 'required']) }}
+	            "placeholder" => "business_description", "class"=>"text-input-grey comment-message-main full", 'required']) }}
 	            {{$errors->first('business_description','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
 
@@ -168,56 +168,59 @@
 	        {{ Form::close() }}
 	    </div>
 	</div>
-
 @section('scripts')
 	<script type="text/javascript">
 		$(function(){
 	        $(document).on('change','#categories',function()
-	        {
-
+	        {	
+	        	var id = 0;
+	            id = {{ $business->id }};
 	            var category = $('#categories').val();
-
+	            var name = $("#categories option:selected").text();
+	            console.log(name);
+	            var token = $('input[name="_token"]').val();
 	            if (category>0)
 	            {
-	                console.log(category);
 
 	                $.ajax(
-	                    {
-	                        url: "/ajaxCategory",
-	                        type: "post",
-	                        data: { category: category},
-	                        beforeSend: function()
-	                        {
-	                            // console.log(category);
-	                        }
+                    {
+                        url: "/ajaxUpdateCategoryAdd",
+                        type: "post",
+                        data: { category: category, _token: token, bid: id, name: name}
 
-	                    })
-	                    .done(function(data)
-	                    {
-	                        $('.showCategory').append('<span class="bs-btn btn-success category" data-id="'+data.id+'"> '+ data.name +
-	                            '<span class="remove" data-id="'+data.id+'" data-text="'+data.name+'" title="remove this category">x</span></span>');
-	                        $('#categories').find('option:selected').remove();
-	                    })
-
+                    })
+                    .done(function(data)
+                    {
+                    	console.log(data);
+                        $('.showCategory').append('<span class="bs-btn btn-success category" data-id="'+category+'"> '+ name +
+                            '<span class="remove" data-id="'+category+'" data-text="'+name+'" title="remove this category">x</span></span>');
+                        $('#categories').find('option:selected').remove();
+                    })
 	            }
 	        });
 
 	        $(document).on('click', '.remove', function(){
 	            var category = $(this).attr("data-id");
+	            var id = 0;
+	            id = {{ $business->id }};
+	            var token = $('input[name="_token"]').val();
 	            $('#categories').append('<option value="'+category+'">'+$(this).attr('data-text')+'</option>');
-	            $.ajax({
-	                url:"/ajaxUpdateCategoryRemove",
-	                type: "post",
-	                data: { category: category },
-	                beforeSend: function(){
-	                    // console.log(category);
-	                }
-	            })
+	            var c =false;
+	            c = confirm("Are you sure? You are about to remove this category from your business.");
+				if( c == true ){
+
+		            $.ajax({
+		                url:"/ajaxUpdateCategoryRemove",
+		                type: "post",
+		                data: { category: category, _token: token, bid: id }
+		            })
 	                .done(function(data){
+	                	console.log(data);
 	                    $("span[data-id='"+category+"']").fadeOut(function(){
 	                        $("span[data-id='"+category+"']").remove();
 	                    });
 	                })
+	            }
 	        });
 	    });
 	</script>
