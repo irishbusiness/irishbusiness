@@ -96,6 +96,12 @@ Route::filter('guest', function()
 	if (Auth::check()) return Redirect::to('/');
 });
 
+Route::filter('SPguest', function()
+{
+	if (Auth::salesperson()->guest()) return Redirect::to('/');
+});
+
+
 
 /*
 |--------------------------------------------------------------------------

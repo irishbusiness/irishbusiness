@@ -21,22 +21,32 @@ class SessionsController extends \BaseController {
 	public function store()
 	{
 
+
 		if(!$this->user->isConfirmed(Input::get('email')))
 			return Redirect::back()->withInput()->with('errorNotify','wrong email/password combination');
-		
+			
 		try
 		{
 
-			if($this->user->authenticate(Input::all())){
-				Auth::salesperson()->logout();
-				return Redirect::to('settings')->with('title','IrishBusiness.ie | Settings');
-				
-			}
-			elseif($this->sales->authenticate(Input::all())){
-				Auth::user()->logout();
-				return Redirect::to('sales')->with('title','IrishBusiness.ie | Settings');
-				
-			}
+				if(Auth::user()->guest())
+				{	
+						if($this->user->authenticate(Input::all()))
+						{	
+							Auth::salesperson()->logout();
+							return Redirect::to('settings')->with('title','IrishBusiness.ie | Settings');
+						}
+						
+						$this->sales->authenticate(Input::all());
+						Auth::user()->logout();
+						return Redirect::to('sales')->with('title','IrishBusiness.ie | Settings');	
+				}	
+				else
+				{		
+					
+						$this->sales->authenticate(Input::all());
+						Auth::user()->logout();
+						return Redirect::to('sales')->with('title','IrishBusiness.ie | Settings');	
+				}
 
 			
 
@@ -44,19 +54,11 @@ class SessionsController extends \BaseController {
 		}	
 		catch(FormValidationException  $e)
 		{
+			return 'catch';
 			return Redirect::back()->withInput()->withErrors($e->getErrors())->with('errorNotify','wrong email/password combination');
 		}
 	}
 
-	public function salesLogin()
-	{
 
-		if($this->sales->authenticate(Input::all())){
-			Auth::user()->logout();
-			return Redirect::to('settings')->withFlashMessage('You logged in as ' . ucwords(Input::get('username')))->with('title','IrishBusiness.ie | Settings');
-		}
-
-		return Redirect::back()->withInput()->withErrors('Invalid Username and/or Password')->with('errorNotify','wrong email/password combination');
-	}
 
 }

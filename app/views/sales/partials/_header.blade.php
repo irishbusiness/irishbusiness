@@ -5,16 +5,21 @@
     /*}*/
     ?>
     <header class="section header-2 boxed">
-
+        @if(Session::has('flash_message'))  
+        <div id="flashmessage" class="alert alert-error">    
+                <strong>{{Session::get('flash_message')}}</strong>
+            <span id="closeflash"> x </span>
+        </div>
+        @endif  
     	<div class="header-top-wrapper">
     		<div class="zone-header-top zone clearfix">
     			<div class="header-top-left container-8">
     				<div class="user-links">
     					<div class="login">
-    						<?php /*dd(Auth::salesperson()->user())*/ ?>
+    					
     						@if(Auth::user()->check())
     						<a href="#" id="login-link" class="login-link">Switch to Sales</a>
-    						{{Form::open(['action'=>'SessionsController@salesLogin', 'id' =>'login-form', 'class' => 'login-form'])}}
+    						{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
     						{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
     						{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
     						<span id="errordiv" >
@@ -101,12 +106,18 @@
     						<li class="empty neighbour-left">
     							<div></div>
     						</li>
+                            <li {{ (Request::is('sales') ? ' class="first active"' : '') }}>
+                                <a href="{{ URL::to('sales') }}">Profile</a>
+                            </li>
                             <li {{ (Request::is('sales/password/edit*') ? ' class="first active"' : '') }}>
                                 <a href="{{ URL::to('/sales/password/edit') }}">Password Change</a>
                             </li>
     						<li {{ (Request::is('sales/invite*') ? ' class="first active"' : '') }}>
     							<a href="{{ URL::to('/sales/invite') }}">Invite</a>
     						</li>
+                            <li {{ (Request::is('sales/invite*') ? ' class="first active"' : '') }}>
+                                <a href="{{ URL::to('clear') }}">Logout</a>
+                            </li>
     						<!-- <li {{ (Request::is('blog*') ? ' class="first active"' : '') }}>
                                 <a href="{{ URL::to('blog') }}">BLOG</a>
                             </li>

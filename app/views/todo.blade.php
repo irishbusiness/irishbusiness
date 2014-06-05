@@ -18,10 +18,9 @@
 	<hr/>
 	<h3>Jiriko </h3>
 	<ul>
-		<li>Change Password</li>
-		<li>Add Flash Message Div</li>
 		<li>Google Maps</li>
 		<li>Multiple Business Branches</li>
+		<li> Coupon Builder </li>
 	</ul>
 	<hr/>
 	<h3>Zem </h3>

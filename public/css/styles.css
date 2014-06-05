@@ -4376,7 +4376,7 @@ div.company-page-map div.company-page-map-container {
 }
 
 .a-btn {
-	padding: 6px;
+	padding: 5px;
 	padding-left: 15px;
 	padding-right: 15px;
 }
@@ -4440,4 +4440,14 @@ td.detail {
 .block {
 	display: block;
 	margin-top: 10px;
+}
+
+#closeflash{
+	margin-left: 55%;
+	position: absolute;
+	cursor: pointer;
+}
+
+#flashmessage{
+	margin-bottom: 0;	
 }

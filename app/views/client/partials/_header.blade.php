@@ -6,7 +6,13 @@
     ?>
 
     <header class="section header-2 boxed">
-
+      @if(Session::has('flash_message'))  
+        <div id="flashmessage" class="alert alert-error">    
+                <strong>{{Session::get('flash_message')}}</strong>
+            <span id="closeflash"> x </span>
+        </div>
+      @endif
+        
     	<div class="header-top-wrapper">
     		<div class="zone-header-top zone clearfix">
     			<div class="header-top-left container-8">
@@ -15,7 +21,7 @@
     						<?php /*dd(Auth::salesperson()->user())*/ ?>
     						@if(Auth::user()->check())
     						<a href="#" id="login-link" class="login-link">Switch to Sales</a>
-    						{{Form::open(['action'=>'SessionsController@salesLogin', 'id' =>'login-form', 'class' => 'login-form'])}}
+    						{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
     						{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
     						{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
     						<span id="errordiv" >
