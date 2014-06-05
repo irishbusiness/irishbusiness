@@ -119,17 +119,20 @@
     						<li class="empty neighbour-left">
     							<div></div>
     						</li>
-    						<li {{ (Request::is('/') ? ' class="first active"' : '') }}>
-    							<a href="{{ URL::to('/') }}">HOME</a>
+                            @if(hasBusiness())
+    						<li {{ (Request::is('/settings/*') ? ' class="first active"' : '') }}>
+    							<a href="{{ URL::to('edit/company/'.businessSlug()) }}">EDIT BUSINESS</a>
     						</li>
-    						<li {{ (Request::is('blog*') ? ' class="first active"' : '') }}>
-    							<a href="{{ URL::to('blog') }}">BLOG</a>
+                            @else
+                            <li {{ (Request::is('/settings/*') ? ' class="first active"' : '') }}>
+                                <a href="{{ URL::to('/settings') }}">SETTINGS</a>
+                            </li>
+                            @endif
+    						<li {{ (Request::is('/changepassword/*') ? ' class="first active"' : '') }}>
+    							<a href="{{ URL::to('/changepassword') }}">CHANGE PASSWORD</a>
     						</li>
-    						<li {{ (Request::is('contact-us*') ? ' class="first active"' : '') }}>
-    							<a href="{{ URL::to('contact-us')}}">CONTACT US</a>
-    						</li>
-    						<li {{ (Request::is('register*') ? ' class="first active"' : '') }}>
-                                <a href="{{ URL::to('register') }}">REGISTER</a>
+    						<li>
+                                <a href="{{ URL::to('clear') }}">LOGOUT</a>
     						</li>
     						<li class="empty">
     							<div></div>

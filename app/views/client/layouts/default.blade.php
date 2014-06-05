@@ -66,9 +66,15 @@
         @yield('couponstyle')
 	</head>
 	<body>
-@include('client.partials._header')
+        @if(Auth::user()->guest())
+            @include('client.partials._header')
+        @else
+            @include('client.partials._header2')
+        @endif
+    
 
 <section class="section content boxed">
+
 	@include('client.partials._searchbar')
 	@yield('slider')
 
