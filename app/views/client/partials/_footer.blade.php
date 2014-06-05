@@ -27,18 +27,13 @@
 						<div class="recent-posts block">
 							<h3 class="title">Recent Posts</h3>
 							<ul>
-								<li class="first">
-									<a href="#" class="text-colorful">Lorem ipsum dolor sit amet</a>
+							<?php $x = 1; ?>
+							@foreach($recentlyaddedblog as $recentblog)
+								<li class="{{ ($x == 1) ? 'first' : ($x == count($recentlyaddedblog) ? 'last' : '') }}">
+									<a href="#" class="text-colorful">{{ stripcslashes($recentblog->title) }}</a>
 								</li>
-								<li>
-									<a href="#" class="text-colorful">Proin nibh augue suscipit</a>
-								</li>
-								<li>
-									<a href="#" class="text-colorful">Cras vel lorem</a>
-								</li>
-								<li class="last">
-									<a href="#" class="text-colorful">Quisque semper justo at risus</a>
-								</li>
+								<?php $x++; ?>
+							@endforeach
 							</ul>
 						</div>
 

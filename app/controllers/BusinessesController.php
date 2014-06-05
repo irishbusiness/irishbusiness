@@ -97,7 +97,7 @@ class BusinessesController extends \BaseController {
 			return Response::view('pagenotfound');
 		}
 
-		$blogs = $business->blogs()->get();
+		$blogs = $business->blogs()->orderBy('created_at', 'desc')->get();
 		$reviews = $business->reviews()->orderBy('created_at', 'desc')->get();
 		$categories = $this->category->getCategories();
 		
