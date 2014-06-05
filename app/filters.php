@@ -12,19 +12,19 @@
 */
 
 
-// View::share('selected', '');
-// View::share('reviews', 0);
-// $recentsettings = MainSetting::orderBy('created_at', 'desc')->first();
+View::share('selected', '');
+View::share('reviews', 0);
+$recentsettings = MainSetting::orderBy('created_at', 'desc')->first();
 
-// $recentlyaddedcompany = Business::orderBy('created_at', 'desc')->limit(3)->get();
-// $recentlyaddedblog	=	Blog::orderBy('created_at', 'desc')->limit(3)->get();
-// $socialmedia = SocialMedia::first();
+$recentlyaddedcompany = Business::orderBy('created_at', 'desc')->limit(3)->get();
+$recentlyaddedblog	=	Blog::orderBy('created_at', 'desc')->limit(3)->get();
+$socialmedia = SocialMedia::first();
 
-// View::share('recentsettings', $recentsettings);
+View::share('recentsettings', $recentsettings);
 
-// View::share('recentlyaddedcompany', $recentlyaddedcompany);
-// View::share('recentlyaddedblog', $recentlyaddedblog);
-// View::share('socialmedia', $socialmedia);
+View::share('recentlyaddedcompany', $recentlyaddedcompany);
+View::share('recentlyaddedblog', $recentlyaddedblog);
+View::share('socialmedia', $socialmedia);
 
 App::before(function($request)
 {
