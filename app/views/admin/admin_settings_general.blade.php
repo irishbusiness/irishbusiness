@@ -1,4 +1,7 @@
 @extends('client.layouts.default')
+	@section('title')
+	<title>Admin - General Settings</title>
+	@stop
 	@section('actual-body-content')
 		<div class="blog-post block">
 			<div class="block-title">
@@ -25,25 +28,30 @@
 					</div>
 					<div class="thin-separator"></div>	
 					<div class="form-group">
+						{{ Form::label("domain_name", "Domain name", ["class"=>"text-colorful"]) }}<br>
 						{{ Form::text("domain_name", $settings["domain_name"], ["class"=>"text-input-grey full", "placeholder"=>"Domain name", 
 							"required"=>"required"]) }}
 						{{$errors->first('domain_name','<span class="error">:message</span>')}}
 					</div>
 					<div class="form-group">
+						{{ Form::label("admin_email", "Admin email", ["class"=>"text-colorful"]) }}<br>
 						{{ Form::text("admin_email", $settings["admin_email"], ["class"=>"text-input-grey full", "placeholder"=>"Admin Email",
 							"required"=>"required"]) }}
 						{{ $errors->first('admin_email','<span class="error">:message</span>') }}
 					</div>
 					<div class="form-group">
+						{{ Form::label("search_result_per_page", "Search result per page", ["class"=>"text-colorful"]) }}<br>
 						{{ Form::text("search_result_per_page", $settings["search_result_per_page"], ["class"=>"text-input-grey full", 
 							"placeholder"=>"Search results per page", "id"=>"settings_search_result_per_page", "required"=>"required"]) }}
 						{{ $errors->first('search_result_per_page','<span class="error">:message</span>') }}
 					</div>
 					<div class="form-group">
+						{{ Form::label("analytics_code", "Google Analytics Code", ["class"=>"text-colorful"]) }}<br>
 						{{ Form::textarea("analytics_code", $settings["analytics_code"], ["class"=>"comment-message-main text-input-grey full",
 						 	"placeholder"=>"Google Analytics Code"]) }}
 					</div>
 					<div class="form-group">
+						{{ Form::label("footer_text", "Footer text", ["class"=>"text-colorful"]) }}<br>
 						{{ Form::textarea("footer_text", $settings["footer_text"], ["class"=>"comment-message-main full text-input-grey", 
 						"placeholder"=>"Footer text"]) }}
 					</div>

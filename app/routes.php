@@ -57,36 +57,36 @@ Route::get('tabs', function(){
 	return View::make('client.tabs');
 });
 
-Route::get('admin_manage_cancellations',function(){
+Route::get('admin/settings/cancellations',function(){
 	return View::make('admin.admin_manage_cancellations');
 });
 
-Route::get('admin_manage_clients', function(){
+Route::get('admin/settings/clients', function(){
 	return View::make('admin.admin_manage_clients');
 });
 
-Route::get('admin_manage_regions', function(){
+Route::get('admin/settings/regions', function(){
 	return View::make('admin.admin_manage_regions');
 });
 
-Route::get('admin_manage_staff', function(){
+Route::get('admin/settings/staff', function(){
 	return View::make('admin.admin_manage_staff');
 });
 
-Route::get('admin_payment_gateway', function(){
+Route::get('admin/settings/payment-gateway', function(){
 	return View::make('admin.admin_payment_gateway');
 });
 
 
 
-Route::get('admin_settings_socialmedia', function(){
+Route::get('admin/settings/socialmedia', function(){
     $social =   SocialMedia::first();
 	return View::make('admin.admin_settings_socialmedia', compact('social'));
 });
 
-Route::get('admin_manage_blog', 'BlogController@manageblog');
+Route::get('admin/settings/blog', 'BlogController@manageblog');
 
-Route::post('admin_manage_blog', 'BlogController@store');
+Route::post('admin/settings/blog', 'BlogController@store');
 
 Route::model('settings/{businessSlug}', 'Business');
 Route::get('settings/{businessSlug}', 'BusinessesController@sample');
@@ -133,17 +133,17 @@ Route::get('login', 'SessionsController@create');
 Route::post('login', 'SessionsController@store');
 
 
-Route::post("admin_settings_general", 'SettingsController@store');
-Route::get('admin_settings_general', 'SettingsController@index');
+Route::post("admin/settings/general", 'SettingsController@store');
+Route::get('admin/settings/general', 'SettingsController@index');
 
-Route::get('admin_settings_subscription', 'SubscriptionController@index');
-Route::post('admin_settings_subscription', 'SubscriptionController@store');
+Route::get('admin/settings/subscription', 'SubscriptionController@index');
+Route::post('admin/settings/subscription', 'SubscriptionController@store');
 Route::post('editSubscription', 'SubscriptionController@edit');
 
-Route::get('admin_manage_commission', 'SettingsController@show_commission');
+Route::get('admin/manage/commission', 'SettingsController@show_commission');
 Route::post('commissionAjax', 'SettingsController@edit_commission');
 
-Route::get('admin_manage_categories', 'CategoriesController@index');
+Route::get('admin/manage/categories', 'CategoriesController@index');
 Route::post('categoryAjax', 'CategoriesController@add');
 Route::put('socialmediaAjax', 'SocialMediaController@update');
 Route::get('blogAjax', 'BlogController@blogAjax');

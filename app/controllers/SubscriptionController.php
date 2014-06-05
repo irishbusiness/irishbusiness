@@ -59,7 +59,7 @@ class SubscriptionController extends \BaseController {
         if($success){
         	$subscriptions = $this->subscriptions->whereIs_deleted(0)->orderBy('price', 'ASC')->get();
         	return View::make("admin.admin_settings_subscription")
-        		->withFlashMessage("msgsuccess", "New Subscription has been added.")->with('subscriptions', $subscriptions);
+        		->with("flash_message", "New Subscription has been added.")->with('subscriptions', $subscriptions);
         }
 
         return Redirect::back()->withInput()->with('msgerror', "Sorry, we can't process your request right now.")
