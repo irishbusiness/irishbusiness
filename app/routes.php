@@ -141,10 +141,10 @@ Route::get('admin/settings/subscription', 'SubscriptionController@index');
 Route::post('admin/settings/subscription', 'SubscriptionController@store');
 Route::post('editSubscription', 'SubscriptionController@edit');
 
-Route::get('admin/manage/commission', 'SettingsController@show_commission');
+Route::get('admin/settings/commission', 'SettingsController@show_commission');
 Route::post('commissionAjax', 'SettingsController@edit_commission');
 
-Route::get('admin/manage/categories', 'CategoriesController@index');
+Route::get('admin/settings/categories', 'CategoriesController@index');
 Route::post('categoryAjax', 'CategoriesController@add');
 Route::put('socialmediaAjax', 'SocialMediaController@update');
 Route::get('blogAjax', 'BlogController@blogAjax');

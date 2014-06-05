@@ -1,5 +1,9 @@
 @extends("client.layouts.default")
 
+@section('title')
+    <title>Register</title>
+@stop
+
 @section("actual-body-content")
     <div class="blog-post block">
         <div class="block-title">
