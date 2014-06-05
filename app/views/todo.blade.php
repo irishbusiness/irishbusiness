@@ -7,13 +7,13 @@
 <body>
 	<h3>Dexter </h3>
 	<ul>
-		<li>show header and footer logo image in admin_settings_general</li>
-		<li>show footer text when set in general setting</li>
+		<!-- <li>show header and footer logo image in admin_settings_general</li> -->
+		<!-- <li>show footer text when set in general setting</li> -->
 		<li> align REGISTER with the right hand pixel of social media icons</li>
-		<li>only show icons in social media if its link is available</li>
-		<li>only registered users can send reviews</li>
-		<li>finish edit business module</li>
-		<li>enable average ratings if available on every business in search results</li>
+		<!-- <li>only show icons in social media if its link is available</li> -->
+		<!-- <li>only registered users can send reviews</li> -->
+		<!-- <li>finish edit business module</li> -->
+		<!-- <li>enable average ratings if available on every business in search results</li> -->
 	</ul>
 	<hr/>
 	<h3>Jiriko </h3>

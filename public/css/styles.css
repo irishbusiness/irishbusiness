@@ -4435,6 +4435,8 @@ td.detail {
 .edit-company {
 	float: right;
 	font-size: large;
+	cursor: pointer;
+	padding-bottom: 10px;
 }
 
 .block {
