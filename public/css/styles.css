@@ -4517,3 +4517,6 @@ td.detail {
 		width:150px;
 	}
 	#link {display:none;}
+	.user-links{
+		margin-left: -20px;
+	}

@@ -8,7 +8,7 @@
     <header class="section header-2 boxed">
       @if(Session::has('flash_message'))  
         <div id="flashmessage" class="alert alert-error">    
-                <strong>{{Session::get('flash_message')}}</strong>
+                {{Session::get('flash_message')}}
             <span id="closeflash"> x </span>
         </div>
       @endif

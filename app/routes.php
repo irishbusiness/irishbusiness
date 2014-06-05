@@ -217,3 +217,9 @@ Route::get('notfound', function(){
 Route::get('todo',function(){
 	return View::make('todo');
 });
+
+Route::get('edit/company/{slug}/branch/add','BusinessesController@addBranch');
+
+Route::post('addbranch',function(){
+	dd(Input::all());
+});
