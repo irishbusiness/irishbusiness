@@ -104,6 +104,14 @@ class BusinessesController extends \BaseController {
 		
 	}
 
+	public function sample2(){
+		$categories = $this->category->getCategories();
+		Session::forget('category');
+
+		return View::make('client.settings')->with('title','Settings')
+		->with('categories', $categories);
+	}
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
