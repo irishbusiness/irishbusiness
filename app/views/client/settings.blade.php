@@ -13,7 +13,7 @@
         <!-- reviews tab -->
         	@include('client.companytabs.reviews')
 
-        <!-- reviews tab -->
+        <!-- coupons tab -->
             @include('client.companytabs.coupons')
 @stop
 
