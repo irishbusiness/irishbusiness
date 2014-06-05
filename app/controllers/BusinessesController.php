@@ -182,6 +182,7 @@ class BusinessesController extends \BaseController {
 	}
 
 	public function editcompany($slug){
+
 		$businessinfo = Business::whereSlug($slug)->first();
 		
 		if( is_null($businessinfo) ){

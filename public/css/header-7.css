@@ -31,6 +31,7 @@ HEADER ELEMENTS STYLES
 
 .user-links {
 	font-family: "Titillium Web";
+	margin-left: -20px;
 }
 
 	.user-links .login {
