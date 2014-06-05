@@ -33,12 +33,10 @@ HEADER ELEMENTS STYLES
 	font-family: "Titillium Web";
 	margin-left: -20px;
 }
-
 	.user-links .login {
 		position: relative;
 		display: inline-block;
 	}
-
 		.user-links .login a.login-link {
 			display: block;
 			background: url(../images/link-arrow.png) no-repeat 20px center;
