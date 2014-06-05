@@ -81,17 +81,17 @@ Route::filter('subscribed', function()
 });
 
 
-Route::filter('hasBusiness', function(){
+// Route::filter('hasBusiness', function(){
 
-		if(Auth::user()->check())
-		{
-			$business = Auth::user()->user()->business;
-			if (!is_null($business))
-				return Redirect::to('edit/company/'.$business->slug);
-		}
+// 		if(Auth::user()->check())
+// 		{
+// 			$business = Auth::user()->user()->business;
+// 			if (!is_null($business))
+// 				return Redirect::to('edit/company/'.$business->slug);
+// 		}
 	
 		
-});
+// });
 
 
 /*

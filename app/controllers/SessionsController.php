@@ -33,6 +33,9 @@ class SessionsController extends \BaseController {
 						if($this->user->authenticate(Input::all()))
 						{	
 							Auth::salesperson()->logout();
+							if(hasBusiness())
+								return Redirect::to('settings/'.businessSlug())->with('title','IrishBusiness.ie | Settings');
+									
 							return Redirect::to('settings')->with('title','IrishBusiness.ie | Settings');
 						}
 						
