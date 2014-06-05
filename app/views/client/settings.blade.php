@@ -1,5 +1,7 @@
 @extends("client.layouts.default")
-
+@section("title")
+    <title>Settings</title>
+@stop
 @section("actual-body-content")
         @if(Session::has('flash_message'))
             <h4>{{Session::get('flash_message')}}</h4>

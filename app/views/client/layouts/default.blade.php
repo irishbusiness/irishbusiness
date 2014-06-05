@@ -85,7 +85,7 @@
 			<!-- actual body content -->
 
             
-                @if(Request::is('settings*') || Request::is('company*'))
+                @if(Request::is('settings*') || (Request::is('company*') && (!Request::is('company'))) )
                 <div class="content-container container-24">
                     <div class="company-tabs-wrapper">
                         <div class="zone-company-tabs zone clearfix">
