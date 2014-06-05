@@ -63,6 +63,7 @@
             );
         </script>
         @include('client.partials._styles')
+        @yield('couponstyle')
 	</head>
 	<body>
 @include('client.partials._header')
