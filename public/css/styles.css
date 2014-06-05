@@ -4440,3 +4440,13 @@ td.detail {
 	display: block;
 	margin-top: 10px;
 }
+
+#closeflash{
+	margin-left: 55%;
+	position: absolute;
+	cursor: pointer;
+}
+
+#flashmessage{
+	margin-bottom: 0;	
+}

@@ -128,9 +128,11 @@ Route::get('listing/{id}/{category?}/{location?}', function($id){
 
 Route::get('register', 'UsersController@create');
 Route::post('register', 'UsersController@store');
+
+//Login
 Route::get('login', 'SessionsController@create');
 Route::post('login', 'SessionsController@store');
-Route::post('login2', 'SessionsController@salesLogin');
+
 
 Route::post("admin_settings_general", 'SettingsController@store');
 Route::get('admin_settings_general', 'SettingsController@index');

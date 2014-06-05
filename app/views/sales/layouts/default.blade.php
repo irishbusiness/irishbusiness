@@ -105,6 +105,15 @@
 			$('#errordiv').text('{{Session::get('errorNotify')}}');
 		</script>
 	@endif
+    @if(Session::has('flash_message'))
+        <script>
+            $('#flashmessage').delay(5000).slideUp(50);
+            $(document).on('click','#closeflash',function(){
+                $(this).parent().hide();
+            });
+
+        </script>
+    @endif
 	@yield('scripts')
 
 </section>

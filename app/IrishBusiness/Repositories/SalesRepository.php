@@ -24,6 +24,13 @@ class SalesRepository {
 		return $salesperson;
 	}
 
+	public function update($password)
+	{
+		$user = Auth::salesperson()->user();
+		$user->password = Hash::make($password);
+		$user->save();
+	}
+
 	public function authenticate($input)
 	{
 		$credentials = [

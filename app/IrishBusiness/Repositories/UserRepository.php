@@ -60,8 +60,9 @@ class UserRepository {
 		if(!is_null($user))
 		{	
 			if($user->confirmed == 1) return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 }
