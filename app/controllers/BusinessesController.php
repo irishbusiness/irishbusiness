@@ -258,6 +258,41 @@ class BusinessesController extends \BaseController {
 		}
 	}
 
+	public function update_category_remove(){
+		if(Request::ajax()){
+
+			$business = Business::find(Input::get("bid"));
+			$business_category =  $business->with(['categories' => function($q){
+					$q->where('category_id', '=', Input::get("category"));
+				}])->first();
+
+
+			foreach ($business_category->categories as $role)
+			{
+			    if($role->pivot->delete()){
+			    	return "deleted.";
+			    }
+				
+			}
+			return "deletion failed.";
+		}
+	}
+
+	public function update_category_add(){
+		if(Request::ajax()){
+			$business_id = Input::get("bid");
+			$category_id = Input::get("category");
+			$name = Input::get("name");
+
+			$business = Business::find($business_id);
+			
+			$data = array("id"=>$category_id, "name"=>$name);
+			$success = $business->categories()->attach($category_id);
+			
+			return "added";		
+		}
+	}
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
