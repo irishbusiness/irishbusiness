@@ -1216,7 +1216,7 @@ section.content {
 
 .company-tabs-content {
 	display: none;
-	padding: 40px;
+	/*padding: 40px;*/
 }
 
 #company-tabs-page {

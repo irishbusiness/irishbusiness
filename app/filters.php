@@ -13,6 +13,7 @@
 
 
 View::share('selected', '');
+View::share('reviews', 0);
 $recentsettings = MainSetting::orderBy('created_at', 'desc')->first();
 
 $recentlyaddedcompany = Business::orderBy('created_at', 'desc')->limit(3)->get();

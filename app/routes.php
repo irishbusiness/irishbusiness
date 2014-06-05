@@ -97,7 +97,7 @@ Route::get('search', 'BusinessesController@search');
 Route::get('listings','BusinessesController@index');
 // Route::get('company-tab', 'BusinessesController@companytab');
 
-// Route::get('company', 'BusinessesController@companytab');
+Route::get('company', 'BusinessesController@search');
 Route::get('company/{name}', 'BusinessesController@companytab2');
 Route::post('company/{name}', 'ReviewsController@store');
 

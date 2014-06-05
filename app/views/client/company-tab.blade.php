@@ -1,5 +1,7 @@
 @extends("client.layouts.default")
-
+@section('title')
+	<title>{{ $businessinfo->name }}</title>
+@stop
 @section('actual-body-content')
 <div class="company-content-wrapper">
 	<div class="zone-company-content zone clearfix">
