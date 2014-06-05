@@ -28,8 +28,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('address3', 'Business Address3', ["class"=>"text-colorful"]) }}<br/>
-            {{ Form::text('address3','', [
-            "placeholder" => "address..", "class"=>"text-input-grey full"]) }}
+            {{ Form::text('address3', '', ["placeholder" => "address..", "class"=>"text-input-grey full"]) }}
             {{$errors->first('address3','<span class="alert alert-error block half">:message</span>')}}
         </div>
         <div class="form-group">

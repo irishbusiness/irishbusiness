@@ -91,7 +91,7 @@
 	            {{ Form::label('business_description', "Business Description",
 	            ["class"=>"text-colorful"]) }}<br/>
 	            {{ Form::textarea('business_description', html_entity_decode(stripcslashes($businessinfo->business_description)), [
-	            "placeholder" => "business_description", "class"=>"text-input-grey full", 'required']) }}
+	            "placeholder" => "business_description", "class"=>"text-input-grey comment-message-main full", 'required']) }}
 	            {{$errors->first('business_description','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
 
@@ -185,23 +185,18 @@
 	                console.log(category);
 
 	                $.ajax(
-	                    {
-	                        url: "/ajaxCategory",
-	                        type: "post",
-	                        data: { category: category},
-	                        beforeSend: function()
-	                        {
-	                            // console.log(category);
-	                        }
+                    {
+                        url: "/ajaxCategory",
+                        type: "post",
+                        data: { category: category}
 
-	                    })
-	                    .done(function(data)
-	                    {
-	                        $('.showCategory').append('<span class="bs-btn btn-success category" data-id="'+data.id+'"> '+ data.name +
-	                            '<span class="remove" data-id="'+data.id+'" data-text="'+data.name+'" title="remove this category">x</span></span>');
-	                        $('#categories').find('option:selected').remove();
-	                    })
-
+                    })
+                    .done(function(data)
+                    {
+                        $('.showCategory').append('<span class="bs-btn btn-success category" data-id="'+data.id+'"> '+ data.name +
+                            '<span class="remove" data-id="'+data.id+'" data-text="'+data.name+'" title="remove this category">x</span></span>');
+                        $('#categories').find('option:selected').remove();
+                    })
 	            }
 	        });
 
@@ -211,10 +206,7 @@
 	            $.ajax({
 	                url:"/ajaxUpdateCategoryRemove",
 	                type: "post",
-	                data: { category: category },
-	                beforeSend: function(){
-	                    // console.log(category);
-	                }
+	                data: { category: category }
 	            })
 	                .done(function(data){
 	                    $("span[data-id='"+category+"']").fadeOut(function(){

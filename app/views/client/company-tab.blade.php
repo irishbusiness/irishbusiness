@@ -1,6 +1,6 @@
 @extends("client.layouts.default")
 @section('title')
-	<title>{{ $businessinfo->name }}</title>
+	<title>{{ html_entity_decode(stripcslashes($businessinfo->name)) }}</title>
 @stop
 @section('actual-body-content')
 <div class="company-content-wrapper">
