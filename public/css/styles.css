@@ -4451,3 +4451,69 @@ td.detail {
 #flashmessage{
 	margin-bottom: 0;	
 }
+
+.accessibility {
+	height:0;
+	left:-9999em;
+	position:absolute;
+	text-indent:-9999em;
+	top:-9999em;
+	visibility:hidden;
+	width:0;
+}
+	.preview {
+		height:252px; 
+		margin:5px;
+		width:420px;
+	}
+	.preview,
+	#realtime-form {
+		margin-left:auto; 
+		margin-right:auto;
+	}
+
+.left,.right {width:300px;}
+.left {float:left;} .right {float:right;}
+	
+#realtime-form {
+	margin-bottom: 15px;
+	margin-top: 15px;
+	width: 600px;	
+}
+#realtime-form ol {
+	margin:0;
+	padding:0; 
+} 
+	#realtime-form li {
+		list-style:none;
+	}
+
+	#realtime-form label,
+	#realtime-form input,
+	#realtime-form textarea { 
+		display:block;
+		float:left; 
+		max-width:280px;
+		min-width:280px;
+		text-align:left; 
+		width:280px;
+	}
+		#realtime-form textarea {
+			height:140px;
+			max-height:140px
+		}
+	#realtime-form fieldset {
+		border:none;
+		margin:0;
+		padding:0;
+	}
+		#realtime-form legend {
+			font-size:1.4em;
+		}
+	
+	#getResults,
+	#getResults + div.link {
+		margin:0 auto 10px auto;
+		width:150px;
+	}
+	#link {display:none;}
