@@ -24,7 +24,7 @@
                         <a class="social-link" href="#" data-placeholder="Twitter Link" data-value="{{ $social->twitter }}" data-socialtype="twitter">
                             <img src="{{ URL::asset('images/twitter-icon.png') }}" alt="" />
                         </a>`
-                        <a class="social-link" href="#" data-placeholder="LinkedIn Link" data-value="{{ $social->linkedin }}" data-socialtype="$linkedin">
+                        <a class="social-link" href="#" data-placeholder="LinkedIn Link" data-value="{{ $social->linkedin }}" data-socialtype="linkedin">
                             <img src="{{ URL::asset('images/linkedin-icon.png') }}" alt="" />
                         </a>
                         <a class="social-link" href="#" data-placeholder="Pinterest Link" data-value="{{ $social->pinterest }}" data-socialtype="pinterest">

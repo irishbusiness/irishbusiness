@@ -13,16 +13,17 @@
 
 
 View::share('selected', '');
-$headerlogo = MainSetting::select('headerlogo')->orderBy('created_at', 'desc')->first();
-$footerlogo = MainSetting::select('footerlogo')->orderBy('created_at', 'desc')->first();
+$recentsettings = MainSetting::orderBy('created_at', 'desc')->first();
+
 $recentlyaddedcompany = Business::orderBy('created_at', 'desc')->limit(3)->get();
 $recentlyaddedblog	=	Blog::orderBy('created_at', 'desc')->limit(3)->get();
+$socialmedia = SocialMedia::first();
 
-View::share('imgheaderlogo', $headerlogo);
-View::share('imgfooterlogo', $footerlogo);
+View::share('recentsettings', $recentsettings);
+
 View::share('recentlyaddedcompany', $recentlyaddedcompany);
 View::share('recentlyaddedblog', $recentlyaddedblog);
-
+View::share('socialmedia', $socialmedia);
 
 App::before(function($request)
 {

@@ -72,23 +72,35 @@ class BusinessesController extends \BaseController {
 		{
 		      $q->whereRaw("MATCH(name) AGAINST('+*$category*' IN BOOLEAN MODE)");    
 		})->get();*/
+		
+		$rating = array();
+		foreach ($business5 as $business) {
+			array_push($rating, Review::where('business_id', '=', $business->id)->avg('rating'));
+		}
 		Session::put('category', Input::get('category'));
 		Session::put('location', Input::get('location'));
 		return View::make('client.searchresults')->with('businesses',$business5)
-		->with('category',$category)
-		->with('location',Input::get('location'))
-		->with('selected',$selected);
+			->with('category',$category)
+			->with('location',Input::get('location'))
+			->with('selected',$selected)
+			->with('rating', $rating);
 	}
 
-	public function sample()
+	public function sample($businessSlug)
 	{
+		$business = Business::whereSlug($businessSlug)->first();
+		$blogs = $business->blogs()->get();
+		$reviews = $business->reviews()->orderBy('created_at', 'desc')->get();
 		$categories = $this->category->getCategories();
 		Session::forget('category');
 		
 		// return View::make('searchpartial.settings')->with('title','Settings')
 		// ->with('categories',$categories);
 		return View::make('client.settings')->with('title','Settings')
-		->with('categories',$categories);
+		->with('categories',$categories)
+		->with('business', $business)
+		->with('blogs', $blogs)
+		->with('reviews', $reviews);
 		
 	}
 

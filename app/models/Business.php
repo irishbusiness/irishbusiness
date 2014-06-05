@@ -17,4 +17,9 @@ class Business extends \Eloquent {
     {
     	return $this->hasMany('Review', 'business_id');
     }
+
+    public function blogs()
+    {
+        return $this->hasMany('Blog', 'business_id');
+    }
 }

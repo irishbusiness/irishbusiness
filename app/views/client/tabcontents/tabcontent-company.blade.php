@@ -172,6 +172,14 @@
 											</div>
 										</div>
 									</div>
+									@unless (Auth::check())
+										<div class="rating-inputs">
+											<div class="rating-details">
+												<button id="logintosendreview" class="button-2-green">Login</button> or  
+												{{ HTML::link(URL::to('/register'), 'Register', ["class"=>"a-btn button-2-green"]) }}
+											</div>
+										</div>
+									@else
 									{{ Form::open(array('action' => array('ReviewsController@store', $businessinfo->id), "id"=>"form-review", 'method'=>'post')) }}
 									<div class="rating-inputs">
 										<div class="rating-details">
@@ -198,6 +206,7 @@
 									</div>
 									{{ Form::input("hidden", "rating", "", ["id"=>"fi-rating"]) }}
 									{{ Form::close() }}
+									@endunless
 									<div class="clearfix">
 									</div>
 								</div>

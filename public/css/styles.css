@@ -3778,6 +3778,7 @@ ul.entries-list {
 	.website-short-description .description-text {
 		line-height: 18px;
 		color: #a6a6a6;
+		word-wrap: break-word;
 	}
 
 /* "TWITTER FEED" BLOCK */
@@ -4375,7 +4376,7 @@ div.company-page-map div.company-page-map-container {
 }
 
 .a-btn {
-	padding: 6px;
+	padding: 5px;
 	padding-left: 15px;
 	padding-right: 15px;
 }

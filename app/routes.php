@@ -84,13 +84,12 @@ Route::get('admin_settings_socialmedia', function(){
 	return View::make('admin.admin_settings_socialmedia', compact('social'));
 });
 
-Route::get('admin_manage_blog', function(){
-	return View::make('admin.admin_manage_blog');
-});
+Route::get('admin_manage_blog', 'BlogController@manageblog');
 
 Route::post('admin_manage_blog', 'BlogController@store');
 
-Route::get('settings', 'BusinessesController@sample');
+Route::model('settings/{businessSlug}', 'Business');
+Route::get('settings/{businessSlug}', 'BusinessesController@sample');
 Route::post('settings', 'BusinessesController@store');
 // Route::post('search','BusinessesController@search');
 Route::get('search', 'BusinessesController@search');

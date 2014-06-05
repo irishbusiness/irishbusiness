@@ -1,41 +1,42 @@
 @extends('admin.layouts.default')
 
 @section('actual-body-content')
-
-		<div class="blog-post block">
-		<div class="block-title">
-			<h1>Manage Blog</h1>
-		</div>
-	
-		</div>
-
-		<div class="comments block">						
-		<div class="comment-message">
-            <div id="page">
-                {{ Form::open(array('method' => 'post', 'action' => 'BlogController@store', 'files' => true)) }}
-                <div style="text-align:center;">
-                <br><br>
-                {{ Form::label('title', "Blog Title", ["class"=> "text-colorful"]) }}<br>
-                {{ Form::text('title', '', ['class' => 'text-input-grey', 'placeholder' => 'Blog Title']) }}
-                <br><br>
-                </div>
-
-                <div style="text-align:center;">
-
-                    {{ Form::label('blogheader', "Blog Header", ["class"=> "text-colorful"]) }}<br>
-                    {{ Form::file('blogheaderimage') }}
-                    <br><br>
-                </div>
-                    <textarea id="redactor" name="content">
-                        <h2>Hello and Welcome</h2>
-                        <p>Sample Body Content</p>
-                    </textarea>
-                    <br>
-                    <p><input type="submit" value="Save" name="send" class="button-2-colorful"/></p>
-                {{ Form::close() }}
+        <div class="blog-post block">
+            <div class="block-title">
+                <h1>Blog Settings</h1>
             </div>
-		</div>
+        </div>
 
-	</div>
+        <!-- Add blog Form -->
+            @include('client.companytabs.addblog')
+        
 
+        <!-- Edit Blog form -->
+            @include('client.companytabs.editblog')
+
+        <table class="table" id="table-categories">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Action</th>
+                <th><a href="#company-tabs-blog" class="bs-btn btn-success btn-add-blog">Add new</a></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            @if(isset($blogs) && !is_null($blogs))
+            @foreach($blogs as $blog)
+            <tr data-id="{{ $blog->id }}">
+                <td><a href="blog/{{ $blog->id }}"><span class="category-name">{{ stripcslashes($blog->title) }}</span></a></td>
+                <td>
+                    <a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="editBlog($(this))" data-id="{{ $blog->id }}">Edit</a>
+                    <a href="javascript:void(0)" class="bs-btn btn-danger btn-delete-blog" data-title="{{ stripcslashes($blog->title) }}" data-id="{{ $blog->id }}">Delete</a>
+                </td>
+            </tr>
+            @endforeach
+            @endif
+            </tbody>
+        </table>
 @stop
+
+
