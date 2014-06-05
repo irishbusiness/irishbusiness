@@ -109,7 +109,8 @@ class BusinessesController extends \BaseController {
 		Session::forget('category');
 
 		return View::make('client.settings')->with('title','Settings')
-		->with('categories', $categories);
+		->with('categories', $categories)
+		->with('reviews', NULL);
 	}
 
 	/**
