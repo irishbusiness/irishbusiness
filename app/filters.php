@@ -15,12 +15,14 @@
 View::share('selected', '');
 View::share('reviews', 0);
 $recentsettings = MainSetting::orderBy('created_at', 'desc')->first();
+$categories = Category::orderBy('name', 'asc')->get();
 
 $recentlyaddedcompany = Business::orderBy('created_at', 'desc')->limit(3)->get();
 $recentlyaddedblog	=	Blog::orderBy('created_at', 'desc')->limit(3)->get();
 $socialmedia = SocialMedia::first();
 
 View::share('recentsettings', $recentsettings);
+View::share('categories', $categories);
 
 View::share('recentlyaddedcompany', $recentlyaddedcompany);
 View::share('recentlyaddedblog', $recentlyaddedblog);
