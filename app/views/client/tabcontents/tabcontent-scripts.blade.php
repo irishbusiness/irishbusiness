@@ -1,5 +1,5 @@
 	<script>
-		$(window).load(function(){
+		$(window).ready(function(){
 			$(".sidebar-container:last").remove();
 			$(".show").show();
 			$(".content-container.container-16").css("minHeight", "");
