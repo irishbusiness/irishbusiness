@@ -11,7 +11,7 @@
                     <h1>Add Branch</h1>
                 </div>
             </div>
-            {{ Form::open(array('url' => 'addbranch')) }}
+            {{ Form::open(array('action' => ['BusinessesController@storeBranch',$slug])) }}
             
             <div class="form-group">
                 {{ Form::label('address1', 'Business Address1', ["class"=>"text-colorful"]) }}<br/>

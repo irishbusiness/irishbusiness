@@ -20,6 +20,8 @@ class CreateBranchesTable extends Migration {
 			$table->string('phone');
 			$table->string('mon_fri');
 			$table->string('sat');
+			$table->string('website');
+			$table->string('email');
 			$table->string('facebook');
 			$table->string('twitter');
 			$table->string('google');

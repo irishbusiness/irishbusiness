@@ -88,10 +88,13 @@ Route::get('admin/settings/blog', 'BlogController@manageblog');
 
 Route::post('admin/settings/blog', 'BlogController@store');
 
-Route::model('settings/{businessSlug}', 'Business');
-Route::get('settings/{businessSlug}', 'BusinessesController@sample');
-Route::get('settings', 'BusinessesController@sample2');
+Route::get('business/add', 'BusinessesController@addBusiness');
+Route::model('business/{businessSlug}', 'Business');
+Route::get('business/{businessSlug}', 'BusinessesController@showBusiness');
+
+//post create business
 Route::post('settings', 'BusinessesController@store');
+
 // Route::post('search','BusinessesController@search');
 Route::get('search', 'BusinessesController@search');
 Route::get('listings','BusinessesController@index');
@@ -210,9 +213,8 @@ Route::get('todo',function(){
 });
 
 
-Route::get('edit/company/{slug}/branch/add','BusinessesController@addBranch');
+Route::get('business/{slug}/branch/add','BusinessesController@addBranch');
 
-Route::post('addbranch',function(){
-	dd(Input::all());
-});
+Route::post('business/{slug}/branch/add', 'BusinessesController@storeBranch');
+	
 
