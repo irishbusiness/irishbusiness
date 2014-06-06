@@ -15,7 +15,6 @@ class CreateBranchesTable extends Migration {
 		Schema::create('branches', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name');
 			$table->string('locations');
 			$table->string('address');
 			$table->string('phone');
@@ -26,8 +25,7 @@ class CreateBranchesTable extends Migration {
 			$table->string('facebook');
 			$table->string('twitter');
 			$table->string('google');
-			$table->string('lat');
-			$table->string('lng');
+			$table->string('latlng');
 			$table->integer('business_id')->unsigned()->index();
 			$table->foreign('business_id')->references('id')->on('businesses')->onUpdate('cascade')->onDelete('cascade');
 			$table->timestamps();

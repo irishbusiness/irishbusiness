@@ -2,12 +2,13 @@
 <html class="" lang="en">
 
 	<head>
-
+        
 		<meta charset="utf-8">
         @yield('title')
         
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         {{ HTML::script('scripts/jquery-1.10.2.min.js') }}
+        @yield('linksfirst')
         <style type="text/css">
             body .redactor_toolbar li a.redactor_btn_button1 {
                 background: url(img/button1.png) no-repeat;
@@ -62,6 +63,7 @@
                 }
             );
         </script>
+        
         @include('client.partials._styles')
         @yield('couponstyle')
 	</head>
@@ -138,7 +140,7 @@
 			</div>
 		</div>
 	<!-- actual body -->
-
+    @yield('scripts')
 	@include('client.partials._footer')
 	@include('client.partials._includes')
 	@if(Session::has('errorNotify'))
@@ -156,7 +158,7 @@
 
         </script>
     @endif
-	@yield('scripts')
+	
 
 </section>
 

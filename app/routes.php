@@ -196,9 +196,6 @@ Route::post('sales/invite','SalesPersonsController@store');
 Route::get('sales/password/edit','SalesPersonsController@changePassword');
 Route::post('sales/password/edit','SalesPersonsController@updatePassword');
 
-Route::get('try',function(){
-	
-});
 
 App::missing(function($exception)
 {
@@ -218,5 +215,12 @@ Route::get('business/{slug}/branch/add','BusinessesController@addBranch');
 Route::post('business/{slug}/branch/add', 'BusinessesController@storeBranch');
 
 Route::get('business/{slug}/branch/{id}/map', 'BusinessesController@setMap');
+Route::post('addmap','BusinessesController@storeMap');	
+
+Route::get('try',function(){
 	
+	return View::make('test');
+
+});
+
 
