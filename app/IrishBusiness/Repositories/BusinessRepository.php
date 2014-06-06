@@ -2,6 +2,7 @@
 
 use Business;
 use Auth;
+use Branch;
 
 class BusinessRepository {
 
@@ -12,21 +13,21 @@ class BusinessRepository {
 	function create($input){
 
 		$business = new Business;
-		$address = $input['address1'] . ',' . $input['address2'] . ',' . $input['address3']  . ',' .$input['address4'];
+		/*$address = $input['address1'] . ',' . $input['address2'] . ',' . $input['address3']  . ',' .$input['address4'];*/
 		$business->name = $input['name'];
-		$business->address = $address;
+		/*$business->address = $address;*/
 		$business->keywords = $input['keywords'];
-		$business->locations = $input['locations'];
-		$business->phone    =   $input['phone'];
+		/*$business->locations = $input['locations'];*/
+		/*$business->phone    =   $input['phone'];
 		$business->website    =   $input['website'];
-		$business->email    =   $input['email'];
+		$business->email    =   $input['email'];*/
         $business->business_description    =   $input['business_description'];
 		$business->profile_description   =   $input['profile_description'];
-		$business->mon_fri   =   $input['mon_fri'];
+		/*$business->mon_fri   =   $input['mon_fri'];
 		$business->sat   =   $input['sat'];
 		$business->facebook   =   $input['facebook'];
 		$business->twitter  =   $input['twitter'];
-		$business->google  =   $input['google'];
+		$business->google  =   $input['google'];*/
         $business->user_id = Auth::user()->user()->id;
         // $business->user_id = 1;
 
@@ -59,7 +60,7 @@ class BusinessRepository {
 
 		$business->save();
 
-		return $business->id;
+		return $business;
 
 	}
 
@@ -118,6 +119,32 @@ class BusinessRepository {
 
         $business = Business::findOrFail($id);
         return $business->slug;
+    }
+
+    function storeBranch($input,$slug)
+    {
+        $business = Business::whereSlug($slug)->first();
+
+        $address = $input['address1'] . ',' . $input['address2'] . ',' . $input['address3']  . ',' .$input['address4'];
+        
+        $branch = new Branch;
+        $branch->address = $address;
+        $branch->locations = $input['locations'];
+        $branch->phone    =   $input['phone'];
+        $branch->website    =   $input['website'];
+        $branch->email    =   $input['email'];
+        $branch->mon_fri   =   $input['mon_fri'];
+        $branch->sat   =   $input['sat'];
+        $branch->facebook   =   $input['facebook'];
+        $branch->twitter  =   $input['twitter'];
+        $branch->google  =   $input['google'];
+        
+        $business->branches()->save($branch);
+
+        return $business;
+
+        
+
     }
 
 

@@ -19,6 +19,9 @@
 							{{$errors->first('name','<span class="error">:message</span>')}}
 						</div>
 						<div class="form-group">
+							{{ Form::label('currency', 'Currency', ['class'=>'text-colorful']) }}
+						</div>
+						<div class="form-group">
 							{{ Form::label("price", "Price", ["class"=>"text-colorful"]) }}<br>
 							{{ Form::text("price", "", ["class"=>"text-input-grey full", "required"=>"required", "placeholder"=>"Price", 
 								"data-type"=>"number" ]) }}
@@ -44,7 +47,7 @@
 						</div>
 						<div class="form-group">
 							{{ Form::label("duration", "Duration", ["class"=>"text-colorful"]) }}<br>
-							{{ Form::select("duration", ["free"=>"Free", "monthly"=>"Monthly", "yearly"=>"Yearly", "forever"=>"Forever"],
+							{{ Form::select("duration", ["monthly"=>"Monthly", "yearly"=>"Yearly"],
 								"", ["class"=>"text-input-grey"]) }}
 						</div>
 						<div class="form-group align-right">

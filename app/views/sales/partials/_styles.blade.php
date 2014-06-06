@@ -9,7 +9,6 @@
         {{ HTML::style('css/responsive-grid.css') }}
         {{ HTML::style('css/responsive.css') }}
         {{ HTML::style("scripts/redactor.css") }}
-
 		<!--[if lt IE 9]>
             {{ HTML::style('css/styles-ie8-and-down.css') }}
 		<![endif]-->

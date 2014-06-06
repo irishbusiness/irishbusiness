@@ -4,7 +4,7 @@
 						<a href="{{ Request::root().'/edit/company/'.$businessinfo->slug }}">Edit your business</a>
 					@endif
 				</div>
-				<div class="sidebar-container container-8 show">
+				<div class="sidebar-container container-8 show" id="tabs-sidebar">
 					<div class="company-page-map">
 						<div class="company-page-map-container">
 							<div id="company-page-map">
