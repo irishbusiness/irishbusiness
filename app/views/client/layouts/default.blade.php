@@ -93,7 +93,7 @@
 
             
                 @if(Request::is('settings*') || (Request::is('company*') && (!Request::is('company'))) )
-                <div class="content-container container-24">
+                <div class="content-container container-24" id="tabs-main-wrapper">
                     <div class="company-tabs-wrapper">
                         <div class="zone-company-tabs zone clearfix">
                             <div class="company-tabs-container container-24">

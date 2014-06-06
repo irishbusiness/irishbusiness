@@ -17,6 +17,9 @@
     {{ HTML::style("css/header-7.css") }}
     {{ HTML::style("css/responsive-grid.css") }}
     {{ HTML::style("scripts/redactor.css") }}
+    {{ HTML::style('css/bootstrap-formhelpers.css') }}
+    {{ HTML::style('css/bootstrap-formhelpers.min.css') }}
+
     <!--[if lt IE 9]>
     <link rel="stylesheet" href="css/styles-ie8-and-down.css" />
     <![endif]-->
