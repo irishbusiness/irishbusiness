@@ -1,4 +1,7 @@
 @extends('admin.layouts.default')
+	@section('title')
+		<title>Admin - Manage Subscriptions</title>
+	@stop
 	@section('actual-body-content')
 		<div class="blog-post block">
 			<div class="block-title">
@@ -17,15 +20,6 @@
 							{{ Form::label("name", "Name", ["class"=>"text-colorful"]) }}<br>
 							{{ Form::text("name", "", ["class"=>"text-input-grey full", "required"=>"required", "placeholder"=>"Subscription Name" ]) }}
 							{{$errors->first('name','<span class="error">:message</span>')}}
-						</div>
-						<div class="form-group">
-							{{ Form::label('currency', 'Currency', ['class'=>'text-colorful']) }}
-						</div>
-						<div class="form-group">
-							{{ Form::label("price", "Price", ["class"=>"text-colorful"]) }}<br>
-							{{ Form::text("price", "", ["class"=>"text-input-grey full", "required"=>"required", "placeholder"=>"Price", 
-								"data-type"=>"number" ]) }}
-							{{$errors->first('price','<span class="error">:message</span>')}}
 						</div>
 						<div class="form-group">
 							{{ Form::label("blogs_limit", "Blogs Limit", ["class"=>"text-colorful"]) }}<br>
@@ -50,6 +44,47 @@
 							{{ Form::select("duration", ["monthly"=>"Monthly", "yearly"=>"Yearly"],
 								"", ["class"=>"text-input-grey"]) }}
 						</div>
+						<div class="form-group">
+							{{ Form::label('currency', 'Select Currency', ['class'=>'text-colorful']) }}<br>
+							{{ Form::select("currency", [
+								"AUD" => "Australian Dollar (AUD)",
+								"BRL" => "Brazilian Real (BRL)",
+								"CAD" => "Canadian Dollar (CAD)",
+								"CZK" => "Czech Koruna (CZK)",
+								"DKK" => "Danish Krone (DKK)",
+								"EUR" => "Euro (EUR)",
+								"HKD" => "Hong Kong Dollar (HKD)",
+								"HUF" => "Hungarian Forint (HUF)",
+								"ILS" => "Israeli New Sheqel (ILS)",
+								"JPY" => "Japanese Yen (JPY)",
+								"MYR" => "Malaysian Ringgit (MYR)",
+								"MXN" => "Mexican Peso (MXN)",
+								"NOK" => "Norwegian Krone (NOK)",
+								"NZD" => "New Zealand Dollar (NZD)",
+								"PHP" => "Philippine Peso (PHP)",
+								"PLN" => "Polish Zloty (PLN)",
+								"GBP" => "Pound Sterling (GBP)",
+								"SGD" => "Singapore Dollar (SGD)",
+								"SEK" => "Swedish Krona (SEK)",
+								"CHF" => "Swiss Franc (CHF)",
+								"TWD" => "Taiwan New Dollar (TWD)",
+								"THB" => "Thai Baht (THB)",
+								"TRY" => "Turkish Lira (TRY)",
+								"USD" => "U.S. Dollar (USD)"
+							], "USD", ["class"=>"text-input-grey"]) }}
+						</div>
+						<div class="form-group">
+							{{ Form::label("price", "Price", ["class"=>"text-colorful"]) }}<br>
+							{{ Form::text("price", "", ["class"=>"text-input-grey half", "required"=>"required", "placeholder"=>"Price", 
+								"data-type"=>"number" ]) }}
+							{{$errors->first('price','<span class="error">:message</span>')}}
+						</div>
+						<div class="form-group">
+							{{ Form::label("discounted_price", "Discounted Monthly Price", ["id"=>"label-discounted-price","class"=>"text-colorful"]) }}<br>
+							{{ Form::text("discounted_price", "", ["class"=>"text-input-grey half", "required"=>"required", "placeholder"=>"Price", 
+								"data-type"=>"number" ]) }}
+							{{$errors->first('discounted_price','<span class="error">:message</span>')}}
+						</div>
 						<div class="form-group align-right">
 							{{ Form::submit("Create", ["class"=>"button-2-colorful", "id"=>"btn-create-subscription"]) }}
 							<button class="button-2-colorful" id="btn-cancel-edit">Cancel</button>
@@ -66,7 +101,7 @@
 								<h3 class="subscription-name">{{ $subscription->name }}</h3>
 								<div class="subscription-info">
 									<div class="subscription-duration">{{ $subscription->duration }}</div>
-									<div class="subscription-price">${{ $subscription->price }}</div>
+									<div class="subscription-price">{{ $subscription->currency." ".$subscription->price }}</div>
 									<div class="subscription-option">
 										<a href="#" class="option-button" data-id="{{ $subscription->id }}" data-type="edit">Edit</a>
 										<a href="#" class="option-button" data-id="{{ $subscription->id }}" data-type="delete">Delete</a>
