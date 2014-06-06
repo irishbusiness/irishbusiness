@@ -258,7 +258,7 @@ class BusinessesController extends \BaseController {
 	 */
 	public function addBranch($slug)
 	{
-		return View::make('client.addBranch')->withTitle('Add Branch')->withSlug($slug);
+		return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug);
 	}
 
 	public function update($id)
