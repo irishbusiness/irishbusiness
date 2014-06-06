@@ -37,7 +37,7 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('admin.admin_register')->with('title','IrishBusiness.ie | Register');
+		return View::make('admin.admin_register')->withTitle('Register');
 	}
 
 	/**
@@ -57,8 +57,7 @@ class UsersController extends \BaseController {
 			
 			Event::fire('user.signup',[$user]);
 
-			return Redirect::to('/')->withFlashMessage('Thank you for registering ' . ucwords(Input::get('firstname')) .'! Please confirm your email.')
-			->with('title','IrishBusiness.ie | Home');
+			return Redirect::to('/')->withFlashMessage('Thank you for registering ' . ucwords(Input::get('firstname')) .'! Please confirm your email.');
 		}
 		catch(FormValidationException  $e)
 		{

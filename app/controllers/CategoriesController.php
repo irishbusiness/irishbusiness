@@ -54,7 +54,8 @@ class CategoriesController extends \BaseController {
 	public function index()
 	{
 		$categories = \Category::whereNull('deleted_at')->orderBy('name', 'ASC')->get();
-		return View::make("admin.admin_manage_categories")->with('categories', $categories);
+		return View::make("admin.admin_manage_categories")->with('categories', $categories)
+			->withTitle("Admin - Manage Categories");
 	}
 
 	/**
@@ -83,7 +84,7 @@ class CategoriesController extends \BaseController {
 			$categories = \Category::all();
 
 			return Redirect::to('settings')->withFlashMessage('Added  new category <em>' . ucwords(Input::get('category')) .'</em>! ')
-			->with('title','IrishBusiness.ie | Settings')
+			->withTitle('Settings')
 			->with('categories',$categories);
 		}
 		catch(FormValidationException  $e)

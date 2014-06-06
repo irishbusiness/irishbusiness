@@ -16,7 +16,7 @@ class BlogController extends \BaseController {
     public function edit($id)
     {
         $blog = Blog::whereSlug($id)->first();
-        return View::make('admin.editblogpost', compact('blog'));
+        return View::make('admin.editblogpost', compact('blog'))->with("title", "Admin - Manage Blogs");
     }
 
     public function destroy($id)
@@ -30,17 +30,17 @@ class BlogController extends \BaseController {
     public function index()
     {
         $blogs = Blog::orderBy('created_at', 'desc')->get();
-        return View::make('client.bloglist', compact('blogs'));
+        return View::make('client.bloglist', compact('blogs'))->with("title", "Blogs");
     }
 
     public function create()
     {
-        return View::make('admin.admin_manage_blog');
+        return View::make('admin.admin_manage_blog')->with("title", "Admin - Manage Blogs");
     }
 
     public function manageblog(){
         $blogs = Blog::orderBy('created_at', 'desc')->get();
-        return View::make('admin.admin_manage_blog')->with('blogs', $blogs);
+        return View::make('admin.admin_manage_blog')->with('blogs', $blogs)->with('title', 'Admin - Manage Blogs');
     }
 
     public function store()
