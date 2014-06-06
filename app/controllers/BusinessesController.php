@@ -325,13 +325,18 @@ class BusinessesController extends \BaseController {
 		{
 			$this->addbranch->validate(Input::all());
 			$branch_id = $this->business->storeBranch(Input::all(),$slug);
-			return Redirect::to('business/'.$slug.'/branch/add/map')->with('branch_id',$branch_id);
+			return Redirect::to('business/'.$slug.'/branch/'. $branch_id.'/map')->with('branch_id',$branch_id);
 		}
 		catch(FormValidationException  $e)
 		{
 			
 			return Redirect::back()->withInput()->withErrors($e->getErrors());
 		}		
+	}
+
+	public function setMap($slug, $id)
+	{
+		return 'set map for ' . $slug . ' branch ' . $id;
 	}
 
 }

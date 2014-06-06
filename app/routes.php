@@ -216,5 +216,7 @@ Route::get('todo',function(){
 Route::get('business/{slug}/branch/add','BusinessesController@addBranch');
 
 Route::post('business/{slug}/branch/add', 'BusinessesController@storeBranch');
+
+Route::get('business/{slug}/branch/{id}/map', 'BusinessesController@setMap');
 	
 
