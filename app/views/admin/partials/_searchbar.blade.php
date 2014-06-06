@@ -7,8 +7,8 @@
 								<input type="text" class="text-input-black input-text" placeholder="Where are you looking for it?" />
 								<select id="category-selector-default" name="category-default" tabindex="1">
 									<option value="">- Select Category -</option>
-									@foreach($categories as $category)
-										<option value="{{ strtolower($category->name) }}">{{ ucwords($category->name) }}</option>
+									@foreach($header_categories as $header_category)
+										<option value="{{ strtolower($header_category->name) }}" {{isSelected("strtolower($header_category->name)",$selected)}}>{{ ucwords($header_category->name) }}</option>
 									@endforeach
 								</select>
 								<input type="submit" class="submit" value="search" name="submit" />
