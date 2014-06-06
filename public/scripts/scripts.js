@@ -499,6 +499,12 @@ $(document).ready(function() {
 		
 	});
 
+	$("#duration").click(function(e){
+		e.preventDefault();
+		var duration = $(this).val().toLowerCase();
+		$("#label-discounted-price").text("Discounted "+duration.substr(0,1).toUpperCase() + duration.substr(1)+" Price");
+	});
+
 	function subs_continue(id,operation){
 		$.ajax({
 			url: "/editSubscription",       
@@ -512,15 +518,19 @@ $(document).ready(function() {
 					$("div[data-num='"+id+"']").fadeOut(200, "linear", function(){});
 				}else{
 
+					console.log(data["currency"]);
+
 					$("#settings_form_subscription").fadeOut();
 
 					$("#settings_form_subscription input[name='name']").val(data["name"]);
 					$("#settings_form_subscription input[name='price']").val(data["price"]);
+					$("#settings_form_subscription input[name='discounted_price']").val(data["discounted_price"]);
 					$("#settings_form_subscription input[name='blogs_limit']").val(data["blogs_limit"]);
 					$("#settings_form_subscription input[name='max_location']").val(data["max_location"]);
 					$("#settings_form_subscription input[name='max_categories']").val(data["max_categories"]);
 
-					$("#settings_form_subscription #duration option[value='"+data["duration"]+"']").selected;
+					$("#settings_form_subscription #duration option[value='"+data["duration"]+"']").attr("selected", "selected");
+					$("#settings_form_subscription #currency option[value='"+data["currency"]+"']").attr("selected", "selected");
 					$("#subscription-title-option").text("Edit Subscription - "+data["name"].toUpperCase());
 					
 					$("#hidden_num").attr("name", "num");

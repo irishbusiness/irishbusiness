@@ -14,13 +14,17 @@
 
 View::share('selected', '');
 View::share('reviews', 0);
+View::share('title', 'The Irish Business Directory');
+
 $recentsettings = MainSetting::orderBy('created_at', 'desc')->first();
+$header_categories = Category::orderBy('name', 'asc')->get();
 
 $recentlyaddedcompany = Business::orderBy('created_at', 'desc')->limit(3)->get();
 $recentlyaddedblog	=	Blog::orderBy('created_at', 'desc')->limit(3)->get();
 $socialmedia = SocialMedia::first();
 
 View::share('recentsettings', $recentsettings);
+View::share('header_categories', $header_categories);
 
 View::share('recentlyaddedcompany', $recentlyaddedcompany);
 View::share('recentlyaddedblog', $recentlyaddedblog);

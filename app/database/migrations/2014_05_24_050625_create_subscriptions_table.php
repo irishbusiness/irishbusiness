@@ -15,8 +15,10 @@ class CreateSubscriptionsTable extends Migration {
 		Schema::create('subscriptions', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('name');
-			$table->integer('price');
 			$table->string('duration')->default('monthly');
+			$table->string('currency');
+			$table->double('price');
+			$table->double('discounted_price');
 			$table->integer('blogs_limit')->default(3);
 			$table->integer('max_location')->default(3);
 			$table->integer('max_categories')->default(3);

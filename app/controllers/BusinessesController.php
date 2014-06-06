@@ -88,7 +88,7 @@ class BusinessesController extends \BaseController {
 			->with('category',$category)
 			->with('location',Input::get('location'))
 			->with('selected',$selected)
-			->with('rating', $rating);
+			->with('rating', $rating)->with("title", "Search results");
 	}
 
 	public function showBusiness($businessSlug)
@@ -193,7 +193,7 @@ class BusinessesController extends \BaseController {
 		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
 		// $businessinfo = Business::all();
 		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
-			->with('reviews', $reviews);
+			->with('reviews', $reviews)->with('title', html_entity_decode(stripcslashes($businessinfo->name)));
 	}
 
 	public function companytab2($name){
@@ -211,7 +211,7 @@ class BusinessesController extends \BaseController {
 		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
 
 		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
-			->with('reviews', $reviews);
+			->with('reviews', $reviews)->with('title', html_entity_decode(stripcslashes($businessinfo->name)));
 	}
 
 	public function editcompany($slug){
@@ -247,7 +247,7 @@ class BusinessesController extends \BaseController {
 		->with("businessinfo", $businessinfo)
 		->with("addresses", $addresses)
 		->with("categories", $notselected_categories)
-		->with('selected_categories', $selected_categories);
+		->with('selected_categories', $selected_categories)->with('title', "Edit - ".html_entity_decode(stripcslashes($businessinfo->name)));
 	}
 
 	/**

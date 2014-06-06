@@ -14,7 +14,8 @@ class SubscriptionController extends \BaseController {
 	public function index()
 	{
 		$subscriptions = $this->subscriptions->whereIs_deleted(0)->orderBy('price', 'ASC')->get();
-		return View::make("admin.admin_settings_subscription")->with("subscriptions", $subscriptions);
+		return View::make("admin.admin_settings_subscription")->with("subscriptions", $subscriptions)
+			->withTitle("Admin - Subscription Settings");
 		
 	}
 
@@ -50,7 +51,9 @@ class SubscriptionController extends \BaseController {
         }
 
         $subscription->name = Input::get("name");
+        $subscription->currency = Input::get("currency");
         $subscription->price = Input::get("price");
+        $subscription->discounted_price = Input::get("discounted_price");
         $subscription->duration = Input::get("duration");
         $subscription->blogs_limit = Input::get("blogs_limit");
         $subscription->max_location = Input::get("max_location");
@@ -59,7 +62,7 @@ class SubscriptionController extends \BaseController {
         if($success){
         	$subscriptions = $this->subscriptions->whereIs_deleted(0)->orderBy('price', 'ASC')->get();
         	return View::make("admin.admin_settings_subscription")
-        		->with("flash_message", "New Subscription has been added.")->with('subscriptions', $subscriptions);
+        		->with("flash_message", "New Subscription has been added.")->with('subscriptions', $subscriptions)->withTitle("Admin - Subscription Settings");
         }
 
         return Redirect::back()->withInput()->with('msgerror', "Sorry, we can't process your request right now.")
