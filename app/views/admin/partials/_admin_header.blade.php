@@ -52,36 +52,36 @@
 									<div></div>
 								</li>
 								<li {{ (Request::is('admin_manage_cancellations') ? ' class="first active"' : '') }}>
-									<a href="{{ URL::to('admin_manage_cancellations') }}">CLIENT MANAGEMENT</a>
+									<a href="{{ URL::to('admin/settings/cancellations') }}">CLIENT MANAGEMENT</a>
 									<ul>
 										<li class="first last">
-											<a href="{{ URL::to('admin_manage_cancellations') }}">MANAGE CANCELLATIONS</a>
+											<a href="{{ URL::to('admin/settings/cancellations') }}">MANAGE CANCELLATIONS</a>
 										</li>
 									</ul>
 								</li>
-								<li {{ (Request::is('admin_settings_general') ? ' class="first active"' : '') }}>
-									<a href="{{ URL::to('admin_settings_general') }}">SETTINGS</a>
+								<li {{ (Request::is('admin/settings/general') ? ' class="first active"' : '') }}>
+									<a href="{{ URL::to('admin/settings/general') }}">SETTINGS</a>
 									<ul>
 										<li class="first">
-											<a href="{{ URL::to('admin_settings_general') }}">GENERAL</a>
+											<a href="{{ URL::to('admin/settings/general') }}">GENERAL</a>
 										</li>
 										<li class="">
-											<a href="{{ URL::to('admin_settings_socialmedia') }}">SOCIAL MEDIA</a>
+											<a href="{{ URL::to('admin/settings/socialmedia') }}">SOCIAL MEDIA</a>
 										</li>
 										<li class="">
-											<a href="{{ URL::to('admin_payment_gateway') }}">PAYMENT GATEWAY</a>
+											<a href="{{ URL::to('admin/settings/payment-gateway') }}">PAYMENT GATEWAY</a>
 										</li>
 										<li class="">
-											<a href="{{ URL::to('admin_manage_categories') }}">MANAGE CATEGORIES</a>
+											<a href="{{ URL::to('admin/settings/categories') }}">MANAGE CATEGORIES</a>
 										</li>
 										<li class="">
-											<a href="{{ URL::to('admin_manage_regions') }}">MANAGE REGIONS</a>
+											<a href="{{ URL::to('admin/settings/regions') }}">MANAGE REGIONS</a>
 										</li>
 										<li class="">
-											<a href="{{ URL::to('admin_manage_staff') }}">MANAGE STAFF</a>
+											<a href="{{ URL::to('admin/settings/staff') }}">MANAGE STAFF</a>
 										</li>
 										<li class="last">
-											<a href="{{ URL::to('admin_manage_blog') }}">MANAGE BLOG</a>
+											<a href="{{ URL::to('admin/settings/blog') }}">MANAGE BLOG</a>
 										</li>
 									</ul>
 								</li>
