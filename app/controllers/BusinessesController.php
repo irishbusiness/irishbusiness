@@ -193,7 +193,7 @@ class BusinessesController extends \BaseController {
 		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
 		// $businessinfo = Business::all();
 		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
-			->with('reviews', $reviews);
+			->with('reviews', $reviews)->with('title', html_entity_decode(stripcslashes($businessinfo->name)));
 	}
 
 	public function companytab2($name){
@@ -258,7 +258,7 @@ class BusinessesController extends \BaseController {
 	 */
 	public function addBranch($slug)
 	{
-		return View::make('client.addBranch')->withTitle('Add Branch')->withSlug($slug);
+		return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug);
 	}
 
 	public function update($id)
@@ -324,14 +324,19 @@ class BusinessesController extends \BaseController {
 		try
 		{
 			$this->addbranch->validate(Input::all());
-			$business = $this->business->storeBranch(Input::all(),$slug);
-			return 'Success';
+			$branch_id = $this->business->storeBranch(Input::all(),$slug);
+			return Redirect::to('business/'.$slug.'/branch/'. $branch_id.'/map')->with('branch_id',$branch_id);
 		}
 		catch(FormValidationException  $e)
 		{
 			
 			return Redirect::back()->withInput()->withErrors($e->getErrors());
 		}		
+	}
+
+	public function setMap($slug, $id)
+	{
+		return 'set map for ' . $slug . ' branch ' . $id;
 	}
 
 }

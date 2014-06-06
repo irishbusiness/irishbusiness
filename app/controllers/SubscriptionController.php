@@ -50,7 +50,9 @@ class SubscriptionController extends \BaseController {
         }
 
         $subscription->name = Input::get("name");
+        $subscription->currency = Input::get("currency");
         $subscription->price = Input::get("price");
+        $subscription->discounted_price = Input::get("discounted_price");
         $subscription->duration = Input::get("duration");
         $subscription->blogs_limit = Input::get("blogs_limit");
         $subscription->max_location = Input::get("max_location");

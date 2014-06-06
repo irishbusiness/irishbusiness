@@ -129,6 +129,7 @@ class BusinessRepository {
         
         $branch = new Branch;
         $branch->address = $address;
+        $branch->name = $input['name'];
         $branch->locations = $input['locations'];
         $branch->phone    =   $input['phone'];
         $branch->website    =   $input['website'];
@@ -141,7 +142,7 @@ class BusinessRepository {
         
         $business->branches()->save($branch);
 
-        return $business;
+        return $branch->id;
 
         
 
