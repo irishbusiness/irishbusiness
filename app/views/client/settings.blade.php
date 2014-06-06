@@ -6,8 +6,13 @@
         @if(Session::has('flash_message'))
             <h4>{{Session::get('flash_message')}}</h4>
         @endif
+
         <!-- general settings tab -->
+        @if(hasBusiness())
+            @include('client.companytabs.edit_business_settings')
+        @else
             @include('client.companytabs.business_settings')
+        @endif
 
         <!-- blog_settings tab -->
             @include('client.companytabs.blog_settings')

@@ -153,7 +153,7 @@ class BlogController extends \BaseController {
             $blog->linkedin = Input::get('linkedin');
             $blog->body = Input::get('content');
             $blog->slug = Input::get('blogurl');
-            $blog->business_id = 1;
+            $blog->business_id = Auth::user()->user()->business->id;
             // $blog->business_id = Auth::user()->user()->id;
 
             
@@ -215,7 +215,7 @@ class BlogController extends \BaseController {
             $blog->linkedin = Input::get('linkedin');
             $blog->slug = Input::get('blogurl');
             // $blog->business_id  =   Auth::user()->user()->business->id;
-            $blog->business_id = 1;
+            $blog->business_id = Auth::user()->user()->business->id;
 
             //check if the file isset
             if( Input::hasFile('blogheaderimageedit'))

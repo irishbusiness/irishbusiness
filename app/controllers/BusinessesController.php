@@ -19,7 +19,7 @@ class BusinessesController extends \BaseController {
 		$this->business = $business;
 		$this->registerbusiness = $registerbusiness;
 		$this->updatebusiness = $updatebusiness;
-		$this->beforeFilter('hasBusiness',['only' => ['sample2']]);
+		// $this->beforeFilter('hasBusiness',['only' => ['sample2']]);
 		$this->beforeFilter('user', ['only' => ['sample', 'sample2']]);
 		$this->beforeFilter('subscribed', ['only' => ['sample', 'sample2']]);
 		$this->beforeFilter('csrf', ['on' => 'post']);
@@ -90,11 +90,36 @@ class BusinessesController extends \BaseController {
 
 	public function sample($businessSlug)
 	{
-		$business = Business::whereSlug($businessSlug)->first();
-		$blogs = $business->blogs()->get();
+		$business = Business::whereSlug($businessSlug)->first();		
+		Session::forget('category');
+		
+		if( is_null($business) ){
+			return Response::view('pagenotfound');
+		}
+
+		$blogs = $business->blogs()->orderBy('created_at', 'desc')->get();
 		$reviews = $business->reviews()->orderBy('created_at', 'desc')->get();
 		$categories = $this->category->getCategories();
-		Session::forget('category');
+		
+		$selected_categories = $business->categories;
+		$selected_categories = $selected_categories->toArray();
+		$selected_categoriesraw = $business->categories;
+
+		$notselected_categories = $this->category->getCategories();
+
+		for($x=1; $x<count($categories); $x++){
+			// echo "<hr>";
+			for($y=0; $y<count($selected_categories); $y++){
+				if($categories[$x] === $selected_categories[$y]["name"]){
+					unset($notselected_categories[$x]);
+				}
+			}
+			
+		}
+
+		$addresses = $business->address;
+		$addresses = explode(",", $addresses);
+
 		
 		// return View::make('searchpartial.settings')->with('title','Settings')
 		// ->with('categories',$categories);
@@ -102,7 +127,10 @@ class BusinessesController extends \BaseController {
 		->with('categories',$categories)
 		->with('business', $business)
 		->with('blogs', $blogs)
-		->with('reviews', $reviews);
+		->with('reviews', $reviews)
+		->with("addresses", $addresses)
+		->with("categories", $notselected_categories)
+		->with('selected_categories', $selected_categories);
 		
 	}
 
@@ -182,6 +210,7 @@ class BusinessesController extends \BaseController {
 	}
 
 	public function editcompany($slug){
+
 		$businessinfo = Business::whereSlug($slug)->first();
 		
 		if( is_null($businessinfo) ){
@@ -209,8 +238,11 @@ class BusinessesController extends \BaseController {
 		$addresses = $businessinfo->address;
 		$addresses = explode(",", $addresses);
 
-		return View::make("client.editcompany")->with("businessinfo", $businessinfo)->with("addresses", $addresses)
-			->with("categories", $notselected_categories)->with('selected_categories', $selected_categories);
+		return View::make("client.editcompany")
+		->with("businessinfo", $businessinfo)
+		->with("addresses", $addresses)
+		->with("categories", $notselected_categories)
+		->with('selected_categories', $selected_categories);
 	}
 
 	/**
@@ -238,6 +270,41 @@ class BusinessesController extends \BaseController {
 		{
 			
 			return Redirect::back()->withInput()->withErrors($e->getErrors());
+		}
+	}
+
+	public function update_category_remove(){
+		if(Request::ajax()){
+
+			$business = Business::find(Input::get("bid"));
+			$business_category =  $business->with(['categories' => function($q){
+					$q->where('category_id', '=', Input::get("category"));
+				}])->first();
+
+
+			foreach ($business_category->categories as $role)
+			{
+			    if($role->pivot->delete()){
+			    	return "deleted.";
+			    }
+				
+			}
+			return "deletion failed.";
+		}
+	}
+
+	public function update_category_add(){
+		if(Request::ajax()){
+			$business_id = Input::get("bid");
+			$category_id = Input::get("category");
+			$name = Input::get("name");
+
+			$business = Business::find($business_id);
+			
+			$data = array("id"=>$category_id, "name"=>$name);
+			$success = $business->categories()->attach($category_id);
+			
+			return "added";		
 		}
 	}
 

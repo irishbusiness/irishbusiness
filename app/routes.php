@@ -104,6 +104,7 @@ Route::post('company/{name}', 'ReviewsController@store');
 Route::get('edit/company/{slug}', 'BusinessesController@editcompany');
 Route::post('edit/company/{slug}', 'BusinessesController@update');
 Route::post('ajaxUpdateCategoryRemove', 'BusinessesController@update_category_remove');
+Route::post('ajaxUpdateCategoryAdd', 'BusinessesController@update_category_add');
 
 Route::get('register', 'UsersController@create');
 Route::post('register', 'UsersController@store');
@@ -194,16 +195,6 @@ Route::post('sales/password/edit','SalesPersonsController@updatePassword');
 
 Route::get('try',function(){
 	
-	/*return dd(is_null(User::with('subscription')->find(1)->first()->subscription->first()));*/
-
-	if(Auth::user()->check())
-		{
-			$business = Auth::user()->user()->business;
-			if (!is_null($business))
-				return Redirect::to('edit/company/'.$business->slug);
-		}
-
-	
 });
 
 App::missing(function($exception)
@@ -218,8 +209,10 @@ Route::get('todo',function(){
 	return View::make('todo');
 });
 
+
 Route::get('edit/company/{slug}/branch/add','BusinessesController@addBranch');
 
 Route::post('addbranch',function(){
 	dd(Input::all());
 });
+

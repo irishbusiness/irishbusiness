@@ -7,13 +7,13 @@
 <body>
 	<h3>Dexter </h3>
 	<ul>
-		<li>show header and footer logo image in admin_settings_general</li>
-		<li>show footer text when set in general setting</li>
+		<!-- <li>show header and footer logo image in admin_settings_general</li> -->
+		<!-- <li>show footer text when set in general setting</li> -->
 		<li> align REGISTER with the right hand pixel of social media icons</li>
-		<li>only show icons in social media if its link is available</li>
-		<li>only registered users can send reviews</li>
-		<li>finish edit business module</li>
-		<li>enable average ratings if available on every business in search results</li>
+		<!-- <li>only show icons in social media if its link is available</li> -->
+		<!-- <li>only registered users can send reviews</li> -->
+		<!-- <li>finish edit business module</li> -->
+		<!-- <li>enable average ratings if available on every business in search results</li> -->
 	</ul>
 	<hr/>
 	<h3>Jiriko </h3>
@@ -31,6 +31,8 @@
 		<li>Add business_category seeder - Done</li>
 		<li>admin blog - Done</li>
 		<li>Fix navbar for logged in users - Done</li>
+		<li>Transfer Edit to company tabs - Done</li>
+		<li>populate recent post with real data in footer - Done</li>
 		<li> Coupon Builder </li>
 		<li>Reviews tab (backend)</li>
 	</ul>

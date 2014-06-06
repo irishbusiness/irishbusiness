@@ -1,7 +1,4 @@
-@extends("client.layouts.default")
-
-@section("actual-body-content")
-	<div id="company-tabs-page" class="company-tabs-content" style="display: block;">
+<div id="company-tabs-page" class="company-tabs-content" style="display: block;">
 	    <div class="portfolio-container container-24">
 
 	        <div class="blog-post block">
@@ -9,10 +6,10 @@
 	                <h1>Edit Business</h1>
 	            </div>
 	        </div>
-	        {{ Form::open(array('action' => ['BusinessesController@update', $businessinfo->id], 'files' => true)) }}
+	        {{ Form::open(array('action' => ['BusinessesController@update', $business->id], 'files' => true)) }}
 	        <div class="form-group">
 	            {{ Form::label('name', 'Business Name', ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('name', html_entity_decode(stripcslashes($businessinfo->name)), [
+	            {{ Form::text('name', html_entity_decode(stripcslashes($business->name)), [
 	            "placeholder" => "your business", "class"=>"text-input-grey full", 'required']) }}
 	            {{$errors->first('name','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
@@ -45,35 +42,35 @@
 	        <div class="form-group">
 	            {{ Form::label('keywords', "Keywords (please separate keywords by a comma.)",
 	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('keywords', $businessinfo->keywords, [
+	            {{ Form::text('keywords', $business->keywords, [
 	            "placeholder" => "office, airplane, house", "class"=>"text-input-grey full", 'required']) }}
 	            {{$errors->first('keywords','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
 	        <div class="form-group">
 	            {{ Form::label('locations', "Locations Served (please separate keywords by a comma.)",
 	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('locations', $businessinfo->locations, [
+	            {{ Form::text('locations', $business->locations, [
 	            "placeholder" => "iraq, iran, new york", "class"=>"text-input-grey full", 'required']) }}
 	            {{$errors->first('locations','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
 	        <div class="form-group">
 	            {{ Form::label('phone', "Phone",
 	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('phone', $businessinfo->phone, [
+	            {{ Form::text('phone', $business->phone, [
 	            "placeholder" => "Phone", "class"=>"text-input-grey full", 'required']) }}
 	            {{$errors->first('phone','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
 	        <div class="form-group">
 	            {{ Form::label('website', "Website",
 	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('website', $businessinfo->website, [
+	            {{ Form::text('website', $business->website, [
 	            "placeholder" => "Website", "class"=>"text-input-grey full", 'required']) }}
 	            {{$errors->first('website','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
 	        <div class="form-group">
 	            {{ Form::label('email', "Email",
 	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('email', $businessinfo->email, [
+	            {{ Form::text('email', $business->email, [
 	            "placeholder" => "Email", "class"=>"text-input-grey full", 'required']) }}
 	            {{$errors->first('email','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
@@ -84,13 +81,13 @@
 	            {{ Form::file('logo', ["id"=>"btn-business-settings-logo"]) }}
 	            {{$errors->first('logo','<span class="alert alert-error block half">:message</span>')}}
 	            <div class="render-logo-preview">
-	                <img src="{{ URL::asset('/'.$businessinfo->logo) }}" id="img-render-logo">
+	                <img src="{{ URL::asset('/'.$business->logo) }}" id="img-render-logo">
 	            </div>
 	        </div>
 	        <div class="form-group">
 	            {{ Form::label('business_description', "Business Description",
 	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::textarea('business_description', html_entity_decode(stripcslashes($businessinfo->business_description)), [
+	            {{ Form::textarea('business_description', html_entity_decode(stripcslashes($business->business_description)), [
 	            "placeholder" => "business_description", "class"=>"text-input-grey comment-message-main full", 'required']) }}
 	            {{$errors->first('business_description','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
@@ -99,21 +96,21 @@
 	        <div class="form-group">
 	            {{ Form::label('profile_description', "Profile Description",
 	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::textarea('profile_description', html_entity_decode(stripcslashes($businessinfo->profile_description)), ["id" => "redactor", 'required']) }}
+	            {{ Form::textarea('profile_description', html_entity_decode(stripcslashes($business->profile_description)), ["id" => "redactor", 'required']) }}
 	            {{$errors->first('profile_description','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
 
 	        <div class="form-group">
 	            {{ Form::label('mon_fri', "Monday - Friday Opening Hours",
 	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('mon_fri', $businessinfo->mon_fri, [
+	            {{ Form::text('mon_fri', $business->mon_fri, [
 	            "placeholder" => "Monday - Friday Opening Hours", "class"=>"text-input-grey full", 'required']) }}
 	            {{$errors->first('mon_fri','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
 	        <div class="form-group">
 	            {{ Form::label('sat', "Saturday Opening Hours",
 	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('sat', $businessinfo->sat, [
+	            {{ Form::text('sat', $business->sat, [
 	            "placeholder" => "Saturday Opening Hours", "class"=>"text-input-grey full", 'required']) }}
 	            {{$errors->first('sat','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
@@ -122,21 +119,21 @@
 	        <div class="form-group">
 	            {{ Form::label('facebook', "Facebook Link",
 	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('facebook', $businessinfo->facebook, [
+	            {{ Form::text('facebook', $business->facebook, [
 	            "placeholder" => "Facebook Link", "class"=>"text-input-grey full", 'required']) }}
 	            {{$errors->first('facebook','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
 	        <div class="form-group">
 	            {{ Form::label('twitter', "Twitter Link",
 	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('twitter', $businessinfo->twitter, [
+	            {{ Form::text('twitter', $business->twitter, [
 	            "placeholder" => "Twitter Link", "class"=>"text-input-grey full", 'required']) }}
 	            {{$errors->first('twitter','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
 	        <div class="form-group">
 	            {{ Form::label('google', "Google Link",
 	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('google', $businessinfo->google, [
+	            {{ Form::text('google', $business->google, [
 	            "placeholder" => "Google Link", "class"=>"text-input-grey full", 'required']) }}
 	            {{$errors->first('google','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
@@ -161,7 +158,7 @@
 	        <div class="form-group">
 	            {{ Form::label('slug', "Business URL (".Request::root()."/your-business-name)",
 	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('slug', $businessinfo->slug, [
+	            {{ Form::text('slug', $business->slug, [
 	            "placeholder" => "your-business-name", "class"=>"text-input-grey full", 'required']) }}
 	            {{$errors->first('slug','<span class="alert alert-error block half">:message</span>')}}
 	        </div>
@@ -171,14 +168,13 @@
 	        {{ Form::close() }}
 	    </div>
 	</div>
-@stop
 @section('scripts')
 	<script type="text/javascript">
 		$(function(){
 	        $(document).on('change','#categories',function()
 	        {	
 	        	var id = 0;
-	            id = {{ $businessinfo->id }};
+	            id = {{ $business->id }};
 	            var category = $('#categories').val();
 	            var name = $("#categories option:selected").text();
 	            console.log(name);
@@ -206,7 +202,7 @@
 	        $(document).on('click', '.remove', function(){
 	            var category = $(this).attr("data-id");
 	            var id = 0;
-	            id = {{ $businessinfo->id }};
+	            id = {{ $business->id }};
 	            var token = $('input[name="_token"]').val();
 	            $('#categories').append('<option value="'+category+'">'+$(this).attr('data-text')+'</option>');
 	            var c =false;
