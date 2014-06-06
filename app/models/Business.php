@@ -22,4 +22,9 @@ class Business extends \Eloquent {
     {
         return $this->hasMany('Blog', 'business_id');
     }
+
+    public function branches()
+    {
+        return $this->hasMany('Branch','business_id');
+    }
 }

@@ -149,7 +149,7 @@
 	@endif
     @if(Session::has('flash_message'))
         <script>
-            $('#flashmessage').delay(5000).slideUp(50);
+            $('#flashmessage').delay(20000).slideUp(50);
             $(document).on('click','#closeflash',function(){
                 $(this).parent().hide();
             });

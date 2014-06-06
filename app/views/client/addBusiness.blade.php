@@ -1,6 +1,6 @@
 @extends("client.layouts.default")
 @section("title")
-    <title>Settings</title>
+    <title>Add Business</title>
 @stop
 @section("actual-body-content")
         @if(Session::has('flash_message'))
@@ -8,11 +8,8 @@
         @endif
 
         <!-- general settings tab -->
-        @if(hasBusiness())
-            @include('client.companytabs.edit_business_settings')
-        @else
-            @include('client.companytabs.business_settings')
-        @endif
+        @include('client.companytabs.business_settings')
+       
 
         <!-- blog_settings tab -->
             @include('client.companytabs.blog_settings')

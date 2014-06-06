@@ -15,20 +15,14 @@ class CreateBusinessesTable extends Migration {
 		Schema::create('businesses', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('name');
-			$table->string('address');
 			$table->string('keywords');
-			$table->string('locations');
+			/*$table->string('locations');
 			$table->string('phone');
 			$table->string('website');
-			$table->string('email')->unique();
+			$table->string('email')->unique();*/
 			$table->string('logo');
 			$table->text('business_description');
 			$table->text('profile_description');
-			$table->string('mon_fri');
-			$table->string('sat');
-			$table->string('facebook');
-			$table->string('twitter');
-			$table->string('google');
 			$table->string('slug')->unique();
 			$table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

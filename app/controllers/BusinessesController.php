@@ -3,6 +3,7 @@
 use IrishBusiness\Repositories\CategoryRepository;
 use IrishBusiness\Repositories\BusinessRepository;
 use IrishBusiness\Forms\RegisterBusiness;
+use IrishBusiness\Forms\AddBranch;
 use IrishBusiness\Forms\UpdateBusiness;
 use IrishBusiness\Forms\FormValidationException;
 
@@ -11,10 +12,12 @@ class BusinessesController extends \BaseController {
 	protected $category;
 	protected $business;
 	protected $registerbusiness;
+	protected $addbranch;
 
 	function __construct(CategoryRepository $category, BusinessRepository $business, RegisterBusiness $registerbusiness,
-			UpdateBusiness $updatebusiness)
+			UpdateBusiness $updatebusiness, AddBranch $addbranch)
 	{
+		$this->addbranch = $addbranch;
 		$this->category = $category;
 		$this->business = $business;
 		$this->registerbusiness = $registerbusiness;
@@ -88,7 +91,7 @@ class BusinessesController extends \BaseController {
 			->with('rating', $rating);
 	}
 
-	public function sample($businessSlug)
+	public function showBusiness($businessSlug)
 	{
 		$business = Business::whereSlug($businessSlug)->first();		
 		Session::forget('category');
@@ -134,11 +137,13 @@ class BusinessesController extends \BaseController {
 		
 	}
 
-	public function sample2(){
+	
+	public function addBusiness()
+	{
 		$categories = $this->category->getCategories();
 		Session::forget('category');
 
-		return View::make('client.settings')->with('title','Settings')
+		return View::make('client.addBusiness')->with('title','Add Business')
 		->with('categories', $categories)
 		->with('reviews', NULL);
 	}
@@ -155,9 +160,9 @@ class BusinessesController extends \BaseController {
 		{
 			$this->registerbusiness->validate(Input::all());
 
-			$business_id = $this->business->create(Input::all());
+			$business = $this->business->create(Input::all());
 
-			$business = Business::findOrFail($business_id);
+			/*$business = Business::findOrFail($business_id);*/
 
 			$categories = Session::get('categories');
 			Session::forget('categories');
@@ -169,7 +174,7 @@ class BusinessesController extends \BaseController {
 				}
 			}
 
-			return Redirect::to('/company/'.$business->slug);
+			return Redirect::to('business/'.$business->slug .'/branch/add')->with('flash_message','Thank you for adding your business! Please fill up the branch information. <br> You can add more branches later.');
 		}
 		catch(FormValidationException  $e)
 		{
@@ -253,7 +258,7 @@ class BusinessesController extends \BaseController {
 	 */
 	public function addBranch($slug)
 	{
-		return View::make('client.addBranch')->withTitle('Add Branch')->withSlug($slug);
+		return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug);
 	}
 
 	public function update($id)
@@ -314,9 +319,24 @@ class BusinessesController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function storeBranch($slug)
 	{
-		//
+		try
+		{
+			$this->addbranch->validate(Input::all());
+			$branch_id = $this->business->storeBranch(Input::all(),$slug);
+			return Redirect::to('business/'.$slug.'/branch/'. $branch_id.'/map')->with('branch_id',$branch_id);
+		}
+		catch(FormValidationException  $e)
+		{
+			
+			return Redirect::back()->withInput()->withErrors($e->getErrors());
+		}		
+	}
+
+	public function setMap($slug, $id)
+	{
+		return 'set map for ' . $slug . ' branch ' . $id;
 	}
 
 }
