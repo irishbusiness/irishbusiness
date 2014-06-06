@@ -142,7 +142,7 @@ class BusinessRepository {
         
         $business->branches()->save($branch);
 
-        return $business;
+        return $branch->id;
 
         
 

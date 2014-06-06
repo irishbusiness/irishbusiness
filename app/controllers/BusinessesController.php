@@ -324,8 +324,8 @@ class BusinessesController extends \BaseController {
 		try
 		{
 			$this->addbranch->validate(Input::all());
-			$business = $this->business->storeBranch(Input::all(),$slug);
-			return Redirect::to('business/'.$slug.'/branch/add/map');
+			$branch_id = $this->business->storeBranch(Input::all(),$slug);
+			return Redirect::to('business/'.$slug.'/branch/add/map')->with('branch_id',$branch_id);
 		}
 		catch(FormValidationException  $e)
 		{
