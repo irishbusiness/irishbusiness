@@ -210,3 +210,9 @@ Route::get('todo',function(){
 });
 
 
+Route::get('edit/company/{slug}/branch/add','BusinessesController@addBranch');
+
+Route::post('addbranch',function(){
+	dd(Input::all());
+});
+

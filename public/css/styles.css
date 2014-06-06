@@ -4521,11 +4521,13 @@ td.detail {
 	}
 	#link {display:none;}
 
-
 #tabs-main-wrapper {
 	margin-left: 0px;
 }
 
 #tabs-sidebar {
 	margin-left: 0px;
+}
+.user-links{
+	margin-left: -20px;
 }

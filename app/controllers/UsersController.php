@@ -57,8 +57,8 @@ class UsersController extends \BaseController {
 			
 			Event::fire('user.signup',[$user]);
 
-			return Redirect::to('settings')->withFlashMessage('Thank you for registering ' . ucwords(Input::get('firstname')) .'! You have been logged in.')
-			->with('title','IrishBusiness.ie | Settings');
+			return Redirect::to('/')->withFlashMessage('Thank you for registering ' . ucwords(Input::get('firstname')) .'! Please confirm your email.')
+			->with('title','IrishBusiness.ie | Home');
 		}
 		catch(FormValidationException  $e)
 		{
