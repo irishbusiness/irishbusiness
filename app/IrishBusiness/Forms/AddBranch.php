@@ -4,7 +4,6 @@ class AddBranch extends Form {
 
 	protected $rules = [
 		'address1' => 'required',
-		'name' => 'required',
 		'locations' => 'required',
 		'phone' => 'required',
 		'website' => 'required',

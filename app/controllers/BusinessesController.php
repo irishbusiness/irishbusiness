@@ -126,9 +126,9 @@ class BusinessesController extends \BaseController {
 		
 		// return View::make('searchpartial.settings')->with('title','Settings')
 		// ->with('categories',$categories);
-		return View::make('client.settings')->with('title','Settings')
+		return View::make('client.company-tab')->with('title','Settings')
 		->with('categories',$categories)
-		->with('business', $business)
+		->with('businessinfo', $business)
 		->with('blogs', $blogs)
 		->with('reviews', $reviews)
 		->with("addresses", $addresses)
@@ -336,8 +336,8 @@ class BusinessesController extends \BaseController {
 
 	public function setMap($slug, $id)
 	{
-		$address = Branch::find($id)->address;
-		return View::make('client.map')->withSlug($slug)->with('branch_id',$id)->with('address',$address);
+		$branch = Branch::find($id);
+		return View::make('client.map')->withSlug($slug)->with('branch',$branch);
 	}
 
 	public function storeMap()
