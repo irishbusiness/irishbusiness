@@ -89,7 +89,7 @@ Route::get('admin/settings/blog', 'BlogController@manageblog');
 Route::post('admin/settings/blog', 'BlogController@store');
 
 Route::get('business/add', 'BusinessesController@addBusiness');
-Route::model('business/{businessSlug}', 'Business');
+
 Route::get('business/{businessSlug}', 'BusinessesController@showBusiness');
 
 //post create business
@@ -104,8 +104,9 @@ Route::get('company', 'BusinessesController@search');
 Route::get('company/{name}', 'BusinessesController@companytab2');
 Route::post('company/{name}', 'ReviewsController@store');
 
-Route::get('edit/company/{slug}', 'BusinessesController@editcompany');
+Route::get('edit/business/{slug}', 'BusinessesController@editcompany');
 Route::post('edit/company/{slug}', 'BusinessesController@update');
+
 Route::post('ajaxUpdateCategoryRemove', 'BusinessesController@update_category_remove');
 Route::post('ajaxUpdateCategoryAdd', 'BusinessesController@update_category_add');
 
@@ -215,6 +216,9 @@ Route::get('business/{slug}/branch/add','BusinessesController@addBranch');
 Route::post('business/{slug}/branch/add', 'BusinessesController@storeBranch');
 
 Route::get('business/{slug}/branch/{id}/map', 'BusinessesController@setMap');
+
+Route::get('business/{slug}/settings', 'BusinessesController@showBusiness');
+
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try',function(){
@@ -222,5 +226,4 @@ Route::get('try',function(){
 	return View::make('test');
 
 });
-
 

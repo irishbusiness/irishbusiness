@@ -8,7 +8,6 @@
         <!-- general settings tab -->
         @include('client.companytabs.business_settings')
        
-
         <!-- blog_settings tab -->
             @include('client.companytabs.blog_settings')
 

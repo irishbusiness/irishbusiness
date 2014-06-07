@@ -126,8 +126,9 @@ class BusinessesController extends \BaseController {
 		
 		// return View::make('searchpartial.settings')->with('title','Settings')
 		// ->with('categories',$categories);
-		return View::make('client.settings')->with('title','Settings')
+		return View::make('client.business_settings')->with('title','Settings')
 		->with('categories',$categories)
+		->with('businessinfo', $business)
 		->with('business', $business)
 		->with('blogs', $blogs)
 		->with('reviews', $reviews)
