@@ -6,7 +6,7 @@
                             <div class="company-tabs-container container-24">
                                 <ul id="company-tabs-active" class="company-tabs">
                                     <li class="active">
-                                        <a class="company-tabs-page" href="#">COMPANY</a>
+                                        <a class="company-tabs-page" href="#">BUSINESS</a>
                                     </li>
                                     <li class="">
                                         <a class="company-tabs-blog" href="#">BLOG</a>

@@ -217,7 +217,7 @@ Route::post('business/{slug}/branch/add', 'BusinessesController@storeBranch');
 
 Route::get('business/{slug}/branch/{id}/map', 'BusinessesController@setMap');
 
-Route::get('business/{slug}/settings', 'BusinessesController@showBusiness');
+Route::get('business/{slug}/settings', 'BusinessesController@businessSettings');
 
 Route::post('addmap','BusinessesController@storeMap');	
 
