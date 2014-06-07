@@ -23,8 +23,8 @@ class BusinessesController extends \BaseController {
 		$this->registerbusiness = $registerbusiness;
 		$this->updatebusiness = $updatebusiness;
 		// $this->beforeFilter('hasBusiness',['only' => ['sample2']]);
-		$this->beforeFilter('user', ['only' => ['sample', 'sample2']]);
-		$this->beforeFilter('subscribed', ['only' => ['sample', 'sample2']]);
+		$this->beforeFilter('user', ['only' => ['showBusiness', 'addBusiness']]);
+		$this->beforeFilter('subscribed', ['only' => ['showBusiness', 'addBusiness']]);
 		$this->beforeFilter('csrf', ['on' => 'post']);
 
 	}
@@ -48,7 +48,7 @@ class BusinessesController extends \BaseController {
 		// 	$category = Session::get('category');
 		// 	$addresses = Session::get('addresses');
 		// }else{
-		// 	 $category = trim(Input::get('category'));
+		// 	 $category = trim(Input::get('category'))-;
 		// 	  $addresses = explode(' ',Input::get('location'));
 		// 	  $selected = Input::get('category-default');
 		// }
@@ -88,7 +88,7 @@ class BusinessesController extends \BaseController {
 			->with('category',$category)
 			->with('location',Input::get('location'))
 			->with('selected',$selected)
-			->with('rating', $rating);
+			->with('rating', $rating)->with("title", "Search results");
 	}
 
 	public function showBusiness($businessSlug)
@@ -211,7 +211,7 @@ class BusinessesController extends \BaseController {
 		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
 
 		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
-			->with('reviews', $reviews);
+			->with('reviews', $reviews)->with('title', html_entity_decode(stripcslashes($businessinfo->name)));
 	}
 
 	public function editcompany($slug){
@@ -247,7 +247,7 @@ class BusinessesController extends \BaseController {
 		->with("businessinfo", $businessinfo)
 		->with("addresses", $addresses)
 		->with("categories", $notselected_categories)
-		->with('selected_categories', $selected_categories);
+		->with('selected_categories', $selected_categories)->with('title', "Edit - ".html_entity_decode(stripcslashes($businessinfo->name)));
 	}
 
 	/**
@@ -336,7 +336,20 @@ class BusinessesController extends \BaseController {
 
 	public function setMap($slug, $id)
 	{
-		return 'set map for ' . $slug . ' branch ' . $id;
+		$address = Branch::find($id)->address;
+		return View::make('client.map')->withSlug($slug)->with('branch_id',$id)->with('address',$address);
+	}
+
+	public function storeMap()
+	{
+		if(!$this->business->isOwnder(Input::get('slug')))
+			return Response::make('pagenotfound');
+
+		$this->business->storeMap(Input::get('latlng'),Input::get('branch_id'));
+
+		return Redirect::to('company/'.Input::get('slug'))->with('flash_message','Congratulations! You have completed your profile.');
+
+		
 	}
 
 }

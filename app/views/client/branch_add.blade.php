@@ -1,7 +1,5 @@
 @extends("client.layouts.default")
-@section("title")
-    <title>Add Branch</title>
-@stop
+
 @section("actual-body-content")
         <div id="company-tabs-page" class="company-tabs-content" style="display: block;">
         <div class="portfolio-container container-24">

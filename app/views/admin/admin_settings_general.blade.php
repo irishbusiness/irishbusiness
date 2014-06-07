@@ -1,7 +1,5 @@
 @extends('client.layouts.default')
-	@section('title')
-	<title>Admin - General Settings</title>
-	@stop
+
 	@section('actual-body-content')
 		<div class="blog-post block">
 			<div class="block-title">

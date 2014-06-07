@@ -1,7 +1,5 @@
 @extends("client.layouts.default")
-@section("title")
-    <title>Add Business</title>
-@stop
+
 @section("actual-body-content")
         @if(Session::has('flash_message'))
             <h4>{{Session::get('flash_message')}}</h4>

@@ -20,7 +20,7 @@ class HomeController extends BaseController {
 		$c = MainSetting::count();
 		if($c>0){
             $settings = MainSetting::orderBy('created_at', 'desc')->first();
-            return View::make('admin.admin_settings_general')->with('settings', $settings->toArray()); 
+            return View::make('admin.admin_settings_general')->with('settings', $settings->toArray())->with("title", "Admin - General Settings"); 
         }
 
        $settings = array(
@@ -34,7 +34,7 @@ class HomeController extends BaseController {
             "reviews_approval" => "",
        );
 
-       return View::make('admin.admin_settings_general')->with('settings', $settings);
+       return View::make('admin.admin_settings_general')->with('settings', $settings)->withTitle("Admin - General Settings");
 	}
 
 }

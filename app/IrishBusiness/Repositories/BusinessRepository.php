@@ -148,5 +148,19 @@ class BusinessRepository {
 
     }
 
+    function storeMap($latlng,$id)
+    {
+        $branch = Branch::find($id);
+        $branch->latlng = $latlng;
+        $branch->save();
+    }
+
+    function isOwnder($slug)
+    {
+        if(Business::whereSlug($slug)->first()->user_id==Auth::user()->user()->id)
+            return true;
+        return false;
+    }
+
 
 }

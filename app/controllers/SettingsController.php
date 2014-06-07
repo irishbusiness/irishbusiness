@@ -129,7 +129,8 @@ class SettingsController extends \BaseController {
 
     public function show_commission(){
         $commissions = Commission::all();
-        return View::make("admin.admin_settings_commission")->with('commissions', $commissions);
+        return View::make("admin.admin_settings_commission")->with('commissions', $commissions)
+            ->withTitle("Admin - Manage Commission");
     }
 
     public function edit_commission(){

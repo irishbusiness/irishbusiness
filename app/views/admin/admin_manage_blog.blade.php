@@ -1,8 +1,5 @@
 @extends('admin.layouts.default')
 
-@section('title')
-    <title>Admin - Manage Blogs</title>
-@stop
 
 @section('actual-body-content')
         <div class="blog-post block">
