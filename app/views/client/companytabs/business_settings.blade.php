@@ -142,7 +142,7 @@
         </div>
         
         <div class="form-group">
-            {{ Form::label('slug', "Business URL (".Request::root()."/your-business-name)",
+            {{ Form::label('slug', "Business URL (".Request::root()."/company/your-business-name)",
             ["class"=>"text-colorful"]) }}<br/>
             {{ Form::text('slug','', [
             "placeholder" => "your-business-name", "class"=>"text-input-grey full"]) }}

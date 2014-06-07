@@ -219,7 +219,8 @@ Route::post('addmap','BusinessesController@storeMap');
 
 Route::get('try',function(){
 	
-	return View::make('test');
+	// return View::make('test');
+	return View::make("client.company-tab.coupons")->withTitle("Create a coupon");
 
 });
 
