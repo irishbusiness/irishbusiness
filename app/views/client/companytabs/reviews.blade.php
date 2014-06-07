@@ -7,23 +7,29 @@
 							<h1>Reviews</h1>
 						</div>
 						@if(count($reviews)>0)
-							@foreach($reviews as $review)
-							<div class="review last">
-									<div class="review-author">
-										<span class="author">{{ $review->name }}</span> - <span class="date">{{ date("F j, Y",strtotime($review->created_at))." at ".date("g:i a",strtotime($review->created_at)) }}</span>
-									</div>
-									<div class="rating-stars {{ ($review->rating > 0 ? 'rated' : '') }}">
-										<div class="star star-1 {{ ($review->rating == 1 ? 'current' : '') }} "></div>
-										<div class="star star-2 {{ ($review->rating == 2 ? 'current' : '') }} "></div>
-										<div class="star star-3 {{ ($review->rating == 3 ? 'current' : '') }} "></div>
-										<div class="star star-4 {{ ($review->rating == 4 ? 'current' : '') }} "></div>
-										<div class="star star-5 {{ ($review->rating == 5 ? 'current' : '') }} "></div>
-									</div>
-									<div class="review-text">
-										{{ html_entity_decode(stripcslashes($review->description)) }}
-									</div>
-								</div>
-							@endforeach
+							<table class="table" id="table-categories">
+					            <thead>
+					            <tr>
+					                <th>Name</th>
+					                <th>Comment</th>
+					                <th>Action</th>
+					            </tr>
+					            </thead>
+					            <tbody>
+
+					            @if(isset($reviews) && !is_null($reviews))
+					            @foreach($reviews as $review)
+					            	<tr>
+					            	<td>{{ $review->name }}</td>
+					            	<td>{{ html_entity_decode(stripcslashes($review->description)) }}</td>
+					            	<td>
+					            		<a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="actionReview($(this))" data-id="{{ $review->id }}">Approve</a>
+					            	</td>
+					            	</tr>
+					            @endforeach
+					            @endif
+					            </tbody>
+					        </table>
 						@else
 
 						@endif

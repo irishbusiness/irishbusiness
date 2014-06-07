@@ -1,7 +1,7 @@
 			<div id="company-tabs-page" class="company-tabs-content">
 				<div class="edit-company">
 					@if(isOwner($businessinfo->slug))
-						<a href="{{ Request::root().'/settings/'.$businessinfo->slug }}">Edit your business</a>
+						<a href="{{ Request::root().'/edit/company/'.$businessinfo->slug }}">Edit your business</a>
 					@endif
 				</div>
 				<div class="sidebar-container container-8 show" id="tabs-sidebar">

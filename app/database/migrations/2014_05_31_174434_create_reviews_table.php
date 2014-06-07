@@ -21,8 +21,9 @@ class CreateReviewsTable extends Migration {
 			$table->text('description');
 			$table->integer('business_id')->unsigned();
 			$table->timestamps();
-			 $table->foreign('business_id')->references('id')->on('businesses')->onUpdate('cascade')->onDelete('cascade');
-			  $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+			$table->foreign('business_id')->references('id')->on('businesses')->onUpdate('cascade')->onDelete('cascade');
+			$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+			$table->softDeletes();
 		});
 	}
 

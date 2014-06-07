@@ -126,9 +126,58 @@ class BusinessesController extends \BaseController {
 		
 		// return View::make('searchpartial.settings')->with('title','Settings')
 		// ->with('categories',$categories);
+
 		return View::make('client.company-tab')->with('title','Settings')
 		->with('categories',$categories)
 		->with('businessinfo', $business)
+		->with('blogs', $blogs)
+		->with('reviews', $reviews)
+		->with("addresses", $addresses)
+		->with("categories", $notselected_categories)
+		->with('selected_categories', $selected_categories);
+		
+	}
+
+	public function businessSettings($slug)
+	{
+		$business = Business::whereSlug($slug)->first();		
+		Session::forget('category');
+		
+		if( is_null($business) ){
+			return Response::view('pagenotfound');
+		}
+
+		$blogs = $business->blogs()->orderBy('created_at', 'desc')->get();
+		$reviews = $business->reviews()->orderBy('created_at', 'desc')->get();
+		$categories = $this->category->getCategories();
+		
+		$selected_categories = $business->categories;
+		$selected_categories = $selected_categories->toArray();
+		$selected_categoriesraw = $business->categories;
+
+		$notselected_categories = $this->category->getCategories();
+
+		for($x=1; $x<count($categories); $x++){
+			// echo "<hr>";
+			for($y=0; $y<count($selected_categories); $y++){
+				if($categories[$x] === $selected_categories[$y]["name"]){
+					unset($notselected_categories[$x]);
+				}
+			}
+			
+		}
+
+		$addresses = $business->address;
+		$addresses = explode(",", $addresses);
+
+		
+		// return View::make('searchpartial.settings')->with('title','Settings')
+		// ->with('categories',$categories);
+
+		return View::make('client.business_settings')->with('title','Settings')
+		->with('categories',$categories)
+		->with('businessinfo', $business)
+		->with('business', $business)
 		->with('blogs', $blogs)
 		->with('reviews', $reviews)
 		->with("addresses", $addresses)

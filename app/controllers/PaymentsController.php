@@ -42,7 +42,7 @@ class PaymentsController extends \BaseController {
 		if(is_null($subscription)) return Response::view('pagenotfound');
 		
 
-		$token = Input::get('stripeToken');
+	$token = Input::get('stripeToken');
 		$email = Input::get('stripeEmail');
 		Stripe::setApiKey(Config::get('stripe.secret_key'));
 
@@ -59,7 +59,8 @@ class PaymentsController extends \BaseController {
 			$user = $this->payments->attach($subscription);
 
 			Event::fire('user.subscribe',[$user]);
-			return Redirect::to('settings')->with('flash_message','Thank you for subscribing to Irishbusiness! You can now add your business.');
+			
+			return Redirect::to('business/add')->with('flash_message','Thank you for subscribing to Irishbusiness! You can now add your business.');
 		
 		} 
 		catch(Stripe_CardError $e) 

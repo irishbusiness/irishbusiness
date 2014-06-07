@@ -95,7 +95,8 @@
 
 			<!-- actual body content -->
 
-            
+            <!--
+
                 @if(Request::is('settings*') || (Request::is('company*') && (!Request::is('company'))) )
                 <div class="content-container container-24" id="tabs-main-wrapper">
                     <div class="company-tabs-wrapper">
@@ -120,13 +121,15 @@
                                     @endif
                                 </ul>
                             </div>
-                            <!-- end of .company-tabs-container -->
+                
                         </div>
-                        <!-- end of .zone-company-tabs -->
+                
                     </div>
                 @else
                     <div class="content-container container-16">
                 @endif
+
+                -->
 
 				@yield('actual-body-content')
 
@@ -134,9 +137,6 @@
 			<!-- actual body content -->
 
 			<!-- sidebar -->
-             @if(!Request::is('settings*'))
-			    @include('client.partials._sidebar')
-             @endif
 			<!-- sidebar -->
 
 			</div>

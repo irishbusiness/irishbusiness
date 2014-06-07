@@ -1,9 +1,9 @@
 	<script>
 		$(window).ready(function(){
-			$(".sidebar-container:last").remove();
-			$(".show").show();
-			$(".content-container.container-16").css("minHeight", "");
-			$(".content-container.container-16").removeAttr("style");
+			// $(".sidebar-container:last").remove();
+			// $(".show").show();
+			// $(".content-container.container-16").css("minHeight", "");
+			// $(".content-container.container-16").removeAttr("style");
 			
 			$(".company-tabs").on("click", function(){
 				$(".content-container.container-16").css("minHeight", "");
