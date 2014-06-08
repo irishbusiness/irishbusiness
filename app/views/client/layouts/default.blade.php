@@ -93,43 +93,6 @@
 		<div class="content-wrapper">
 			<div class="zone-content equalize zone clearfix">
 
-			<!-- actual body content -->
-
-            <!--
-
-                @if(Request::is('settings*') || (Request::is('company*') && (!Request::is('company'))) )
-                <div class="content-container container-24" id="tabs-main-wrapper">
-                    <div class="company-tabs-wrapper">
-                        <div class="zone-company-tabs zone clearfix">
-                            <div class="company-tabs-container container-24">
-                                <ul id="company-tabs-active" class="company-tabs">
-                                    <li class="active">
-                                        <a class="company-tabs-page" href="#">COMPANY</a>
-                                    </li>
-                                    <li class="">
-                                        <a class="company-tabs-blog" href="#">BLOG</a>
-                                    </li>
-                                    <li class="">
-                                        <a class="company-tabs-coupon" href="#">COUPON</a>
-                                    </li>
-                                    @if(isset($reviews) && !is_null($reviews))
-                                        @if(count($reviews))
-                                        <li class="">
-                                            <a class="company-tabs-review" href="#">REVIEWS</a>
-                                        </li>
-                                        @endif
-                                    @endif
-                                </ul>
-                            </div>
-                
-                        </div>
-                
-                    </div>
-                @else
-                    <div class="content-container container-16">
-                @endif
-
-                -->
 
 				@yield('actual-body-content')
 
@@ -137,6 +100,7 @@
 			<!-- actual body content -->
 
 			<!-- sidebar -->
+            @yield('sidebar')
 			<!-- sidebar -->
 
 			</div>

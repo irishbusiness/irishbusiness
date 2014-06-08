@@ -1,7 +1,7 @@
 					<div class="comments block">
 						<div class="review-messages">
 							<div id="company-tabs-review" class="company-tabs-content">
-								<div class="blog block">
+								<div class="blog block spacer">
 									<div class="block-title">
 										<h1>Reviews</h1>
 									</div>
@@ -22,6 +22,10 @@
 													{{ html_entity_decode(stripcslashes($review->description)) }}
 												</div>
 											</div>
+											@if(isOwner($businessinfo->slug))
+												<a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="approveReview($(this))" data-id="{{ $review->id }}">Approve</a>
+												<a href="javascript:void(0)" class="bs-btn btn-danger btn-edit-category" onclick="disapproveReview($(this))" data-id="{{ $review->id }}">Disapprove</a>
+											@endif
 										@endforeach
 									@else
 

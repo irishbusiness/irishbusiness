@@ -1307,4 +1307,24 @@ $(document).ready(function() {
 		jQuery('#register-form').hide();
 	});
 
+
 });
+
+	function approveReview(obj){
+		var id =  obj.data('id');
+
+		$.ajax(
+			{
+				url: "/approveReviewAjax",       
+				type: "post",
+				data: { id: id }
+			})
+		.done(function(data){
+
+		});
+	}
+
+	function disapproveReview(obj){
+		var id = obj.data('id');
+		alert(id);
+	}
