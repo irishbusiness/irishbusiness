@@ -45,7 +45,7 @@ ImageTTFText ($handle, 9, 0, 317, 175, $brown, "fonts/GOTHIC.TTF", $phoneTwo);
 ImageTTFText ($handle, 9, 0, 275, 190, $brown, "fonts/GOTHIC.TTF", $emailAddress);
 
 //site url (exmple of how to center copy)
-$fontSize = "12";
+$fontSize = "10";
 $width = "420";
 $textWidth = $fontSize * strlen($siteUrl);
 $position_center = $width / 2 - $textWidth / 2.6;
