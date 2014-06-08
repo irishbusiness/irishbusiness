@@ -1,8 +1,18 @@
-<div class="comments block" id="addblog" style="display:none;">
+@extends('client.layouts.default')
+
+@section('actual-body-content')
+ <div class="content-container container-16">
+<div class="blog-post block">
+    <div class="block-title">
+        <h1>Add Blog</h1>
+    </div>
+
+</div>
+
+<div class="comments block">
     <div class="comment-message">
         <div id="page">
-            <center><h1>Add Blog</h1></center>
-            {{ Form::open([ 'id' => 'addBlogForm','method' => 'post', 'action' => 'BlogController@store', 'files' => true]) }}
+            {{ Form::open([ 'method' => 'post', 'action' => 'BlogController@store', 'files' => true]) }}
             <div>
                 {{ Form::label('title', "Blog Title", ["class"=> "text-colorful"]) }}<br>
                 {{ Form::text('title', '', ['class' => 'text-input-grey', 'placeholder' => 'Title', 'id' => 'addTitle', 'required']) }}
@@ -48,8 +58,14 @@
             {{ Form::textarea('content', '<h3>Description of the Blog<h3>', ['id' => 'redactor1']) }}
             <br>
             <p><input id="addBlogButton" type="submit" value="Save" name="send" class="button-2-colorful"/>
-            <input id="cancel-blog" onclick="cancelBlog()" type="button" value="Cancel" class="button-2-colorful"></p>
             {{ Form::close() }}
         </div>
     </div>
+
 </div>
+
+@stop
+
+@section('sidebar')
+    @include('client.partials._sidebar')
+@stop

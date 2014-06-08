@@ -17,14 +17,14 @@
 									<a href="#">3</a>
 								</div>
 							</div> -->
+
 							<?php $x=0; ?>
-							@foreach($businesses as $business)
+							@foreach($branches as $branch)
 							<div class="company-listing clearfix">
 								<a href="#" class="listing-image">
-									<img src="{{ URL::asset($business->logo) }}" alt="" />
+									<img src="{{ URL::asset($branch->business->logo) }}" alt="" />
 								</a>
 								<div class="listing-body">
-
 									<div class="listing-rating">
 										<div class="rating-stars {{ (round($rating[$x]) > 0 ? 'rated' : '') }}">
 											<div class="star star-1 {{ (round($rating[$x]) == 1 ? 'current' : '') }}"></div>
@@ -34,15 +34,16 @@
 											<div class="star star-5 {{ (round($rating[$x]) == 5 ? 'current' : '') }}"></div>
 										</div>
 									</div>
-									<div class="listing-title">{{$business->name}}</div>
-									<div class="listing-text">{{ $business->business_description }}</div>
-									{{HTML::link('company/'. $business->slug . isEmpty($category) .  isEmpty($location), 'Read More',['class' => 'listing-read-more' ] ) }}
-
+									<div class="listing-title">
+										{{ HTML::link('company/'. $branch->business->slug . isEmpty($category) .  isEmpty($location) . '/' . $branch->id, stripcslashes($branch->business->name).' - '.$branch->address ) }}</div>
+										<div class="listing-text">{{ $branch->business->business_description }}</div>
+										{{HTML::link('company/'. $branch->business->slug . isEmpty($category) .  isEmpty($location), 'Read More',['class' => 'listing-read-more' ] ) }}
 								</div>
 							</div>
 							<?php $x++; ?>
 							@endforeach
-							{{ $businesses->appends(array('category' => $category,'location' =>$location))->links() }}
+
+							{{ $branches->appends(array('category' => $category,'location' =>$location))->links() }}
 						</div>
 
 					</div><!-- end of .content-container -->

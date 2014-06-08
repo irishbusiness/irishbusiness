@@ -24,14 +24,21 @@ Route::get('/', function()
 
 // Route::get('/', 'HomeController@index');
 
-Route::model('blog/{id}', 'Blog');
-Route::model('blog/{id}/edit', 'Blog');
+// 
 
-Route::resource('blog', 'BlogController');
+Route::get('blog', 'BlogController@index');
 
 Route::get('bloglist', 'BlogController@bloglist');
 
+Route::get('blog/add', 'BlogController@add');
+
 Route::get('blog/{id}', 'BlogController@show');
+
+Route::get('blog/{id}/edit', 'BlogController@edit');
+
+Route::get('blog/{id}/delete', 'BlogController@destroy');
+
+Route::resource('blog', 'BlogController');
 
 Route::get('blogpost', function(){
 	return View::make('client.blogpost');
@@ -218,12 +225,34 @@ Route::post('business/{slug}/branch/add', 'BusinessesController@storeBranch');
 
 Route::get('business/{slug}/branch/{id}/map', 'BusinessesController@setMap');
 
-Route::get('business/{slug}/settings', 'BusinessesController@businessSettings');
+Route::get('business/{slug}/settings', 'BusinessesController@companytab');
 
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try',function(){
 	
 
+		// 	$businesses = Branch::with('business')->whereHas('categories', function($q) use($category,$query1)
+		// {
+		//       $q->whereRaw("(name like '%$category%' or businesses.name like '%$category%' or businesses.keywords like '%$category%')  $query1");	     
+		// })->paginate(3);
+
+			/*$businesses = Branch::with(['business','categories')->whereHas('categories', function($q)
+		{
+		      $q->whereRaw("(name like '%office%' or businesses.name like '%jiriko%' or businesses.keywords like '%office%'");	     
+		})->first();*/
+/* User::join('profiles', 'profiles.user_id', '=', 'users.id')
+ ->where('users.first_name', 'LIKE', "%$searchString%")
+ ->orWhere('users.last_name', 'LIKE', "%$searchString%")
+ ->first();*/
+
+
+	   dd($businesses->business->name);	
+
+	/*return View::make('test');*/
+
 });
+
+
+Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');
 

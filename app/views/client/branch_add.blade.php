@@ -10,12 +10,7 @@
                 </div>
             </div>
             {{ Form::open(array('action' => ['BusinessesController@storeBranch',$slug])) }}
-             <div class="form-group">
-                {{ Form::label('name', 'Branch Name', ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('name','', [
-                "placeholder" => "branch name", "class"=>"text-input-grey full"]) }}
-                {{$errors->first('name','<span class="alert alert-error block half">:message</span>')}}
-            </div>
+             
             <div class="form-group">
                 {{ Form::label('address1', 'Business Address1', ["class"=>"text-colorful"]) }}<br/>
                 {{ Form::text('address1', '', [
@@ -108,6 +103,12 @@
                 {{ Form::text('google', '', [
                 "placeholder" => "Google Link", "class"=>"text-input-grey full", 'required']) }}
                 {{$errors->first('google','<span class="alert alert-error block half">:message</span>')}}
+            </div>
+            <div class="form-group">
+                {{ Form::label('name', 'LinkedIn', ["class"=>"text-colorful"]) }}<br/>
+                {{ Form::text('name','', [
+                "placeholder" => "LinkedIn", "class"=>"text-input-grey full"]) }}
+                {{$errors->first('name','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group align-right">
                 {{ Form::submit('Save',['class' => 'button-2-colorful'])  }}

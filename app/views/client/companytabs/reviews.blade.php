@@ -2,7 +2,7 @@
 		<div class="comments block">
 			<div class="review-messages">
 				<div id="company-tabs-review" class="company-tabs-content">
-					<div class="blog block">
+					<div class="blog block spacer"> 
 						<div class="block-title">
 							<h1>Reviews</h1>
 						</div>

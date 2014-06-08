@@ -16,7 +16,7 @@ class BlogController extends \BaseController {
     public function edit($id)
     {
         $blog = Blog::whereSlug($id)->first();
-        return View::make('admin.editblogpost', compact('blog'))->with("title", "Admin - Manage Blogs");
+        return View::make('client.editblogpost', compact('blog'))->with("title", "Client - Edit Blog");
     }
 
     public function destroy($id)
@@ -24,7 +24,7 @@ class BlogController extends \BaseController {
         $blog = Blog::findOrFail($id);
         $blog->delete();
 
-        return Redirect::to('/blog');
+        return Redirect::back();
     }
 
     public function index()
@@ -36,6 +36,10 @@ class BlogController extends \BaseController {
     public function create()
     {
         return View::make('admin.admin_manage_blog')->with("title", "Admin - Manage Blogs");
+    }
+
+    public function add(){
+        return View::make('client.companytabs.addblog')->with('title', 'Add Blog');
     }
 
     public function manageblog(){
@@ -55,8 +59,8 @@ class BlogController extends \BaseController {
         $blog->google = Input::get('google');
         $blog->twitter = Input::get('twitter');
         $blog->linkedin = Input::get('linkedin');
-        // $blog->business_id  =   Auth::user()->user()->business->id;
-        $blog->business_id = 2;
+        $blog->business_id  =   Auth::user()->user()->business->id;
+        // $blog->business_id = Auth::user()->user()->id;
 
         //check if the file isset
         if( Input::hasFile('blogheaderimage'))
@@ -84,7 +88,7 @@ class BlogController extends \BaseController {
         $blog->save();
 
 //        return stripslashes(Input::get('content'));
-        return Redirect::to('/blog/'.$blog->id);
+        return Redirect::to('/blog/'.$blog->slug);
     }
 
     public function update($id)
@@ -100,13 +104,13 @@ class BlogController extends \BaseController {
         $blog->google = Input::get('google');
         $blog->twitter = Input::get('twitter');
         $blog->linkedin = Input::get('linkedin');
-        // $blog->business_id  =   Auth::user()->user()->business->id;
-        $blog->business_id = 2;
+        $blog->business_id  =   Auth::user()->user()->business->id;
+        // $blog->business_id = 2;
 
         //check if the file isset
-        if( Input::hasFile('blogheaderimage'))
+        if( Input::hasFile('blogheaderimageedit'))
         {
-            $image  =   Input::file('blogheaderimage');
+            $image  =   Input::file('blogheaderimageedit');
             $imagename = md5(date('YmdHis')).'.jpg';
             $filename = $dir.$imagename;
 
@@ -129,7 +133,7 @@ class BlogController extends \BaseController {
         $blog->save();
 
 //        return stripslashes(Input::get('content'));
-        return Redirect::to('/blog/'.$blog->id);
+        return Redirect::to('/blog/'.$blog->slug);
     }
 
     public function blogAjax(){
