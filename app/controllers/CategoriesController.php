@@ -24,7 +24,7 @@ class CategoriesController extends \BaseController {
 		if(Request::ajax())
 		{
 			$id = Input::get('category');
-			Session::push('categories',$id);
+			Session::push('categories', $id);
 			$category = \Category::findOrFail($id);
 			return $category;	
 		}
@@ -37,13 +37,15 @@ class CategoriesController extends \BaseController {
 			$id = Input::get('category');
 			// Session::pop('categories', $id);
 			$categories = Session::get('categories');
+			$newcategories = array();
 			foreach ( $categories as $category ) {
-				if(!$category = $id){
+				if($category != $id){
 					Session::push("newcategories", $category);
 				}
 			}
 			Session::forget("categories");
 			Session::push("categories", Session::get("newcategories"));
+
 			$category = \Category::findOrFail($id);
 			return $category;
 		}

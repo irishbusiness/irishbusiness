@@ -3,7 +3,7 @@
         $(document).on('change','#categories',function()
         {
 
-            console.log("tae");
+            // console.log("tae");
             var category = $('#categories').val();
 
             if (category>0)
@@ -43,6 +43,7 @@
                 }
             })
                 .done(function(data){
+                    // console.log(data);
                     $("span[data-id='"+category+"']").fadeOut(function(){
                         $("span[data-id='"+category+"']").remove();
                     });
