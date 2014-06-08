@@ -3,6 +3,7 @@
         $(document).on('change','#categories',function()
         {
 
+            console.log("tae");
             var category = $('#categories').val();
 
             if (category>0)

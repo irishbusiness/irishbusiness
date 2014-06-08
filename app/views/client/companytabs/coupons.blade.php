@@ -1,12 +1,18 @@
+<?php 
+    if(!isset($business)){
+        $business = new \Illuminate\Support\Collection;
+        $business->id = '';
+    }
+?>
 <div id="company-tabs-coupon" class="company-tabs-content" style="display: none;">
     <div class="portfolio-container container-24">
-<div class="preview" >
+<div class="preview" style="height: auto;">
     	<img src="{{ Request::root().'/'}}scripts/server-side.php" />
     </div>
     
-    <form id="realtime-form" action="#" method="post">
+    <form id="realtime-form" action="{{ Request::root() }}/scripts/save-coupon.php" method="post">
     	<fieldset>
-    		<legend>Business Card Builder Form</legend>
+    		<legend>Coupon Generator</legend>
     		<ol>
     			<li class="left">
     				<fieldset>
@@ -62,10 +68,32 @@ City, ST 12345</textarea>
     			</li> 
     		</ol>
     	</fieldset>
+        <a id="savecoupon" href="javascript:void(0)" class="button-2-colorfull">Submit</a>
+
     </form>
-	<button id="getResults">Give me my url!</button>
+	<!-- <button id="getResults">Give me my url!</button> -->
  	<div id="link">
 		<input type="text" value="" id="resultsUrl" />
  	</div>
     </div>
     </div>
+    @section('scripts')
+        <script>
+            $("#savecoupon").on("click", function(e){
+                e.preventDefault();
+
+                console.log($("#realtime-form").serialize());
+                var token = $("input[name='_token']").val();
+
+                $.ajax({
+                   type: "POST",
+                   url: "/ajaxSaveCoupon?_token="+token+"&b={{ $business->id }}",
+                   data: $("#realtime-form").serialize(), // serializes the form's elements.
+                   success: function(data)
+                   {
+                       console.log(data);
+                   }
+                 });
+            });
+        </script>
+    @stop

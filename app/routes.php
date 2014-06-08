@@ -91,6 +91,7 @@ Route::post('admin/settings/blog', 'BlogController@store');
 Route::get('business/add', 'BusinessesController@addBusiness');
 
 Route::get('business/{businessSlug}', 'BusinessesController@showBusiness');
+Route::post('ajaxSaveCoupon', 'BusinessesController@save_coupon');
 
 //post create business
 Route::post('settings', 'BusinessesController@store');
@@ -223,8 +224,6 @@ Route::post('addmap','BusinessesController@storeMap');
 
 Route::get('try',function(){
 	
-	// return View::make('test');
-	return View::make("client.company-tab.coupons")->withTitle("Create a coupon");
 
 });
 

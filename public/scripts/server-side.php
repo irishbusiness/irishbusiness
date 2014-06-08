@@ -12,7 +12,9 @@ $phoneTwo = $_GET["phoneTwo"];
 $emailAddress = $_GET["emailAddress"];
 $siteUrl = $_GET["siteUrl"];
 
-$handle = imagecreatefrompng( 'template.png' ); 
+
+
+$handle = imagecreatefrompng( 'templates/template.png' ); 
 $brown = ImageColorAllocate ($handle, 84, 48, 26);
 $lightBrown = ImageColorAllocate ($handle, 145, 116, 94);
 $white = ImageColorAllocate ($handle, 255, 255, 255);
@@ -52,6 +54,7 @@ ImageTTFText ($handle, $fontSize, 0, $position_center, 240, $brown, "fonts/GOTHI
 imagealphablending( $handle, false );
 imagesavealpha( $handle, true );
 ImagePng ($handle);
+
 imagedestroy( $handle );
 
 ?>
