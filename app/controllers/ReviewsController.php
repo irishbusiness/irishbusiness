@@ -53,8 +53,21 @@ class ReviewsController extends \BaseController {
 	function approveReviewAjax(){
 		if(Request::ajax()){
 			$id = Input::get('id');
-			
+			$review = Review::find($id);
+			$review->restore();
+
+			return $id;
 		}
+	}
+
+	function disapproveReviewAjax(){
+		if(Request::ajax()){
+			$id = Input::get('id');
+			$review = Review::find($id);
+			$review->delete();
+
+			return $id;
+		}	
 	}
 
 }

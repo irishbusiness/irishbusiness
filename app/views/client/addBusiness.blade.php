@@ -7,15 +7,7 @@
 
         <!-- general settings tab -->
         @include('client.companytabs.business_settings')
-       
-        <!-- blog_settings tab -->
-            @include('client.companytabs.blog_settings')
-
-        <!-- reviews tab -->
-        	@include('client.companytabs.reviews')
-
-        <!-- coupons tab -->
-            @include('client.companytabs.coupons')
+     
 @stop
 
 @section('scripts')

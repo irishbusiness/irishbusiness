@@ -96,7 +96,7 @@ class BusinessesController extends \BaseController {
 		}
 
 		$blogs = $business->blogs()->orderBy('created_at', 'desc')->get();
-		$reviews = $business->reviews()->orderBy('created_at', 'desc')->get();
+		$reviews = $business->reviews()->withTrashed()->orderBy('created_at', 'desc')->get();
 		$categories = $this->category->getCategories();
 		
 		$selected_categories = $business->categories;
@@ -248,7 +248,6 @@ class BusinessesController extends \BaseController {
 		if(is_null($businessinfo)){
 			return Response::view('pagenotfound');
 		}
-
 		// $reviews = $businessinfo->reviews()->orderBy('created_at', 'desc')->get();
 		$reviews = $businessinfo->reviews()->orderBy('created_at', 'desc')->get();
 
