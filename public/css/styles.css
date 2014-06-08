@@ -4534,3 +4534,8 @@ td.detail {
 .spacer {
 	margin-left: 20px;
 }
+
+.add-coupon {
+	float: right;
+	padding-bottom: 0px;
+}

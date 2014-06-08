@@ -226,31 +226,14 @@ Route::post('business/{slug}/branch/add', 'BusinessesController@storeBranch');
 Route::get('business/{slug}/branch/{id}/map', 'BusinessesController@setMap');
 
 Route::get('business/{slug}/settings', 'BusinessesController@companytab2');
+Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try',function(){
-	
-
-		// 	$businesses = Branch::with('business')->whereHas('categories', function($q) use($category,$query1)
-		// {
-		//       $q->whereRaw("(name like '%$category%' or businesses.name like '%$category%' or businesses.keywords like '%$category%')  $query1");	     
-		// })->paginate(3);
-
-			/*$businesses = Branch::with(['business','categories')->whereHas('categories', function($q)
-		{
-		      $q->whereRaw("(name like '%office%' or businesses.name like '%jiriko%' or businesses.keywords like '%office%'");	     
-		})->first();*/
-/* User::join('profiles', 'profiles.user_id', '=', 'users.id')
- ->where('users.first_name', 'LIKE', "%$searchString%")
- ->orWhere('users.last_name', 'LIKE', "%$searchString%")
- ->first();*/
-
-
-	   dd($businesses->business->name);	
-
-	/*return View::make('test');*/
-
+	$business = Business::find(1);
+	$coupons = $business->coupons()->orderBy('created_at', 'desc')->get();
+	return $coupons->toArray();
 });
 
 Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');

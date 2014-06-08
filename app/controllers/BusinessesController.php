@@ -101,7 +101,8 @@ class BusinessesController extends \BaseController {
 		$blogs = $business->blogs()->orderBy('created_at', 'desc')->get();
 		$reviews = $business->reviews()->withTrashed()->orderBy('created_at', 'desc')->get();
 		$categories = $this->category->getCategories();
-		
+		$coupons = $business->coupons()->orderBy('created_at', 'desc')->get();
+
 		$selected_categories = $business->categories;
 		$selected_categories = $selected_categories->toArray();
 		$selected_categoriesraw = $business->categories;
@@ -132,7 +133,8 @@ class BusinessesController extends \BaseController {
 		->with('reviews', $reviews)
 		->with("addresses", $addresses)
 		->with("categories", $notselected_categories)
-		->with('selected_categories', $selected_categories);
+		->with('selected_categories', $selected_categories)
+		->with('coupons', $coupons);
 		
 	}
 
@@ -255,9 +257,10 @@ class BusinessesController extends \BaseController {
 		$reviews = $businessinfo->reviews()->orderBy('created_at', 'desc')->get();
 
 		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
-
+		$coupons = $businessinfo->coupons()->orderBy('created_at', 'desc')->get();
 		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
-			->with('reviews', $reviews)->with('title', html_entity_decode(stripcslashes($businessinfo->name)));
+			->with('reviews', $reviews)->with('title', html_entity_decode(stripcslashes($businessinfo->name)))
+			->with('coupons', $coupons);
 	}
 
 	public function editcompany($slug){
@@ -459,22 +462,59 @@ class BusinessesController extends \BaseController {
 			if(ImagePng($handle, public_path()."/images/coupons/temp/$temp_name.png")){
 				imagedestroy( $handle );
 
-				$business_id = Inptut::get("b");
+				$bid = Input::get("b");
 
-				$business = BUsiness::find($business_id);
+				$business = Business::find($bid);
 
 				$coupon = new Coupon;
-				$coupon->name = $temp_name;
-				$coupon->business_id = $business_id;
+				$coupon->name = '/images/coupons/temp/'.$temp_name.".png";
+				$coupon->business_id = $bid;
 				$coupon->save();
 
+				// return "bid = ".$bid;
 
-				return Redirect::to("/business/".$business->slug);
+				return "/business/".$business->slug;
 
 			}
 
 			imagedestroy( $handle );
 			return "Sorry, we can't save your coupon right now.";
 		}
+
+		// if user choosed to upload his/her designed coupon
+
+		$business_id = Input::get("b");
+
+		$business = Business::find($business_id);
+
+		$coupon = new Coupon;
+
+		if( !is_null(Input::file("filecoupon")))
+        {
+            $dir = $dir = public_path().'/images/coupons/temp/';
+            $image  =   Input::file("filecoupon");
+            // dd($image);
+            $imagename = md5(date('YmdHis')).'.jpg';
+            $filename = $dir.$imagename;
+
+            if ($image->getMimeType() == 'image/png'
+                || $image->getMimeType() == 'image/jpg'
+                || $image->getMimeType() == 'image/gif'
+                || $image->getMimeType() == 'image/jpeg'
+                || $image->getMimeType() == 'image/pjpeg')
+            {
+                $image->move($dir, $filename);
+                $coupon->name  =   'images/coupons/temp/'.$imagename;
+            } else {
+            	return Redirect::to("/business/".$business->slug."/#company-tabs-coupon")->with("flash_message", "It seems the file you upload is invalid. Please upload image files only.")->withTitle("It seems the file you upload is invalid. Please upload image files only.");
+            }
+
+        } else {
+            return Redirect::to("/business/".$business->slug."/#company-tabs-coupon")->withTitle("Please choose a file to continue.")->with("flash_message","Please choose a file to continue.");
+        }
+        $coupon->business_id = $business_id;
+		$coupon->save();
+
+		return Redirect::to("/business/".$business->slug."/#company-tabs-coupon")->with("flash_message", "Your coupon has been added successfully.");
 	}
 }

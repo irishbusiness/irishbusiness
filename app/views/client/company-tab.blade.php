@@ -32,7 +32,12 @@
 							<div id="company-inner-container" class="company-inner-container container-24">
 								<!-- company tab -->
 								@include('client.tabcontents.tabcontent-company')
-								@include('client.tabcontents.tabcontent-coupon')
+                                @if(Request::is("business/$businessinfo->slug/settings"))
+                                    @include('client.companytabs.coupons')
+                                @else
+                                     @include('client.tabcontents.tabcontent-coupon')
+                                @endif
+								
 								@include('client.tabcontents.tabcontent-blog')
 								@include('client.tabcontents.tabcontent-review')
 							</div>
