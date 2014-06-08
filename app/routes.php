@@ -253,6 +253,11 @@ Route::get('try',function(){
 
 });
 
+<<<<<<< HEAD
+Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');
+Route::post('/disapproveReviewAjax', 'ReviewsController@disapproveReviewAjax');
+=======
 
 Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');
 
+>>>>>>> 9a91c867db3eadcecc5e5a19b546877da35ac9c1

@@ -1320,11 +1320,19 @@ $(document).ready(function() {
 				data: { id: id }
 			})
 		.done(function(data){
-
+			console.log(data);
 		});
 	}
 
 	function disapproveReview(obj){
 		var id = obj.data('id');
-		alert(id);
+		$.ajax(
+			{
+				url: "/disapproveReviewAjax",       
+				type: "post",
+				data: { id: id }
+			})
+		.done(function(data){
+			console.log(data);
+		});
 	}
