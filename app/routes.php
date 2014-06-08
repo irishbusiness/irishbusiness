@@ -205,6 +205,9 @@ Route::post('sales/invite','SalesPersonsController@store');
 Route::get('sales/password/edit','SalesPersonsController@changePassword');
 Route::post('sales/password/edit','SalesPersonsController@updatePassword');
 
+Route::get('client/password/edit','UsersController@changePassword');
+Route::post('client/password/edit','UsersController@updatePassword');
+
 
 App::missing(function($exception)
 {
