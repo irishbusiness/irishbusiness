@@ -24,8 +24,11 @@ class CategoriesController extends \BaseController {
 		if(Request::ajax())
 		{
 			$id = Input::get('category');
-			Session::push('categories',$id);
+			Session::push('categories', $id);
 			$category = \Category::findOrFail($id);
+
+			// $_SESSION['katigories'] = array_push($_SESSIO['katigories'], $id);
+
 			return $category;	
 		}
 		
@@ -35,17 +38,19 @@ class CategoriesController extends \BaseController {
 	public function categoryRemove(){
 		if(Request::ajax()){
 			$id = Input::get('category');
-			// Session::pop('categories', $id);
 			$categories = Session::get('categories');
-			foreach ( $categories as $category ) {
-				if(!$category = $id){
-					Session::push("newcategories", $category);
+
+			$x=0;
+
+			for($x=count($categories)-1; $x>=0; $x--){
+				if($categories[$x] == $id){
+					unset($categories[$x]);
+					Session::forget("categories");
+					Session::set("categories", $categories);
+					// return $categories;
+					return Session::get("categories");
 				}
 			}
-			Session::forget("categories");
-			Session::push("categories", Session::get("newcategories"));
-			$category = \Category::findOrFail($id);
-			return $category;
 		}
 
 		return 'Something went wrong';

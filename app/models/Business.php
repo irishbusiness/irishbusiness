@@ -27,4 +27,8 @@ class Business extends \Eloquent {
     {
         return $this->hasMany('Branch','business_id');
     }
+
+    public function coupons(){
+        return $this->hasMany('Coupon', 'business_id');
+    }
 }

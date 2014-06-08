@@ -98,6 +98,7 @@ Route::post('admin/settings/blog', 'BlogController@store');
 Route::get('business/add', 'BusinessesController@addBusiness');
 
 Route::get('business/{businessSlug}', 'BusinessesController@showBusiness');
+Route::post('ajaxSaveCoupon', 'BusinessesController@save_coupon');
 
 //post create business
 Route::post('settings', 'BusinessesController@store');
@@ -214,6 +215,9 @@ Route::post('sales/invite','SalesPersonsController@store');
 Route::get('sales/password/edit','SalesPersonsController@changePassword');
 Route::post('sales/password/edit','SalesPersonsController@updatePassword');
 
+Route::get('client/password/edit','UsersController@changePassword');
+Route::post('client/password/edit','UsersController@updatePassword');
+
 
 App::missing(function($exception)
 {
@@ -234,14 +238,21 @@ Route::post('business/{slug}/branch/add', 'BusinessesController@storeBranch');
 
 Route::get('business/{slug}/branch/{id}/map', 'BusinessesController@setMap');
 
-Route::get('business/{slug}/settings', 'BusinessesController@companytab');
+Route::get('business/{slug}/settings', 'BusinessesController@companytab2');
+Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try',function(){
+
 	$business = Business::whereSlug('jiriko-company')->first();
 	return $business->branches->first()->address;
 
+
+
+	$business = Business::find(1);
+	$coupons = $business->coupons()->orderBy('created_at', 'desc')->get();
+	return $coupons->toArray();
 
 });
 

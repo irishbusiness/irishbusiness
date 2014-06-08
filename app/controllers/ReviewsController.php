@@ -2,34 +2,6 @@
 
 class ReviewsController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /reviews
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /reviews/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /reviews
-	 *
-	 * @return Response
-	 */
 	public function store($id)
 	{	
 		$user_id = Auth::user()->user()->id;
@@ -53,10 +25,10 @@ class ReviewsController extends \BaseController {
 	function approveReviewAjax(){
 		if(Request::ajax()){
 			$id = Input::get('id');
-			$review = Review::find($id);
+			$review = Review::withTrashed()->find($id);
 			$review->restore();
 
-			return $id;
+			return 'approved';
 		}
 	}
 
@@ -66,7 +38,7 @@ class ReviewsController extends \BaseController {
 			$review = Review::find($id);
 			$review->delete();
 
-			return $id;
+			return 'disapproved';
 		}	
 	}
 

@@ -1,8 +1,5 @@
 @extends('client.layouts.default')
 
-@section('slider')
-	@include('client.partials._slider')
-@stop
 
 @section('actual-body-content')
 @if(is_null($subscription))
@@ -12,7 +9,7 @@
       <h3 class="subscription-name">{{ $subscription->name }}</h3>
       <div class="subscription-info">
         <div class="subscription-duration">{{ $subscription->duration }}</div>
-        <div class="subscription-price">${{ $subscription->price }}</div>
+        <div class="subscription-price">{{ $subscription->currency." ".$subscription->price }}</div>
         <div class="subscription-option">
           <form action="" method="POST">
             <input type="hidden" name="subscription" value="{{$subscription->id}}" />

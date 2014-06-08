@@ -4140,6 +4140,10 @@ ul.entries-list {
 	max-width: 176px;
 }
 
+.three-fourth {
+	max-width: 250px;
+}
+
 .center {
 	margin-left: auto;
 	margin-right: auto;
@@ -4496,8 +4500,8 @@ td.detail {
 	#realtime-form textarea { 
 		display:block;
 		float:left; 
-		max-width:280px;
-		min-width:280px;
+		/*max-width:280px;*/
+		/*min-width:280px;*/
 		text-align:left; 
 		width:280px;
 	}
@@ -4533,4 +4537,13 @@ td.detail {
 }
 .spacer {
 	margin-left: 20px;
+}
+
+.add-coupon {
+	float: right;
+	padding-bottom: 0px;
+}
+
+#upload-own-coupon {
+	float: right;
 }

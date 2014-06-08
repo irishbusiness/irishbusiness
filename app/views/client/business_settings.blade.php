@@ -48,8 +48,3 @@
             </div>
         </div>
 @stop
-
-@section('scripts')
-        <!-- the long scripts -->
-            @include('client.companytabs.settings_scripts')
-@stop

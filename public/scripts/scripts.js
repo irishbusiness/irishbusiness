@@ -833,7 +833,7 @@ function socialaction(obj){
 }
 
 $(function(){
-    $("#footerlogo, #headerlogo, #btn-business-settings-logo, #btn-blog-settings-logo, #btn-editblog-settings-logo").change(showPreview);
+    $("#footerlogo, #headerlogo, #btn-business-settings-logo, #btn-blog-settings-logo, #btn-editblog-settings-logo, #btn-filecoupon-settings-logo").change(showPreview);
 });
 
 $('.btn-add-blog').click(function(){
@@ -1320,7 +1320,12 @@ $(document).ready(function() {
 				data: { id: id }
 			})
 		.done(function(data){
-			console.log(data);
+			if(data == 'approved')
+			{
+				$('#'+id+'-approve').css('display', 'none');
+				$('#'+id+'-disapprove').css('display', '');
+				
+			}
 		});
 	}
 
@@ -1333,6 +1338,10 @@ $(document).ready(function() {
 				data: { id: id }
 			})
 		.done(function(data){
-			console.log(data);
+			if(data == 'disapproved')
+			{
+				$('#'+id+'-disapprove').css('display', 'none');
+				$('#'+id+'-approve').css('display', '');
+			}
 		});
 	}

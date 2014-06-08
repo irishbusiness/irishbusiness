@@ -12,7 +12,9 @@ $phoneTwo = $_GET["phoneTwo"];
 $emailAddress = $_GET["emailAddress"];
 $siteUrl = $_GET["siteUrl"];
 
-$handle = imagecreatefrompng( 'template.png' ); 
+
+
+$handle = imagecreatefrompng( 'templates/template.png' ); 
 $brown = ImageColorAllocate ($handle, 84, 48, 26);
 $lightBrown = ImageColorAllocate ($handle, 145, 116, 94);
 $white = ImageColorAllocate ($handle, 255, 255, 255);
@@ -43,7 +45,7 @@ ImageTTFText ($handle, 9, 0, 317, 175, $brown, "fonts/GOTHIC.TTF", $phoneTwo);
 ImageTTFText ($handle, 9, 0, 275, 190, $brown, "fonts/GOTHIC.TTF", $emailAddress);
 
 //site url (exmple of how to center copy)
-$fontSize = "12";
+$fontSize = "10";
 $width = "420";
 $textWidth = $fontSize * strlen($siteUrl);
 $position_center = $width / 2 - $textWidth / 2.6;
@@ -52,6 +54,7 @@ ImageTTFText ($handle, $fontSize, 0, $position_center, 240, $brown, "fonts/GOTHI
 imagealphablending( $handle, false );
 imagesavealpha( $handle, true );
 ImagePng ($handle);
+
 imagedestroy( $handle );
 
 ?>
