@@ -1,6 +1,7 @@
 @extends("client.layouts.default")
 
 @section("actual-body-content")
+<div class="content-container container-16">
     <div class="blog-post block">
         <div class="block-title">
             <h1>Register</h1>
@@ -57,4 +58,8 @@
             {{ Form::close() }}
         </div>
     </div>
+@stop
+
+@section('sidebar')
+    @include('client.partials._sidebar')
 @stop

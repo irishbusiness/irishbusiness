@@ -53,7 +53,6 @@ class BusinessesController extends \BaseController {
 		// 	  $selected = Input::get('category-default');
 		// }
 
-
 		$query1 = 'and ';
 		/*$query1='';*/
 		foreach($addresses as $address)
@@ -65,38 +64,22 @@ class BusinessesController extends \BaseController {
 		}
 		$query1 .= "branches.locations like '%%'";
 
-		$branches = Branch::join('businesses','businesses.id', '=', 'branches.business_id')
-		->join('business_category','business_category.business_id', '=', 'businesses.id'  )
-		->leftjoin('categories as c','business_category.category_id', '=', 'c.id'  )
-		->with('business')
-		->whereRaw("(businesses.name like '%$category%' or businesses.keywords like '%$category%' or c.name like '$category') $query1 ")
-		->groupBy('branches.id')
-		->paginate(5,['branches.*','businesses.name','businesses.business_description','businesses.profile_description','businesses.slug','businesses.logo']);
-		/*$branches = Branch::with(['business.categories' => function($q) use($category) {
-			
-				$q->where("name","like", '%$category%');	
-			
-		}])->paginate(5);*/
-/*
-		$branches = Branch::with(['business.categories' => function($q) use($category){
-			$q->join('business_category','business_category.business_id', '=', 'businesses.id'  )
 
-			$q->whereRaw("businesses.name like '%$category%' or businesses.keywords like '%$category%' or categories.name like '$category'");
-		}])->paginate(5);*/
+		$branches = Branch::Join('businesses','businesses.id', '=', 'branches.business_id')
+				  ->join('business_category','business_category.business_id', '=', 'businesses.id'  )
+				  ->join('categories','business_category.category_id', '=', 'categories.id'  )
+				  ->with('business.categories')
+				  ->whereRaw("(businesses.name like '%$category%' or businesses.keywords like '%$category%' or categories.name like '$category') $query1 ")
+				  ->groupBy('branches.id')
+				  ->paginate(15, ['branches.*','businesses.name','businesses.business_description','businesses.profile_description','businesses.slug','businesses.logo']);
 
-	/*	$business5 = Business::WhereHas('categories', function($q) use($category)
-		{
-		      $q->whereRaw("name like '%$category%' or businesses.name like '%$category%'");	     
-		})->WhereRaw("name like '%' $query1")->get();*/
-		/*$business5 = Business::WhereHas('categories', function($q) use($category)
-		{
-		      $q->whereRaw("MATCH(name) AGAINST('+*$category*' IN BOOLEAN MODE)");    
-		})->get();*/
-		/*
+		
+		
 		$rating = array();
-		foreach ($business5 as $business) {
-			array_push($rating, Review::where('business_id', '=', $business->id)->avg('rating'));
-		}*/
+		foreach ($branches as $branch) {
+			array_push($rating, Review::where('business_id', '=', $branch->business->id)->avg('rating'));
+		}
+
 		Session::put('category', Input::get('category'));
 		Session::put('location', Input::get('location'));
 		return View::make('client.searchresults')->with('branches',$branches)

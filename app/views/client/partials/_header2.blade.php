@@ -120,13 +120,9 @@
     							<div></div>
     						</li>
                             @if(hasBusiness())
-    						<li {{ (Request::is('settings/'.businessSlug()) ? ' class="first active"' : '') }}>
-    							<a href="{{ URL::to('settings/'.businessSlug()) }}">SETTINGS</a>
+    						<li {{ (Request::is('business/'.businessSlug().'/settings') ? ' class="first active"' : '') }}>
+    							<a href="{{ URL::to('business/'.businessSlug().'/settings') }}">SETTINGS</a>
     						</li>
-                            @else
-                            <li {{ (Request::is('settings*') ? ' class="first active"' : '') }}>
-                                <a href="{{ URL::to('/settings') }}">SETTINGS</a>
-                            </li>
                             @endif
     						<li {{ (Request::is('/changepassword/*') ? ' class="first active"' : '') }}>
     							<a href="{{ URL::to('/changepassword') }}">CHANGE PASSWORD</a>

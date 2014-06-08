@@ -17,19 +17,31 @@
 									<a href="#">3</a>
 								</div>
 							</div> -->
-<?php							
-							Event::listen('illuminate.query', function($query, $params, $time, $conn) 
-							{ 
-								var_dump($query);
-							    /*dd(array($query, $params, $time, $conn));*/
-							});
-?>
-							
+
+							<?php $x=0; ?>
 							@foreach($branches as $branch)
-
-								<pre>{{var_dump($branch->id)}}</pre>
+							<div class="company-listing clearfix">
+								<a href="#" class="listing-image">
+									<img src="{{ URL::asset($branch->business->logo) }}" alt="" />
+								</a>
+								<div class="listing-body">
+									<div class="listing-rating">
+										<div class="rating-stars {{ (round($rating[$x]) > 0 ? 'rated' : '') }}">
+											<div class="star star-1 {{ (round($rating[$x]) == 1 ? 'current' : '') }}"></div>
+											<div class="star star-2 {{ (round($rating[$x]) == 2 ? 'current' : '') }}"></div>
+											<div class="star star-3 {{ (round($rating[$x]) == 3 ? 'current' : '') }}"></div>
+											<div class="star star-4 {{ (round($rating[$x]) == 4 ? 'current' : '') }}"></div>
+											<div class="star star-5 {{ (round($rating[$x]) == 5 ? 'current' : '') }}"></div>
+										</div>
+									</div>
+									<div class="listing-title">
+										{{ HTML::link('company/'. $branch->business->slug . isEmpty($category) .  isEmpty($location) . '/' . $branch->id, stripcslashes($branch->business->name).' - '.$branch->address ) }}</div>
+										<div class="listing-text">{{ $branch->business->business_description }}</div>
+										{{HTML::link('company/'. $branch->business->slug . isEmpty($category) .  isEmpty($location), 'Read More',['class' => 'listing-read-more' ] ) }}
+								</div>
+							</div>
+							<?php $x++; ?>
 							@endforeach
-
 
 							{{ $branches->appends(array('category' => $category,'location' =>$location))->links() }}
 						</div>
