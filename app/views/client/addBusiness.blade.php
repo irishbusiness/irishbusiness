@@ -1,13 +1,14 @@
 @extends("client.layouts.default")
 
 @section("actual-body-content")
-        @if(Session::has('flash_message'))
-            <h4>{{Session::get('flash_message')}}</h4>
-        @endif
-
+	<div class="content-container container-16">
         <!-- general settings tab -->
         @include('client.companytabs.business_settings')
      
+@stop
+
+@section('sidebar')
+	@include('client.partials._sidebar')
 @stop
 
 @section('scripts')
