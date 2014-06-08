@@ -225,7 +225,7 @@ Route::post('business/{slug}/branch/add', 'BusinessesController@storeBranch');
 
 Route::get('business/{slug}/branch/{id}/map', 'BusinessesController@setMap');
 
-Route::get('business/{slug}/settings', 'BusinessesController@companytab');
+Route::get('business/{slug}/settings', 'BusinessesController@companytab2');
 
 Route::post('addmap','BusinessesController@storeMap');	
 
@@ -253,11 +253,5 @@ Route::get('try',function(){
 
 });
 
-<<<<<<< HEAD
 Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');
 Route::post('/disapproveReviewAjax', 'ReviewsController@disapproveReviewAjax');
-=======
-
-Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');
-
->>>>>>> 9a91c867db3eadcecc5e5a19b546877da35ac9c1
