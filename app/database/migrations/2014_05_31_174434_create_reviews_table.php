@@ -19,6 +19,7 @@ class CreateReviewsTable extends Migration {
 			$table->string('name');
 			$table->integer('rating');
 			$table->text('description');
+			$table->text('slug')->unique();
 			$table->integer('business_id')->unsigned();
 			$table->timestamps();
 			$table->foreign('business_id')->references('id')->on('businesses')->onUpdate('cascade')->onDelete('cascade');

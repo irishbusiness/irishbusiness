@@ -55,19 +55,34 @@ class BusinessesController extends \BaseController {
 
 
 		$query1 = 'and ';
+		/*$query1='';*/
 		foreach($addresses as $address)
 		{
 			$query1 .= '(';
 			$string = trim(preg_replace('/,/', '', $address));
-			$query1 .= "businesses.address like '%$string%' or businesses.locations like '%$string%'"; 
+			$query1 .= "branches.address like '%$string%' or branches.locations like '%$string%'"; 
 			$query1 .= ')and ';
 		}
-		$query1 .= "businesses.locations like '%%'";
+		$query1 .= "branches.locations like '%%'";
 
-		$business5 = Business::WhereHas('categories', function($q) use($category,$query1)
-		{
-		      $q->whereRaw("(name like '%$category%' or businesses.name like '%$category%' or businesses.keywords like '%$category%')  $query1");	     
-		})->paginate(3);
+		$branches = Branch::join('businesses','businesses.id', '=', 'branches.business_id')
+		->join('business_category','business_category.business_id', '=', 'businesses.id'  )
+		->leftjoin('categories as c','business_category.category_id', '=', 'c.id'  )
+		->with('business')
+		->whereRaw("(businesses.name like '%$category%' or businesses.keywords like '%$category%' or c.name like '$category') $query1 ")
+		->groupBy('branches.id')
+		->paginate(5,['branches.*','businesses.name','businesses.business_description','businesses.profile_description','businesses.slug','businesses.logo']);
+		/*$branches = Branch::with(['business.categories' => function($q) use($category) {
+			
+				$q->where("name","like", '%$category%');	
+			
+		}])->paginate(5);*/
+/*
+		$branches = Branch::with(['business.categories' => function($q) use($category){
+			$q->join('business_category','business_category.business_id', '=', 'businesses.id'  )
+
+			$q->whereRaw("businesses.name like '%$category%' or businesses.keywords like '%$category%' or categories.name like '$category'");
+		}])->paginate(5);*/
 
 	/*	$business5 = Business::WhereHas('categories', function($q) use($category)
 		{
@@ -77,18 +92,18 @@ class BusinessesController extends \BaseController {
 		{
 		      $q->whereRaw("MATCH(name) AGAINST('+*$category*' IN BOOLEAN MODE)");    
 		})->get();*/
-		
+		/*
 		$rating = array();
 		foreach ($business5 as $business) {
 			array_push($rating, Review::where('business_id', '=', $business->id)->avg('rating'));
-		}
+		}*/
 		Session::put('category', Input::get('category'));
 		Session::put('location', Input::get('location'));
-		return View::make('client.searchresults')->with('businesses',$business5)
+		return View::make('client.searchresults')->with('branches',$branches)
 			->with('category',$category)
 			->with('location',Input::get('location'))
-			->with('selected',$selected)
-			->with('rating', $rating)->with("title", "Search results");
+			->with('selected',$selected);
+			/*->with('rating', $rating)->with("title", "Search results");*/
 	}
 
 	public function showBusiness($businessSlug)
