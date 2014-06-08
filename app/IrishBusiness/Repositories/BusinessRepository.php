@@ -84,22 +84,20 @@ class BusinessRepository {
         
         $business->business_description    =   $input['business_description'];
         $business->profile_description   =   $input['profile_description'];
-       
-        $branch->locations = $input['locations'];
-        $branch->address = $address;
-        $branch->phone    =   $input['phone'];
-        $branch->website    =   $input['website'];
-        $branch->email    =   $input['email'];
+
         $branch->mon_fri   =   $input['mon_fri'];
         $branch->sat   =   $input['sat'];
         $branch->facebook   =   $input['facebook'];
         $branch->twitter  =   $input['twitter'];
         $branch->google  =   $input['google'];
-
-        $branch->save();
-
+        $branch->address = $address;
+        $branch->locations = $input["locations"];
+        $branch->website = $input["website"];
+        $branch->phone = $input["phone"];
+        $branch->email = $input["email"];
 
         $branch->business->slug = $input['slug'];
+        $branch->save();
 
         // logo
         if( !is_null($input["logo"]) )
@@ -150,6 +148,7 @@ class BusinessRepository {
         $branch->facebook   =   $input['facebook'];
         $branch->twitter  =   $input['twitter'];
         $branch->google  =   $input['google'];
+        $branch->linkedin  =   $input['linkedin'];
         
         $business->branches()->save($branch);
 

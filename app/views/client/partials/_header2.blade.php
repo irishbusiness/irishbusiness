@@ -124,8 +124,8 @@
     							<a href="{{ URL::to('company/'.businessSlug().'/'.branch()) }}">SETTINGS</a>
     						</li>
                             @endif
-    						<li {{ (Request::is('/changepassword/*') ? ' class="first active"' : '') }}>
-    							<a href="{{ URL::to('/changepassword') }}">CHANGE PASSWORD</a>
+    						<li {{ (Request::is('/client/password/edit/*') ? ' class="first active"' : '') }}>
+    							<a href="{{ URL::to('client/password/edit') }}">CHANGE PASSWORD</a>
     						</li>
     						<li>
                                 <a href="{{ URL::to('clear') }}">LOGOUT</a>

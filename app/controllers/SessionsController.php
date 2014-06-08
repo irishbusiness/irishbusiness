@@ -39,25 +39,29 @@ class SessionsController extends \BaseController {
 							return Redirect::to('business/add')->with('title','IrishBusiness.ie | Settings');
 						}
 						
-						$this->sales->authenticate(Input::all());
-						Auth::user()->logout();
-						return Redirect::to('sales')->with('title','IrishBusiness.ie | Settings');	
+						if($this->sales->authenticate(Input::all()))
+						{
+							Auth::user()->logout();
+							return Redirect::to('sales')->with('title','IrishBusiness.ie | Settings');	
+						}
+						return Redirect::back()->withInput()->with('errorNotify','wrong email/password combination')->withInput();
+
 				}	
 				else
 				{		
-					
+						
 						$this->sales->authenticate(Input::all());
 						Auth::user()->logout();
 						return Redirect::to('sales')->with('title','IrishBusiness.ie | Settings');	
 				}
 
 			
-
+			
 			return Redirect::back()->withInput()->with('errorNotify','wrong email/password combination')->withInput();
 		}	
 		catch(FormValidationException  $e)
 		{
-			return 'catch';
+			
 			return Redirect::back()->withInput()->withErrors($e->getErrors())->with('errorNotify','wrong email/password combination');
 		}
 	}

@@ -65,4 +65,11 @@ class UserRepository {
 		return true;
 	}
 
+	public function update($password)
+	{
+		$user = Auth::user()->user();
+		$user->password = Hash::make($password);
+		$user->save();
+	}
+
 }

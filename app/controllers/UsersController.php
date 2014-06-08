@@ -3,16 +3,19 @@
 use IrishBusiness\Forms\Register;
 use IrishBusiness\Forms\FormValidationException;
 use IrishBusiness\Repositories\UserRepository;
+use IrishBusiness\Forms\ClientsUpdatePassword;
 
 class UsersController extends \BaseController {
 
 	protected $registerForm;
 	protected $user;
+	protected $updatePassForm;
 
-	function __construct(Register $registerForm, UserRepository $user)
+	function __construct(Register $registerForm, UserRepository $user, ClientsUpdatePassword $updatePassForm)
 	{
 		$this->registerForm = $registerForm;
 		$this->user = $user;
+		$this->updatePassForm = $updatePassForm;
 		Event::listen('user.signup','IrishBusiness\Mailers\ClientMailer@confirm');
 	}
 
@@ -67,48 +70,31 @@ class UsersController extends \BaseController {
 
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
+	public function changePassword()
 	{
-		//
+		return View::make('client.changepassword')->withTitle('Change Password');
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
+	public function updatePassword()
 	{
-		//
-	}
+		try
+		{		
+			$user = Auth::user()->user();
+			
+			if(!Hash::check(Input::get('oldpassword'),$user->password))
+				return Redirect::back()->with('oldpass','Current Password don\'t match.');
+			
+			$this->updatePassForm->validate(Input::all());
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
+			$this->user->update(Input::get('password'));
+			
+			return Redirect::to('company/'.businessSlug())->with('flash_message','Password Updated Succesfully!');
+		}
+		catch(FormValidationException  $e)
+		{
+			
+			return Redirect::back()->withInput()->withErrors($e->getErrors());
+		}
 	}
 
 }

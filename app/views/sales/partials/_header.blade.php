@@ -115,7 +115,7 @@
     						<li {{ (Request::is('sales/invite*') ? ' class="first active"' : '') }}>
     							<a href="{{ URL::to('/sales/invite') }}">Invite</a>
     						</li>
-                            <li {{ (Request::is('sales/invite*') ? ' class="first active"' : '') }}>
+                            <li {{ (Request::is('sales/logout*') ? ' class="first active"' : '') }}>
                                 <a href="{{ URL::to('clear') }}">Logout</a>
                             </li>
     						<!-- <li {{ (Request::is('blog*') ? ' class="first active"' : '') }}>

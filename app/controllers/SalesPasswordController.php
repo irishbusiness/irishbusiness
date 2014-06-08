@@ -1,6 +1,6 @@
 <?php
 
-class ClientPasswordController extends \BaseController {
+class SalesPasswordController extends \BaseController {
 
 	public function remind()
 	{
@@ -9,7 +9,7 @@ class ClientPasswordController extends \BaseController {
 
 	public function sendRemind()
 	{
-		switch ($response = Password::user()->remind(Input::only('email'), function($message) {
+		switch ($response = Password::salesperson()->remind(Input::only('email'), function($message) {
 			    $message->subject('Password reminder');
 			}))
 	    {
@@ -21,9 +21,9 @@ class ClientPasswordController extends \BaseController {
 	    }
 	}
 
-	public function reset($token = null)
+	public function reset( $token = null)
 	{
-		$type = 'user';
+		$type = 'salesperson';
 		if(is_null($token)) App::abort(404);
 
 		return View::make('reset')->withTitle('Password Reset')->with('token', $token)->with('type',$type);
@@ -35,7 +35,7 @@ class ClientPasswordController extends \BaseController {
 			'email', 'password', 'password_confirmation', 'token'
 		);
 
-		$response = Password::user()->reset($credentials, function($user, $password) 
+		$response = Password::salesperson()->reset($credentials, function($user, $password) 
 		{
 		    $user->password = Hash::make($password);
 		    $user->save();
