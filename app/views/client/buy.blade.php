@@ -1,8 +1,5 @@
 @extends('client.layouts.default')
 
-@section('slider')
-	@include('client.partials._slider')
-@stop
 
 @section('actual-body-content')
 @if(is_null($subscription))

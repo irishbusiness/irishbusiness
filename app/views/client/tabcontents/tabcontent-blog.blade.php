@@ -1,16 +1,7 @@
 <div id="company-tabs-blog" class="company-tabs-content">
 	<div class="blog block">
-		<div class="block-title">
-			<h1>Blog</h1>
-		</div>
 		@if(Auth::user()->check())
-		<table class="table" id="table-categories">
-            <thead>
-            <tr>
-                <th><a href="/blog/add" class="bs-btn btn-info btn-add-blog">Add new</a></th>
-            </tr>
-            </thead>
-        </table>
+		<a href="{{ URL::to('/blog/add') }}" class="a-btn button-2-colorful add-coupon">Add new blog</a>
         @endif
 		@if(count($blogs)>0)
 			@foreach($blogs as $blog)
