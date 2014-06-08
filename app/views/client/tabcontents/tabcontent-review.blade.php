@@ -32,8 +32,6 @@
 												@endif
 											@endif
 										@endforeach
-									@else
-
 									@endif
 								</div>
 							</div>

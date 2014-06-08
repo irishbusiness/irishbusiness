@@ -99,7 +99,11 @@ class BusinessesController extends \BaseController {
 		}
 
 		$blogs = $business->blogs()->orderBy('created_at', 'desc')->get();
-		$reviews = $business->reviews()->withTrashed()->orderBy('created_at', 'desc')->get();
+		if(Auth::guest()){
+			$reviews = $business->reviews()->orderBy('created_at', 'desc')->get();
+		} else {
+			$reviews = $business->reviews()->withTrashed()->orderBy('created_at', 'desc')->get();
+		}
 		$categories = $this->category->getCategories();
 		
 		$selected_categories = $business->categories;
