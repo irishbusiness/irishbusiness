@@ -38,32 +38,19 @@ class CategoriesController extends \BaseController {
 	public function categoryRemove(){
 		if(Request::ajax()){
 			$id = Input::get('category');
-			// Session::pop('categories', $id);
 			$categories = Session::get('categories');
-			// $newcategories = array();
-			// $x=0;
-			foreach ( $categories as $category ) {
-				if($category == $id){
-					// Session::push("newcategories", $category);
-					unset($categories->$category);
+
+			$x=0;
+
+			for($x=count($categories)-1; $x>=0; $x--){
+				if($categories[$x] == $id){
+					unset($categories[$x]);
+					Session::forget("categories");
+					Session::set("categories", $categories);
+					// return $categories;
+					return Session::get("categories");
 				}
-				// $x++;
 			}
-
-			Session::set("categories", $categories);
-			// Session::forget("categories");
-			// Session::set("categories", Session::get("newcategories"));
-			// $newcategories = Session::get('newcategories');
-
-			// foreach ($newcategories as $newcategory) {
-			// 	Session::push("categories",$newcategory);
-			// }
-			// Session::push("categories", Session::get("newcategories"));
-			// return Session::get("newcategories");
-
-			$category = \Category::findOrFail($id);
-			// return $category;
-			return Session::get("categories");
 		}
 
 		return 'Something went wrong';
