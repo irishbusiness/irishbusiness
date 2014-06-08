@@ -106,15 +106,17 @@
 			</div>
 		</div>
 	<!-- actual body -->
+    @if(Session::has('errorNotify'))
+    AAA
+        <script>
+            $('#login-form').slideDown(500);
+            $('#errordiv').text('{{Session::get("errorNotify")}}');
+        </script>
+    @endif
     @yield('scripts')
 	@include('client.partials._footer')
 	@include('client.partials._includes')
-	@if(Session::has('errorNotify'))
-		<script>
-			$('#login-form').slideDown(500);
-			$('#errordiv').text('{{Session::get('errorNotify')}}');
-		</script>
-	@endif
+	
     @if(Session::has('flash_message'))
         <script>
             $('#flashmessage').delay(20000).slideUp(50);

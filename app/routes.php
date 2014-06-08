@@ -52,9 +52,9 @@ Route::get('register', function(){
 	return View::make('client.register');
 });
 
-Route::get('login', function(){
+/*Route::get('login', function(){
 	return View::make('client.login');
-});
+});*/
 
 Route::get('searchresults', function(){
 	return View::make('client.searchresults');
@@ -181,9 +181,19 @@ Route::get('password/remind','ClientPasswordController@remind');
 
 Route::post('password/remind','ClientPasswordController@sendRemind');
 
-Route::get('/password/reset/{type}/{token}','ClientPasswordController@reset');
+Route::get('/password/reset/user/{token}','ClientPasswordController@reset');
 
-Route::post('/password/reset/{type}/{token}','ClientPasswordController@saveReset');
+Route::post('/password/reset/user/{token}','ClientPasswordController@saveReset');
+
+//PASSWORD RESET FOR SALES
+
+Route::get('password/remind','SalesPasswordController@remind');
+
+Route::post('password/remind/sales','SalesPasswordController@sendRemind');
+
+Route::get('password/reset/salesperson/{token}','SalesPasswordController@reset');
+
+Route::post('password/reset/salesperson/{token}','SalesPasswordController@saveReset');
 
 
 Route::get('buy', 'PaymentsController@index');

@@ -12,7 +12,7 @@
                 <br/>
                 <span class="alert-error status">{{Session::get('error')}} </span>
             @endif
-            {{ Form::open(array('url'=>'/password/reset/{type}/{token}','method' => 'post', "id"=>"form-register")) }}
+            {{ Form::open(array('url'=>'/password/reset/' . $type . '/' . $token ,'method' => 'post', "id"=>"form-register")) }}
                 <input type="hidden" name="token" value="{{$token}}"/>
 
                 <div class="form-group">
