@@ -64,30 +64,42 @@ class BusinessRepository {
 
 	}
 
-    function update($input, $id){
-        $old_businessinfo = Business::whereId($id)->first();
+    function update($slug, $input, $branchId){
+        $old_businessinfo = Business::whereSlug($slug)->first();
+        $branch = Branch::find($branchId);
 
-        $address = $input['address1'] . ',' . $input['address2'] . ',' . $input['address3']  . ',' .$input['address4'];
+        $address = $input['address1'] ;
+        if(trim($input['address2'])!='')
+        $address .= ',' . $input['address2'];
+        if(trim($input['address3'])!='')
+        $address .= ',' . $input['address3'];
+        if(trim($input['address4'])!='')
+        $address .= ',' . $input['address4'];
+        
 
-        $business = Business::whereId($id)->first();
+        $business = $branch->business;
 
-        $business->name = $input['name'];
-        $business->address = $address;
-        $business->keywords = $input['keywords'];
-        $business->locations = $input['locations'];
-        $business->phone    =   $input['phone'];
-        $business->website    =   $input['website'];
-        $business->email    =   $input['email'];
+        $branch->business->name = $input['name'];
+        $branch->business->keywords = $input['keywords'];
+        
         $business->business_description    =   $input['business_description'];
         $business->profile_description   =   $input['profile_description'];
-        $business->mon_fri   =   $input['mon_fri'];
-        $business->sat   =   $input['sat'];
-        $business->facebook   =   $input['facebook'];
-        $business->twitter  =   $input['twitter'];
-        $business->google  =   $input['google'];
+       
+        $branch->locations = $input['locations'];
+        $branch->address = $address;
+        $branch->phone    =   $input['phone'];
+        $branch->website    =   $input['website'];
+        $branch->email    =   $input['email'];
+        $branch->mon_fri   =   $input['mon_fri'];
+        $branch->sat   =   $input['sat'];
+        $branch->facebook   =   $input['facebook'];
+        $branch->twitter  =   $input['twitter'];
+        $branch->google  =   $input['google'];
+
+        $branch->save();
 
 
-        $business->slug = $input['slug'];
+        $branch->business->slug = $input['slug'];
 
         // logo
         if( !is_null($input["logo"]) )

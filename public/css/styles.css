@@ -3150,6 +3150,8 @@ ul.entries-list {
 
 		ul.entries-list li .entry-excerpt {
 			line-height: 18px;
+			word-wrap: break-word;
+			padding-left: 71px;
 		}
 
 .recently-added .two-images-banner {
@@ -4280,9 +4282,7 @@ div.company-page-map div.company-page-map-container {
 	position: relative;
 	overflow: hidden;
 	-webkit-transform: translateZ(0px);
-	background-color: rgb(229, 227, 223);
-}
-
+ }
 #tab-nav {
 	margin-left: 8px;
 }
@@ -4405,6 +4405,7 @@ div.company-page-map div.company-page-map-container {
 
 #company-page-map {
 	overflow: hidden;
+	height:245px;
 }
 
 .sidebar-container .contact-details {
@@ -4545,5 +4546,17 @@ td.detail {
 }
 
 #upload-own-coupon {
-	float: right;
+	/*float: right;*/
+}
+
+.show-hide {
+	/*float: right;*/
+}
+
+.invisible {
+	display: none;
+}
+
+.paditup {
+	padding: 5px;
 }

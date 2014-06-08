@@ -50,6 +50,14 @@
                     });
                 })
         });
+
+        $(document).on('click', '#btnNext', function(e){
+            if($.trim($('.showCategory').html()) == ""){
+                e.preventDefault();
+                alert('Please specify a category');   
+                return false;
+            }
+        });
     });
 
     jQuery(function() {

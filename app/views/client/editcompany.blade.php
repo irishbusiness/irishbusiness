@@ -9,162 +9,176 @@
 	                <h1>Edit Business</h1>
 	            </div>
 	        </div>
-	        {{ Form::open(array('action' => ['BusinessesController@update', $businessinfo->id], 'files' => true)) }}
-	        <div class="form-group">
-	            {{ Form::label('name', 'Business Name', ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('name', html_entity_decode(stripcslashes($businessinfo->name)), [
-	            "placeholder" => "your business", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('name','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
-	        <div class="form-group">
-	            {{ Form::label('address1', 'Business Address1', ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('address1', $addresses[0], [
-	            "placeholder" => "address..", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('address1','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
-	        <div class="form-group">
-	            {{ Form::label('address2', 'Business Address2', ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('address2', $addresses[1], [
-	            "placeholder" => "address..", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('address2','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
-	        <div class="form-group">
-	            {{ Form::label('address3', 'Business Address3', ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('address3', $addresses[2], [
-	            "placeholder" => "address..", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('address3','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
-	        <div class="form-group">
-	            {{ Form::label('address4', 'Business Address4', ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('address4', $addresses[3], [
-	            "placeholder" => "address..", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('address4','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
+	        {{ Form::open(array('action' => ['BusinessesController@update', $branch->business->slug, $branch->id], 'files' => true)) }}
+		    <div class="form-group">	
+		    	<a href="javascript:void(0)" class="a-btn button-2-colorful plus-button show-hide" id="show_hide_business_settings">+ Show Main Business Settings</a>
+		    </div>
+		    <div class="thin-separator"></div>
+		    <div id="update-business-settings" class="invisible">  
+		        <div class="form-group">
+		            {{ Form::label('name', 'Business Name', ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('name', html_entity_decode(stripcslashes($businessinfo->name)), [
+		            	"placeholder" => "your business", "class"=>"text-input-grey full", 'required']) }}
+		            {{$errors->first('name','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
+		        <div class="form-group">
+		            {{ Form::label('logo', "Logo",
+		            ["class"=>"text-colorful"]) }}<br/>
+		            <br>
+		            {{ Form::file('logo', ["id"=>"btn-business-settings-logo"]) }}
+		            {{$errors->first('logo','<span class="alert alert-error block half">:message</span>')}}
+		            <div class="render-logo-preview">
+		                <img src="{{ URL::asset('/'.$businessinfo->logo) }}" id="img-render-logo">
+		            </div>
+		        </div>
 
-	        <div class="thin-separator"></div>
-	        <div class="form-group">
-	            {{ Form::label('keywords', "Keywords (please separate keywords by a comma.)",
-	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('keywords', $businessinfo->keywords, [
-	            "placeholder" => "office, airplane, house", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('keywords','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
-	        <div class="form-group">
-	            {{ Form::label('locations', "Locations Served (please separate keywords by a comma.)",
-	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('locations', $businessinfo->locations, [
-	            "placeholder" => "iraq, iran, new york", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('locations','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
-	        <div class="form-group">
-	            {{ Form::label('phone', "Phone",
-	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('phone', $businessinfo->phone, [
-	            "placeholder" => "Phone", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('phone','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
-	        <div class="form-group">
-	            {{ Form::label('website', "Website",
-	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('website', $businessinfo->website, [
-	            "placeholder" => "Website", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('website','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
-	        <div class="form-group">
-	            {{ Form::label('email', "Email",
-	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('email', $businessinfo->email, [
-	            "placeholder" => "Email", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('email','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
-	        <div class="form-group">
-	            {{ Form::label('logo', "Logo",
-	            ["class"=>"text-colorful"]) }}<br/>
-	            <br>
-	            {{ Form::file('logo', ["id"=>"btn-business-settings-logo"]) }}
-	            {{$errors->first('logo','<span class="alert alert-error block half">:message</span>')}}
-	            <div class="render-logo-preview">
-	                <img src="{{ URL::asset('/'.$businessinfo->logo) }}" id="img-render-logo">
-	            </div>
-	        </div>
-	        <div class="form-group">
-	            {{ Form::label('business_description', "Business Description",
-	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::textarea('business_description', html_entity_decode(stripcslashes($businessinfo->business_description)), [
-	            "placeholder" => "business_description", "class"=>"text-input-grey comment-message-main full", 'required']) }}
-	            {{$errors->first('business_description','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
+		        <div class="thin-separator"></div>
+		        <div class="form-group">
+		            {{ Form::select('categories', $categories, "", ['id' => 'categories',
+		            'class' => 'text-input-grey full']) }}
+		        </div>
+		        <div class="form-group">
+		            <div class="showCategory">
+		            	@foreach($selected_categories as $key => $val)
+		            		<span data-id="{{ $val['id'] }}" class="bs-btn btn-success category">
+		            			{{ $val["name"] }}
+		            			<span class="remove" data-id="{{ $val['id'] }}" data-text="{{ $val['name'] }}" title="remove this category">x</span>
+		            		</span>
+		            	@endforeach
+		            </div>
+		        </div>
 
-	        <!-- profile description here must be a wysiwyg -->
-	        <div class="form-group">
-	            {{ Form::label('profile_description', "Profile Description",
-	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::textarea('profile_description', html_entity_decode(stripcslashes($businessinfo->profile_description)), ["id" => "redactor", 'required']) }}
-	            {{$errors->first('profile_description','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
+		        <div class="thin-separator"></div>
+		        <div class="form-group">
+		            {{ Form::label('slug', "Business URL (".Request::root()."/your-business-name)",
+		            ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('slug', $businessinfo->slug, [
+		            "placeholder" => "your-business-name", "class"=>"text-input-grey full", 'required']) }}
+		            {{$errors->first('slug','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
 
-	        <div class="form-group">
-	            {{ Form::label('mon_fri', "Monday - Friday Opening Hours",
-	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('mon_fri', $businessinfo->mon_fri, [
-	            "placeholder" => "Monday - Friday Opening Hours", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('mon_fri','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
-	        <div class="form-group">
-	            {{ Form::label('sat', "Saturday Opening Hours",
-	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('sat', $businessinfo->sat, [
-	            "placeholder" => "Saturday Opening Hours", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('sat','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
+		        <div class="thin-separator"></div>
+		        <div class="form-group">
+		            {{ Form::label('keywords', "Keywords (please separate keywords by a comma.)",
+		            ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('keywords', $businessinfo->keywords, [
+		            	"placeholder" => "office, airplane, house", "class"=>"text-input-grey full", 'required']) }}
+		            {{$errors->first('keywords','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
 
-	        <div class="thin-separator"></div>
-	        <div class="form-group">
-	            {{ Form::label('facebook', "Facebook Link",
-	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('facebook', $businessinfo->facebook, [
-	            "placeholder" => "Facebook Link", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('facebook','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
-	        <div class="form-group">
-	            {{ Form::label('twitter', "Twitter Link",
-	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('twitter', $businessinfo->twitter, [
-	            "placeholder" => "Twitter Link", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('twitter','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
-	        <div class="form-group">
-	            {{ Form::label('google', "Google Link",
-	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('google', $businessinfo->google, [
-	            "placeholder" => "Google Link", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('google','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
+		        <div class="form-group">
+		            {{ Form::label('business_description', "Business Description",
+		            ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::textarea('business_description', 
+		            	str_replace("\\r\\n", "<br>", stripcslashes(html_entity_decode($businessinfo->business_description))), 
+		            	["placeholder" => "business_description", "class"=>"text-input-grey comment-message-main full", 'required']) }}
+		            {{$errors->first('business_description','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
 
-	        <div class="thin-separator"></div>
-	        <div class="form-group">
-	            {{ Form::select('categories', $categories, "", ['id' => 'categories',
-	            'class' => 'text-input-grey full']) }}
+		        <!-- profile description here must be a wysiwyg -->
+		        <div class="form-group">
+		            {{ Form::label('profile_description', "Profile Description",
+		            ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::textarea('profile_description', 
+		            	str_replace("\\r\\n", "<br>", html_entity_decode(stripcslashes($businessinfo->profile_description))), 
+		            	["id" => "redactor", 'required']) }}
+		            {{$errors->first('profile_description','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
+		    </div>
+		   	<div class="form-group">
+		   		<a href="javascript:void(0)" class="a-btn button-2-colorful plus-button show-hide" id="show_hide_branch_settings">- Hide Branch Settings</a>
 	        </div>
-	        <div class="form-group">
-	            <div class="showCategory">
-	            	@for($x=0; $x<count($selected_categories); $x++)
-	            		<span data-id="{{ $selected_categories[$x]['id'] }}" class="bs-btn btn-success category">
-	            			{{ $selected_categories[$x]["name"] }}
-	            			<span class="remove" data-id="{{ $selected_categories[$x]['id'] }}" data-text="{{ $selected_categories[$x]['name'] }}" title="remove this category">x</span>
-	            		</span>
-	            	@endfor
-	            </div>
-	        </div>
+	         <div class="thin-separator"></div>
+	        <div id="update-branches-settings" class="">
+		        <div class="form-group">
+		            {{ Form::label('address1', 'Business Address1', ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('address1', $addresses[0], [
+		           		"placeholder" => "address..", "class"=>"text-input-grey full"]) }}
+		            {{$errors->first('address1','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
+		        <div class="form-group">
+		            {{ Form::label('address2', 'Business Address2', ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('address2', (isset($addresses[1])? $addresses[1]: ''), ["placeholder" => "address..", "class"=>"text-input-grey full"]) }}
+		            {{$errors->first('address2','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
+		        <div class="form-group">
+		            {{ Form::label('address3', 'Business Address3', ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('address3', (isset($addresses[2])? $addresses[2]:''), ["placeholder" => "address..", "class"=>"text-input-grey full"]) }}
+		            {{$errors->first('address3','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
+		        <div class="form-group">
+		            {{ Form::label('address4', 'Business Address4', ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('address4', (isset($addresses[3])? $addresses[3]:''), [
+		            	"placeholder" => "address..", "class"=>"text-input-grey full"]) }}
+		            {{$errors->first('address4','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
+		        <div class="form-group">
+		            {{ Form::label('locations', "Locations Served (please separate keywords by a comma.)",
+		            ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('locations', $branch->locations, [
+		            	"placeholder" => "iraq, iran, new york", "class"=>"text-input-grey full", 'required']) }}
+		            {{$errors->first('locations','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
+		        <div class="form-group">
+		            {{ Form::label('phone', "Phone",
+		            ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('phone', $branch->phone, [
+		            	"placeholder" => "Phone", "class"=>"text-input-grey full", 'required']) }}
+		            {{$errors->first('phone','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
+		        <div class="form-group">
+		            {{ Form::label('website', "Website",
+		            ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('website', $branch->website, [
+		            	"placeholder" => "Website", "class"=>"text-input-grey full"]) }}
+		            {{$errors->first('website','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
+		        <div class="form-group">
+		            {{ Form::label('email', "Email",
+		            ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('email', $branch->email, [
+		            	"placeholder" => "Email", "class"=>"text-input-grey full", 'required']) }}
+		            {{$errors->first('email','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
 
-	        <div class="thin-separator"></div>
-	        <div class="form-group">
-	            {{ Form::label('slug', "Business URL (".Request::root()."/your-business-name)",
-	            ["class"=>"text-colorful"]) }}<br/>
-	            {{ Form::text('slug', $businessinfo->slug, [
-	            "placeholder" => "your-business-name", "class"=>"text-input-grey full", 'required']) }}
-	            {{$errors->first('slug','<span class="alert alert-error block half">:message</span>')}}
-	        </div>
+		        <div class="form-group">
+		            {{ Form::label('mon_fri', "Monday - Friday Opening Hours",
+		            ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('mon_fri', $branch->mon_fri, [
+		            "placeholder" => "Monday - Friday Opening Hours", "class"=>"text-input-grey full", 'required']) }}
+		            {{$errors->first('mon_fri','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
+		        <div class="form-group">
+		            {{ Form::label('sat', "Saturday Opening Hours",
+		            ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('sat', $branch->sat, [
+		            "placeholder" => "Saturday Opening Hours", "class"=>"text-input-grey full", "required"]) }}
+		            {{$errors->first('sat','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
+
+		        <div class="thin-separator"></div>
+		        <div class="form-group">
+		            {{ Form::label('facebook', "Facebook Link",
+		            ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('facebook', $businessinfo->facebook, [
+		            "placeholder" => "Facebook Link", "class"=>"text-input-grey full"]) }}
+		            {{$errors->first('facebook','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
+		        <div class="form-group">
+		            {{ Form::label('twitter', "Twitter Link",
+		            ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('twitter', $businessinfo->twitter, [
+		            "placeholder" => "Twitter Link", "class"=>"text-input-grey full"]) }}
+		            {{$errors->first('twitter','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
+		        <div class="form-group">
+		            {{ Form::label('google', "Google Link",
+		            ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('google', $businessinfo->google, [
+		            "placeholder" => "Google Link", "class"=>"text-input-grey full"]) }}
+		            {{$errors->first('google','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
+		    </div>
 	        <div class="form-group align-right">
 	            {{ Form::submit('Save',['class' => 'button-2-colorful'])  }}
 	        </div>
@@ -225,6 +239,37 @@
 	                    });
 	                })
 	            }
+	        });
+
+	        $(document).on("click", "#show_hide_business_settings", function(){
+	        	if( $("#update-business-settings").attr("class") == "invisible" ){
+	        		$(this).html("- Hide Business Main Settings");
+
+	        		$("#update-business-settings").fadeIn(500, function(){
+	        			$("#update-business-settings").attr("class", "");
+	        		});
+	        	}else{
+	        		$(this).html("+ Show Business Main Settings");
+	        		$("#update-business-settings").fadeOut(500, function(){
+	        			$("#update-business-settings").attr("class", "invisible");
+	        		});
+	        	}
+	        });
+
+	        $(document).on("click", "#show_hide_branch_settings", function(){
+	        	if( $("#update-branches-settings").attr("class") == "" ){
+	        			$(this).html("+ Show Branch Settings");
+	        		$("#update-branches-settings").fadeOut(500, function(){
+	        			$("#update-branches-settings").attr("class", "invisible");
+	        		});
+	        		
+	        	}else{
+	        			$(this).html("- Hide Branch Settings");
+	        		$("#update-branches-settings").fadeIn(500, function(){
+	        			$("#update-branches-settings").attr("class", "");
+	        		});
+	        		
+	        	}
 	        });
 	    });
 	</script>

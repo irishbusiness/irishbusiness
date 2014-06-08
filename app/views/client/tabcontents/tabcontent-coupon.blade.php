@@ -1,9 +1,117 @@
-        @if(isset($coupons))
-        <div id="company-tabs-coupon" class="company-tabs-content">
-            <a href="{{ URL::to('/business/'.$businessinfo->slug.'/settings/#company-tabs-coupon') }}" class="a-btn button-2-colorful add-coupon">Add new coupon</a>
+    @if(isset($coupons))
+    <div id="company-tabs-coupon" class="company-tabs-content">
+        <div class="portfolio-container container-24">
+            @if(isOwner($branch->business->slug))
+            <a href="javascript:void(0)" id="btn-add-coupon" class="a-btn button-2-colorful add-coupon">Add new coupon</a>
+
+            <?php 
+			    if(!isset($businessinfo)){
+			        $businessinfo = new \Illuminate\Support\Collection;
+			        $businessinfo->id = '';
+			    }
+			?>
+			<!-- <div id="company-tabs-coupon" class="company-tabs-content" style="display: none;"> -->
+			    <!-- <div class="portfolio-container container-24"> -->
+			    <div id="coupon-manage" class="invisible">
+			        <div>
+			            <a href="javascript:void(0)" id="upload-own-coupon">Upload your own coupon</a>
+			        </div>
+			        <div id="form-upload-coupon" style="display: none;">
+			            {{ Form::open(array('action' => 'BusinessesController@save_coupon', 'files' => true)) }}
+			                <div class="form-group">
+			                    {{ Form::label("filecoupon", "Upload your coupon", ["class"=>"text-colorful"]) }}
+			                    {{ Form::file('filecoupon', ["id"=>"btn-filecoupon-settings-logo"]) }}
+			                    <div class="render-logo-preview">
+			                        <img src="" id="img-render-filecoupon">
+			                    </div>
+			                </div>
+			                <div class="form-group">
+			                    {{ Form::hidden("b", $branch->business->id) }}
+			                    {{ Form::hidden("br", $branch->id) }}
+			                    {{ Form::submit("Save", ["class"=>"button-2-colorful"]) }}
+			                </div>
+			            {{ Form::close() }}
+			        </div>
+
+			        <div id="coupon-generator">
+			            <div class="preview" style="height: auto;">
+			                <img src="{{ Request::root().'/'}}scripts/server-side.php" />
+			            </div>
+			                
+			            <form id="realtime-form" action="{{ Request::root() }}/scripts/save-coupon.php" method="post">
+			                <fieldset>
+			                    <legend>Coupon Generator</legend>
+			                    <ol>
+			                        <li class="left">
+			                            <fieldset>
+			                                <ol>
+			                                    <li>
+			                                        <label for="company-name">Text 1:</label>
+			                                        <input type="text" id="company-name" name="companyName" value="SALE UPTO 70% DISCOUNT" class="text-input-grey three-fourth" />
+			                                    </li>
+			                                    <li>
+			                                        <label for="company-slogan">Text 2:</label>
+			                                        <input type="text" id="company-slogan" name="companySlogan" value="Save upto 70% off" class="text-input-grey three-fourth" />
+			                                    </li>
+			                                    <li>
+			                                        <label for="business-address">Business address</label>
+			                                        <textarea id="business-address" name="businessAddress" class="text-input-grey three-fourth" >{{$branch->address}}</textarea>
+			                                    </li>
+			                                </ol>
+			                            </fieldset>
+			                        </li>
+			                        <li class="right">
+			                            <fieldset>
+			                                <legend class="accessibility">Contact Information and Description</legend>
+			                                <ol>
+			                                    <li>
+			                                        <label for="full-name">Company name:</label>
+			                                        <input type="text" id="full-name" name="fullName" value="{{ html_entity_decode(stripcslashes($branch->business->name)) }}" class="text-input-grey three-fourth" />
+			                                    </li>
+			                                    <li>
+			                                        <label for="job-title">Company description</label>
+			                                        <input type="text" id="job-title" name="jobTitle" value="{{ html_entity_decode(stripcslashes($branch->business->business_description)) }}" class="text-input-grey three-fourth" />
+			                                    </li>
+			                                    <li>
+			                                        <label for="primary-phone">Primary phone</label>
+			                                        <input type="text" id="primary-phone" name="phoneOne" value="P: 954-555-1234" class="text-input-grey three-fourth" />
+			                                    </li>
+			                                    <li>
+			                                        <label for="secondary-phone">Secondary phone</label>
+			                                        <input type="text" id="secondary-phone" name="phoneTwo" value="P: 954-555-5678" class="text-input-grey three-fourth" />
+			                                    </li>
+			                                    <li>
+			                                        <label for="email-address">Email address</label>
+			                                        <input type="text" id="email-address" name="emailAddress" value="john@company.com" class="text-input-grey three-fourth" />
+			                                    </li>
+			                                    <li>
+			                                        <label for="web-address">Web address</label>
+			                                        <input type="text" id="web-address" name="siteUrl" value="{{ Request::root().'/company/'.$branch->business->slug }}" class="text-input-grey three-fourth" />
+			                                    </li>
+			                                </ol>
+			                            </fieldset>
+			                        </li> 
+			                    </ol>
+			                </fieldset>
+			                <a id="savecoupon" href="javascript:void(0)" class="a-btn button-2-colorful">Submit</a>
+
+			            </form>
+			            <!-- <button id="getResults">Give me my url!</button> -->
+			            <div id="link">
+			                <input type="text" value="" id="resultsUrl" />
+			            </div>
+			        </div>
+			    </div>
+		</div>
+		<div id="show-hide-coupon-lists-div">
+			<a href="javascript:void(0)" class="" id="show-hide-coupons-list">- Hide Coupons</a>
+		</div>
+		<div class="thin-separator"></div>
+        @endif
+			<div id="coupons-list" class="">
             @foreach($coupons as $coupon)
 			
-				<div class="portfolio-container container-24">
+				<!-- <div class="portfolio-container container-24"> -->
 					<img src="{{ URL::asset($coupon->name) }}" alt="coupon">
 
 					<p>
@@ -27,12 +135,78 @@
 					  </a>
 					</p>
                      <div class="separator"></div>
-				</div>
+				<!-- </div> -->
 			   
             @endforeach
             </div>
+
+            <!-- </div> -->
         @else
             <p>Nothing to show here...</p>
         @endif
+    </div>
+         @section('scripts')
+	        <script>
+	            $("#savecoupon").on("click", function(e){
+	                e.preventDefault();
+
+	                console.log($("#realtime-form").serialize());
+	                var token = $("input[name='_token']").val();
+
+	                $.ajax({
+	                   type: "POST",
+	                   url: "/ajaxSaveCoupon?_token="+token+"&b={{ $branch->business->id }}"+"&br={{ $branch->id }}",
+	                   data: $("#realtime-form").serialize(), // serializes the form's elements.
+	                   success: function(data)
+	                   {
+	                       // console.log(data);
+	                       // window.location=data;
+	                   }
+	                 });
+	            });
+
+	            $("#upload-own-coupon").click(function(e){
+	                e.preventDefault();
+
+	                if($("#coupon-generator").is(":visible")){
+	                    $(this).text("Cancel");
+	                    $("#coupon-generator").fadeOut();
+	                    $("#form-upload-coupon").fadeIn();
+	                }else{
+	                    $(this).text("Upload your own coupon");
+	                    $("#coupon-generator").fadeIn();
+	                    $("#form-upload-coupon").fadeOut();
+	                }
+	            });
+
+	            $(document).on("click", "#btn-add-coupon", function(){
+	            	if( $("#coupon-manage").attr("class") == "invisible" ) {
+	            		$(this).html("Close");
+	            		$("#coupon-manage").fadeIn(function(){
+	            			$("#coupon-manage").attr("class", "");
+	            		});
+	            	}else{
+	            		$(this).html("Add new coupon");
+	            		$("#coupon-manage").fadeOut(function(){
+	            			$("#coupon-manage").attr("class", "invisible");
+	            		});
+	            	}
+	            });
+
+	            $(document).on("click", "#show-hide-coupons-list", function(){
+	            	if($("#coupons-list").attr("class") == "invisible"){
+	            		$(this).html("- Hide Coupons");
+	            		$("#coupons-list").fadeIn(function(){
+	            			$("#coupons-list").attr("class", "");
+	            		});
+	            	}else{
+	            		$(this).html("+ Show Coupons");
+	            		$("#coupons-list").fadeOut(function(){
+	            			$("#coupons-list").attr("class", "invisible");
+	            		});
+	            	}
+	            });
+	        </script>
+	    @stop
 
 			

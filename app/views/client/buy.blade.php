@@ -5,6 +5,7 @@
 @if(is_null($subscription))
   <h1> nothing here </h1>
 @else
+<div class="content-container container-16">
     <div class="subscription-container" data-num="{{ $subscription->id }}">
       <h3 class="subscription-name">{{ $subscription->name }}</h3>
       <div class="subscription-info">
@@ -26,6 +27,10 @@
       </div>
     </div>
   @endif
+@stop
+
+@section('sidebar')
+@include('client.partials._sidebar')
 @stop
 
 @section('scripts')

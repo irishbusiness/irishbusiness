@@ -52,15 +52,15 @@ function globalXssClean()
     $sanitized = arrayStripTags(Input::get());
     Input::merge($sanitized);
 }
- 
+
 function arrayStripTags($array)
 {
     $result = array();
- 
+
     foreach ($array as $key => $value) {
         // Don't allow tags on key either, maybe useful for dynamic forms.
         $key = mysql_escape(htmlentities($key));
- 
+
         // If the value is an array, we will just recurse back into the
         // function to keep stripping the tags out of the array,
         // otherwise we will set the stripped value.
@@ -72,7 +72,7 @@ function arrayStripTags($array)
             $result[$key] = trim(mysql_escape(htmlentities($value)));
         }
     }
- 
+
     return $result;
 }
 
@@ -93,22 +93,31 @@ function isOwner($slug){
 function hasBusiness()
 {
     if(Auth::user()->check())
-        {
-            $business = Auth::user()->user()->business;
-            if (!is_null($business))
-                return true;
-        }
+    {
+        $business = Auth::user()->user()->business;
+        if (!is_null($business))
+            return true;
+    }
 
-        return false;
+    return false;
     
 }
 
 function businessSlug(){
 
-        if(Auth::user()->check())
-        {
-            $business = Auth::user()->user()->business;
-            if (!is_null($business))
-                return $business->slug;
-        }
+    if(Auth::user()->check())
+    {
+        $business = Auth::user()->user()->business;
+        if (!is_null($business))
+            return $business->slug;
     }
+}
+
+function branch(){
+    if(Auth::user()->check())
+    {
+        $business = Business::where('user_id', '=',Auth::user()->user()->id)->first();
+        if (!is_null($business))
+            return $business->branches->first()->id;
+    }
+}

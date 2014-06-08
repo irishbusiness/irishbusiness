@@ -1345,3 +1345,7 @@ $(document).ready(function() {
 			}
 		});
 	}
+
+	$(document).on("click", "#linkReview", function(){
+		$(".company-tabs-review").click();
+	});

@@ -53,7 +53,7 @@
                 {{ Form::label('blogurl', "Blog URL (".Request::root()."/your-blog-name)",
                 ["class"=>"text-colorful"]) }}<br>
                 {{ Form::text('blogurl','', [
-                "placeholder" => "your-blog-name ( Optional )", "class"=>"text-input-grey full", 'id' => 'addblogurl']) }}
+                "placeholder" => "your-blog-name ( Optional ) : Skip if you don't know this", "class"=>"text-input-grey full", 'id' => 'addblogurl']) }}
             </div>
             {{ Form::textarea('content', '<h3>Description of the Blog<h3>', ['id' => 'redactor1']) }}
             <br>

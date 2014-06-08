@@ -24,7 +24,7 @@ class BlogController extends \BaseController {
         $blog = Blog::findOrFail($id);
         $blog->delete();
 
-        return Redirect::back();
+        return Redirect::to('/blog');
     }
 
     public function index()

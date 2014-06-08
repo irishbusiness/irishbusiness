@@ -65,8 +65,8 @@
                     </div>
                     <br>
                     <p><input type="submit" value="Save" name="send" class="button-2-colorful"/>
-                    <a href="{{ URL::to('business/'.$blog->business->slug.'/settings') }}"><input type="button" value="Back" name="back" class="button-2-colorful"/></a>
-                    <a href="{{ URL::to('blog/'.$blog->id.'/delete') }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="read-more-link">Remove Blog</a>
+                    <a href="{{ URL::previous() }}"><input type="button" value="Back" name="back" class="button-2-blue"/></a>
+                    <a href="{{ URL::to('blog/'.$blog->id.'/delete') }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="button-2-red paditup">Remove Blog</a>
                     {{ Form::close() }}
                     </p>
         </div>

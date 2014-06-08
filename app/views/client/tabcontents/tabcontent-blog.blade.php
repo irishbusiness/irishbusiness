@@ -1,7 +1,7 @@
 <div id="company-tabs-blog" class="company-tabs-content">
 	<div class="blog block">
 		@if(Auth::user()->check())
-		<a href="{{ URL::to('/blog/add') }}" class="a-btn button-2-colorful add-coupon">Add new blog</a>
+		<a href="{{ URL::to('/blog/add') }}" class="a-btn button-2-colorful add-coupon">Add new blog</a><br>
         @endif
 		@if(count($blogs)>0)
 			@foreach($blogs as $blog)
@@ -23,7 +23,7 @@
 							</div>
 							<div class="blog-post-excerpt">{{ Str::limit(html_entity_decode(stripcslashes($blog->body)), 255) }}</div>
 							<div class="blog-post-links">
-							@if(isOwner($businessinfo->slug))
+							@if(isOwner($blog->business->slug))
 								<a href="{{ URL::to('blog/'.$blog->id.'/delete') }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="read-more-link">Remove Blog</a>
 								<a href="{{ URL::to('blog/'.$blog->slug.'/edit') }}" class="read-more-link">Edit Blog</a>
 							@endif

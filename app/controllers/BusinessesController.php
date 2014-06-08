@@ -231,8 +231,7 @@ class BusinessesController extends \BaseController {
 		}
 		catch(FormValidationException  $e)
 		{
-			
-			return Redirect::back()->withInput()->withErrors($e->getErrors());
+			return Redirect::to("business/add")->withInput()->withErrors($e->getErrors());
 		}
 	
 	}
@@ -249,37 +248,41 @@ class BusinessesController extends \BaseController {
 			->with('reviews', $reviews)->with('title', html_entity_decode(stripcslashes($businessinfo->name)));
 	}
 
-	public function companytab2($name){
-		$id = 1;
-		$blog_id = 1;
+	public function companytab2($name, $branchId){
+		
+		$branch = Branch::with('business')->find($branchId);
 
-		$businessinfo = Business::whereSlug($name)->first();
-		if(is_null($businessinfo)){
+		if(is_null($branch)){
 			return Response::view('pagenotfound');
 		}
-		// $reviews = $businessinfo->reviews()->orderBy('created_at', 'desc')->get();
-		$reviews = $businessinfo->reviews()->orderBy('created_at', 'desc')->get();
+		
+		$reviews = $branch->business->reviews()->orderBy('created_at', 'desc')->get();
+		$blogs = $branch->business->blogs()->orderBy('created_at', 'desc')->get();
+		$coupons = $branch->business->coupons()->orderBy('created_at', 'desc')->get();
 
-		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
-		$coupons = $businessinfo->coupons()->orderBy('created_at', 'desc')->get();
-		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
-			->with('reviews', $reviews)->with('title', html_entity_decode(stripcslashes($businessinfo->name)))
+		return View::make('client.company-tab')
+			->with('branch', $branch)
+			->with('blogs', $blogs)
+			->with('reviews', $reviews)
+			->with('title', html_entity_decode(stripcslashes($branch->business->name)))
 			->with('coupons', $coupons);
 	}
 
-	public function editcompany($slug){
+	public function editcompany($slug, $branchId){
 
-		$businessinfo = Business::whereSlug($slug)->first();
+		// $businessinfo = Business::whereSlug($slug)->first();
+		$branch = Branch::with('business')->find($branchId);
+
 		
-		if( is_null($businessinfo) ){
+		if( is_null($branch) ){
 			return Response::view('pagenotfound');
 		}
 
 		$categories = $this->category->getCategories();
 		
-		$selected_categories = $businessinfo->categories;
+		$selected_categories = $branch->business->categories;
 		$selected_categories = $selected_categories->toArray();
-		$selected_categoriesraw = $businessinfo->categories;
+		$selected_categoriesraw = $branch->business->categories;
 
 		$notselected_categories = $this->category->getCategories();
 
@@ -293,14 +296,15 @@ class BusinessesController extends \BaseController {
 			
 		}
 
-		$addresses = $businessinfo->address;
+		$addresses = $branch->address;
 		$addresses = explode(",", $addresses);
 
 		return View::make("client.editcompany")
-		->with("businessinfo", $businessinfo)
-		->with("addresses", $addresses)
-		->with("categories", $notselected_categories)
-		->with('selected_categories', $selected_categories)->with('title', "Edit - ".html_entity_decode(stripcslashes($businessinfo->name)));
+			->with("businessinfo", $branch->business)
+			->with("addresses", $addresses)
+			->with("categories", $notselected_categories)
+			->with('selected_categories', $selected_categories)->withBranch($branch)
+			->with('title', "Edit - ".html_entity_decode(stripcslashes($branch->business->name)));
 	}
 
 	/**
@@ -314,15 +318,15 @@ class BusinessesController extends \BaseController {
 		return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug);
 	}
 
-	public function update($id)
+	public function update($slug, $branchId)
 	{
 		try
 		{
 			$this->updatebusiness->validate(Input::all());
 
-			$slug = $this->business->update(Input::all(), $id);
+			$slug = $this->business->update($slug, Input::all(), $branchId);
 			
-			return Redirect::to('/company/'.$slug);
+			return Redirect::to('/company/'.$slug."/".$branchId);
 		}
 		catch(FormValidationException  $e)
 		{
@@ -400,7 +404,7 @@ class BusinessesController extends \BaseController {
 
 		$this->business->storeMap(Input::get('latlng'),Input::get('branch_id'));
 
-		return Redirect::to('company/'.Input::get('slug'))->with('flash_message','Congratulations! You have completed your profile.');
+		return Redirect::to('company/'.Input::get('slug').'/'.Input::get('branch_id'))->with('flash_message','Congratulations! You have completed your profile.');
 
 		
 	}
@@ -419,6 +423,8 @@ class BusinessesController extends \BaseController {
 			$phoneTwo = Input::get("phoneTwo");
 			$emailAddress = Input::get("emailAddress");
 			$siteUrl = Input::get("siteUrl");
+
+			$branch_id = Input::get("br");
 
 
 			$handle = imagecreatefrompng( public_path().'/scripts/templates/template.png' ); 
@@ -477,7 +483,7 @@ class BusinessesController extends \BaseController {
 
 				// return "bid = ".$bid;
 
-				return "/business/".$business->slug;
+				return Redirect::back()->withTitle("New coupon has been added successfully!");
 
 			}
 
@@ -490,6 +496,8 @@ class BusinessesController extends \BaseController {
 		$business_id = Input::get("b");
 
 		$business = Business::find($business_id);
+
+		$branch_id = Input::get("br");
 
 		$coupon = new Coupon;
 
@@ -510,15 +518,15 @@ class BusinessesController extends \BaseController {
                 $image->move($dir, $filename);
                 $coupon->name  =   'images/coupons/temp/'.$imagename;
             } else {
-            	return Redirect::to("/business/".$business->slug."/#company-tabs-coupon")->with("flash_message", "It seems the file you upload is invalid. Please upload image files only.")->withTitle("It seems the file you upload is invalid. Please upload image files only.");
+            	return Redirect::to("/company/".$business->slug."/".$branch_id."#company-tabs-coupon")->with("flash_message", "It seems the file you upload is invalid. Please upload image files only.")->withTitle("It seems the file you upload is invalid. Please upload image files only.");
             }
 
         } else {
-            return Redirect::to("/business/".$business->slug."/#company-tabs-coupon")->withTitle("Please choose a file to continue.")->with("flash_message","Please choose a file to continue.");
+            return Redirect::to("/company/".$business->slug."/".$branch_id."#company-tabs-coupon")->withTitle("Please choose a file to continue.")->with("flash_message","Please choose a file to continue.");
         }
         $coupon->business_id = $business_id;
 		$coupon->save();
 
-		return Redirect::to("/business/".$business->slug."/#company-tabs-coupon")->with("flash_message", "Your coupon has been added successfully.");
+		return Redirect::to("/company/".$business->slug."/".$branch_id."#company-tabs-coupon")->with("flash_message", "Your coupon has been added successfully.");
 	}
 }

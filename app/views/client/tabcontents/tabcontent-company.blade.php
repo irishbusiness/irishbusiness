@@ -1,14 +1,15 @@
 			<div id="company-tabs-page" class="company-tabs-content">
 				<div class="edit-company">
-					@if(isOwner($businessinfo->slug))
-						<a href="{{ Request::root().'/edit/company/'.$businessinfo->slug }}">Edit your business</a>
+					@if(isOwner($branch->business->slug))
+						<a href="{{ Request::root().'/edit/business/'.$branch->business->slug.'/'.$branch->id }}">Edit your business</a>
 					@endif
 				</div>
 				<div class="sidebar-container container-8 show" id="tabs-sidebar">
 					<div class="company-page-map">
 						<div class="company-page-map-container">
 							<div id="company-page-map">
-								<img src="{{ URL::asset('images/temporary_map.jpg') }}">
+								<!-- <img src="{{ URL::asset('images/temporary_map.jpg') }}"> -->
+								LAPA GWAPO!
 							</div>
 						</div>
 					</div>
@@ -21,7 +22,7 @@
 								<tr class="detail">
 									<td class="detail-label"> Name </td>
 									<td class="detail">
-										{{ html_entity_decode(stripcslashes($businessinfo->name)) }}
+										{{ html_entity_decode(stripcslashes($branch->business->name)) }}
 									</td>
 								</tr>
 								<tr class="detail">
@@ -29,23 +30,23 @@
 										Full Address
 									</td>
 									<td class="detail">
-										{{ $businessinfo->address }}
+										{{ $branch->address }}
 									</td>
 								</tr>
 								<tr class="detail">
 									<td class="detail-label"> Phone </td>
-									<td class="detail"> {{ $businessinfo->phone }} </td>
+									<td class="detail"> {{ $branch->phone }} </td>
 								</tr>
 								<tr class="detail">
 									<td class="detail-label"> Website </td>
 									<td class="detail">
-										<a href="{{ $businessinfo->website }}" class="text-green">{{ $businessinfo->website }}</a>
+										<a href="{{ $branch->website }}" class="text-green">{{ $branch->website }}</a>
 									</td>
 								</tr>
 								<tr class="detail">
 									<td class="detail-label"> E-mail </td>
 									<td class="detail">
-										<a href="mailto:{{ $businessinfo->email }}" class="text-green">{{ $businessinfo->email }}</a>
+										<a href="mailto:{{ $branch->email }}" class="text-green">{{ $branch->email }}</a>
 									</td>
 								</tr>
 							</tbody>
@@ -59,11 +60,11 @@
 							<tbody>
 								<tr class="detail">
 									<td class="detail-label padding-left-19">Mon-Friday</td>
-									<td class="detail">{{ $businessinfo->mon_fri }}</td>
+									<td class="detail">{{ $branch->mon_fri }}</td>
 								</tr>
 								<tr class="detail">
 									<td class="detail-label padding-left-19">Saturday: </td>
-									<td class="detail">{{ $businessinfo->sat }}</td>
+									<td class="detail">{{ $branch->sat }}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -88,20 +89,27 @@
 					</div>
 				</div>
 				<!-- end of .company-sidebar-container -->
+
 				<div class="company-content-container container-16 margin-18">
 					<div class="company-tabs-single-company block">
-						<h1>{{ html_entity_decode(stripcslashes($businessinfo->name)) }}</h1>
+						<h1>{{ html_entity_decode(stripcslashes($branch->business->name)) }}</h1>
 						<div class="company-info clearfix">
 							<div class="company-info-social">
 								<div class="compnay-photo">
-									<img width="500" height="302" src="{{ URL::asset($businessinfo->logo) }}" class="attachment-post-thumbnail wp-post-image" alt="{{ $businessinfo->name }}-logo">
+									<img width="500" height="302" src="{{ URL::asset($branch->business->logo) }}" class="attachment-post-thumbnail wp-post-image" alt="{{ $branch->business->name }}-logo">
 								</div>
-								<a href="{{ $businessinfo->facebook }}" class="facebook" target="_blank"></a>
-								<a href="{{ $businessinfo->twitter }}" class="twitter" target="_blank"></a>
-								<a href="{{ $businessinfo->google }}" class="google" target="_blank"></a>
+								@if(!empty(trim($branch->facebook)))
+								<a href="{{ $branch->facebook }}" class="facebook" target="_blank"></a>
+								@endif
+								@if(!empty(trim($branch->twitter)))
+								<a href="{{ $branch->twitter }}" class="twitter" target="_blank"></a>
+								@endif
+								@if(!empty(trim($branch->google)))
+								<a href="{{ $branch->google }}" class="google" target="_blank"></a>
+								@endif
 							</div>
 							<div class="company-info-description">
-								{{ html_entity_decode(stripcslashes($businessinfo->business_description)) }}
+								{{ html_entity_decode(stripcslashes($branch->business->business_description)) }}
 							</div>
 						</div>
 					</div>
@@ -109,7 +117,7 @@
 					<div class="profile-description company-page-center-block">
 						<h2>Profile Description</h2>
 						<div class="block-content">
-							{{ html_entity_decode(stripcslashes($businessinfo->profile_description)) }}
+							{{ str_replace("\\r\\n","<br/>", stripcslashes(html_entity_decode($branch->business->profile_description))) }}
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -121,7 +129,7 @@
 						<div class="block-content">
 							<ul>
 								<?php 
-									$keywords = $businessinfo->keywords;
+									$keywords = $branch->business->keywords;
 									$arr = explode(",", $keywords);
 									foreach ($arr as $keyword) {
 										echo "<li>".$keyword."</li>";
@@ -135,12 +143,12 @@
 					<div class="separator"></div>
 					<div class="range-of-services company-page-center-block">
 						<div class="divlocations">
-							<h2>Locations Serviced</h2>
+							<h2>Locations Served</h2>
 						</div>
 						<div class="block-content">
 							<ul>
 								<?php 
-									$locations = $businessinfo->locations;
+									$locations = $branch->locations;
 									$arr = explode(",", $locations);
 									foreach ($arr as $location) {
 										echo "<li>".$location."</li>";
@@ -158,6 +166,7 @@
 							<div class="comment-respond">
 								<h3 class="comment-reply-title" id="reply-title"><span class="comment-message-title your-rating">Your <span class="text-green">Rating</span></span></h3>
 								<div class="rating-send">
+								<!--
 									<div class="message error" style="display: none;">
 										<div class="notification-error">
 											<div class="notification-inner">
@@ -172,6 +181,7 @@
 											</div>
 										</div>
 									</div>
+									-->
 									@if (Auth::user()->guest())
 										<div class="rating-inputs">
 											<div class="rating-details">
@@ -179,8 +189,8 @@
 												{{ HTML::link(URL::to('/register'), 'Register', ["class"=>"a-btn button-2-green"]) }}
 											</div>
 										</div>
-									@else
-									{{ Form::open(array('action' => array('ReviewsController@store', $businessinfo->id), "id"=>"form-review", 'method'=>'post')) }}
+									@elseif(!isOwner($branch->business->slug))
+									{{ Form::open(array('action' => array('ReviewsController@store', $branch->business->id), "id"=>"form-review", 'method'=>'post')) }}
 									<div class="rating-inputs">
 										<div class="rating-details">
 											<div class="detail">
@@ -206,6 +216,8 @@
 									</div>
 									{{ Form::input("hidden", "rating", "", ["id"=>"fi-rating"]) }}
 									{{ Form::close() }}
+									@else
+										<a href="javascript:void(0)" class="a-btn button-2-colorful" id="linkReview">View Reviews</a>
 									@endif
 									<div class="clearfix">
 									</div>

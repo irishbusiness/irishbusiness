@@ -1,6 +1,7 @@
 @extends("client.layouts.default")
 
 @section("actual-body-content")
+        <div class="portfolio-container container-16">
         <div id="company-tabs-page" class="company-tabs-content" style="display: block;">
         <div class="portfolio-container container-24">
 
@@ -20,19 +21,19 @@
             <div class="form-group">
                 {{ Form::label('address2', 'Business Address2', ["class"=>"text-colorful"]) }}<br/>
                 {{ Form::text('address2', '', [
-                "placeholder" => "address..", "class"=>"text-input-grey full", 'required']) }}
+                "placeholder" => "address..", "class"=>"text-input-grey full"]) }}
                 {{$errors->first('address2','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
                 {{ Form::label('address3', 'Business Address3', ["class"=>"text-colorful"]) }}<br/>
                 {{ Form::text('address3', '', [
-                "placeholder" => "address..", "class"=>"text-input-grey full", 'required']) }}
+                "placeholder" => "address..", "class"=>"text-input-grey full"]) }}
                 {{$errors->first('address3','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
                 {{ Form::label('address4', 'Business Address4', ["class"=>"text-colorful"]) }}<br/>
                 {{ Form::text('address4', '', [
-                "placeholder" => "address..", "class"=>"text-input-grey full", 'required']) }}
+                "placeholder" => "address..", "class"=>"text-input-grey full"]) }}
                 {{$errors->first('address4','<span class="alert alert-error block half">:message</span>')}}
             </div>
 
@@ -56,7 +57,7 @@
                 {{ Form::label('website', "Website",
                 ["class"=>"text-colorful"]) }}<br/>
                 {{ Form::text('website', '', [
-                "placeholder" => "Website", "class"=>"text-input-grey full", 'required']) }}
+                "placeholder" => "Website", "class"=>"text-input-grey full"]) }}
                 {{$errors->first('website','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
@@ -87,21 +88,21 @@
                 {{ Form::label('facebook', "Facebook Link",
                 ["class"=>"text-colorful"]) }}<br/>
                 {{ Form::text('facebook', '', [
-                "placeholder" => "Facebook Link", "class"=>"text-input-grey full", 'required']) }}
+                "placeholder" => "Facebook Link", "class"=>"text-input-grey full"]) }}
                 {{$errors->first('facebook','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
                 {{ Form::label('twitter', "Twitter Link",
                 ["class"=>"text-colorful"]) }}<br/>
                 {{ Form::text('twitter', '', [
-                "placeholder" => "Twitter Link", "class"=>"text-input-grey full", 'required']) }}
+                "placeholder" => "Twitter Link", "class"=>"text-input-grey full"]) }}
                 {{$errors->first('twitter','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
                 {{ Form::label('google', "Google Link",
                 ["class"=>"text-colorful"]) }}<br/>
                 {{ Form::text('google', '', [
-                "placeholder" => "Google Link", "class"=>"text-input-grey full", 'required']) }}
+                "placeholder" => "Google Link", "class"=>"text-input-grey full"]) }}
                 {{$errors->first('google','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
@@ -116,6 +117,10 @@
             {{ Form::close() }}
         </div>
     </div>
+@stop
+
+@section('sidebar')
+    @include('client.partials._sidebar')
 @stop
 
 @section('scripts')

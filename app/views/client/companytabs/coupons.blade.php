@@ -47,7 +47,7 @@
                                     </li>
                                     <li>
                                         <label for="business-address">Business address</label>
-                                        <textarea id="business-address" name="businessAddress" class="text-input-grey three-fourth" >{{$businessinfo->address}}</textarea>
+                                        <textarea id="business-address" name="businessAddress" class="text-input-grey three-fourth" >{{$branch->address}}</textarea>
                                     </li>
                                 </ol>
                             </fieldset>
@@ -58,11 +58,11 @@
                                 <ol>
                                     <li>
                                         <label for="full-name">Company name:</label>
-                                        <input type="text" id="full-name" name="fullName" value="{{ html_entity_decode(stripcslashes($businessinfo->name)) }}" class="text-input-grey three-fourth" />
+                                        <input type="text" id="full-name" name="fullName" value="{{ html_entity_decode(stripcslashes($branch->business->name)) }}" class="text-input-grey three-fourth" />
                                     </li>
                                     <li>
                                         <label for="job-title">Company description</label>
-                                        <input type="text" id="job-title" name="jobTitle" value="{{ html_entity_decode(stripcslashes($businessinfo->business_description)) }}" class="text-input-grey three-fourth" />
+                                        <input type="text" id="job-title" name="jobTitle" value="{{ html_entity_decode(stripcslashes($branch->business->business_description)) }}" class="text-input-grey three-fourth" />
                                     </li>
                                     <li>
                                         <label for="primary-phone">Primary phone</label>
@@ -78,7 +78,7 @@
                                     </li>
                                     <li>
                                         <label for="web-address">Web address</label>
-                                        <input type="text" id="web-address" name="siteUrl" value="{{ Request::root().'/business/'.$businessinfo->slug }}" class="text-input-grey three-fourth" />
+                                        <input type="text" id="web-address" name="siteUrl" value="{{ Request::root().'/company/'.$branch->business->slug }}" class="text-input-grey three-fourth" />
                                     </li>
                                 </ol>
                             </fieldset>

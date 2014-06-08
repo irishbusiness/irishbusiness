@@ -109,11 +109,11 @@ Route::get('listings','BusinessesController@index');
 // Route::get('company-tab', 'BusinessesController@companytab');
 
 Route::get('company', 'BusinessesController@search');
-Route::get('company/{name}', 'BusinessesController@companytab2');
+Route::get('company/{name}/{branch}', 'BusinessesController@companytab2');
 Route::post('company/{name}', 'ReviewsController@store');
 
-Route::get('edit/business/{slug}', 'BusinessesController@editcompany');
-Route::post('edit/company/{slug}', 'BusinessesController@update');
+Route::get('edit/business/{slug}/{branchId}', 'BusinessesController@editcompany');
+Route::post('edit/company/{slug}/{branchId}', 'BusinessesController@update');
 
 Route::post('ajaxUpdateCategoryRemove', 'BusinessesController@update_category_remove');
 Route::post('ajaxUpdateCategoryAdd', 'BusinessesController@update_category_add');
@@ -231,9 +231,6 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try',function(){
-	$business = Business::find(1);
-	$coupons = $business->coupons()->orderBy('created_at', 'desc')->get();
-	return $coupons->toArray();
 });
 
 Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');
