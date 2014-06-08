@@ -8,7 +8,7 @@
 
             if (category>0)
             {
-                console.log(category);
+                // console.log(category);
 
                 $.ajax(
                     {
@@ -23,6 +23,7 @@
                     })
                     .done(function(data)
                     {
+                        console.log(data);
                         $('.showCategory').append('<span class="bs-btn btn-success category" data-id="'+data.id+'"> '+ data.name +
                             '<span class="remove" data-id="'+data.id+'" data-text="'+data.name+'" title="remove this category">x</span></span>');
                         $('#categories').find('option:selected').remove();
@@ -43,7 +44,7 @@
                 }
             })
                 .done(function(data){
-                    // console.log(data);
+                    console.log(data);
                     $("span[data-id='"+category+"']").fadeOut(function(){
                         $("span[data-id='"+category+"']").remove();
                     });

@@ -26,6 +26,9 @@ class CategoriesController extends \BaseController {
 			$id = Input::get('category');
 			Session::push('categories', $id);
 			$category = \Category::findOrFail($id);
+
+			// $_SESSION['katigories'] = array_push($_SESSIO['katigories'], $id);
+
 			return $category;	
 		}
 		
@@ -37,17 +40,30 @@ class CategoriesController extends \BaseController {
 			$id = Input::get('category');
 			// Session::pop('categories', $id);
 			$categories = Session::get('categories');
-			$newcategories = array();
+			// $newcategories = array();
+			// $x=0;
 			foreach ( $categories as $category ) {
-				if($category != $id){
-					Session::push("newcategories", $category);
+				if($category == $id){
+					// Session::push("newcategories", $category);
+					unset($categories->$category);
 				}
+				// $x++;
 			}
-			Session::forget("categories");
-			Session::push("categories", Session::get("newcategories"));
+
+			Session::set("categories", $categories);
+			// Session::forget("categories");
+			// Session::set("categories", Session::get("newcategories"));
+			// $newcategories = Session::get('newcategories');
+
+			// foreach ($newcategories as $newcategory) {
+			// 	Session::push("categories",$newcategory);
+			// }
+			// Session::push("categories", Session::get("newcategories"));
+			// return Session::get("newcategories");
 
 			$category = \Category::findOrFail($id);
-			return $category;
+			// return $category;
+			return Session::get("categories");
 		}
 
 		return 'Something went wrong';
