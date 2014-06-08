@@ -53,10 +53,10 @@ class ReviewsController extends \BaseController {
 	function approveReviewAjax(){
 		if(Request::ajax()){
 			$id = Input::get('id');
-			$review = Review::find($id);
+			$review = Review::withTrashed()->find($id);
 			$review->restore();
 
-			return $id;
+			return 'approved';
 		}
 	}
 
@@ -66,7 +66,7 @@ class ReviewsController extends \BaseController {
 			$review = Review::find($id);
 			$review->delete();
 
-			return $id;
+			return 'disapproved';
 		}	
 	}
 

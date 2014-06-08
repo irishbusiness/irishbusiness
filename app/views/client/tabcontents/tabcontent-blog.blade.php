@@ -3,6 +3,7 @@
 		<div class="block-title">
 			<h1>Blog</h1>
 		</div>
+		@if(Auth::user()->check())
 		<table class="table" id="table-categories">
             <thead>
             <tr>
@@ -10,6 +11,7 @@
             </tr>
             </thead>
         </table>
+        @endif
 		@if(count($blogs)>0)
 			@foreach($blogs as $blog)
 				<div class="blog-post-preview">

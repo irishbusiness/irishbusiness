@@ -64,12 +64,13 @@ City, ST 12345</textarea>
     	</fieldset>
     </form>
 	<button id="getResults">Give me my url!</button>
+
  	<div id="link">
 		<input type="text" value="" id="resultsUrl" />
  	</div>
     </div>
     </div>
-<!--
+    <!--
 			<div id="company-tabs-coupon" class="company-tabs-content" style="display: none;">
 				<div class="portfolio-container container-24">
 					<img src="{{ URL::asset('/images/coupons/novatel_coupon.png') }}" alt="coupon">
@@ -96,5 +97,4 @@ City, ST 12345</textarea>
 					</p>
 				</div>
 			</div>
-
-			-->
+-->
