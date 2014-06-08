@@ -85,6 +85,7 @@ class BusinessRepository {
         $business->facebook   =   $input['facebook'];
         $business->twitter  =   $input['twitter'];
         $business->google  =   $input['google'];
+        
 
 
         $business->slug = $input['slug'];
@@ -138,6 +139,7 @@ class BusinessRepository {
         $branch->facebook   =   $input['facebook'];
         $branch->twitter  =   $input['twitter'];
         $branch->google  =   $input['google'];
+        $branch->linkedin  =   $input['linkedin'];
         
         $business->branches()->save($branch);
 

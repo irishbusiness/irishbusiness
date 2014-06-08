@@ -55,14 +55,14 @@
             <div class="form-group">
                 {{ Form::label('website', "Website",
                 ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('website', '', [
+                {{ Form::text('website', (isset($branch) ? $branch->website : ''), [
                 "placeholder" => "Website", "class"=>"text-input-grey full", 'required']) }}
                 {{$errors->first('website','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
                 {{ Form::label('email', "Email",
                 ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('email', '', [
+                {{ Form::text('email', (isset($branch) ? $branch->email : ''), [
                 "placeholder" => "Email", "class"=>"text-input-grey full", 'required']) }}
                 {{$errors->first('email','<span class="alert alert-error block half">:message</span>')}}
             </div>
@@ -70,14 +70,14 @@
             <div class="form-group">
                 {{ Form::label('mon_fri', "Monday - Friday Opening Hours",
                 ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('mon_fri', '', [
+                {{ Form::text('mon_fri', (isset($branch) ? $branch->mon_fri : ''), [
                 "placeholder" => "Monday - Friday Opening Hours", "class"=>"text-input-grey full", 'required']) }}
                 {{$errors->first('mon_fri','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
                 {{ Form::label('sat', "Saturday Opening Hours",
                 ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('sat', '', [
+                {{ Form::text('sat', (isset($branch) ? $branch->sat : ''), [
                 "placeholder" => "Saturday Opening Hours", "class"=>"text-input-grey full", 'required']) }}
                 {{$errors->first('sat','<span class="alert alert-error block half">:message</span>')}}
             </div>
@@ -86,27 +86,27 @@
             <div class="form-group">
                 {{ Form::label('facebook', "Facebook Link",
                 ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('facebook', '', [
+                {{ Form::text('facebook', (isset($branch) ? $branch->facebook : ''), [
                 "placeholder" => "Facebook Link", "class"=>"text-input-grey full", 'required']) }}
                 {{$errors->first('facebook','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
                 {{ Form::label('twitter', "Twitter Link",
                 ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('twitter', '', [
+                {{ Form::text('twitter', (isset($branch) ? $branch->twitter : ''), [
                 "placeholder" => "Twitter Link", "class"=>"text-input-grey full", 'required']) }}
                 {{$errors->first('twitter','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
                 {{ Form::label('google', "Google Link",
                 ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('google', '', [
+                {{ Form::text('google', (isset($branch) ? $branch->google : ''), [
                 "placeholder" => "Google Link", "class"=>"text-input-grey full", 'required']) }}
                 {{$errors->first('google','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
-                {{ Form::label('name', 'LinkedIn', ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('name','', [
+                {{ Form::label('linkedin', 'LinkedIn', ["class"=>"text-colorful"]) }}<br/>
+                {{ Form::text('linkedin',(isset($branch) ? $branch->linkedin : ''), [
                 "placeholder" => "LinkedIn", "class"=>"text-input-grey full"]) }}
                 {{$errors->first('name','<span class="alert alert-error block half">:message</span>')}}
             </div>
