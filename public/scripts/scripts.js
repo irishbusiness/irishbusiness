@@ -1320,7 +1320,12 @@ $(document).ready(function() {
 				data: { id: id }
 			})
 		.done(function(data){
-			console.log(data);
+			if(data == 'approved')
+			{
+				$('#'+id+'-approve').css('display', 'none');
+				$('#'+id+'-disapprove').css('display', '');
+				
+			}
 		});
 	}
 
@@ -1333,6 +1338,10 @@ $(document).ready(function() {
 				data: { id: id }
 			})
 		.done(function(data){
-			console.log(data);
+			if(data == 'disapproved')
+			{
+				$('#'+id+'-disapprove').css('display', 'none');
+				$('#'+id+'-approve').css('display', '');
+			}
 		});
 	}

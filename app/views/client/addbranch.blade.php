@@ -1,6 +1,7 @@
 @extends("client.layouts.default")
 
 @section("actual-body-content")
+<div class="content-container container-16">
         <div id="company-tabs-page" class="company-tabs-content" style="display: block;">
         <div class="portfolio-container container-24">
 

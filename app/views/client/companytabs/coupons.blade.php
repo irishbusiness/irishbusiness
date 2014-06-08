@@ -48,8 +48,8 @@
                                     <li>
                                         <label for="business-address">Business address</label>
                                         <textarea id="business-address" name="businessAddress">1234 Main Street
-        Suite 101
-        City, ST 12345</textarea>
+Suite 101
+City, ST 12345</textarea>
                                     </li>
                                 </ol>
                             </fieldset>
@@ -60,11 +60,11 @@
                                 <ol>
                                     <li>
                                         <label for="full-name">Company name:</label>
-                                        <input type="text" id="full-name" name="fullName" value="John Smith" />
+                                        <input type="text" id="full-name" name="fullName" value="IrishBusiness.ie" />
                                     </li>
                                     <li>
                                         <label for="job-title">Company description</label>
-                                        <input type="text" id="job-title" name="jobTitle" value="Job Title" />
+                                        <input type="text" id="job-title" name="jobTitle" value="The Irish Business Directory" />
                                     </li>
                                     <li>
                                         <label for="primary-phone">Primary phone</label>
@@ -121,10 +121,12 @@
                 e.preventDefault();
 
                 if($("#coupon-generator").is(":visible")){
+                    $(this).text("Cancel");
                     $("#coupon-generator").fadeOut();
                     $("#form-upload-coupon").fadeIn();
                 }else{
-                     $("#coupon-generator").fadeIn();
+                    $(this).text("Upload your own coupon");
+                    $("#coupon-generator").fadeIn();
                     $("#form-upload-coupon").fadeOut();
                 }
             });
