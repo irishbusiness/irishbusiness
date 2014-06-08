@@ -60,6 +60,13 @@ class BlogController extends \BaseController {
         $blog->twitter = Input::get('twitter');
         $blog->linkedin = Input::get('linkedin');
         $blog->business_id  =   Auth::user()->user()->business->id;
+        
+        if(Input::get('blogurl') == null){
+            $title = stripcslashes(strtolower(Input::get('title')));
+            $blog->slug = preg_replace("/[\s_]/", "-", $title);
+        } else {
+            $blog->slug = strtolower(Input::get('blogurl'));
+        }
         // $blog->business_id = Auth::user()->user()->id;
 
         //check if the file isset
@@ -106,6 +113,13 @@ class BlogController extends \BaseController {
         $blog->linkedin = Input::get('linkedin');
         $blog->business_id  =   Auth::user()->user()->business->id;
         // $blog->business_id = 2;
+
+        if(Input::get('blogurl') == null){
+            $title = stripcslashes(strtolower(Input::get('title')));
+            $blog->slug = preg_replace("/[\s_]/", "-", $title);
+        } else {
+            $blog->slug = strtolower(Input::get('blogurl'));
+        }
 
         //check if the file isset
         if( Input::hasFile('blogheaderimageedit'))
