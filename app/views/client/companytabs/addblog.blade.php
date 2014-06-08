@@ -29,31 +29,31 @@
                 {{ Form::label('facebook', "Facebook",
                 ["class"=>"text-colorful"]) }}<br>
                 {{ Form::text('facebook','', [
-                "placeholder" => "Facebook Link", "class"=>"text-input-grey full", 'id' => 'addFacebook', 'required']) }}
+                "placeholder" => "Facebook Link", "class"=>"text-input-grey full", 'id' => 'addFacebook']) }}
             </div>
             <div class="form-group">
                 {{ Form::label('google', "Google+ Link",
                 ["class"=>"text-colorful"]) }}<br>
                 {{ Form::text('google','', [
-                "placeholder" => "Google+ Link", "class"=>"text-input-grey full", 'id' => 'addGoogle', 'required']) }}
+                "placeholder" => "Google+ Link", "class"=>"text-input-grey full", 'id' => 'addGoogle']) }}
             </div>
             <div class="form-group">
                 {{ Form::label('twitter', "Twitter Link",
                 ["class"=>"text-colorful"]) }}<br>
                 {{ Form::text('twitter','', [
-                "placeholder" => "Twitter Link", "class"=>"text-input-grey full", 'id' => 'addTwitter', 'required']) }}
+                "placeholder" => "Twitter Link", "class"=>"text-input-grey full", 'id' => 'addTwitter']) }}
             </div>
             <div class="form-group">
                 {{ Form::label('linkedin', "LinkedIn Link",
                 ["class"=>"text-colorful"]) }}<br>
                 {{ Form::text('linkedin','', [
-                "placeholder" => "LinkedIn Link", "class"=>"text-input-grey full", 'id' => 'addLinkedin', 'required']) }}
+                "placeholder" => "LinkedIn Link", "class"=>"text-input-grey full", 'id' => 'addLinkedin']) }}
             </div>
             <div class="form-group">
                 {{ Form::label('blogurl', "Blog URL (".Request::root()."/your-blog-name)",
                 ["class"=>"text-colorful"]) }}<br>
                 {{ Form::text('blogurl','', [
-                "placeholder" => "your-blog-name ( Optional )", "class"=>"text-input-grey full", 'id' => 'addblogurl', 'required']) }}
+                "placeholder" => "your-blog-name ( Optional )", "class"=>"text-input-grey full", 'id' => 'addblogurl']) }}
             </div>
             {{ Form::textarea('content', '<h3>Description of the Blog<h3>', ['id' => 'redactor1']) }}
             <br>
