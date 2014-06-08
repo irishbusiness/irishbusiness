@@ -54,6 +54,7 @@ class BusinessesController extends \BaseController {
 		// }
 
 		$query1 = 'and ';
+		/*$query1='';*/
 		foreach($addresses as $address)
 		{
 			$query1 .= '(';
@@ -62,6 +63,7 @@ class BusinessesController extends \BaseController {
 			$query1 .= ')and ';
 		}
 		$query1 .= "branches.locations like '%%'";
+
 
 		$branches = Branch::Join('businesses','businesses.id', '=', 'branches.business_id')
 				  ->join('business_category','business_category.business_id', '=', 'businesses.id'  )
@@ -77,13 +79,14 @@ class BusinessesController extends \BaseController {
 		foreach ($branches as $branch) {
 			array_push($rating, Review::where('business_id', '=', $branch->business->id)->avg('rating'));
 		}
+
 		Session::put('category', Input::get('category'));
 		Session::put('location', Input::get('location'));
 		return View::make('client.searchresults')->with('branches',$branches)
 			->with('category',$category)
 			->with('location',Input::get('location'))
-			->with('selected',$selected)
-			->with('rating', $rating)->with("title", "Search results");
+			->with('selected',$selected);
+			/*->with('rating', $rating)->with("title", "Search results");*/
 	}
 
 	public function showBusiness($businessSlug)

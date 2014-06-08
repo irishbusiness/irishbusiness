@@ -17,6 +17,7 @@
 									<a href="#">3</a>
 								</div>
 							</div> -->
+
 							<?php $x=0; ?>
 							@foreach($branches as $branch)
 							<div class="company-listing clearfix">
@@ -41,6 +42,7 @@
 							</div>
 							<?php $x++; ?>
 							@endforeach
+
 							{{ $branches->appends(array('category' => $category,'location' =>$location))->links() }}
 						</div>
 

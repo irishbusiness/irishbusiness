@@ -230,9 +230,32 @@ Route::post('addmap','BusinessesController@storeMap');
 
 Route::get('try',function(){
 	
-	return View::make('test');
+		// 	$businesses = Branch::with('business')->whereHas('categories', function($q) use($category,$query1)
+		// {
+		//       $q->whereRaw("(name like '%$category%' or businesses.name like '%$category%' or businesses.keywords like '%$category%')  $query1");	     
+		// })->paginate(3);
+
+			/*$businesses = Branch::with(['business','categories')->whereHas('categories', function($q)
+		{
+		      $q->whereRaw("(name like '%office%' or businesses.name like '%jiriko%' or businesses.keywords like '%office%'");	     
+		})->first();*/
+/* User::join('profiles', 'profiles.user_id', '=', 'users.id')
+ ->where('users.first_name', 'LIKE', "%$searchString%")
+ ->orWhere('users.last_name', 'LIKE', "%$searchString%")
+ ->first();*/
+
+
+	   dd($businesses->business->name);	
+
+	/*return View::make('test');*/
 
 });
 
+<<<<<<< HEAD
 Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');
 Route::post('/disapproveReviewAjax', 'ReviewsController@disapproveReviewAjax');
+=======
+
+Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');
+
+>>>>>>> 9a91c867db3eadcecc5e5a19b546877da35ac9c1
