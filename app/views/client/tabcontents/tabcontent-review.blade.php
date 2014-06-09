@@ -22,7 +22,7 @@
 													{{ html_entity_decode(stripcslashes($review->description)) }}
 												</div>
 											</div>
-											@if(isOwner($businessinfo->slug))
+											@if(isOwner($branch->business->slug))
 												@if($review->trashed())
 													<a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="approveReview($(this))" id="{{ $review->id.'-approve' }}" data-id="{{ $review->id }}" style="display:">Approve</a>
 													<a href="javascript:void(0)" class="bs-btn btn-danger btn-edit-category" onclick="disapproveReview($(this))" id="{{ $review->id.'-disapprove' }}" data-id="{{ $review->id }}" style="display:none;">Disapprove</a>											

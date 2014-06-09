@@ -79,7 +79,7 @@ Route::filter('subscribed', function()
 	{
 		$id = Auth::user()->user()->id;
 		if (is_null(Auth::user()->user()->subscription->first()))
-			return Redirect::to('buy');
+			return Redirect::back();
 	}
 
 });
