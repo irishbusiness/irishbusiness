@@ -104,7 +104,7 @@
     			<div class="header-left container-4">
 
     				<div class="logo block">
-    					<a href="#">
+    					<a href="{{ URL::to(Request::root()) }}">
     						<img class="header-logo-img" src="{{ URL::asset('/images/logo/header/'.$recentsettings->headerlogo) }}" alt="" />
 
     					</a>

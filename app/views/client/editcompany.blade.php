@@ -88,7 +88,8 @@
 		   	<div class="form-group">
 		   		<a href="javascript:void(0)" class="a-btn button-2-colorful plus-button show-hide" id="show_hide_branch_settings">- Hide Branch Settings</a>
 		   		 {{link_to_action('BusinessesController@setMap','Edit Map',
-	         	[$branch->business->slug, $branch->id],['class' => 'a-btn button-2-colorful plus-button'])}}
+	         		[$branch->business->slug, $branch->id],['class' => 'a-btn button-2-colorful plus-button',
+	         	 	"target"=>"_blank"])}}
 	        </div>
 	         <div class="thin-separator"></div>
 

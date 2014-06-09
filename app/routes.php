@@ -99,6 +99,7 @@ Route::get('business/add', 'BusinessesController@addBusiness');
 
 Route::get('business/{businessSlug}', 'BusinessesController@showBusiness');
 Route::post('ajaxSaveCoupon', 'BusinessesController@save_coupon');
+Route::post('ajaxDeleteCoupon', 'BusinessesController@delete_coupon');
 
 //post create business
 Route::post('settings', 'BusinessesController@store');

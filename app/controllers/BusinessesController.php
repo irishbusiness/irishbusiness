@@ -471,7 +471,7 @@ class BusinessesController extends \BaseController {
 			ImageTTFText ($handle, 9, 0, 275, 190, $brown, public_path()."/scripts/fonts/GOTHIC.TTF", $emailAddress);
 
 			//site url (exmple of how to center copy)
-			$fontSize = "12";
+			$fontSize = "10";
 			$width = "420";
 			$textWidth = $fontSize * strlen($siteUrl);
 			$position_center = $width / 2 - $textWidth / 2.6;
@@ -541,5 +541,15 @@ class BusinessesController extends \BaseController {
 		$coupon->save();
 
 		return Redirect::to("/company/".$business->slug."/".$branch_id."#company-tabs-coupon")->with("flash_message", "Your coupon has been added successfully.");
+	}
+
+	public function delete_coupon(){
+		if(Request::ajax()){
+			$coupon_id = Input::get("coupon");
+			$coupon = Coupon::find($coupon_id);
+			$coupon->delete();
+
+			return "Deleted";
+		}
 	}
 }

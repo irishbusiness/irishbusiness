@@ -51,11 +51,11 @@
 			                                    </li>
 			                                    <li>
 			                                        <label for="company-slogan">Text 2:</label>
-			                                        <input type="text" id="company-slogan" name="companySlogan" value="Save upto 70% off" class="text-input-grey three-fourth" />
+			                                        <input type="text" id="company-slogan" name="companySlogan" value="GREAT SAVINGS!" class="text-input-grey three-fourth" />
 			                                    </li>
 			                                    <li>
 			                                        <label for="business-address">Business address</label>
-			                                        <textarea id="business-address" name="businessAddress" class="text-input-grey three-fourth" >{{$branch->address}}</textarea>
+			                                        <textarea id="business-address" name="businessAddress" class="text-input-grey three-fourth" >{{str_toAddress($branch->address)}}</textarea>
 			                                    </li>
 			                                </ol>
 			                            </fieldset>
@@ -66,11 +66,11 @@
 			                                <ol>
 			                                    <li>
 			                                        <label for="full-name">Company name:</label>
-			                                        <input type="text" id="full-name" name="fullName" value="{{ html_entity_decode(stripcslashes($branch->business->name)) }}" class="text-input-grey three-fourth" />
+			                                        <input type="text" id="full-name" name="fullName" value="{{ decode($branch->business->name) }}" class="text-input-grey three-fourth" />
 			                                    </li>
 			                                    <li>
 			                                        <label for="job-title">Company description</label>
-			                                        <input type="text" id="job-title" name="jobTitle" value="{{ html_entity_decode(stripcslashes($branch->business->business_description)) }}" class="text-input-grey three-fourth" />
+			                                        <input type="text" id="job-title" name="jobTitle" value="{{ decode($branch->business->business_description) }}" class="text-input-grey three-fourth" />
 			                                    </li>
 			                                    <li>
 			                                        <label for="primary-phone">Primary phone</label>
@@ -86,7 +86,7 @@
 			                                    </li>
 			                                    <li>
 			                                        <label for="web-address">Web address</label>
-			                                        <input type="text" id="web-address" name="siteUrl" value="{{ Request::root().'/company/'.$branch->business->slug }}" class="text-input-grey three-fourth" />
+			                                        <input type="text" id="web-address" name="siteUrl" value="{{ Request::root().'/company/'.$branch->business->slug.'/'.$branch->id }}" class="text-input-grey three-fourth" />
 			                                    </li>
 			                                </ol>
 			                            </fieldset>
@@ -103,38 +103,45 @@
 			        </div>
 			    </div>
 		</div>
+		@if(count($coupons))
 		<div id="show-hide-coupon-lists-div">
 			<a href="javascript:void(0)" class="" id="show-hide-coupons-list">- Hide Coupons</a>
 		</div>
+		@endif
 		<div class="thin-separator"></div>
         @endif
 			<div id="coupons-list" class="">
             @foreach($coupons as $coupon)
 			
 				<!-- <div class="portfolio-container container-24"> -->
-					<img src="{{ URL::asset($coupon->name) }}" alt="coupon">
+					<div class="coupon-row">
+						@if(isOwner($branch->business->slug))
+						 	<a href="javascript:void(0)" data-id="{{ $coupon->id }}" class="delete-coupon">Delete this coupon</a>
+						@endif
+						<img src="{{ URL::asset($coupon->name) }}" alt="coupon">
 
-					<p>
-					  <a href="https://www.facebook.com/sharer/sharer.php?u={{ URL::asset($coupon->name) }}" class="share facebook">
-					    Share on Facebook
-					  </a>
-					</p>
-					<p>
-					  <a href="https://twitter.com/intent/tweet?url={{ URL::asset($coupon->name) }}&text=Deal+Voucher+Coupon&hashtags=Deal,Voucher,Coupon" class="share twitter">
-					    Share on Twitter
-					  </a>
-					</p>
-					<p>
-					  <a href="https://plus.google.com/share?url={{ URL::asset($coupon->name) }}" class="share google">
-					    Share on Google+
-					  </a>
-					</p>
-					<p>
-					  <a href="http://www.linkedin.com/shareArticle?mini=true&url={{ URL::asset($coupon->name) }}&source=IrishBusiness.ie&title=Deal+Voucher+Coupon" class="share linkedin">
-					    Share on LinkedIn
-					  </a>
-					</p>
-                     <div class="separator"></div>
+						<p>
+						  <a href="https://www.facebook.com/sharer/sharer.php?u={{ URL::asset($coupon->name) }}" class="share facebook">
+						    Share on Facebook
+						  </a>
+						</p>
+						<p>
+						  <a href="https://twitter.com/intent/tweet?url={{ URL::asset($coupon->name) }}" class="share twitter">
+						    Share on Twitter
+						  </a>
+						</p>
+						<p>
+						  <a href="https://plus.google.com/share?url={{ URL::asset($coupon->name) }}" class="share google">
+						    Share on Google+
+						  </a>
+						</p>
+						<p>
+						  <a href="http://www.linkedin.com/shareArticle?mini=true&url={{ URL::asset($coupon->name) }}&source=IrishBusiness.ie&title=Deal+Voucher+Coupon" class="share linkedin">
+						    Share on LinkedIn
+						  </a>
+						</p>
+						<div class="separator"></div>
+					</div>
 				<!-- </div> -->
 			   
             @endforeach
@@ -147,22 +154,44 @@
     </div>
          @section('scripts')
 	        <script>
+	        	$(document).on("click", ".delete-coupon", function(){
+	        		var id = $(this).attr("data-id");
+	        		var token = $("input[name='_token']").val();
+	        		var c = confirm("Are you sure to delete this coupon?");
+	        		if( c == true ){
+	        			$.ajax({
+	        				url: "/ajaxDeleteCoupon",       
+							type: "post",
+							data: { coupon: id, _token: token},
+							beforeSend: function(){
+								$(".delete-coupon[data-id='"+id+"']").text("Deleting...");
+							}
+	        			}).done(function(data){
+	        				$(".delete-coupon[data-id='"+id+"']").text(data);
+	        				$(".delete-coupon[data-id='"+id+"']").parent("div.coupon-row").fadeOut(function(){
+	        					$(".delete-coupon[data-id='"+id+"']").remove();
+	        				});
+	        			});
+	        		}
+	        	});
+
 	            $("#savecoupon").on("click", function(e){
 	                e.preventDefault();
 
 	                console.log($("#realtime-form").serialize());
 	                var token = $("input[name='_token']").val();
-
+	                $(this).text("Processing...");
 	                $.ajax({
 	                   type: "POST",
 	                   url: "/ajaxSaveCoupon?_token="+token+"&b={{ $branch->business->id }}"+"&br={{ $branch->id }}",
 	                   data: $("#realtime-form").serialize(), // serializes the form's elements.
 	                   success: function(data)
-	                   {
-	                       // console.log(data);
-	                       // window.location=data;
+	                   {	
+	                   		$("#savecoupon").text("Submit");
+	                      	location.reload();
 	                   }
 	                 });
+
 	            });
 
 	            $("#upload-own-coupon").click(function(e){

@@ -20,7 +20,7 @@
     					<div class="login">
     						<?php /*dd(Auth::salesperson()->user())*/ ?>
     						@if(Auth::user()->check())
-    						<a href="#" id="login-link" class="login-link">Switch to Sales</a>
+    						<a href="javascript:void(0)" id="login-link" class="login-link">Switch to Sales</a>
     						{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
     						{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
     						{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
@@ -104,7 +104,7 @@
     			<div class="header-left container-4">
 
     				<div class="logo block">
-    					<a href="#">
+    					<a href="{{ URL::to(Request::root()) }}">
     						<img class="header-logo-img" src="{{ URL::asset('/images/logo/header/'.$recentsettings->headerlogo) }}" alt="" />
 
     					</a>

@@ -4560,3 +4560,8 @@ td.detail {
 .paditup {
 	padding: 5px;
 }
+
+.delete-coupon {
+	position: absolute;
+	margin-top: -19px;
+}
