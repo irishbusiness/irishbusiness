@@ -58,7 +58,7 @@ class BusinessesController extends \BaseController {
 		foreach($addresses as $address)
 		{
 			$query1 .= '(';
-			$string = trim(preg_replace('/,/', '', $address));
+			$string = trim(preg_replace('/\*/', '', $address));
 			$query1 .= "branches.address like '%$string%' or branches.locations like '%$string%'"; 
 			$query1 .= ')and ';
 		}
@@ -124,7 +124,7 @@ class BusinessesController extends \BaseController {
 		}
 
 		$addresses = $business->address;
-		$addresses = explode(",", $addresses);
+		$addresses = explode("*", $addresses);
 
 		
 		// return View::make('searchpartial.settings')->with('title','Settings')
@@ -172,7 +172,7 @@ class BusinessesController extends \BaseController {
 		}
 
 		$addresses = $business->address;
-		$addresses = explode(",", $addresses);
+		$addresses = explode("*", $addresses);
 
 		
 		// return View::make('searchpartial.settings')->with('title','Settings')
@@ -297,7 +297,7 @@ class BusinessesController extends \BaseController {
 		}
 
 		$addresses = $branch->address;
-		$addresses = explode(",", $addresses);
+		$addresses = explode("*", $addresses);
 
 		return View::make("client.editcompany")
 			->with("businessinfo", $branch->business)

@@ -135,6 +135,9 @@
                             </li>
                             </ul>
                             </li>
+                            <li {{ (Request::is('buy*') ? ' class="first active"' : '') }}>
+                                <a href="{{ URL::to('/buy') }}">SUBSCRIBE</a>
+                            </li>
                             <li {{ (Request::is('/') ? ' class="first active"' : '') }}>
                                 <a href="{{ URL::to('/') }}">HOME</a>
                             </li>
@@ -144,10 +147,7 @@
                             <li {{ (Request::is('contact-us*') ? ' class="first active"' : '') }}>
                                 <a href="{{ URL::to('contact-us')}}">CONTACT US</a>
                             </li>
-                            <li {{ (Request::is('buy*') ? ' class="first active"' : '') }}>
-                                <a href="{{ URL::to('/buy') }}">SUBSCRIBE</a>
-                            </li>
-    					</ul>
+                        </ul>
     				</div>
     			</div>
     		</div>

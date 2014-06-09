@@ -91,7 +91,7 @@
                 ["class"=>"text-colorful"]) }}<br/>
 
                 {{ Form::text('facebook', (isset($branch->facebook) ? $branch->facebook : ''), [
-                "placeholder" => "Facebook Link", "class"=>"text-input-grey full", 'required']) }}
+                "placeholder" => "Facebook Link", "class"=>"text-input-grey full"]) }}
 
                 {{$errors->first('facebook','<span class="alert alert-error block half">:message</span>')}}
             </div>
@@ -100,7 +100,7 @@
                 ["class"=>"text-colorful"]) }}<br/>
 
                 {{ Form::text('twitter', (isset($branch->twitter) ? $branch->twitter : ''), [
-                "placeholder" => "Twitter Link", "class"=>"text-input-grey full", 'required']) }}
+                "placeholder" => "Twitter Link", "class"=>"text-input-grey full"]) }}
 
                 {{$errors->first('twitter','<span class="alert alert-error block half">:message</span>')}}
             </div>
@@ -109,7 +109,7 @@
                 ["class"=>"text-colorful"]) }}<br/>
 
                 {{ Form::text('google', (isset($branch->google) ? $branch->google : ''), [
-                "placeholder" => "Google Link", "class"=>"text-input-grey full", 'required']) }}
+                "placeholder" => "Google Link", "class"=>"text-input-grey full"]) }}
 
                 {{$errors->first('google','<span class="alert alert-error block half">:message</span>')}}
             </div>

@@ -24,7 +24,7 @@
 										Full Address
 									</td>
 									<td class="detail">
-										{{ $businessinfo->address }}
+										{{ showAddress($businessinfo->address) }}
 									</td>
 								</tr>
 								<tr class="detail">

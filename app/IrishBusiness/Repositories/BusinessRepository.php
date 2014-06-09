@@ -70,11 +70,11 @@ class BusinessRepository {
 
         $address = $input['address1'] ;
         if(trim($input['address2'])!='')
-        $address .= ',' . $input['address2'];
+        $address .= '*' . $input['address2'];
         if(trim($input['address3'])!='')
-        $address .= ',' . $input['address3'];
+        $address .= '*' . $input['address3'];
         if(trim($input['address4'])!='')
-        $address .= ',' . $input['address4'];
+        $address .= '*' . $input['address4'];
         
 
         $business = $branch->business;
@@ -135,7 +135,7 @@ class BusinessRepository {
     {
         $business = Business::whereSlug($slug)->first();
 
-        $address = $input['address1'] . ',' . $input['address2'] . ',' . $input['address3']  . ',' .$input['address4'];
+        $address = $input['address1'] . '*' . $input['address2'] . '*' . $input['address3']  . '*' .$input['address4'];
         
         $branch = new Branch;
         $branch->address = $address;

@@ -1923,7 +1923,7 @@ ul.event-tabs-content {
 
 		.company-listing .listing-body .listing-title {
 			font-family: "Patua One";
-			line-height: 50px;
+			/*line-height: 50px;*/
 			font-size: 1.28571em;
 		}
 

@@ -133,3 +133,12 @@ function countBranches()
             return $count;
     }
 }
+
+function showAddress($address){
+        $addresses = explode( '*', $address);
+        return $addresses[0].' '.$addresses[1];
+}
+
+function decode($string){
+    return stripcslashes(stripcslashes(html_entity_decode($string)));
+}

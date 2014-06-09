@@ -21,7 +21,7 @@
 								<tr class="detail">
 									<td class="detail-label"> Name </td>
 									<td class="detail">
-										{{ html_entity_decode(stripcslashes($branch->business->name)) }}
+										{{ decode($branch->business->name) }}
 									</td>
 								</tr>
 								<tr class="detail">
@@ -29,7 +29,7 @@
 										Full Address
 									</td>
 									<td class="detail">
-										{{ $branch->address }}
+										{{ showAddress($branch->address) }}
 									</td>
 								</tr>
 								<tr class="detail">
@@ -91,7 +91,7 @@
 
 				<div class="company-content-container container-16 margin-18">
 					<div class="company-tabs-single-company block">
-						<h1>{{ html_entity_decode(stripcslashes($branch->business->name)) }}</h1>
+						<h1>{{ decode($branch->business->name) }}</h1>
 						<div class="company-info clearfix">
 							<div class="company-info-social">
 								<div class="compnay-photo">
@@ -217,7 +217,11 @@
 									{{ Form::input("hidden", "rating", "", ["id"=>"fi-rating"]) }}
 									{{ Form::close() }}
 									@else
-										<a href="javascript:void(0)" class="a-btn button-2-colorful" id="linkReview">View Reviews</a>
+										@if(count($reviews)>0)
+											<a href="javascript:void(0)" class="a-btn button-2-colorful" id="linkReview">View Reviews</a>
+										@else
+											<h3>No Reviews</h3>
+										@endif
 									@endif
 									<div class="clearfix">
 									</div>

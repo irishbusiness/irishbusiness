@@ -93,21 +93,21 @@
                 {{ Form::label('facebook', "Facebook Link",
                 ["class"=>"text-colorful"]) }}<br/>
                 {{ Form::text('facebook', '', [
-                "placeholder" => "Facebook Link", "class"=>"text-input-grey full", 'required']) }}
+                "placeholder" => "Facebook Link", "class"=>"text-input-grey full"]) }}
                 {{$errors->first('facebook','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
                 {{ Form::label('twitter', "Twitter Link",
                 ["class"=>"text-colorful"]) }}<br/>
                 {{ Form::text('twitter', '', [
-                "placeholder" => "Twitter Link", "class"=>"text-input-grey full", 'required']) }}
+                "placeholder" => "Twitter Link", "class"=>"text-input-grey full"]) }}
                 {{$errors->first('twitter','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
                 {{ Form::label('google', "Google Link",
                 ["class"=>"text-colorful"]) }}<br/>
                 {{ Form::text('google', '', [
-                "placeholder" => "Google Link", "class"=>"text-input-grey full", 'required']) }}
+                "placeholder" => "Google Link", "class"=>"text-input-grey full"]) }}
                 {{$errors->first('google','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group align-right">

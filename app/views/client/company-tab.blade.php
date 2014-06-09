@@ -1,7 +1,7 @@
 @extends("client.layouts.default")
 
 @section('actual-body-content')
-  <title>{{ $title }}</title>
+  <title>{{ decode($title) }}</title>
 					<div class="company-tabs-wrapper">
                         <div class="zone-company-tabs zone clearfix">
                             <div class="company-tabs-container container-24">

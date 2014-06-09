@@ -17,7 +17,7 @@
 		    <div id="update-business-settings" class="invisible">  
 		        <div class="form-group">
 		            {{ Form::label('name', 'Business Name', ["class"=>"text-colorful"]) }}<br/>
-		            {{ Form::text('name', html_entity_decode(stripcslashes($businessinfo->name)), [
+		            {{ Form::text('name', decode($businessinfo->name), [
 		            	"placeholder" => "your business", "class"=>"text-input-grey full", 'required']) }}
 		            {{$errors->first('name','<span class="alert alert-error block half">:message</span>')}}
 		        </div>

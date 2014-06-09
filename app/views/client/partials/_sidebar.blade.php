@@ -5,14 +5,17 @@
 								<h3>Recently Added</h3>
 							</div>
 							<ul class="entries-list">
+							
 								@foreach($recentlyaddedcompany as $recentcompany)
-									<li class="clearfix">
-										<a href="{{ URL::to('/company/'.$recentcompany->slug.'/'.$recentcompany->branches->first()->id) }}" class="thumbnail">
-											<img src="{{ URL::asset($recentcompany->logo) }}" alt="" />
-										</a>
-										<a href="{{ URL::to('/company/'.$recentcompany->slug.'/'.$recentcompany->branches->first()->id) }}" class="entry-title">{{ html_entity_decode(stripcslashes($recentcompany->name)) }}</a>
-										<div class="entry-excerpt">{{ Str::limit(html_entity_decode(stripcslashes($recentcompany->business_description)), 50) }}</div>
-									</li>	
+									@if(!empty($recentcompany->branches->first()->id))
+										<li class="clearfix">
+											<a href="{{ URL::to('/company/'.$recentcompany->slug.'/'.$recentcompany->branches->first()->id) }}" class="thumbnail">
+												<img src="{{ URL::asset($recentcompany->logo) }}" alt="" />
+											</a>
+											<a href="{{ URL::to('/company/'.$recentcompany->slug.'/'.$recentcompany->branches->first()->id) }}" class="entry-title">{{ html_entity_decode(stripcslashes($recentcompany->name)) }}</a>
+											<div class="entry-excerpt">{{ Str::limit(html_entity_decode(stripcslashes($recentcompany->business_description)), 50) }}</div>
+										</li>
+									@endif	
 								@endforeach
 							</ul>
 							<!-- <div class="two-images-banner clearfix">
