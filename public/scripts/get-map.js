@@ -21,10 +21,12 @@ function initialize() {
   {
      codeAddress();
   }
+  
   var mapOptions = {
     zoom: 15,
     center: new google.maps.LatLng(lat,lng)
   };
+  
   map = new google.maps.Map(document.getElementById('map-canvas'),
     mapOptions);
     marker = new google.maps.Marker({
@@ -33,11 +35,7 @@ function initialize() {
     position: {lat:lat, lng:lng}
   });
 
-  if(origlatlng=='')
-  {
-    console.log('hhahaha');
-     
-  }
+  
   google.maps.event.addListener(marker, 'drag', function() {
     console.log('Dragging...');
     

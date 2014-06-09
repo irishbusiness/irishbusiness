@@ -63,7 +63,6 @@
     if(origlatlng!='')
     {
       origlatlng = origlatlng.replace(/[()]/g, '');
-      console.log(origlatlng);
       origlatlng = origlatlng.split(",");
       lat = parseFloat(origlatlng[0].trim());
       lng = parseFloat(origlatlng[1].trim());
@@ -87,8 +86,6 @@
     });
 
   }
-
-
   google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 @include('client.tabcontents.tabcontent-scripts')
