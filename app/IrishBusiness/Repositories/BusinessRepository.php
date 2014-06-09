@@ -154,6 +154,7 @@ class BusinessRepository {
         $branch->google  =   $input['google'];
         $branch->linkedin  =   $input['linkedin'];
         
+        $branch->branchslug = $slug."-".str_replace(" ", "-", $input['address1'].'-'.$input['address2'])."-".substr(md5(uniqid(rand(1,6))), 0, 5);
         $business->branches()->save($branch);
 
         return $branch->id;
