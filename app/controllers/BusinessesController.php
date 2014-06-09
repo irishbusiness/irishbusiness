@@ -426,7 +426,7 @@ class BusinessesController extends \BaseController {
 			return Redirect::to('/');
 		}
 
-		if(!$this->business->isOwner(Input::get('slug')))
+		if(!$this->business->isOwnder(Input::get('slug')))
 			return Response::make('pagenotfound');
 
 		$this->business->storeMap(Input::get('latlng'),Input::get('branch_id'));
