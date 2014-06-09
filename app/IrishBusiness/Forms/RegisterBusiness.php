@@ -14,7 +14,7 @@ class RegisterBusiness extends Form {
 		'profile_description' => 'required',
 		/*'mon_fri' => 'required',
 		'sat' => 'required',*/
-		'slug' => 'required|unique:businesses'		
+		// 'slug' => 'required|unique:businesses'		
 
 	];
 } 

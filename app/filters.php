@@ -90,14 +90,18 @@ Route::filter('hasBusiness', function(){
 		if(Auth::user()->check())
 		{
 			$business = Auth::user()->user()->business;
-			if (!is_null($branch = $business->branches->first()))
-				return Redirect::to('company/'.$business->slug .'/' . $branch->id);
 			if(!is_null($business))
-				return Redirect::to('business/' . $business->slug . '/branch/add');
+				{
+					if (!is_null($branch = $business->branches->first()))
+						return Redirect::to('company/'.$business->slug .'/' . $branch->id);
+					return Redirect::to('business/' . $business->slug . '/branch/add');
+				}
+		
 		}
-
-		return Redirect::to('/');
-	
+		else
+		{
+			return Redirect::to('/');
+		}
 		
 });
 

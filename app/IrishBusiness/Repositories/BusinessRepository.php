@@ -33,7 +33,7 @@ class BusinessRepository {
 
         if($input['slug'] == null){
             $name = stripcslashes(strtolower($input['name']));
-            $business->slug = preg_replace("/[\s_]/", "-", $name);
+            $business->slug = preg_replace("/[\s_]/", "-", $name).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
         } else {
             $business->slug = strtolower($input['slug']);
         }

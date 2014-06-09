@@ -18,10 +18,11 @@
                                     @if(isset($reviews) && !is_null($reviews))
                                         @if(count($reviews))
                                         <li class="">
-                                            <a class="company-tabs-review" href="#">REVIEWS</a>
+                                            <a class="company-tabs-review" href="javascript:void(0)">REVIEWS</a>
                                         </li>
                                         @endif
                                     @endif
+                                    <li class="company-tabs-branch"><a href="javascript:void(0)">BRANCH</a></li>
                                 </ul>
                             </div>
                             <!-- end of .company-tabs-container -->
@@ -42,6 +43,9 @@
 
                 <!-- reviews tab -->
                 @include('client.tabcontents.tabcontent-review')
+
+                <!-- branch tab -->
+                @include('client.tabcontents.tabcontent-branch')
 
               </div>
 							<!-- end of .company-inner-container -->
