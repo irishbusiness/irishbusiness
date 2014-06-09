@@ -11,7 +11,7 @@
 		<?php
 		$x=0; 
 		if(!isset($rating)){
-			$rating = array("");
+			$rating = array(0);
 		}
 		?>
 		@foreach($business->branches as $branch)
