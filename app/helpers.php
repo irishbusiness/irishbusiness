@@ -142,3 +142,24 @@ function showAddress($address){
 function decode($string){
     return stripcslashes(stripcslashes(html_entity_decode($string)));
 }
+
+function subscribed(){
+    if(Auth::user()->check())
+    {
+        if(Auth::user()->user()->access_level == 3)
+            return true;
+
+        $id = Auth::user()->user()->id;
+        if (is_null(Auth::user()->user()->subscription->first()))
+            return false;
+
+        return true;
+    }
+}
+
+// function isAdmin(){
+//     if(Auth::user()->check())
+//     {
+//         if(Auth::user()->user()->access_level == 3);
+//     }
+// }

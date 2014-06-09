@@ -32,6 +32,12 @@ class SessionsController extends \BaseController {
 				{	
 						if($this->user->authenticate(Input::all()))
 						{	
+
+							if(Auth::user()->user()->access_level == 3)
+							{
+								return Redirect::to('admin/settings/general');
+							}
+
 							Auth::salesperson()->logout();
 							if(hasBusiness()&&countBranches()>0)
 								return Redirect::to('company/'.businessSlug().'/'.branch())->with('title','IrishBusiness.ie | Settings');

@@ -1,4 +1,4 @@
-@extends('client.layouts.default')
+@extends('admin.layouts.default')
 
 	@section('actual-body-content')
 		<div class="blog-post block">

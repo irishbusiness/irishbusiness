@@ -55,7 +55,7 @@
             {{ Form::label('slug', "Business URL (".Request::root()."/company/your-business-name)",
             ["class"=>"text-colorful"]) }}<br/>
             {{ Form::text('slug','', [
-            "placeholder" => "your-business-name", "class"=>"text-input-grey full"]) }}
+            "placeholder" => "(Skip this part, if this is foreign to you)", "class"=>"text-input-grey full"]) }}
             {{$errors->first('slug','<span class="alert alert-error block half">:message</span>')}}
         </div>
         <div class="thin-separator"></div>
