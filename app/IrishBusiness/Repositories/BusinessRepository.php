@@ -31,8 +31,12 @@ class BusinessRepository {
         $business->user_id = Auth::user()->user()->id;
         // $business->user_id = 1;
 
-
-        $business->slug = $input['slug'];
+        if($input['slug'] == null){
+            $name = stripcslashes(strtolower($input['name']));
+            $business->slug = preg_replace("/[\s_]/", "-", $name);
+        } else {
+            $business->slug = strtolower($input['slug']);
+        }
 
         // logo
         if( !is_null($input['logo']))
