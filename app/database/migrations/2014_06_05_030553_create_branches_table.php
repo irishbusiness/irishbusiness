@@ -26,7 +26,7 @@ class CreateBranchesTable extends Migration {
 			$table->string('twitter');
 			$table->string('google');
 			$table->string('linkedin');
-			$table->string('latlng');
+			$table->string('latlng')->default('(53.270559,-9.056668)');
 			$table->string('branchslug')->unique();
 			$table->integer('business_id')->unsigned()->index();
 			$table->foreign('business_id')->references('id')->on('businesses')->onUpdate('cascade')->onDelete('cascade');

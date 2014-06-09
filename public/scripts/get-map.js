@@ -2,11 +2,14 @@ var geocoder;
 var map;
 var infowindow = new google.maps.InfoWindow();
 var marker;
-var lat;
-var lng;
+var lat = 53.270559 ;
+var lng = -9.056668;
 function initialize() {
+  
+  geocoder = new google.maps.Geocoder();
+
   var origlatlng =  $('#origlatlng').val();
-  if(origlatlng!='')
+  if(origlatlng!=''&&origlatlng!='(53.270559,-9.056668)')
   {
     origlatlng = origlatlng.replace(/[()]/g, '');
     console.log(origlatlng);
@@ -16,15 +19,14 @@ function initialize() {
   }
   else
   {
-    lat = 53.270559;
-    lng = -9.056668;
+     codeAddress();
   }
-
-  geocoder = new google.maps.Geocoder();
+  
   var mapOptions = {
     zoom: 15,
     center: new google.maps.LatLng(lat,lng)
   };
+  
   map = new google.maps.Map(document.getElementById('map-canvas'),
     mapOptions);
     marker = new google.maps.Marker({
@@ -33,11 +35,7 @@ function initialize() {
     position: {lat:lat, lng:lng}
   });
 
-  if(origlatlng=='')
-  {
-    console.log('hhahaha');
-      codeAddress();
-  }
+  
   google.maps.event.addListener(marker, 'drag', function() {
     console.log('Dragging...');
     
