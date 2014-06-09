@@ -5,6 +5,7 @@
 @stop
 
 @section('actual-body-content')
+<div class="content-container container-16">
     <div class="content-wrapper">
         <div class="zone-content equalize zone clearfix">
             <div class="content-container container-16">
@@ -13,4 +14,8 @@
             </div><!-- end of .content-container -->
         </div><!-- end of .zone-content -->
     </div><!-- end of .content-wrapper -->
+@stop
+
+@section('sidebar')
+	@include('client.partials._sidebar')
 @stop

@@ -86,10 +86,10 @@
 									</ul>
 								</li>
 								<li class="">
-									<a href="{{ URL::to('admin_change_password') }}">CHANGE PASSWORD</a>
+									<a href="{{ URL::to('client/password/edit') }}">CHANGE PASSWORD</a>
 								</li>
 								<li class="neighbour-right">
-									<a href="{{ URL::to('admin_logout') }}">LOGOUT</a>
+									<a href="{{ URL::to('clear') }}">LOGOUT</a>
 								</li>
 								<li class="empty">
 									<div></div>

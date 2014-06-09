@@ -146,6 +146,9 @@ function decode($string){
 function subscribed(){
     if(Auth::user()->check())
     {
+        if(Auth::user()->user()->access_level == 3)
+            return true;
+
         $id = Auth::user()->user()->id;
         if (is_null(Auth::user()->user()->subscription->first()))
             return false;
@@ -153,7 +156,11 @@ function subscribed(){
         return true;
     }
 }
+
 function str_toAddress($string){
     $string = str_replace("*", "\n", $string);
     return $string;
 }
+
+
+
