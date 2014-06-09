@@ -4,7 +4,11 @@ jQuery(document).ready(function(){
 	/***
 	Adding Google Map.
 	***/
-
+	var data;
+	$.getJSON('test.php', function(data) {
+             this.data = data;
+             console.log(data);
+    }); 
 	/* Calling goMap() function, initializing map and adding markers. */
 	jQuery('#map').goMap({
 		maptype: 'ROADMAP',
@@ -13,7 +17,10 @@ jQuery(document).ready(function(){
         zoom: 13,
         scaleControl: true,
         scrollwheel: false,
-		markers: [
+		markers:data
+			
+
+		/*[
 			{latitude: 40.739323, longitude: -73.993807, group: 'airport', icon: 'images/marker-airport.png', html: {
 				content: 'Lorem ipsum dolor sit amet.<br /><a href="company-page.html">Read More</a>'
 			}},
@@ -74,7 +81,7 @@ jQuery(document).ready(function(){
 			{latitude: 40.714216, longitude: -73.948317, group: 'libraries', icon: 'images/marker-libraries.png', html: {
 				content: 'Lorem ipsum dolor sit amet.<br /><a href="company-page.html">Read More</a>'
 			}}
-		]
+		]*/
 	});
 
 	/* Hiding all the markers on the map. */

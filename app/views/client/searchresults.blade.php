@@ -2,6 +2,7 @@
 
 @section('actual-body-content')
 	<div class="content-wrapper">
+		
 				<div class="zone-content equalize zone clearfix">
 
 					<div class="content-container container-16">
