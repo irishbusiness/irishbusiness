@@ -39,7 +39,9 @@
 							
                 <!-- coupon tab -->
                 @include('client.tabcontents.tabcontent-coupon')
-                  
+
+                <!-- reviews tab -->
+                @include('client.tabcontents.tabcontent-review')
 
               </div>
 							<!-- end of .company-inner-container -->
