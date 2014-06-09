@@ -261,13 +261,23 @@ class BusinessesController extends \BaseController {
 		$blogs = $branch->business->blogs()->orderBy('created_at', 'desc')->get();
 		$coupons = $branch->business->coupons()->orderBy('created_at', 'desc')->get();
 
+		$rating = array();
+
+		$branches = $business->branches;
+		// dd($branches);
+
+		foreach ($branches as $branch) {
+			array_push($rating, Review::where('business_id', '=', $branch->business->id)->avg('rating'));
+		}
+
 		return View::make('client.company-tab')
 			->with('branch', $branch)
 			->with('business', $business)
 			->with('blogs', $blogs)
 			->with('reviews', $reviews)
 			->with('title', html_entity_decode(stripcslashes($branch->business->name)))
-			->with('coupons', $coupons);
+			->with('coupons', $coupons)
+			->with('rating', $rating);
 	}
 
 	public function editcompany($slug, $branchId){
@@ -416,12 +426,15 @@ class BusinessesController extends \BaseController {
 			return Redirect::to('/');
 		}
 
-		if(!$this->business->isOwnder(Input::get('slug')))
+		if(!$this->business->isOwner(Input::get('slug')))
 			return Response::make('pagenotfound');
 
 		$this->business->storeMap(Input::get('latlng'),Input::get('branch_id'));
 
-		return Redirect::to('company/'.Input::get('slug').'/'.Input::get('branch_id'))->with('flash_message','Congratulations! You have completed your profile.');	
+
+
+		return Redirect::to('company/'.Input::get('slug').'/'.Input::get('branch_id'))
+			->with('flash_message','Congratulations! You have completed your profile.');	
 	}
 
 	public function save_coupon(){
