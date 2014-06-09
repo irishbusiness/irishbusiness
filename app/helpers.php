@@ -142,3 +142,14 @@ function showAddress($address){
 function decode($string){
     return stripcslashes(stripcslashes(html_entity_decode($string)));
 }
+
+function subscribed(){
+    if(Auth::user()->check())
+    {
+        $id = Auth::user()->user()->id;
+        if (is_null(Auth::user()->user()->subscription->first()))
+            return false;
+
+        return true;
+    }
+}

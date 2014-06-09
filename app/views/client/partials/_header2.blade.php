@@ -135,9 +135,11 @@
                             </li>
                             </ul>
                             </li>
+                            @if(!subscribed())
                             <li {{ (Request::is('buy*') ? ' class="first active"' : '') }}>
                                 <a href="{{ URL::to('/buy') }}">SUBSCRIBE</a>
                             </li>
+                            @endif
                             <li {{ (Request::is('/') ? ' class="first active"' : '') }}>
                                 <a href="{{ URL::to('/') }}">HOME</a>
                             </li>
