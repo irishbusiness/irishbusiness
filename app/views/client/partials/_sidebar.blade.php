@@ -43,11 +43,11 @@
 								</li>
 							@endforeach
 							</ul>
-							<!-- <div class="one-image-banner">
+							<div class="one-image-banner">
 								<a href="#">
-									<img src="{{ URL::asset('images/content/handshake.png') }}" alt="" />
+									<img src="{{ URL::asset('images/sidebar_banner.png') }}" alt="" />
 								</a>
-							</div> -->
+							</div>
 						</div>
 
 					</div><!-- end of .sidebar-container -->

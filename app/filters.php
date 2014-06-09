@@ -19,8 +19,8 @@ View::share('title', 'The Irish Business Directory');
 $recentsettings = MainSetting::orderBy('created_at', 'desc')->first();
 $header_categories = Category::orderBy('name', 'asc')->get();
 
-$recentlyaddedcompany = Business::orderBy('created_at', 'desc')->limit(3)->get();
-$recentlyaddedblog	=	Blog::orderBy('created_at', 'desc')->limit(3)->get();
+$recentlyaddedcompany = Business::orderBy('created_at', 'desc')->limit(5)->get();
+$recentlyaddedblog	=	Blog::orderBy('created_at', 'desc')->limit(5)->get();
 $socialmedia = SocialMedia::first();
 
 View::share('recentsettings', $recentsettings);
