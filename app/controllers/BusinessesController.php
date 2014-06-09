@@ -547,6 +547,7 @@ class BusinessesController extends \BaseController {
 		if(Request::ajax()){
 			$coupon_id = Input::get("coupon");
 			$coupon = Coupon::find($coupon_id);
+			unlink(public_path()."/".$coupon->name);
 			$coupon->delete();
 
 			return "Deleted";
