@@ -119,20 +119,34 @@
     						<li class="empty neighbour-left">
     							<div></div>
     						</li>
+                            <li {{ (Request::is('/') ? ' class="first active"' : '') }}>
+                                <a href="{{ URL::to('/') }}">HOME</a>
+                            </li>
+                            <li {{ (Request::is('blog*') ? ' class="first active"' : '') }}>
+                                <a href="{{ URL::to('blog') }}">BLOG</a>
+                            </li>
+                            <li {{ (Request::is('contact-us*') ? ' class="first active"' : '') }}>
+                                <a href="{{ URL::to('contact-us')}}">CONTACT US</a>
+                            </li>
+                            <li {{ (Request::is('buy*') ? ' class="first active"' : '') }}>
+                                <a href="{{ URL::to('/buy') }}">SUBSCRIBE</a>
+                            </li>
+                            <li>
+                                <a href="#">{{ strtoupper(Auth::user()->user()->firstname) }} &#x25BC</a>
+                            <ul>
                             @if(hasBusiness())
-    						<li {{ (Request::is('company/'.businessSlug().'/'.branch()) ? ' class="first active"' : '') }}>
+    						<li class="">
     							<a href="{{ URL::to('company/'.businessSlug().'/'.branch()) }}">SETTINGS</a>
     						</li>
                             @endif
-    						<li {{ (Request::is('/client/password/edit/*') ? ' class="first active"' : '') }}>
+    						<li class="">
     							<a href="{{ URL::to('client/password/edit') }}">CHANGE PASSWORD</a>
     						</li>
     						<li>
                                 <a href="{{ URL::to('clear') }}">LOGOUT</a>
     						</li>
-    						<li class="empty">
-    							<div></div>
-    						</li>
+                            </ul>
+                            </li>
     					</ul>
     				</div>
     			</div>
