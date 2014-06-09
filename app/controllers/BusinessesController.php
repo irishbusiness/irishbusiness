@@ -430,8 +430,10 @@ class BusinessesController extends \BaseController {
 			$fullName = Input::get("fullName");
 			$jobTitle = Input::get("jobTitle");
 			$businessAddress = Input::get("businessAddress");
-			$businessAddress = str_replace("\\n","\n",$businessAddress);
-			$businessAddress = str_replace("\\","",$businessAddress);
+			// $businessAddress = str_replace("\\n","\n",$businessAddress);
+			// $businessAddress = str_replace("\\","",$businessAddress);
+			// $businessAddress = str_replace("\\r", "\r", $businessAddress);
+			$businessAddress = decode($businessAddress);
 			$phoneOne = Input::get("phoneOne");
 			$phoneTwo = Input::get("phoneTwo");
 			$emailAddress = Input::get("emailAddress");
@@ -547,6 +549,7 @@ class BusinessesController extends \BaseController {
 		if(Request::ajax()){
 			$coupon_id = Input::get("coupon");
 			$coupon = Coupon::find($coupon_id);
+			unlink(public_path()."/".$coupon->name);
 			$coupon->delete();
 
 			return "Deleted";
