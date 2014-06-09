@@ -34,6 +34,10 @@
                                     </div>
                                 </div>
                                 <div class="blog-post-links">
+								@if(isOwner($blog->business->slug))
+									<a href="{{ URL::to('blog/'.$blog->id.'/delete') }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="read-more-link">Remove Blog</a>
+									<a href="{{ URL::to('blog/'.$blog->slug.'/edit') }}" class="read-more-link">Edit Blog</a>
+								@endif
 									<a href="{{ URL::to('blog/'.$blog->slug) }}" class="read-more-link">Read More</a>
 								</div>
 							</div>
