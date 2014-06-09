@@ -119,6 +119,22 @@
     						<li class="empty neighbour-left">
     							<div></div>
     						</li>
+                            <li>
+                                <a href="javascript:void(0)">{{ strtoupper(Auth::user()->user()->firstname) }} &#x25BC</a>
+                            <ul>
+                            @if(hasBusiness())
+                            <li class="">
+                                <a href="{{ URL::to('company/'.businessSlug().'/'.branch()) }}">SETTINGS</a>
+                            </li>
+                            @endif
+                            <li class="">
+                                <a href="{{ URL::to('client/password/edit') }}">CHANGE PASSWORD</a>
+                            </li>
+                            <li>
+                                <a href="{{ URL::to('clear') }}">LOGOUT</a>
+                            </li>
+                            </ul>
+                            </li>
                             <li {{ (Request::is('/') ? ' class="first active"' : '') }}>
                                 <a href="{{ URL::to('/') }}">HOME</a>
                             </li>
@@ -130,22 +146,6 @@
                             </li>
                             <li {{ (Request::is('buy*') ? ' class="first active"' : '') }}>
                                 <a href="{{ URL::to('/buy') }}">SUBSCRIBE</a>
-                            </li>
-                            <li>
-                                <a href="#">{{ strtoupper(Auth::user()->user()->firstname) }} &#x25BC</a>
-                            <ul>
-                            @if(hasBusiness())
-    						<li class="">
-    							<a href="{{ URL::to('company/'.businessSlug().'/'.branch()) }}">SETTINGS</a>
-    						</li>
-                            @endif
-    						<li class="">
-    							<a href="{{ URL::to('client/password/edit') }}">CHANGE PASSWORD</a>
-    						</li>
-    						<li>
-                                <a href="{{ URL::to('clear') }}">LOGOUT</a>
-    						</li>
-                            </ul>
                             </li>
     					</ul>
     				</div>
