@@ -10,7 +10,8 @@
 		"ollieread/multiauth": "dev-master",
 		"guzzlehttp/guzzle": "~4.0",
 		"stripe/stripe-php": "1.15.0",
-		"intervention/image": "2.*"
+		"intervention/image": "2.*",
+		"pda/pheanstalk": "2.1.*"
 	},
 	"require-dev": {
     "way/generators": "2.*"
