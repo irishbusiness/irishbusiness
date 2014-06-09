@@ -4,8 +4,10 @@ class ReviewsController extends \BaseController {
 
 	public function store($id)
 	{	
+		$branchId = Input::get("br");
 		$user_id = Auth::user()->user()->id;
 		$businessinfo = Business::find($id);
+
 		$rating = Input::get("rating");
 		$description = Input::get("rating-description");
 		$name = Input::get("rating-name");
@@ -18,7 +20,9 @@ class ReviewsController extends \BaseController {
 		$review->user_id = $user_id;
 
 		if($review->save()){
-			return Redirect::to("/company/".$businessinfo->slug."/#company-tabs-review")->with('message', "Your review has been submitted.");
+			return Redirect::to("/company/".$businessinfo->slug."/".$branchId."#company-tabs-review")
+				->with('flash_message', "Your review has been submitted.")
+				->withTitle($businessinfo->name);
 		}
 	}
 

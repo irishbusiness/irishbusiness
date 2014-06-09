@@ -18,7 +18,12 @@
 								</div>
 							</div> -->
 
-							<?php $x=0; ?>
+							<?php
+								$x=0; 
+								if(!isset($rating)){
+									$rating = array("");
+								}
+							?>
 							@foreach($branches as $branch)
 							<div class="company-listing clearfix">
 								<a href="#" class="listing-image">
