@@ -256,7 +256,7 @@ class BusinessesController extends \BaseController {
 			return Response::view('pagenotfound');
 		}
 		
-		$reviews = $branch->business->reviews()->orderBy('created_at', 'desc')->get();
+		$reviews = $branch->business->reviews()->withTrashed()->orderBy('created_at', 'desc')->get();
 		$blogs = $branch->business->blogs()->orderBy('created_at', 'desc')->get();
 		$coupons = $branch->business->coupons()->orderBy('created_at', 'desc')->get();
 
