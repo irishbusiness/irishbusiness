@@ -20,7 +20,7 @@
 				<img src="{{ URL::asset($branch->business->logo) }}" alt="" />
 			</a>
 			<div class="listing-body">
-				<div class="listing-rating">
+				<div class="listing-rating top-14">
 					<div class="rating-stars {{ (round($rating[$x]) > 0 ? 'rated' : '') }}">
 						<div class="star star-1 {{ (round($rating[$x]) == 1 ? 'current' : '') }}"></div>
 						<div class="star star-2 {{ (round($rating[$x]) == 2 ? 'current' : '') }}"></div>
@@ -31,7 +31,7 @@
 				</div>
 				<div class="listing-title">
 					{{ HTML::link('company/'. $branch->business->slug . '/' . $branch->id, decode($branch->business->name).' - '.showAddress($branch->address) ) }}</div>
-					<div class="listing-text">{{ $branch->business->business_description }}</div>
+					<div class="listing-text">{{ Str::limit(decode($branch->business->business_description), 255) }}</div>
 					{{HTML::link('company/'. $branch->business->slug .'/'.$branch->id, 'Read More',['class' => 'listing-read-more' ] ) }}
 				</div>
 			</div>

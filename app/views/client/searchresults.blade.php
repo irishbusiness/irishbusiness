@@ -43,7 +43,7 @@
 									</div>
 									<div class="listing-title">
 										{{ HTML::link('company/'. $branch->business->slug . isEmpty($category) .  isEmpty($location) . '/' . $branch->id, decode($branch->business->name).' - '.showAddress($branch->address) ) }}</div>
-										<div class="listing-text">{{ decode($branch->business->business_description) }}</div>
+										<div class="listing-text">{{ Str::limit(decode($branch->business->business_description), 255) }}</div>
 										{{HTML::link('company/'. $branch->business->slug . isEmpty($category) .  isEmpty($location), 'Read More',['class' => 'listing-read-more' ] ) }}
 								</div>
 							</div>
