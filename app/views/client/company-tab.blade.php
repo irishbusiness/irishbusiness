@@ -9,12 +9,16 @@
                                     <li class="active">
                                         <a class="company-tabs-page" href="#">BUSINESS</a>
                                     </li>
-                                    <li class="">
-                                        <a class="company-tabs-blog" href="#">BLOG</a>
-                                    </li>
-                                    <li class="">
-                                        <a class="company-tabs-coupon" href="#">COUPON</a>
-                                    </li>
+                                    @if(count($blogs) || isOwner($branch->business->slug))
+                                      <li class="">
+                                          <a class="company-tabs-blog" href="#">BLOG</a>
+                                      </li>
+                                    @endif
+                                    @if(count($coupons) || isOwner($branch->business->slug))
+                                      <li class="">
+                                          <a class="company-tabs-coupon" href="#">COUPON</a>
+                                      </li>
+                                    @endif
                                     @if(isset($reviews) && !is_null($reviews))
                                         @if(count($reviews))
                                         <li class="">
@@ -22,7 +26,9 @@
                                         </li>
                                         @endif
                                     @endif
+                                    @if(count($business->branches)>1 || isOwner($branch->business->slug))
                                     <li><a class="company-tabs-branch" href="javascript:void(0)">BRANCH</a></li>
+                                    @endif
                                 </ul>
                             </div>
                             <!-- end of .company-tabs-container -->

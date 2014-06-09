@@ -161,3 +161,14 @@ function str_toAddress($string){
     $string = str_replace("*", "\n", $string);
     return $string;
 }
+
+function isAdmin(){
+    if(Auth::user()->check())
+    {
+        if(Auth::user()->user()->access_level == 3){
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
