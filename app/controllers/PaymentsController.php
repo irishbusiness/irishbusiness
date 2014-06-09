@@ -11,6 +11,7 @@ class PaymentsController extends \BaseController {
 	{
 		
 		$this->payments = $payments;
+		$this->beforeFilter('hasBusiness',['only' => ['index']]);
 		Event::listen('user.subscribe','IrishBusiness\Mailers\ClientMailer@subscribe');
 		
 	}
