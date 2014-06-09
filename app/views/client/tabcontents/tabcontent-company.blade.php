@@ -8,8 +8,7 @@
 					<div class="company-page-map">
 						<div class="company-page-map-container">
 							<div id="company-page-map">
-								<!-- <img src="{{ URL::asset('images/temporary_map.jpg') }}"> -->
-								LAPA GWAPO!
+							
 							</div>
 						</div>
 					</div>
