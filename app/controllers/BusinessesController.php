@@ -398,12 +398,22 @@ class BusinessesController extends \BaseController {
 
 	public function setMap($slug, $id)
 	{
+		if(!isOwner($slug))
+		{
+			return Redirect::to('/');
+		}
+
 		$branch = Branch::find($id);
 		return View::make('client.map')->withSlug($slug)->with('branch',$branch);
 	}
 
 	public function storeMap()
 	{
+		if(!isOwner(Input::get('slug')))
+		{
+			return Redirect::to('/');
+		}
+
 		if(!$this->business->isOwnder(Input::get('slug')))
 			return Response::make('pagenotfound');
 
