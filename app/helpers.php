@@ -146,6 +146,9 @@ function decode($string){
 function subscribed(){
     if(Auth::user()->check())
     {
+        if(Auth::user()->user()->access_level == 3)
+            return true;
+
         $id = Auth::user()->user()->id;
         if (is_null(Auth::user()->user()->subscription->first()))
             return false;
@@ -153,3 +156,10 @@ function subscribed(){
         return true;
     }
 }
+
+// function isAdmin(){
+//     if(Auth::user()->check())
+//     {
+//         if(Auth::user()->user()->access_level == 3);
+//     }
+// }

@@ -72,6 +72,8 @@
 	<body>
         @if(Auth::user()->guest())
             @include('client.partials._header')
+        @elseif(Auth::user()->user()->access_level == 3)
+            @include('admin.partials._admin_header')
         @else
             @include('client.partials._header2')
         @endif
