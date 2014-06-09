@@ -4569,3 +4569,12 @@ td.detail {
 .tabindent {
 	margin-left: 20px;
 }
+
+.listing-text {
+	height: 62px;
+	overflow: hidden;
+}
+
+.listing-title {
+	padding-top: 14px;
+}
