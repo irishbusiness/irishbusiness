@@ -4565,3 +4565,7 @@ td.detail {
 	position: absolute;
 	margin-top: -19px;
 }
+
+.tabindent {
+	margin-left: 20px;
+}

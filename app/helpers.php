@@ -161,6 +161,3 @@ function str_toAddress($string){
     $string = str_replace("*", "\n", $string);
     return $string;
 }
-
-
-

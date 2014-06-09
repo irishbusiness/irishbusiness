@@ -108,7 +108,6 @@
 			<a href="javascript:void(0)" class="" id="show-hide-coupons-list">- Hide Coupons</a>
 		</div>
 		@endif
-		<div class="thin-separator"></div>
         @endif
 			<div id="coupons-list" class="">
             @foreach($coupons as $coupon)

@@ -251,6 +251,7 @@ class BusinessesController extends \BaseController {
 	public function companytab2($name, $branchId){
 		
 		$branch = Branch::with('business')->find($branchId);
+		$business = Business::with('branches')->whereSlug($name)->first();
 
 		if(is_null($branch)){
 			return Response::view('pagenotfound');
@@ -262,6 +263,7 @@ class BusinessesController extends \BaseController {
 
 		return View::make('client.company-tab')
 			->with('branch', $branch)
+			->with('business', $business)
 			->with('blogs', $blogs)
 			->with('reviews', $reviews)
 			->with('title', html_entity_decode(stripcslashes($branch->business->name)))

@@ -22,7 +22,7 @@
                                         </li>
                                         @endif
                                     @endif
-                                    <li class="company-tabs-branch"><a href="javascript:void(0)">BRANCH</a></li>
+                                    <li><a class="company-tabs-branch" href="javascript:void(0)">BRANCH</a></li>
                                 </ul>
                             </div>
                             <!-- end of .company-tabs-container -->
@@ -46,7 +46,7 @@
 
                 <!-- branch tab -->
                 @include('client.tabcontents.tabcontent-branch')
-
+                
               </div>
 							<!-- end of .company-inner-container -->
 						</div>
