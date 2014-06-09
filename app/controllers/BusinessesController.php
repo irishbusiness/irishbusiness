@@ -430,8 +430,10 @@ class BusinessesController extends \BaseController {
 			$fullName = Input::get("fullName");
 			$jobTitle = Input::get("jobTitle");
 			$businessAddress = Input::get("businessAddress");
-			$businessAddress = str_replace("\\n","\n",$businessAddress);
-			$businessAddress = str_replace("\\","",$businessAddress);
+			// $businessAddress = str_replace("\\n","\n",$businessAddress);
+			// $businessAddress = str_replace("\\","",$businessAddress);
+			// $businessAddress = str_replace("\\r", "\r", $businessAddress);
+			$businessAddress = decode($businessAddress);
 			$phoneOne = Input::get("phoneOne");
 			$phoneTwo = Input::get("phoneTwo");
 			$emailAddress = Input::get("emailAddress");
