@@ -315,7 +315,7 @@ class BusinessesController extends \BaseController {
 	 */
 	public function addBranch($slug)
 	{
-		$business = Business::whereSlug('jiriko-company')->first();
+		$business = Business::whereSlug($slug)->first();
 		$branch = $business->branches->first();
 
 		if(is_null($branch))
@@ -409,9 +409,7 @@ class BusinessesController extends \BaseController {
 
 		$this->business->storeMap(Input::get('latlng'),Input::get('branch_id'));
 
-		return Redirect::to('company/'.Input::get('slug').'/'.Input::get('branch_id'))->with('flash_message','Congratulations! You have completed your profile.');
-
-		
+		return Redirect::to('company/'.Input::get('slug').'/'.Input::get('branch_id'))->with('flash_message','Congratulations! You have completed your profile.');	
 	}
 
 	public function save_coupon(){

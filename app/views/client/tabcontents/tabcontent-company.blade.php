@@ -8,8 +8,7 @@
 					<div class="company-page-map">
 						<div class="company-page-map-container">
 							<div id="company-page-map">
-								<!-- <img src="{{ URL::asset('images/temporary_map.jpg') }}"> -->
-								LAPA GWAPO!
+							
 							</div>
 						</div>
 					</div>
@@ -98,13 +97,13 @@
 								<div class="compnay-photo">
 									<img width="500" height="302" src="{{ URL::asset($branch->business->logo) }}" class="attachment-post-thumbnail wp-post-image" alt="{{ $branch->business->name }}-logo">
 								</div>
-								@if(!empty(trim($branch->facebook)))
+								@if(!is_null(trim($branch->facebook)))
 								<a href="{{ $branch->facebook }}" class="facebook" target="_blank"></a>
 								@endif
-								@if(!empty(trim($branch->twitter)))
+								@if(!is_null(trim($branch->facebook)))
 								<a href="{{ $branch->twitter }}" class="twitter" target="_blank"></a>
 								@endif
-								@if(!empty(trim($branch->google)))
+								@if(!is_null(trim($branch->facebook)))
 								<a href="{{ $branch->google }}" class="google" target="_blank"></a>
 								@endif
 							</div>

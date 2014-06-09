@@ -244,7 +244,7 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try',function(){
-
+	return countBranches();
 });
 
 Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');

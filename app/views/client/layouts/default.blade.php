@@ -106,7 +106,9 @@
 			</div>
 		</div>
 	<!-- actual body -->
-       @yield('scripts')
+   
+    @yield('scripts')
+    @yield('scripts2')
 	@include('client.partials._footer')
 	@include('client.partials._includes')
 	
