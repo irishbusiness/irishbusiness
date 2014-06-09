@@ -117,7 +117,7 @@ function branch(){
     if(Auth::user()->check())
     {
         $business = Business::where('user_id', '=',Auth::user()->user()->id)->first();
-        if (!is_null($business))
+        if (!is_null($business) && !is_null($business->branches->first()))
             return $business->branches->first()->id;
     }
 }
