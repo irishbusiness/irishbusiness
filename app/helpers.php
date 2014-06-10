@@ -172,3 +172,9 @@ function isAdmin(){
         }
     }
 }
+
+function pre($string){
+    echo "<pre>";
+    echo $string;
+    echo "</pre>";
+}

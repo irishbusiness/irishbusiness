@@ -85,8 +85,8 @@ class BusinessesController extends \BaseController {
 		return View::make('client.searchresults')->with('branches',$branches)
 			->with('category',$category)
 			->with('location',Input::get('location'))
-			->with('selected',$selected);
-			/*->with('rating', $rating)->with("title", "Search results");*/
+			->with('selected',$selected)
+			->with('rating', $rating)->with("title", "Search results");
 	}
 
 	public function showBusiness($businessSlug)
@@ -275,7 +275,7 @@ class BusinessesController extends \BaseController {
 			->with('business', $business)
 			->with('blogs', $blogs)
 			->with('reviews', $reviews)
-			->with('title', html_entity_decode(stripcslashes($branch->business->name)))
+			->with('title', decode($branch->business->name))
 			->with('coupons', $coupons)
 			->with('rating', $rating);
 	}

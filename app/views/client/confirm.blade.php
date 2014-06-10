@@ -1,6 +1,11 @@
 @extends('client.layouts.default')
 
+@section('slider')
+	@include('client.partials._slider')
+@stop
+
 @section('actual-body-content')
+
  <h3 style="margin-left:15px"> Thank you for confirming your email.</h3>
   <h3 style="margin-left:15px">You can now Login!</h3>
 @stop

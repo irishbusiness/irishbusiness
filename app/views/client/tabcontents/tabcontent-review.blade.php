@@ -5,7 +5,7 @@
 									<div class="block-title">
 										<h1>Reviews</h1>
 									</div>
-									@if(count($reviews)>0)
+									@if(count($reviews))
 										@foreach($reviews as $review)
 											<div class="review last">
 												<div class="review-author">
@@ -19,7 +19,7 @@
 													<div class="star star-5 {{ ($review->rating == 5 ? 'current' : '') }} "></div>
 												</div>
 												<div class="review-text">
-													{{ html_entity_decode(stripcslashes($review->description)) }}
+													{{ decode($review->description) }}
 												</div>
 											</div>
 											@if(isOwner($branch->business->slug))

@@ -19,12 +19,10 @@
                                           <a class="company-tabs-coupon" href="#">COUPON</a>
                                       </li>
                                     @endif
-                                    @if(isset($reviews) && !is_null($reviews))
-                                        @if(count($reviews))
+                                    @if(isset($reviews) && count($reviews) )
                                         <li class="">
                                             <a class="company-tabs-review" href="javascript:void(0)">REVIEWS</a>
                                         </li>
-                                        @endif
                                     @endif
                                     @if(count($business->branches)>1 || isOwner($branch->business->slug))
                                     <li><a class="company-tabs-branch" href="javascript:void(0)">BRANCH</a></li>
@@ -41,17 +39,25 @@
 								<!-- company tab -->
 								@include('client.tabcontents.tabcontent-company')
 
-                <!-- blog tab -->
-                @include('client.tabcontents.tabcontent-blog')
-							
-                <!-- coupon tab -->
-                @include('client.tabcontents.tabcontent-coupon')
+                @if(count($blogs) || isOwner($branch->business->slug))                  
+                  <!-- blog tab -->
+                  @include('client.tabcontents.tabcontent-blog')
+                @endif
 
-                <!-- reviews tab -->
-                @include('client.tabcontents.tabcontent-review')
-
-                <!-- branch tab -->
-                @include('client.tabcontents.tabcontent-branch')
+                @if(count($coupons) || isOwner($branch->business->slug))							 
+                  <!-- coupon tab -->
+                  @include('client.tabcontents.tabcontent-coupon')
+                @endif
+                
+                @if(isset($reviews) && count($reviews) )
+                  <!-- reviews tab -->
+                  @include('client.tabcontents.tabcontent-review')
+                @endif
+                
+                @if(count($business->branches)>1 || isOwner($branch->business->slug))
+                  <!-- branch tab -->
+                  @include('client.tabcontents.tabcontent-branch')
+                @endif
                 
               </div>
 							<!-- end of .company-inner-container -->
