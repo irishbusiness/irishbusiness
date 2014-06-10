@@ -1,5 +1,4 @@
-    @if(isset($coupons))
-    <div id="company-tabs-coupon" class="company-tabs-content">
+     <div id="company-tabs-coupon" class="company-tabs-content">
         <div class="portfolio-container container-24">
             @if(isOwner($branch->business->slug))
             <a href="javascript:void(0)" id="btn-add-coupon" class="a-btn button-2-colorful add-coupon">Add new coupon</a>
@@ -10,8 +9,6 @@
 			        $businessinfo->id = '';
 			    }
 			?>
-			<!-- <div id="company-tabs-coupon" class="company-tabs-content" style="display: none;"> -->
-			    <!-- <div class="portfolio-container container-24"> -->
 			    <div id="coupon-manage" class="invisible">
 			        <div>
 			            <a href="javascript:void(0)" id="upload-own-coupon">Upload your own coupon</a>
@@ -32,7 +29,6 @@
 			                </div>
 			            {{ Form::close() }}
 			        </div>
-
 			        <div id="coupon-generator">
 			            <div class="preview" style="height: auto;">
 			                <img src="{{ Request::root().'/'}}scripts/server-side.php" />
@@ -96,7 +92,6 @@
 			                <a id="savecoupon" href="javascript:void(0)" class="a-btn button-2-colorful">Submit</a>
 
 			            </form>
-			            <!-- <button id="getResults">Give me my url!</button> -->
 			            <div id="link">
 			                <input type="text" value="" id="resultsUrl" />
 			            </div>
@@ -108,11 +103,9 @@
 			<a href="javascript:void(0)" class="" id="show-hide-coupons-list">- Hide Coupons</a>
 		</div>
 		@endif
-        @endif
 			<div id="coupons-list" class="">
             @foreach($coupons as $coupon)
 			
-				<!-- <div class="portfolio-container container-24"> -->
 					<div class="coupon-row">
 						@if(isOwner($branch->business->slug))
 						 	<a href="javascript:void(0)" data-id="{{ $coupon->id }}" class="delete-coupon">Delete this coupon</a>
@@ -141,12 +134,10 @@
 						</p>
 						<div class="separator"></div>
 					</div>
-				<!-- </div> -->
 			   
             @endforeach
             </div>
 
-            <!-- </div> -->
         @else
             <p>Nothing to show here...</p>
         @endif

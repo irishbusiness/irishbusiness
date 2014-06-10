@@ -23,10 +23,11 @@
 							<?php
 								$x=0; 
 								if(!isset($rating)){
-									$rating = array("");
+									$rating = array(0);
 								}
 							?>
 							@foreach($branches as $branch)
+						
 							<div class="company-listing clearfix">
 								<a href="#" class="listing-image">
 									<img src="{{ URL::asset($branch->business->logo) }}" alt="" />
@@ -34,11 +35,11 @@
 								<div class="listing-body">
 									<div class="listing-rating">
 										<div class="rating-stars {{ (round($rating[$x]) > 0 ? 'rated' : '') }}">
-											<div class="star star-1 {{ (round($rating[$x]) == 1 ? 'current' : '') }}"></div>
-											<div class="star star-2 {{ (round($rating[$x]) == 2 ? 'current' : '') }}"></div>
-											<div class="star star-3 {{ (round($rating[$x]) == 3 ? 'current' : '') }}"></div>
-											<div class="star star-4 {{ (round($rating[$x]) == 4 ? 'current' : '') }}"></div>
-											<div class="star star-5 {{ (round($rating[$x]) == 5 ? 'current' : '') }}"></div>
+											<div class="star star-1 {{ ( isset($rating[$x])? (round($rating[$x]) == 1 ? 'current' : '') : '') }}"></div>
+											<div class="star star-2 {{ ( isset($rating[$x])? (round($rating[$x]) == 2 ? 'current' : '') : '') }}"></div>
+											<div class="star star-3 {{ ( isset($rating[$x])? (round($rating[$x]) == 3 ? 'current' : '') : '') }}"></div>
+											<div class="star star-4 {{ ( isset($rating[$x])? (round($rating[$x]) == 4 ? 'current' : '') : '') }}"></div>
+											<div class="star star-5 {{ ( isset($rating[$x])? (round($rating[$x]) == 5 ? 'current' : '') : '') }}"></div>
 										</div>
 									</div>
 									<div class="listing-title">
