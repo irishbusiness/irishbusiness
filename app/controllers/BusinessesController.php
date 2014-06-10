@@ -6,6 +6,9 @@ use IrishBusiness\Forms\RegisterBusiness;
 use IrishBusiness\Forms\AddBranch;
 use IrishBusiness\Forms\UpdateBusiness;
 use IrishBusiness\Forms\FormValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
+
 
 class BusinessesController extends \BaseController {
 
@@ -250,10 +253,19 @@ class BusinessesController extends \BaseController {
 
 	public function companytab2($name, $branchId = null){
 		if( ($branchId != null) && (is_numeric($branchId)) ){
-			$branch = Branch::find($branchId);
+			try {
+				$branch = Branch::findOrFail($branchId);
+			}catch (ModelNotFoundException $e) {
+				$branch = Branch::with('business')->orderBy('created_at', 'asc')->first();
+			}
 
 		}else{
-			$branch = Branch::with('business')->orderBy('created_at', 'asc')->first();
+			$result_query = Branch::with('business')->where('address', 'like', '%'.$branchId.'%')->first();
+			if($result_query){
+				$branch = $result_query;
+			}else{
+ 				$branch = Branch::with('business')->orderBy('created_at', 'asc')->first();				
+			}
 		}
 		$business = Business::with('branches', 'reviews')->whereSlug($name)->first();
 
