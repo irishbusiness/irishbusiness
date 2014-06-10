@@ -49,7 +49,7 @@
             <div class="form-group">
                 {{ Form::label('phone', "Phone",
                 ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('phone', '', [
+                {{ Form::text('phone', (isset($branch->phone) ? $branch->phone : ''), [
                 "placeholder" => "Phone", "class"=>"text-input-grey full", 'required']) }}
                 {{$errors->first('phone','<span class="alert alert-error block half">:message</span>')}}
             </div>
