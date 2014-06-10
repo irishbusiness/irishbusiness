@@ -256,7 +256,8 @@ class BusinessesController extends \BaseController {
 			try {
 				$branch = Branch::findOrFail($branchId);
 			}catch (ModelNotFoundException $e) {
-				$branch = Branch::with('business')->orderBy('created_at', 'asc')->first();
+				$branch = Branch::join('businesses','businesses.id', '=', 'branches.business_id')
+ 					->whereRaw("businesses.slug = '".$name."'")->first();
 			}
 
 		}else{
@@ -264,9 +265,12 @@ class BusinessesController extends \BaseController {
 			if($result_query){
 				$branch = $result_query;
 			}else{
- 				$branch = Branch::with('business')->orderBy('created_at', 'asc')->first();				
+ 				$branch = Branch::join('businesses','businesses.id', '=', 'branches.business_id')
+ 					->whereRaw("businesses.slug = '".$name."'")->first();				
 			}
 		}
+
+
 		$business = Business::with('branches', 'reviews')->whereSlug($name)->first();
 
 		
