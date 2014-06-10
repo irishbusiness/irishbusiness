@@ -110,6 +110,8 @@ Route::get('listings','BusinessesController@index');
 // Route::get('company-tab', 'BusinessesController@companytab');
 
 Route::get('company', 'BusinessesController@search');
+// Route::get('{slug}?', 'BusinessesController@companytab2');
+Route::get('company/{slug}', 'BusinessesController@companytab2');
 Route::get('company/{name}/{branch}', 'BusinessesController@companytab2');
 Route::post('company/{name}', 'ReviewsController@store');
 
