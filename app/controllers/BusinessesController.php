@@ -252,12 +252,12 @@ class BusinessesController extends \BaseController {
 	}
 
 	public function companytab2($name, $branchId = null){
+		$dex_exception = 0;
 		if( ($branchId != null) && (is_numeric($branchId)) ){
 			try {
 				$branch = Branch::findOrFail($branchId);
 			}catch (ModelNotFoundException $e) {
-				$branch = Branch::join('businesses','businesses.id', '=', 'branches.business_id')
- 					->whereRaw("businesses.slug = '".$name."'")->first();
+				$dex_exception = 1;
 			}
 
 		}else{
@@ -265,9 +265,19 @@ class BusinessesController extends \BaseController {
 			if($result_query){
 				$branch = $result_query;
 			}else{
- 				$branch = Branch::join('businesses','businesses.id', '=', 'branches.business_id')
- 					->whereRaw("businesses.slug = '".$name."'")->first();				
+				$dex_exception = 1; 
 			}
+		}
+
+		if( $dex_exception == 1 ){
+			$result_query = Branch::join('businesses','businesses.id', '=', 'branches.business_id')
+ 					->whereRaw("businesses.slug = '".$name."'")->first();
+			if($result_query){
+				$branch = $result_query;
+			}else{
+				return Response::view("pagenotfound");
+			}
+
 		}
 
 
