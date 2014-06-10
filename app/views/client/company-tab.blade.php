@@ -19,7 +19,7 @@
                                           <a class="company-tabs-coupon" href="#">COUPON</a>
                                       </li>
                                     @endif
-                                    @if(isset($reviews) && count($reviews) )
+                                    @if( !is_null($business->reviews) )
                                         <li class="">
                                             <a class="company-tabs-review" href="javascript:void(0)">REVIEWS</a>
                                         </li>
@@ -36,7 +36,8 @@
 					<div class="company-content-wrapper">
 						<div class="zone-company-content zone clearfix">
 							<div id="company-inner-container" class="company-inner-container container-24">
-								<!-- company tab -->
+
+                <!-- company tab -->
 								@include('client.tabcontents.tabcontent-company')
 
                 @if(count($blogs) || isOwner($branch->business->slug))                  
@@ -44,12 +45,7 @@
                   @include('client.tabcontents.tabcontent-blog')
                 @endif
 
-                @if(count($coupons) || isOwner($branch->business->slug))							 
-                  <!-- coupon tab -->
-                  @include('client.tabcontents.tabcontent-coupon')
-                @endif
-                
-                @if(isset($reviews) && count($reviews) )
+                @if( !is_null($business->reviews) )  
                   <!-- reviews tab -->
                   @include('client.tabcontents.tabcontent-review')
                 @endif
@@ -59,6 +55,10 @@
                   @include('client.tabcontents.tabcontent-branch')
                 @endif
                 
+                @if(count($coupons) || isOwner($branch->business->slug))               
+                  <!-- coupon tab -->
+                  @include('client.tabcontents.tabcontent-coupon')
+                @endif
               </div>
 							<!-- end of .company-inner-container -->
 						</div>

@@ -251,13 +251,13 @@ class BusinessesController extends \BaseController {
 	public function companytab2($name, $branchId){
 		
 		$branch = Branch::with('business')->find($branchId);
-		$business = Business::with('branches')->whereSlug($name)->first();
+		$business = Business::with('branches', 'reviews')->whereSlug($name)->first();
 
 		if(is_null($branch)){
 			return Response::view('pagenotfound');
 		}
 		
-		$reviews = $branch->business->reviews()->withTrashed()->orderBy('created_at', 'desc')->get();
+		// $reviews = $branch->business->reviews()->withTrashed()->orderBy('created_at', 'desc')->get();
 		$blogs = $branch->business->blogs()->orderBy('created_at', 'desc')->get();
 		$coupons = $branch->business->coupons()->orderBy('created_at', 'desc')->get();
 
@@ -274,7 +274,7 @@ class BusinessesController extends \BaseController {
 			->with('branch', $branch)
 			->with('business', $business)
 			->with('blogs', $blogs)
-			->with('reviews', $reviews)
+			// ->with('reviews', $reviews)
 			->with('title', decode($branch->business->name))
 			->with('coupons', $coupons)
 			->with('rating', $rating);
