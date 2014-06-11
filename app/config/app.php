@@ -120,7 +120,6 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
-		'Laracasts\Utilities\UtilitiesServiceProvider',
 		'Thujohn\Twitter\TwitterServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 
