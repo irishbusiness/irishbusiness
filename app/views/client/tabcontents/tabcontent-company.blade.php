@@ -160,27 +160,9 @@
 					<div class="separator"></div>
 					<div class="comment-message block">
 						<div id="uou-stars-system" class="rating-system" data-post-id="362">
-							<div id="get_homeurl" data-homeurl="http://irishbusiness.ie/wp-content/themes/glocal">
-							</div>
 							<div class="comment-respond">
 								<h3 class="comment-reply-title" id="reply-title"><span class="comment-message-title your-rating">Your <span class="text-green">Rating</span></span></h3>
 								<div class="rating-send">
-								<!--
-									<div class="message error" style="display: none;">
-										<div class="notification-error">
-											<div class="notification-inner">
-												Please complete the required fields
-											</div>
-										</div>
-									</div>
-									<div class="message success" style="display: none;">
-										<div class="notification-success">
-											<div class="notification-inner">
-												Rating has been successfully sent
-											</div>
-										</div>
-									</div>
-									-->
 									@if (Auth::user()->guest())
 										<div class="rating-inputs">
 											<div class="rating-details">

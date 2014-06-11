@@ -122,6 +122,7 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider',
 		'Laracasts\Utilities\UtilitiesServiceProvider',
 		'Thujohn\Twitter\TwitterServiceProvider',
+		'Intervention\Image\ImageServiceProvider',
 
 	),
 
@@ -189,6 +190,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Twitter'         => 'Thujohn\Twitter\TwitterFacade',
+		'Image' => 'Intervention\Image\Facades\Image',
 
 	),
 
