@@ -42,7 +42,7 @@ class BusinessRepository {
         // logo
         if( !is_null($input['logo']))
         {
-            $dir = $dir = public_path().'/images/companylogos/';
+            $dir = public_path().'/images/companylogos/';
             $image  =   $input['logo'];
             $imagename = md5(date('YmdHis')).'.jpg';
             $filename = $dir.$imagename;
@@ -53,7 +53,8 @@ class BusinessRepository {
                 || $image->getMimeType() == 'image/jpeg'
                 || $image->getMimeType() == 'image/pjpeg')
             {
-                $image->move($dir, $filename);
+                // $image->move($dir, $filename);
+                Image::make($image->getRealPath())->resize(150, 150)->save($dir . $filename);
                 $business->logo  =   'images/companylogos/'.$imagename;
             } else {
                 $business->logo  =   'images/companylogos/'.$imagename;
@@ -118,7 +119,8 @@ class BusinessRepository {
                 || $image->getMimeType() == 'image/jpeg'
                 || $image->getMimeType() == 'image/pjpeg')
             {
-                $image->move($dir, $filename);
+                // $image->move($dir, $filename);
+                Image::make($image->getRealPath())->resize(150, 150)->save($dir . $filename);
                 $business->logo  =   'images/companylogos/'.$imagename;
             } else {
                 $business->logo  =   'images/companylogos/'.$imagename;
