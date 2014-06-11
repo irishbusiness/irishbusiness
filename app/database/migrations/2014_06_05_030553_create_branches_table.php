@@ -31,6 +31,7 @@ class CreateBranchesTable extends Migration {
 			$table->integer('business_id')->unsigned()->index();
 			$table->foreign('business_id')->references('id')->on('businesses')->onUpdate('cascade')->onDelete('cascade');
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 

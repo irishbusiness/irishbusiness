@@ -1,6 +1,9 @@
 <?php
 
 class Business extends \Eloquent {
+    use SoftDeletingTrait;
+
+    protected $dates = ['deleted_at'];
 	protected $table = 'businesses';
 
 	public function categories()
