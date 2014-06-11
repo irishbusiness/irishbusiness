@@ -3,6 +3,7 @@
 use Business;
 use Auth;
 use Branch;
+use Image;
 
 class BusinessRepository {
 
@@ -41,10 +42,10 @@ class BusinessRepository {
         // logo
         if( !is_null($input['logo']))
         {
-            $dir = public_path().'/images/companylogos/';
+            // $dir = public_path().'public/images/companylogos/';
             $image  =   $input['logo'];
             $imagename = md5(date('YmdHis')).'.jpg';
-            $filename = $dir.$imagename;
+            // $filename = $dir.$imagename;
 
             if ($image->getMimeType() == 'image/png'
                 || $image->getMimeType() == 'image/jpg'
@@ -53,7 +54,8 @@ class BusinessRepository {
                 || $image->getMimeType() == 'image/pjpeg')
             {
                 // $image->move($dir, $filename);
-                Image::make($image->getRealPath())->resize(150, 150)->save($dir . $filename);
+                $path = public_path('images/companylogos/' . $imagename);
+                Image::make($image->getRealPath())->resize(150, 150)->save($path);
                 $business->logo  =   'images/companylogos/'.$imagename;
             } else {
                 $business->logo  =   'images/companylogos/'.$imagename;
@@ -107,10 +109,10 @@ class BusinessRepository {
         // logo
         if( !is_null($input["logo"]) )
         {
-            $dir = $dir = public_path().'/images/companylogos/';
+            // $dir = $dir = public_path().'/images/companylogos/';
             $image  =   $input['logo'];
             $imagename = md5(date('YmdHis')).'.jpg';
-            $filename = $dir.$imagename;
+            // $filename = $dir.$imagename;
 
             if ($image->getMimeType() == 'image/png'
                 || $image->getMimeType() == 'image/jpg'
@@ -119,7 +121,9 @@ class BusinessRepository {
                 || $image->getMimeType() == 'image/pjpeg')
             {
                 // $image->move($dir, $filename);
-                Image::make($image->getRealPath())->resize(150, 150)->save($dir . $filename);
+                $path = public_path('images/companylogos/' . $imagename);
+                Image::make($image->getRealPath())->resize(150, 150)->save($path);
+                
                 $business->logo  =   'images/companylogos/'.$imagename;
             } else {
                 $business->logo  =   'images/companylogos/'.$imagename;
