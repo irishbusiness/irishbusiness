@@ -469,7 +469,6 @@ class BusinessesController extends \BaseController {
 			return Redirect::back()->withTitle($response);
 		}
 
-		// $business = Business::find(Input::get("b"));
 		$branch = Branch::find(Input::get("br"));
 		$response = $this->business->createCoupon(Input::all(), "other");
 		return Redirect::to("/company/".$branch->business->slug."/".$branch->id."/#company-tabs-coupon")->with("flash_message", $response)->withTitle($response);	

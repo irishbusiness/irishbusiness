@@ -7,6 +7,7 @@
         @yield('title')
         
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         {{ HTML::script('scripts/jquery-1.10.2.min.js') }}
 
         @yield('linksfirst')
@@ -84,28 +85,28 @@
 	@include('client.partials._searchbar')
 	@yield('slider')
 
-	<!-- the green line -->
-			<div class="industries-tabs-wrapper">
-				<div class="zone-industries-tabs zone clearfix">
-				</div>
-			</div>
-	<!-- the green line -->
-
 	<!-- actual body -->
-		<div class="content-wrapper">
-			<div class="zone-content equalize zone clearfix">
+        <div class="industries-tabs-wrapper">
+            <div class="zone-industries-tabs zone clearfix">
+            </div><!-- end of .zone-industries-tabs -->
+        </div><!-- end of .industries-tabs-wrapper -->
 
+        <div class="content-wrapper">
+            <div class="zone-content equalize zone clearfix">
+            @if(Request::is('admin/*'))
+                <div class="content-container container-24<?php (Request::is('admin/*') ? 24 : 16) ?>">
+            @endif    
+                @yield('actual-body-content')
 
-				@yield('actual-body-content')
-    			 <!-- actual body content -->
+                </div><!-- end of .content-container -->
 
-    			<!-- sidebar -->
-                @yield('sidebar')
-    			<!-- sidebar -->
+                 @if(!Request::is('admin/manage/blog') && !Request::is('*/map') && !Request::is('company*'))
+                    @include('client.partials._sidebar')
+                 @endif
 
-			</div>
-		</div>
-	<!-- actual body -->
+            </div><!-- end of .zone-content -->
+            
+        </div><!-- end of .content-wrapper -->
    
     @yield('scripts')
     @yield('scripts2')

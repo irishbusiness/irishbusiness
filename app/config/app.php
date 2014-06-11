@@ -67,6 +67,8 @@ return array(
 
 	'fallback_locale' => 'en',
 
+
+
 	/*
 	|--------------------------------------------------------------------------
 	| Encryption Key
@@ -77,6 +79,7 @@ return array(
 	| will not be safe. Please do this before deploying an application!
 	|
 	*/
+	'cipher' => MCRYPT_RIJNDAEL_256,
 
 	'key' => 'YourSecretKey!!!',
 
@@ -120,7 +123,6 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
-		'Laracasts\Utilities\UtilitiesServiceProvider',
 		'Thujohn\Twitter\TwitterServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 

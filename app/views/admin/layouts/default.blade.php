@@ -81,7 +81,7 @@
 
 			<div class="content-wrapper">
 				<div class="zone-content equalize zone clearfix">
-                @if(Request::is('admin_manage_blog'))
+                @if(Request::is('admin/*'))
 					<div class="content-container container-24">
                 @else
                     <div class="content-container container-16">
