@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 class Review extends \Eloquent {
 	protected $fillable = ["id"];
 	protected $table = "reviews";

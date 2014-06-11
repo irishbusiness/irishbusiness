@@ -14,7 +14,7 @@
 			            <a href="javascript:void(0)" id="upload-own-coupon">Upload your own coupon</a>
 			        </div>
 			        <div id="form-upload-coupon" style="display: none;">
-			            {{ Form::open(array('action' => 'BusinessesController@save_coupon', 'files' => true)) }}
+			            {{ Form::open(array('action' => 'BusinessesController@save_coupon', 'files' => true )) }}
 			                <div class="form-group">
 			                    {{ Form::label("filecoupon", "Upload your coupon", ["class"=>"text-colorful"]) }}
 			                    {{ Form::file('filecoupon', ["id"=>"btn-filecoupon-settings-logo"]) }}
@@ -25,7 +25,8 @@
 			                <div class="form-group">
 			                    {{ Form::hidden("b", $branch->business->id) }}
 			                    {{ Form::hidden("br", $branch->id) }}
-			                    {{ Form::submit("Save", ["class"=>"button-2-colorful"]) }}
+			                    <a href="javascript:void(0)" class="a-btn button-2-colorful" id="cancel-upload-own-coupon">Cancel</a>
+			                    {{ Form::submit("Save", ["id"=>"btn-submit-own-coupon", "class"=>"button-2-colorful"]) }}
 			                </div>
 			            {{ Form::close() }}
 			        </div>
@@ -186,16 +187,15 @@
 
 	            $("#upload-own-coupon").click(function(e){
 	                e.preventDefault();
+					$(this).fadeOut();
+					$("#coupon-generator").fadeOut();
+                    $("#form-upload-coupon").fadeIn();
+	            });
 
-	                if($("#coupon-generator").is(":visible")){
-	                    $(this).text("Cancel");
-	                    $("#coupon-generator").fadeOut();
-	                    $("#form-upload-coupon").fadeIn();
-	                }else{
-	                    $(this).text("Upload your own coupon");
-	                    $("#coupon-generator").fadeIn();
-	                    $("#form-upload-coupon").fadeOut();
-	                }
+	            $(document).on("click", "#cancel-upload-own-coupon", function(){
+                	$("#upload-own-coupon").fadeIn();
+                	$("#coupon-generator").fadeIn();
+                    $("#form-upload-coupon").fadeOut();
 	            });
 
 	            $(document).on("click", "#btn-add-coupon", function(){

@@ -1,7 +1,6 @@
 <?php
 
 use \Illuminate\Database\Eloquent\SoftDeletingTrait;
-
 class Business extends \Eloquent {
     
     use SoftDeletingTrait;

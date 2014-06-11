@@ -2,7 +2,17 @@
 	if(is_null($recentsettings)){
 		$recentsettings = new \Illuminate\Support\Collection;
    	 	$recentsettings->footerlogo = 'default.png';
+   	 	$recentsettings->footer_text = "";
 	}
+	if(!isset($socialmedia)){
+        $socialmedia = new \Illuminate\Support\Collection;
+        $socialmedia->pinterest = "";
+        $socialmedia->dribbble = "";
+        $socialmedia->facebook = "";
+        $socialmedia->google = "";
+        $socialmedia->twitter = "";
+        $socialmedia->linkedin = "";
+    }
 ?>
 
 		<footer class="section boxed">

@@ -3,6 +3,15 @@
     	$recentsettings = new \Illuminate\Support\Collection;
     	$recentsettings->headerlogo = 'default.png';
     }
+    if(!isset($socialmedia)){
+        $socialmedia = new \Illuminate\Support\Collection;
+        $socialmedia->pinterest = "";
+        $socialmedia->dribbble = "";
+        $socialmedia->facebook = "";
+        $socialmedia->google = "";
+        $socialmedia->twitter = "";
+        $socialmedia->linkedin = "";
+    }
     ?>
 
     <header class="section header-2 boxed">
