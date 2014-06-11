@@ -97,11 +97,11 @@
 
 
 				@yield('actual-body-content')
-			<!-- actual body content -->
+    			 <!-- actual body content -->
 
-			<!-- sidebar -->
-            @yield('sidebar')
-			<!-- sidebar -->
+    			<!-- sidebar -->
+                @yield('sidebar')
+    			<!-- sidebar -->
 
 			</div>
 		</div>
