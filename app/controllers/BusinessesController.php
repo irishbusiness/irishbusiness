@@ -465,132 +465,21 @@ class BusinessesController extends \BaseController {
 
 	public function save_coupon(){
 		if(Request::ajax()){
-
-			$companyName = Input::get("companyName");
-			$companySlogan = Input::get("companySlogan");
-			$fullName = Input::get("fullName");
-			$jobTitle = Input::get("jobTitle");
-			$businessAddress = Input::get("businessAddress");
-			// $businessAddress = str_replace("\\n","\n",$businessAddress);
-			// $businessAddress = str_replace("\\","",$businessAddress);
-			// $businessAddress = str_replace("\\r", "\r", $businessAddress);
-			$businessAddress = decode($businessAddress);
-			$phoneOne = Input::get("phoneOne");
-			$phoneTwo = Input::get("phoneTwo");
-			$emailAddress = Input::get("emailAddress");
-			$siteUrl = Input::get("siteUrl");
-
-			$branch_id = Input::get("br");
-
-
-			$handle = imagecreatefrompng( public_path().'/scripts/templates/template.png' ); 
-			$brown = ImageColorAllocate ($handle, 84, 48, 26);
-			$lightBrown = ImageColorAllocate ($handle, 145, 116, 94);
-			$white = ImageColorAllocate ($handle, 255, 255, 255);
-			$peach = ImageColorAllocate ($handle, 238, 222, 200);
-
-			//company name
-			ImageTTFText ($handle, 18, 0, 20, 35, $brown, public_path()."/scripts/fonts/timesbd.ttf", $companyName);
-
-			//company slogan
-			ImageTTFText ($handle, 9, 0, 20, 50, $lightBrown, public_path()."/scripts/fonts/GOTHIC.TTF", $companySlogan);
-
-			//full name
-			ImageTTFText ($handle, 14, 0, 20, 110, $white, public_path()."/scripts/fonts/times.ttf", $fullName);
-
-			//job title
-			ImageTTFText ($handle, 9, 0, 19, 122, $peach, public_path()."/scripts/fonts/GOTHIC.TTF", $jobTitle);
-
-			//business address
-			ImageTTFText ($handle, 10, 0, 20, 160, $brown, public_path()."/scripts/fonts/GOTHIC.TTF", $businessAddress);
-
-			//phone number #1
-			ImageTTFText ($handle, 9, 0, 317, 160, $brown, public_path()."/scripts/fonts/GOTHIC.TTF", $phoneOne); 
-
-			//phone number #2
-			ImageTTFText ($handle, 9, 0, 317, 175, $brown, public_path()."/scripts/fonts/GOTHIC.TTF", $phoneTwo);
-
-			//email address
-			ImageTTFText ($handle, 9, 0, 275, 190, $brown, public_path()."/scripts/fonts/GOTHIC.TTF", $emailAddress);
-
-			//site url (exmple of how to center copy)
-			$fontSize = "10";
-			$width = "420";
-			$textWidth = $fontSize * strlen($siteUrl);
-			$position_center = $width / 2 - $textWidth / 2.6;
-			ImageTTFText ($handle, $fontSize, 0, $position_center, 240, $brown, public_path()."/scripts/fonts/GOTHICB.TTF", $siteUrl);
-
-			imagealphablending( $handle, false );
-			imagesavealpha( $handle, true );
-			// ImagePng ($handle);
-
-			$temp_name = md5(date('l jS \of F Y H:i:s'));
-			if(ImagePng($handle, public_path()."/images/coupons/temp/$temp_name.png")){
-				imagedestroy( $handle );
-
-				$bid = Input::get("b");
-
-				$business = Business::find($bid);
-
-				$coupon = new Coupon;
-				$coupon->name = '/images/coupons/temp/'.$temp_name.".png";
-				$coupon->business_id = $bid;
-				$coupon->save();
-
-				// return "bid = ".$bid;
-
-				return Redirect::back()->withTitle("New coupon has been added successfully!");
-
-			}
-
-			imagedestroy( $handle );
-			return "Sorry, we can't save your coupon right now.";
+			$response = $this->business->createCoupon(Input::all(), "ajax");
+			return Redirect::back()->withTitle($response);
 		}
 
-		// if user choosed to upload his/her designed coupon
-
-		$business_id = Input::get("b");
-
-		$business = Business::find($business_id);
-
-		$branch_id = Input::get("br");
-
-		$coupon = new Coupon;
-
-		if( !is_null(Input::file("filecoupon")))
-        {
-            $dir = $dir = public_path().'/images/coupons/temp/';
-            $image  =   Input::file("filecoupon");
-            // dd($image);
-            $imagename = md5(date('YmdHis')).'.jpg';
-            $filename = $dir.$imagename;
-
-            if ($image->getMimeType() == 'image/png'
-                || $image->getMimeType() == 'image/jpg'
-                || $image->getMimeType() == 'image/gif'
-                || $image->getMimeType() == 'image/jpeg'
-                || $image->getMimeType() == 'image/pjpeg')
-            {
-                $image->move($dir, $filename);
-                $coupon->name  =   'images/coupons/temp/'.$imagename;
-            } else {
-            	return Redirect::to("/company/".$business->slug."/".$branch_id."#company-tabs-coupon")->with("flash_message", "It seems the file you upload is invalid. Please upload image files only.")->withTitle("It seems the file you upload is invalid. Please upload image files only.");
-            }
-
-        } else {
-            return Redirect::to("/company/".$business->slug."/".$branch_id."#company-tabs-coupon")->withTitle("Please choose a file to continue.")->with("flash_message","Please choose a file to continue.");
-        }
-        $coupon->business_id = $business_id;
-		$coupon->save();
-
-		return Redirect::to("/company/".$business->slug."/".$branch_id."#company-tabs-coupon")->with("flash_message", "Your coupon has been added successfully.");
+		// $business = Business::find(Input::get("b"));
+		$branch = Branch::find(Input::get("br"));
+		$response = $this->business->createCoupon(Input::all(), "other");
+		return Redirect::to("/company/".$branch->business->slug."/".$branch->id."/#company-tabs-coupon")->with("flash_message", $response)->withTitle($response);	
 	}
 
 	public function delete_coupon(){
 		if(Request::ajax()){
 			$coupon_id = Input::get("coupon");
 			$coupon = Coupon::find($coupon_id);
-			unlink(public_path()."/".$coupon->name);
+			unlink(public_path().$coupon->name);
 			$coupon->delete();
 
 			return "Deleted";

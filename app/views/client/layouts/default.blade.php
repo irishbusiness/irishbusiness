@@ -97,8 +97,6 @@
 
 
 				@yield('actual-body-content')
-
-				</div>
 			<!-- actual body content -->
 
 			<!-- sidebar -->
@@ -117,7 +115,7 @@
     @if(Session::has('errorNotify'))
 		<script>
 			$('#login-form').slideDown(500);
-			$('#errordiv').text('{{Session::get('errorNotify')}}');
+			$('#errordiv').text("{{Session::get('errorNotify')}}");
 		</script>
 	@endif
     
