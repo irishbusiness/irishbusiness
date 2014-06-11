@@ -6,6 +6,9 @@ use IrishBusiness\Forms\RegisterBusiness;
 use IrishBusiness\Forms\AddBranch;
 use IrishBusiness\Forms\UpdateBusiness;
 use IrishBusiness\Forms\FormValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
+
 
 class BusinessesController extends \BaseController {
 
@@ -237,25 +240,49 @@ class BusinessesController extends \BaseController {
 	}
 
 	public function companytab(){
-		$id = 1;
-		$blog_id = 1;
-		$businessinfo = Business::findOrFail($id)->first();
-		$reviews = $businessinfo->reviews()->orderBy('created_at', 'desc')->get();
-		// $reviews = Review::whereBusiness_id($businessinfo->id)->orderBy("created_at", "desc")->get();
-		$blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
-		// $businessinfo = Business::all();
-		return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
-			->with('reviews', $reviews)->with('title', html_entity_decode(stripcslashes($businessinfo->name)));
+		// $id = 1;
+		// $blog_id = 1;
+		// $businessinfo = Business::findOrFail($id)->first();
+		// $reviews = $businessinfo->reviews()->orderBy('created_at', 'desc')->get();
+		// // $reviews = Review::whereBusiness_id($businessinfo->id)->orderBy("created_at", "desc")->get();
+		// $blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
+		// // $businessinfo = Business::all();
+		// return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
+		// 	->with('reviews', $reviews)->with('title', html_entity_decode(stripcslashes($businessinfo->name)));
 	}
 
-	public function companytab2($name, $branchId){
-		
-		$branch = Branch::with('business')->find($branchId);
+	public function companytab2($name, $branchId = null){
+		$dex_exception = 0;
+		if( ($branchId != null) && (is_numeric($branchId)) ){
+			try {
+				$branch = Branch::findOrFail($branchId);
+			}catch (ModelNotFoundException $e) {
+				$dex_exception = 1;
+			}
+
+		}else{
+			$result_query = Branch::with('business')->where('address', 'like', '%'.$branchId.'%')->first();
+			if($result_query){
+				$branch = $result_query;
+			}else{
+				$dex_exception = 1; 
+			}
+		}
+
+		if( $dex_exception == 1 ){
+			$result_query = Branch::join('businesses','businesses.id', '=', 'branches.business_id')
+ 					->whereRaw("businesses.slug = '".$name."'")->first();
+			if($result_query){
+				$branch = $result_query;
+			}else{
+				return Response::view("pagenotfound");
+			}
+
+		}
+
+
 		$business = Business::with('branches', 'reviews')->whereSlug($name)->first();
 
-		if(is_null($branch)){
-			return Response::view('pagenotfound');
-		}
 		
 		$reviews = $branch->business->reviews()->withTrashed()->orderBy('created_at', 'desc')->get();
 		$blogs = $branch->business->blogs()->orderBy('created_at', 'desc')->get();
@@ -263,11 +290,10 @@ class BusinessesController extends \BaseController {
 
 		$rating = array();
 
-		$branches = $business->branches;
-		// dd($branches);
+		$branches1 = $business->branches;
 
-		foreach ($branches as $branch) {
-			array_push($rating, Review::where('business_id', '=', $branch->business->id)->avg('rating'));
+		foreach ($branches1 as $branch1) {
+			array_push($rating, Review::where('business_id', '=', $branch1->business->id)->avg('rating'));
 		}
 
 		return View::make('client.company-tab')

@@ -19,7 +19,17 @@
                                           <a class="company-tabs-coupon" href="#">COUPON</a>
                                       </li>
                                     @endif
-                                    @if( !is_null($business->reviews) )
+
+                                    <?php $review_count= 0; $all_reviews = 0; ?>
+                                    @foreach($reviews as $review)
+                                      <?php $all_reviews++; ?>
+                                      @if(!$review->trashed())
+                                        <?php $review_count++; ?>
+                                      @endif
+                                    @endforeach
+
+
+                                    @if( $review_count>0 || (isOwner($branch->business->slug) && ($all_reviews != 0) ) )
                                         <li class="">
                                             <a class="company-tabs-review" href="javascript:void(0)">REVIEWS</a>
                                         </li>
@@ -45,8 +55,7 @@
                   @include('client.tabcontents.tabcontent-blog')
                 @endif
 
-                @if( !is_null($business->reviews) )  
-                  <!-- reviews tab -->
+                @if( $review_count>0 || (isOwner($branch->business->slug) && ($all_reviews != 0) ) )
                   @include('client.tabcontents.tabcontent-review')
                 @endif
                 
