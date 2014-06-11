@@ -93,17 +93,15 @@
 
         <div class="content-wrapper">
             <div class="zone-content equalize zone clearfix">
-            @if(Request::is('admin/*'))
-                <div class="content-container container-24<?php (Request::is('admin/*') ? 24 : 16) ?>">
-            @endif    
+                <div class="content-container container-24">
                 @yield('actual-body-content')
-
                 </div><!-- end of .content-container -->
+                
 
-                 @if(!Request::is('admin/manage/blog') && !Request::is('*/map') && !Request::is('company*'))
+                 @if(!Request::is('admin*') && !Request::is('*/map') && !Request::is('company*') && !Request::is('edit/business/*'))
                     @include('client.partials._sidebar')
                  @endif
-
+             </div>
             </div><!-- end of .zone-content -->
             
         </div><!-- end of .content-wrapper -->
