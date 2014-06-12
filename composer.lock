@@ -690,6 +690,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ollieread/multiauth.git",
+<<<<<<< HEAD
                 "reference": "1bfcee0988b83dbe69129caa922624ba7672b295"
             },
             "dist": {
@@ -705,6 +706,23 @@
                 "illuminate/filesystem": "~4.1",
                 "illuminate/support": "~4.1",
                 "php": ">=5.3.0"
+=======
+                "reference": "d163c1d905e8b20259d574d851ecf351467d4241"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ollieread/multiauth/zipball/d163c1d905e8b20259d574d851ecf351467d4241",
+                "reference": "d163c1d905e8b20259d574d851ecf351467d4241",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "~4.2",
+                "illuminate/console": "~4.2",
+                "illuminate/database": "~4.2",
+                "illuminate/filesystem": "~4.2",
+                "illuminate/support": "~4.2",
+                "php": ">=5.4.0"
+>>>>>>> a238d44011e8e96fba6eb8ba73e34b2da81c05dc
             },
             "type": "library",
             "autoload": {
@@ -728,7 +746,11 @@
                 "laravel",
                 "multi"
             ],
+<<<<<<< HEAD
             "time": "2014-06-11 10:35:50"
+=======
+            "time": "2014-06-10 16:40:44"
+>>>>>>> a238d44011e8e96fba6eb8ba73e34b2da81c05dc
         },
         {
             "name": "patchwork/utf8",
@@ -2103,18 +2125,27 @@
             "time": "2014-05-27 14:21:26"
         }
     ],
+<<<<<<< HEAD
     "aliases": [
 
     ],
+=======
+    "aliases": [],
+>>>>>>> a238d44011e8e96fba6eb8ba73e34b2da81c05dc
     "minimum-stability": "dev",
     "stability-flags": {
         "thujohn/twitter": 20,
         "ollieread/multiauth": 20
     },
+<<<<<<< HEAD
     "platform": [
 
     ],
     "platform-dev": [
 
     ]
+=======
+    "platform": [],
+    "platform-dev": []
+>>>>>>> a238d44011e8e96fba6eb8ba73e34b2da81c05dc
 }
