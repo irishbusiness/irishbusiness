@@ -489,4 +489,13 @@ class BusinessesController extends \BaseController {
 			return "Deleted";
 		}
 	}
+
+	public function editbranch($businessSlug, $branch){
+		$branch = Branch::with('business')->find($branchId);
+		$addresses = $branch->address;
+		$addresses = explode("*", $addresses);
+
+		return View::make('client.branch_edit')
+		->with('addresses', $addresses);
+	}
 }

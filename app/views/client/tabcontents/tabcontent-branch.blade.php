@@ -33,6 +33,10 @@
 					{{ HTML::link('company/'. $branch->business->slug . '/' . $branch->id, decode($branch->business->name).' - '.showAddress($branch->address) ) }}</div>
 					<div class="listing-text">{{ Str::limit(decode($branch->business->business_description), 255) }}</div>
 					{{HTML::link('company/'. $branch->business->slug .'/'.$branch->id, 'Read More',['class' => 'listing-read-more' ] ) }}
+					@if(isOwner($branch->business->slug))
+						{{HTML::link('edit/branch'. $branch->business->slug .'/'.$branch->id, 'Edit Branch',['class' => 'listing-read-more' ] ) }}
+						{{HTML::link('company/'. $branch->business->slug .'/'.$branch->id, 'Delete Branch',['class' => 'listing-read-more', 'onclick' => 'return confirm("Are you sure you want to delete this branch?")' ] ) }}
+					@endif
 				</div>
 			</div>
 			<?php $x++; ?>
