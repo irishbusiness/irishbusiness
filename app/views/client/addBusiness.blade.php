@@ -12,6 +12,6 @@
 @stop
 
 @section('scripts')
-        <!-- the long scripts -->
-            @include('client.companytabs.settings_scripts')
+    <!-- the long scripts -->
+        @include('client.companytabs.settings_scripts')
 @stop

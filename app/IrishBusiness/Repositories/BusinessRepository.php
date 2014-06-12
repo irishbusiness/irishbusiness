@@ -65,6 +65,25 @@ class BusinessRepository {
             $business->logo  =   'images/companylogos/sample_company.jpg';
         }
 
+        if(!is_null($input['profilebanner']))
+        {
+            $image = $input['logo'];
+            $imagename = md5(date('YmdHis')).'.jpg';
+
+            if ($image->getMimeType() == 'image/png'
+                || $image->getMimeType() == 'image/jpg'
+                || $image->getMimeType() == 'image/gif'
+                || $image->getMimeType() == 'image/jpeg'
+                || $image->getMimeType() == 'image/pjpeg')
+            {
+                // $image->move($dir, $filename);
+                $path = public_path('images/companylogos/' . $imagename);
+                Image::make($image->getRealPath())->save($path);
+                $business->profilebanner  =   'images/companylogos/'.$imagename;
+            }
+
+        }
+
 		$business->save();
 
 		return $business;
@@ -131,6 +150,26 @@ class BusinessRepository {
 
         } else {
             $business->logo  =   $old_businessinfo->logo;
+        }
+
+        
+        if(!is_null($input['profilebanner']))
+        {
+            $image = $input['logo'];
+            $imagename = md5(date('YmdHis')).'.jpg';
+
+            if ($image->getMimeType() == 'image/png'
+                || $image->getMimeType() == 'image/jpg'
+                || $image->getMimeType() == 'image/gif'
+                || $image->getMimeType() == 'image/jpeg'
+                || $image->getMimeType() == 'image/pjpeg')
+            {
+                // $image->move($dir, $filename);
+                $path = public_path('images/companylogos/' . $imagename);
+                Image::make($image->getRealPath())->save($path);
+                $business->profilebanner  =   'images/companylogos/'.$imagename;
+            }
+
         }
 
         $business->save();

@@ -15,6 +15,16 @@
 		    </div>
 		    <div class="thin-separator"></div>
 		    <div id="update-business-settings" class="invisible">  
+			     <div class="form-group">
+			        {{ Form::label('profilebanner', "Profile Banner",
+			        ["class"=>"text-colorful"]) }}<br/>
+			        <br>
+			        {{ Form::file('profilebanner', ["id"=>"btn-business-settings-profilebanner"]) }}
+			        {{$errors->first('profilebanner','<span class="alert alert-error block half">:message</span>')}}
+			        <div class="render-logo-preview">
+			            <img src="{{ isset($businessinfo->profilebanner) ? '/'.$businessinfo->profilebanner : '' }}" id="img-render-profilebanner">
+			        </div>
+			    </div>
 		        <div class="form-group">
 		            {{ Form::label('name', 'Business Name', ["class"=>"text-colorful"]) }}<br/>
 		            {{ Form::text('name', decode($businessinfo->name), [

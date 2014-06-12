@@ -70,6 +70,7 @@ class BusinessesController extends \BaseController {
 
 
 		$branches = Branch::Join('businesses','businesses.id', '=', 'branches.business_id')
+					->with('business.categories')
 				  ->join('business_category','business_category.business_id', '=', 'businesses.id'  )
 				  ->join('categories','business_category.category_id', '=', 'categories.id'  )
 				  ->whereRaw("(businesses.name like '%$category%' or businesses.keywords like '%$category%' or categories.name like '$category') $query1 ")
