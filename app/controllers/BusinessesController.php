@@ -72,17 +72,20 @@ class BusinessesController extends \BaseController {
 		$branches = Branch::Join('businesses','businesses.id', '=', 'branches.business_id')
 				  ->join('business_category','business_category.business_id', '=', 'businesses.id'  )
 				  ->join('categories','business_category.category_id', '=', 'categories.id'  )
-				  ->with('business.categories')
 				  ->whereRaw("(businesses.name like '%$category%' or businesses.keywords like '%$category%' or categories.name like '$category') $query1 ")
 				  ->groupBy('branches.id')
-				  ->paginate(15, ['branches.*','businesses.name','businesses.business_description','businesses.profile_description','businesses.slug','businesses.logo']);
+				  ->paginate(15, ['branches.*','businesses.id as bid','businesses.name','businesses.business_description','businesses.profile_description','businesses.slug','businesses.logo']);
 
 		
 		
 		$rating = array();
+
 		foreach ($branches as $branch) {
-			array_push($rating, Review::where('business_id', '=', $branch->business->id)->avg('rating'));
+			
+			array_push($rating, Review::where('business_id', '=', $branch->bid)->avg('rating'));
+			
 		}
+		
 
 		Session::put('category', Input::get('category'));
 		Session::put('location', Input::get('location'));
