@@ -68,6 +68,7 @@ class BusinessesController extends \BaseController {
 		$query1 .= "branches.locations like '%%'";
 
 
+
 		$branches = Branch::Join('businesses','businesses.id', '=', 'branches.business_id')
 				  ->join('business_category','business_category.business_id', '=', 'businesses.id'  )
 				  ->join('categories','business_category.category_id', '=', 'categories.id'  )
