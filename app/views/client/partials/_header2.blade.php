@@ -20,17 +20,7 @@
     					<div class="login">
     						<?php /*dd(Auth::salesperson()->user())*/ ?>
     						@if(Auth::user()->check())
-                                @if(Auth::user()->user()->access_level != 3)
-            						<a href="#" id="login-link" class="login-link">Switch to Sales</a>
-            						{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
-            						{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
-            						{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
-            						<span id="errordiv" >
-            						</span>
-            						<a href="/password/remind" class="password-restore">Forgot Password?</a>
-            						<input class="button-2-colorful" type="submit" value="Login">
-            						{{Form::close()}}
-                                @endif
+                               
     						@elseif(Auth::salesperson()->check())
     						@if(isClient(Auth::salesperson()->user()->email))
 
@@ -134,14 +124,19 @@
                                 <a href="{{ URL::to('/buy') }}">SUBSCRIBE</a>
                             </li>
                             @endif
-                            <li>
-                                <a href="javascript:void(0)">{{ strtoupper(Auth::user()->user()->firstname) }} &#x25BC</a>
-                            <ul>
                             @if(hasBusiness())
                             <li class="">
                                 <a href="{{ URL::to('company/'.businessSlug().'/'.branch()) }}">SETTINGS</a>
                             </li>
+                            @else
+                            <li class="">
+                                <a href="{{ URL::to('business/add') }}">Add Business</a>
+                            </li>
                             @endif
+                            <li>
+                                <a href="javascript:void(0)">{{ strtoupper(Auth::user()->user()->firstname) }} &#x25BC</a>
+                            <ul>
+                          
                             <li class="">
                                 <a href="{{ URL::to('client/password/edit') }}">CHANGE PASSWORD</a>
                             </li>
