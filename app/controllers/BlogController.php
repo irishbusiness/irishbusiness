@@ -90,7 +90,7 @@ class BlogController extends \BaseController {
             }
 
         } else {
-            $blog->blogheaderimage  =   'images/blog/COMING-SOON.jpg';
+            $blog->blogheaderimage  =   '';
         }
 
         $blog->save();

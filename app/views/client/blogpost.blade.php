@@ -10,9 +10,11 @@
 					<div class="block-title">
 						<h1>{{ html_entity_decode(stripcslashes($blog->title)) }}</h1>
 					</div>
+					@if(!is_empty($blog->blogheaderimage))
 					<div class="blog-post-image">
 						<img src="{{ URL::asset($blog->blogheaderimage) }}" alt="" />
 					</div>
+					@endif
 					<div class="blog-post-subtitle">
 						{{ $blog->subtitle }}
 					</div>
