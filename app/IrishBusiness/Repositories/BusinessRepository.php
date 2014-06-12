@@ -339,4 +339,14 @@ class BusinessRepository {
             return "Your coupon has been added successfully.";
         }
     }
+
+    function delete_business($id){
+        $business = Business::find($id);
+
+        if($business->delete()){
+            return true;
+        }
+
+        return false;
+    }
 }

@@ -4,10 +4,10 @@
 		<div class="comments block">
 			<div class="review-messages">
 				<div class="blog block spacer">
-					<div class="block-title">
-						<h1>Reviews</h1>
-					</div>
 					@if(count($reviews))
+						<div class="block-title">
+							<h1>Reviews</h1>
+						</div>
 						@foreach($reviews as $review)
 							@if((isOwner($branch->business->slug) && $review->trashed()) || !$review->trashed())
 								<div class="review last">
@@ -36,6 +36,10 @@
 								@endif
 							@endif
 						@endforeach
+					@else
+						<div class="comment-message-title">
+							<span class="text-colorful">No </span>Reviews
+						</div>
 					@endif
 				</div>
 			</div>

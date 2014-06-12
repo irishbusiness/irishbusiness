@@ -4588,3 +4588,7 @@ div.listing-rating {
 #show-hide-coupon-lists-div {
 	margin-bottom: 25px;
 }
+
+.profile-description-img-thumbnail img {
+	max-width: 100%;
+}

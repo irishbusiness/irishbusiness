@@ -1,6 +1,6 @@
  <div id="company-tabs-coupon" class="company-tabs-content">
     <div class="portfolio-container container-24">
-        @if(isOwner($branch->business->slug))
+        @if( isOwner($branch->business->slug) || isAdmin() )
             <a href="javascript:void(0)" id="btn-add-coupon" class="a-btn button-2-colorful add-coupon">Add new coupon</a>
 			    <div id="coupon-manage" class="invisible">
 			        <div>
@@ -91,16 +91,18 @@
 			            </div>
 			        </div>
 			    </div>
+			    @if(count($coupons))
 			    <div id="show-hide-coupon-lists-div">
 					<a href="javascript:void(0)" class="" id="show-hide-coupons-list">- Hide Coupons</a>
 				</div>
+				@endif
 		@endif
 		@if(count($coupons))
 			<div id="coupons-list" class="">
             @foreach($coupons as $coupon)
 			
 					<div class="coupon-row">
-						@if(isOwner($branch->business->slug))
+						@if( isOwner($branch->business->slug) || isAdmin() )
 						 	<a href="javascript:void(0)" data-id="{{ $coupon->id }}" class="delete-coupon">Delete this coupon</a>
 						@endif
 						<img src="{{ URL::asset($coupon->name) }}" alt="coupon">
@@ -132,93 +134,10 @@
             </div>
 
         @else
-            <p>Nothing to show here...</p>
+            <div class="comment-message-title">
+				<span class="text-colorful">Nothing </span>to show here...
+			</div>
         @endif
 	</div>
 </div>
-@section('scripts')
-    <script>
-    	$(document).on("click", ".delete-coupon", function(){
-    		var id = $(this).attr("data-id");
-    		var token = $("input[name='_token']").val();
-    		var c = confirm("Are you sure to delete this coupon?");
-    		if( c == true ){
-    			$.ajax({
-    				url: "/ajaxDeleteCoupon",       
-					type: "post",
-					data: { coupon: id, _token: token},
-					beforeSend: function(){
-						$(".delete-coupon[data-id='"+id+"']").text("Deleting...");
-					}
-    			}).done(function(data){
-    				$(".delete-coupon[data-id='"+id+"']").text(data);
-    				$(".delete-coupon[data-id='"+id+"']").parent("div.coupon-row").fadeOut(function(){
-    					$(".delete-coupon[data-id='"+id+"']").remove();
-    				});
-    			});
-    		}
-    	});
-
-        $("#savecoupon").on("click", function(e){
-            e.preventDefault();
-
-            console.log($("#realtime-form").serialize());
-            var token = $("input[name='_token']").val();
-            $(this).text("Processing...");
-            $.ajax({
-               type: "POST",
-               url: "/ajaxSaveCoupon?_token="+token+"&b={{ $branch->business->id }}"+"&br={{ $branch->id }}",
-               data: $("#realtime-form").serialize(), // serializes the form's elements.
-               success: function(data)
-               {	
-               		$("#savecoupon").text("Submit");
-                  	location.reload();
-               }
-             });
-
-        });
-
-        $("#upload-own-coupon").click(function(e){
-            e.preventDefault();
-			$(this).fadeOut();
-			$("#coupon-generator").fadeOut();
-            $("#form-upload-coupon").fadeIn();
-        });
-
-        $(document).on("click", "#cancel-upload-own-coupon", function(){
-        	$("#upload-own-coupon").fadeIn();
-        	$("#coupon-generator").fadeIn();
-            $("#form-upload-coupon").fadeOut();
-        });
-
-        $(document).on("click", "#btn-add-coupon", function(){
-        	if( $("#coupon-manage").attr("class") == "invisible" ) {
-        		$(this).html("Close");
-        		$("#coupon-manage").fadeIn(function(){
-        			$("#coupon-manage").attr("class", "");
-        		});
-        	}else{
-        		$(this).html("Add new coupon");
-        		$("#coupon-manage").fadeOut(function(){
-        			$("#coupon-manage").attr("class", "invisible");
-        		});
-        	}
-        });
-
-        $(document).on("click", "#show-hide-coupons-list", function(){
-        	if($("#coupons-list").attr("class") == "invisible"){
-        		$(this).html("- Hide Coupons");
-        		$("#coupons-list").fadeIn(function(){
-        			$("#coupons-list").attr("class", "");
-        		});
-        	}else{
-        		$(this).html("+ Show Coupons");
-        		$("#coupons-list").fadeOut(function(){
-        			$("#coupons-list").attr("class", "invisible");
-        		});
-        	}
-        });
-    </script>
-@stop
-
 			

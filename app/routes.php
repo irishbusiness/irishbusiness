@@ -96,6 +96,7 @@ Route::get('admin/settings/blog', 'BlogController@manageblog');
 Route::post('admin/settings/blog', 'BlogController@store');
 
 Route::get('business/add', 'BusinessesController@addBusiness');
+Route::post('ajaxDeleteBusiness', 'BusinessesController@delete_business');
 
 Route::get('business/{businessSlug}', 'BusinessesController@showBusiness');
 Route::post('ajaxSaveCoupon', 'BusinessesController@save_coupon');
