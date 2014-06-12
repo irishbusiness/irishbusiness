@@ -1,14 +1,7 @@
      <div id="company-tabs-coupon" class="company-tabs-content">
         <div class="portfolio-container container-24">
-            @if(isOwner($branch->business->slug))
+        @if(isOwner($branch->business->slug))
             <a href="javascript:void(0)" id="btn-add-coupon" class="a-btn button-2-colorful add-coupon">Add new coupon</a>
-
-            <?php 
-			    if(!isset($businessinfo)){
-			        $businessinfo = new \Illuminate\Support\Collection;
-			        $businessinfo->id = '';
-			    }
-			?>
 			    <div id="coupon-manage" class="invisible">
 			        <div>
 			            <a href="javascript:void(0)" id="upload-own-coupon">Upload your own coupon</a>
@@ -98,12 +91,12 @@
 			            </div>
 			        </div>
 			    </div>
-		</div>
+		<!-- </div> -->
+	@endif
 		@if(count($coupons))
 		<div id="show-hide-coupon-lists-div">
 			<a href="javascript:void(0)" class="" id="show-hide-coupons-list">- Hide Coupons</a>
 		</div>
-		@endif
 			<div id="coupons-list" class="">
             @foreach($coupons as $coupon)
 			
@@ -142,6 +135,7 @@
         @else
             <p>Nothing to show here...</p>
         @endif
+		</div>
     </div>
          @section('scripts')
 	        <script>

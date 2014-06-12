@@ -13,7 +13,7 @@
 					<a class="company-tabs-blog" href="#">BLOG</a>
 				</li>
 				@endif
-				@if(count($coupons) || isOwner($branch->business->slug))
+				@if( (count($coupons)>0 && !isOwner($branch->business->slug)) || isOwner($branch->business->slug) )
 				<li class="">
 					<a class="company-tabs-coupon" href="#">COUPON</a>
 				</li>
