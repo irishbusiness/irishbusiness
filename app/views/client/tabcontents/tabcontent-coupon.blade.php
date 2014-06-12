@@ -12,7 +12,7 @@
 			                    {{ Form::label("filecoupon", "Upload your coupon", ["class"=>"text-colorful"]) }}
 			                    {{ Form::file('filecoupon', ["id"=>"btn-filecoupon-settings-logo"]) }}
 			                    <div class="render-logo-preview">
-			                        <img src="" id="img-render-filecoupon">
+			                        <img src="{{ URL::asset('/images/image-not-available.png') }}" id="img-render-filecoupon">
 			                    </div>
 			                </div>
 			                <div class="form-group">
