@@ -12,7 +12,7 @@ class ZemPresenter extends \Illuminate\Pagination\Presenter {
         return '<a class="unavailable">'.$text.'</a>';
     }
 
-    public function getPageLinkWrapper($url, $page)
+    public function getPageLinkWrapper($url, $page, $rel = null)
     {
         return '<a href="'.$url.'">'.$page.'</a>';
     }
