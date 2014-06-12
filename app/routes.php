@@ -253,4 +253,5 @@ Route::get('try',function(){
 
 Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');
 Route::post('/disapproveReviewAjax', 'ReviewsController@disapproveReviewAjax');
-// Route::get('edit/branch/{businessSlug}/{branch}', 'BusinessesController@editbranch');
+Route::get('{businessSlug}/branch', 'BusinessesController@showBranches');
+Route::get('/{branchId}/branch/delete', 'BusinessesController@deleteBranch');

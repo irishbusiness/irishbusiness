@@ -12,4 +12,13 @@ on each view using the default.blade.php
                     @include('client.partials._sidebar')
                  @endif
 
+
+
+                 in company-tab.blade.php 
+
+                 @if(count($business->branches)>1 || isOwner($branch->business->slug))
+				<!-- branch tab -->
+				@include('client.tabcontents.tabcontent-branch')
+			@endif
+
 */

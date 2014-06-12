@@ -134,5 +134,4 @@
 
 @section('scripts')
         <!-- the long scripts -->
-            
 @stop

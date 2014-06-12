@@ -33,9 +33,6 @@
 					<a class="company-tabs-review" href="javascript:void(0)">REVIEWS</a>
 				</li>
 				@endif
-				@if(count($business->branches)>1 || (isOwner($branch->business->slug) && count($business->branches)>1 ))
-				<li><a class="company-tabs-branch" href="javascript:void(0)">BRANCH</a></li>
-				@endif
 			</ul>
 		</div>
 		<!-- end of .company-tabs-container -->
@@ -56,11 +53,6 @@
 
 			@if( $review_count>0 || (isOwner($branch->business->slug) && ($all_reviews != 0) ) )
 				@include('client.tabcontents.tabcontent-review')
-			@endif
-
-			@if(count($business->branches)>1 || isOwner($branch->business->slug))
-				<!-- branch tab -->
-				@include('client.tabcontents.tabcontent-branch')
 			@endif
 
 			@if(count($coupons) || isOwner($branch->business->slug))               

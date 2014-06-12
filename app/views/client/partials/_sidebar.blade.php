@@ -30,7 +30,7 @@
 					<img src="{{ URL::asset($recentblog->blogheaderimage) }}" alt="" />
 				</a>
 				<a href="{{ URL::to('/blog/'.$recentblog->slug) }}" class="entry-title">{{ decode($recentblog->title) }}</a>
-				<div class="entry-excerpt">{{ Str::limit(decode($recentblog->body) , 50) }}</div>
+				<div class="entry-excerpt">{{ Str::limit(strip_tags(decode($recentblog->body)) , 50) }}</div>
 			</li>
 		@endforeach
 		</ul>

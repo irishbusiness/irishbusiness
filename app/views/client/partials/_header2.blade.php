@@ -119,9 +119,12 @@
                             <li class="">
                                  <a href="{{ URL::to('company/'.businessSlug().'/'.branch()) }}">BUSINESS SETTINGS</a>
                             </li>
+                            <li class="">
+                                 <a href="{{ URL::to(businessSlug().'/branch') }}">BRANCH SETTINGS</a>
+                            </li>
                             @else
                             <li class="">
-                                <a href="{{ URL::to('business/add') }}">Add Business</a>
+                                <a href="{{ URL::to('business/add') }}">ADD BUSINESS</a>
                             </li>
                             @endif
                             <li>

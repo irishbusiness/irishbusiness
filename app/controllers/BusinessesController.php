@@ -490,4 +490,26 @@ class BusinessesController extends \BaseController {
 		}
 	}
 
+	public function showBranches($businessSlug){
+		$business = Business::with('branches', 'reviews')->whereSlug($businessSlug)->first();	
+		
+		$branches1 = $business->branches;
+		$rating = array();
+		foreach ($branches1 as $branch1) {
+			array_push($rating, Review::where('business_id', '=', $branch1->business->id)->avg('rating'));
+		}
+
+		return View::make('client.tabcontents.tabcontent-branch')
+		->with('business', $business)
+		->with('rating', $rating);
+
+	}
+
+	public function deleteBranch($branchId)
+	{
+		$branch = Branch::find($branchId);
+		$branch->delete();
+
+		return Redirect::back();
+	}
 }
