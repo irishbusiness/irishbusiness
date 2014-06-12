@@ -35,6 +35,7 @@
 		</div><!-- end of .zone-content -->
 		
 	</div><!-- end of .content-wrapper -->
+
 @stop
 
 @section('sidebar')
