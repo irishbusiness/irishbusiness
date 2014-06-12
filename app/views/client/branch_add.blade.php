@@ -1,8 +1,8 @@
 @extends("client.layouts.default")
 
 @section("actual-body-content")
-        <div class="portfolio-container container-16">
-        <div id="company-tabs-page" class="company-tabs-content" style="display: block;">
+<div class="portfolio-container container-16">
+    <div id="company-tabs-page" class="company-tabs-content" style="display: block;">
         <div class="portfolio-container container-24">
 
             <div class="blog-post block">
@@ -125,6 +125,7 @@
             {{ Form::close() }}
         </div>
     </div>
+</div>
 @stop
 
 @section('sidebar')
