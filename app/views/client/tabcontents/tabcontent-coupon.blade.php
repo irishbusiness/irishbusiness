@@ -91,8 +91,7 @@
 			            </div>
 			        </div>
 			    </div>
-		<!-- </div> -->
-	@endif
+		@endif
 		@if(count($coupons))
 		<div id="show-hide-coupon-lists-div">
 			<a href="javascript:void(0)" class="" id="show-hide-coupons-list">- Hide Coupons</a>
@@ -135,7 +134,7 @@
         @else
             <p>Nothing to show here...</p>
         @endif
-		</div>
+</div>
     </div>
          @section('scripts')
 	        <script>
