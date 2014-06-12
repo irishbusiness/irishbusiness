@@ -3325,7 +3325,7 @@ var RLANG = {
 				var html = '';
 				if (link !== true)
 				{
-					html = '<div class="ytp-thumbnail" style="display: block;"><p class="video-thumbnail">'+'<img src="../../' + json.filelink + '" class="video-thumbnail"/></p></div>';
+					html = '<p class="profile-description-img-thumbnai">'+'<img src="../../' + json.filelink + '" class="video-thumbnail"/></p>';
 				}
 				else
 				{
