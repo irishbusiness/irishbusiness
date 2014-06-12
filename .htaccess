@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+   Options -MultiViews
+   RewriteEngine on
+   RewriteRule    ^$ web/public/    [L]
+   RewriteRule    (.*) web/public/ [L]
+</IfModule>
+AddType application/x-httpd-php54 .php
+AddType application/x-httpd-php53 .php

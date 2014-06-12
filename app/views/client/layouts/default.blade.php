@@ -101,7 +101,7 @@
                  @if(!Request::is('admin*') && !Request::is('*/map') && !Request::is('company*') && !Request::is('edit/business/*'))
                     @include('client.partials._sidebar')
                  @endif
-             </div>
+             <!-- </div> -->
             </div><!-- end of .zone-content -->
             
         </div><!-- end of .content-wrapper -->

@@ -80,13 +80,9 @@ class BusinessesController extends \BaseController {
 		$rating = array();
 
 		foreach ($branches as $branch) {
-<<<<<<< HEAD
-			array_push($rating, $branch->business->reviews()->avg('rating'));
-=======
 			
 			array_push($rating, Review::where('business_id', '=', $branch->bid)->avg('rating'));
 			
->>>>>>> a238d44011e8e96fba6eb8ba73e34b2da81c05dc
 		}
 		
 
