@@ -16,7 +16,7 @@ class CreateBlogsTable extends Migration {
 			$table->increments('id');
 			$table->string('title');
 			$table->string('blogheaderimage');
-			$table->string('body');
+			$table->text('body');
             $table->string('facebook');
             $table->string('google');
             $table->string('twitter');
