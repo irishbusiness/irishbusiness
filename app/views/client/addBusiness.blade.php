@@ -4,7 +4,7 @@
 	<div class="content-container container-16">
         <!-- general settings tab -->
         @include('client.companytabs.business_settings')
-     
+    </div>
 @stop
 
 @section('sidebar')

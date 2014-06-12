@@ -1,7 +1,10 @@
 <div id="company-tabs-page" class="company-tabs-content">
 	<div class="edit-company">
-		@if(isOwner($branch->business->slug))
-			<a href="{{ Request::root().'/edit/business/'.$branch->business->slug.'/'.$branch->id }}">Edit your business</a>
+		@if( isOwner($branch->business->slug) || isAdmin() )
+			<a href="{{ Request::root().'/edit/business/'.$branch->business->slug.'/'.$branch->id }}">
+				Edit your business
+			</a> | 
+			<a href="javascript:void(0)" title="Delete this business" id="btn-delete-business">Delete business</a>
 		@endif
 	</div>
 	<div class="sidebar-container container-8 show" id="tabs-sidebar">
@@ -214,3 +217,31 @@
 	</div>
 </div>
 <!-- end of .company-content-container -->
+
+@section('scripts')
+	<script>
+		$(document).on("click", "#btn-delete-business", function(){
+			var id = "{{ $branch->business->id }}";
+			var token = $("input[name='_token']").val();
+			var c = confirm("Are you sure you want to delete this business?");
+			if( c == true ){
+				var c2 = confirm("Are you really sure? This action can not be undone.");
+				if( c2 == true ){
+					$.ajax({
+						url: "/ajaxDeleteBusiness",
+						type: "post",
+						data: {id: id, _token: token}
+					}).done(function(data){
+						if(data == "false"){
+							console.log("Unable to delete this time.");
+						}else{
+							console.log("Business has been successfully deleted.");
+							alert("Business has been successfully deleted.");
+							window.location = "{{ Request::root() }}";
+						}
+					});
+				}
+			}
+		});
+	</script>
+@stop

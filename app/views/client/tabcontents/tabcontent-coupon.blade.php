@@ -1,6 +1,6 @@
  <div id="company-tabs-coupon" class="company-tabs-content">
     <div class="portfolio-container container-24">
-        @if(isOwner($branch->business->slug))
+        @if(isOwner($branch->business->slug) || isAdmin())
             <a href="javascript:void(0)" id="btn-add-coupon" class="a-btn button-2-colorful add-coupon">Add new coupon</a>
 			    <div id="coupon-manage" class="invisible">
 			        <div>

@@ -4,7 +4,7 @@ use \Illuminate\Database\Eloquent\SoftDeletingTrait;
 class Business extends \Eloquent {
     
     protected $softdelete = true;
-     protected $table = 'businesses';
+    protected $table = 'businesses';
     protected $dates = ['deleted_at'];
 
     protected $softDelete = true; 
