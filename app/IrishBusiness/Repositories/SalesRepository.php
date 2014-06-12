@@ -17,7 +17,7 @@ class SalesRepository {
 		$salesperson->phone = $input['phone'];
 		$salesperson->email = $input['email'];
 		$salesperson->access_level = $input['type'];
-		$salesperson->coupon = str_random(3) . time();
+		$salesperson->coupon = str_random(6);
 		$salesperson->save();
 		$salesperson->passwordraw = $password;
 

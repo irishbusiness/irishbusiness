@@ -1,5 +1,4 @@
 
-	
 <?php
 use IrishBusiness\Repositories\PaymentsRepository;
 
@@ -19,13 +18,34 @@ class PaymentsController extends \BaseController {
 
 
 	/**
-	 *  ADD COUPON CODE VIEW 
+	 *  ASK COUPON CODE VIEW 
 	 */
 
 	public function addCode()
 	{
-		return View::make('client.askcoupon');
+		return View::make('client.askcoupon')->with('title','Discount Coupon');
 	}
+
+	/**
+	 *  STORE COUPON CODE POST 
+	 */
+
+	public function storeCode()
+	{
+		$code = Input::get('code');
+
+		if(!$this->payments->validateCoupon($code))
+			return Redirect::back()->withInput()->with('error','Coupon is invalid.');
+
+		if(!$this->payments->storeCoupon($code))
+			return Redirect::back()->withInput()->with('error','Coupon is invalid.');
+	
+		if(strlen($code)>6)
+			return Redirect::to('business/add')->with('flash_message','Thank you for subscribing to Irishbusiness! You can now add your business.');
+	
+		return Redirect::to('buy');		
+	}
+
 
 
 	/**
@@ -53,7 +73,7 @@ class PaymentsController extends \BaseController {
 		if(is_null($subscription)) return Response::view('pagenotfound');
 		
 
-	$token = Input::get('stripeToken');
+		$token = Input::get('stripeToken');
 		$email = Input::get('stripeEmail');
 		Stripe::setApiKey(Config::get('stripe.secret_key'));
 

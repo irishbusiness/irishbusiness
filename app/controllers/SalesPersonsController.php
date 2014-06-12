@@ -18,7 +18,7 @@ class SalesPersonsController extends \BaseController {
 		$this->salesperson = $salesperson;
 		Event::listen('salesperson.invite','IrishBusiness\Mailers\SalesPersonMailer@invite');
 
-		$this->beforeFilter('SPguest');
+		$this->beforeFilter('SPguest' ,['except'=> ['invite','store']]);
 	}
 
 	function index()

@@ -363,6 +363,7 @@ class BusinessesController extends \BaseController {
 
 		if(is_null($branch))
 			return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug);
+		
 		return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug)->withBranch($branch);
 	}
 
@@ -461,8 +462,6 @@ class BusinessesController extends \BaseController {
 			return Response::make('pagenotfound');
 
 		$this->business->storeMap(Input::get('latlng'),Input::get('branch_id'));
-
-
 
 		return Redirect::to('company/'.Input::get('slug').'/'.Input::get('branch_id'))
 			->with('flash_message','Congratulations! You have completed your profile.');	
