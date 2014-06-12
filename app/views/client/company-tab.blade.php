@@ -8,12 +8,12 @@
 				<li class="active">
 					<a class="company-tabs-page" href="#">BUSINESS</a>
 				</li>
-				@if(count($blogs) || isOwner($branch->business->slug))
+				@if(count($blogs) || isOwner($branch->business->slug) || isAdmin() )
 				<li class="">
 					<a class="company-tabs-blog" href="#">BLOG</a>
 				</li>
 				@endif
-				@if( (count($coupons)>0 && !isOwner($branch->business->slug)) || isOwner($branch->business->slug) )
+				@if( (count($coupons)>0 && !isOwner($branch->business->slug)) || isOwner($branch->business->slug) || isAdmin()  )
 				<li class="">
 					<a class="company-tabs-coupon" href="#">COUPON</a>
 				</li>
@@ -21,14 +21,14 @@
 
 				<?php $review_count= 0; $all_reviews = 0; ?>
 				@foreach($reviews as $review)
-				<?php $all_reviews++; ?>
-				@if(!$review->trashed())
-				<?php $review_count++; ?>
-				@endif
+					<?php $all_reviews++; ?>
+					@if(!$review->trashed())
+						<?php $review_count++; ?>
+					@endif
 				@endforeach
 
 
-				@if( $review_count>0 || (isOwner($branch->business->slug) && ($all_reviews != 0) ) )
+				@if( $review_count>0 || (isOwner($branch->business->slug) || isAdmin() ) )
 				<li class="">
 					<a class="company-tabs-review" href="javascript:void(0)">REVIEWS</a>
 				</li>
@@ -49,7 +49,7 @@
 			<!-- company tab -->
 			@include('client.tabcontents.tabcontent-company')
 
-			@if(count($blogs) || isOwner($branch->business->slug))                  
+			@if(count($blogs) || isOwner($branch->business->slug) || isAdmin() )                  
 				<!-- blog tab -->
 				@include('client.tabcontents.tabcontent-blog')
 			@endif
@@ -58,12 +58,12 @@
 				@include('client.tabcontents.tabcontent-review')
 			@endif
 
-			@if(count($business->branches)>1 || isOwner($branch->business->slug))
+			@if(count($business->branches)>1 || isOwner($branch->business->slug) || isAdmin() )
 				<!-- branch tab -->
 				@include('client.tabcontents.tabcontent-branch')
 			@endif
 
-			@if(count($coupons) || isOwner($branch->business->slug))               
+			@if(count($coupons) || isOwner($branch->business->slug) || isAdmin() )               
 				<!-- coupon tab -->
 				@include('client.tabcontents.tabcontent-coupon')
 			@endif

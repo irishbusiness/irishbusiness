@@ -243,5 +243,86 @@
 				}
 			}
 		});
+
+		$(document).on("click", ".delete-coupon", function(){
+    		var id = $(this).attr("data-id");
+    		var token = $("input[name='_token']").val();
+    		var c = confirm("Are you sure to delete this coupon?");
+    		if( c == true ){
+    			$.ajax({
+    				url: "/ajaxDeleteCoupon",       
+					type: "post",
+					data: { coupon: id, _token: token},
+					beforeSend: function(){
+						$(".delete-coupon[data-id='"+id+"']").text("Deleting...");
+					}
+    			}).done(function(data){
+    				$(".delete-coupon[data-id='"+id+"']").text(data);
+    				$(".delete-coupon[data-id='"+id+"']").parent("div.coupon-row").fadeOut(function(){
+    					$(".delete-coupon[data-id='"+id+"']").remove();
+    				});
+    			});
+    		}
+    	});
+
+        $("#savecoupon").on("click", function(e){
+            e.preventDefault();
+
+            console.log($("#realtime-form").serialize());
+            var token = $("input[name='_token']").val();
+            $(this).text("Processing...");
+            $.ajax({
+               type: "POST",
+               url: "/ajaxSaveCoupon?_token="+token+"&b={{ $branch->business->id }}"+"&br={{ $branch->id }}",
+               data: $("#realtime-form").serialize(), // serializes the form's elements.
+               success: function(data)
+               {	
+               		$("#savecoupon").text("Submit");
+                  	location.reload();
+               }
+             });
+
+        });
+
+        $("#upload-own-coupon").click(function(e){
+            e.preventDefault();
+			$(this).fadeOut();
+			$("#coupon-generator").fadeOut();
+            $("#form-upload-coupon").fadeIn();
+        });
+
+        $(document).on("click", "#cancel-upload-own-coupon", function(){
+        	$("#upload-own-coupon").fadeIn();
+        	$("#coupon-generator").fadeIn();
+            $("#form-upload-coupon").fadeOut();
+        });
+
+        $(document).on("click", "#btn-add-coupon", function(){
+        	if( $("#coupon-manage").attr("class") == "invisible" ) {
+        		$(this).html("Close");
+        		$("#coupon-manage").fadeIn(function(){
+        			$("#coupon-manage").attr("class", "");
+        		});
+        	}else{
+        		$(this).html("Add new coupon");
+        		$("#coupon-manage").fadeOut(function(){
+        			$("#coupon-manage").attr("class", "invisible");
+        		});
+        	}
+        });
+
+        $(document).on("click", "#show-hide-coupons-list", function(){
+        	if($("#coupons-list").attr("class") == "invisible"){
+        		$(this).html("- Hide Coupons");
+        		$("#coupons-list").fadeIn(function(){
+        			$("#coupons-list").attr("class", "");
+        		});
+        	}else{
+        		$(this).html("+ Show Coupons");
+        		$("#coupons-list").fadeOut(function(){
+        			$("#coupons-list").attr("class", "invisible");
+        		});
+        	}
+        });
 	</script>
 @stop
