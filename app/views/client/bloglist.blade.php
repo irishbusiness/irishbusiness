@@ -1,9 +1,6 @@
 @extends('client.layouts.default')
 
 @section('actual-body-content')
-<!-- <div class="content-container container-16"> -->
-	<div class="content-wrapper">
-		<!-- <div class="zone-content equalize zone clearfix"> -->
 			<div class="content-container container-16">
 
 				<div class="blog block">
@@ -49,9 +46,7 @@
 <!--					</div>-->
 				</div>
 			</div><!-- end of .content-container -->
-		<!-- </div>end of .zone-content -->
-	<!-- </div>end of .content-wrapper -->
-<!-- </div> -->
+		
 @stop
 
 @section('sidebar')

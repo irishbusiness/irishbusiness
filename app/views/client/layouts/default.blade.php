@@ -91,13 +91,13 @@
         </div><!-- end of .industries-tabs-wrapper -->
         <div class="content-wrapper">
             <div class="zone-content equalize zone clearfix">
-                <div class="content-container container-24">                
+                
                 @yield('actual-body-content')
                 <!-- </div>end of .content-container -->
                 <!-- <div class="content-container"> -->
                 @yield('sidebar')
-                    </div>
-                </div>
+                
+                
             </div><!-- end of .zone-content -->
             
         </div><!-- end of .content-wrapper -->
