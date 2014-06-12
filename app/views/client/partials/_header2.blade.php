@@ -110,15 +110,6 @@
     						<li class="empty neighbour-left">
     							<div></div>
     						</li>
-                               <li {{ (Request::is('/') ? ' class="first active"' : '') }}>
-                                <a href="{{ URL::to('/') }}">HOME</a>
-                            </li>
-                            <li {{ (Request::is('blog*') ? ' class="first active"' : '') }}>
-                                <a href="{{ URL::to('blog') }}">BLOG</a>
-                            </li>
-                            <li {{ (Request::is('contact-us*') ? ' class="first active"' : '') }}>
-                                <a href="{{ URL::to('contact-us')}}">CONTACT US</a>
-                            </li>
                              @if(!subscribed())
                             <li {{ (Request::is('buy*') ? ' class="first active"' : '') }}>
                                 <a href="{{ URL::to('/buy') }}">SUBSCRIBE</a>
@@ -126,7 +117,7 @@
                             @endif
                             @if(hasBusiness())
                             <li class="">
-                                <a href="{{ URL::to('company/'.businessSlug().'/'.branch()) }}">SETTINGS</a>
+                                 <a href="{{ URL::to('company/'.businessSlug().'/'.branch()) }}">BUSINESS SETTINGS</a>
                             </li>
                             @else
                             <li class="">
