@@ -1,5 +1,7 @@
-<div id="company-tabs-branch" class="company-tabs-content">
+@extends('client.layouts.default')
 
+@section('actual-body-content')
+<div class="content-container container-16">
 	@if(Auth::user()->check())
 	<a href="{{ URL::to('business/'.businessSlug().'/branch/add') }}" class="a-btn button-2-colorful add-coupon">Add new Branch</a><br>
 	@endif
@@ -33,6 +35,10 @@
 					{{ HTML::link('company/'. $branch->business->slug . '/' . $branch->id, decode($branch->business->name).' - '.showAddress($branch->address) ) }}</div>
 					<div class="listing-text">{{ Str::limit(decode($branch->business->business_description), 255) }}</div>
 					{{HTML::link('company/'. $branch->business->slug .'/'.$branch->id, 'Read More',['class' => 'listing-read-more' ] ) }}
+					@if(isOwner($branch->business->slug))
+						{{HTML::link('edit/business/'. $branch->business->slug .'/'.$branch->id, 'Edit Branch',['class' => 'listing-read-more' ] ) }}
+						{{HTML::link($branch->id.'/branch/delete', 'Delete Branch',['class' => 'listing-read-more', 'onclick' => 'return confirm("Are you sure you want to delete this branch?")' ] ) }}
+					@endif
 				</div>
 			</div>
 			<?php $x++; ?>
@@ -41,5 +47,8 @@
 		</div>
 
 	</div><!-- end of .content-container -->
-	
-</div>
+@stop
+
+@section('sidebar')
+	@include('client.partials._sidebar')
+@stop

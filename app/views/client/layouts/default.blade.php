@@ -83,28 +83,25 @@
 <section class="section content boxed">
 
 	@include('client.partials._searchbar')
-	@yield('slider')
 
 	<!-- actual body -->
         <div class="industries-tabs-wrapper">
             <div class="zone-industries-tabs zone clearfix">
             </div><!-- end of .zone-industries-tabs -->
         </div><!-- end of .industries-tabs-wrapper -->
-
         <div class="content-wrapper">
-            <div class="zone-content equalize zone clearfix">
-            @if(Request::is('admin/*'))
-                <div class="content-container container-24<?php (Request::is('admin/*') ? 24 : 16) ?>">
-            @endif    
-                @yield('actual-body-content')
-
-                </div><!-- end of .content-container -->
-
-                 @yield('sidebar')
-
-            </div><!-- end of .zone-content -->
             
-        </div><!-- end of .content-wrapper -->
+             <div class="zone-content equalize zone clearfix">
+             @if(Request::is('admin/*'))
+                <div class="content-container container-<?php (Request::is('admin/*') ? 24 : 16) ?>">
+            @endif    
+                 @yield('actual-body-content')
+                 
+ 
+                @yield('sidebar')
+                </div><!-- end of .zone-content -->
+             
+         </div><!-- end of .content-wrapper -->
    
     @yield('scripts')
     @yield('scripts2')

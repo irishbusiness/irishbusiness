@@ -2,9 +2,8 @@
 
 @section("actual-body-content")
 <div class="content-container container-16">
-        <div id="company-tabs-page" class="company-tabs-content" style="display: block;">
+    <div id="company-tabs-page" class="company-tabs-content" style="display: block;">
         <div class="portfolio-container container-24">
-
             <div class="blog-post block">
                 <div class="block-title">
                     <h1>Add Branch</h1>
@@ -116,6 +115,7 @@
             {{ Form::close() }}
         </div>
     </div>
+
 @stop
 
 @section('scripts')

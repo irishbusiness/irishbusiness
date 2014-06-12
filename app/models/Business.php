@@ -4,10 +4,7 @@ use \Illuminate\Database\Eloquent\SoftDeletingTrait;
 class Business extends \Eloquent {
 
     protected $table = 'businesses';
-
-    protected $dates = ['deleted_at'];
-
-    protected $softDelete = true; 
+    protected $softdelete = true;
 
 	public function categories()
 	{

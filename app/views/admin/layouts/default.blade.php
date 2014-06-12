@@ -90,10 +90,6 @@
 
 					</div><!-- end of .content-container -->
 
-					 @if(!Request::is('admin_manage_blog'))
-                        @include('client.partials._sidebar')
-                     @endif
-
 				</div><!-- end of .zone-content -->
 				
 			</div><!-- end of .content-wrapper -->

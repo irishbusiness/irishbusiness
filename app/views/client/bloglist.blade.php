@@ -21,7 +21,7 @@
 						</div>
 						<div class="blog-post-preview-right">
 							<div class="blog-post-image">
-								<img src="{{ URL::asset($blog->blogheaderimage) }}" alt="" />
+								<img src="{{ ($blog->blogheaderimage == '') ? URL::asset('images/no_photo_available.jpg') : URL::asset($blog->blogheaderimage) }}" class="attachment-post-thumbnail wp-post-image"/>
 							</div>
 							<div class="blog-post-description clearfix">
 								<div class="blog-post-title-comments">
@@ -50,7 +50,8 @@
 				</div>
 			</div><!-- end of .content-container -->
 		</div><!-- end of .zone-content -->
-	</div><!-- end of .content-wrapper -->
+	</div><!--end of .content-wrapper -->
+</div>
 @stop
 
 @section('sidebar')

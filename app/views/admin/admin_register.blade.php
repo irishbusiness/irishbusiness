@@ -58,6 +58,7 @@
             {{ Form::close() }}
         </div>
     </div>
+    </div>
 @stop
 
 @section('sidebar')

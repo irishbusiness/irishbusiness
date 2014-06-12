@@ -63,7 +63,8 @@ class BlogController extends \BaseController {
         
         if(Input::get('blogurl') == null){
             $title = stripcslashes(strtolower(Input::get('title')));
-            $blog->slug = preg_replace("/[\s_]/", "-", $title);
+            $tempSlug = trim(preg_replace("/[\']/", "", $title));
+            $blog->slug = strtolower(preg_replace("/[\s_\']/", "-", $tempSlug));
         } else {
             $blog->slug = strtolower(Input::get('blogurl'));
         }
@@ -89,7 +90,7 @@ class BlogController extends \BaseController {
             }
 
         } else {
-            $blog->blogheaderimage  =   'images/blog/COMING-SOON.jpg';
+            $blog->blogheaderimage  =   '';
         }
 
         $blog->save();
@@ -116,7 +117,8 @@ class BlogController extends \BaseController {
 
         if(Input::get('blogurl') == null){
             $title = stripcslashes(strtolower(Input::get('title')));
-            $blog->slug = preg_replace("/[\s_]/", "-", $title);
+            $tempSlug = trim(preg_replace("/[\']/", "", $title));
+            $blog->slug = strtolower(preg_replace("/[\s_\']/", "-", $tempSlug));
         } else {
             $blog->slug = strtolower(Input::get('blogurl'));
         }

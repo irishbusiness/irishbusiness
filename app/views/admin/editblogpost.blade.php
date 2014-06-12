@@ -1,7 +1,6 @@
 @extends('client.layouts.default')
 
 @section('actual-body-content')
-<title>{{ $title }}</title>
 <div class="portfolio-container container-16">
 
 <div class="blog-post block">

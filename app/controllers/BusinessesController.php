@@ -244,24 +244,12 @@ class BusinessesController extends \BaseController {
 	
 	}
 
-	public function companytab(){
-		// $id = 1;
-		// $blog_id = 1;
-		// $businessinfo = Business::findOrFail($id)->first();
-		// $reviews = $businessinfo->reviews()->orderBy('created_at', 'desc')->get();
-		// // $reviews = Review::whereBusiness_id($businessinfo->id)->orderBy("created_at", "desc")->get();
-		// $blogs = Blog::where('business_id', '=', $blog_id)->orderBy('created_at', 'desc')->get();
-		// // $businessinfo = Business::all();
-		// return View::make('client.company-tab')->with('businessinfo', $businessinfo)->with('blogs', $blogs)
-		// 	->with('reviews', $reviews)->with('title', html_entity_decode(stripcslashes($businessinfo->name)));
-	}
-
 	public function companytab2($name, $branchId = null){
 		$dex_exception = 0;
 		if( ($branchId != null) && (is_numeric($branchId)) ){
 			try {
 				$branch = Branch::findOrFail($branchId);
-			}catch (ModelNotFoundException $e) {
+			}catch (Exception $e) {
 				$dex_exception = 1;
 			}
 
@@ -488,4 +476,40 @@ class BusinessesController extends \BaseController {
 			return "Deleted";
 		}
 	}
+
+	public function showBranches($businessSlug){
+		$business = Business::with('branches', 'reviews')->whereSlug($businessSlug)->first();	
+		
+		$branches1 = $business->branches;
+		$rating = array();
+		foreach ($branches1 as $branch1) {
+			array_push($rating, Review::where('business_id', '=', $branch1->business->id)->avg('rating'));
+		}
+
+		return View::make('client.tabcontents.tabcontent-branch')
+		->with('business', $business)
+		->with('rating', $rating);
+
+	}
+
+	public function deleteBranch($branchId)
+	{
+		$branch = Branch::find($branchId);
+		$branch->delete();
+
+		return Redirect::back();
+	}
+	
+	public function delete_business(){
+		if(Request::ajax()){
+			$response = $this->business->delete_business(Input::get("id"));
+
+			if( $response = true ){
+				return "true";
+			}
+
+			return "false";
+		}
+	}
+
 }

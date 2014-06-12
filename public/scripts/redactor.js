@@ -3325,7 +3325,7 @@ var RLANG = {
 				var html = '';
 				if (link !== true)
 				{
-					html = '<div class="ytp-thumbnail" style="display: block;"><p class="video-thumbnail">'+'<img src="../../' + json.filelink + '" class="video-thumbnail"/></p></div>';
+					html = '<p class="profile-description-img-thumbnail">'+'<img src="../../' + json.filelink + '" class="video-thumbnail"/></p>';
 				}
 				else
 				{
@@ -3869,8 +3869,8 @@ var RLANG = {
 				{
 					// Remove bizarre <pre> tag wrappers around our json data:
 					var rawString = d.body.innerHTML;
-					var jsonString = rawString.match(/\{(.|\n)*\}/)[0];
-					var json = $.parseJSON(jsonString);
+					// var jsonString = rawString.match(/\{(.|\n)*\}/)[0];
+					var json = $.parseJSON(rawString);
 
 					if (typeof json.error == 'undefined')
 					{

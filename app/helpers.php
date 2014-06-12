@@ -178,3 +178,7 @@ function pre($string){
     echo $string;
     echo "</pre>";
 }
+
+function alert($string){
+    echo "<script>alert('".$string."');</script>";
+}

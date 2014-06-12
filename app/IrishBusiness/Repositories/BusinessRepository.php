@@ -225,16 +225,16 @@ class BusinessRepository {
 
     function createCoupon($input, $type){
         if( $type == "ajax" ){    
-            $companyName = $input["companyName"];
-            $companySlogan = $input["companySlogan"];
-            $fullName = $input["fullName"];
-            $jobTitle = $input["jobTitle"];
+            $companyName = decode($input["companyName"]);
+            $companySlogan = decode($input["companySlogan"]);
+            $fullName = decode($input["fullName"]);
+            $jobTitle = decode($input["jobTitle"]);
             $businessAddress = $input["businessAddress"];
             $businessAddress = decode($businessAddress);
             $phoneOne = $input["phoneOne"];
             $phoneTwo = $input["phoneTwo"];
             $emailAddress = $input["emailAddress"];
-            $siteUrl = $input["siteUrl"];
+            $siteUrl = decode($input["siteUrl"]);
 
             $branch_id = $input["br"];
 
@@ -274,7 +274,7 @@ class BusinessRepository {
             $width = "420";
             $textWidth = $fontSize * strlen($siteUrl);
             $position_center = $width / 2 - $textWidth / 2.6;
-            ImageTTFText ($handle, $fontSize, 0, $position_center, 240, $brown, public_path()."/scripts/fonts/GOTHICB.TTF", $siteUrl);
+            ImageTTFText ($handle, 9, 0, $position_center, 240, $brown, public_path()."/scripts/fonts/GOTHIC.TTF", $siteUrl);
 
             imagealphablending( $handle, false );
             imagesavealpha( $handle, true );
@@ -338,5 +338,15 @@ class BusinessRepository {
 
             return "Your coupon has been added successfully.";
         }
+    }
+
+    function delete_business($id){
+        $business = Business::find($id);
+
+        if($business->delete()){
+            return true;
+        }
+
+        return false;
     }
 }

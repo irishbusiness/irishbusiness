@@ -7,32 +7,32 @@
 
             <div class="blog-post block">
                 <div class="block-title">
-                    <h1>Add Branch</h1>
+                    <h1>Edit Branch</h1>
                 </div>
             </div>
-            {{ Form::open(array('action' => ['BusinessesController@storeBranch',$slug])) }}
+            {{ Form::open(array('action' => ['BusinessesController@storeBranch', $slug])) }}
              
             <div class="form-group">
                 {{ Form::label('address1', 'Business Address1', ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('address1', '', [
+                {{ Form::text('address1', $addresses[0], [
                 "placeholder" => "address..", "class"=>"text-input-grey full", 'required']) }}
                 {{$errors->first('address1','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
                 {{ Form::label('address2', 'Business Address2', ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('address2', '', [
+                {{ Form::text('address2', $addresses[1], [
                 "placeholder" => "address..", "class"=>"text-input-grey full"]) }}
                 {{$errors->first('address2','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
                 {{ Form::label('address3', 'Business Address3', ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('address3', '', [
+                {{ Form::text('address3', $addresses[2], [
                 "placeholder" => "address..", "class"=>"text-input-grey full"]) }}
                 {{$errors->first('address3','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
                 {{ Form::label('address4', 'Business Address4', ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('address4', '', [
+                {{ Form::text('address4', $addresses[3], [
                 "placeholder" => "address..", "class"=>"text-input-grey full"]) }}
                 {{$errors->first('address4','<span class="alert alert-error block half">:message</span>')}}
             </div>
@@ -42,7 +42,7 @@
             <div class="form-group">
                 {{ Form::label('locations', "Locations Served (please separate keywords by a comma.)",
                 ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('locations', '', [
+                {{ Form::text('locations', $branch->locations, [
                 "placeholder" => "iraq, iran, new york", "class"=>"text-input-grey full", 'required']) }}
                 {{$errors->first('locations','<span class="alert alert-error block half">:message</span>')}}
             </div>
@@ -134,4 +134,5 @@
 
 @section('scripts')
         <!-- the long scripts -->
+            
 @stop
