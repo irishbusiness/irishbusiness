@@ -53,10 +53,6 @@
 
 			@include('client.tabcontents.tabcontent-review')
 
-			@if(count($business->branches)>1 || isOwner($branch->business->slug) || isAdmin() )
-				<!-- branch tab -->
-				@include('client.tabcontents.tabcontent-branch')
-			@endif
 
 			@if(count($coupons) || isOwner($branch->business->slug) || isAdmin() )               
 				<!-- coupon tab -->
