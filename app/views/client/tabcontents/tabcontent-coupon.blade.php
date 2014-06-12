@@ -134,7 +134,9 @@
             </div>
 
         @else
-            <p>Nothing to show here...</p>
+            <div class="comment-message-title">
+				<span class="text-colorful">Nothing </span>to show here...
+			</div>
         @endif
 	</div>
 </div>

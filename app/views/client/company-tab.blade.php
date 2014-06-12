@@ -54,9 +54,7 @@
 				@include('client.tabcontents.tabcontent-blog')
 			@endif
 
-			@if( $review_count>0 || (isOwner($branch->business->slug) && ($all_reviews != 0) ) )
-				@include('client.tabcontents.tabcontent-review')
-			@endif
+			@include('client.tabcontents.tabcontent-review')
 
 			@if(count($business->branches)>1 || isOwner($branch->business->slug) || isAdmin() )
 				<!-- branch tab -->
