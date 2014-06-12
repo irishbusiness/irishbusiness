@@ -8,6 +8,16 @@
 	        </div>
 	        {{ Form::open(array('action' => ['BusinessesController@update', $business->id], 'files' => true)) }}
 	        <div class="form-group">
+		        {{ Form::label('profilebanner', "Profile Banner",
+		        ["class"=>"text-colorful"]) }}<br/>
+		        <br>
+		        {{ Form::file('profilebanner', ["id"=>"btn-business-settings-profilebanner"]) }}
+		        {{$errors->first('profilebanner','<span class="alert alert-error block half">:message</span>')}}
+		        <div class="render-logo-preview">
+		            <img src="" id="img-render-profilebanner">
+		        </div>
+		    </div>
+	        <div class="form-group">
 	            {{ Form::label('name', 'Business Name', ["class"=>"text-colorful"]) }}<br/>
 	            {{ Form::text('name', html_entity_decode(stripcslashes($business->name)), [
 	            "placeholder" => "your business", "class"=>"text-input-grey full", 'required']) }}

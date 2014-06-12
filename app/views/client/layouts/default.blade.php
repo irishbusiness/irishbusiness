@@ -83,7 +83,6 @@
 <section class="section content boxed">
 
 	@include('client.partials._searchbar')
-	@yield('slider')
 
 	<!-- actual body -->
         <div class="industries-tabs-wrapper">
@@ -96,12 +95,7 @@
                 <div class="content-container container-24">
                 @yield('actual-body-content')
                 </div><!-- end of .content-container -->
-                
-
-                 @if(!Request::is('admin*') && !Request::is('*/map') && !Request::is('company*') && !Request::is('edit/business/*'))
-                    @include('client.partials._sidebar')
-                 @endif
-             <!-- </div> -->
+                @yield('sidebar')
             </div><!-- end of .zone-content -->
             
         </div><!-- end of .content-wrapper -->

@@ -65,6 +65,25 @@ class BusinessRepository {
             $business->logo  =   'images/companylogos/sample_company.jpg';
         }
 
+        if(!is_null($input['profilebanner']))
+        {
+            $image = $input['logo'];
+            $imagename = md5(date('YmdHis')).'.jpg';
+
+            if ($image->getMimeType() == 'image/png'
+                || $image->getMimeType() == 'image/jpg'
+                || $image->getMimeType() == 'image/gif'
+                || $image->getMimeType() == 'image/jpeg'
+                || $image->getMimeType() == 'image/pjpeg')
+            {
+                // $image->move($dir, $filename);
+                $path = public_path('images/companylogos/' . $imagename);
+                Image::make($image->getRealPath())->save($path);
+                $business->profilebanner  =   'images/companylogos/'.$imagename;
+            }
+
+        }
+
 		$business->save();
 
 		return $business;
@@ -133,6 +152,26 @@ class BusinessRepository {
             $business->logo  =   $old_businessinfo->logo;
         }
 
+        
+        if(!is_null($input['profilebanner']))
+        {
+            $image = $input['logo'];
+            $imagename = md5(date('YmdHis')).'.jpg';
+
+            if ($image->getMimeType() == 'image/png'
+                || $image->getMimeType() == 'image/jpg'
+                || $image->getMimeType() == 'image/gif'
+                || $image->getMimeType() == 'image/jpeg'
+                || $image->getMimeType() == 'image/pjpeg')
+            {
+                // $image->move($dir, $filename);
+                $path = public_path('images/companylogos/' . $imagename);
+                Image::make($image->getRealPath())->save($path);
+                $business->profilebanner  =   'images/companylogos/'.$imagename;
+            }
+
+        }
+
         $business->save();
 
         $id = $old_businessinfo->id;
@@ -186,16 +225,16 @@ class BusinessRepository {
 
     function createCoupon($input, $type){
         if( $type == "ajax" ){    
-            $companyName = $input["companyName"];
-            $companySlogan = $input["companySlogan"];
-            $fullName = $input["fullName"];
-            $jobTitle = $input["jobTitle"];
+            $companyName = decode($input["companyName"]);
+            $companySlogan = decode($input["companySlogan"]);
+            $fullName = decode($input["fullName"]);
+            $jobTitle = decode($input["jobTitle"]);
             $businessAddress = $input["businessAddress"];
             $businessAddress = decode($businessAddress);
             $phoneOne = $input["phoneOne"];
             $phoneTwo = $input["phoneTwo"];
             $emailAddress = $input["emailAddress"];
-            $siteUrl = $input["siteUrl"];
+            $siteUrl = decode($input["siteUrl"]);
 
             $branch_id = $input["br"];
 
@@ -235,7 +274,7 @@ class BusinessRepository {
             $width = "420";
             $textWidth = $fontSize * strlen($siteUrl);
             $position_center = $width / 2 - $textWidth / 2.6;
-            ImageTTFText ($handle, $fontSize, 0, $position_center, 240, $brown, public_path()."/scripts/fonts/GOTHICB.TTF", $siteUrl);
+            ImageTTFText ($handle, 9, 0, $position_center, 240, $brown, public_path()."/scripts/fonts/GOTHIC.TTF", $siteUrl);
 
             imagealphablending( $handle, false );
             imagesavealpha( $handle, true );
