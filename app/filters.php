@@ -105,6 +105,26 @@ Route::filter('hasBusiness', function(){
 		
 });
 
+Route::filter('hasCoupon', function(){
+
+		if(Auth::user()->check())
+		{
+			$coupon = Auth::user()->user()->coupon;
+			if(is_null($coupon))
+				{
+					return Redirect::to('couponcode');
+				}
+
+				
+		
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
+		
+});
+
 
 /*
 |--------------------------------------------------------------------------

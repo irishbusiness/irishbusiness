@@ -12,10 +12,20 @@ class PaymentsController extends \BaseController {
 		
 		$this->payments = $payments;
 		$this->beforeFilter('hasBusiness',['only' => ['index']]);
+		$this->beforeFilter('hasCoupon',['only' => ['index']]);
 		Event::listen('user.subscribe','IrishBusiness\Mailers\ClientMailer@subscribe');
 		
 	}
 
+
+	/**
+	 *  ADD COUPON CODE VIEW 
+	 */
+
+	public function addCode()
+	{
+		return View::make('client.askcoupon');
+	}
 
 
 	/**

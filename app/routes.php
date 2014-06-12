@@ -199,7 +199,7 @@ Route::get('password/reset/salesperson/{token}','SalesPasswordController@reset')
 
 Route::post('password/reset/salesperson/{token}','SalesPasswordController@saveReset');
 
-
+Route::get('couponcode', 'PaymentsController@addcode');
 Route::get('buy', 'PaymentsController@index');
 Route::post('buy','PaymentsController@store');
 
