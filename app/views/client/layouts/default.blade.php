@@ -96,7 +96,7 @@
                 <div class="content-container container-<?php (Request::is('admin/*') ? 24 : 16) ?>">
             @endif    
                  @yield('actual-body-content')
-                 </div><!-- end of .content-container -->
+                 
  
                 @yield('sidebar')
                 </div><!-- end of .zone-content -->
