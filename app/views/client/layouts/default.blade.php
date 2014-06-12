@@ -100,9 +100,7 @@
 
                 </div><!-- end of .content-container -->
 
-                 @if(!Request::is('admin/manage/blog') && !Request::is('*/map') && !Request::is('company*'))
-                    @include('client.partials._sidebar')
-                 @endif
+                 @yield('sidebar')
 
             </div><!-- end of .zone-content -->
             
