@@ -1,15 +1,15 @@
 @extends('client.layouts.default')
 
 @section('actual-body-content')
-<div class="content-container container-16">
-	@if(Auth::user()->check())
-	<a href="{{ URL::to('business/'.businessSlug().'/branch/add') }}" class="a-btn button-2-colorful add-coupon">Add new Branch</a><br>
-	@endif
-
+<div class="content-container container-16 marginize-branch">
+	
 	<div class="companies-listings block">
 		<div class="block-title tabindent">
 			<h1>Branches</h1>
 		</div>
+		@if(Auth::user()->check())
+			<a href="{{ URL::to('business/'.businessSlug().'/branch/add') }}" class="a-btn button-2-colorful add-coupon">Add new Branch</a><br>
+		@endif
 		<?php
 		$x=0; 
 		if(!isset($rating)){

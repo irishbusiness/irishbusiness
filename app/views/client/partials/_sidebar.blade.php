@@ -10,7 +10,7 @@
 				@if(!empty($recentcompany->branches->first()->id))
 					<li class="clearfix">
 						<a href="{{ URL::to('/company/'.$recentcompany->slug.'/'.$recentcompany->branches->first()->id) }}" class="thumbnail">
-							<img src="{{ URL::asset($recentcompany->logo) }}" alt="" />
+							<img src="{{ ($recentcompany->logo == '') ? URL::asset('images/image-not-available.png') : URL::asset($recentcompany->logo) }}" alt="" />
 						</a>
 						<a href="{{ URL::to('/company/'.$recentcompany->slug.'/'.$recentcompany->branches->first()->id) }}" class="entry-title">{{ decode($recentcompany->name) }}</a>
 						<div class="entry-excerpt">{{ Str::limit(decode($recentcompany->business_description), 50) }}</div>
@@ -27,7 +27,7 @@
 		@foreach($recentlyaddedblog as $recentblog)
 			<li class="clearfix">
 				<a href="{{ URL::to('/blog/'.$recentblog->slug) }}" class="thumbnail">
-					<img src="{{ URL::asset($recentblog->blogheaderimage) }}" alt="" />
+					<img src="{{ ($recentblog->blogheaderimage == '') ? URL::asset('images/no_photo_available.jpg') : URL::asset($recentblog->blogheaderimage) }}" alt="" />
 				</a>
 				<a href="{{ URL::to('/blog/'.$recentblog->slug) }}" class="entry-title">{{ decode($recentblog->title) }}</a>
 				<div class="entry-excerpt">{{ Str::limit(strip_tags(decode($recentblog->body)) , 50) }}</div>
