@@ -48,9 +48,6 @@ Route::get('contact-us', function(){
 	return View::make('client.contact-us');
 });
 
-Route::get('register', function(){
-	return View::make('client.register');
-});
 
 /*Route::get('login', function(){
 	return View::make('client.login');
@@ -83,6 +80,10 @@ Route::get('admin/settings/staff', function(){
 Route::get('admin/settings/payment-gateway', function(){
 	return View::make('admin.admin_payment_gateway');
 });
+
+Route::get('admin/settings/invite', 'AdminController@invite'); /*function(){
+	return View::make('admin.admin_invite');
+});*/
 
 
 
