@@ -27,6 +27,9 @@
 				</div>
 
 				<div class="form-group align-right">
+					@if($q == 1)
+						<a href="{{ URL::previous() }}"><input type="button" value="Cancel" name="back" class="button-2-red"/></a>
+					@endif
 					{{ Form::submit('Save',['class' => 'button-2-colorful'])  }}
 				</div>
 				{{ Form::close() }}

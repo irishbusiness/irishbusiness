@@ -199,13 +199,27 @@ class BusinessRepository {
         $branch->google  =   $input['google'];
         $branch->linkedin  =   $input['linkedin'];
         
-        $branch->branchslug = $slug."-".str_replace(" ", "-", $input['address1'].'-'.$input['address2'])."-".substr(md5(uniqid(rand(1,6))), 0, 5);
+        // $branch->branchslug = $slug."-".str_replace(" ", "-", $input['address1'].'-'.$input['address2'])."-".substr(md5(uniqid(rand(1,6))), 0, 5);
+        $branch->branchslug = $input['branchslug'];
         $business->branches()->save($branch);
 
+
         return $branch->id;
-
         
+    }
 
+    public function keywordExplode($keywordsraw){
+        
+        $output = "";
+        $keywords = explode(",", $keywordsraw);
+        $count = count($keywords);
+        foreach($keywords as $index => $keyword)
+        {
+            $output.= $keyword;   
+            if($index+1 != $count) $output.= '-';       
+        }
+        return $output;
+    
     }
 
     function storeMap($latlng,$id)

@@ -1,0 +1,16 @@
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    @media( min-width: 270px and max-width: 299px ){
+    	.search .default-search .input-text {
+			width: 70%;
+		}
+		.search .default-search .jquery-selectbox {
+			width: 70% !important;
+		}
+
+		.search .default-search .submit {
+			width: 46%;
+			margin-right: 27%;
+			width: 39%;
+		}
+	}
+}

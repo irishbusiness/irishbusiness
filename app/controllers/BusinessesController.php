@@ -75,7 +75,7 @@ class BusinessesController extends \BaseController {
 				  ->join('categories','business_category.category_id', '=', 'categories.id'  )
 				  ->whereRaw("(businesses.name like '%$category%' or businesses.keywords like '%$category%' or categories.name like '$category') $query1 ")
 				  ->groupBy('branches.id')
-				  ->paginate(15, ['branches.*','businesses.id as bid','businesses.name','businesses.business_description','businesses.profile_description','businesses.slug','businesses.logo']);
+				  ->paginate(7, ['branches.*','businesses.id as bid','businesses.name','businesses.business_description','businesses.profile_description','businesses.slug','businesses.logo']);
 
 		
 		
@@ -348,10 +348,17 @@ class BusinessesController extends \BaseController {
 	{
 		$business = Business::whereSlug($slug)->first();
 		$branch = $business->branches->first();
-
+		
+		
 		if(is_null($branch))
-			return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug);
-		return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug)->withBranch($branch);
+		{
+			$branchSlug = $this->business->keywordExplode($business->keywords);
+			return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug)->with('branchSlug', $branchSlug);
+		}
+
+			$branchSlug = strtolower($this->business->keywordExplode($business->keywords)."-".str_random(3));
+
+		return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug)->withBranch($branch)->with('branchSlug', $branchSlug);
 	}
 
 	public function update($slug, $branchId)
@@ -429,13 +436,18 @@ class BusinessesController extends \BaseController {
 
 	public function setMap($slug, $id)
 	{
+		$q = "0";
 		if(!isOwner($slug))
 		{
 			return Redirect::to('/');
 		}
 
 		$branch = Branch::find($id);
-		return View::make('client.map')->withSlug($slug)->with('branch',$branch);
+		
+		if(Input::has('q'))
+			$q = Input::get('q');
+
+		return View::make('client.map')->withSlug($slug)->with('branch',$branch)->withQ($q);
 	}
 
 	public function storeMap()
@@ -449,8 +461,6 @@ class BusinessesController extends \BaseController {
 			return Response::make('pagenotfound');
 
 		$this->business->storeMap(Input::get('latlng'),Input::get('branch_id'));
-
-
 
 		return Redirect::to('company/'.Input::get('slug').'/'.Input::get('branch_id'))
 			->with('flash_message','Congratulations! You have completed your profile.');	

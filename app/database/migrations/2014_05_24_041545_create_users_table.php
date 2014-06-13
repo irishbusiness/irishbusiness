@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration {
 			$table->boolean('confirmed')->default(0);
 			$table->string('email')->unique();
 			$table->string('password');
+			$table->string('coupon')->nullable();
             $table->string('phone');
             $table->integer('access_level')->default(1);
             $table->string('remember_token')->nullable();

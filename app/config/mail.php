@@ -15,7 +15,7 @@ return array(
 	|
 	*/
 
-	'driver' => 'smtp',
+	'driver' => 'mailgun',
 	/*
 	|--------------------------------------------------------------------------
 	| SMTP Host Address
@@ -53,7 +53,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'irishbusiness@sandbox8f1a2697ef9b4a0481908c50a4558ed8.mailgun.org', 'name' => 'Irishbusiness.ie'),
+	'from' => array('address' => 'admin@irishbusiness.ie', 'name' => 'Irishbusiness.ie'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -79,7 +79,7 @@ return array(
 	|
 	*/
 
-	'username' => 'postmaster@sandbox8f1a2697ef9b4a0481908c50a4558ed8.mailgun.org',
+	'username' => 'postmaster@irishbusiness.ie',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -92,7 +92,7 @@ return array(
 	|
 	*/
 
-	'password' => '0-h42rm4xz02',
+	'password' => '167-c6nvwb33',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -118,6 +118,6 @@ return array(
 	|
 	*/
 
-	'pretend' => true,
+	'pretend' => false,
 
 );

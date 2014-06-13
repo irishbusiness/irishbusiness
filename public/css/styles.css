@@ -1162,6 +1162,7 @@ section.content {
 
 .content-wrapper {
 	background: url(../images/background.png) repeat;
+	margin-top: -23px;	
 }
 
 	.content-wrapper .zone-content {
@@ -4591,4 +4592,15 @@ div.listing-rating {
 
 .profile-description-img-thumbnail img {
 	max-width: 100%;
+}
+.marginize {
+	margin-top: 23px;
+}
+
+.marginize-branch {
+	margin-top: 12px;
+}
+#searchres 
+{
+	margin-top:-14px;
 }
