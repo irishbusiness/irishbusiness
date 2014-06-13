@@ -9,7 +9,7 @@
 			<div class="content-container container-16">
 
 				<div class="companies-listings block">
-					<div class="block-title">
+					<div class="block-title" style="margin-top:-40">
 						<h1>Search Results</h1>
 					</div>
 					<!-- <div class="pagination">
