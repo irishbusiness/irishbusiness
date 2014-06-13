@@ -77,9 +77,10 @@ Route::filter('subscribed', function()
 {
 	if(Auth::user()->check())
 	{
+
 		$id = Auth::user()->user()->id;
-		if (is_null(Auth::user()->user()->subscription->first()))
-			return Redirect::back();
+		if (is_null(Auth::user()->user()->subscription->first())&&strlen(Auth::user()->user()->coupon)<=6)
+			return Redirect::to('buy');
 	}
 
 });
@@ -87,8 +88,14 @@ Route::filter('subscribed', function()
 
 Route::filter('hasBusiness', function(){
 
+
+
 		if(Auth::user()->check())
 		{
+			if (!is_null(Auth::user()->user()->subscription->first()))
+				return Redirect::to('business/add');
+
+
 			$business = Auth::user()->user()->business;
 			if(!is_null($business))
 				{
@@ -96,6 +103,30 @@ Route::filter('hasBusiness', function(){
 						return Redirect::to('company/'.$business->slug .'/' . $branch->id);
 					return Redirect::to('business/' . $business->slug . '/branch/add');
 				}
+		
+		}
+		else
+		{
+			return Redirect::to('/');
+		}
+		
+});
+
+Route::filter('hasCoupon', function(){
+
+		if(Auth::user()->check())
+		{
+			$coupon = Auth::user()->user()->coupon;
+			
+			if(is_null($coupon))
+			{
+				return Redirect::to('couponcode');
+			}
+
+			if(strlen($coupon)>6)
+			{
+				return Redirect::to('business/add');
+			}
 		
 		}
 		else
@@ -119,7 +150,7 @@ Route::filter('hasBusiness', function(){
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+	if (Auth::user()->guest()) return Redirect::to('/');
 });
 
 Route::filter('SPguest', function()

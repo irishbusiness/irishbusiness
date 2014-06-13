@@ -2,12 +2,9 @@
 
 use \Illuminate\Database\Eloquent\SoftDeletingTrait;
 class Business extends \Eloquent {
-    
-    protected $softdelete = true;
-    protected $table = 'businesses';
-    protected $dates = ['deleted_at'];
 
-    protected $softDelete = true; 
+    protected $table = 'businesses';
+    protected $softdelete = true;
 
 	public function categories()
 	{

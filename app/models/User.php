@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-   use SoftDeletingTrait;
+  /* use SoftDeletingTrait;*/
 
     protected $dates = ['deleted_at'];
     protected $table = 'users';

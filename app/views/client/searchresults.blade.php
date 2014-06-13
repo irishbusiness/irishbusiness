@@ -2,14 +2,14 @@
 
 @section('actual-body-content')
 <div class="content-container container-16">
-	<div class="content-wrapper">
+	
 		
 		<div class="zone-content equalize zone clearfix">
 
 			<div class="content-container container-16">
 
-				<div class="companies-listings block">
-					<div class="block-title">
+				<div class="companies-listings block" id="searchres">
+					<div class="block-title" >
 						<h1>Search Results</h1>
 					</div>
 					<!-- <div class="pagination">
@@ -58,7 +58,8 @@
 
 		</div><!-- end of .zone-content -->
 		
-	</div><!-- end of .content-wrapper -->
+	
+</div><!-- end of .content16 -->
 @stop
 
 @section('sidebar')

@@ -20,7 +20,7 @@ class SessionsController extends \BaseController {
 
 	public function store()
 	{
-
+		
 
 		if(!$this->user->isConfirmed(Input::get('email')))
 			return Redirect::back()->withInput()->with('errorNotify','wrong email/password combination');
@@ -48,9 +48,11 @@ class SessionsController extends \BaseController {
 						
 						if($this->sales->authenticate(Input::all()))
 						{
-							Auth::user()->logout();
+							
+							
 							return Redirect::to('sales')->with('title','IrishBusiness.ie | Settings');	
 						}
+						
 						return Redirect::back()->withInput()->with('errorNotify','wrong email/password combination')->withInput();
 
 				}	
@@ -68,7 +70,7 @@ class SessionsController extends \BaseController {
 		}	
 		catch(FormValidationException  $e)
 		{
-			
+			dd('fuck');
 			return Redirect::back()->withInput()->withErrors($e->getErrors())->with('errorNotify','wrong email/password combination');
 		}
 	}

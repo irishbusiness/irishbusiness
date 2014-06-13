@@ -15,42 +15,42 @@
                 <br>
                 {{ Form::text('firstname', '', ["required"=>"required", "class"=>"text-input-grey half",
                     "placeholder"=>"Firstname"]) }}
-                {{$errors->first('firstname','<span class="error">:message</span>')}}
+                {{$errors->first('firstname','<span class=" half block alert alert-error">:message</span>')}}
                 </div>
                 <div class="form-group">
                     {{ Form::label('lastname', "Lastname", ["required"=>"required", "class"=> "text-colorful"]) }}
                     <br>
                     {{ Form::text('lastname', '', ["required"=>"required", "class"=>"text-input-grey half",
                         "placeholder"=>"Lastname"]) }}
-                    {{$errors->first('lastname','<span class="error">:message</span>')}}
+                    {{$errors->first('lastname','<span class=" half block alert alert-error">:message</span>')}}
                 </div>
                 <div class="form-group">
                     {{ Form::label('email', "Email", ["required"=>"required", "class"=> "text-colorful"]) }}
                     <br>
                     {{ Form::email('email', '', ["required"=>"required", "class"=>"text-input-grey half",
                         "placeholder"=>"your_email@example.com"]) }}
-                    {{$errors->first('email','<span class="error">:message</span>')}}
+                    {{$errors->first('email','<span class="half block alert alert-error">:message</span>')}}
                 </div>
                 <div class="form-group">
                     {{ Form::label('phone', "Phone", ["required"=>"required", "class"=> "text-colorful"]) }}
                     <br>
                     {{ Form::text('phone', '', ["required"=>"required", "class"=>"text-input-grey half",
                         "placeholder"=>"Phone number"]) }}
-                    {{$errors->first('phone','<span class="error">:message</span>')}}
+                    {{$errors->first('phone','<span class="half  block alert alert-error">:message</span>')}}
                 </div>
                 <div class="form-group">
                     {{ Form::label('password', "Password", ["required"=>"required", "class"=> "text-colorful"]) }}
                     <br>
                     {{ Form::password('password', ["required"=>"required", "class"=>"text-input-grey half",
                         "placeholder"=>"*********"]) }}
-                    {{$errors->first('password','<span class="error">:message</span>')}}
+                    {{$errors->first('password','<span class="half block alert alert-error">:message</span>')}}
                 </div>
                 <div class="form-group">
                     {{ Form::label('password_confirmation', "Confirm Password", ["required"=>"required", "class"=> "text-colorful"]) }}
                     <br>
                     {{ Form::password('password_confirmation', ["required"=>"required", "class"=>"text-input-grey half",
                         "placeholder"=>"*********"]) }}
-                    {{$errors->first('password','<span class="error">:message</span>')}}
+                    {{$errors->first('password','<span class=" half block alert alert-error">:message</span>')}}
                 </div><br>
                 <div class="form-group">
                     {{ Form::submit("Submit", ["required"=>"required", "class"=>"button-2-colorful"]) }}
