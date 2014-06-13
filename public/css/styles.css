@@ -4593,5 +4593,5 @@ div.listing-rating {
 	max-width: 100%;
 }
 #searchres-title{
-	margin-top:-40;
+	margin-top:-40 !important;
 }
