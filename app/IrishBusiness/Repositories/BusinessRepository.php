@@ -67,7 +67,7 @@ class BusinessRepository {
 
         if(!is_null($input['profilebanner']))
         {
-            $image = $input['logo'];
+            $image = $input['profilebanner'];
             $imagename = md5(date('YmdHis')).'.jpg';
 
             if ($image->getMimeType() == 'image/png'
@@ -155,7 +155,7 @@ class BusinessRepository {
         
         if(!is_null($input['profilebanner']))
         {
-            $image = $input['logo'];
+            $image = $input['profilebanner'];
             $imagename = md5(date('YmdHis')).'.jpg';
 
             if ($image->getMimeType() == 'image/png'
@@ -204,7 +204,7 @@ class BusinessRepository {
         $business->branches()->save($branch);
 
 
-        return $branch->id;
+        return $branch->branchslug;
         
     }
 
@@ -215,16 +215,16 @@ class BusinessRepository {
         $count = count($keywords);
         foreach($keywords as $index => $keyword)
         {
-            $output.= $keyword;   
+            $output.= trim($keyword);   
             if($index+1 != $count) $output.= '-';       
         }
         return $output;
     
     }
 
-    function storeMap($latlng,$id)
+    function storeMap($latlng,$branchslug)
     {
-        $branch = Branch::find($id);
+        $branch = Branch::whereBranchslug($branchslug)->first();
         $branch->latlng = $latlng;
         $branch->save();
     }

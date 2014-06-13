@@ -12,12 +12,8 @@
             </div>
             {{ Form::open(array('action' => ['BusinessesController@storeBranch',$slug])) }}
              
-            <div class="form-group">
-                {{ Form::label('branchslug', 'Branch Slug', ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('branchslug', $branchSlug, [
-                "placeholder" => "address..", "class"=>"text-input-grey full", 'required']) }}
-                {{$errors->first('branchslug','<span class="alert alert-error block half">:message</span>')}}
-            </div>
+            
+
             <div class="form-group">
                 {{ Form::label('address1', 'Business Address1', ["class"=>"text-colorful"]) }}<br/>
                 {{ Form::text('address1', '', [
@@ -125,6 +121,18 @@
                 "placeholder" => "LinkedIn", "class"=>"text-input-grey full"]) }}
                 {{$errors->first('name','<span class="alert alert-error block half">:message</span>')}}
             </div>
+            <div class="thin-separator"></div>
+            <div class="form-group">    
+                <a href="javascript:void(0)" class="a-btn button-2-colorful plus-button show-hide" id="show_hide_slug_settings">+ Show Slug Setting</a>
+            </div>
+            <div id="show_hide_slug" class="invisible">  
+            <div class="form-group">
+                {{ Form::label('branchslug', 'Branch Slug', ["class"=>"text-colorful"]) }}<br/>
+                {{ Form::text('branchslug', $branchSlug, [
+                "placeholder" => "address..", "class"=>"text-input-grey full", 'required']) }}
+                {{$errors->first('branchslug','<span class="alert alert-error block half">:message</span>')}}
+            </div>
+            </div>
             <div class="form-group align-right">
                 {{ Form::submit('Save',['class' => 'button-2-colorful'])  }}
             </div>
@@ -140,4 +148,20 @@
 
 @section('scripts')
         <!-- the long scripts -->
+        <script>
+         $(document).on("click", "#show_hide_slug_settings", function(){
+                if( $("#show_hide_slug").attr("class") == "invisible" ){
+                    $(this).html("- Hide Slug Setting");
+
+                    $("#show_hide_slug").fadeIn(500, function(){
+                        $("#show_hide_slug").attr("class", "");
+                    });
+                }else{
+                    $(this).html("+ Show Slug Setting");
+                    $("#show_hide_slug").fadeOut(500, function(){
+                        $("#show_hide_slug").attr("class", "invisible");
+                    });
+                }
+            });
+        </script>
 @stop

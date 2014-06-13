@@ -117,7 +117,7 @@
                             @endif
                             @if(hasBusiness())
                             <li class="">
-                                 <a href="{{ URL::to('company/'.businessSlug().'/'.branch()) }}">BUSINESS SETTINGS</a>
+                                 <a href="{{ URL::to(branchSlug()) }}">BUSINESS SETTINGS</a>
                             </li>
                             <li class="">
                                  <a href="{{ URL::to(businessSlug().'/branch') }}">BRANCH SETTINGS</a>

@@ -29,7 +29,7 @@
 					@foreach($branches as $branch)
 				
 					<div class="company-listing clearfix">
-						<a href="#" class="listing-image">
+						<a href="{{ URL::to($branch->branchslug) }}" class="listing-image">
 							<img src="{{ URL::asset($branch->logo) }}" alt="" />
 						</a>
 						<div class="listing-body">
@@ -43,9 +43,9 @@
 								</div>
 							</div>
 							<div class="listing-title">
-								{{ HTML::link('company/'. $branch->slug . isEmpty($category) .  isEmpty($location) . '/' . $branch->id, decode($branch->name).' - '.showAddress($branch->address) ) }}</div>
+								{{ HTML::link($branch->branchslug, decode($branch->name).' - '.showAddress($branch->address) ) }}</div>
 								<div class="listing-text">{{ Str::limit(decode($branch->business_description), 255) }}</div>
-								{{HTML::link('company/'. $branch->slug . isEmpty($category) .  isEmpty($location), 'Read More',['class' => 'listing-read-more' ] ) }}
+								{{HTML::link($branch->branchslug, 'Read More',['class' => 'listing-read-more' ] ) }}
 						</div>
 					</div>
 					<?php $x++; ?>

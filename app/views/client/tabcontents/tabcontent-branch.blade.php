@@ -32,9 +32,9 @@
 					</div>
 				</div>
 				<div class="listing-title">
-					{{ HTML::link('company/'. $branch->business->slug . '/' . $branch->id, decode($branch->business->name).' - '.showAddress($branch->address) ) }}</div>
+					{{ HTML::link($branch->branchslug, decode($branch->business->name).' - '.showAddress($branch->address) ) }}</div>
 					<div class="listing-text">{{ Str::limit(decode($branch->business->business_description), 255) }}</div>
-					{{HTML::link('company/'. $branch->business->slug .'/'.$branch->id, 'Read More',['class' => 'listing-read-more' ] ) }}
+					{{HTML::link($branch->branchslug, 'Read More',['class' => 'listing-read-more' ] ) }}
 					@if(isOwner($branch->business->slug))
 						{{HTML::link('edit/business/'. $branch->business->slug .'/'.$branch->id, 'Edit Branch',['class' => 'listing-read-more' ] ) }}
 						{{HTML::link($branch->id.'/branch/delete', 'Delete Branch',['class' => 'listing-read-more', 'onclick' => 'return confirm("Are you sure you want to delete this branch?")' ] ) }}
