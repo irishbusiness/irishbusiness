@@ -1,12 +1,10 @@
 <?php namespace IrishBusiness\Repositories;
 
-use SalesPerson;
 use Hash;
 use Auth;
 use Subscription;
 use User;
-
-
+use Salesperson;
 
 class PaymentsRepository {
 
