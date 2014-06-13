@@ -348,11 +348,17 @@ class BusinessesController extends \BaseController {
 	{
 		$business = Business::whereSlug($slug)->first();
 		$branch = $business->branches->first();
-
-		if(is_null($branch))
-			return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug);
 		
-		return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug)->withBranch($branch);
+		
+		if(is_null($branch))
+		{
+			$branchSlug = $this->business->keywordExplode($business->keywords);
+			return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug)->with('branchSlug', $branchSlug);
+		}
+
+			$branchSlug = strtolower($this->business->keywordExplode($business->keywords)."-".str_random(3));
+
+		return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug)->withBranch($branch)->with('branchSlug', $branchSlug);
 	}
 
 	public function update($slug, $branchId)
@@ -430,13 +436,18 @@ class BusinessesController extends \BaseController {
 
 	public function setMap($slug, $id)
 	{
+		$q = "0";
 		if(!isOwner($slug))
 		{
 			return Redirect::to('/');
 		}
 
 		$branch = Branch::find($id);
-		return View::make('client.map')->withSlug($slug)->with('branch',$branch);
+		
+		if(Input::has('q'))
+			$q = Input::get('q');
+
+		return View::make('client.map')->withSlug($slug)->with('branch',$branch)->withQ($q);
 	}
 
 	public function storeMap()

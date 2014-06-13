@@ -3,6 +3,7 @@
 class AddBranch extends Form {
 
 	protected $rules = [
+		'branchslug' => 'required|unique:branches',
 		'address1' => 'required',
 		'locations' => 'required',
 		'phone' => 'required',

@@ -13,6 +13,12 @@
             {{ Form::open(array('action' => ['BusinessesController@storeBranch',$slug])) }}
              
             <div class="form-group">
+                {{ Form::label('branchslug', 'Branch Slug', ["class"=>"text-colorful"]) }}<br/>
+                {{ Form::text('branchslug', $branchSlug, [
+                "placeholder" => "address..", "class"=>"text-input-grey full", 'required']) }}
+                {{$errors->first('branchslug','<span class="alert alert-error block half">:message</span>')}}
+            </div>
+            <div class="form-group">
                 {{ Form::label('address1', 'Business Address1', ["class"=>"text-colorful"]) }}<br/>
                 {{ Form::text('address1', '', [
                 "placeholder" => "address..", "class"=>"text-input-grey full", 'required']) }}
