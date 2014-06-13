@@ -8,8 +8,8 @@
 
 			<div class="content-container container-16">
 
-				<div class="companies-listings block searchres-title">
-					<div class="block-titles " >
+				<div class="companies-listings block" id="searchres">
+					<div class="block-title" >
 						<h1>Search Results</h1>
 					</div>
 					<!-- <div class="pagination">
