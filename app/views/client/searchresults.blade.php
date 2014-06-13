@@ -2,7 +2,7 @@
 
 @section('actual-body-content')
 <div class="content-container container-16">
-	<div class="content-wrapper">
+	
 		
 		<div class="zone-content equalize zone clearfix">
 
@@ -58,7 +58,8 @@
 
 		</div><!-- end of .zone-content -->
 		
-	</div><!-- end of .content-wrapper -->
+	
+</div><!-- end of .content16 -->
 @stop
 
 @section('sidebar')

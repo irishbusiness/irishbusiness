@@ -75,7 +75,7 @@ class BusinessesController extends \BaseController {
 				  ->join('categories','business_category.category_id', '=', 'categories.id'  )
 				  ->whereRaw("(businesses.name like '%$category%' or businesses.keywords like '%$category%' or categories.name like '$category') $query1 ")
 				  ->groupBy('branches.id')
-				  ->paginate(15, ['branches.*','businesses.id as bid','businesses.name','businesses.business_description','businesses.profile_description','businesses.slug','businesses.logo']);
+				  ->paginate(7, ['branches.*','businesses.id as bid','businesses.name','businesses.business_description','businesses.profile_description','businesses.slug','businesses.logo']);
 
 		
 		
