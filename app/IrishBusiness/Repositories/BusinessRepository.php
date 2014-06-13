@@ -215,8 +215,14 @@ class BusinessRepository {
         $count = count($keywords);
         foreach($keywords as $index => $keyword)
         {
-            $output.= trim($keyword);   
-            if($index+1 != $count) $output.= '-';       
+            $rawwords = explode(" ", $keyword);
+            $count2 = count($rawwords);
+            foreach($rawwords as $index2 => $word) 
+            {   
+                $output.= trim($word);
+                    if($index2+1 !=$count2) $output.= '-';    
+            }    
+             /*if($index+1!=$count) $output.= '-';      */
         }
         return $output;
     
