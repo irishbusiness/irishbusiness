@@ -3,7 +3,7 @@
 @section("actual-body-content")
 <div class="content-container container-16">
     <div class="blog-post block">
-        <div class="block-title">
+        <div class="block-title marginize">
             <h1>Register</h1>
         </div>
     </div>
