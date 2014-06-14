@@ -264,7 +264,7 @@ class BusinessesController extends \BaseController {
 
 		if( $dex_exception == 1 ){
 			$result_query = Branch::join('businesses','businesses.id', '=', 'branches.business_id')
- 					->whereRaw("businesses.slug = '".$name."'")->first();
+ 					->whereRaw("branches.branchslug = '".$name."'")->first();
 			if($result_query){
 				$branch = $result_query;
 			}else{
@@ -274,9 +274,8 @@ class BusinessesController extends \BaseController {
 		}
 
 
-		$business = Business::with('branches', 'reviews')->whereSlug($name)->first();
+		$business = Business::with('branches', 'reviews')->whereSlug($branch->business->slug)->first();
 
-		
 		$reviews = $branch->business->reviews()->withTrashed()->orderBy('created_at', 'desc')->get();
 		$blogs = $branch->business->blogs()->orderBy('created_at', 'desc')->get();
 		$coupons = $branch->business->coupons()->orderBy('created_at', 'desc')->get();
@@ -365,11 +364,13 @@ class BusinessesController extends \BaseController {
 	{
 		try
 		{
+			$branch = Branch::find($branchId);
+
 			$this->updatebusiness->validate(Input::all());
 
 			$slug = $this->business->update($slug, Input::all(), $branchId);
 			
-			return Redirect::to('/company/'.$slug."/".$branchId);
+			return Redirect::to($branch->branchslug);
 		}
 		catch(FormValidationException  $e)
 		{
@@ -424,8 +425,8 @@ class BusinessesController extends \BaseController {
 		try
 		{
 			$this->addbranch->validate(Input::all());
-			$branch_id = $this->business->storeBranch(Input::all(),$slug);
-			return Redirect::to('business/'.$slug.'/branch/'. $branch_id.'/map')->with('branch_id',$branch_id);
+			$branchSlug = $this->business->storeBranch(Input::all(),$slug);
+			return Redirect::to('business/'.$slug.'/branch/'. $branchSlug.'/map');
 		}
 		catch(FormValidationException  $e)
 		{
@@ -434,7 +435,7 @@ class BusinessesController extends \BaseController {
 		}		
 	}
 
-	public function setMap($slug, $id)
+	public function setMap($slug, $branchslug)
 	{
 		$q = "0";
 		if(!isOwner($slug))
@@ -442,7 +443,7 @@ class BusinessesController extends \BaseController {
 			return Redirect::to('/');
 		}
 
-		$branch = Branch::find($id);
+		$branch = Branch::whereBranchslug($branchslug)->first();
 		
 		if(Input::has('q'))
 			$q = Input::get('q');
@@ -460,9 +461,9 @@ class BusinessesController extends \BaseController {
 		if(!$this->business->isOwnder(Input::get('slug')))
 			return Response::make('pagenotfound');
 
-		$this->business->storeMap(Input::get('latlng'),Input::get('branch_id'));
+		$this->business->storeMap(Input::get('latlng'),Input::get('branchSlug'));
 
-		return Redirect::to('company/'.Input::get('slug').'/'.Input::get('branch_id'))
+		return Redirect::to(Input::get('branchSlug'))
 			->with('flash_message','Congratulations! You have completed your profile.');	
 	}
 

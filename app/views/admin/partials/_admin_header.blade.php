@@ -5,7 +5,12 @@
     }
 ?>
 			<header class="section header-2 boxed">
-
+				   @if(Session::has('flash_message'))  
+			        <div id="flashmessage" class="alert alert-error">    
+			                {{Session::get('flash_message')}}
+			            <span id="closeflash"> x </span>
+			        </div>
+			      @endif
 			<div class="header-top-wrapper">
 				<div class="zone-header-top zone clearfix">
 
@@ -87,6 +92,9 @@
 								</li>
 								<li class="">
 									<a href="{{ URL::to('client/password/edit') }}">CHANGE PASSWORD</a>
+								</li>
+								<li class="">
+									<a href="{{ URL::to('admin/settings/invite') }}">INVITE</a>
 								</li>
 								<li class="neighbour-right">
 									<a href="{{ URL::to('clear') }}">LOGOUT</a>

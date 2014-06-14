@@ -20,7 +20,7 @@
 				<div class="form-group">
 					{{ Form::hidden('latlng', '', ['id' => 'latlng']) }}
 					{{ Form::hidden('slug', $slug, ['id' => 'latlng']) }}
-					{{ Form::hidden('branch_id', $branch->id, ['id' => 'latlng']) }}
+					{{ Form::hidden('branchSlug', $branch->branchslug) }}
 					{{ Form::hidden('address', $branch->address,['id' => 'address'])}}
 					{{ Form::hidden('origlatlng', $branch->latlng,['id' => 'origlatlng'])}}
 					{{$errors->first('locations','<span class="alert alert-error block half">:message</span>')}}

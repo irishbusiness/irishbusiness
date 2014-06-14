@@ -56,7 +56,7 @@ class SalesPersonsController extends \BaseController {
 			
 			Event::fire('salesperson.invite',[$user]);
 
-			return Redirect::to('sales')->withFlashMessage('Thank you for registering ' . ucwords(Input::get('firstname')) .'! You have been logged in.')
+			return Redirect::back()->with('flash_message',Input::get('email') .' has been invited!')
 			->with('title','IrishBusiness.ie | Settings');
 		}
 		catch(FormValidationException  $e)

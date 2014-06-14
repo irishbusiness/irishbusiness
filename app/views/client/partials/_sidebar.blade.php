@@ -9,10 +9,10 @@
 			@foreach($recentlyaddedcompany as $recentcompany)
 				@if(!empty($recentcompany->branches->first()->id))
 					<li class="clearfix">
-						<a href="{{ URL::to('/company/'.$recentcompany->slug.'/'.$recentcompany->branches->first()->id) }}" class="thumbnail">
+						<a href="{{ URL::to($recentcompany->branches->first()->branchslug) }}" class="thumbnail">
 							<img src="{{ ($recentcompany->logo == '') ? URL::asset('images/image-not-available.png') : URL::asset($recentcompany->logo) }}" alt="" />
 						</a>
-						<a href="{{ URL::to('/company/'.$recentcompany->slug.'/'.$recentcompany->branches->first()->id) }}" class="entry-title">{{ decode($recentcompany->name) }}</a>
+						<a href="{{ URL::to($recentcompany->branches->first()->branchslug) }}" class="entry-title">{{ decode($recentcompany->name) }}</a>
 						<div class="entry-excerpt">{{ Str::limit(decode($recentcompany->business_description), 50) }}</div>
 					</li>
 				@endif	

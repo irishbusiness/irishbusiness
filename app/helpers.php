@@ -136,7 +136,7 @@ function countBranches()
 
 function showAddress($address){
         $addresses = explode( '*', $address);
-        return $addresses[0].' '.$addresses[1];
+        return $addresses[0];
 }
 
 function decode($string){
@@ -181,4 +181,13 @@ function pre($string){
 
 function alert($string){
     echo "<script>alert('".$string."');</script>";
+}
+
+function branchSlug(){
+    if(Auth::user()->check())
+    {
+        $branch = Branch::whereBusinessId(Auth::user()->user()->business->id)->first();
+        if (!is_null($branch))
+            return $branch->branchslug;
+    }
 }

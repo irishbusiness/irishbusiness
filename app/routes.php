@@ -48,9 +48,6 @@ Route::get('contact-us', function(){
 	return View::make('client.contact-us');
 });
 
-Route::get('register', function(){
-	return View::make('client.register');
-});
 
 /*Route::get('login', function(){
 	return View::make('client.login');
@@ -84,6 +81,10 @@ Route::get('admin/settings/payment-gateway', function(){
 	return View::make('admin.admin_payment_gateway');
 });
 
+Route::get('admin/settings/invite', 'AdminController@invite'); /*function(){
+	return View::make('admin.admin_invite');
+});*/
+
 
 
 Route::get('admin/settings/socialmedia', function(){
@@ -112,8 +113,6 @@ Route::get('listings','BusinessesController@index');
 
 Route::get('company', 'BusinessesController@search');
 // Route::get('{slug}?', 'BusinessesController@companytab2');
-Route::get('company/{slug}', 'BusinessesController@companytab2');
-Route::get('company/{slug}/{branch}', 'BusinessesController@companytab2');
 Route::post('company/{name}', 'ReviewsController@store');
 
 Route::get('edit/business/{slug}/{branchId}', 'BusinessesController@editcompany');
@@ -269,3 +268,9 @@ Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');
 Route::post('/disapproveReviewAjax', 'ReviewsController@disapproveReviewAjax');
 Route::get('{businessSlug}/branch', 'BusinessesController@showBranches');
 Route::get('/{branchId}/branch/delete', 'BusinessesController@deleteBranch');
+
+Route::get('1/{slug}', 'BusinessesController@companytab2');
+Route::get('1/{slug}/{branch}', 'BusinessesController@companytab2');
+
+Route::get('{slug}', 'BusinessesController@companytab2');
+Route::get('{slug}/{branch}', 'BusinessesController@companytab2');
