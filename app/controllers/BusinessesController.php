@@ -277,12 +277,13 @@ class BusinessesController extends \BaseController {
 				->with('coupons', $coupons);
 	}
 
-	public function editcompany($slug, $branchId){
+	public function editcompany($slug, $branchslug){
 
 		// $businessinfo = Business::whereSlug($slug)->first();
-		$branch = Branch::with('business')->find($branchId);
-
 		
+		$branch = Branch::with('business')->whereBranchslug($branchslug)->first();
+
+	
 		if( is_null($branch) ){
 			return Response::view('pagenotfound');
 		}
