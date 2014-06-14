@@ -244,58 +244,37 @@ class BusinessesController extends \BaseController {
 	
 	}
 
-	public function companytab2($name, $branchId = null){
-		$dex_exception = 0;
-		if( ($branchId != null) && (is_numeric($branchId)) ){
-			try {
-				$branch = Branch::findOrFail($branchId);
-			}catch (Exception $e) {
-				$dex_exception = 1;
-			}
+	public function companytab2($name){
+		
+			
 
-		}else{
-			$result_query = Branch::with('business')->where('address', 'like', '%'.$branchId.'%')->first();
-			if($result_query){
-				$branch = $result_query;
-			}else{
-				$dex_exception = 1; 
-			}
-		}
-
-		if( $dex_exception == 1 ){
-			$result_query = Branch::join('businesses','businesses.id', '=', 'branches.business_id')
+			$branch = Branch::join('businesses','businesses.id', '=', 'branches.business_id')
  					->whereRaw("branches.branchslug = '".$name."'")->first();
-			if($result_query){
-				$branch = $result_query;
-			}else{
-				return Response::view("pagenotfound");
+			
+			if(is_null($branch))	return Response::view("pagenotfound");				
+		
+
+			$reviews = $branch->business->reviews()->withTrashed()->orderBy('created_at', 'desc')->get();
+			$blogs = $branch->business->blogs()->orderBy('created_at', 'desc')->get();
+			$coupons = $branch->business->coupons()->orderBy('created_at', 'desc')->get();
+
+			$rating = array();
+
+			$business = Business::with('branches', 'reviews')->whereSlug($branch->business->slug)->first();
+			$branches1 = $business->branches;
+
+			foreach ($branches1 as $branch1) {
+				array_push($rating, Review::where('business_id', '=', $branch1->business->id)->avg('rating'));
 			}
 
-		}
-
-
-		$business = Business::with('branches', 'reviews')->whereSlug($branch->business->slug)->first();
-
-		$reviews = $branch->business->reviews()->withTrashed()->orderBy('created_at', 'desc')->get();
-		$blogs = $branch->business->blogs()->orderBy('created_at', 'desc')->get();
-		$coupons = $branch->business->coupons()->orderBy('created_at', 'desc')->get();
-
-		$rating = array();
-
-		$branches1 = $business->branches;
-
-		foreach ($branches1 as $branch1) {
-			array_push($rating, Review::where('business_id', '=', $branch1->business->id)->avg('rating'));
-		}
-
-		return View::make('client.company-tab')
-			->with('branch', $branch)
-			->with('business', $business)
-			->with('blogs', $blogs)
-			->with('reviews', $reviews)
-			->with('title', decode($branch->business->name))
-			->with('coupons', $coupons)
-			->with('rating', $rating);
+			return View::make('client.company-tab')
+				->with('branch', $branch)
+				->with('business', $business)
+				->with('blogs', $blogs)
+				->with('reviews', $reviews)
+				->with('title', decode($branch->business->name))
+				->with('rating', $rating)
+				->with('coupons', $coupons);
 	}
 
 	public function editcompany($slug, $branchId){
