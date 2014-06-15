@@ -25,6 +25,29 @@
                             </div>
                         </div>
 					</div>
+					<div class="coupon-row">
+						<p>
+						  <a href="https://www.facebook.com/sharer/sharer.php?u={{ URL::to('blog/'.$blog->slug) }}" class="share facebook">
+						    Share on Facebook
+						  </a>
+						</p>
+						<p>
+						  <a href="https://twitter.com/intent/tweet?url={{ URL::to('blog/'.$blog->slug) }}" class="share twitter">
+						    Share on Twitter
+						  </a>
+						</p>
+						<p>
+						  <a href="https://plus.google.com/share?url={{ URL::to('blog/'.$blog->slug) }}" class="share google">
+						    Share on Google+
+						  </a>
+						</p>
+						<p>
+						  <a href="http://www.linkedin.com/shareArticle?mini=true&url={{ URL::to('blog/'.$blog->slug) }}&source=IrishBusiness.ie&title=Deal+Voucher+Coupon" class="share linkedin">
+						    Share on LinkedIn
+						  </a>
+						</p>
+						<div class="separator"></div>
+					</div>
 				</div>
 
 				@if(isOwner($blog->business->slug))

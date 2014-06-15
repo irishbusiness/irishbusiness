@@ -26,7 +26,7 @@
 							<div class="blog-post-description clearfix">
 								<div class="blog-post-title-comments">
 									<a href="#" class="blog-post-comments">0</a>
-									<a href="blog-post.html" class="blog-post-title">{{ $blog->title }}</a>
+									<a href="{{ URL::to('blog/'.$blog->slug) }}" class="blog-post-title">{{ $blog->title }}</a>
 								</div>
 								<div class="blog-post-excerpt">
                                     <div class="blog-post-image">
