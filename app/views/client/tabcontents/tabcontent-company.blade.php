@@ -97,7 +97,7 @@
 		<div class="company-tabs-single-company block">
 			
 			@if(!$branch->business->profilebanner == "")
-				<div class="company-image">
+				<div class="company-photo-container">
 					<img src="{{ URL::asset($branch->business->profilebanner) }}">
 				</div>
 			@endif
