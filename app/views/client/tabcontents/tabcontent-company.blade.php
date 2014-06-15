@@ -1,7 +1,7 @@
 <div id="company-tabs-page" class="company-tabs-content">
 	<div class="edit-company">
 		@if( isOwner($branch->business->slug) || isAdmin() )
-			<a href="{{ Request::root().'/edit/business/'.$branch->business->slug.'/'.$branch->id }}">
+			<a href="{{ Request::root().'/edit/business/'.$branch->business->slug.'/'.$branch->branchslug }}">
 				Edit your business
 			</a> | 
 			<a href="javascript:void(0)" title="Delete this business" id="btn-delete-business">Delete business</a>
@@ -32,7 +32,8 @@
 							Full Address
 						</td>
 						<td class="detail">
-							{{ showAddress($branch->address) }}
+							{{ showAddressfull($branch->address) }}
+							
 						</td>
 					</tr>
 					<tr class="detail">
@@ -94,11 +95,14 @@
 
 	<div class="company-content-container container-16 margin-18">
 		<div class="company-tabs-single-company block">
-			
+		<div class="block-title">
 			<h1>{{ decode($branch->business->name) }}</h1>
+		</div>
 			@if(!$branch->business->profilebanner == "")
+				<div class="photo">
 				<div class="company-photo-container">
 					<img src="{{ URL::asset($branch->business->profilebanner) }}">
+				</div>
 				</div>
 			@endif
 			<div class="company-info clearfix">

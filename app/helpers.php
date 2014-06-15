@@ -139,6 +139,26 @@ function showAddress($address){
         return $addresses[0];
 }
 
+function showAddressfull($address){
+        $output = "";
+        $addresses = explode( '*', $address);
+        // return var_dump($addresses);
+
+        $count = count($addresses);
+        foreach($addresses as $index => $address){
+            if(trim($address)!=""){
+                $output.=$address;
+                if($index+1 != $count){   
+                    if(!empty($addresses[$index+1])){
+                        $output.=", ";
+
+                    }
+                }
+            }
+        }
+        return $output;
+}
+
 function decode($string){
     return stripcslashes(stripcslashes(html_entity_decode($string)));
 }
