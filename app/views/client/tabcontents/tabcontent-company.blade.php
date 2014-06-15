@@ -96,12 +96,12 @@
 	<div class="company-content-container container-16 margin-18">
 		<div class="company-tabs-single-company block">
 			
-			<h1>{{ decode($branch->business->name) }}</h1>
 			@if(!$branch->business->profilebanner == "")
-				<div class="company-photo-container">
+				<div class="company-image">
 					<img src="{{ URL::asset($branch->business->profilebanner) }}">
 				</div>
 			@endif
+			<h1>{{ decode($branch->business->name) }}</h1>
 			<div class="company-info clearfix">
 				<div class="company-info-social">
 					<div class="compnay-photo">
