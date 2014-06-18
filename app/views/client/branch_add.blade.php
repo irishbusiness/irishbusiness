@@ -3,10 +3,9 @@
 @section("actual-body-content")
 <div class="portfolio-container container-16">
     <div id="company-tabs-page" class="company-tabs-content" style="display: block;">
-        <div class="portfolio-container container-24">
 
             <div class="blog-post block">
-                <div class="block-title">
+                <div class="block-title marginize">
                     <h1>Add Branch</h1>
                 </div>
             </div>
@@ -136,7 +135,6 @@
                 {{ Form::submit('Save',['class' => 'button-2-colorful'])  }}
             </div>
             {{ Form::close() }}
-        </div>
     </div>
 </div>
 @stop

@@ -8,16 +8,16 @@
         </div>
     </div>
 	<div class="comments block">
-        <div class="comment-message center">
+        <div class="comment-message">
             @if(Session::has('error'))
                 <br/>
                 <span class="alert-error status">{{Session::get('error')}} </span>
             @endif
-            {{ Form::open(array('url' => 'client/password/edit','method' => 'post', "id"=>"form-register")) }}
+            {{ Form::open(array('url' => 'client/password/edit','method' => 'post')) }}
                <div class="form-group">
                     {{ Form::label('oldpassword', "Current Password", ["required"=>"required", "class"=> "text-colorful"]) }}
                     <br>
-                    {{ Form::password('oldpassword', ["required"=>"required", "class"=>"text-input-grey half",
+                    {{ Form::password('oldpassword', ["required"=>"required", "class"=>"text-input-grey full",
                         "placeholder"=>"*********"]) }}
                     @if(Session::has('oldpass'))
                     <span class="alert alert-error block half">{{Session::get('oldpass')}}</span>
@@ -26,14 +26,14 @@
                <div class="form-group">
                     {{ Form::label('password', "New Password", ["required"=>"required", "class"=> "text-colorful"]) }}
                     <br>
-                    {{ Form::password('password', ["required"=>"required", "class"=>"text-input-grey half",
+                    {{ Form::password('password', ["required"=>"required", "class"=>"text-input-grey full",
                         "placeholder"=>"*********"]) }}
                     {{$errors->first('password','<span class="alert alert-error block half">:message</span>')}}
                 </div>
                 <div class="form-group">
                     {{ Form::label('password_confirmation', "Confirm New Password", ["required"=>"required", "class"=> "text-colorful"]) }}
                     <br>
-                    {{ Form::password('password_confirmation', ["required"=>"required", "class"=>"text-input-grey half",
+                    {{ Form::password('password_confirmation', ["required"=>"required", "class"=>"text-input-grey full",
                         "placeholder"=>"*********"]) }}
                     {{$errors->first('password','<span class="alert alert-error block half">:message</span>')}}
                 </div><br>

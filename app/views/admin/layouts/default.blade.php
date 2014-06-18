@@ -96,7 +96,7 @@
 
 		</section>
 
-		@include('admin.partials._footer')
+		@include('client.partials._footer')
 		@include('admin.partials._includes')
 	</body>
 

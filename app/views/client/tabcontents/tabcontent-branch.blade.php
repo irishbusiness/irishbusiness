@@ -1,12 +1,14 @@
 @extends('client.layouts.default')
 
 @section('actual-body-content')
-<div class="content-container container-16 marginize-branch">
+<div class="content-container container-16">
 	
-	<div class="companies-listings block">
-		<div class="block-title tabindent">
-			<h1>Branches</h1>
-		</div>
+	<!-- <div class="companies-listings block"> -->
+		<div class="blog-post block">
+        <div class="block-title marginize">
+            <h1>Branches</h1>
+        </div>
+    	</div>
 		@if(Auth::user()->check())
 			<a href="{{ URL::to('business/'.businessSlug().'/branch/add') }}" class="a-btn button-2-colorful add-coupon">Add new Branch</a><br>
 		@endif
@@ -17,7 +19,7 @@
 		}
 		?>
 		@foreach($business->branches as $branch)
-		<div class="company-listing clearfix tabindent">
+		<div class="company-listing clearfix">
 			<a href="#" class="listing-image">
 				<img src="{{ URL::asset($branch->business->logo) }}" alt="" />
 			</a>
@@ -44,7 +46,7 @@
 			<?php $x++; ?>
 			@endforeach
 
-		</div>
+		<!-- </div> -->
 
 	</div><!-- end of .content-container -->
 @stop

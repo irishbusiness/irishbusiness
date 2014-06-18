@@ -2616,12 +2616,13 @@ ul.event-tabs-content {
 		font-family: "Patua One";
 		font-size: 1.2857em;
 		line-height: 20px;
-		padding: 15px 20px;
+		padding: 15px 10px;
 		border-bottom: 1px solid #e7e7e7;
+		
 	}
 
 	.comment-message .comment-message-form {
-		padding: 20px;
+		padding: 15px 10px;
 		overflow: hidden;
 	}
 
