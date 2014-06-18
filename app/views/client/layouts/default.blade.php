@@ -84,11 +84,9 @@
 
 	@include('client.partials._searchbar')
 
+    @yield('slider')
 	<!-- actual body -->
-        <div class="industries-tabs-wrapper">
-            <div class="zone-industries-tabs zone clearfix">
-            </div><!-- end of .zone-industries-tabs -->
-        </div><!-- end of .industries-tabs-wrapper -->
+        
         <div class="content-wrapper">
             
              <div class="zone-content equalize zone clearfix">

@@ -3,6 +3,7 @@
 @section('slider')
 	@include('client.partials._slider')
 @stop
+
 @section('actual-body-content')
 <div class="content-container container-16">
 	<!-- <br> -->
