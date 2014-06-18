@@ -40,7 +40,7 @@ class PaymentsRepository {
 			$code = mb_substr($raw,0,6);
 			$type = mb_substr($raw,6,3);
 			
-			if($type!='chk'&&$type!='csh')
+			if($type!='chq'&&$type!='csh')
 			{
 				return false;
 			}	

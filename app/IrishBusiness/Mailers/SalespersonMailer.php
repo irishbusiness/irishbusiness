@@ -1,7 +1,7 @@
 <?php namespace IrishBusiness\Mailers;
 
 
-class SalespersonMailer extends Mailer
+class Salesperson1Mailer extends Mailer
 {
 
 	public function invite($salesperson)
