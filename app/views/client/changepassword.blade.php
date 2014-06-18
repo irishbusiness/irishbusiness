@@ -1,8 +1,9 @@
 @extends('client.layouts.default')
 
 @section('actual-body-content')
+<div class="content-container container-16">
  <div class="blog-post block">
-        <div class="block-title">
+        <div class="block-title marginize">
             <h1>Change Password</h1>
         </div>
     </div>
@@ -42,8 +43,12 @@
             {{ Form::close() }}
         </div>
     </div>
+    </div>
 @stop
 
+@section('sidebar')
+    @include('client.partials._sidebar')
+@stop
 @section('scripts')
 
 @stop

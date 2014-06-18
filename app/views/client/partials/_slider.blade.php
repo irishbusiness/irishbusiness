@@ -11,4 +11,8 @@
 					</ul>
 				</div>
 			</div>
+			<div class="industries-tabs-wrapper">
+	            <div class="zone-industries-tabs zone clearfix">
+	            </div><!-- end of .zone-industries-tabs -->
+        	</div><!-- end of .industries-tabs-wrapper -->
 <!-- Slider -->
