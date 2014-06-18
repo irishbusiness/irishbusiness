@@ -24,7 +24,7 @@
 						<div class="subscription-duration">{{ $subscription->duration }}</div>
 						<div class="subscription-price">
 							{{ $subscription->currency." ".round($subscription->price, 2) }}
-							@if(!is_null($couponCode))<br/>
+							@if(!is_null($couponCode) && (trim($couponCode) != "") )<br/>
 								<span>
 									<span class="text-colorful">Less: </span>
 									{{ round((($subscription->price-$subscription->discounted_price)/$subscription->price)*100, 2)."%" }}
@@ -41,7 +41,7 @@
 								<script
 								src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 								data-key="pk_live_NRK68iTbtUdKXKFbSORmwKn6"
-								data-amount="{{ ( (is_null($couponCode)) ? $subscription->price : $subscription->discounted_price )*100 }}"
+								data-amount="{{ ( ( is_null($couponCode) && (trim($couponCode) != "") ) ? $subscription->price : $subscription->discounted_price )*100 }}"
 								data-name="IrishBusiness.ie"
 								data-description="{{$subscription->name}}"
 								data-image="{{ URL::asset('/images/logo/header/default.png') }}"
