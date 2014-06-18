@@ -1,10 +1,11 @@
 <?php namespace IrishBusiness\Repositories;
 
-use SalesPerson;
+
 use Hash;
 use Auth;
 use Redirect;
 use Commission;
+use Salesperson;
 class SalesRepository {
 
 	public function create($input)
