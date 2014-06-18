@@ -10,7 +10,7 @@
 			<div class="comment-message">
 				{{ Form::open(array('action' => 'SettingsController@store', 'enctype'=>'multipart/form-data', 'method'=>'post')) }}
 					<div class="form-group">
-						{{ Form::label("headerlogo", "Header Logo", ["class"=>"text-colorful"]) }}
+						{{ Form::label("headerlogo", "Header Logo", ["class"=>"text-colorful"]) }}<br/>
 						{{ Form::input("file", "headerlogo", $settings['footerlogo'], ["class"=>"text-input-grey", "onchange"=>"readURL($(this))" ]) }}
 						<div class="render-logo-preview">
 							<img src="{{ URL::asset('/images/logo/header/'.$settings['headerlogo']) }}" id="img-render-headerlogo">
@@ -18,7 +18,7 @@
 					</div>
 					<div class="thin-separator"></div>	
 					<div class="form-group">
-						{{ Form::label("footerlogo", "Footer Logo", ["class"=>"text-colorful"]) }}
+						{{ Form::label("footerlogo", "Footer Logo", ["class"=>"text-colorful"]) }}<br/>
 						{{ Form::input("file", "footerlogo", $settings['footerlogo'], ["class"=>"text-input-grey", "onchange"=>"readURL($(this))" ]) }}
 						<div class="render-logo-preview">
 							<img src="{{ URL::asset('/images/logo/footer/'.$settings['footerlogo']) }}" id="img-render-footerlogo">
@@ -54,7 +54,7 @@
 						"placeholder"=>"Footer text"]) }}
 					</div>
 					<div class="form-group">
-						{{ Form::label("view_statistics", "View Statistics On/Off", ["class"=>"text-colorful"]) }}
+						{{ Form::label("view_statistics", "View Statistics On/Off", ["class"=>"text-colorful"]) }}<br/>
 						{{ Form::select("view_statistics", ["1"=>"On", "0"=>"Off"],  $settings["view_statistics"], ["class"=>"text-input-grey"]) }}
 					</div>
 					<div class="form-group">
