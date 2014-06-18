@@ -10,8 +10,8 @@
     </div>
 
     <div class="comments block">
-        <div class="comment-message center">
-                {{ Form::open([ 'method' => 'post', 'action' => 'BlogController@store', 'files' => true, 'id' => 'form-register']) }}
+        <div class="comment-message">
+                {{ Form::open([ 'method' => 'post', 'action' => 'BlogController@store', 'files' => true]) }}
                 
                 <div class="form-group">
                     {{ Form::label('title', "Blog Title", ["class"=> "text-colorful"]) }}<br>
