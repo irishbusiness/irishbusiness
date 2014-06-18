@@ -10,6 +10,8 @@ class SalesRepository {
 
 	public function create($input)
 	{
+		
+
 		$password = str_random(8);
 		$salesperson = new SalesPerson;
 		$salesperson->firstname = $input['firstname'];
@@ -18,7 +20,9 @@ class SalesRepository {
 		$salesperson->phone = $input['phone'];
 		$salesperson->email = $input['email'];
 		$salesperson->access_level = $input['type'];
-		$salesperson->coupon = strtoupper(str_random(6));
+		$salesperson->coupon =(( $input['coupon']=='') ? strtoupper(str_random(6)) :  strtoupper($input['coupon'])); 
+		$salesperson->st = (( $input['st']=='') ? 0 :  $input['st']);
+		$salesperson->tl = (( $input['tl']=='') ? 0 :  $input['tl']);
 		$salesperson->save();
 		$salesperson->passwordraw = $password;
 
@@ -53,6 +57,16 @@ class SalesRepository {
 		}
 
 		return $commissions;
+	}
+
+	public function getSalesTeam()
+	{
+		return Salesperson::where('access_level','=',1)->get();		
+	}
+
+	public function getTeamLeader()
+	{
+		return Salesperson::where('access_level','=',2)->get();		
 	}
 
 }

@@ -46,7 +46,7 @@ class SalesPersonsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+
 		
 		try
 		{
@@ -64,7 +64,7 @@ class SalesPersonsController extends \BaseController {
 			
 			return Redirect::back()->withInput()->withErrors($e->getErrors());
 		}
-
+		return Redirect::back()->withInput();
 	}
 
 	/**

@@ -22,3 +22,12 @@ on each view using the default.blade.php
 			@endif
 
 */
+
+
+@if(Request::is('admin/*'))
+					<div class="content-container container-24">
+                @else
+                    <div class="content-container container-16">
+                @endif
+
+                in the admin/layouts/default.blade.php line 84

@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
      @yield('title')
-
+     @yield('linksfirst')
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
 
 
@@ -16,7 +16,7 @@
     {{ HTML::style("css/green.css") }}
     {{ HTML::style("css/header-7.css") }}
     {{ HTML::style("css/responsive-grid.css") }}
-    {{ HTML::style("scripts/redactor.css") }}
+   
     {{ HTML::style('css/bootstrap-formhelpers.css') }}
     {{ HTML::style('css/bootstrap-formhelpers.min.css') }}
 
@@ -81,14 +81,13 @@
 
 			<div class="content-wrapper">
 				<div class="zone-content equalize zone clearfix">
-                @if(Request::is('admin/*'))
-					<div class="content-container container-24">
-                @else
                     <div class="content-container container-16">
-                @endif    
+                    
 					@yield('actual-body-content')
+                    
 
 					</div><!-- end of .content-container -->
+                    @yield('sidebar')
 
 				</div><!-- end of .zone-content -->
 				
@@ -98,6 +97,7 @@
 
 		@include('admin.partials._footer')
 		@include('admin.partials._includes')
+        @yield('scripts')
 	</body>
 
 </html>

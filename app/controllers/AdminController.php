@@ -16,7 +16,10 @@ class AdminController extends \BaseController {
 
 	public function invite()
 	{
+		$salesteams = $this->salesrepo->getSalesTeam();
+		$teamleaders = $this->salesrepo->getTeamLeader();
 		$commissions = $this->salesrepo->getCommissions();
-		return View::make('admin.admin_invite')->withTitle('Invite')->withCommissions($commissions);
+		return View::make('admin.admin_invite')->withTitle('Invite')->withCommissions($commissions)
+		->with('salesteams',$salesteams)->with('teamleaders',$teamleaders);
 	}
 }
