@@ -62,12 +62,8 @@
 			<table>
 				<tbody>
 					<tr class="detail">
-						<td class="detail-label padding-left-19">Mon-Friday</td>
-						<td class="detail">{{ $branch->mon_fri }}</td>
-					</tr>
-					<tr class="detail">
-						<td class="detail-label padding-left-19">Saturday: </td>
-						<td class="detail">{{ $branch->sat }}</td>
+						<!-- <td class="detail-label padding-left-19">Mon-Friday</td> -->
+						<td class="detail opening-hours" colspan="2">{{ WeekDaystoStrong(decode($branch->mon_fri)) }}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -100,7 +96,7 @@
 		</div>
 			@if(!$branch->business->profilebanner == "")
 				<div class="photo">
-				<div class="company-photo-container">
+				<div class="company-photo-container profile-description-img-thumbnail">
 					<img src="{{ URL::asset($branch->business->profilebanner) }}">
 				</div>
 				</div>

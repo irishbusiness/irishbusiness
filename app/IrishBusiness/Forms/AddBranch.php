@@ -9,7 +9,6 @@ class AddBranch extends Form {
 		'phone' => 'required',
 		'email' => 'required',
 		
-		'mon_fri' => 'required',
-		'sat' => 'required',
+		'mon_fri' => 'required'
 	];
 } 

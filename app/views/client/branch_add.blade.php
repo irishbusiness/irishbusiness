@@ -3,10 +3,9 @@
 @section("actual-body-content")
 <div class="portfolio-container container-16">
     <div id="company-tabs-page" class="company-tabs-content" style="display: block;">
-        <div class="portfolio-container container-24">
 
             <div class="blog-post block">
-                <div class="block-title">
+                <div class="block-title marginize">
                     <h1>Add Branch</h1>
                 </div>
             </div>
@@ -73,16 +72,15 @@
             </div>
             
             <div class="form-group">
-                {{ Form::label('mon_fri', "Monday - Friday Opening Hours",
+                {{ Form::label('mon_fri', "Opening Hours",
                 ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('mon_fri', (isset($branch) ? $branch->mon_fri : ''), [
-                "placeholder" => "Monday - Friday Opening Hours", "class"=>"text-input-grey full", 'required']) }}
+                {{ Form::textarea('mon_fri', (isset($branch) ? $branch->mon_fri : '<b>Mon - Fri</b> <br/><b>Saturday</b> <br/><b>Sunday </b>'), [
+                    "placeholder" => "Monday - Friday Opening Hours", "class"=>"text-input-grey full", "id"=>"redactor",
+                    "title"=>"What are your opening hours?", 'required']) }}
                 {{$errors->first('mon_fri','<span class="alert alert-error block half">:message</span>')}}
             </div>
             <div class="form-group">
-                {{ Form::label('sat', "Saturday Opening Hours",
-                ["class"=>"text-colorful"]) }}<br/>
-                {{ Form::text('sat', (isset($branch) ? $branch->sat : ''), [
+                {{ Form::hidden('sat', (isset($branch) ? $branch->sat : ''), [
                 "placeholder" => "Saturday Opening Hours", "class"=>"text-input-grey full", 'required']) }}
                 {{$errors->first('sat','<span class="alert alert-error block half">:message</span>')}}
             </div>
@@ -137,7 +135,6 @@
                 {{ Form::submit('Save',['class' => 'button-2-colorful'])  }}
             </div>
             {{ Form::close() }}
-        </div>
     </div>
 </div>
 @stop

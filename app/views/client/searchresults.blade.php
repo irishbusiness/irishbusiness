@@ -58,6 +58,7 @@
 
 		</div><!-- end of .zone-content -->
 		
+	</div><!-- end of .content-wrapper -->
 	
 </div><!-- end of .content16 -->
 @stop

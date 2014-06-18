@@ -2,12 +2,9 @@
 
 @section('actual-body-content')
 <div class="content-container container-16">
-	<div class="content-wrapper">
-		<div class="zone-content equalize zone clearfix">
-			<div class="content-container container-16">
 
 				<div class="blog block">
-					<div class="block-title">
+					<div class="block-title marginize">
 						<h1>Blog</h1>
 					</div>
                     @foreach($blogs as $blog)
@@ -48,9 +45,6 @@
 <!--						<input type="submit" class="button-2-colorful" value="Older Entries" />-->
 <!--					</div>-->
 				</div>
-			</div><!-- end of .content-container -->
-		</div><!-- end of .zone-content -->
-	</div><!--end of .content-wrapper -->
 </div>
 @stop
 

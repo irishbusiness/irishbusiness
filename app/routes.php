@@ -248,20 +248,12 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try',function(){
-	// return countBranches();
-		/*	$branches = Branch::Join('businesses','businesses.id', '=', 'branches.business_id')
-				  ->join('business_category','business_category.business_id', '=', 'businesses.id'  )
-				  ->join('categories','business_category.category_id', '=', 'categories.id'  )
-				  ->whereRaw("(businesses.name like '%$category%' or businesses.keywords like '%$category%' or categories.name like '$category') $query1 ")
-				  ->groupBy('branches.id')
-				  ->paginate(15, ['branches.*','businesses.id as bid','businesses.name','businesses.business_description','businesses.profile_description','businesses.slug','businesses.logo']);
 
-		
-		*/
-		
-		/*$reviews = $branch->business->reviews()->withTrashed()->orderBy('created_at', 'desc')->get();*/
+	$mystring = 'Tuesday, Mon: 9-10pm, <b>Wed</b> & Friday: 7-10pm';
+	// // return $pos = strpos($mystring, "Tuesday");
+	// return strlen("Tuesday");
+	echo WeekDaystoStrong($mystring);
 
-	dd(Review::where('business_id', '=', 1)->avg('rating'));
 });
 
 Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');

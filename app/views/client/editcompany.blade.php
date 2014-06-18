@@ -156,17 +156,15 @@
 		        </div>
 
 		        <div class="form-group">
-		            {{ Form::label('mon_fri', "Monday - Friday Opening Hours",
+		            {{ Form::label('mon_fri', "Opening Hours",
 		            ["class"=>"text-colorful"]) }}<br/>
-		            {{ Form::text('mon_fri', $branch->mon_fri, [
-		            "placeholder" => "Monday - Friday Opening Hours", "class"=>"text-input-grey full", 'required']) }}
+		            {{ Form::textarea('mon_fri', decode($branch->mon_fri), [
+		            	"placeholder" => "Monday - Friday Opening Hours", "class"=>"text-input-grey half redactor", 'required']) }}
 		            {{$errors->first('mon_fri','<span class="alert alert-error block half">:message</span>')}}
 		        </div>
 		        <div class="form-group">
-		            {{ Form::label('sat', "Saturday Opening Hours",
-		            ["class"=>"text-colorful"]) }}<br/>
-		            {{ Form::text('sat', $branch->sat, [
-		            "placeholder" => "Saturday Opening Hours", "class"=>"text-input-grey full", "required"]) }}
+		            {{ Form::hidden('sat', $branch->sat, [
+		            "placeholder" => "Saturday Opening Hours", "class"=>"text-input-grey full", "readonly"]) }}
 		            {{$errors->first('sat','<span class="alert alert-error block half">:message</span>')}}
 		        </div>
 

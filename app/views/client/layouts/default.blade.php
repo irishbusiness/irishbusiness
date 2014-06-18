@@ -30,7 +30,7 @@
                 {
                     var buttons = ['formatting', '|', 'bold', 'italic', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', '|', 'image', 'video', 'file', 'link', '|', 'horizontalrule'];
 
-                    $('#redactor').redactor({
+                    $('#redactor, .redactor').redactor({
                         focus: true,
                         buttons: buttons,
                         buttonsCustom: {

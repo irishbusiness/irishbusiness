@@ -503,5 +503,4 @@ class BusinessesController extends \BaseController {
 			return "false";
 		}
 	}
-
 }

@@ -1,7 +1,7 @@
 @extends('client.layouts.default')
 
 @section('actual-body-content')
- <div class="blog-post block">
+    <div class="blog-post block">
         <div class="block-title">
             <h1>Enter Discount Code</h1>
         </div>

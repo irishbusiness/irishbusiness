@@ -12,7 +12,7 @@ class UpdateBusiness extends Form {
 		'business_description' => 'required',
 		'profile_description' => 'required',
 		'mon_fri' => 'required',
-		'sat' => 'required',
+		// 'sat' => 'required',
 		'slug' => 'required'		
 
 	];
