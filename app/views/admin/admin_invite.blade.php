@@ -63,5 +63,7 @@
 @stop
 
 @section('scripts')
-
+<script>
+console.log('fuck');
+</script>
 @stop
