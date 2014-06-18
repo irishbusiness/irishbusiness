@@ -7,6 +7,7 @@
             <h1>Register</h1>
         </div>
     </div>
+    
     <div class="comments block">
         <div class="comment-message center">
             {{ Form::open(array('action' => 'UsersController@store', "id"=>"form-register")) }}
