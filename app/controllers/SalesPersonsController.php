@@ -16,7 +16,7 @@ class SalesPersonsController extends \BaseController {
 		$this->updatePassForm = $updatePassForm;
 		$this->inviteForm = $inviteForm;
 		$this->salesperson = $salesperson;
-		Event::listen('salesperson.invite','IrishBusiness\Mailers\SalesPersonMailer@invite');
+		Event::listen('salesperson.invite','IrishBusiness\Mailers\SalespersonMailer@invite');
 
 		$this->beforeFilter('SPguest' ,['except'=> ['invite','store']]);
 	}
