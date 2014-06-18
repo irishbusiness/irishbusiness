@@ -48,7 +48,7 @@
 								data-currency="{{ $subscription->currency }}" >
 								</script>
 							</form>
-							@if( is_null( $couponCode )  && (trim($couponCode) != "") )
+							@if( is_null( $couponCode ) || (trim($couponCode) == "") )
 								<a href="javascript:void(0);" id="showEnterCouponCode">I have a discount code</a>
 							@endif
 						</div>
