@@ -118,10 +118,10 @@ Route::filter('hasCoupon', function(){
 		{
 			$coupon = Auth::user()->user()->coupon;
 			
-			if(is_null($coupon))
-			{
-				return Redirect::to('couponcode');
-			}
+			// if(is_null($coupon))
+			// {
+			// 	return Redirect::to('couponcode');
+			// }
 
 			if(strlen($coupon)>6)
 			{

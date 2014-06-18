@@ -4605,3 +4605,14 @@ div.listing-rating {
 {
 	margin-top:-14px;
 }
+
+.get-listed {
+	border-bottom: 1px solid !important;
+	margin-top: 14px;
+}
+
+.get-listed .subscription-option {
+	margin-bottom: 2px;
+	margin-top: 12px;
+	border-top: none;
+}

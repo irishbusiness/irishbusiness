@@ -112,7 +112,7 @@
     						</li>
                              @if(!subscribed())
                             <li {{ (Request::is('buy*') ? ' class="first active"' : '') }}>
-                                <a href="{{ URL::to('/buy') }}">SUBSCRIBE</a>
+                                <a href="{{ URL::to('/buy') }}">GET LISTED</a>
                             </li>
                             @endif
                             @if(hasBusiness())
