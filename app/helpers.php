@@ -211,3 +211,21 @@ function branchSlug(){
             return $branch->branchslug;
     }
 }
+
+function WeekDaystoStrong($string){
+    $weekdays = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+
+    for($x = 6; $x>=0; $x--){
+        $pos = strpos($string, $weekdays[$x]);
+        if($pos !== false){
+           $string =  str_replace($weekdays[$x], "<b>".substr($string, $pos, strlen($weekdays[$x]))."</b>", $string);
+        }else{
+            $pos = strpos($string, substr($weekdays[$x], 0, 3));
+            if($pos !== false ){
+                $string =  str_replace(substr($weekdays[$x], 0, 3), "<b>".substr($string, $pos, 3)."</b>", $string);
+            }
+        }
+    }
+
+    return $string;
+}
