@@ -13,13 +13,13 @@
         <div class="comment-message">
             <div id="page">
                 {{ Form::open([ 'method' => 'post', 'action' => 'BlogController@store', 'files' => true]) }}
-                <div>
+                <div class="form-group">
                     {{ Form::label('title', "Blog Title", ["class"=> "text-colorful"]) }}<br>
                     {{ Form::text('title', '', ['class' => 'text-input-grey', 'placeholder' => 'Title', 'id' => 'addTitle', 'required']) }}
                     <br><br>
                 </div>
-                <div>
-                    {{ Form::label('blogheader', "Blog Header", ["class"=> "text-colorful"]) }}<br>
+                <div class="form-group">
+                    {{ Form::label('blogheaderimage', "Blog Header", ["class"=> "text-colorful"]) }}<br>
                     {{ Form::file('blogheaderimage', ["id"=>"btn-blog-settings-logo"]) }}
                     <div class="render-blogheader-logo-preview">
                         <img src="" id="img-render-blogheaderimage">
@@ -55,10 +55,12 @@
                     {{ Form::text('blogurl','', [
                     "placeholder" => "your-blog-name ( Optional ) : Skip if you don't know this", "class"=>"text-input-grey full", 'id' => 'addblogurl']) }}
                 </div>
+                <div class="form-group">
                 {{ Form::textarea('content', '<h3>Description of the Blog<h3>', ['id' => 'redactor1']) }}
-                <br>
-                <p><input id="addBlogButton" type="submit" value="Save" name="send" class="button-2-colorful"/>
-                {{ Form::close() }}
+                </div>
+
+                <div class="form-group"><input id="addBlogButton" type="submit" value="Save" name="send" class="button-2-colorful"/>
+                {{ Form::close() }}</div>
             </div>
         </div>
 

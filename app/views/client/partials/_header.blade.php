@@ -42,7 +42,7 @@
     						@elseif(Auth::salesperson()->check())
     						@if(isClient(Auth::salesperson()->user()->email))
 
-    						<a href="#" id="login-link" class="login-link">Switch to Client</a>
+    						<a href="javascript:void(0)" id="login-link" class="login-link">Switch to Client</a>
     						{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
     						{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
     						{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
@@ -53,7 +53,7 @@
     						{{Form::close()}}
     						@endif
     						@else
-    						<a href="#" id="login-link" class="login-link">Login</a>
+    						<a href="javascript:void(0)" id="login-link" class="login-link">Login</a>
     						{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
     						{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
     						{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
