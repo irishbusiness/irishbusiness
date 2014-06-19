@@ -17,8 +17,8 @@ class CreateSalespersonsTable extends Migration {
             $table->string('phone');
             $table->integer('access_level')->unsigned();
             $table->string('remember_token')->nullable();
-            $table->integer('tl')->unsigned(); //teamleader id
-            $table->integer('st')->unsigned()->default(0); //sales team id
+            $table->string('tl')->nullable(); //teamleader email
+            $table->integer('st')->nullable(); //sales team email
 			$table->timestamps();
 			$table->foreign('access_level')->references('id')->on('commissions')->onUpdate('cascade')->onDelete('cascade');
 

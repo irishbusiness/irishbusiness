@@ -50,7 +50,29 @@ class SalesPersonsController extends \BaseController {
 		
 		try
 		{
+
 			$this->inviteForm->validate(Input::all());
+			
+			if(Input::get('type')==2)
+			{
+				if(!$this->salesperson->checkst(Input::get('st')))
+				{
+					$messages = new Illuminate\Support\MessageBag;
+					$messages->add('st', 'Sales Team email does not exists.');
+					return Redirect::back()->withInput()->withErrors($messages);
+				}
+			}
+
+			if(Input::get('type')==3)
+			{
+				if(!$this->salesperson->checktl(Input::get('tl')))
+				{
+					$messages = new Illuminate\Support\MessageBag;
+					$messages->add('tl', 'Team Leader email does not exists.');
+					return Redirect::back()->withInput()->withErrors($messages);
+				}
+			}
+
 
 			$user = $this->salesperson->create(Input::all());
 			
@@ -58,12 +80,14 @@ class SalesPersonsController extends \BaseController {
 
 			return Redirect::back()->with('flash_message',Input::get('email') .' has been invited!')
 			->with('title','IrishBusiness.ie | Settings');
+
 		}
 		catch(FormValidationException  $e)
 		{
 			
 			return Redirect::back()->withInput()->withErrors($e->getErrors());
 		}
+
 		return Redirect::back()->withInput();
 	}
 

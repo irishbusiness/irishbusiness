@@ -56,34 +56,40 @@
                 <div class="form-group" id="salesteamdiv">
                     {{ Form::label('st', "Sales Team Email", [ "class"=> "text-colorful"]) }}
                     <br>
-                    {{ Form::text('st', '', [ "class"=>"text-input-grey full",
-                        "placeholder"=>"search by name or email",'id'=>'st']) }}
-                    {{$errors->first('phone','<span class="error">:message</span>')}}
+                    {{ Form::email('st', '', [ "class"=>"text-input-grey full",
+                        "placeholder"=>"search by name or email",'id'=>'st','autocomplete'=>'off']) }}
+                    
 
                     <div id="steamdiv">
                     @foreach($salesteams as $salesteam)
                        <div class="steam">{{$salesteam->firstname}} {{$salesteam->lastname}} -- <span class="spanteam">{{$salesteam->email}}</span></div>
                     @endforeach
-                    </div> <!-- end steamdiv -->   
+                    </div> <!-- end steamdiv --> 
+
+                    {{$errors->first('st','<p class="alert-error2">:message</p>')}}  
                 </div>
                 <div class="form-group" id="teamleaderdiv">
                     {{ Form::label('tl', "Team Leader Email", ["required"=>"required", "class"=> "text-colorful"]) }}
                     <br>
-                    {{ Form::text('tl', '', [ "class"=>"text-input-grey full",
-                        "placeholder"=>"search by name or email",'id'=>'tl']) }}
-                    {{$errors->first('phone','<span class="error">:message</span>')}}
+                    {{ Form::email('tl', '', [ "class"=>"text-input-grey full",
+                        "placeholder"=>"search by name or email",'id'=>'tl','autocomplete'=>'off']) }}
 
                     <div id="leaderdiv">
                     @foreach($teamleaders as $teamleader)
                        <div class="teamleader">{{$teamleader->firstname}} {{$teamleader->lastname}} -- <span class="spanteam">{{$teamleader->email}}</span></div>
                     @endforeach
                     </div> <!-- end steamdiv -->   
+                    {{$errors->first('tl','<p class="alert-error2">:message</p>')}}
                 </div>
                 <div class="form-group">
                     {{ Form::label('customCode', "Custom Code", [ "class"=> "text-colorful"]) }}
                     <br>
-                    {{Form::checkbox('customCode', '1', false)}} <span id="showcode">{{ Form::text('coupon', '', [ "class"=>"text-input-grey",
-                        "placeholder"=>"max 6 characters",'id'=>'coupon','maxlength'=>"6",'maxlength'=>"6"]) }} </span> 
+                    {{Form::checkbox('customCode', '1', false)}} 
+                    <span id="showcode">
+                        {{ Form::text('coupon', '', [ "class"=>"text-input-grey",
+                            "placeholder"=>"max 6 characters",'id'=>'coupon','maxlength'=>"6",'maxlength'=>"6"]) }} 
+                    </span> 
+                        {{$errors->first('coupon','<span id="errorcoupon" class="alert-error2">:message</span>')}}
                 </div>
 
                 <div class="form-group">
@@ -190,10 +196,40 @@
             if($(this).is(':checked'))
             {
                 $('#showcode').fadeIn(300);
+                $('#coupon').attr('required','required');
             }
             else
             {
                 $('#showcode').fadeOut(100);
+                $('#coupon').val("");
+                $('#coupon').removeAttr('required','required');
+            }
+        });
+
+        $(function(){
+            if( $('#formsales').find('.alert-error2').length )
+            {
+                if($('input[name=customCode]').is(':checked'))
+                {
+                    $('#showcode').css('display','inline');
+                    $('#coupon').attr('required','required');
+                }
+                else
+                {
+                    $('#coupon').removeAttr('required','required');
+                }
+
+                if($('#type').val()==2)
+                {
+                    $('#salesteamdiv').css('display','block');
+                }
+                
+                if($('#type').val()==3)
+                {
+                    $('#teamleaderdiv').css('display','block');
+                }
+
+
             }
         });
 
@@ -270,6 +306,8 @@
         if(e.which == 13)
         {
             $(this).val( $(".steam:contains('"+text+"'):first span").html());
+            $('#sbmit').focus();
+            return false;
            
           
         }    
@@ -333,7 +371,8 @@
         if(e.which == 13)
         {
             $(this).val( $(".teamleader:contains('"+text+"'):first span").html());
-            
+            $('#sbmit').focus();
+            return false;
           
         }    
     });

@@ -8,9 +8,39 @@ use Commission;
 use Salesperson;
 class SalesRepository {
 
+	public function checktl($input)
+	{
+		$salesperson = Salesperson::where('email','=',$input)->first();
+		if(!is_null($salesperson))
+		{
+			if($salesperson->access_level==2)
+				return true;
+		}
+
+		return false;
+	}
+
+	public function checkst($input)
+	{
+		$salesperson = Salesperson::where('email','=',$input)->first();
+		if(!is_null($salesperson))
+		{
+			if($salesperson->access_level==1)
+				return true;
+		}
+		
+		return false;
+	}
+
 	public function create($input)
 	{
+		$st = $input['st'];
 		
+		if($input['type']==3&&$input['tl']!='')
+		{
+			$st = Salesperson::where('email','=',$input['tl'])->first()->st;
+		}
+
 
 		$password = str_random(8);
 		$salesperson = new SalesPerson;
@@ -21,7 +51,7 @@ class SalesRepository {
 		$salesperson->email = $input['email'];
 		$salesperson->access_level = $input['type'];
 		$salesperson->coupon =(( $input['coupon']=='') ? strtoupper(str_random(6)) :  strtoupper($input['coupon'])); 
-		$salesperson->st = (( $input['st']=='') ? 0 :  $input['st']);
+		$salesperson->st = (( $st=='') ? 0 : $st);
 		$salesperson->tl = (( $input['tl']=='') ? 0 :  $input['tl']);
 		$salesperson->save();
 		$salesperson->passwordraw = $password;

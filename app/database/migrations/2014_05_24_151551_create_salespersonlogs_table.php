@@ -14,11 +14,11 @@ class CreateSalespersonlogsTable extends Migration {
 	{
 		Schema::create('salespersonlogs', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('salesperson_id')->unsigned()->index();
-			$table->integer('promoter_id')->unsigned()->index();
+			$table->string('salesperson_email')->nullable();
+			$table->string('promoter_email')->nullable();
 			$table->string('log');
-            $table->foreign('salesperson_id')->references('id')->on('salespersons')->onDelete('cascade');
-            $table->foreign('promoter_id')->references('id')->on('salespersons')->onDelete('cascade');
+            $table->foreign('salesperson_email')->references('email')->on('salespersons')->onDelete('cascade');
+            $table->foreign('promoter_email')->references('email')->on('salespersons')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}
