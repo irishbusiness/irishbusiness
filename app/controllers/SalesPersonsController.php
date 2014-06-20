@@ -23,6 +23,7 @@ class SalesPersonsController extends \BaseController {
 
 	function index()
 	{
+		// return dd(Auth::salesperson()->user()->access_level);
 		return View::make('sales.profile')->withTitle('Profile')->with('salesperson',Auth::salesperson()->user());
 	}
 
@@ -36,7 +37,7 @@ class SalesPersonsController extends \BaseController {
 	{
 		$commissions = $this->salesperson->getCommissions();
 
-		return View::make('sales.invite')->withTitle('Invite')->withCommissions($commissions);
+		return View::make('sales.invite_new')->withTitle('Invite')->withCommissions($commissions);
 	}
 
 	/**
@@ -53,25 +54,25 @@ class SalesPersonsController extends \BaseController {
 
 			$this->inviteForm->validate(Input::all());
 			
-			if(Input::get('type')==2)
-			{
-				if(!$this->salesperson->checkst(Input::get('st')))
-				{
-					$messages = new Illuminate\Support\MessageBag;
-					$messages->add('st', 'Sales Team email does not exists.');
-					return Redirect::back()->withInput()->withErrors($messages);
-				}
-			}
+			// if(Input::get('type')==2)
+			// {
+			// 	if(!$this->salesperson->checkst(Input::get('st')))
+			// 	{
+			// 		$messages = new Illuminate\Support\MessageBag;
+			// 		$messages->add('st', 'Sales Team email does not exists.');
+			// 		return Redirect::back()->withInput()->withErrors($messages);
+			// 	}
+			// }
 
-			if(Input::get('type')==3)
-			{
-				if(!$this->salesperson->checktl(Input::get('tl')))
-				{
-					$messages = new Illuminate\Support\MessageBag;
-					$messages->add('tl', 'Team Leader email does not exists.');
-					return Redirect::back()->withInput()->withErrors($messages);
-				}
-			}
+			// if(Input::get('type')==3)
+			// {
+			// 	if(!$this->salesperson->checktl(Input::get('tl')))
+			// 	{
+			// 		$messages = new Illuminate\Support\MessageBag;
+			// 		$messages->add('tl', 'Team Leader email does not exists.');
+			// 		return Redirect::back()->withInput()->withErrors($messages);
+			// 	}
+			// }
 
 
 			$user = $this->salesperson->create(Input::all());

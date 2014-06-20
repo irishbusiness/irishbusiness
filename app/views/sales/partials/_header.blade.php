@@ -1,8 +1,17 @@
     <?php
-    /*if(is_null($imgheaderlogo)){*/
-    	$imgheaderlogo = new \Illuminate\Support\Collection;
-    	$imgheaderlogo->headerlogo = 'default.png';
-    /*}*/
+    if(is_null($recentsettings)){
+        $recentsettings = new \Illuminate\Support\Collection;
+        $recentsettings->headerlogo = 'default.png';
+    }
+    if(!isset($socialmedia)){
+        $socialmedia = new \Illuminate\Support\Collection;
+        $socialmedia->pinterest = "";
+        $socialmedia->dribbble = "";
+        $socialmedia->facebook = "";
+        $socialmedia->google = "";
+        $socialmedia->twitter = "";
+        $socialmedia->linkedin = "";
+    }
     ?>
     <header class="section header-2 boxed">
         @if(Session::has('flash_message'))  
@@ -60,24 +69,36 @@
     			<div class="header-top-right container-16">
 
     				<div class="social-links block">
-    					<a href="http://www.facebook.com">
-    						<img src="{{ URL::asset('images/facebook-icon.png') }}" alt="" />
-    					</a>
-    					<a href="http://www.google.com">
-    						<img src="{{ URL::asset('images/google-icon.png') }}" alt="" />
-    					</a>
-    					<a href="http://www.twitter.com">
-    						<img src="{{ URL::asset('images/twitter-icon.png') }}" alt="" />
-    					</a>
-    					<a href="http://www.linkedin.com">
-    						<img src="{{ URL::asset('images/linkedin-icon.png') }}" alt="" />
-    					</a>
-    					<a href="http://www.pinterest.com">
-    						<img src="{{ URL::asset('images/pinterest-icon.png') }}" alt="" />
-    					</a>
-    					<a href="http://www.dribbble.com">
-    						<img src="{{ URL::asset('images/dribbble-icon.png') }}" alt="" />
-    					</a>
+					@if($socialmedia->facebook != '')
+                        <a href="{{ $socialmedia->facebook }}">
+                            <img src="{{ URL::asset('images/facebook-icon.png') }}" alt="" />
+                        </a>
+                    @endif
+                    @if($socialmedia->google != '')
+                        <a href="{{ $socialmedia->google }}">
+                            <img src="{{ URL::asset('images/google-icon.png') }}" alt="" />
+                        </a>
+                    @endif
+                    @if($socialmedia->twitter != '')
+                        <a href="{{ $socialmedia->twitter }}">
+                            <img src="{{ URL::asset('images/twitter-icon.png') }}" alt="" />
+                        </a>
+                    @endif
+                    @if($socialmedia->linkedin != '')
+                        <a href="{{ $socialmedia->linkedin }}">
+                            <img src="{{ URL::asset('images/linkedin-icon.png') }}" alt="" />
+                        </a>
+                    @endif
+                    @if($socialmedia->pinterest != '')
+                        <a href="{{ $socialmedia->pinterest }}">
+                            <img src="{{ URL::asset('images/pinterest-icon.png') }}" alt="" />
+                        </a>
+                    @endif
+                    @if($socialmedia->dribbble != '')
+                        <a href="{{ $socialmedia->dribbble }}">
+                            <img src="{{ URL::asset('images/dribbble-icon.png') }}" alt="" />
+                        </a>
+                    @endif
     				</div>
 
     			</div>
@@ -91,10 +112,10 @@
     			<div class="header-left container-4">
 
     				<div class="logo block">
-    					<a href="#">
-    						<img class="header-logo-img" src="{{ URL::asset('/images/logo/header/'.$imgheaderlogo->headerlogo) }}" alt="" />
+    					<a href="{{ URL::to(Request::root()) }}">
+                            <img class="header-logo-img" src="{{ URL::asset('/images/logo/header/'.$recentsettings->headerlogo) }}" alt="" />
 
-    					</a>
+                        </a>
     				</div>
 
     			</div>
@@ -112,9 +133,11 @@
                             <li {{ (Request::is('sales/password/edit*') ? ' class="first active"' : '') }}>
                                 <a href="{{ URL::to('/sales/password/edit') }}">Password Change</a>
                             </li>
+                            @if( Auth::salesperson()->user()->access_level !=3 )
     						<li {{ (Request::is('sales/invite*') ? ' class="first active"' : '') }}>
     							<a href="{{ URL::to('/sales/invite') }}">Invite</a>
     						</li>
+                            @endif
                             <li {{ (Request::is('sales/logout*') ? ' class="first active"' : '') }}>
                                 <a href="{{ URL::to('clear') }}">Logout</a>
                             </li>

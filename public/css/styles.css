@@ -4620,3 +4620,10 @@ div.listing-rating {
 .opening-hours {
 	padding-left: 5px;
 }
+
+#coupon{
+    width:100px;
+}
+#showcode{
+    display:none;
+}
