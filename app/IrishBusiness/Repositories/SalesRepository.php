@@ -50,7 +50,7 @@ class SalesRepository {
 		$salesperson->phone = $input['phone'];
 		$salesperson->email = $input['email'];
 		$salesperson->access_level = $input['type'];
-		$salesperson->coupon =(( $input['coupon']=='') ? strtoupper(str_random(6)) :  strtoupper($input['coupon'])); 
+		$salesperson->coupon =(( $input['coupon']=='') ? generate_coupon() :  strtoupper($input['coupon'])); 
 		$salesperson->st = (( $st=='') ? 0 : $st);
 		$salesperson->tl = (( $input['tl']=='') ? 0 :  $input['tl']);
 		$salesperson->save();

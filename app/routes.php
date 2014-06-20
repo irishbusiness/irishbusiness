@@ -249,10 +249,7 @@ Route::post('addmap','BusinessesController@storeMap');
 
 Route::get('try',function(){
 
-	$mystring = 'Tuesday, Mon: 9-10pm, <b>Wed</b> & Friday: 7-10pm';
-	// // return $pos = strpos($mystring, "Tuesday");
-	// return strlen("Tuesday");
-	echo WeekDaystoStrong($mystring);
+	echo generate_coupon();
 
 });
 

@@ -229,3 +229,35 @@ function WeekDaystoStrong($string){
 
     return $string;
 }
+
+function generate_coupon(){
+ 
+  $not_unique = true;
+    
+
+    while($not_unique){
+        $charset = 'abcdefghijklmnopqrstuvwxyz';
+        $p1 = substr(str_shuffle($charset),0, 3);
+        $charset = '1234567890';
+        $p2 = substr(str_shuffle($charset),0, 3);
+        $coupon = $p1.$p2; 
+
+        if( !coupon_exists($coupon) )  $not_unique = false;
+
+        }
+
+    return $coupon;
+}
+
+function coupon_exists($input_coupon){
+    $salespersons = Salesperson::all();
+    foreach ($salespersons as $salesperson) {
+        if($salesperson->coupon == $input_coupon){
+            return true;
+        }else{
+            pre($input_coupon);
+        }
+    }
+
+    return false;
+}
