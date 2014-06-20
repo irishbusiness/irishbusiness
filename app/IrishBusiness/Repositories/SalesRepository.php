@@ -36,10 +36,10 @@ class SalesRepository {
 	{
 		$st = $input['st'];
 		
-		if($input['type']==3&&$input['tl']!='')
-		{
-			$st = Salesperson::where('email','=',$input['tl'])->first()->st;
-		}
+		// if($input['type']==3&&$input['tl']!='')
+		// {
+		// 	$st = Salesperson::where('email','=',$input['tl'])->first()->st;
+		// }
 
 
 		$password = str_random(8);
