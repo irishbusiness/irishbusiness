@@ -249,7 +249,7 @@ Route::post('addmap','BusinessesController@storeMap');
 
 Route::get('try',function(){
 
-	echo generate_coupon();
+	var_dump($recentsettings);
 
 });
 

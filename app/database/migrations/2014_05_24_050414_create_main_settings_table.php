@@ -25,6 +25,7 @@ class CreateMainSettingsTable extends Migration {
 			$table->string('footer_text');
 			$table->boolean('allow_statistics')->default(1);
 			$table->boolean('reviews_approval')->default(0);
+			$table->double('tax')->default(null);
 			$table->timestamps();
 		});
 	}

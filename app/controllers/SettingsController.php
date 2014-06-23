@@ -30,6 +30,7 @@ class SettingsController extends \BaseController {
             "footer_text" => "",
             "allow_statistics" => "",
             "reviews_approval" => "",
+            "tax" => ""
        );
 
        return View::make('admin.admin_settings_general')->with('settings', $settings);
@@ -62,6 +63,7 @@ class SettingsController extends \BaseController {
         $mainsettings->footer_text = Input::get("footer_text");
         $mainsettings->allow_statistics = Input::get("allow_statistics");
         $mainsettings->reviews_approval = Input::get("reviews_approval");
+        $mainsettings->tax = Input::get("tax");
 
         $imageError1 = "";
         $imageError2 = "";

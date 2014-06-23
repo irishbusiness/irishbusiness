@@ -26,13 +26,19 @@
 							{{ $subscription->currency." ".round($subscription->price, 2) }}
 							@if(!is_null($couponCode) && (trim($couponCode) != "") )<br/>
 								<span>
-									<span class="text-colorful">Less: </span>
-									{{ round((($subscription->price-$subscription->discounted_price)/$subscription->price)*100, 2)."%" }}
-								</span><br/>
-								<span>
 									<span class="text-colorful">Discounted Price: </span>
 									{{ $subscription->currency." ".round($subscription->discounted_price, 2) }}
-								</span>							
+								</span><br/>
+								<span>
+									<span class="text-colorful">VAT: </span>
+									{{ $subscription->currency." ".round(($subscription->discounted_price*($recentsettings->tax)), 2) }}
+								</span>	
+							@else
+								<br/>
+								<span>
+									<span class="text-colorful">VAT: </span>
+									{{ $subscription->currency." ".round(($subscription->price*((($recentsettings->tax)*(0.001)))), 2) }}
+								</span>						
 							@endif
 						</div>
 						<div class="subscription-option">

@@ -15,6 +15,7 @@ class MainSettingTableSeeder extends Seeder {
             'footer_text' => 'Welcome to Irishbusiness',
             'allow_statistics' => 1,
             'reviews_approval' => 0,
+            'tax' => 23
         ]);
     }
 
