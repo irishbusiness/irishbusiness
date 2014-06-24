@@ -54,11 +54,13 @@ class PaymentsController extends \BaseController {
 
 	public function index()
 	{
-		$subscription = Subscription::first();
+		// $subscription = Subscription::first();
 		$couponCode = Auth::user()->user()->coupon;
+		$coupon_is_fromST = couponOwner_isSalesTeam($couponCode);
+		$subscriptions = Subscription::whereIs_deleted(0)->orderBy('price', 'ASC')->get();
 		// return View::make('client.buy')->withSubscription($subscription);
-		return View::make( 'client.buy_new' )->withSubscription($subscription)
-			->with("couponCode", $couponCode);
+		return View::make( 'client.buy_new' )->withSubscriptions($subscriptions)
+			->with("couponCode", $couponCode)->with( 'coupon_is_fromST', $coupon_is_fromST );
 	}
 
 

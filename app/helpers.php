@@ -254,10 +254,21 @@ function coupon_exists($input_coupon){
     foreach ($salespersons as $salesperson) {
         if($salesperson->coupon == $input_coupon){
             return true;
-        }else{
-            pre($input_coupon);
         }
+        return false;
+        
     }
 
     return false;
+}
+
+function couponOwner_isSalesTeam($coupon){
+    $salespersons = Salesperson::all();
+
+    foreach ($salespersons as $salesperson) {
+        if( ( strtolower($salesperson->coupon) == strtolower($coupon) ) && ($salesperson->access_level == 1) ){
+            return true;
+        }
+        return false;
+    }
 }

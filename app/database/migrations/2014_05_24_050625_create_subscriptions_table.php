@@ -19,6 +19,7 @@ class CreateSubscriptionsTable extends Migration {
 			$table->string('currency');
 			$table->double('price');
 			$table->double('discounted_price');
+			$table->double('st_discounted_price')->nullable();
 			$table->integer('blogs_limit')->default(3);
 			$table->integer('max_location')->default(3);
 			$table->integer('max_categories')->default(3);

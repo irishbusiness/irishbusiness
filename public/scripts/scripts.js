@@ -466,6 +466,7 @@ jQuery(window).resize(function() {
 // js for General Settings
 $(document).ready(function() {
 	$("#btn-cancel-edit").hide();
+	validate_prices();
     $("#settings_search_result_per_page, input[data-type='number']").keydown(function(event) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ( $.inArray(event.keyCode,[46,8,9,27,13,190]) !== -1 ||
@@ -483,6 +484,38 @@ $(document).ready(function() {
             }   
         }
     });
+
+    function validate_prices(){
+    	$(document).on("change", "#price", function(){
+    		var discounted_price = $("#discounted_price").val();
+    		if( discounted_price != null || discounted_price != "" || discounted_price != undefined ){
+    			$("#discounted_price").val("");
+    		}
+    	});
+
+    	$(document).on("change", "#discounted_price", function(){
+	    	var price = $("#price").val();
+
+	    	if( parseFloat($(this).val()) >= parseFloat(price) || (price == "" || price == null || price == undefined) ){
+	    		$(this).val("");
+	    		$("#discounted_price_error").fadeIn(function(){
+	    			$(this).fadeOut(4500);
+	    		});
+	    	}
+	    });
+
+	    $(document).on("change", "#st_discounted_price", function(){
+	    	var discounted_price = $("#discounted_price").val();
+	    	var price = $("#price").val();
+
+	    	if( (parseFloat($(this).val()) > parseFloat(discounted_price) || (discounted_price == "" || discounted_price == null || discounted_price == undefined)) || (price == "" || price == null || price == undefined)){
+	    		$(this).val("");
+	    		$("#st_discounted_price_error").fadeIn(function(){
+	    			$(this).fadeOut(4500);
+	    		});
+	    	}
+	    });
+    }
 
 
     $(".option-button").click(function(e){
@@ -518,13 +551,15 @@ $(document).ready(function() {
 					$("div[data-num='"+id+"']").fadeOut(200, "linear", function(){});
 				}else{
 
-					console.log(data["currency"]);
+					// console.log(data["currency"]);
 
 					$("#settings_form_subscription").fadeOut();
+					validate_prices();
 
 					$("#settings_form_subscription input[name='name']").val(data["name"]);
 					$("#settings_form_subscription input[name='price']").val(data["price"]);
 					$("#settings_form_subscription input[name='discounted_price']").val(data["discounted_price"]);
+					$("#settings_form_subscription input[name='st_discounted_price']").val(data["st_discounted_price"]);
 					$("#settings_form_subscription input[name='blogs_limit']").val(data["blogs_limit"]);
 					$("#settings_form_subscription input[name='max_location']").val(data["max_location"]);
 					$("#settings_form_subscription input[name='max_categories']").val(data["max_categories"]);

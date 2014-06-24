@@ -81,7 +81,15 @@
 							{{ Form::label("discounted_price", "Discounted Monthly Price", ["id"=>"label-discounted-price","class"=>"text-colorful"]) }}<br>
 							{{ Form::text("discounted_price", "", ["class"=>"text-input-grey half", "required"=>"required", "placeholder"=>"Price", 
 								"data-type"=>"number" ]) }}
+							<span id="discounted_price_error" class="alert alert-error block half" style="display: none;">Discounted price should be lesser than the original price.</span>
 							{{$errors->first('discounted_price','<span class="error">:message</span>')}}
+						</div>
+						<div class="form-group">
+							{{ Form::label("st_discounted_price", "Discounted Monthly Price (for Sales Team)", ["id"=>"label-st_discounted-price","class"=>"text-colorful"]) }}<br>
+							{{ Form::text("st_discounted_price", "", ["class"=>"text-input-grey half", "required"=>"required", "placeholder"=>"Discounted Price for Sales Team", 
+								"data-type"=>"number" ]) }}
+							<span id="st_discounted_price_error" class="alert alert-error block half" style="display: none;">Sales Team discounted price is invalid.</span>
+							{{$errors->first('st_discounted_price','<span class="error">:message</span>')}}
 						</div>
 						<div class="form-group align-right">
 							{{ Form::submit("Create", ["class"=>"button-2-colorful", "id"=>"btn-create-subscription"]) }}

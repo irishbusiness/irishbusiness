@@ -8,6 +8,8 @@ class Subscription extends \Eloquent {
 	public static $rules = [
 		"name" => "required",
 		"price" => "required",
+		"discounted_price" => "required",
+		"st_discounted_price" => "required",
 		"duration" => "required",
 		"blogs_limit" => "required|integer",
 		"max_location" => "required|integer",

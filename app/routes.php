@@ -249,7 +249,7 @@ Route::post('addmap','BusinessesController@storeMap');
 
 Route::get('try',function(){
 
-	var_dump($recentsettings);
+	couponOwner_isSalesTeam("dexter");
 
 });
 
