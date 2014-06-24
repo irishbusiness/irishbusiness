@@ -267,8 +267,11 @@ function couponOwner_isSalesTeam($coupon){
 
     foreach ($salespersons as $salesperson) {
         if( ( strtolower($salesperson->coupon) == strtolower($coupon) ) && ($salesperson->access_level == 1) ){
-            return 'true';
+            // return 'true';
+            echo 'true';
         }
-        return 'false';
+        // return 'false';
+        echo 'false';
+
     }
 }
