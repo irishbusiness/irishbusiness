@@ -266,7 +266,29 @@ function couponOwner_isSalesTeam($coupon){
     $salespersons = Salesperson::all();
 
     foreach ($salespersons as $salesperson) {
+
         if( ( strcasecmp($salesperson->coupon, $coupon)  ==  0) ){
+            if( $salesperson->st != 0 ){
+                $sales_team = Salesperson::find($salesperson->st);
+
+
+                if( $sales_team->access_level == 1 ){
+                    return true;
+                }
+            }
+
+            if( $salesperson->tl != 0 ){
+                $team_leader = Salesperson::find($salesperson->tl);
+
+                if( $team_leader->st != 0 ){
+                    $sales_team = Salesperson::find($team_leader->st);
+
+                    if( $sales_team->access_level == 1 ){
+                        return true;
+                    }
+                }
+            }
+
             if( ( ($salesperson->access_level == 1) || ($salesperson->access_level == '1')) ){
                 return true;
             }
