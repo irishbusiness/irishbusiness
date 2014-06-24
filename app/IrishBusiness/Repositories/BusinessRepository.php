@@ -106,14 +106,24 @@ class BusinessRepository {
 
         $business = $branch->business;
 
-        $branch->business->name = $input['name'];
+        $business->name = $input['name'];
+
+        if($input['slug'] == null){
+            $name = stripcslashes(strtolower($input['name']));
+            $name = str_replace("'", "", $name);
+            $business->slug =  preg_replace("/[\s_]/", "-", $name).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
+        } else {
+            $business->slug = strtolower($input['slug']);
+        }
+
+
         $branch->business->keywords = $input['keywords'];
         
         $business->business_description    =   $input['business_description'];
         $business->profile_description   =   $input['profile_description'];
 
         $branch->mon_fri   =   $input['mon_fri'];
-        $branch->sat   =   $input['sat'];
+        // $branch->sat   =   $input['sat'];
         $branch->facebook   =   $input['facebook'];
         $branch->twitter  =   $input['twitter'];
         $branch->google  =   $input['google'];
@@ -122,8 +132,10 @@ class BusinessRepository {
         $branch->website = $input["website"];
         $branch->phone = $input["phone"];
         $branch->email = $input["email"];
+        
+        $branch->branchslug = keywordExplode($input['keywords']);
+        
 
-        $branch->business->slug = $input['slug'];
         $branch->save();
 
         // logo
@@ -178,7 +190,7 @@ class BusinessRepository {
         $id = $old_businessinfo->id;
 
         $business = Business::findOrFail($id);
-        return $business->slug;
+        return keywordExplode($input['keywords']);
     }
 
     function storeBranch($input,$slug)
@@ -212,6 +224,12 @@ class BusinessRepository {
     public function keywordExplode($keywordsraw){
         
         $output = "";
+
+        $keywordsraw = str_replace(" ", "-", $keywordsraw);
+        $keywordsraw = preg_replace('/[^A-Za-z0-9\-]/', '', $keywordsraw); // Removes special chars.
+
+        $keywordsraw = preg_replace('/-+/', '-', $keywordsraw);
+
         $keywords = explode(",", $keywordsraw);
         $count = count($keywords);
         foreach($keywords as $index => $keyword)

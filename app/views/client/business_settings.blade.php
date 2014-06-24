@@ -32,7 +32,7 @@
                     </div>
 
         <!-- general settings tab -->
-       <div class="company-content-wrapper">
+        <div class="company-content-wrapper">
             <div class="zone-company-content zone clearfix">
                 <div id="company-inner-container" class="company-inner-container container-24">
                     @include('client.tabcontents.tabcontent-company')

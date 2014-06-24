@@ -350,7 +350,7 @@ class BusinessesController extends \BaseController {
 
 			$slug = $this->business->update($slug, Input::all(), $branchId);
 			
-			return Redirect::to($branch->branchslug);
+			return Redirect::to($slug);
 		}
 		catch(FormValidationException  $e)
 		{

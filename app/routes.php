@@ -249,19 +249,8 @@ Route::post('addmap','BusinessesController@storeMap');
 
 Route::get('try',function(){
 
-	$slug = "dexter's-and-dexter-corporation-07448";
-
-	if(isOwner($slug)){
-		echo "yes";
-	}else{
-		echo "no";
-	}
-
-	$id = Auth::user()->user()->id;
-    $business = Business::whereSlug($slug)->first();
-
-    echo $business->user_id;
-    pre($id);
+	$slug = "Stained' _ Glass, Glass Design, Imitation Stained Glass, Sand Blasted Products, Double Glazing, Full consultancy Service, Full Glazing Service";
+	echo keywordExplode($slug);
 
 });
 

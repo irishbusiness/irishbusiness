@@ -298,3 +298,31 @@ function couponOwner_isSalesTeam($coupon){
 
     return false;
 }
+
+function keywordExplode($keywordsraw){
+        
+    $output = "";
+    
+    $keywordsraw = str_replace(" ", "-", $keywordsraw);
+    $keywordsraw = preg_replace('/[^A-Za-z0-9\-]/', '', $keywordsraw); // Removes special chars.
+
+    $keywordsraw = preg_replace('/-+/', '-', $keywordsraw);
+
+    $keywords = explode(",", $keywordsraw);
+    $count = count($keywords);
+    foreach($keywords as $index => $keyword)
+    {
+        // $rawwords = explode(" ", $keyword);
+        $rawwords = str_replace(" ", "-", $keyword);
+        $rawwords = explode(" ", $keyword);
+        $count2 = count($rawwords);
+        foreach($rawwords as $index2 => $word) 
+        {   
+            $output.= trim($word);
+                if($index2+1 !=$count2) $output.= '-';    
+        }    
+         /*if($index+1!=$count) $output.= '-';      */
+    }
+    return $output;
+
+}
