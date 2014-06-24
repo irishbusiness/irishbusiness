@@ -34,7 +34,8 @@ class BusinessRepository {
 
         if($input['slug'] == null){
             $name = stripcslashes(strtolower($input['name']));
-            $business->slug = preg_replace("/[\s_]/", "-", $name).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
+            $name = str_replace("'", "", $name);
+            $business->slug =  preg_replace("/[\s_]/", "-", $name).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
         } else {
             $business->slug = strtolower($input['slug']);
         }
@@ -215,6 +216,8 @@ class BusinessRepository {
         $count = count($keywords);
         foreach($keywords as $index => $keyword)
         {
+            // $rawwords = explode(" ", $keyword);
+            $rawwords = str_replace(" ", "-", $keyword);
             $rawwords = explode(" ", $keyword);
             $count2 = count($rawwords);
             foreach($rawwords as $index2 => $word) 

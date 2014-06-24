@@ -33,7 +33,7 @@
 								{{ $price }}
 								@if(!is_null($couponCode) && (trim($couponCode) != "") )<br/>
 									@if(couponOwner_isSalesTeam($couponCode))
-										<span>
+										<!-- <span>
 											<span class="text-colorful">Discounted Price: </span>
 											{{ $subscription->currency }}
 											<?php $price = round($subscription->st_discounted_price, 2);?>
@@ -49,7 +49,29 @@
 										<span>
 											<span class="text-colorful">Total: </span>
 											{{ $subscription->currency." ".$total_price }}
+										</span> -->
+									<!-- start temporary solution -->
+										<span>
+											<span class="text-colorful">Discounted Price: </span>
+											{{ $subscription->currency }}
+											<?php $price = 199; ?>
+											{{ $price }}
+											@if( $subscription->duration == 'monthly' )
+												{{ "/year" }}
+											@endif
+										</span><br/>
+										<span>
+											<span class="text-colorful">VAT: </span>
+											{{ $subscription->currency }}
+											<?php $vat = round((199*(($recentsettings->tax)*(0.01))), 2); ?>
+											{{ $vat }}
+											<?php $total_price = $price + $vat; ?>
+										</span><br/>
+										<span>
+											<span class="text-colorful">Total: </span>
+											{{ $subscription->currency." ".$total_price }}
 										</span>
+									<!-- end temporary solution -->
 									@else
 										<span>
 											<span class="text-colorful">Discounted Price: </span>
@@ -84,6 +106,15 @@
 									</span>						
 								@endif
 							</div>
+							<div class="btn-subscription-option invisible">
+								<a href="javascript:void">Use <span class="text-colorful">Card</span></a>
+							</div>
+							<div class="btn-subscription-option">
+								<a href="javascript:void">Use <span class="text-colorful">Cash</span></a>
+							</div>
+							<div class="btn-subscription-option">
+								<a href="javascript:void(0);">Use <span class="text-colorful">Cheque</span></a>
+							</div>
 							<div class="subscription-option">
 								<form action="" method="POST">
 									<input type="hidden" name="subscription" value="{{$subscription->id}}" />
@@ -97,6 +128,10 @@
 									data-currency="{{ $subscription->currency }}" >
 									</script>
 								</form>
+								<div>
+									<a id="paywithcash" href="javascript:void(0);" class="a-btn button-2-colorful invisible">Pay with Cash</a>
+									<a  id="paywithcheque" href="javascript:void(0);" class="a-btn button-2-colorful invisible">Pay with Cheque</a>
+								</div>
 								@if( is_null( $couponCode ) || (trim($couponCode) == "") )
 									<a href="javascript:void(0);" id="showEnterCouponCode">I have a discount code</a>
 								@endif

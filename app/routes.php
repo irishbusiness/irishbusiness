@@ -249,11 +249,19 @@ Route::post('addmap','BusinessesController@storeMap');
 
 Route::get('try',function(){
 
-	if(couponOwner_isSalesTeam("dexter")){
-		echo "true";
+	$slug = "dexter's-and-dexter-corporation-07448";
+
+	if(isOwner($slug)){
+		echo "yes";
 	}else{
-		echo "false";
+		echo "no";
 	}
+
+	$id = Auth::user()->user()->id;
+    $business = Business::whereSlug($slug)->first();
+
+    echo $business->user_id;
+    pre($id);
 
 });
 

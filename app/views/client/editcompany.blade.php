@@ -97,7 +97,7 @@
 		    </div>
 		   	<div class="form-group">
 		   		<a href="javascript:void(0)" class="a-btn button-2-colorful plus-button show-hide" id="show_hide_branch_settings">- Hide Branch Settings</a>
-		   		 {{ HTML::link('business/'.businessSlug().'/branch/'.$branch->id.'/map?q=1','Edit Map',
+		   		 {{ HTML::link('business/'.businessSlug().'/branch/'.$branch->branchslug.'/map?q=1','Edit Map',
 	         		['class' => 'a-btn button-2-colorful plus-button'])}}
 	        </div>
 	         <div class="thin-separator"></div>
@@ -172,21 +172,21 @@
 		        <div class="form-group">
 		            {{ Form::label('facebook', "Facebook Link",
 		            ["class"=>"text-colorful"]) }}<br/>
-		            {{ Form::text('facebook', $businessinfo->facebook, [
+		            {{ Form::text('facebook', $branch->facebook, [
 		            "placeholder" => "Facebook Link", "class"=>"text-input-grey full"]) }}
 		            {{$errors->first('facebook','<span class="alert alert-error block half">:message</span>')}}
 		        </div>
 		        <div class="form-group">
 		            {{ Form::label('twitter', "Twitter Link",
 		            ["class"=>"text-colorful"]) }}<br/>
-		            {{ Form::text('twitter', $businessinfo->twitter, [
+		            {{ Form::text('twitter', $branch->twitter, [
 		            "placeholder" => "Twitter Link", "class"=>"text-input-grey full"]) }}
 		            {{$errors->first('twitter','<span class="alert alert-error block half">:message</span>')}}
 		        </div>
 		        <div class="form-group">
 		            {{ Form::label('google', "Google Link",
 		            ["class"=>"text-colorful"]) }}<br/>
-		            {{ Form::text('google', $businessinfo->google, [
+		            {{ Form::text('google', $branch->google, [
 		            "placeholder" => "Google Link", "class"=>"text-input-grey full"]) }}
 		            {{$errors->first('google','<span class="alert alert-error block half">:message</span>')}}
 		        </div>
