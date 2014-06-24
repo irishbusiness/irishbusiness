@@ -554,7 +554,7 @@ $(document).ready(function() {
 					// console.log(data["currency"]);
 
 					$("#settings_form_subscription").fadeOut();
-					validate_prices();
+
 
 					$("#settings_form_subscription input[name='name']").val(data["name"]);
 					$("#settings_form_subscription input[name='price']").val(data["price"]);
@@ -574,6 +574,7 @@ $(document).ready(function() {
 					$("#btn-create-subscription").val("Save");
 					$("#btn-cancel-edit").show();
 					$("#settings_form_subscription").fadeIn();
+					validate_prices();
 					// If the user cancels 
 					$("#btn-cancel-edit").click(function(e){
 						e.preventDefault();
