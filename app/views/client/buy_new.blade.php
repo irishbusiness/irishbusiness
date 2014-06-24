@@ -32,8 +32,8 @@
 								?>
 								{{ $price }}
 								@if(!is_null($couponCode) && (trim($couponCode) != "") )<br/>
-
-									@if(couponOwner_isSalesTeam($couponCode))
+									<?php $is_from_st = couponOwner_isSalesTeam($couponCode); ?>
+									@if($is_from_st == 'true')
 										<span>
 											<span class="text-colorful">Discounted Price: </span>
 											{{ $subscription->currency }}
