@@ -33,7 +33,7 @@
 								{{ $price }}
 								@if(!is_null($couponCode) && (trim($couponCode) != "") )<br/>
 
-									@if(couponOwner_isSalesTeam($couponCode) == true)
+									@if(couponOwner_isSalesTeam($couponCode))
 										<span>
 											<span class="text-colorful">Discounted Price: </span>
 											{{ $subscription->currency }}
