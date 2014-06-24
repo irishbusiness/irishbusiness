@@ -71,6 +71,9 @@
 											<a href="{{ URL::to('admin/settings/general') }}">GENERAL</a>
 										</li>
 										<li class="">
+											<a href="{{ URL::to('admin/settings/subscription') }}">SUBSCRIPTION</a>
+										</li>
+										<li class="">
 											<a href="{{ URL::to('admin/settings/socialmedia') }}">SOCIAL MEDIA</a>
 										</li>
 										<li class="">
