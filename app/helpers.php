@@ -266,12 +266,13 @@ function couponOwner_isSalesTeam($coupon){
     $salespersons = Salesperson::all();
 
     foreach ($salespersons as $salesperson) {
-        if( ( strtolower($salesperson->coupon) == strtolower($coupon) ) && ($salesperson->access_level == 1) ){
+        if( ( strtolower($salesperson->coupon) == strtolower($coupon) ) && ( ($salesperson->access_level == 1) || ($salesperson->access_level == '1')) ){
             // return 'true';
             echo 'true';
-        }
+        }else{
         // return 'false';
         echo 'false';
+        }
 
     }
 }
