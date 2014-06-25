@@ -105,7 +105,7 @@ class BusinessRepository {
         
 
         $business = $branch->business;
-
+        dd($business);
         $business->name = $input['name'];
 
       /*  if($input['slug'] == null){
@@ -136,7 +136,11 @@ class BusinessRepository {
        /* $branch->branchslug = keywordExplode($input['keywords']);*/
         
 
-        $branch->save();
+        if($branch->save()){
+            dd("branch saved");
+        }else{
+            dd("error");
+        }
 
         // logo
         // if( !is_null($input["logo"]) )
