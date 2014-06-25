@@ -166,7 +166,7 @@ class BusinessRepository {
         }
 
         
-        if(!is_null($input['profilebanner']))
+        /*if(!is_null($input['profilebanner']))
         {
             $image = $input['profilebanner'];
             $imagename = md5(date('YmdHis')).'.jpg';
@@ -184,7 +184,7 @@ class BusinessRepository {
             }
 
         }
-
+*/
         if($business->save()){
             dd("tae");
         }
