@@ -249,7 +249,7 @@ Route::post('addmap','BusinessesController@storeMap');
 
 Route::get('try',function(){
 
-	$slug = "Stained' _ Glass, Glass Design, Imitation Stained Glass, Sand Blasted Products, Double Glazing, Full consultancy Service, Full Glazing Service";
+	$slug = "Glass Design, Stained Glass, Imitation Stained Glass, Sand Blasted Products, Double Glazing, Full consultancy Service, Full Glazing Service";
 	echo keywordExplode($slug);
 
 });

@@ -92,7 +92,7 @@ class BusinessRepository {
 	}
 
     function update($slug, $input, $branchId){
-        $old_businessinfo = Business::whereSlug($slug)->first();
+        $old_businessinfo = Business::where('slug', $slug)->first();
         $branch = Branch::find($branchId);
 
         $address = $input['address1'] ;

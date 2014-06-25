@@ -281,7 +281,7 @@ class BusinessesController extends \BaseController {
 
 		// $businessinfo = Business::whereSlug($slug)->first();
 		
-		$branch = Branch::with('business')->whereBranchslug($branchslug)->first();
+		$branch = Branch::with('business')->where('branchslug', $branchslug)->first();
 
 	
 		if( is_null($branch) ){
