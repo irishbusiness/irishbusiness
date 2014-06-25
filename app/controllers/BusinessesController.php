@@ -346,7 +346,7 @@ class BusinessesController extends \BaseController {
 		// {
 			$branch = Branch::find($branchId);
 
-			$this->updatebusiness->validate(Input::all());
+			// $this->updatebusiness->validate(Input::all());
 
 			$slug = $this->business->update($slug, Input::all(), $branchId);
 			
