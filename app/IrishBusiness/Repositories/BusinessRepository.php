@@ -105,16 +105,16 @@ class BusinessRepository {
         
 
         $business = $branch->business;
-        dd($business);
+
         $business->name = $input['name'];
 
-      /*  if($input['slug'] == null){
+        if($input['slug'] == null){
             $name = stripcslashes(strtolower($input['name']));
             $name = str_replace("'", "", $name);
             $business->slug =  preg_replace("/[\s_]/", "-", $name).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
         } else {
             $business->slug = strtolower($input['slug']);
-        }*/
+        }
 
 
         $branch->business->keywords = $input['keywords'];
@@ -131,46 +131,42 @@ class BusinessRepository {
         $branch->locations = $input["locations"];
         $branch->website = $input["website"];
         $branch->phone = $input["phone"];
-        /*$branch->email = $input["email"];*/
+        $branch->email = $input["email"];
         
-       /* $branch->branchslug = keywordExplode($input['keywords']);*/
+        $branch->branchslug = keywordExplode($input['keywords']);
         
 
-        if($branch->save()){
-            dd("branch saved");
-        }else{
-            dd("error");
-        }
+        $branch->save();
 
         // logo
-        // if( !is_null($input["logo"]) )
-        // {
-        //     // $dir = $dir = public_path().'/images/companylogos/';
-        //     $image  =   $input['logo'];
-        //     $imagename = md5(date('YmdHis')).'.jpg';
-        //     // $filename = $dir.$imagename;
+        if( !is_null($input["logo"]) )
+        {
+            // $dir = $dir = public_path().'/images/companylogos/';
+            $image  =   $input['logo'];
+            $imagename = md5(date('YmdHis')).'.jpg';
+            // $filename = $dir.$imagename;
 
-        //     if ($image->getMimeType() == 'image/png'
-        //         || $image->getMimeType() == 'image/jpg'
-        //         || $image->getMimeType() == 'image/gif'
-        //         || $image->getMimeType() == 'image/jpeg'
-        //         || $image->getMimeType() == 'image/pjpeg')
-        //     {
-        //         // $image->move($dir, $filename);
-        //         $path = public_path('images/companylogos/' . $imagename);
-        //         Image::make($image->getRealPath())->resize(150, 150)->save($path);
+            if ($image->getMimeType() == 'image/png'
+                || $image->getMimeType() == 'image/jpg'
+                || $image->getMimeType() == 'image/gif'
+                || $image->getMimeType() == 'image/jpeg'
+                || $image->getMimeType() == 'image/pjpeg')
+            {
+                // $image->move($dir, $filename);
+                $path = public_path('images/companylogos/' . $imagename);
+                Image::make($image->getRealPath())->resize(150, 150)->save($path);
                 
-        //         $business->logo  =   'images/companylogos/'.$imagename;
-        //     } else {
-        //         $business->logo  =   'images/companylogos/'.$imagename;
-        //     }
+                $business->logo  =   'images/companylogos/'.$imagename;
+            } else {
+                $business->logo  =   'images/companylogos/'.$imagename;
+            }
 
-        // } else {
-        //     $business->logo  =   $old_businessinfo->logo;
-        // }
+        } else {
+            $business->logo  =   $old_businessinfo->logo;
+        }
 
         
-        /*if(!is_null($input['profilebanner']))
+        if(!is_null($input['profilebanner']))
         {
             $image = $input['profilebanner'];
             $imagename = md5(date('YmdHis')).'.jpg';
@@ -188,16 +184,13 @@ class BusinessRepository {
             }
 
         }
-*/
-        if($business->save()){
-            dd("tae");
-        }
+
+        $business->save();
 
         $id = $old_businessinfo->id;
 
         $business = Business::findOrFail($id);
         return keywordExplode($input['keywords']);
-
     }
 
     function storeBranch($input,$slug)

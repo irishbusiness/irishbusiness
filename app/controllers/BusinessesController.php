@@ -342,22 +342,21 @@ class BusinessesController extends \BaseController {
 
 	public function update($slug, $branchId)
 	{
-		// try
-		// {
-			dd("sadsad");
+		try
+		{
 			$branch = Branch::find($branchId);
 
-			// $this->updatebusiness->validate(Input::all());
+			$this->updatebusiness->validate(Input::all());
 
 			$slug = $this->business->update($slug, Input::all(), $branchId);
 			
 			return Redirect::to($slug);
-		// }
-		// catch(FormValidationException  $e)
-		// {
+		}
+		catch(FormValidationException  $e)
+		{
 			
 			return Redirect::back()->withInput()->withErrors($e->getErrors());
-		// }
+		}
 	}
 
 	public function update_category_remove(){
