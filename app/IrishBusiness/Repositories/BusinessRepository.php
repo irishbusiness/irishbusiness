@@ -33,7 +33,7 @@ class BusinessRepository {
         // $business->user_id = 1;
 
         if($input['slug'] == null){
-            $name = clean_str($input['name']);
+            $name = clean_str(decode($input['name']));
             // $name = stripcslashes(strtolower($input['name']));
             // $name = str_replace("'", "", $name);
             // $business->slug =  preg_replace("/[\s_]/", "-", $name).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
