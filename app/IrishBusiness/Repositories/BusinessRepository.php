@@ -185,12 +185,15 @@ class BusinessRepository {
 
         }
 
-        $business->save();
+        if($business->save()){
+            dd("tae");
+        }
 
         $id = $old_businessinfo->id;
 
         $business = Business::findOrFail($id);
         return keywordExplode($input['keywords']);
+
     }
 
     function storeBranch($input,$slug)
