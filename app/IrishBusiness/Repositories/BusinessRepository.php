@@ -187,10 +187,11 @@ class BusinessRepository {
 
         $business->save();
 
-        $id = $old_businessinfo->id;
+        // $id = $old_businessinfo->id;
 
-        $business = Business::findOrFail($id);
+        // $business = Business::findOrFail($id);
         return keywordExplode($input['keywords']);
+        
     }
 
     function storeBranch($input,$slug)
