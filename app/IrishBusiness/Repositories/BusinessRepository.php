@@ -190,8 +190,11 @@ class BusinessRepository {
         // $id = $old_businessinfo->id;
 
         // $business = Business::findOrFail($id);
-        return keywordExplode($input['keywords']);
-        
+        $branch = Branch::find($branchId);
+        // return keywordExplode($input['keywords']);
+        return $branch->branchslug;
+
+
     }
 
     function storeBranch($input,$slug)
