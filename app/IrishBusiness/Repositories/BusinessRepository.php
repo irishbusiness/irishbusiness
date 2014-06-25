@@ -39,7 +39,7 @@ class BusinessRepository {
             // $business->slug =  preg_replace("/[\s_]/", "-", $name).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
             $business->slug = $name.'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
         } else {
-            $business->slug = strtolower($input['slug']);
+            $business->slug = clean_str($input['slug']);
         }
 
         // logo
