@@ -41,12 +41,12 @@ class PaymentsController extends \BaseController {
 			return Redirect::back()->withInput()->with('error','Coupon is invalid.');
 	
 		if(strlen($code)>6)
-			return Redirect::to('business/add')->with('flash_message','Thank you for subscribing to Irishbusiness! You can now add your business.');
+			if( $this->payments->attach(Subscription::find( Input::get("subs") ) ) ){
+				return Redirect::to('business/add')->with('flash_message','Thank you for subscribing to Irishbusiness! You can now add your business.');
+			}
 	
 		return Redirect::to('buy');		
 	}
-
-
 
 	/**
 	 *  BUY VIEW 

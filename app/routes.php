@@ -204,6 +204,7 @@ Route::post('couponcode', 'PaymentsController@storecode');
 Route::get('buy', 'PaymentsController@index');
 Route::post('buy','PaymentsController@store');
 
+Route::post('cashchk_couponcode', 'PaymentsController@store_cash_chk_coupon');
 
 
 Route::get('resetMigration', function(){
