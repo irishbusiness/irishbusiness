@@ -139,31 +139,31 @@ class BusinessRepository {
         $branch->save();
 
         // logo
-        if( !is_null($input["logo"]) )
-        {
-            // $dir = $dir = public_path().'/images/companylogos/';
-            $image  =   $input['logo'];
-            $imagename = md5(date('YmdHis')).'.jpg';
-            // $filename = $dir.$imagename;
+        // if( !is_null($input["logo"]) )
+        // {
+        //     // $dir = $dir = public_path().'/images/companylogos/';
+        //     $image  =   $input['logo'];
+        //     $imagename = md5(date('YmdHis')).'.jpg';
+        //     // $filename = $dir.$imagename;
 
-            if ($image->getMimeType() == 'image/png'
-                || $image->getMimeType() == 'image/jpg'
-                || $image->getMimeType() == 'image/gif'
-                || $image->getMimeType() == 'image/jpeg'
-                || $image->getMimeType() == 'image/pjpeg')
-            {
-                // $image->move($dir, $filename);
-                $path = public_path('images/companylogos/' . $imagename);
-                Image::make($image->getRealPath())->resize(150, 150)->save($path);
+        //     if ($image->getMimeType() == 'image/png'
+        //         || $image->getMimeType() == 'image/jpg'
+        //         || $image->getMimeType() == 'image/gif'
+        //         || $image->getMimeType() == 'image/jpeg'
+        //         || $image->getMimeType() == 'image/pjpeg')
+        //     {
+        //         // $image->move($dir, $filename);
+        //         $path = public_path('images/companylogos/' . $imagename);
+        //         Image::make($image->getRealPath())->resize(150, 150)->save($path);
                 
-                $business->logo  =   'images/companylogos/'.$imagename;
-            } else {
-                $business->logo  =   'images/companylogos/'.$imagename;
-            }
+        //         $business->logo  =   'images/companylogos/'.$imagename;
+        //     } else {
+        //         $business->logo  =   'images/companylogos/'.$imagename;
+        //     }
 
-        } else {
-            $business->logo  =   $old_businessinfo->logo;
-        }
+        // } else {
+        //     $business->logo  =   $old_businessinfo->logo;
+        // }
 
         
         /*if(!is_null($input['profilebanner']))
