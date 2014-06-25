@@ -108,13 +108,13 @@ class BusinessRepository {
 
         $business->name = $input['name'];
 
-        if($input['slug'] == null){
+      /*  if($input['slug'] == null){
             $name = stripcslashes(strtolower($input['name']));
             $name = str_replace("'", "", $name);
             $business->slug =  preg_replace("/[\s_]/", "-", $name).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
         } else {
             $business->slug = strtolower($input['slug']);
-        }
+        }*/
 
 
         $branch->business->keywords = $input['keywords'];
@@ -131,9 +131,9 @@ class BusinessRepository {
         $branch->locations = $input["locations"];
         $branch->website = $input["website"];
         $branch->phone = $input["phone"];
-        $branch->email = $input["email"];
+        /*$branch->email = $input["email"];*/
         
-        $branch->branchslug = keywordExplode($input['keywords']);
+       /* $branch->branchslug = keywordExplode($input['keywords']);*/
         
 
         $branch->save();
