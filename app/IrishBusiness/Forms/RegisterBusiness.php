@@ -6,7 +6,7 @@ class RegisterBusiness extends Form {
 		'name' => 'required|unique:businesses',
 		'keywords' => 'required',
 		'business_description' => 'required',
-		'profile_description' => 'required',
+		// 'profile_description' => 'required',
 
 	];
 } 

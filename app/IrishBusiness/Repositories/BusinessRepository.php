@@ -23,7 +23,7 @@ class BusinessRepository {
 		$business->website    =   $input['website'];
 		$business->email    =   $input['email'];*/
         $business->business_description    =   $input['business_description'];
-		$business->profile_description   =   $input['profile_description'];
+		// $business->profile_description   =   $input['profile_description'];
 		/*$business->mon_fri   =   $input['mon_fri'];
 		$business->sat   =   $input['sat'];
 		$business->facebook   =   $input['facebook'];
@@ -122,7 +122,7 @@ class BusinessRepository {
         $branch->business->keywords = $input['keywords'];
         
         $business->business_description    =   $input['business_description'];
-        $business->profile_description   =   $input['profile_description'];
+        // $business->profile_description   =   $input['profile_description'];
 
         $branch->mon_fri   =   $input['mon_fri'];
         // $branch->sat   =   $input['sat'];

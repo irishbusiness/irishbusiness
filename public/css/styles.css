@@ -4636,3 +4636,7 @@ div.listing-rating {
 .div-payment-options {
 	margin-bottom: 5px;
 }
+
+.entry-excerpt, .listing-text, .listing-read-more {
+	font-weight: normal !important;
+}

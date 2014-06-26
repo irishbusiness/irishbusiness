@@ -121,7 +121,7 @@
             </div>
             <div class="thin-separator"></div>
             <div class="form-group">    
-                <a href="javascript:void(0)" class="a-btn button-2-colorful plus-button show-hide" id="show_hide_slug_settings">+ Show Slug Setting</a>
+                <!-- <a href="javascript:void(0)" class="a-btn button-2-colorful plus-button show-hide" id="show_hide_slug_settings">+ Show Slug Setting</a> -->
             </div>
             <div id="show_hide_slug" class="invisible">  
             <div class="form-group">
