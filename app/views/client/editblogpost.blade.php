@@ -25,7 +25,7 @@
                         {{ Form::label('blogheader', "Blog Header", ["class"=> "text-colorful"]) }}<br>
                         {{ Form::file('blogheaderimageedit', ["id"=>"btn-editblog-settings-logo"]) }}
                         <div class="render-blogheader-logo-preview">
-                            <img src="{{ URL::asset($blog->blogheaderimage) }}" id="img-render-blogheaderimageedit">
+                            <img src="{{ ( !is_null( $blog->blogheaderimage )  && ( trim( $blog->blogheaderimage ) != "" ) ) ? URL::asset($blog->blogheaderimage) : URL::asset('/images/image-not-available.png') }}" id="img-render-blogheaderimageedit">
                         </div>
                     </div>
                     <div class="form-group">

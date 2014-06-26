@@ -10,11 +10,9 @@
 	            </div>
 	        </div>
 	        {{ Form::open(array('action' => ['BusinessesController@update', $branch->business->slug, $branch->id], 'files' => true)) }}
-		    <div class="form-group">	
-		    	<a href="javascript:void(0)" class="a-btn button-2-colorful plus-button show-hide" id="show_hide_business_settings">+ Show Main Business Settings</a>
-		    </div>
+		   
 		    <div class="thin-separator"></div>
-		    <div id="update-business-settings" class="invisible">  
+		    <div id="update-business-settings" class="">  
 			     <div class="form-group">
 			        {{ Form::label('profilebanner', "Profile Banner",
 			        ["class"=>"text-colorful"]) }}<br/>
@@ -60,9 +58,7 @@
 
 		        <div class="thin-separator"></div>
 		        <div class="form-group">
-		            {{ Form::label('slug', "Business URL (".Request::root()."/your-business-name)",
-		            ["class"=>"text-colorful"]) }}<br/>
-		            {{ Form::text('slug', $businessinfo->slug, [
+		            {{ Form::hidden('slug', $businessinfo->slug, [
 		            "placeholder" => "your-business-name", "class"=>"text-input-grey full", 'required']) }}
 		            {{$errors->first('slug','<span class="alert alert-error block half">:message</span>')}}
 		        </div>
@@ -96,9 +92,7 @@
 		        </div>
 		    </div>
 		   	<div class="form-group">
-		   		<a href="javascript:void(0)" class="a-btn button-2-colorful plus-button show-hide" id="show_hide_branch_settings">- Hide Branch Settings</a>
-		   		 {{ HTML::link('business/'.businessSlug().'/branch/'.$branch->branchslug.'/map?q=1','Edit Map',
-	         		['class' => 'a-btn button-2-colorful plus-button'])}}
+		   		
 	        </div>
 	         <div class="thin-separator"></div>
 
