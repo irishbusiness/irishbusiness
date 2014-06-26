@@ -226,7 +226,6 @@
 })();
 
 	$(document).ready(function(){
-		console.log("haha");
 		var data = {
 		    'USD': '$', // US Dollar
 		    'EUR': '€', // Euro
