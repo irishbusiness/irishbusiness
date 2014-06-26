@@ -4637,6 +4637,10 @@ div.listing-rating {
 	margin-bottom: 5px;
 }
 
-.entry-excerpt, .listing-text, .listing-read-more {
+.entry-excerpt, .listing-read-more {
+	font-weight: normal !important;
+}
+
+.listing-text {
 	font-weight: normal !important;
 }
