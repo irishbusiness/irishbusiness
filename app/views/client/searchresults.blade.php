@@ -54,9 +54,9 @@
 
 		</div><!-- end of .content-container -->
 
-	</div><!-- end of .zone-content -->
+	</div><!--end of .zone-content-->
 	
-</div><!-- end of .content16 -->
+</div><!--  end of .content16  -->
 @stop
 
 @section('sidebar')
