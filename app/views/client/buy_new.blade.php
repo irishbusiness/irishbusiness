@@ -25,9 +25,9 @@
 						<div class="subscription-info">
 							<div class="subscription-price">
 								<span class="text-colorful">Price: </span>
-								{{ $subscription->currency }}
+								<span class="currency">{{ $subscription->currency }}</span>
 								<?php 
-									$price = round($subscription->price, 2); 
+									$price = number_format($subscription->price, 2, '.', ''); 
 									$total_price = $price;
 								?>
 								{{ $price }}
@@ -36,13 +36,13 @@
 										<!-- <span>
 											<span class="text-colorful">Discounted Price: </span>
 											{{ $subscription->currency }}
-											<?php $price = round($subscription->st_discounted_price, 2);?>
+											<?php $price = number_format($subscription->st_discounted_price, 2, '.', '');?>
 											{{ $price }}
 										</span><br/>
 										<span>
 											<span class="text-colorful">VAT: </span>
 											{{ $subscription->currency }}
-											<?php $vat = round(($subscription->st_discounted_price*(($recentsettings->tax)*(0.01))), 2); ?>
+											<?php $vat = number_format(($subscription->st_discounted_price*(($recentsettings->tax)*(0.01))), 2, '.', ''); ?>
 											{{ $vat }}
 											<?php $total_price = $price + $vat; ?>
 										</span><br/>
@@ -53,8 +53,8 @@
 									<!-- start temporary solution -->
 										<span>
 											<span class="text-colorful">Discounted Price: </span>
-											{{ $subscription->currency }}
-											<?php $price = 199; ?>
+											<span class="currency">{{ $subscription->currency }}</span>
+											<?php $price = number_format(199, 2, '.', ''); ?>
 											{{ $price }}
 											@if( $subscription->duration == 'monthly' )
 												{{ "/year" }}
@@ -62,47 +62,47 @@
 										</span><br/>
 										<span>
 											<span class="text-colorful">VAT: </span>
-											{{ $subscription->currency }}
-											<?php $vat = round((199*(($recentsettings->tax)*(0.01))), 2); ?>
+											<span class="currency">{{ $subscription->currency }}</span>
+											<?php $vat = number_format((199*(($recentsettings->tax)*(0.01))), 2, '.', ''); ?>
 											{{ $vat }}
-											<?php $total_price = $price + $vat; ?>
+											<?php $total_price = number_format($price + $vat,2); ?>
 										</span><br/>
 										<span>
 											<span class="text-colorful">Total: </span>
-											{{ $subscription->currency." ".$total_price }}
+											<span class="currency">{{$subscription->currency}}</span>{{" ".$total_price }}
 										</span>
 									<!-- end temporary solution -->
 									@else
 										<span>
 											<span class="text-colorful">Discounted Price: </span>
-											{{ $subscription->currency }}
-											<?php $price = round($subscription->discounted_price, 2);?>
+											<span class="currency">{{ $subscription->currency }}</span>
+											<?php $price = number_format($subscription->discounted_price, 2, '.', '');?>
 											{{ $price }}
 										</span><br/>
 										<span>
 											<span class="text-colorful">VAT: </span>
-											{{ $subscription->currency }}
-											<?php $vat = round(($subscription->discounted_price*(($recentsettings->tax)*(0.01))), 2); ?>
+											<span class="currency">{{ $subscription->currency }}</span>
+											<?php $vat = number_format(($subscription->discounted_price*(($recentsettings->tax)*(0.01))), 2, '.', ''); ?>
 											{{ $vat }}
-											<?php $total_price = $price + $vat; ?>
+											<?php $total_price = number_format($price + $vat, 2, '.', ''); ?>
 										</span><br/>
 										<span>
 											<span class="text-colorful">Total: </span>
-											{{ $subscription->currency." ".$total_price }}
+											<span class="currency">{{$subscription->currency}}</span>{{" ".$total_price }}
 										</span>
 									@endif	
 								@else
 									<br/>
 									<span>
 										<span class="text-colorful">VAT: </span>
-										{{ $subscription->currency }}
-										<?php $vat = round(($subscription->price*(($recentsettings->tax)*(0.01))), 2); ?>
+										<span class="currency">{{ $subscription->currency }}</span>
+										<?php $vat = number_format(($subscription->price*(($recentsettings->tax)*(0.01))), 2, '.', ''); ?>
 										{{ $vat }}
-										<?php $total_price = $price + $vat; ?>
+										<?php $total_price = number_format($price + $vat, 2, '.', ''); ?>
 									</span><br/>
 									<span>
 										<span class="text-colorful">Total: </span>
-										{{ $subscription->currency." ".$total_price }}
+										<span class="currency">{{$subscription->currency}}</span>{{" ".$total_price }}
 									</span>						
 								@endif
 							</div>
@@ -223,49 +223,59 @@
 		}
 	});
 
-	// $(document).on("click", ".btn-payment-option", function(){
-	// 	$("#subscribenow").fadeOut(function(){
-	// 		$("#i-have-discount-code").fadeIn();
-	// 	});
-	// });
-
-	// $(document).on("click", "a.payment-option", function(){
-	// 	var option = $(this).attr("data-type");
-	// 	var number = $(this).attr("data-number");
-
-	// 	$(this).fadeOut(function(){
-	// 		if( option == "paywithcash" ){
-	// 			$("a.payment-option[data-type='paywithcard'][data-number='"+number+"']").show();
-	// 			$("a.payment-option[data-type='paywithcheque'][data-number='"+number+"']").show();
-	// 			$("#showEnterCouponCode"+number).hide();
-
-	// 			$("#btn-paywithcash"+number).parent("div").prev("form").fadeOut();
-	// 			$("#btn-paywithcheque"+number).fadeOut();
-	// 			$("#btn-paywithcash"+number).fadeIn(function(){
-	// 				$("input[name='subs']").val($(this).attr("data-subid"));
-	// 			});
-	// 		}else if( option == "paywithcheque" ){
-	// 			$("a.payment-option[data-type='paywithcash'][data-number='"+number+"']").show();
-	// 			$("a.payment-option[data-type='paywithcard'][data-number='"+number+"']").show();
-	// 			$("#showEnterCouponCode"+number).hide();
-
-	// 			$("#btn-paywithcash"+number).parent("div").prev("form").fadeOut();
-	// 			$("#btn-paywithcash"+number).fadeOut();
-	// 			$("#btn-paywithcheque"+number).fadeIn(function(){
-	// 				$("input[name='subs']").val($(this).attr("data-subid"));
-	// 			});
-	// 		}else if( option == "paywithcard" ){
-	// 			$("a.payment-option[data-type='paywithcheque'][data-number='"+number+"']").show();
-	// 			$("a.payment-option[data-type='paywithcash'][data-number='"+number+"']").show();
-	// 			$("#showEnterCouponCode"+number).show();
-
-	// 			$("#btn-paywithcash"+number).fadeOut();
-	// 			$("#btn-paywithcheque"+number).fadeOut();
-	// 			$("#btn-paywithcash"+number).parent("div").prev("form").fadeIn();
-	// 		}
-	// 	});
-	// });
-
 })();
+
+	$(document).ready(function(){
+		console.log("haha");
+		var data = {
+		    'USD': '$', // US Dollar
+		    'EUR': '€', // Euro
+		    'CRC': '₡', // Costa Rican Colón
+		    'GBP': '£', // British Pound Sterling
+		    'ILS': '₪', // Israeli New Sheqel
+		    'INR': '₹', // Indian Rupee
+		    'JPY': '¥', // Japanese Yen
+		    'KRW': '₩', // South Korean Won
+		    'NGN': '₦', // Nigerian Naira
+		    'PHP': '₱', // Philippine Peso
+		    'PLN': 'zł', // Polish Zloty
+		    'PYG': '₲', // Paraguayan Guarani
+		    'THB': '฿', // Thai Baht
+		    'UAH': '₴', // Ukrainian Hryvnia
+		    'VND': '₫', // Vietnamese Dong
+		}
+
+		var code = $('span.currency').val();
+		// the input which contains the code
+
+		$("span.currency").each(function(){
+
+			var span = $(this);
+			// console.log($(this).html());
+			var code = $.trim($(this).html());
+			$.each(data, function(i, v){
+				console.log("i="+i);
+				console.log("v="+v);
+			    if(i == code ){
+			        span.html(v);
+
+
+			        // #result is an empty tag which receive the symbol
+			        return;
+			    }
+			});
+        });
+
+
+		// $.each(data, function(i, v){
+		//     if(i === code){
+		//         $('span.currency').html(v.symbol);
+
+
+		//         // #result is an empty tag which receive the symbol
+		//         return;
+		//     }
+		// });
+	});
 </script>
 @stop
