@@ -17,7 +17,7 @@
 
 				{{ Form::open(array('action' => ['BusinessesController@storeMap'])) }}
 
-				<div class="form-group">tae
+				<div class="form-group">
 					{{ Form::hidden('latlng', '', ['id' => 'latlng']) }}
 					{{ Form::hidden('slug', decode($slug), ['id' => 'latlng']) }}
 					{{ Form::hidden('branchSlug', $branch->branchslug) }}
