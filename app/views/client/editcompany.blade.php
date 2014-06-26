@@ -73,23 +73,22 @@
 		        </div>
 
 		        <div class="form-group">
-		            {{ Form::label('business_description', "Business Description",
+		            {{ Form::label('business_description', "Profile Description",
 		            ["class"=>"text-colorful"]) }}<br/>
-		            {{ Form::textarea('business_description', 
-		            	str_replace("\\r\\n", "<br>", stripcslashes(html_entity_decode($businessinfo->business_description))), 
-		            	["placeholder" => "business_description", "class"=>"text-input-grey comment-message-main full", 'required']) }}
+		            {{ Form::textarea('business_description', decode($businessinfo->business_description), 
+		            	["placeholder" => "business_description", "class"=>"text-input-grey comment-message-main full redactor", 'required']) }}
 		            {{$errors->first('business_description','<span class="alert alert-error block half">:message</span>')}}
 		        </div>
 
 		        <!-- profile description here must be a wysiwyg -->
-		        <div class="form-group">
+		        <!-- <div class="form-group">
 		            {{ Form::label('profile_description', "Profile Description",
 		            ["class"=>"text-colorful"]) }}<br/>
 		            {{ Form::textarea('profile_description', 
 		            	str_replace("\\r\\n", "<br>", html_entity_decode(stripcslashes($businessinfo->profile_description))), 
 		            	["id" => "redactor", 'required']) }}
 		            {{$errors->first('profile_description','<span class="alert alert-error block half">:message</span>')}}
-		        </div>
+		        </div> -->
 		    </div>
 		   	<div class="form-group">
 		   		

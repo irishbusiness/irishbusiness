@@ -10,7 +10,7 @@ class UpdateBusiness extends Form {
 		'phone' => 'required',
 		'email' => 'required',
 		'business_description' => 'required',
-		'profile_description' => 'required',
+		// 'profile_description' => 'required',
 		'mon_fri' => 'required',
 		// 'sat' => 'required',
 		'slug' => 'required'		
