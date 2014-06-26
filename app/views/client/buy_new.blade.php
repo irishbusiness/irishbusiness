@@ -164,7 +164,7 @@
 				<div class="form-group">
 					{{ Form::label('code', "Discount Code", ["required"=>"required", "class"=> "text-colorful"]) }}
 					<br>
-					{{ Form::text('code','', ["required"=>"required", "class"=>"text-input-grey half",'maxlength'=>'9']) }}
+					{{ Form::text('code','', ["required"=>"required", "class"=>"text-input-grey half",'maxlength'=>'12']) }}
 					{{ Form::hidden('subs', '', '') }}
 					@if(Session::has('code'))
 					<span class="alert alert-error block half">{{Session::get('oldpass')}}</span>
