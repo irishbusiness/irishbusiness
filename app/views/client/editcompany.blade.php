@@ -20,7 +20,7 @@
 			        {{ Form::file('profilebanner', ["id"=>"btn-business-settings-profilebanner"]) }}
 			        {{$errors->first('profilebanner','<span class="alert alert-error block half">:message</span>')}}
 			        <div class="render-logo-preview">
-			            <img src="{{ isset($businessinfo->profilebanner) ? '/'.$businessinfo->profilebanner : '' }}" id="img-render-profilebanner">
+			            <img src="{{ isset($businessinfo->profilebanner) && $businessinfo->profilebanner != '' ? '/'.$businessinfo->profilebanner : '/images/image-not-available.png' }}" id="img-render-profilebanner">
 			        </div>
 			    </div>
 		        <div class="form-group">
