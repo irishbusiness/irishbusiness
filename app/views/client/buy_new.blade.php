@@ -254,8 +254,6 @@
 			// console.log($(this).html());
 			var code = $.trim($(this).html());
 			$.each(data, function(i, v){
-				console.log("i="+i);
-				console.log("v="+v);
 			    if(i == code ){
 			        span.html(v);
 
