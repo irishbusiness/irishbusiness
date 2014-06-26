@@ -36,7 +36,7 @@ class PaymentsRepository {
 			
 		}
 		// elseif($length==9)
-		elseif( $length == 10 || $length == 12 )
+		elseif( $length == 10 || $length == 12 || $length == 11 )
 		{
 			$code = mb_substr($raw,0,6);
 			$type = mb_substr($raw,6,6);
@@ -46,7 +46,7 @@ class PaymentsRepository {
 			// }
 			
 			// if($type!='chq'&&$type!='csh')
-			if( $type!="cash" && $type!="cheque" )
+			if( $type!="cash" && $type!="check" && $type!="cheque" )
 			{
 				return false;
 			}	
