@@ -41,8 +41,11 @@
 							</div>
 						</div>
 						<div class="listing-title">
-							{{ HTML::link($branch->branchslug, decode($branch->name).' - '.showAddress($branch->address) ) }}</div>
-							<div class="listing-text">{{ Str::limit(decode($branch->business_description), 255) }}</div>
+							{{ HTML::link($branch->branchslug, decode($branch->name).' - '.showAddress($branch->address) ) }}
+						</div>
+						<div class="listing-text">
+							{{ Str::limit(decode($branch->business_description), 255) }}
+						</div>
 							{{HTML::link($branch->branchslug, 'Read More',['class' => 'listing-read-more' ] ) }}
 					</div>
 				</div>
@@ -62,3 +65,10 @@
 @section('sidebar')
 	@include('client.partials._sidebar')
 @stop
+
+@scripts
+	<script type="text/javascript">
+		console.log("Search Results...");
+	</script>
+@stop
+
