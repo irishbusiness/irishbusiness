@@ -4680,3 +4680,6 @@ div.listing-rating {
 .listing-text {
 	font-weight: normal !important;
 }
+
+.company-listing .listing-body .listing-read-more {
+	float: left;
