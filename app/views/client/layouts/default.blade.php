@@ -97,9 +97,8 @@
                              
              
                             @yield('sidebar')
-                    @if(Request::is('admin/*'))
-                        </div>
-                    @endif  
+                 
+                        </div> 
                     </div><!-- end of .zone-content -->
                      
                  </div><!-- end of .content-wrapper -->
