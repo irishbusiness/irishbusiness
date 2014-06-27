@@ -58,13 +58,13 @@
 		</div><!-- end of .content-container -->
 
 	</div><!--end of .zone-content-->
+
 	
-</div><!--  end of .content16  -->
+</div><!-- end of .content16 -->
+@include('client.partials._sidebar')
 @stop
 
-@section('sidebar')
-	@include('client.partials._sidebar')
-@stop
+
 
 @scripts
 	<script type="text/javascript">
