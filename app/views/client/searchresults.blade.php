@@ -44,7 +44,7 @@
 							{{ HTML::link($branch->branchslug, decode($branch->name).' - '.showAddress($branch->address) ) }}
 						</div>
 						<div class="listing-text">
-							{{ Str::limit(decode($branch->business_description), 255) }}
+							{{ Str::limit(strip_tags(decode($branch->business_description)), 255) }}
 						</div>
 							{{HTML::link($branch->branchslug, 'Read More',['class' => 'listing-read-more' ] ) }}
 					</div>
