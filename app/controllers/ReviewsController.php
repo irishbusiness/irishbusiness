@@ -19,8 +19,10 @@ class ReviewsController extends \BaseController {
 		$review->business_id = $id;
 		$review->user_id = $user_id;
 
+		$branch = Branch::find($branchId);
+
 		if($review->save()){
-			return Redirect::to("/company/".$businessinfo->slug."/".$branchId."#company-tabs-review")
+			return Redirect::to($branch->branchslug."#company-tabs-review")
 				->with('flash_message', "Your review has been submitted.")
 				->withTitle($businessinfo->name);
 		}
