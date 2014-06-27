@@ -90,15 +90,11 @@
                 <div class="content-wrapper">
                     
                     <div class="zone-content equalize zone clearfix">
-                    @if(Request::is('admin/*'))
-                        <div class="content-container container-<?php (Request::is('admin/*') ? 24 : 16) ?>">
-                    @endif    
+                       
                             @yield('actual-body-content')
-                             
-             
                             @yield('sidebar')
                  
-                        </div> 
+                       
                     </div><!-- end of .zone-content -->
                      
                  </div><!-- end of .content-wrapper -->

@@ -22,7 +22,7 @@
 				@endif	
 			@endforeach
 		</ul>
-	<!-- </div> -->
+	</div>
 	<div class="latest-news block">
 		<div class="block-title">
 			<h3>Latest News</h3>
