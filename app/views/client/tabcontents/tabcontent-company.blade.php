@@ -141,7 +141,9 @@
 						$keywords = $branch->business->keywords;
 						$arr = explode(",", $keywords);
 						foreach ($arr as $keyword) {
-							echo "<li>".$keyword."</li>";
+							if( trim($keyword) != "" ){
+								echo "<li>".$keyword."</li>";
+							}
 						}
 					?>
 				</ul>
