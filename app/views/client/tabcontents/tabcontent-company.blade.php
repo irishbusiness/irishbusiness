@@ -162,7 +162,9 @@
 						$locations = $branch->locations;
 						$arr = explode(",", $locations);
 						foreach ($arr as $location) {
-							echo "<li>".$location."</li>";
+							if( trim($location) != "" ){
+								echo "<li>".$location."</li>";
+							}
 						}
 					?>
 				</ul>
