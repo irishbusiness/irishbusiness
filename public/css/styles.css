@@ -1911,6 +1911,7 @@ ul.event-tabs-content {
 			display: block;
 			width: 100%;
 			height: auto;
+			padding-bottom: 8px;
 		}
 
 	.company-listing .listing-body {
