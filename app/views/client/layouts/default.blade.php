@@ -90,10 +90,13 @@
                 <div class="content-wrapper">
                     
                     <div class="zone-content equalize zone clearfix">
-                       
-                            @yield('actual-body-content')
-                            @yield('sidebar')
-                 
+                       <div class="content-container container-{{ Request::is('admin/*') ? '24' : '16' }}">
+
+                            <div class="zone-content equalize zone clearfix">
+                                @yield('actual-body-content')
+                                @yield('sidebar')
+                            </div><!--end of .zone-content-->
+                        </div><!-- end of .content16 -->
                        
                     </div><!-- end of .zone-content -->
                      

@@ -1,8 +1,7 @@
 @extends('client.layouts.default')
 
 @section('actual-body-content')
-<div class="content-container container-16">	
-	<div class="zone-content equalize zone clearfix">
+	
 
 		<div class="content-container container-16">
 
@@ -57,13 +56,12 @@
 
 		</div><!-- end of .content-container -->
 
-	</div><!--end of .zone-content-->
-
 	
-</div><!-- end of .content16 -->
-@include('client.partials._sidebar')
 @stop
 
+@section('sidebar')
+	@include('client.partials._sidebar')
+@stop
 
 
 @scripts
