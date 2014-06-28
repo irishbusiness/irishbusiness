@@ -15,11 +15,11 @@ class CreateReviewsTable extends Migration {
 		Schema::create('reviews', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id')->unsigned();
+			$table->integer('user_id')->unsigned()->nullable();
 			$table->string('name');
 			$table->string('email')->nullable();
 			$table->integer('confirmed')->nullable()->default(0);
-			$table->string('key')->nullable();
+			$table->string('token')->nullable();
 			$table->integer('rating');
 			$table->text('description');
 			$table->integer('business_id')->unsigned();

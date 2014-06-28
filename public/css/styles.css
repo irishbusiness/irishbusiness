@@ -4179,7 +4179,8 @@ ul.entries-list {
 }
 
 .one-fourth {
-	max-width: 176px;
+	/*max-width: 176px;*/
+	max-width: 186px;
 }
 
 .three-fourth {

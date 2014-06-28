@@ -327,8 +327,6 @@ Route::get('clear',function(){
 
 Route::get('register/activate/{token}','UsersController@activate');
 
-Route::get('review/confirm/{token}', 'ReviewsController@confirm');
-
 
 //PASSWORD RESET FOR CLIENT
 
@@ -420,3 +418,4 @@ Route::get('1/{slug}/{branch}', 'BusinessesController@companytab2');
 Route::get('{slug}', 'BusinessesController@companytab2');
 Route::get('{slug}/{branch}', 'BusinessesController@companytab2');
 
+Route::get('review/confirm/{token}', 'ReviewsController@confirm');
