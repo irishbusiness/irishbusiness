@@ -60,7 +60,8 @@
 			                                    </li>
 			                                    <li>
 			                                        <label for="job-title">Company description</label>
-			                                        <input type="text" id="job-title" name="jobTitle" value="{{ decode($branch->business->business_description) }}" class="text-input-grey three-fourth" />
+			                                        <!-- <input type="text" id="job-title" name="jobTitle" value="{{ Str::limit(decode($branch->business->business_description), 50 ) }}" class="text-input-grey three-fourth" /> -->
+			                                    	<textarea name="jobTitle" id="job-title" class="">{{ Str::limit(trim(strip_tags(decode($branch->business->business_description), 50 ))) }}</textarea>
 			                                    </li>
 			                                    <li>
 			                                        <label for="primary-phone">Primary phone</label>
@@ -76,7 +77,7 @@
 			                                    </li>
 			                                    <li>
 			                                        <label for="web-address">Web address</label>
-			                                        <input type="text" id="web-address" name="siteUrl" value="{{ Request::root().'/company/'.$branch->business->slug.'/'.$branch->id }}" class="text-input-grey three-fourth" />
+			                                        <input type="text" id="web-address" name="siteUrl" value="{{ !is_null($branch->website) ? $branch->website : '' }}" class="text-input-grey three-fourth" />
 			                                    </li>
 			                                </ol>
 			                            </fieldset>

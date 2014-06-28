@@ -80,52 +80,52 @@
         @endif
     
 
-<section class="section content boxed">
+        <section class="section content boxed">
 
-	@include('client.partials._searchbar')
+        	@include('client.partials._searchbar')
 
-    @yield('slider')
-	<!-- actual body -->
-        
-        <div class="content-wrapper">
-            
-             <div class="zone-content equalize zone clearfix">
-             @if(Request::is('admin/*'))
-                <div class="content-container container-<?php (Request::is('admin/*') ? 24 : 16) ?>">
-            @endif    
-                 @yield('actual-body-content')
-                 
- 
-                @yield('sidebar')
-                </div><!-- end of .zone-content -->
+            @yield('slider')
+        	<!-- actual body -->
+                
+                <div class="content-wrapper">
+                    
+                    <div class="zone-content equalize zone clearfix">
+                       
+                            @yield('actual-body-content')
+                             
              
-         </div><!-- end of .content-wrapper -->
-   
-    @yield('scripts')
-    @yield('scripts2')
-	@include('client.partials._footer')
-	@include('client.partials._includes')
-	
-    @if(Session::has('errorNotify'))
-		<script>
-			$('#login-form').slideDown(500);
-			$('#errordiv').text("{{Session::get('errorNotify')}}");
-		</script>
-	@endif
-    
+                            @yield('sidebar')
+                 
+                       
+                    </div><!-- end of .zone-content -->
+                     
+                 </div><!-- end of .content-wrapper -->
+           
+            @yield('scripts')
+            @yield('scripts2')
+        	@include('client.partials._footer')
+        	@include('client.partials._includes')
+        	
+            @if(Session::has('errorNotify'))
+        		<script>
+        			$('#login-form').slideDown(500);
+        			$('#errordiv').text("{{Session::get('errorNotify')}}");
+        		</script>
+        	@endif
+            
 
-    @if(Session::has('flash_message'))
-        <script>
-            $('#flashmessage').delay(20000).slideUp(50);
-            $(document).on('click','#closeflash',function(){
-                $(this).parent().hide();
-            });
+            @if(Session::has('flash_message'))
+                <script>
+                    $('#flashmessage').delay(20000).slideUp(50);
+                    $(document).on('click','#closeflash',function(){
+                        $(this).parent().hide();
+                    });
 
-        </script>
-    @endif
-	
+                </script>
+            @endif
+        	
 
-</section>
+        </section>
 
 </body>
 

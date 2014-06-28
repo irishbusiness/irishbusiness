@@ -101,7 +101,7 @@
 				</div>
 				</div>
 			@endif
-			<div class="company-info clearfix">
+			<!-- <div class="company-info clearfix">
 				<div class="company-info-social">
 					<div class="compnay-photo">
 						<img width="500" height="302" src="{{ URL::asset($branch->business->logo) }}" class="attachment-post-thumbnail wp-post-image" alt="{{ $branch->business->name }}-logo">
@@ -115,17 +115,18 @@
 					@if(!is_null(trim($branch->facebook)))
 					<a href="{{ $branch->google }}" class="google" target="_blank"></a>
 					@endif
-				</div>
-				<div class="company-info-description">
+				</div> -->
+				<!-- <div class="company-info-description">
 					{{ html_entity_decode(stripcslashes($branch->business->business_description)) }}
-				</div>
-			</div>
+				</div> -->
+			<!-- </div> -->
 		</div>
 		<div class="separator"></div>
 		<div class="profile-description company-page-center-block">
 			<h2>Profile Description</h2>
 			<div class="block-content">
-				{{ str_replace("\\r\\n","<br/>", stripcslashes(html_entity_decode($branch->business->profile_description))) }}
+				{{ decode($branch->business->business_description) }}
+				<!-- {{ str_replace("\\r\\n","<br/>", stripcslashes(html_entity_decode($branch->business->profile_description))) }} -->
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -140,7 +141,9 @@
 						$keywords = $branch->business->keywords;
 						$arr = explode(",", $keywords);
 						foreach ($arr as $keyword) {
-							echo "<li>".$keyword."</li>";
+							if( trim($keyword) != "" ){
+								echo "<li>".$keyword."</li>";
+							}
 						}
 					?>
 				</ul>
@@ -159,7 +162,9 @@
 						$locations = $branch->locations;
 						$arr = explode(",", $locations);
 						foreach ($arr as $location) {
-							echo "<li>".$location."</li>";
+							if( trim($location) != "" ){
+								echo "<li>".$location."</li>";
+							}
 						}
 					?>
 				</ul>

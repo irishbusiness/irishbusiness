@@ -23,7 +23,7 @@ class BusinessRepository {
 		$business->website    =   $input['website'];
 		$business->email    =   $input['email'];*/
         $business->business_description    =   $input['business_description'];
-		$business->profile_description   =   $input['profile_description'];
+		// $business->profile_description   =   $input['profile_description'];
 		/*$business->mon_fri   =   $input['mon_fri'];
 		$business->sat   =   $input['sat'];
 		$business->facebook   =   $input['facebook'];
@@ -33,11 +33,13 @@ class BusinessRepository {
         // $business->user_id = 1;
 
         if($input['slug'] == null){
-            $name = stripcslashes(strtolower($input['name']));
-            $name = str_replace("'", "", $name);
-            $business->slug =  preg_replace("/[\s_]/", "-", $name).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
+            $name = clean_str(decode($input['name']));
+            // $name = stripcslashes(strtolower($input['name']));
+            // $name = str_replace("'", "", $name);
+            // $business->slug =  preg_replace("/[\s_]/", "-", $name).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
+            $business->slug = $name.'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
         } else {
-            $business->slug = strtolower($input['slug']);
+            $business->slug = clean_str($input['slug']);
         }
 
         // logo
@@ -108,19 +110,19 @@ class BusinessRepository {
 
         $business->name = $input['name'];
 
-        if($input['slug'] == null){
-            $name = stripcslashes(strtolower($input['name']));
-            $name = str_replace("'", "", $name);
-            $business->slug =  preg_replace("/[\s_]/", "-", $name).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
-        } else {
-            $business->slug = strtolower($input['slug']);
-        }
+        // if($input['slug'] == null){
+        //     $name = stripcslashes(strtolower($input['name']));
+        //     $name = str_replace("'", "", $name);
+        //     $business->slug =  preg_replace("/[\s_]/", "-", $name).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
+        // } else {
+        //     $business->slug = strtolower($input['slug']);
+        // }
 
 
         $branch->business->keywords = $input['keywords'];
         
         $business->business_description    =   $input['business_description'];
-        $business->profile_description   =   $input['profile_description'];
+        // $business->profile_description   =   $input['profile_description'];
 
         $branch->mon_fri   =   $input['mon_fri'];
         // $branch->sat   =   $input['sat'];
@@ -183,6 +185,14 @@ class BusinessRepository {
                 $business->profilebanner  =   'images/companylogos/'.$imagename;
             }
 
+        }
+
+        if($input['slug'] == null){
+            $name = stripcslashes(strtolower($input['name']));
+            $name = str_replace("'", "", $name);
+            $business->slug =  preg_replace("/[\s_]/", "-", $name).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
+        } else {
+            $business->slug = strtolower($input['slug']);
         }
 
         $business->save();

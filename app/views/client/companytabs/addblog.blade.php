@@ -23,51 +23,22 @@
                     {{ Form::label('blogheaderimage', "Blog Header", ["class"=> "text-colorful"]) }}<br>
                     {{ Form::file('blogheaderimage', ["id"=>"btn-blog-settings-logo"]) }}
                     <div class="render-blogheader-logo-preview">
-                        <img src="" id="img-render-blogheaderimage">
+                        <img src="{{ URL::asset('/images/image-not-available.png') }}" id="img-render-blogheaderimage">
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    {{ Form::label('facebook', "Facebook",
-                    ["class"=>"text-colorful"]) }}<br>
-                    {{ Form::text('facebook','', [
-                    "placeholder" => "Facebook Link", "class"=>"text-input-grey full", 'id' => 'addFacebook']) }}
-                </div>
-                
-                <div class="form-group">
-                    {{ Form::label('google', "Google+ Link",
-                    ["class"=>"text-colorful"]) }}<br>
-                    {{ Form::text('google','', [
-                    "placeholder" => "Google+ Link", "class"=>"text-input-grey full", 'id' => 'addGoogle']) }}
-                </div>
-                
-                <div class="form-group">
-                    {{ Form::label('twitter', "Twitter Link",
-                    ["class"=>"text-colorful"]) }}<br>
-                    {{ Form::text('twitter','', [
-                    "placeholder" => "Twitter Link", "class"=>"text-input-grey full", 'id' => 'addTwitter']) }}
-                </div>
-                
-                <div class="form-group">
-                    {{ Form::label('linkedin', "LinkedIn Link",
-                    ["class"=>"text-colorful"]) }}<br>
-                    {{ Form::text('linkedin','', [
-                    "placeholder" => "LinkedIn Link", "class"=>"text-input-grey full", 'id' => 'addLinkedin']) }}
-                </div>
-                
-                <div class="form-group">
-                    {{ Form::label('blogurl', "Blog URL (".Request::root()."/your-blog-name)",
-                    ["class"=>"text-colorful"]) }}<br>
-                    {{ Form::text('blogurl','', [
+                    {{ Form::hidden('blogurl','', [
                     "placeholder" => "your-blog-name ( Optional ) : Skip if you don't know this", "class"=>"text-input-grey full", 'id' => 'addblogurl']) }}
                 </div>
                 
                 <div class="form-group">
-                {{ Form::textarea('content', '<h3>Description of the Blog<h3>', ['id' => 'redactor1']) }}
+                    {{ Form::label('content', 'Content', ["class"=> "text-colorful"]) }}
+                    {{ Form::textarea('content', '', ['id' => 'redactor1']) }}
                 </div>
 
                 <div class="form-group"><input id="addBlogButton" type="submit" value="Save" name="send" class="button-2-colorful"/>
-                {{ Form::close() }}
+                    {{ Form::close() }}
                 </div>
             </div>
        

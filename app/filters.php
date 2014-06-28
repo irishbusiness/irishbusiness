@@ -80,6 +80,7 @@ Route::filter('subscribed', function()
 
 		$id = Auth::user()->user()->id;
 		if (is_null(Auth::user()->user()->subscription->first())&&strlen(Auth::user()->user()->coupon)<=6)
+		// if (is_null(Auth::user()->user()->subscription->first()))
 			return Redirect::to('buy');
 	}
 
@@ -123,10 +124,10 @@ Route::filter('hasCoupon', function(){
 			// 	return Redirect::to('couponcode');
 			// }
 
-			if(strlen($coupon)>6)
-			{
-				return Redirect::to('business/add');
-			}
+			// if(strlen($coupon)>6)
+			// {
+			// 	return Redirect::to('business/add');
+			// }
 		
 		}
 		else

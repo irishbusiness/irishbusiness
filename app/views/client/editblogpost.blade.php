@@ -25,42 +25,20 @@
                         {{ Form::label('blogheader', "Blog Header", ["class"=> "text-colorful"]) }}<br>
                         {{ Form::file('blogheaderimageedit', ["id"=>"btn-editblog-settings-logo"]) }}
                         <div class="render-blogheader-logo-preview">
-                            <img src="" id="img-render-blogheaderimageedit">
+                            <img src="{{ ( !is_null( $blog->blogheaderimage )  && ( trim( $blog->blogheaderimage ) != "" ) ) ? URL::asset($blog->blogheaderimage) : URL::asset('/images/image-not-available.png') }}" id="img-render-blogheaderimageedit">
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ Form::label('facebook', "Facebook",
-                        ["class"=>"text-colorful"]) }}<br>
-                        {{ Form::text('facebook',$blog->facebook, [
-                        "placeholder" => "Facebook Link", "class"=>"text-input-grey full", 'id' => 'facebookedit']) }}
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label('google', "Google+ Link",
-                        ["class"=>"text-colorful"]) }}<br>
-                        {{ Form::text('google',$blog->google, [
-                        "placeholder" => "Google", "class"=>"text-input-grey full", 'id' => 'googleedit']) }}
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label('twitter', "Twitter Link",
-                        ["class"=>"text-colorful"]) }}<br>
-                        {{ Form::text('twitter',$blog->twitter, [
-                        "placeholder" => "Twitter Link", "class"=>"text-input-grey full", 'id' => 'twitteredit']) }}
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label('linkedin', "LinkedIn Link",
-                        ["class"=>"text-colorful"]) }}<br>
-                        {{ Form::text('linkedin', $blog->linkedin, [
-                        "placeholder" => "LinkedIn Link", "class"=>"text-input-grey full", 'id' => 'linkedinedit']) }}
-                    </div>
-                    <div id="redactorplaceholder">
+                        {{ Form::label("content", "Content", ["class"=>"text-colorful"]) }}
+                        <div id="redactorplaceholder">
                             <textarea id="redactor2" name="content">
                                 {{ html_entity_decode(stripcslashes($blog->body)) }}
                             </textarea>
+                        </div>
                     </div>
-                     <div class="form-group">
-                        {{ Form::label('blogurl', "Blog URL (".Request::root()."/your-blog-name)",
-                        ["class"=>"text-colorful"]) }}<br>
-                        {{ Form::text('blogurl', $blog->slug, [
+                    <div class="form-group">
+
+                        {{ Form::hidden('blogurl', $blog->slug, [
                         "placeholder" => "your-blog-name ( Optional )", "class"=>"text-input-grey full", 'id' => 'editblogurl', 'required']) }}
                     </div>
                     <br>

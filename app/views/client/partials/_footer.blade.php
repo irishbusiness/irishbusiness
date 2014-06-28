@@ -1,4 +1,5 @@
 <?php
+
 	if(is_null($recentsettings)){
 		$recentsettings = new \Illuminate\Support\Collection;
    	 	$recentsettings->footerlogo = 'default.png';
@@ -47,9 +48,25 @@
 							</ul>
 						</div>
 
-						<div class="flickr-feed block">
-							<h3 class="title">Flickr Feed</h3>
-							<div id="flickr-feed"></div>
+						<div class="nav-links block">
+							<h3 class="title">Links</h3>
+							<!-- <div id="flickr-feed"></div> -->
+							<ul>
+								<li class="first {{ Request::is('/') ? 'selected' :'' }}">
+									<a href="{{ URL::to('/') }}" class="text-colorful">Home</a>
+								</li>
+								<li class="{{ Request::is('blog') ? 'selected' :'' }}">
+									<a href="{{ URL::to('blog') }}" class="text-colorful">Blog</a>
+								</li>
+								@if(!Auth::user()->check())
+								<li class="{{ Request::is('register') ? 'selected' :'' }}">
+									<a href="{{ URL::to('register') }}" class="text-colorful">Register</a>
+								</li>
+								@endif
+								<li class="last {{ Request::is('contact-us') ? 'selected' :'' }}">
+									<a href="{{ URL::to('contact-us') }}" class="text-colorful">Contact Us</a>
+								</li>
+							</ul>
 						</div>
 
 					</div>

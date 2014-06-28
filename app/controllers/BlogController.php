@@ -55,10 +55,10 @@ class BlogController extends \BaseController {
         $blog = new Blog;
         $blog->title = Input::get('title');
         $blog->body = Input::get('content');
-        $blog->facebook = Input::get('facebook');
-        $blog->google = Input::get('google');
-        $blog->twitter = Input::get('twitter');
-        $blog->linkedin = Input::get('linkedin');
+        // $blog->facebook = Input::get('facebook');
+        // $blog->google = Input::get('google');
+        // $blog->twitter = Input::get('twitter');
+        // $blog->linkedin = Input::get('linkedin');
         $blog->business_id  =   Auth::user()->user()->business->id;
         
         if(Input::get('blogurl') == null){

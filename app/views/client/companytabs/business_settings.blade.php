@@ -15,7 +15,7 @@
             {{ Form::file('profilebanner', ["id"=>"btn-business-settings-profilebanner"]) }}
             {{$errors->first('profilebanner','<span class="alert alert-error block half">:message</span>')}}
             <div class="render-logo-preview">
-                <img src="" id="img-render-profilebanner">
+                <img src="{{ URL::asset('/images/image-not-available.png') }}" id="img-render-profilebanner">
             </div>
         </div>
        
@@ -27,20 +27,20 @@
         </div>
        
         <div class="form-group">
-            {{ Form::label('business_description', "Business Description",
+            {{ Form::label('business_description', "Profile Description",
             ["class"=>"text-colorful"]) }}<br/>
             {{ Form::textarea('business_description','', [
-            "placeholder" => "business_description", "class"=>"text-input-grey full"]) }}
+            "placeholder" => "business_description", "class"=>"text-input-grey full redactor"]) }}
             {{$errors->first('business_description','<span class="alert alert-error block half">:message</span>')}}
         </div>
 
         <!-- profile description here must be a wysiwyg -->
-        <div class="form-group">
+        <!-- <div class="form-group">
             {{ Form::label('profile_description', "Profile Description",
             ["class"=>"text-colorful"]) }}<br/>
             {{ Form::textarea('profile_description', '<h2>Profile Description</h2>', ["id" => "redactor"]) }}
             {{$errors->first('profile_description','<span class="alert alert-error block half">:message</span>')}}
-        </div>
+        </div> -->
         <div class="form-group">
             {{ Form::label('logo', "Logo",
             ["class"=>"text-colorful"]) }}<br/>
@@ -48,7 +48,7 @@
             {{ Form::file('logo', ["id"=>"btn-business-settings-logo"]) }}
             {{$errors->first('logo','<span class="alert alert-error block half">:message</span>')}}
             <div class="render-logo-preview">
-                <img src="" id="img-render-logo">
+                <img src="{{ URL::asset('/images/image-not-available.png') }}" id="img-render-logo">
             </div>
         </div>
         
@@ -62,9 +62,9 @@
         </div>
         
         <div class="form-group">
-            {{ Form::label('slug', "Business URL (".Request::root()."/company/your-business-name)",
-            ["class"=>"text-colorful"]) }}<br/>
-            {{ Form::text('slug','', [
+            <!-- {{ Form::label('slug', "Business URL (".Request::root()."/company/your-business-name)",
+            ["class"=>"text-colorful"]) }}<br/> -->
+            {{ Form::hidden('slug','', [
             "placeholder" => "(Skip this part, if this is foreign to you)", "class"=>"text-input-grey full"]) }}
             {{$errors->first('slug','<span class="alert alert-error block half">:message</span>')}}
         </div>

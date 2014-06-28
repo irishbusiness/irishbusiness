@@ -1911,6 +1911,7 @@ ul.event-tabs-content {
 			display: block;
 			width: 100%;
 			height: auto;
+			padding-bottom: 8px;
 		}
 
 	.company-listing .listing-body {
@@ -3886,6 +3887,42 @@ ul.entries-list {
 		height: auto;
 	}
 
+/* LINKS BLOCK */
+.nav-links .title {
+	font-family: "Patua One";
+	line-height: 15px;
+	color: #e6e6e6;
+	margin-bottom: 40px;
+}
+	.nav-links ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			margin-top: -15px;
+		}
+
+			.nav-links ul li {
+				border-top: 1px solid #494949;
+				border-bottom: 1px solid #25282a;
+			}
+
+			.nav-links ul li.first {
+				border-top: none;
+			}
+
+			.nav-links ul li.last {
+				border-bottom: none;
+			}
+
+			.nav-links ul li.selected a {
+				color: #a6a6a6;
+			}
+
+				.nav-links ul li a {
+					line-height: 48px;
+				}
+					
+
 /* "COPYRIGHT" BLOCK */
 
 .copyright {
@@ -4631,4 +4668,20 @@ div.listing-rating {
 .btn-subscription-option {
 	margin-bottom: 11px;
 	margin-top: 6px;
+}
+
+.div-payment-options {
+	margin-bottom: 5px;
+}
+
+.entry-excerpt, .listing-read-more {
+	font-weight: normal !important;
+}
+
+.listing-text {
+	font-weight: normal !important;
+}
+
+.company-listing .listing-body .listing-read-more {
+	float: left;
 }

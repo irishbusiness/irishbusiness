@@ -326,3 +326,14 @@ function keywordExplode($keywordsraw){
     return $output;
 
 }
+
+function clean_str($string){
+    $string =  stripcslashes(strtolower($string));
+    $string = str_replace("'", "", $string);
+    $string = str_replace(" ", "-", $string);
+    $string = preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+
+    $string = preg_replace('/-+/', '-', $string);
+
+    return $string;
+}
