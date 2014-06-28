@@ -10,7 +10,9 @@
 		"guzzlehttp/guzzle": "~4.0",
 		"stripe/stripe-php": "1.15.0",
 		"intervention/image": "2.*",
-		"pda/pheanstalk": "2.1.*"
+		"pda/pheanstalk": "2.1.*",
+		"itbz/fpdf": "1.7.2",
+		"itbz/fpdi": "1.4.4"
 	},
 	"require-dev": {
     "way/generators": "2.*"
@@ -21,7 +23,9 @@
 			"app/controllers",
 			"app/models",
 			"app/database/migrations",
-			"app/database/seeds",
+			"app/database/seeds", 
+
+
 			"app/tests/TestCase.php"
 		],
 		"files":["app/helpers.php"],
