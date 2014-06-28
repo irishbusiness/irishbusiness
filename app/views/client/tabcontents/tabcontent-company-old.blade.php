@@ -178,64 +178,40 @@
 					<h3 class="comment-reply-title" id="reply-title"><span class="comment-message-title your-rating">Your <span class="text-green">Rating</span></span></h3>
 					<div class="rating-send">
 						@if (Auth::user()->guest())
-							{{ Form::open(array('action' => array('ReviewsController@store', $branch->business->id), "id"=>"form-review", 'method'=>'post')) }}
 							<div class="rating-inputs">
 								<div class="rating-details">
-									<div class="detail">
-										{{ Form::text("rating-name", "", ["id"=>"rating-name", "placeholder"=>"Name", "class"=>"text-input-grey one fourth", "required"=>"required"]) }}
-									</div><br/>
-									<div class="detail">
-										{{ Form::email("rating-email", "", ["id"=>"rating-email", "placeholder"=>"Email (this will not be published)", "class"=>"text-input-grey one fourth", "required"=>"required"]) }}
-									</div>
-									<div class="detail">
-										{{ Form::textarea("rating-description", "", ["id"=>"rating-description", "rows"=>"8", "cols"=>"45", 
-											"placeholder"=>"Description", "class"=>"text-input-grey comment-message-main one-fourth", "required"=>"required"]) }}
-									</div>
-									{{ Form::hidden("br", $branch->id) }}
-									{{ Form::input("submit", "submit", "Send rating", ["class"=>"send-rating button-2-green"]) }}
-								</div>
-								<div class="ratings">
-									<div class="rating clearfix already" data-rating-id="1" data-rated-value="0"><div class="rating-title">Rating</div>
-										<div class="stars clearfix">
-											<div class="rating-stars star" data-rated="false" data-star-id="1"></div>
-											<div class="rating-stars star" data-rated="false" data-star-id="2"></div>
-											<div class="rating-stars star" data-rated="false" data-star-id="3"></div>
-											<div class="rating-stars star" data-rated="false" data-star-id="4"></div>
-											<div class="rating-stars star" data-rated="false" data-star-id="5"></div>
-										</div>
-									</div>
+									<button id="logintosendreview" class="button-2-green">Login</button> or  
+									{{ HTML::link(URL::to('/register'), 'Register', ["class"=>"a-btn button-2-green"]) }}
 								</div>
 							</div>
-							{{ Form::input("hidden", "rating", "", ["id"=>"fi-rating"]) }}
-							{{ Form::close() }}
 						@elseif(!isOwner($branch->business->slug))
-							{{ Form::open(array('action' => array('ReviewsController@store', $branch->business->id), "id"=>"form-review", 'method'=>'post')) }}
-							<div class="rating-inputs">
-								<div class="rating-details">
-									<div class="detail">
-										{{ Form::text("rating-name", "", ["id"=>"rating-name", "placeholder"=>"Name", "class"=>"text-input-grey one fourth", "required"=>"required"]) }}
-									</div>
-									<div class="detail">
-										{{ Form::textarea("rating-description", "", ["id"=>"rating-description", "rows"=>"8", "cols"=>"45", 
-											"placeholder"=>"Description", "class"=>"text-input-grey comment-message-main one-fourth", "required"=>"required"]) }}
-									</div>
-									{{ Form::hidden("br", $branch->id) }}
-									{{ Form::input("submit", "submit", "Send rating", ["class"=>"send-rating button-2-green"]) }}
+						{{ Form::open(array('action' => array('ReviewsController@store', $branch->business->id), "id"=>"form-review", 'method'=>'post')) }}
+						<div class="rating-inputs">
+							<div class="rating-details">
+								<div class="detail">
+									{{ Form::text("rating-name", "", ["id"=>"rating-name", "placeholder"=>"Name", "class"=>"text-input-grey one fourth", "required"=>"required"]) }}
 								</div>
-								<div class="ratings">
-									<div class="rating clearfix already" data-rating-id="1" data-rated-value="0"><div class="rating-title">Rating</div>
-										<div class="stars clearfix">
-											<div class="rating-stars star" data-rated="false" data-star-id="1"></div>
-											<div class="rating-stars star" data-rated="false" data-star-id="2"></div>
-											<div class="rating-stars star" data-rated="false" data-star-id="3"></div>
-											<div class="rating-stars star" data-rated="false" data-star-id="4"></div>
-											<div class="rating-stars star" data-rated="false" data-star-id="5"></div>
-										</div>
+								<div class="detail">
+									{{ Form::textarea("rating-description", "", ["id"=>"rating-description", "rows"=>"8", "cols"=>"45", 
+										"placeholder"=>"Description", "class"=>"text-input-grey comment-message-main one-fourth", "required"=>"required"]) }}
+								</div>
+								{{ Form::hidden("br", $branch->id) }}
+								{{ Form::input("submit", "submit", "Send rating", ["class"=>"send-rating button-2-green"]) }}
+							</div>
+							<div class="ratings">
+								<div class="rating clearfix already" data-rating-id="1" data-rated-value="0"><div class="rating-title">Rating</div>
+									<div class="stars clearfix">
+										<div class="rating-stars star" data-rated="false" data-star-id="1"></div>
+										<div class="rating-stars star" data-rated="false" data-star-id="2"></div>
+										<div class="rating-stars star" data-rated="false" data-star-id="3"></div>
+										<div class="rating-stars star" data-rated="false" data-star-id="4"></div>
+										<div class="rating-stars star" data-rated="false" data-star-id="5"></div>
 									</div>
 								</div>
 							</div>
-							{{ Form::input("hidden", "rating", "", ["id"=>"fi-rating"]) }}
-							{{ Form::close() }}
+						</div>
+						{{ Form::input("hidden", "rating", "", ["id"=>"fi-rating"]) }}
+						{{ Form::close() }}
 						@else
 							@if(count($reviews)>0)
 								<a href="javascript:void(0)" class="a-btn button-2-colorful" id="linkReview">View Reviews</a>

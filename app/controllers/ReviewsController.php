@@ -1,6 +1,15 @@
 <?php
 
+use IrishBusiness\Repositories\ReviewsRepository;
+
 class ReviewsController extends \BaseController {
+
+	protected $reviews;
+
+	function __construct(ReviewsRepository $reviews)
+	{
+		$this->reviews = $reviews;
+	}
 
 	public function store($id)
 	{	
@@ -46,6 +55,10 @@ class ReviewsController extends \BaseController {
 
 			return 'disapproved';
 		}	
+	}
+
+	function confirm($token){
+
 	}
 
 }

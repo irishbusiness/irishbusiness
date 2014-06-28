@@ -17,6 +17,9 @@ class CreateReviewsTable extends Migration {
 			$table->increments('id');
 			$table->integer('user_id')->unsigned();
 			$table->string('name');
+			$table->string('email')->nullable();
+			$table->integer('confirmed')->nullable()->default(0);
+			$table->string('key')->nullable();
 			$table->integer('rating');
 			$table->text('description');
 			$table->integer('business_id')->unsigned();

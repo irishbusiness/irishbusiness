@@ -179,6 +179,9 @@ Route::get('clear',function(){
 
 Route::get('register/activate/{token}','UsersController@activate');
 
+Route::get('review/confirm/{token}', 'ReviewsController@confirm');
+
+
 //PASSWORD RESET FOR CLIENT
 
 Route::get('password/remind','ClientPasswordController@remind');

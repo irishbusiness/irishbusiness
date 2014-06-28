@@ -33,5 +33,6 @@ class ClientMailer extends Mailer
 
 		return $this->sendTo($user, $subject, $view, $data);
 	}
+
 	
 } 
