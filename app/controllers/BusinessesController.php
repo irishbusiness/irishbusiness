@@ -265,7 +265,7 @@ class BusinessesController extends \BaseController {
 			$branches1 = $business->branches;
 
 			foreach ($branches1 as $branch1) {
-				array_push($rating, Review::where('business_id', '=', $branch1->business->id)->avg('rating'));
+				array_push($rating, Review::where('business_id', '=', $branch1->business->id)->where('confirmed', '=', 1)->avg('rating'));
 			}
 
 			return View::make('client.company-tab')
