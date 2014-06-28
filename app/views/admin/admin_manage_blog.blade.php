@@ -8,36 +8,48 @@
             </div>
         </div>
 
-        <!-- Add blog Form -->
-            @include('client.companytabs.addblog')
         
-
-        <!-- Edit Blog form -->
-            @include('client.companytabs.editblog')
-
-        <table class="table" id="table-categories">
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Action</th>
-                <th><a href="#company-tabs-blog" class="bs-btn btn-success btn-add-blog">Add new</a></th>
-            </tr>
-            </thead>
-            <tbody>
-
-            @if(isset($blogs) && !is_null($blogs))
-            @foreach($blogs as $blog)
-            <tr data-id="{{ $blog->id }}">
-                <td><a href="blog/{{ $blog->id }}"><span class="category-name">{{ stripcslashes($blog->title) }}</span></a></td>
-                <td>
-                    <a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="editBlog($(this))" data-id="{{ $blog->id }}">Edit</a>
-                    <a href="javascript:void(0)" class="bs-btn btn-danger btn-delete-blog" data-title="{{ stripcslashes($blog->title) }}" data-id="{{ $blog->id }}">Delete</a>
-                </td>
-            </tr>
-            @endforeach
+        <div class="blog block">
+            @if(isAdmin())
+            <a href="{{ URL::to('/blog/add') }}" class="a-btn button-2-colorful add-coupon">Add new blog</a><br>
             @endif
-            </tbody>
-        </table>
+            @if(count($blogs)>0)
+                @foreach($blogs as $blog)
+                    <div class="blog-post-preview">
+                        <div class="blog-post-preview-left">
+                            <div class="blog-post-date">
+                                <div class="day">{{ date("d",strtotime($blog->created_at)) }}</div>
+                                <div class="month">{{ date("F",strtotime($blog->created_at)) }}</div>
+                                <div class="year">{{ date("Y",strtotime($blog->created_at)) }}</div>
+                            </div>
+                        </div>
+                        <div class="blog-post-preview-right">
+                            <div class="blog-post-image">
+                                <img src="{{ URL::asset($blog->blogheaderimage) }}" alt="" />
+                            </div>
+                            <div class="blog-post-description clearfix">
+                                <div class="blog-post-title-comments">
+                                    <a href="{{ URL::to('blog/'.$blog->slug) }}" class="blog-post-title">{{ html_entity_decode(stripcslashes($blog->title)) }}</a>
+                                </div>
+                                <div class="blog-post-excerpt">{{ Str::limit(html_entity_decode(stripcslashes($blog->body)), 255) }}</div>
+                                <div class="blog-post-links">
+                                @if(isOwner($blog->business->slug))
+                                    <a href="{{ URL::to('blog/'.$blog->id.'/delete') }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="read-more-link">Remove Blog</a>
+                                    <a href="{{ URL::to('blog/'.$blog->slug.'/edit') }}" class="read-more-link">Edit Blog</a>
+                                @endif
+                                    <a href="{{ URL::to('blog/'.$blog->slug) }}" class="read-more-link">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+
+            @endif
+        </div>
 @stop
 
+@section('sidebar')
+    @include('client.partials._sidebar')
+@stop
 

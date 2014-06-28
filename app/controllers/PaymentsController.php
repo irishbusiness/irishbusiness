@@ -1,18 +1,20 @@
 
 <?php
 use IrishBusiness\Repositories\PaymentsRepository;
+use IrishBusiness\Invoice\Invoice;
 
 class PaymentsController extends \BaseController {
 
 	protected $payments;
+	protected $invoice; 
 
-	function __construct(PaymentsRepository $payments)
+	function __construct(PaymentsRepository $payments, Invoice $invoice)
 	{
-		
 		$this->payments = $payments;
+		$this->invoice = $invoice;
 		$this->beforeFilter('hasBusiness',['only' => ['index']]);
 		$this->beforeFilter('hasCoupon',['only' => ['index']]);
-		Event::listen('user.subscribe','IrishBusiness\Mailers\ClientMailer@subscribe');
+		Event::listen('user.subscribe','IrishBusiness\Mailers\ClientSubscribe@subscribe');
 		
 	}
 
@@ -94,10 +96,11 @@ class PaymentsController extends \BaseController {
 
 			$user = $this->payments->attach($subscription);
 
+			$invoice = $this->invoice->generate_invoice($user);
+
 			Event::fire('user.subscribe',[$user]);
-			
+
 			return Redirect::to('business/add')->with('flash_message','Thank you for subscribing to Irishbusiness! You can now add your business.');
-		
 		} 
 		catch(Stripe_CardError $e) 
 		{

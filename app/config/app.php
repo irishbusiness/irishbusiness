@@ -125,7 +125,7 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider',
 		'Thujohn\Twitter\TwitterServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
-
+		// 'Anouar\Fpdf\FpdfServiceProvider',
 	),
 
 	/*
@@ -192,8 +192,8 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Twitter'         => 'Thujohn\Twitter\TwitterFacade',
-		'Image' => 'Intervention\Image\Facades\Image',
-
+		'Image' 		  => 'Intervention\Image\Facades\Image',
+		// 'Fpdf'    => 'Anouar\Fpdf\Facades\Fpdf',
 	),
 
 );

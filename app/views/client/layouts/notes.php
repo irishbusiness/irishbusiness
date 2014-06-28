@@ -1,3 +1,9 @@
+data-key="pk_live_NRK68iTbtUdKXKFbSORmwKn6"
+
+sk_live_mIXoahEd4l5CWvKwafrihffN
+
+
+
 /*
 
 on the real world remove business seeder because it might have conflict

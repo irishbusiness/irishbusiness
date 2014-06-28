@@ -31,7 +31,7 @@ class ClientMailer extends Mailer
 
 		$subject = 'Thank you!';
 
-		return $this->sendTo($user, $subject, $view, $data);
+		return $this->sendattachment($user, $subject, $view, $data);
 	}
 	
 } 

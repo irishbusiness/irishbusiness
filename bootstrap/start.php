@@ -30,6 +30,7 @@ $env = $app->detectEnvironment(array(
 	'jiriko' => array('koyji-PC'),
 	'dexter' => array('DexsTear'),
 	'teamlaravel' => array('teamlaravel.com'),
+	'zemskie' => array('Zemskie'),
 ));
 
 /*
