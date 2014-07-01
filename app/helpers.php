@@ -337,3 +337,15 @@ function clean_str($string){
 
     return $string;
 }
+
+function hashtag($keywordsraw){ 
+
+    $output = "";
+    
+    $keywordsraw = str_replace(" ", ",", $keywordsraw);
+    $keywordsraw = preg_replace('/[^A-Za-z0-9\-\,]/', '', $keywordsraw); // Removes special chars.
+
+    $keywordsraw = preg_replace('/-+/', '-', $keywordsraw);
+
+    return $keywordsraw;
+}

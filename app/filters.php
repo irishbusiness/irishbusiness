@@ -160,7 +160,6 @@ Route::filter('SPguest', function()
 });
 
 
-
 /*
 |--------------------------------------------------------------------------
 | CSRF Protection Filter
@@ -188,3 +187,17 @@ Validator::extend('alpha_space', function($attr, $value) {
 Route::filter('user', function(){
 	if(!Auth::user()->check()) return Redirect::to('/');
 });
+
+Route::filter('admin', function(){
+	if(Request::is('admin*')){
+		if(Auth::user()->guest()){
+			return Redirect::to("/");
+		}
+
+		if( (Auth::user()->user()->access_level != 3) ){
+				return Redirect::to('/');
+		}
+	}
+});
+
+Route::when('admin/*', 'admin');

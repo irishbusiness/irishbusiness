@@ -32,7 +32,7 @@
 						  </a>
 						</p>
 						<p>
-						  <a href="https://twitter.com/intent/tweet?url={{ URL::to('blog/'.$blog->slug) }}" class="share twitter">
+						  <a href="https://twitter.com/intent/tweet?url={{ URL::to('blog/'.$blog->slug) }}&text={{ $blog->title }}&hashtags={{ hashtag($blog->title) }}" class="share twitter">
 						    Share on Twitter
 						  </a>
 						</p>
@@ -42,7 +42,7 @@
 						  </a>
 						</p>
 						<p>
-						  <a href="http://www.linkedin.com/shareArticle?mini=true&url={{ URL::to('blog/'.$blog->slug) }}&source=IrishBusiness.ie&title=Deal+Voucher+Coupon" class="share linkedin">
+						  <a href="http://www.linkedin.com/shareArticle?mini=true&url={{ URL::to('blog/'.$blog->slug) }}&source=IrishBusiness.ie&title={{($blog->title)}}&summary={{ Str::limit( strip_tags(decode($blog->body)), 255) }}" class="share linkedin">
 						    Share on LinkedIn
 						  </a>
 						</p>
