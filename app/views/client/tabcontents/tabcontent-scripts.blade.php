@@ -1,9 +1,5 @@
 <script>
 	$(window).ready(function(){
-		// $(".sidebar-container:last").remove();
-		// $(".show").show();
-		// $(".content-container.container-16").css("minHeight", "");
-		// $(".content-container.container-16").removeAttr("style");
 		
 		$(".company-tabs").on("click", function(){
 			$(".content-container.container-16").css("minHeight", "");
@@ -51,4 +47,91 @@
 		}
 		 ());
 	});
+
+	// scripts for business settings
+
+	$(function(){
+        $(document).on('change','#categories',function()
+        {	
+        	var id = 0;
+            id = {{ $businessinfo->id }};
+            var category = $('#categories').val();
+            var name = $("#categories option:selected").text();
+            // console.log(name);
+            var token = $('input[name="_token"]').val();
+            if (category>0)
+            {
+
+                $.ajax(
+                {
+                    url: "/ajaxUpdateCategoryAdd",
+                    type: "post",
+                    data: { category: category, _token: token, bid: id, name: name}
+
+                })
+                .done(function(data)
+                {
+                	// console.log(data);
+                    $('.showCategory').append('<span class="bs-btn btn-success category" data-id="'+category+'"> '+ name +
+                        '<span class="remove" data-id="'+category+'" data-text="'+name+'" title="remove this category">x</span></span>');
+                    $('#categories').find('option:selected').remove();
+                })
+            }
+        });
+
+        $(document).on('click', '.remove', function(){
+            var category = $(this).attr("data-id");
+            var id = 0;
+            id = {{ $businessinfo->id }};
+            var token = $('input[name="_token"]').val();
+            $('#categories').append('<option value="'+category+'">'+$(this).attr('data-text')+'</option>');
+            var c =false;
+            c = confirm("Are you sure? You are about to remove this category from your business.");
+			if( c == true ){
+
+	            $.ajax({
+	                url:"/ajaxUpdateCategoryRemove",
+	                type: "post",
+	                data: { category: category, _token: token, bid: id }
+	            })
+                .done(function(data){
+                	console.log(data);
+                    $("span[data-id='"+category+"']").fadeOut(function(){
+                        $("span[data-id='"+category+"']").remove();
+                    });
+                })
+            }
+        });
+
+        $(document).on("click", "#show_hide_business_settings", function(){
+        	if( $("#update-business-settings").attr("class") == "invisible" ){
+        		$(this).html("- Hide Business Main Settings");
+
+        		$("#update-business-settings").fadeIn(500, function(){
+        			$("#update-business-settings").attr("class", "");
+        		});
+        	}else{
+        		$(this).html("+ Show Business Main Settings");
+        		$("#update-business-settings").fadeOut(500, function(){
+        			$("#update-business-settings").attr("class", "invisible");
+        		});
+        	}
+        });
+
+        $(document).on("click", "#show_hide_branch_settings", function(){
+        	if( $("#update-branches-settings").attr("class") == "" ){
+        			$(this).html("+ Show Branch Settings");
+        		$("#update-branches-settings").fadeOut(500, function(){
+        			$("#update-branches-settings").attr("class", "invisible");
+        		});
+        		
+        	}else{
+        			$(this).html("- Hide Branch Settings");
+        		$("#update-branches-settings").fadeIn(500, function(){
+        			$("#update-branches-settings").attr("class", "");
+        		});
+        		
+        	}
+        });
+    });
 </script>

@@ -4686,3 +4686,10 @@ div.listing-rating {
 .company-listing .listing-body .listing-read-more {
 	float: left;
 }
+
+.text-input-grey.full-width {
+	width: 94%;
+}
+.text-input-grey.full-width.select{
+	width: 100%;
+}

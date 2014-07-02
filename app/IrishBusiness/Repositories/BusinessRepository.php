@@ -95,7 +95,8 @@ class BusinessRepository {
 
     function update($slug, $input, $branchId){
         $old_businessinfo = Business::where('slug', $slug)->first();
-        $branch = Branch::find($branchId);
+        // $branch = Branch::find($branchId);
+        $branch = Branch::where('branchslug', $branchId)->first();
 
         $address = $input['address1'] ;
         if(trim($input['address2'])!='')
@@ -135,10 +136,16 @@ class BusinessRepository {
         $branch->phone = $input["phone"];
         $branch->email = $input["email"];
         
-        $branch->branchslug = keywordExplode($input['keywords']);
+        $branchslug = keywordExplode($input['keywords']);
+        
+        $branch->branchslug = $branchslug;
         
 
-        $branch->save();
+        if(!$branch->save()){
+            $branchslug = keywordExplode($input['keywords']).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
+            $branch->branchslug = $branchslug;
+            $branch->save();
+        }
 
         // logo
         if( !is_null($input["logo"]) )
@@ -195,12 +202,14 @@ class BusinessRepository {
             $business->slug = strtolower($input['slug']);
         }
 
+        
         $business->save();
 
         // $id = $old_businessinfo->id;
 
         // $business = Business::findOrFail($id);
-        $branch = Branch::find($branchId);
+        // $branch = Branch::find($branchId);
+        $branch = Branch::where('branchslug', $branchslug)->first();
         // return keywordExplode($input['keywords']);
         return $branch->branchslug;
 

@@ -1,10 +1,10 @@
 <div id="company-tabs-page" class="company-tabs-content">
 	<div class="edit-company">
 		@if( isOwner($branch->business->slug) || isAdmin() )
-			<a href="{{ Request::root().'/edit/business/'.$branch->business->slug.'/'.$branch->branchslug }}">
+			<!-- <a id="editbusiness-link" href="#{{ Request::root().'/edit/business/'.$branch->business->slug.'/'.$branch->branchslug }}">
 				Edit your business
 			</a> | 
-			<a href="javascript:void(0)" title="Delete this business" id="btn-delete-business">Delete business</a>
+			<a href="javascript:void(0)" title="Delete this business" id="btn-delete-business">Delete business</a> -->
 		@endif
 	</div>
 	<div class="sidebar-container container-8 show" id="tabs-sidebar">
@@ -62,7 +62,6 @@
 			<table>
 				<tbody>
 					<tr class="detail">
-						<!-- <td class="detail-label padding-left-19">Mon-Friday</td> -->
 						<td class="detail opening-hours" colspan="2">{{ WeekDaystoStrong(decode($branch->mon_fri)) }}</td>
 					</tr>
 				</tbody>
@@ -126,7 +125,6 @@
 			<h2>Profile Description</h2>
 			<div class="block-content">
 				{{ decode($branch->business->business_description) }}
-				<!-- {{ str_replace("\\r\\n","<br/>", stripcslashes(html_entity_decode($branch->business->profile_description))) }} -->
 			</div>
 		</div>
 		<div class="clearfix"></div>

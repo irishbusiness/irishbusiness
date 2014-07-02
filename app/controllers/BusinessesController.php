@@ -268,6 +268,27 @@ class BusinessesController extends \BaseController {
 				array_push($rating, Review::where('business_id', '=', $branch1->business->id)->where('confirmed', '=', 1)->avg('rating'));
 			}
 
+			$categories = $this->category->getCategories();
+		
+			$selected_categories = $branch->business->categories;
+			$selected_categories = $selected_categories->toArray();
+			$selected_categoriesraw = $branch->business->categories;
+
+			$notselected_categories = $this->category->getCategories();
+
+			for($x=1; $x<count($categories); $x++){
+				// echo "<hr>";
+				for($y=0; $y<count($selected_categories); $y++){
+					if($categories[$x] === $selected_categories[$y]["name"]){
+						unset($notselected_categories[$x]);
+					}
+				}
+				
+			}
+
+			$addresses = $branch->address;
+			$addresses = explode("*", $addresses);
+
 			return View::make('client.company-tab')
 				->with('branch', $branch)
 				->with('business', $business)
@@ -275,7 +296,11 @@ class BusinessesController extends \BaseController {
 				->with('reviews', $reviews)
 				->with('title', decode($branch->business->name))
 				->with('rating', $rating)
-				->with('coupons', $coupons);
+				->with('coupons', $coupons)
+				->with('businessinfo', $business)
+				->with("addresses", $addresses)
+				->with("categories", $notselected_categories)
+				->with('selected_categories', $selected_categories);
 	}
 
 	public function editcompany($slug, $branchslug){
