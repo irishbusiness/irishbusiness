@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html class="" lang="en"  ng-app="app">
 
 <head>
@@ -73,7 +74,7 @@
 @include('admin.partials._admin_header')
 		<section class="section content boxed">
 
-			@include('admin.partials._searchbar')
+            @include('client.partials._searchbar')
 			<div class="industries-tabs-wrapper">
 				<div class="zone-industries-tabs zone clearfix">
 				</div><!-- end of .zone-industries-tabs -->
