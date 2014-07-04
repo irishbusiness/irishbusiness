@@ -14,19 +14,56 @@
         });
 
         $("a[data-rel='save-keywords-from-dialog']").on("click", function(){
+            $(this).text("Please wait...");
+            $(this).click(function(e){
+                e.preventDefault();
+            });
             var keywords = $("#edit-keywords").val();
             var newkeywords = keywords.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
             var token = $("#frm-business-settings input[name='_token']").val();
+
+            var oldbr = $("#old-branchslug").val();
+
             $.ajax({
                 url: "/ajaxUpdateKeywords",
                 type: "post",
-                data: { bid: {{ $business->id }}, oldbr: "{{ $branch->branchslug }}", keywords: keywords, _token: token  }
+                data: { bid: {{ $business->id }}, oldbr: oldbr, keywords: keywords, _token: token  }
             }).done(function(data){
                 // console.log(data);
-                if( data == "true" ){
-                    $("#frm-business-settings").attr("action", "{{ URL::to('/edit/company/'.$business->slug.'/') }}"+newkeywords);
-                    $("#frm-business-settings input[name='keywords']").val(keywords);
+                $("a[data-rel='save-keywords-from-dialog']").text("Save");
+                
+                if( data != "false" ){
 
+                    $("#frm-business-settings").attr("action", "{{ URL::to('/edit/company/'.$business->slug.'/') }}"+"/"+newkeywords);
+                    $("#frm-business-settings input[name='keywords']").val(keywords);
+                    $("#old-branchslug").val(newkeywords);
+                    history.pushState('data', '', '/'+newkeywords+'#company-tabs-settings');
+                    $("#edit-business-keywords ul").html(data);
+
+                    (function (el) {
+                        setTimeout(function () {
+                            el.children().fadeOut(function(){
+                                el.children().remove('span');
+                                var dialog = $("a[rel='dialog']").attr("data-rel");
+                                $(dialog).dialog('close');
+                            });
+                        }, 5000);
+                        }
+                        ( $('#update-keywords-notifier').append("<span class='alert btn-success'>Successfully updated.</span>") )
+                    );
+
+                    // $("#update-keywords-notifier").append("<span class='alert alert-success'>Successfully updated.</span>");
+
+                }else{
+                   (function (el) {
+                        setTimeout(function () {
+                            el.children().fadeOut(function(){
+                                el.children().remove('span');
+                            });
+                        }, 5000);
+                        }
+                        ( $('#update-keywords-notifier').append("<span class='alert alert-error'>Oops...Something went wrong.</span>") )
+                    );
                 }
             });
         });

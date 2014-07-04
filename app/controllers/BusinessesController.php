@@ -223,13 +223,38 @@ class BusinessesController extends \BaseController {
 			$branches1 = $this->business->getBusinessBranches($business);
 			$rating = $this->business->getRatings($branches1);
 
+			$categories = $this->category->getCategories();
+		
+			$selected_categories = $branch->business->categories;
+			$selected_categories = $selected_categories->toArray();
+			$selected_categoriesraw = $branch->business->categories;
+
+			// $notselected_categories = $this->category->getCategories();
+
+			$notselected_categories = $this->business->getNotSelectedCategories($categories, $selected_categories);
+
+			// for($x=1; $x<count($categories); $x++){
+			// 	// echo "<hr>";
+			// 	for($y=0; $y<count($selected_categories); $y++){
+			// 		if($categories[$x] === $selected_categories[$y]["name"]){
+			// 			unset($notselected_categories[$x]);
+			// 		}
+			// 	}
+				
+			// }
+
+			$addresses = $this->business->explodeAddresses($branch);
+
 			return View::make('client.company-tab')
 				->with('branch', $branch)
-				->with('business', $business)
+				->with('business', $business)->with('businessinfo', $business)
 				->with('blogs', $blogs)
 				->with('reviews', $reviews)
-				->with('title', decode($branch->business->name))
+				->with('title', decode($branch->business->name)." - ".$branch->business->keywords)
 				->with('rating', $rating)
+				->with('categories', $notselected_categories)
+				->with('selected_categories', $selected_categories)
+				->with('addresses', $addresses)
 				->with('coupons', $coupons);
 	}
 
@@ -506,8 +531,9 @@ class BusinessesController extends \BaseController {
 
 	public function update_business_keywords(){
 		if(Request::ajax()){
-			if($this->business->update_branch_keywords(Input::get("oldbr"), Input::get("keywords"), Input::get("bid"))){
-				return "true";
+			$keywords = $this->business->update_branch_keywords(Input::get("oldbr"), Input::get("keywords"), Input::get("bid"));
+			if( $keywords != false ){
+				return $keywords;
 			}
 
 			return "false";

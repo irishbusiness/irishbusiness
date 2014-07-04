@@ -417,15 +417,26 @@ class BusinessRepository {
     }
 
     function update_branch_keywords($old_branchslug, $new_keywords, $business_id){
-        $branch = Branch::where('branchslug', $old_branchslug)->first();
-        $business = Business::find($business_id);
-        $business->keywords = $new_keywords;
-        $branch->branchslug = clean_str($new_keywords);
-        if( $branch->save() && $business->save() ){
-            return true;
-        }
+        try {
+            $branch = Branch::where('branchslug', $old_branchslug)->first();
+            $business = Business::find($business_id);
+            $business->keywords = $new_keywords;
+            $branch->branchslug = clean_str($new_keywords);
+            if( $branch->save() && $business->save() ){
+                $keywords = "";
+                $arr = explode(",", $new_keywords);
+                foreach ($arr as $keyword) {
+                    if( trim($keyword) != "" ){
+                        $keywords.= "<li>".$keyword."</li>";
+                    }
+                }
 
-        return false;
+                return $keywords;
+            }
+        } catch (\Exception $e) {
+            return false;
+            
+        }
     }
     function getBranches($category, $query1)
     {
@@ -574,6 +585,22 @@ class BusinessRepository {
                 }])->first();
 
         return $business_category;
+    }
+
+    function getNotSelectedCategories($categories, $selected_categories){
+        $notselected_categories = $categories;
+
+        for($x=1; $x<count($categories); $x++){
+            // echo "<hr>";
+            for($y=0; $y<count($selected_categories); $y++){
+                if($categories[$x] === $selected_categories[$y]["name"]){
+                    unset($notselected_categories[$x]);
+                }
+            }
+            
+        }
+
+        return $notselected_categories;
     }
 
     function attachCategory($business, $category_id)
