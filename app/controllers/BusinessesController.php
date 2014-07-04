@@ -2,27 +2,28 @@
 
 use IrishBusiness\Repositories\CategoryRepository;
 use IrishBusiness\Repositories\BusinessRepository;
+use IrishBusiness\Repositories\BlogRepository;
 use IrishBusiness\Forms\RegisterBusiness;
 use IrishBusiness\Forms\AddBranch;
 use IrishBusiness\Forms\UpdateBusiness;
 use IrishBusiness\Forms\FormValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-
-
 class BusinessesController extends \BaseController {
 
 	protected $category;
 	protected $business;
+	protected $blog;
 	protected $registerbusiness;
 	protected $addbranch;
 
-	function __construct(CategoryRepository $category, BusinessRepository $business, RegisterBusiness $registerbusiness,
-			UpdateBusiness $updatebusiness, AddBranch $addbranch)
+	function __construct(CategoryRepository $category, BusinessRepository $business, BlogRepository $blog, 
+		RegisterBusiness $registerbusiness,	UpdateBusiness $updatebusiness, AddBranch $addbranch)
 	{
 		$this->addbranch = $addbranch;
 		$this->category = $category;
 		$this->business = $business;
+		$this->blog = $blog;
 		$this->registerbusiness = $registerbusiness;
 		$this->updatebusiness = $updatebusiness;
 		// $this->beforeFilter('hasBusiness',['only' => ['sample2']]);
@@ -44,159 +45,128 @@ class BusinessesController extends \BaseController {
 	{
 
 		$category = trim(Input::get('category'));
-		$addresses = explode(' ',Input::get('location'));
+		$addresses = explode(' ', Input::get('location'));
 		$selected = Input::get('category-default');
+
+		$query1 = $this->business->getQuery($addresses);
+
+		$branches = $this->business->getBranches($category, $query1);
+
+		$rating = $this->business->getRatings($branches);
 		
-		// if (intval(Input::get('page'))>0){
-		// 	$category = Session::get('category');
-		// 	$addresses = Session::get('addresses');
-		// }else{
-		// 	 $category = trim(Input::get('category'))-;
-		// 	  $addresses = explode(' ',Input::get('location'));
-		// 	  $selected = Input::get('category-default');
-		// }
-
-		$query1 = 'and ';
-		/*$query1='';*/
-		foreach($addresses as $address)
-		{
-			$query1 .= '(';
-			$string = trim(preg_replace('/\*/', '', $address));
-			$query1 .= "branches.address like '%$string%' or branches.locations like '%$string%'"; 
-			$query1 .= ')and ';
-		}
-		$query1 .= "branches.locations like '%%'";
-
-
-
-		$branches = Branch::Join('businesses','businesses.id', '=', 'branches.business_id')
-					->with('business.categories')
-				  ->join('business_category','business_category.business_id', '=', 'businesses.id'  )
-				  ->join('categories','business_category.category_id', '=', 'categories.id'  )
-				  ->whereRaw("(businesses.name like '%$category%' or businesses.keywords like '%$category%' or categories.name like '$category') $query1 ")
-				  ->groupBy('branches.id')
-				  ->paginate(7, ['branches.*','businesses.id as bid','businesses.name','businesses.business_description','businesses.profile_description','businesses.slug','businesses.logo']);
-
-		
-		
-		$rating = array();
-
-		foreach ($branches as $branch) {
-			
-			array_push($rating, Review::where('business_id', '=', $branch->bid)->where('confirmed', '=', 1)->avg('rating'));
-			
-		}
-		
-
 		Session::put('category', Input::get('category'));
 		Session::put('location', Input::get('location'));
+
 		return View::make('client.searchresults')->with('branches',$branches)
-			->with('category',$category)
-			->with('location',Input::get('location'))
-			->with('selected',$selected)
+			->with('category', $category)
+			->with('location', Input::get('location'))
+			->with('selected', $selected)
 			->with('rating', $rating)->with("title", "Search results");
 	}
 
-	public function showBusiness($businessSlug)
-	{
-		$business = Business::whereSlug($businessSlug)->first();		
-		Session::forget('category');
+	// public function showBusiness($businessSlug)
+	// {
+	// 	$business = $this->business->getBusiness($businessSlug);
+
+	// 	Session::forget('category');
 		
-		if( is_null($business) ){
-			return Response::view('pagenotfound');
-		}
+	// 	if( is_null($business) ){
+	// 		return Response::view('pagenotfound');
+	// 	}
 
-		$blogs = $business->blogs()->orderBy('created_at', 'desc')->get();
-		if(Auth::guest()){
-			$reviews = $business->reviews()->orderBy('created_at', 'desc')->get();
-		} else {
-			$reviews = $business->reviews()->withTrashed()->orderBy('created_at', 'desc')->get();
-		}
-		$categories = $this->category->getCategories();
-		$coupons = $business->coupons()->orderBy('created_at', 'desc')->get();
+	// 	$blogs = $this->blog->getAll($business);
 
-		$selected_categories = $business->categories;
-		$selected_categories = $selected_categories->toArray();
-		$selected_categoriesraw = $business->categories;
+	// 	if(Auth::guest()){
+	// 		$reviews = $business->reviews()->orderBy('created_at', 'desc')->get();
+	// 	} else {
+	// 		$reviews = $business->reviews()->withTrashed()->orderBy('created_at', 'desc')->get();
+	// 	}
 
-		$notselected_categories = $this->category->getCategories();
+	// 	$categories = $this->category->getCategories();
+	// 	$coupons = $business->coupons()->orderBy('created_at', 'desc')->get();
 
-		for($x=1; $x<count($categories); $x++){
-			// echo "<hr>";
-			for($y=0; $y<count($selected_categories); $y++){
-				if($categories[$x] === $selected_categories[$y]["name"]){
-					unset($notselected_categories[$x]);
-				}
-			}
+	// 	$selected_categories = $business->categories;
+	// 	$selected_categories = $selected_categories->toArray();
+	// 	$selected_categoriesraw = $business->categories;
+
+	// 	$notselected_categories = $this->category->getCategories();
+
+	// 	for($x=1; $x<count($categories); $x++){
+	// 		// echo "<hr>";
+	// 		for($y=0; $y<count($selected_categories); $y++){
+	// 			if($categories[$x] === $selected_categories[$y]["name"]){
+	// 				unset($notselected_categories[$x]);
+	// 			}
+	// 		}
 			
-		}
+	// 	}
 
-		$addresses = $business->address;
-		$addresses = explode("*", $addresses);
+	// 	$addresses = $business->address;
+	// 	$addresses = explode("*", $addresses);
 
 		
-		// return View::make('searchpartial.settings')->with('title','Settings')
-		// ->with('categories',$categories);
+	// 	// return View::make('searchpartial.settings')->with('title','Settings')
+	// 	// ->with('categories',$categories);
 
-		return View::make('client.company-tab')->with('title','Settings')
-		->with('categories',$categories)
-		->with('businessinfo', $business)
-		->with('blogs', $blogs)
-		->with('reviews', $reviews)
-		->with("addresses", $addresses)
-		->with("categories", $notselected_categories)
-		->with('selected_categories', $selected_categories)
-		->with('coupons', $coupons);
+	// 	return View::make('client.company-tab')->with('title','Settings')
+	// 	->with('categories',$categories)
+	// 	->with('businessinfo', $business)
+	// 	->with('blogs', $blogs)
+	// 	->with('reviews', $reviews)
+	// 	->with("addresses", $addresses)
+	// 	->with("categories", $notselected_categories)
+	// 	->with('selected_categories', $selected_categories)
+	// 	->with('coupons', $coupons);
 		
-	}
+	// }
 
-	public function businessSettings($slug)
-	{
-		$business = Business::whereSlug($slug)->first();		
-		Session::forget('category');
+	// public function businessSettings($slug)
+	// {
+	// 	$business = Business::whereSlug($slug)->first();		
+	// 	Session::forget('category');
 		
-		if( is_null($business) ){
-			return Response::view('pagenotfound');
-		}
+	// 	if( is_null($business) ){
+	// 		return Response::view('pagenotfound');
+	// 	}
 
-		$blogs = $business->blogs()->orderBy('created_at', 'desc')->get();
-		$reviews = $business->reviews()->orderBy('created_at', 'desc')->get();
-		$categories = $this->category->getCategories();
+	// 	$blogs = $business->blogs()->orderBy('created_at', 'desc')->get();
+	// 	$reviews = $business->reviews()->orderBy('created_at', 'desc')->get();
+	// 	$categories = $this->category->getCategories();
 		
-		$selected_categories = $business->categories;
-		$selected_categories = $selected_categories->toArray();
-		$selected_categoriesraw = $business->categories;
+	// 	$selected_categories = $business->categories;
+	// 	$selected_categories = $selected_categories->toArray();
+	// 	$selected_categoriesraw = $business->categories;
 
-		$notselected_categories = $this->category->getCategories();
+	// 	$notselected_categories = $this->category->getCategories();
 
-		for($x=1; $x<count($categories); $x++){
-			// echo "<hr>";
-			for($y=0; $y<count($selected_categories); $y++){
-				if($categories[$x] === $selected_categories[$y]["name"]){
-					unset($notselected_categories[$x]);
-				}
-			}
+	// 	for($x=1; $x<count($categories); $x++){
+	// 		// echo "<hr>";
+	// 		for($y=0; $y<count($selected_categories); $y++){
+	// 			if($categories[$x] === $selected_categories[$y]["name"]){
+	// 				unset($notselected_categories[$x]);
+	// 			}
+	// 		}
 			
-		}
+	// 	}
 
-		$addresses = $business->address;
-		$addresses = explode("*", $addresses);
+	// 	$addresses = $business->address;
+	// 	$addresses = explode("*", $addresses);
 
 		
-		// return View::make('searchpartial.settings')->with('title','Settings')
-		// ->with('categories',$categories);
+	// 	// return View::make('searchpartial.settings')->with('title','Settings')
+	// 	// ->with('categories',$categories);
 
-		return View::make('client.business_settings')->with('title','Settings')
-		->with('categories',$categories)
-		->with('businessinfo', $business)
-		->with('business', $business)
-		->with('blogs', $blogs)
-		->with('reviews', $reviews)
-		->with("addresses", $addresses)
-		->with("categories", $notselected_categories)
-		->with('selected_categories', $selected_categories);
+	// 	return View::make('client.business_settings')->with('title','Settings')
+	// 	->with('categories',$categories)
+	// 	->with('businessinfo', $business)
+	// 	->with('business', $business)
+	// 	->with('blogs', $blogs)
+	// 	->with('reviews', $reviews)
+	// 	->with("addresses", $addresses)
+	// 	->with("categories", $notselected_categories)
+	// 	->with('selected_categories', $selected_categories);
 		
-	}
+	// }
 
 	
 	public function addBusiness()
@@ -209,11 +179,7 @@ class BusinessesController extends \BaseController {
 		->with('reviews', NULL);
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+	
 	public function store()
 	{
 
@@ -246,8 +212,29 @@ class BusinessesController extends \BaseController {
 
 	public function companytab2($name){
 		
-			
+			$branch = $this->business->getRawBranch($name);
 
+			if(is_null($branch))	return Response::view("pagenotfound");				
+
+			$reviews = $this->business->getBranchReviews($branch);
+			$blogs = $this->business->getBranchBlogs($branch);
+			$coupons = $this->business->getBranchCoupons($branch);
+			$business = $this->business->getBusinessWithReviews($branch);
+			$branches1 = $this->business->getBusinessBranches($business);
+			$rating = $this->business->getRatings($branches1);
+
+			return View::make('client.company-tab')
+				->with('branch', $branch)
+				->with('business', $business)
+				->with('blogs', $blogs)
+				->with('reviews', $reviews)
+				->with('title', decode($branch->business->name))
+				->with('rating', $rating)
+				->with('coupons', $coupons);
+	}
+
+	public function specific_blog($name, $blog_id){
+		
 			$branch = Branch::join('businesses','businesses.id', '=', 'branches.business_id')
  					->whereRaw("branches.branchslug = '".$name."'")->first();
 			
@@ -279,12 +266,9 @@ class BusinessesController extends \BaseController {
 	}
 
 	public function editcompany($slug, $branchslug){
-
-		// $businessinfo = Business::whereSlug($slug)->first();
 		
-		$branch = Branch::with('business')->where('branchslug', $branchslug)->first();
+		$branch = $this->business->getBranchWithBusiness($branchslug);
 
-	
 		if( is_null($branch) ){
 			return Response::view('pagenotfound');
 		}
@@ -298,7 +282,6 @@ class BusinessesController extends \BaseController {
 		$notselected_categories = $this->category->getCategories();
 
 		for($x=1; $x<count($categories); $x++){
-			// echo "<hr>";
 			for($y=0; $y<count($selected_categories); $y++){
 				if($categories[$x] === $selected_categories[$y]["name"]){
 					unset($notselected_categories[$x]);
@@ -307,8 +290,7 @@ class BusinessesController extends \BaseController {
 			
 		}
 
-		$addresses = $branch->address;
-		$addresses = explode("*", $addresses);
+		$addresses = $this->business->explodeAddresses($branch);
 
 		return View::make("client.editcompany")
 			->with("businessinfo", $branch->business)
@@ -318,34 +300,28 @@ class BusinessesController extends \BaseController {
 			->with('title', "Edit - ".html_entity_decode(stripcslashes($branch->business->name)));
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function addBranch($slug)
+	public function addBranch($businessSlug)
 	{
-		$business = Business::whereSlug($slug)->first();
-		$branch = $business->branches->first();
-		
+		$business = $this->business->getBusiness($businessSlug);
+
+		$branch = $this->business->getBusinessBranch($business);
 		
 		if(is_null($branch))
 		{
 			$branchSlug = $this->business->keywordExplode($business->keywords);
-			return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug)->with('branchSlug', $branchSlug);
+			return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($businessSlug)->with('branchSlug', $branchSlug);
 		}
 
 			$branchSlug = strtolower($this->business->keywordExplode($business->keywords)."-".str_random(3));
 
-		return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($slug)->withBranch($branch)->with('branchSlug', $branchSlug);
+		return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($businessSlug)->withBranch($branch)->with('branchSlug', $branchSlug);
 	}
 
 	public function update($slug, $branchId)
 	{
 		try
 		{
-			$branch = Branch::find($branchId);
+			$branch = $this->business->getBranchById($branchId);
 
 			$this->updatebusiness->validate(Input::all());
 
@@ -362,12 +338,8 @@ class BusinessesController extends \BaseController {
 
 	public function update_category_remove(){
 		if(Request::ajax()){
-
-			$business = Business::find(Input::get("bid"));
-			$business_category =  $business->with(['categories' => function($q){
-					$q->where('category_id', '=', Input::get("category"));
-				}])->first();
-
+			$business = $this->business->getBusinessById(Input::get("bid"));
+			$business_category = $this->business->getBusinessCategory($business, Input::get('category'));
 
 			foreach ($business_category->categories as $role)
 			{
@@ -386,21 +358,15 @@ class BusinessesController extends \BaseController {
 			$category_id = Input::get("category");
 			$name = Input::get("name");
 
-			$business = Business::find($business_id);
+			$business = $this->business->getBusinessById($business_id);
 			
-			$data = array("id"=>$category_id, "name"=>$name);
-			$success = $business->categories()->attach($category_id);
+			// $data = array("id"=>$category_id, "name"=>$name);
+			$success = $this->business->attachCategory($business, $category_id);
 			
 			return "added";		
 		}
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function storeBranch($slug)
 	{
 		try
@@ -424,7 +390,7 @@ class BusinessesController extends \BaseController {
 			return Redirect::to('/');
 		}
 
-		$branch = Branch::whereBranchslug($branchslug)->first();
+		$branch = $this->business->getBranch($branchslug);
 		
 		if(Input::has('q'))
 			$q = Input::get('q');
@@ -454,15 +420,16 @@ class BusinessesController extends \BaseController {
 			return Redirect::back()->withTitle($response);
 		}
 
-		$branch = Branch::find(Input::get("br"));
+		$branch = $this->business->getBranchById(Input::get("br"));
 		$response = $this->business->createCoupon(Input::all(), "other");
+
 		return Redirect::to($branch->branchslug."#company-tabs-coupon")->with("flash_message", $response)->withTitle($response);	
 	}
 
 	public function delete_coupon(){
 		if(Request::ajax()){
 			$coupon_id = Input::get("coupon");
-			$coupon = Coupon::find($coupon_id);
+			$coupon = $this->business->getCoupon($coupon_id);
 			unlink(public_path().$coupon->name);
 			$coupon->delete();
 
@@ -471,13 +438,11 @@ class BusinessesController extends \BaseController {
 	}
 
 	public function showBranches($businessSlug){
-		$business = Business::with('branches', 'reviews')->whereSlug($businessSlug)->first();	
-		
-		$branches1 = $business->branches;
-		$rating = array();
-		foreach ($branches1 as $branch1) {
-			array_push($rating, Review::where('business_id', '=', $branch1->business->id)->avg('rating'));
-		}
+		$business = $this->business->getBusinessWithReviewsBySlug($businessSlug);
+
+		$branches1 = $this->business->getBusinessBranches($business);
+
+		$rating = $this->business->getRatings($branches1);
 
 		return View::make('client.tabcontents.tabcontent-branch')
 		->with('business', $business)
@@ -487,9 +452,9 @@ class BusinessesController extends \BaseController {
 
 	public function deleteBranch($branchId)
 	{
-		$branch = Branch::find($branchId);
-		$branch->delete();
+		$branch = $this->business->getBranchById($branchId);
 
+		if($this->business->deleteBranch($branch))
 		return Redirect::back();
 	}
 	

@@ -6,7 +6,7 @@ class BlogController extends \BaseController {
         $this->beforeFilter('csrf', ['on' => 'post']);
     }
 
-    public function show($id)
+    public function show($slug, $id)
     {
         $blog = Blog::where('slug', '=', $id)->first();
         return View::make('client.blogpost', compact('blog'));

@@ -1385,3 +1385,11 @@ $(document).ready(function() {
 	$(document).on("click", "#linkReview", function(){
 		$(".company-tabs-review").click();
 	});
+
+	$('#add_new_blog').click(function(){
+		$('#add_blog_block').css('display', '');
+	});
+
+	$('#cancel_add_blog').click(function(){
+		$('#add_blog_block').css('display', 'none');
+	});
