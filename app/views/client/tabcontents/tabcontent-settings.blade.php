@@ -1,6 +1,6 @@
 <div id="company-tabs-settings" class="company-tabs-content">
     <div class="portfolio-container container-24">	
-		{{ Form::open(array('action' => ['BusinessesController@update', $branch->business->slug, $branch->branchslug], 'files' => true)) }}		   
+		{{ Form::open(array('action' => ['BusinessesController@update', $branch->business->slug, $branch->branchslug], 'files' => true, 'id' => 'frm-business-settings')) }}		   
 		<div id="update-business-settings" class="">  
 		     <div class="form-group">
 		        {{ Form::label('profilebanner', "Profile Banner",
@@ -52,12 +52,36 @@
 		    </div>
 
 		    <div class="thin-separator"></div>
-		    <div class="form-group">
-		        {{ Form::label('keywords', "Keywords (please separate keywords by a comma.)",
-		        ["class"=>"text-colorful"]) }}<br/>
-		        {{ Form::text('keywords', $businessinfo->keywords, [
+		    <div class="form-group">	
+		        {{ Form::hidden('keywords', $businessinfo->keywords, [
 		        	"placeholder" => "office, airplane, house", "class"=>"text-input-grey full-width", 'required']) }}
-		        {{$errors->first('keywords','<span class="alert alert-error block half">:message</span>')}}
+		        {{$errors->first('keywords','<span class="alert alert-error block half">:message</span>') }}
+
+		        <a href="javascript:void(0)" data-rel="#edit-keywords-dialog" rel="dialog" class="text-colorful" title="Click to edit your business Keywords">Keywords</a>
+				
+				<div id="edit-keywords-dialog" title="Edit your keywords" class="invisible">
+					<div class="form-group">
+						{{ Form::text('edit-keywords', $businessinfo->keywords, 
+						["placeholder" => "office, airplane, house", "id"=>"edit-keywords", "class"=>"text-input-grey full-width", 'required']) }}<br/><br/>
+						<a href="javascript:void(0);" class="a-btn button-2-colorful" data-rel="save-keywords-from-dialog">Save</a>
+					</div>
+				</div>
+
+		        <div id="edit-business-keywords" class="block-content">
+					<ul>
+						<?php 
+							$keywords = $branch->business->keywords;
+							$arr = explode(",", $keywords);
+							foreach ($arr as $keyword) {
+								if( trim($keyword) != "" ){
+									echo "<li>".$keyword."</li>";
+								}
+							}
+						?>
+					</ul>
+					<div class="clear">
+					</div>
+				</div>
 		    </div>
 
 		    <div class="form-group">

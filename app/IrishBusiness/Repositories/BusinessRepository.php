@@ -413,4 +413,16 @@ class BusinessRepository {
 
         return false;
     }
+
+    function update_branch_keywords($old_branchslug, $new_keywords, $business_id){
+        $branch = Branch::where('branchslug', $old_branchslug)->first();
+        $business = Business::find($business_id);
+        $business->keywords = $new_keywords;
+        $branch->branchslug = clean_str($new_keywords);
+        if( $branch->save() && $business->save() ){
+            return true;
+        }
+
+        return false;
+    }
 }

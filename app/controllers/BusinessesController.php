@@ -389,18 +389,23 @@ class BusinessesController extends \BaseController {
 		if(Request::ajax()){
 
 			$business = Business::find(Input::get("bid"));
-			$business_category =  $business->with(['categories' => function($q){
-					$q->where('category_id', '=', Input::get("category"));
-				}])->first();
 
-
-			foreach ($business_category->categories as $role)
-			{
-			    if($role->pivot->delete()){
-			    	return "deleted.";
+			// $business_category =  $business->with(['categories' => function($q){
+			// 		$q->where('category_id', '=', Input::get("category"));
+			// 	}])->first();
+			// return $business->categories;
+			$business_category = $business->categories;
+			// return "bid = ".Input::get("bid")." categories = ".Input::get("category");
+			foreach ($business_category as $role)
+			{	
+			    if( $role->id == Input::get("category") ){
+			    	if($role->pivot->delete()){
+				    	return "deleted.";
+				    }
 			    }
 				
 			}
+
 			return "deletion failed.";
 		}
 	}
@@ -523,6 +528,16 @@ class BusinessesController extends \BaseController {
 			$response = $this->business->delete_business(Input::get("id"));
 
 			if( $response = true ){
+				return "true";
+			}
+
+			return "false";
+		}
+	}
+
+	public function update_business_keywords(){
+		if(Request::ajax()){
+			if($this->business->update_branch_keywords(Input::get("oldbr"), Input::get("keywords"), Input::get("bid"))){
 				return "true";
 			}
 
