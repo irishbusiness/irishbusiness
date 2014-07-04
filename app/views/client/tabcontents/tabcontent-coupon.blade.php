@@ -124,7 +124,7 @@
 						  </a>
 						</p>
 						<p>
-						  <a href="http://www.linkedin.com/shareArticle?mini=true&url={{ URL::asset($coupon->name) }}&source=IrishBusiness.ie&title=Deal+Voucher+Coupon" class="share linkedin">
+						  <a href="http://www.linkedin.com/shareArticle?mini=true&url={{ URL::asset($coupon->name) }}&source=IrishBusiness.ie" class="share linkedin">
 						    Share on LinkedIn
 						  </a>
 						</p>
