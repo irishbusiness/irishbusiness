@@ -245,6 +245,8 @@ class BusinessesController extends \BaseController {
 
 			$addresses = $this->business->explodeAddresses($branch);
 
+			
+
 			return View::make('client.company-tab')
 				->with('branch', $branch)
 				->with('business', $business)->with('businessinfo', $business)
