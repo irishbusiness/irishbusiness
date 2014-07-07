@@ -49,8 +49,11 @@ class BusinessesController extends \BaseController {
 		$selected = Input::get('category-default');
 
 		$query1 = $this->business->getQuery($addresses);
+		
 
 		$branches = $this->business->getBranches($category, $query1);
+
+		
 
 		$rating = $this->business->getRatings($branches);
 		
@@ -62,6 +65,7 @@ class BusinessesController extends \BaseController {
 			->with('location', Input::get('location'))
 			->with('selected', $selected)
 			->with('rating', $rating)->with("title", "Search results");
+
 	}
 
 	public function addBusiness()
