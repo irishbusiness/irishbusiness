@@ -30,10 +30,10 @@
 		<ul class="entries-list">
 		@foreach($recentlyaddedblog as $recentblog)
 			<li class="clearfix">
-				<a href="{{ URL::to($recentblog->business->branches()->first()->branchslug.'/blog/'.$recentblog->slug.'#company-tabs-blog') }}" class="thumbnail">
+				<a href="{{ URL::to($recentblog->business->branches->first()->branchslug.'/blog/'.$recentblog->slug.'#company-tabs-blog') }}" class="thumbnail">
 					<img src="{{ ($recentblog->blogheaderimage == '') ? URL::asset('images/no_photo_available.jpg') : URL::asset($recentblog->blogheaderimage) }}" alt="" />
 				</a>
-				<a href="{{ URL::to($recentblog->business->branches()->first()->branchslug.'/blog/'.$recentblog->slug.'#company-tabs-blog') }}" class="entry-title">
+				<a href="{{ URL::to($recentblog->business->branches->first()->branchslug.'/blog/'.$recentblog->slug.'#company-tabs-blog') }}" class="entry-title">
 					{{ decode($recentblog->title) }}
 				</a>
 				<div class="entry-excerpt">
