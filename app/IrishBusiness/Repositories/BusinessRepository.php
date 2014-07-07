@@ -446,7 +446,8 @@ class BusinessRepository {
         ->join('categories','business_category.category_id', '=', 'categories.id'  )
         ->whereRaw("(businesses.name like '%$category%' or businesses.keywords like '%$category%' or categories.name like '$category') $query1 ")
         ->groupBy('branches.id')
-        ->paginate(7, ['branches.*','businesses.id as bid','businesses.name','businesses.business_description','businesses.profile_description','businesses.slug','businesses.logo']);
+        ->paginate(7, ['branches.*','businesses.id as bid','businesses.name',
+            'businesses.business_description','businesses.profile_description','businesses.slug','businesses.logo']);
 
         return $branches;
     }
@@ -474,9 +475,11 @@ class BusinessRepository {
             $query1 .= '(';
             $string = trim(preg_replace('/\*/', '', $address));
             $query1 .= "branches.address like '%$string%' or branches.locations like '%$string%'"; 
-            $query1 .= ')and ';
+            $query1 .= ') and ';
         }
         $query1 .= "branches.locations like '%%'";
+
+        return $query1;
     }
 
     function getRatings($branches)

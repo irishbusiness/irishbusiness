@@ -24,6 +24,11 @@
 						$rating = array(0);
 					}
 				?>
+
+				@if(!count($branches))
+					<h3><span class="text-colorful">Sorry, </span>we can't find what you are looking for, please try other <span class="text-colorful">keywords.</span></h3>
+				@endif
+
 				@foreach($branches as $branch)
 			
 				<div class="company-listing clearfix">

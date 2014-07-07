@@ -251,7 +251,22 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try',function(){
-	echo hashtag("The Free TV Company");
+	
+	$addresses = explode(' ', "Fermon");
+
+
+	 $query1 = 'and ';
+        /*$query1='';*/
+        foreach($addresses as $address)
+        {
+            $query1 .= '(';
+            $string = trim(preg_replace('/\*/', '', $address));
+            $query1 .= "branches.address like '%$string%' or branches.locations like '%$string%'"; 
+            $query1 .= ')and ';
+        }
+        $query1 .= "branches.locations like '%$string%'";
+
+        echo $query1;
 });
 
 Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');
