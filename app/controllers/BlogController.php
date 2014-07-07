@@ -61,14 +61,14 @@ class BlogController extends \BaseController {
     {
         $blog = $this->blog->create(Input::all());
 
-        return Redirect::to(Auth::user()->user()->business->branches()->first()->branchslug.'/blog/'.$blog->slug);
+        return Redirect::to(Auth::user()->user()->business->branches()->first()->branchslug.'/blog/'.$blog->slug.'#company-tabs-blog');
     }
 
     public function update($id)
     {
         $blog = $this->blog->update($id);
 
-        return Redirect::to(Auth::user()->user()->business->branches()->first().'/blog/'.$blog->slug);
+        return Redirect::to(Auth::user()->user()->business->branches()->first().'/blog/'.$blog->slug.'#company-tabs-blog');
     }
 
     public function blogAjax(){
