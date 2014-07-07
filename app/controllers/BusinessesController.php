@@ -118,13 +118,40 @@ class BusinessesController extends \BaseController {
 			$branches1 = $this->business->getBusinessBranches($business);
 			$rating = $this->business->getRatings($branches1);
 
+			$categories = $this->category->getCategories();
+		
+			$selected_categories = $branch->business->categories;
+			$selected_categories = $selected_categories->toArray();
+			$selected_categoriesraw = $branch->business->categories;
+
+			// $notselected_categories = $this->category->getCategories();
+
+			$notselected_categories = $this->business->getNotSelectedCategories($categories, $selected_categories);
+
+			// for($x=1; $x<count($categories); $x++){
+			// 	// echo "<hr>";
+			// 	for($y=0; $y<count($selected_categories); $y++){
+			// 		if($categories[$x] === $selected_categories[$y]["name"]){
+			// 			unset($notselected_categories[$x]);
+			// 		}
+			// 	}
+				
+			// }
+
+			$addresses = $this->business->explodeAddresses($branch);
+
+			
+
 			return View::make('client.company-tab')
 				->with('branch', $branch)
-				->with('business', $business)
+				->with('business', $business)->with('businessinfo', $business)
 				->with('blogs', $blogs)
 				->with('reviews', $reviews)
-				->with('title', decode($branch->business->name))
+				->with('title', decode($branch->business->name)." - ".$branch->business->keywords)
 				->with('rating', $rating)
+				->with('categories', $notselected_categories)
+				->with('selected_categories', $selected_categories)
+				->with('addresses', $addresses)
 				->with('coupons', $coupons);
 	}
 
@@ -150,6 +177,27 @@ class BusinessesController extends \BaseController {
 				array_push($rating, Review::where('business_id', '=', $branch1->business->id)->where('confirmed', '=', 1)->avg('rating'));
 			}
 
+			$categories = $this->category->getCategories();
+		
+			$selected_categories = $branch->business->categories;
+			$selected_categories = $selected_categories->toArray();
+			$selected_categoriesraw = $branch->business->categories;
+
+			$notselected_categories = $this->category->getCategories();
+
+			for($x=1; $x<count($categories); $x++){
+				// echo "<hr>";
+				for($y=0; $y<count($selected_categories); $y++){
+					if($categories[$x] === $selected_categories[$y]["name"]){
+						unset($notselected_categories[$x]);
+					}
+				}
+				
+			}
+
+			$addresses = $branch->address;
+			$addresses = explode("*", $addresses);
+
 			return View::make('client.company-tab')
 				->with('branch', $branch)
 				->with('business', $business)
@@ -157,7 +205,11 @@ class BusinessesController extends \BaseController {
 				->with('reviews', $reviews)
 				->with('title', decode($branch->business->name))
 				->with('rating', $rating)
-				->with('coupons', $coupons);
+				->with('coupons', $coupons)
+				->with('businessinfo', $business)
+				->with("addresses", $addresses)
+				->with("categories", $notselected_categories)
+				->with('selected_categories', $selected_categories);
 	}
 
 	public function editcompany($slug, $branchslug){
@@ -233,16 +285,25 @@ class BusinessesController extends \BaseController {
 
 	public function update_category_remove(){
 		if(Request::ajax()){
-			$business = $this->business->getBusinessById(Input::get("bid"));
-			$business_category = $this->business->getBusinessCategory($business, Input::get('category'));
 
-			foreach ($business_category->categories as $role)
-			{
-			    if($role->pivot->delete()){
-			    	return "deleted.";
+			$business = Business::find(Input::get("bid"));
+
+			// $business_category =  $business->with(['categories' => function($q){
+			// 		$q->where('category_id', '=', Input::get("category"));
+			// 	}])->first();
+			// return $business->categories;
+			$business_category = $business->categories;
+			// return "bid = ".Input::get("bid")." categories = ".Input::get("category");
+			foreach ($business_category as $role)
+			{	
+			    if( $role->id == Input::get("category") ){
+			    	if($role->pivot->delete()){
+				    	return "deleted.";
+				    }
 			    }
 				
 			}
+
 			return "deletion failed.";
 		}
 	}
@@ -359,6 +420,17 @@ class BusinessesController extends \BaseController {
 
 			if( $response = true ){
 				return "true";
+			}
+
+			return "false";
+		}
+	}
+
+	public function update_business_keywords(){
+		if(Request::ajax()){
+			$keywords = $this->business->update_branch_keywords(Input::get("oldbr"), Input::get("keywords"), Input::get("bid"));
+			if( $keywords != false ){
+				return $keywords;
 			}
 
 			return "false";

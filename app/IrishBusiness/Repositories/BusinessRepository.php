@@ -97,7 +97,8 @@ class BusinessRepository {
 
     function update($slug, $input, $branchId){
         $old_businessinfo = Business::where('slug', $slug)->first();
-        $branch = Branch::find($branchId);
+        // $branch = Branch::find($branchId);
+        $branch = Branch::where('branchslug', $branchId)->first();
 
         $address = $input['address1'] ;
         if(trim($input['address2'])!='')
@@ -137,10 +138,16 @@ class BusinessRepository {
         $branch->phone = $input["phone"];
         $branch->email = $input["email"];
         
-        $branch->branchslug = keywordExplode($input['keywords']);
+        $branchslug = keywordExplode($input['keywords']);
+        
+        $branch->branchslug = $branchslug;
         
 
-        $branch->save();
+        if(!$branch->save()){
+            $branchslug = keywordExplode($input['keywords']).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
+            $branch->branchslug = $branchslug;
+            $branch->save();
+        }
 
         // logo
         if( !is_null($input["logo"]) )
@@ -197,12 +204,14 @@ class BusinessRepository {
             $business->slug = strtolower($input['slug']);
         }
 
+        
         $business->save();
 
         // $id = $old_businessinfo->id;
 
         // $business = Business::findOrFail($id);
-        $branch = Branch::find($branchId);
+        // $branch = Branch::find($branchId);
+        $branch = Branch::where('branchslug', $branchslug)->first();
         // return keywordExplode($input['keywords']);
         return $branch->branchslug;
 
@@ -407,6 +416,28 @@ class BusinessRepository {
         return false;
     }
 
+    function update_branch_keywords($old_branchslug, $new_keywords, $business_id){
+        try {
+            $branch = Branch::where('branchslug', $old_branchslug)->first();
+            $business = Business::find($business_id);
+            $business->keywords = $new_keywords;
+            $branch->branchslug = clean_str($new_keywords);
+            if( $branch->save() && $business->save() ){
+                $keywords = "";
+                $arr = explode(",", $new_keywords);
+                foreach ($arr as $keyword) {
+                    if( trim($keyword) != "" ){
+                        $keywords.= "<li>".$keyword."</li>";
+                    }
+                }
+
+                return $keywords;
+            }
+        } catch (\Exception $e) {
+            return false;
+            
+        }
+    }
     function getBranches($category, $query1)
     {
         $branches = Branch::Join('businesses','businesses.id', '=', 'branches.business_id')
@@ -554,6 +585,22 @@ class BusinessRepository {
                 }])->first();
 
         return $business_category;
+    }
+
+    function getNotSelectedCategories($categories, $selected_categories){
+        $notselected_categories = $categories;
+
+        for($x=1; $x<count($categories); $x++){
+            // echo "<hr>";
+            for($y=0; $y<count($selected_categories); $y++){
+                if($categories[$x] === $selected_categories[$y]["name"]){
+                    unset($notselected_categories[$x]);
+                }
+            }
+            
+        }
+
+        return $notselected_categories;
     }
 
     function attachCategory($business, $category_id)

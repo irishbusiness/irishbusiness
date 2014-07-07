@@ -33,6 +33,12 @@
 					<a class="company-tabs-review" href="javascript:void(0)">REVIEWS</a>
 				</li>
 				@endif
+
+				@if( isAdmin() || isOwner($branch->business->slug) )
+				<li class="" style="float: right;">
+					<a class="company-tabs-settings" href="javascript:void(0)">SETTINGS</a>
+				</li>
+				@endif
 			</ul>
 		</div>
 		<!-- end of .company-tabs-container -->
@@ -58,6 +64,11 @@
 				<!-- coupon tab -->
 				@include('client.tabcontents.tabcontent-coupon')
 			@endif
+
+			@if( isAdmin() || isOwner($branch->business->slug) )
+				<!-- settings tab -->
+				@include( 'client.tabcontents.tabcontent-settings' )
+			@endif
 		</div>
 		<!-- end of .company-inner-container -->
 	</div>
@@ -65,7 +76,10 @@
 </div>
 @stop
 	@section('linksfirst')
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+		<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+		
 	@stop
 	@section('scripts2')
 		<script>

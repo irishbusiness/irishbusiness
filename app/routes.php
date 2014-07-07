@@ -102,6 +102,8 @@ Route::post('ajaxDeleteBusiness', 'BusinessesController@delete_business');
 Route::post('ajaxSaveCoupon', 'BusinessesController@save_coupon');
 Route::post('ajaxDeleteCoupon', 'BusinessesController@delete_coupon');
 
+Route::post('ajaxUpdateKeywords', 'BusinessesController@update_business_keywords');
+
 //post create business
 Route::post('settings', 'BusinessesController@store');
 
@@ -266,3 +268,4 @@ Route::get('{slug}/{branch}', 'BusinessesController@companytab2');
 Route::get('{slug}/blog/{id}', 'BusinessesController@specific_blog');
 
 Route::get('review/confirm/{token}', 'ReviewsController@confirm');
+
