@@ -68,7 +68,7 @@ class BlogController extends \BaseController {
     {
         $blog = $this->blog->update($id);
 
-        return Redirect::to(Auth::user()->user()->business->branches()->first().'/blog/'.$blog->slug.'#company-tabs-blog');
+        return Redirect::to(Auth::user()->user()->business->branches()->first()->branchslug.'/blog/'.$blog->slug.'#company-tabs-blog');
     }
 
     public function blogAjax(){
