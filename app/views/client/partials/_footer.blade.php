@@ -41,7 +41,7 @@
 							<?php $x = 1; ?>
 							@foreach($recentlyaddedblog as $recentblog)
 								<li class="{{ ($x == 1) ? 'first' : ($x == count($recentlyaddedblog) ? 'last' : '') }}">
-									<a href="{{ URL::to($recentblog->business->branches->first()->branchslug.'blog/'.$recentblog->slug.'#company-tabs-blog') }}" class="text-colorful">{{ stripcslashes($recentblog->title) }}</a>
+									<a href="{{ URL::to($recentblog->business->branches->first()->branchslug.'/blog/'.$recentblog->slug.'#company-tabs-blog') }}" class="text-colorful">{{ stripcslashes($recentblog->title) }}</a>
 								</li>
 								<?php $x++; ?>
 							@endforeach
