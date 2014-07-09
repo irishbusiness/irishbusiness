@@ -276,6 +276,7 @@ Route::get('/{branchId}/branch/delete', 'BusinessesController@deleteBranch');
 
 Route::get('1/{slug}', 'BusinessesController@companytab2');
 Route::get('1/{slug}/{branch}', 'BusinessesController@companytab2');
+Route::get('corporate/{slug}', 'BusinessesController@companytab2');
 
 Route::get('{slug}', 'BusinessesController@companytab2');
 Route::get('{slug}/{branch}', 'BusinessesController@companytab2');

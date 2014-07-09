@@ -11,6 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {{ HTML::script('scripts/jquery-1.10.2.min.js') }}
 
+
         @yield('linksfirst')
         
         <style type="text/css">
@@ -19,7 +20,15 @@
             }
         </style>
 
+        @if(Request::is('1/*') || Request::is('corporate/*'))
+            <?php $Request_is_Corporate = "true"; ?>
+        @else
+            <?php $Request_is_Corporate = "false"; ?>
+        @endif
+
         <script type="text/javascript">
+            var is_corporate = "{{ $Request_is_Corporate }}";
+            var corporate_counter = 0;
 
             function testButton(obj, event, key)
             {
@@ -83,7 +92,9 @@
 
         <section class="section content boxed">
 
-        	@include('client.partials._searchbar')
+            @if(!Request::is('1/*') && !Request::is('corporate/*'))
+                @include('client.partials._searchbar')
+            @endif
 
             @yield('slider')
         	<!-- actual body -->
@@ -104,7 +115,11 @@
            
             @yield('scripts')
             @yield('scripts2')
-        	@include('client.partials._footer')
+
+            @if(!Request::is('1/*') && !Request::is('corporate/*'))
+                @include('client.partials._footer')
+            @endif
+
         	@include('client.partials._includes')
         	
             @if(Session::has('errorNotify'))
