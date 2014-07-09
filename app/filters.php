@@ -14,7 +14,7 @@
 
 View::share('selected', '');
 View::share('reviews', 0);
-View::share('title', 'The Irish Business Directory');
+View::share('title', 'IrishBusiness.ie | The Irish Business Directory');
 
 $recentsettings = MainSetting::orderBy('created_at', 'desc')->first();
 $header_categories = Category::orderBy('name', 'asc')->get();

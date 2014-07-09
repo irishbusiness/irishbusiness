@@ -4460,6 +4460,7 @@ div.company-page-map div.company-page-map-container {
 
 td.detail {
 	word-wrap: break-word;
+	padding-left: 0px;
 }
 
 .alert-error2 {
@@ -4693,6 +4694,7 @@ div.listing-rating {
 .text-input-grey.full-width.select{
 	width: 100%;
 }
+
 .captionOrange, .captionBlack
 {
     color: #fff;

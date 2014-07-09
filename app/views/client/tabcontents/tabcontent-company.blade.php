@@ -149,7 +149,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="separator"></div>
+		<div class="thin-separator"></div>
 		<div class="range-of-services company-page-center-block">
 			<div class="divlocations">
 				<h2>Locations Served</h2>
