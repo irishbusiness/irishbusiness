@@ -37,6 +37,12 @@
 				</li>
 				@endif
 
+				@if( $review_count>0 || (isOwner($branch->business->slug) || isAdmin() ) )
+				<li class="">
+					<a class="company-tabs-photogallery" href="javascript:void(0)">GALLERY</a>
+				</li>
+				@endif
+
 				@if( isAdmin() || isOwner($branch->business->slug) )
 				<li class="" style="float: right;">
 					<a class="company-tabs-settings" href="javascript:void(0)">SETTINGS</a>
@@ -66,6 +72,11 @@
 			@if(count($coupons) || isOwner($branch->business->slug) || isAdmin() )               
 				<!-- coupon tab -->
 				@include('client.tabcontents.tabcontent-coupon')
+			@endif
+
+			@if(count($photos) || isOwner($branch->business->slug) || isAdmin() )               
+				<!-- gallery tab -->
+				@include('client.tabcontents.tabcontent-photogallery')
 			@endif
 
 			@if( isAdmin() || isOwner($branch->business->slug) )
