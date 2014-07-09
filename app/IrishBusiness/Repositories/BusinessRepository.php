@@ -6,6 +6,7 @@ use Auth;
 use Branch;
 use Image;
 use Coupon;
+use Photogallery;
 
 class BusinessRepository {
 
@@ -625,5 +626,12 @@ class BusinessRepository {
         $branch->delete();
 
         return true;
+    }
+
+    function getPhotos($branchid)
+    {
+        $photos = Photogallery::where('branch_id', $branchid)->get();
+
+        return $photos;
     }
 }

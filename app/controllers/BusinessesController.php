@@ -143,7 +143,7 @@ class BusinessesController extends \BaseController {
 			// }
 
 			$addresses = $this->business->explodeAddresses($branch);
-
+			$photos = $this->business->getPhotos($branch->id);
 			
 
 			return View::make('client.company-tab')
@@ -156,7 +156,8 @@ class BusinessesController extends \BaseController {
 				->with('categories', $notselected_categories)
 				->with('selected_categories', $selected_categories)
 				->with('addresses', $addresses)
-				->with('coupons', $coupons);
+				->with('coupons', $coupons)
+				->with('photos', $photos);
 	}
 
 	public function specific_blog($name, $blog_id){
