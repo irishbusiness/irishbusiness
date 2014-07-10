@@ -10,7 +10,7 @@
     
     <div class="comments block">
         <div class="comment-message">
-            {{ Form::open(array('action' => 'UsersController@store')) }}
+            {{ Form::open(array('action' => 'UsersController@store', 'id'=>'form-register')) }}
                 <div class="form-group">
                 {{ Form::label('firstname', "Firstname", ["required"=>"required", "class"=> "text-colorful"]) }}
                 <br>
@@ -54,12 +54,20 @@
                     {{$errors->first('password','<span class=" half block alert alert-error">:message</span>')}}
                 </div><br>
                 <div class="form-group">
-                    {{ Form::submit("Submit", ["required"=>"required", "class"=>"button-2-colorful"]) }}
+                    {{ Form::submit("Submit", ["required"=>"required", "class"=>"button-2-colorful", "id"=>"btn-register-submit"]) }}
                 </div>
             {{ Form::close() }}
         </div>
     </div>
     </div>
+@stop
+
+@section('scripts')
+    <script type="text/javascript">
+        $("#form-register").on("submit", function(){
+            $("#btn-register-submit").attr("disabled", "disabled");
+        });
+    </script>
 @stop
 
 @section('sidebar')
