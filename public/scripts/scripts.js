@@ -1409,10 +1409,16 @@ $(document).ready(function() {
 
 	$('#add_new_photo').click(function(){
 		$('#photostouploadpanel').css('display', '');
+		$('#slider2_container').css('display', 'none');
 	});
 
 	$('#choosefiles').change(function(){
 		$('#addphotosubmit').trigger('click');
+	});
+
+	$('#closemanagephotopanel').click(function(){
+		$('#photostouploadpanel').css('display', 'none');
+		$('#slider2_container').css('display', '');
 	});
 
 	$(document).ready(function() {
@@ -1425,15 +1431,15 @@ $(document).ready(function() {
           formData.append('_token',token);
 
                $.ajax({
-                      url: '/uploadphotos',  //Server script to process data
+                      url: '/addphoto',  //Server script to process data
                       type: 'post',
-                      xhr: function() {  // Custom XMLHttpRequest
-                          var myXhr = $.ajaxSettings.xhr();
-                          if(myXhr.upload){ // Check if upload property exists
-                              myXhr.upload.addEventListener('progress',progressHandler, true); // For handling the progress of the upload
-                          }
-                          return myXhr;
-                      },
+                      // xhr: function() {  // Custom XMLHttpRequest
+                      //     var myXhr = $.ajaxSettings.xhr();
+                      //     if(myXhr.upload){ // Check if upload property exists
+                      //         myXhr.upload.addEventListener('progress',progressHandler, false); // For handling the progress of the upload
+                      //     }
+                      //     return myXhr;
+                      // },
                       //Ajax events
                       // beforeSend: beforeSendHandler,
                       success: completeHandler,
@@ -1449,52 +1455,24 @@ $(document).ready(function() {
                   		encode	: true
                   });
 
-          function completeHandler(e)
-          {
-             if(e.status == 'saved'){
-             	$('#editblog').fadeOut(500, 'linear');
-				$('#editblog').prepend('<center><span class="alert alert-success" id="'+str+'" style="font-size:20px;color:green">New Blog Post has been added</span></center><br>');
-				$("#"+str).fadeOut(2000, "linear", function(){
-                	$(this).remove();
-        		});	
-
-        		$("#table-categories tbody").prepend('<tr data-id="'+e.id+'"><td><span class="category-name">'+e.title+'</span></td><td><a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="editBlog($(this))" data-id="'+e.id+'">Edit</a> <a href="javascript:void(0)" data-id="'+e.id+'" onclick="deleteBlog($(this))" class="bs-btn btn-danger btn-delete-blog" data-id="'+e.id+'">Delete</a></td></tr>');
-
-        		$('#titleedit').val('');
-				$('#facebookedit').val('');
-				$('#googleedit').val('');
-				$('#twitteredit').val('');
-				$('#linkedinedit').val('');
-				$('#img-render-blogheaderimageedit').attr('src', '');
-				$('#btn-editblog-settings-logo').val('');
-
-			} else {
-				$('#editblog').prepend('<center><span class="alert alert-error" id="'+str+'" style="font-size:20px;color:red">We are having a problem saving your blog</span></center><br>');
-			}
-          }
-           function beforeSendHandler()
-          {
-
-          }
+		          function completeHandler(e)
+		          {
+		          	$.each(e, function(index, value){
+		          		$('#listofphotos').append('<div class="box2"><span class="remove-photo">x</span><img src="../../images/photogallery/'+e.filenames[index]+'" class="uploaded-img"></div>');
+		          	});
+		         	
+		          }
          
-          function progressHandler(e){
-              if(e.lengthComputable){
-                 $('.meter').width(Math.floor(e.loaded/e.total*100) + '%');
-              }
-          }  
+          // function progressHandler(e){
+          //     if(e.lengthComputable){
+          //        $('.meter').width(Math.floor(e.loaded/e.total*100) + '%');
+          //     }
+          // }  
+         
           function errorHandler(e){
           	console.log(e);
           }   
 	});
-
-	
-	$("#logintosendreview").click(function(e){
-		e.preventDefault();
-		jQuery('#login-form').toggle();
-		$("#login-form input[name='email']").focus();
-		jQuery('#register-form').hide();
-	});
-
 
 });
 
@@ -1562,3 +1540,18 @@ $(document).ready(function() {
             //}
             //responsive code end
         });
+
+	function confirmPhotoDelete(id)
+	{
+		var photoid = id;
+		var decision = confirm('Are you sure you want to delete this photo? This cannot be undone');
+		if(decision == true){
+			$.ajax({
+                      url: '/deletephoto',  //Server script to process data
+                      type: 'post',
+                      data: {id: id},
+                  }).done(function(data){
+                  		$('#'+photoid).fadeOut();
+                  });
+		}
+	}

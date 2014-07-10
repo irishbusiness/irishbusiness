@@ -1,33 +1,42 @@
 <div id="company-tabs-photogallery" class="company-tabs-content">
 	<div class="blog block">
 		@if( isOwner($branch->business->slug) || isAdmin() )
-		<a id="add_new_photo" class="a-btn button-2-colorful add-coupon">Add Photos</a>
+		<a id="add_new_photo" class="a-btn button-2-colorful add-coupon">Manage Photos</a>
 		<br/><br/><br/>
-		<div id="photostouploadpanel" style="display:none;border: 2px dashed gray;margin-left:20px">
+		<div id="photostouploadpanel" style="display:none;border: 2px dashed gray;margin-left:20px;">
 		<center>
 		<br/>
 			<input type="button" id="btnchoosefiles" class="a-btn button-2-blue" value="Choose image/s to upload">
-		</center>
+		<br/><br/>
 		
-			<div class="">
-				<span class="remove-photo">x</span>
-				<img src="images/no_photo_available.jpg" class="uploaded-img">
-			</div>
-			<br/>
-		{{ Form::open([ 'method' => 'post', 'files' => true, 'multiple' => '', 'id' => 'photogalleryform']) }}
-			<input type="file" id="choosefiles" multiple="" style="display:none">
-			<input type="submit" id="addphotosubmit" class="a-btn button-2-colorful addphoto" value="Save">
-		{{ Form::close() }}
-		<br/>
+			<div id="listofphotos">
+            {{ Form::open([ 'method' => 'post', 'files' => true, 'multiple' => 'true', 'id' => 'photogalleryform']) }}
+                <input type="hidden" name="branch_id" value="{{ $branch->id}}">
+                <input type="file" name="choosefiles[]" id="choosefiles" multiple="" style="display:none">
+                <input type="submit" id="addphotosubmit" class="a-btn button-2-colorful addphoto" value="Save" style="display:none">
+            {{ Form::close() }}
+
+            @if(count($photos)>0)
+                @foreach($photos as $key => $photo)
+                    <div class="box2" id="{{ $photo->id }}"><span class="remove-photo" id="{{ $photo->id }}" onclick="confirmPhotoDelete({{ $photo->id }})">x</span><img src="{{ URL::asset('images/photogallery/'.$photo->filepath) }}" class="uploaded-img"></div>
+                @endforeach
+            @endif
+            </div>
+            </center>
+            <!-- <hr style="border: 1px dashed gray"/> --><br/>
+            <a href="" class="a-btn button-2-colorful addphoto-btn">Save</a>
+            <a href="javascript:void(0)" id="closemanagephotopanel" class="a-btn button-2-red">Close</a>
+            <br/><br/>
 		</div>
         @endif
 	</div>
-    <script type="text/javascript" src="../scripts/jssor.core.js"></script>
-    <script type="text/javascript" src="../scripts/jssor.utils.js"></script>
-    <script type="text/javascript" src="../scripts/jssor.slider.mini.js"></script>
+    {{ HTML::script('scripts/jssor.core.js') }}
+    {{ HTML::script('scripts/jssor.utils.js') }}
+    {{ HTML::script('scripts/jssor.slider.mini.js') }}
   
   <br/>
   <center>
+  @if(count($photos)>0)
     <!-- Jssor Slider Begin -->
     <div id="slider2_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; ">
 
@@ -43,53 +52,19 @@
 
         <!-- Slides Container -->
         <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow: hidden;" id="photoshere">
+            @foreach($photos as $photo)
             <div>
-                <img u="image" src="../img/photography/002.jpg" />
+                <img u="image" src="{{ URL::asset('images/photogallery/'.$photo->filepath) }}" />
                 <!-- <img u="thumb" src="../img/photography/thumb-002.jpg" /> -->
             </div>
-            <div>
-                <img u="image" src="../img/photography/003.jpg" />
-                <!-- <img u="thumb" src="../img/photography/thumb-003.jpg" /> -->
-            </div>
-            <div>
-                <img u="image" src="../img/photography/004.jpg" />
-                <!-- <img u="thumb" src="../img/photography/thumb-004.jpg" /> -->
-            </div>
-            <div>
-                <img u="image" src="../img/photography/005.jpg" />
-                <!-- <img u="thumb" src="../img/photography/thumb-005.jpg" /> -->
-            </div>
-            <div>
-                <img u="image" src="../img/photography/006.jpg" />
-                <!-- <img u="thumb" src="../img/photography/thumb-006.jpg" /> -->
-            </div>
-            <div>
-                <img u="image" src="../img/photography/007.jpg" />
-                <!-- <img u="thumb" src="../img/photography/thumb-007.jpg" /> -->
-            </div>
-            <div>
-                <img u="image" src="../img/photography/008.jpg" />
-                <!-- <img u="thumb" src="../img/photography/thumb-008.jpg" /> -->
-            </div>
-            <div>
-                <img u="image" src="../img/photography/009.jpg" />
-                <!-- <img u="thumb" src="../img/photography/thumb-009.jpg" /> -->
-            </div>
-            <div>
-                <img u="image" src="../img/photography/010.jpg" />
-                <!-- <img u="thumb" src="../img/photography/thumb-010.jpg" /> -->
-            </div>
-            <div>
-                <img u="image" src="../img/photography/011.jpg" />
-                <!-- <img u="thumb" src="../img/photography/thumb-011.jpg" /> -->
-            </div>
+            @endforeach
         </div>
         <!-- Arrow Left -->
-        <!-- <span u="arrowleft" class="jssora02l" style="width: 55px; height: 55px; top: 123px; left: 8px;">
-        </span> -->
+        <span u="arrowleft" class="jssora02l" style="width: 55px; height: 55px; top: 123px; left: 8px;">
+        </span>
         <!-- Arrow Right -->
-      <!--   <span u="arrowright" class="jssora02r" style="width: 55px; height: 55px; top: 123px; right: 8px">
-        </span> -->
+        <span u="arrowright" class="jssora02r" style="width: 55px; height: 55px; top: 123px; right: 8px">
+        </span>
         <!-- Arrow Navigator Skin End -->
         
         <!-- ThumbnailNavigator Skin Begin -->
@@ -108,5 +83,6 @@
         <a style="display: none" href="http://www.jssor.com">javascript</a>
     </div>
     <!-- Jssor Slider End -->
+	@endif
     </center>
 </div>

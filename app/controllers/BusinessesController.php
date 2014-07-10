@@ -202,6 +202,7 @@ class BusinessesController extends \BaseController {
 
 			$addresses = $branch->address;
 			$addresses = explode("*", $addresses);
+			$photos = $this->business->getPhotos($branch->id);
 
 			return View::make('client.company-tab')
 				->with('branch', $branch)
@@ -214,7 +215,8 @@ class BusinessesController extends \BaseController {
 				->with('businessinfo', $business)
 				->with("addresses", $addresses)
 				->with("categories", $notselected_categories)
-				->with('selected_categories', $selected_categories);
+				->with('selected_categories', $selected_categories)
+				->with('photos', $photos);
 	}
 
 	public function editcompany($slug, $branchslug){

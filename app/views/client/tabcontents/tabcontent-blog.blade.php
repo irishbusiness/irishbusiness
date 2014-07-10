@@ -66,7 +66,7 @@
 							<div class="blog-post-title-comments">
 								<a href="{{ URL::to('blog/'.$blog->slug) }}" class="blog-post-title">{{ html_entity_decode(stripcslashes($blog->title)) }}</a>
 							</div>
-							<div class="blog-post-excerpt">{{ Str::limit(html_entity_decode(stripcslashes($blog->body)), 255) }}</div>
+							<div class="blog-post-excerpt">{{ html_entity_decode(stripcslashes($blog->body)) }}</div>
 							<div class="blog-post-links">
 							@if(isOwner($blog->business->slug))
 								<a href="{{ URL::to('blog/'.$blog->id.'/delete') }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="read-more-link">Remove Blog</a>

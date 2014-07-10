@@ -31,7 +31,7 @@ Route::get('bloglist', 'BlogController@bloglist');
 
 Route::get('blog/add', 'BlogController@add');
 
-Route::get('blog/{id}', 'BlogController@show');
+// Route::get('blog/{id}', 'BlogController@show');
 
 Route::get('blog/{id}/edit', 'BlogController@edit');
 
@@ -42,6 +42,10 @@ Route::resource('blog', 'BlogController');
 Route::get('blogpost', function(){
 	return View::make('client.blogpost');
 });
+
+Route::post('addphoto', 'PhotogalleryController@addphoto');
+Route::post('deletephoto', 'PhotogalleryController@deletephoto');
+
 
 Route::get('contact-us', function(){
 	return View::make('client.contact-us');

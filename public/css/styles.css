@@ -3977,7 +3977,7 @@ ul.entries-list {
 	cursor: pointer;
 }
 .remove-photo {
-	font-size: 10px;
+	font-size: 20px;
 	margin-top: 0px;
 	position: absolute;
 	padding-left: 10px;
@@ -4746,7 +4746,7 @@ a.captionOrange:hover
 	position: absolute;
 	cursor: pointer;
 	display: block;
-    background: url(../img/a02.png) no-repeat;
+    background: url(../images/a02.png) no-repeat;
     overflow:hidden;
 }
 .jssora02l { background-position: -3px -33px; }
@@ -4793,12 +4793,19 @@ a.captionOrange:hover
     -webkit-transition: none;
     -o-transition: none;
 }
-.addphoto {
-	margin-left: 10px;
+.addphoto-btn {
+	margin: 10px;
+	margin-bottom: 20px;
 }
 
 .uploaded-img
 {
 	height:150px;
 	width:150px;
+	/*float:left;*/
+	margin:5px;
+}
+
+.box2{
+	display:inline-block;
 }
