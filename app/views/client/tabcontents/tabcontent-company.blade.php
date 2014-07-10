@@ -189,8 +189,8 @@
 										{{ Form::textarea("rating-description", "", ["id"=>"rating-description", "rows"=>"8", "cols"=>"45", 
 											"placeholder"=>"Description", "class"=>"text-input-grey comment-message-main one-fourth", "required"=>"required"]) }}
 									</div>
-									{{ Form::hidden("br", $branch->id) }}
-									{{ Form::input("submit", "submit", "Send rating", ["class"=>"send-rating button-2-green"]) }}
+									{{ Form::hidden("br", $branch->branchslug) }}
+									{{ Form::input("submit", "submit", "Send rating", ["class"=>"send-rating button-2-green", "id"=>"btn-submit-rating"]) }}
 								</div>
 								<div class="ratings">
 									<div class="rating clearfix already" data-rating-id="1" data-rated-value="0"><div class="rating-title">Rating</div>
@@ -217,8 +217,8 @@
 										{{ Form::textarea("rating-description", "", ["id"=>"rating-description", "rows"=>"8", "cols"=>"45", 
 											"placeholder"=>"Description", "class"=>"text-input-grey comment-message-main one-fourth", "required"=>"required"]) }}
 									</div>
-									{{ Form::hidden("br", $branch->id) }}
-									{{ Form::input("submit", "submit", "Send rating", ["class"=>"send-rating button-2-green"]) }}
+									{{ Form::hidden("br", $branch->branchslug) }}
+									{{ Form::input("submit", "submit", "Send rating", ["class"=>"send-rating button-2-green", "id"=>"btn-submit-rating"]) }}
 								</div>
 								<div class="ratings">
 									<div class="rating clearfix already" data-rating-id="1" data-rated-value="0"><div class="rating-title">Rating</div>
@@ -253,6 +253,72 @@
 
 @section('scripts')
 	<script>
+		$("#form-review").on("submit", function(e){
+			var self = $(this);
+			// e.preventDefault();
+			var btnsubmit = $("#btn-submit-rating");
+			disable(btnsubmit);
+
+			var des = $.trim($("#rating-description").val());
+			var name = $.trim($("#rating-name").val());
+
+			var max = 2;
+
+			if( $("#rating-email").length > 0 ){
+				max = 3;
+				var email = $.trim($("#rating-email").val());
+			}	
+
+			var validate = 0;
+			if( des != "" && des != null && des != undefined ){
+				validate++;
+			}else{
+				alert("Please provide a description.");
+				enable(btnsubmit);
+			}
+
+			// console.log(validate);
+
+			if( name != "" && name != null && name != undefined ){
+				validate++;
+			}else{
+				alert("Please provide your name.");
+				enable(btnsubmit);
+			}
+
+			// console.log(validate);
+
+			if(  max === 3 ){
+				if( email != "" && email != null && email != undefined ){
+					validate++;
+				}else{
+					alert("Please provide your email.");
+					enable(btnsubmit);
+				}
+			}
+
+			// console.log("max="+max);
+			// console.log("v="+validate);
+			if( validate === max ){
+				self.submit();
+				// return true;
+			}else{
+				e.preventDefault();
+				// return false;
+				e.preventDefault();
+				enable(btnsubmit);
+			}
+
+		});
+
+		function disable(el){
+			$(el).attr("disabled", "disabled");
+		}
+
+		function enable(el){
+			$(el).removeAttr("disabled");
+		}
+
 		$(document).on("click", "#btn-delete-business", function(){
 			var id = "{{ $branch->business->id }}";
 			var token = $("input[name='_token']").val();
