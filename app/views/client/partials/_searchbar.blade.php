@@ -5,7 +5,7 @@
 								{{ Form::open(array('action' => 'BusinessesController@search','id' =>'default-search', 'class' => 'default-search clearfix', 'method' => 'get')) }}
 								<select id="category-selector-default" name="category-default" tabindex="1">
 									<option selected>Businesses</option>
-									<option   value="">- Select Category -</option>
+									<!-- <option   value="">- Select Category -</option> -->
 									@foreach($header_categories as $header_category)
 										<!-- <option value="{{ strtolower($header_category->name) }}" {{isSelected("strtolower($header_category->name)",$selected)}}>{{ ucwords($header_category->name) }}</option> -->
 									@endforeach
