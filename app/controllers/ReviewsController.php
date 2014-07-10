@@ -15,7 +15,7 @@ class ReviewsController extends \BaseController {
 
 	public function store($id)
 	{	
-		if( Auth::guest() ){
+		if( !Auth::guest() ){
 			$branchId = Input::get("br");
 			$user_id = Auth::user()->user()->id;
 			$businessinfo = Business::find($id);
