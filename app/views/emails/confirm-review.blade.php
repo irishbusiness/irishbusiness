@@ -15,7 +15,7 @@
 		<p>IrishBusiness.ie</p>
 		<hr>
 		<p><small>If the link above doesn't work. Please copy and paste this url to your browser. </small></p>
-		<p><small>{{URL::to('review/confirm'.$token) }}</small></p>
+		<p><small>{{URL::to('review/confirm/'.$token) }}</small></p>
 		<p><small>If you didn't do this review, please ignore this email or delete it immediately.</small></p>
 	</body>
 </html>	

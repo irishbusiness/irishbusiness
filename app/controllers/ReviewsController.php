@@ -15,7 +15,7 @@ class ReviewsController extends \BaseController {
 
 	public function store($id)
 	{	
-		if( !Auth::guest() ){
+		if( Auth::user()->check() ){
 			$branchId = Input::get("br");
 			$user_id = Auth::user()->user()->id;
 			$businessinfo = Business::find($id);
@@ -39,41 +39,42 @@ class ReviewsController extends \BaseController {
 					->with('flash_message', "Your review has been submitted.")
 					->withTitle($businessinfo->name);
 			}
-		}
+		}else{
 
-		// --------------------
-		$branchId = Input::get("br");
-		$business = Business::find($id);
+			// --------------------
+			$branchId = Input::get("br");
+			$business = Business::find($id);
 
-		$rating = Input::get("rating");
-		$description = Input::get("rating-description");
-		$name = Input::get("rating-name");
-		$email = Input::get("rating-email");
+			$rating = Input::get("rating");
+			$description = Input::get("rating-description");
+			$name = Input::get("rating-name");
+			$email = Input::get("rating-email");
 
-		$token = md5(date('l jS \of F Y h:i:s A'));
+			$token = md5(date('l jS \of F Y h:i:s A'));
 
-		$review = new Review;
-		$review->name = $name;
-		$review->email = $email;
-		$review->token = $token;
-		$review->rating = $rating;
-		$review->description = $description;
-		$review->business_id = $id;
+			$review = new Review;
+			$review->name = $name;
+			$review->email = $email;
+			$review->token = $token;
+			$review->rating = $rating;
+			$review->description = $description;
+			$review->business_id = $id;
 
-		
+			
 
-		if($review->save()){
+			if($review->save()){
 
-			$review = Review::where('token', $token)->first();
-			// dd($review);
+				$review = Review::where('token', $token)->first();
+				// dd($review);
 
-			Event::fire('review.confirm',[$review, $business->name]);
+				Event::fire('review.confirm',[$review, $business->name]);
 
-			$branch = Branch::find($branchId);
+				$branch = Branch::find($branchId);
 
-			return Redirect::to($branch->branchslug)
-				->with('flash_message', "Your review has been submitted. Please confirm your email.")
-				->withTitle($business->name);
+				return Redirect::to($branch->branchslug)
+					->with('flash_message', "Your review has been submitted. Please confirm your email.")
+					->withTitle($business->name);
+			}
 		}
 	}
 
