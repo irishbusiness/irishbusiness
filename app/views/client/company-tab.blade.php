@@ -37,7 +37,7 @@
 				</li>
 				@endif
 
-				@if( $review_count>0 || (isOwner($branch->business->slug) || isAdmin() ) )
+				@if( count($photos)>0 || (isOwner($branch->business->slug) || isAdmin() ) )
 				<li class="">
 					<a class="company-tabs-photogallery" href="javascript:void(0)">GALLERY</a>
 				</li>
