@@ -3976,6 +3976,17 @@ ul.entries-list {
 	color: red;
 	cursor: pointer;
 }
+.remove-photo {
+	font-size: 10px;
+	margin-top: 0px;
+	position: absolute;
+	padding-left: 10px;
+	font-weight: bolder;
+}
+.remove-photo:hover {
+	color: red;
+	cursor: pointer;
+}
 .comment-message-main.text-input-grey.full {
 	width: 96%;
 	min-height: 100px;
@@ -4781,4 +4792,13 @@ a.captionOrange:hover
     -moz-transition: none;
     -webkit-transition: none;
     -o-transition: none;
+}
+.addphoto {
+	margin-left: 10px;
+}
+
+.uploaded-img
+{
+	height:150px;
+	width:150px;
 }

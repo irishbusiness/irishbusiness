@@ -1403,8 +1403,12 @@ $(document).ready(function() {
 		$('#add_blog_block').css('display', 'none');
 	});
 
-	$('#add_new_photo').click(function(){
+	$('#btnchoosefiles').click(function(){
 		$('#choosefiles').trigger('click');
+	});
+
+	$('#add_new_photo').click(function(){
+		$('#photostouploadpanel').css('display', '');
 	});
 
 	$('#choosefiles').change(function(){
@@ -1416,7 +1420,7 @@ $(document).ready(function() {
 	// process the form
 	$('#photogalleryform').submit(function(event) {
 		event.preventDefault();
-          var formData = new FormData($('#editBlogForm')[0]);
+          var formData = new FormData($('#photogalleryform')[0]);
           var token = $('#photogalleryform > input[name="_token"]').val();
           formData.append('_token',token);
 

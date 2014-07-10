@@ -1,17 +1,24 @@
 <div id="company-tabs-photogallery" class="company-tabs-content">
 	<div class="blog block">
 		@if( isOwner($branch->business->slug) || isAdmin() )
-		<a id="add_new_photo" class="a-btn button-2-colorful add-coupon">Add Photos</a><br>
+		<a id="add_new_photo" class="a-btn button-2-colorful add-coupon">Add Photos</a>
+		<br/><br/><br/>
+		<div id="photostouploadpanel" style="display:none;border: 2px dashed gray;margin-left:20px">
+		<center>
+		<br/>
+			<input type="button" id="btnchoosefiles" class="a-btn button-2-blue" value="Choose image/s to upload">
+		</center>
+		
+			<div class="">
+				<span class="remove-photo">x</span>
+				<img src="images/no_photo_available.jpg" class="uploaded-img">
+			</div>
+			<br/>
 		{{ Form::open([ 'method' => 'post', 'files' => true, 'multiple' => '', 'id' => 'photogalleryform']) }}
 			<input type="file" id="choosefiles" multiple="" style="display:none">
-			<input type="submit" id="addphotosubmit" style="display:none">
-		</form>
-        <div class="content-container" id="add_new_photo_block" style="display:none">
-		    <div class="blog-post block">
-		        <div class="block-title marginize">
-		            <h1>Uploading Photos</h1>
-		        </div>
-		    </div>
+			<input type="submit" id="addphotosubmit" class="a-btn button-2-colorful addphoto" value="Save">
+		{{ Form::close() }}
+		<br/>
 		</div>
         @endif
 	</div>
@@ -89,7 +96,7 @@
         <div u="thumbnavigator" class="jssort03" style="position: absolute; width: 600px; height: 60px; left:0px; bottom: 0px;">
             <div style=" background-color: #000; filter:alpha(opacity=30); opacity:.3; width: 100%; height:100%;"></div>
             <div u="slides" style="cursor: move;">
-                <div u="prototype" class="p" style="POSITION: absolute; WIDTH: 62px; HEIGHT: 32px; TOP: 0; LEFT: 0;">
+                <div u="prototype" class="p" style="POSIwTION: absolute; WIDTH: 62px; HEIGHT: 32px; TOP: 0; LEFT: 0;">
                     <div class=w><ThumbnailTemplate style=" WIDTH: 100%; HEIGHT: 100%; border: none;position:absolute; TOP: 0; LEFT: 0;"></ThumbnailTemplate></div>
                     <div class=c style="POSITION: absolute; BACKGROUND-COLOR: #000; TOP: 0; LEFT: 0">
                     </div>
