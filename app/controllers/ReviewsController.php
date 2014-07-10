@@ -16,7 +16,7 @@ class ReviewsController extends \BaseController {
 	public function store($id)
 	{	
 		if( Auth::user()->check() ){
-			$branchId = Input::get("br");
+			$branchSlug = Input::get("br");
 			$user_id = Auth::user()->user()->id;
 			$businessinfo = Business::find($id);
 
@@ -32,7 +32,7 @@ class ReviewsController extends \BaseController {
 			$review->user_id = $user_id;
 			$review->confirmed = 1;
 
-			$branch = Branch::find($branchId);
+			$branch = Branch::where('branchslug', $branchSlug)->first();
 
 			if($review->save()){
 				return Redirect::to($branch->branchslug."#company-tabs-review")
@@ -42,7 +42,7 @@ class ReviewsController extends \BaseController {
 		}else{
 
 			// --------------------
-			$branchId = Input::get("br");
+			$branchSlug = Input::get("br");
 			$business = Business::find($id);
 
 			$rating = Input::get("rating");
@@ -69,7 +69,7 @@ class ReviewsController extends \BaseController {
 
 				Event::fire('review.confirm',[$review, $business->name]);
 
-				$branch = Branch::find($branchId);
+				$branch = Branch::where('branchslug', $branchSlug)->first();
 
 				return Redirect::to($branch->branchslug)
 					->with('flash_message', "Your review has been submitted. Please confirm your email.")

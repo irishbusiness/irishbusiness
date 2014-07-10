@@ -189,7 +189,7 @@
 										{{ Form::textarea("rating-description", "", ["id"=>"rating-description", "rows"=>"8", "cols"=>"45", 
 											"placeholder"=>"Description", "class"=>"text-input-grey comment-message-main one-fourth", "required"=>"required"]) }}
 									</div>
-									{{ Form::hidden("br", $branch->id) }}
+									{{ Form::hidden("br", $branch->branchslug) }}
 									{{ Form::input("submit", "submit", "Send rating", ["class"=>"send-rating button-2-green", "id"=>"btn-submit-rating"]) }}
 								</div>
 								<div class="ratings">
@@ -217,7 +217,7 @@
 										{{ Form::textarea("rating-description", "", ["id"=>"rating-description", "rows"=>"8", "cols"=>"45", 
 											"placeholder"=>"Description", "class"=>"text-input-grey comment-message-main one-fourth", "required"=>"required"]) }}
 									</div>
-									{{ Form::hidden("br", $branch->id) }}
+									{{ Form::hidden("br", $branch->branchslug) }}
 									{{ Form::input("submit", "submit", "Send rating", ["class"=>"send-rating button-2-green", "id"=>"btn-submit-rating"]) }}
 								</div>
 								<div class="ratings">

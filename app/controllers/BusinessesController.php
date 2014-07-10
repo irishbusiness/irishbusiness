@@ -144,9 +144,10 @@ class BusinessesController extends \BaseController {
 
 			$addresses = $this->business->explodeAddresses($branch);
 			$photos = $this->business->getPhotos($branch->id);
-			
+			$branchID = $branch->id;
 
 			return View::make('client.company-tab')
+				->with('branchID', $branchID)
 				->with('branch', $branch)
 				->with('business', $business)->with('businessinfo', $business)
 				->with('blogs', $blogs)
