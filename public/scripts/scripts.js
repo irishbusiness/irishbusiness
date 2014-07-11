@@ -1457,10 +1457,25 @@ $(document).ready(function() {
 
 		          function completeHandler(e)
 		          {
-		          	$.each(e, function(index, value){
-		          		$('#listofphotos').append('<div class="box2"><span class="remove-photo">x</span><img src="../../images/photogallery/'+e.filenames[index]+'" class="uploaded-img"></div>');
-		          	});
+		          	// $.each(e, function(index, value){
+		          	// 	$('#listofphotos').append('<div class="box2"><span class="remove-photo">x</span><img src="../../images/photogallery/'+e.filenames[index]+'" class="uploaded-img"></div>');
+		          	// });
+		         	console.log(e);
 		         	
+		         	var fucking_json = e;
+					var fucking_result = [];
+
+		         	for(var i in fucking_json)
+    					fucking_result.push([i, fucking_json [i]]);
+
+		         	$.each(e, function(index, value){
+		          		
+		          	});
+
+		         	for(var j = 0; j<fucking_result.length; j++){
+		         		$('#listofphotos').append('<div class="box2" id="'+fucking_result[j][0]+'"><span id="'+fucking_result[j][0]+'" class="remove-photo" onclick="confirmPhotoDelete('+fucking_result[j][0]+')">x</span><img src="../../images/photogallery/'+fucking_result[j][1]+'" class="uploaded-img"></div>');
+		         	}
+
 		          }
          
           // function progressHandler(e){

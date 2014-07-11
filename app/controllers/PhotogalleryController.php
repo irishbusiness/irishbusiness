@@ -43,11 +43,22 @@ class PhotogalleryController extends \BaseController {
             }else{
                 //Does not pass validation
                 $errors = $validator->errors();
+                
                 $filenames[$key] = $imagename;
                 $ids[$key] = $photogallery->id;
             }
         }
-        return $filenames;
+
+        // return array_intersect($ids, $filenames);
+        $fucking_object = array_combine($ids, $filenames);
+        return $fucking_object;
+        // $very_fucking_array = json_decode(json_encode($fucking_object), true);
+        // return $very_fucking_array;
+        // for ($i=0; $i < count($filenames); $i++) { 
+        //     # code...
+        // }
+        // return array_combine($ids, $filenames);
+        // return $filenames;
 	}
 
     function deletephoto()
