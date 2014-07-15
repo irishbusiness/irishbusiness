@@ -12,3 +12,6 @@
         {{ HTML::script('scripts/scripts.js') }}
         {{ HTML::script('scripts/redactor.js') }}
         {{ HTML::script('scripts/client-side.js') }}
+        {{ HTML::script('scripts/jssor.core.js') }}
+        {{ HTML::script('scripts/jssor.utils.js') }}
+        {{ HTML::script('scripts/jssor.slider.js') }}
