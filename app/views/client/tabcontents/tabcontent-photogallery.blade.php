@@ -81,6 +81,27 @@
         <a style="display: none" href="http://www.jssor.com">javascript</a>
     </div>
     <!-- Jssor Slider End -->
+    @else
+    <!-- Jssor Slider Begin -->
+    <div id="slider2_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; ">
+        <!-- Loading Screen -->
+        <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
+                background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;">
+            </div>
+            <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
+                top: 0px; left: 0px;width: 100%;height:100%;">
+            </div>
+        </div>
+
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow: hidden;" id="photoshere">
+            <div>
+                <img u="image" src="images/no_photo_available.jpg" />
+            </div>
+        </div>
+    </div>
+    <!-- Jssor Slider End -->
 	@endif
     </center>
 </div>
