@@ -56,6 +56,7 @@
                 <!-- <img u="thumb" src="../img/photography/thumb-002.jpg" /> -->
             </div>
             @endforeach
+            <div><img u="image" src="images/no_photo_available.jpg" style="display:none"></div>
         </div>
         <!-- Arrow Left -->
         <span u="arrowleft" class="jssora02l" style="width: 55px; height: 55px; top: 123px; left: 8px;">
