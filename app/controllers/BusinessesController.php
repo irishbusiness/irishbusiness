@@ -146,6 +146,10 @@ class BusinessesController extends \BaseController {
 			$photos = $this->business->getPhotos($branch->id);
 			$branchID = $branch->id;
 
+			$time = time();
+			Session::push( 'veri', array( $time => array('x' => rand(0,20), 'y' => rand(0,20) ) ));
+			Session::put('time', $time);
+
 			return View::make('client.company-tab')
 				->with('branchID', $branchID)
 				->with('branch', $branch)
@@ -158,7 +162,8 @@ class BusinessesController extends \BaseController {
 				->with('selected_categories', $selected_categories)
 				->with('addresses', $addresses)
 				->with('coupons', $coupons)
-				->with('photos', $photos);
+				->with('photos', $photos)
+				->with('time', $time);
 	}
 
 	public function specific_blog($name, $blog_id){

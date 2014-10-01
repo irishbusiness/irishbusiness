@@ -189,6 +189,24 @@
 										{{ Form::textarea("rating-description", "", ["id"=>"rating-description", "rows"=>"8", "cols"=>"45", 
 											"placeholder"=>"Description", "class"=>"text-input-grey comment-message-main one-fourth", "required"=>"required"]) }}
 									</div>
+									<div class="detail">
+					                    {{ Form::label('captcha', "Prove to us you're not a robot", [ "class"=> "text-colorful"]) }}
+					                    <br/>
+					                    <div id="divcaptcha" data-id="">
+					                      @foreach (Session::get('veri') as $key => $value)
+					                        @foreach ($value as $key => $value2) 
+					                          @if( $key == Session::get('time') )
+					                            <img draggable="false" src="{{ URL::to('captcha?x='.$value2['x'].'&y='.$value2['y']) }}">
+					                          @endif
+					                        @endforeach
+					                      @endforeach
+					                    </div>
+					                    {{ Form::hidden('captcha_id', $time ) }}
+					                    {{ Form::text('captcha', '', [ "class"=>"text-input-grey xxss3",
+					                        "placeholder"=>"Enter sum",'id'=>'coupon','maxlength'=>"3",
+					                        'maxlength'=>"3", 'required' => 'required']) }} 
+					                    {{$errors->first('captcha','<span id="errorcaptcha" class="alert-error2">:message</span>')}}
+					                </div><br/>
 									{{ Form::hidden("br", $branch->branchslug) }}
 									{{ Form::input("submit", "submit", "Send rating", ["class"=>"send-rating button-2-green", "id"=>"btn-submit-rating"]) }}
 								</div>
@@ -217,6 +235,24 @@
 										{{ Form::textarea("rating-description", "", ["id"=>"rating-description", "rows"=>"8", "cols"=>"45", 
 											"placeholder"=>"Description", "class"=>"text-input-grey comment-message-main one-fourth", "required"=>"required"]) }}
 									</div>
+									<div class="detail">
+					                    {{ Form::label('captcha', "Prove to us you're not a robot", [ "class"=> "text-colorful"]) }}
+					                    <br/>
+					                    <div id="divcaptcha" data-id="">
+					                      @foreach (Session::get('veri') as $key => $value)
+					                        @foreach ($value as $key => $value2) 
+					                          @if( $key == Session::get('time') )
+					                            <img draggable="false" src="{{ URL::to('captcha?x='.$value2['x'].'&y='.$value2['y']) }}">
+					                          @endif
+					                        @endforeach
+					                      @endforeach
+					                    </div>
+					                    {{ Form::hidden('captcha_id', $time ) }}
+					                    {{ Form::text('captcha', '', [ "class"=>"text-input-grey xxss3",
+					                        "placeholder"=>"Enter sum",'id'=>'coupon','maxlength'=>"3",
+					                        'maxlength'=>"3", 'required' => 'required']) }} 
+					                    {{$errors->first('captcha','<span id="errorcaptcha" class="alert-error2">:message</span>')}}
+					                </div><br/>
 									{{ Form::hidden("br", $branch->branchslug) }}
 									{{ Form::input("submit", "submit", "Send rating", ["class"=>"send-rating button-2-green", "id"=>"btn-submit-rating"]) }}
 								</div>

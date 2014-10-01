@@ -15,6 +15,13 @@ class ReviewsController extends \BaseController {
 
 	public function store($id)
 	{	
+		$isHuman = validateCaptcha(Session::get('veri'), Input::get('captcha_id'), Input::get('captcha'));
+
+		if( !$isHuman ){
+			return Redirect::back()->with('flash_message', "Sorry, your captcha code is incorrect. Please prove to us you're not a robot.")
+				->with('title', 'IrishBusiness.ie | Invite');
+		}
+		
 		if( Auth::user()->check() ){
 			$branchSlug = Input::get("br");
 			$user_id = Auth::user()->user()->id;
