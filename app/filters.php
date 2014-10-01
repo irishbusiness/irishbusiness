@@ -23,7 +23,11 @@ $recentlyaddedcompany = Business::orderBy('created_at', 'desc')->limit(5)->get()
 $recentlyaddedblog	=	Blog::orderBy('created_at', 'desc')->limit(5)->get();
 $socialmedia = SocialMedia::first();
 
-View::share('veri', Session::get('veri') );
+$time = time();
+Session::push( 'veri', array( $time => array('x' => rand(0,20), 'y' => rand(0,20) ) ));
+Session::put('time', $time);
+
+View::share('time', $time );
 View::share('recentsettings', $recentsettings);
 View::share('header_categories', $header_categories);
 
