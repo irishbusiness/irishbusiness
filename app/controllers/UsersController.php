@@ -40,10 +40,7 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		$time = time();
-		Session::push( 'veri', array( $time => array('x' => rand(0,20), 'y' => rand(0,20) ) ));
-		Session::put('time', $time);
-		return View::make('admin.admin_register')->withTitle('IrishBusiness.ie | Register')->with('time', $time);
+		return View::make('admin.admin_register')->withTitle('IrishBusiness.ie | Register');
 	}
 
 	/**
