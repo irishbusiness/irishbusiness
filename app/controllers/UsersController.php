@@ -30,7 +30,7 @@ class UsersController extends \BaseController {
 			return Redirect::to('/');
 		}
 
-		return View::make('client.confirm')->withTitle('title','Thank you.');
+		return View::make('client.confirm')->withTitle('title','IrishBusiness.ie | Thank you for confirming your email.');
 	}
 
 	/**
@@ -40,7 +40,10 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('admin.admin_register')->withTitle('Register');
+		$time = time();
+		Session::push( 'veri', array( $time => array('x' => rand(0,20), 'y' => rand(0,20) ) ));
+		Session::put('time', $time);
+		return View::make('admin.admin_register')->withTitle('IrishBusiness.ie | Register')->with('time', $time)->with('veri', Session::get('veri'));
 	}
 
 	/**
@@ -54,6 +57,13 @@ class UsersController extends \BaseController {
 		
 		try
 		{
+			$isHuman = validateCaptcha(Session::get('veri'), Input::get('captcha_id'), Input::get('captcha'));
+			
+			if( !$isHuman ){
+				return Redirect::back()->with('flash_message', "Sorry, your captcha code is incorrect. Please prove to us you're not a robot.")
+					->with('title', 'IrishBusiness.ie | Register');
+			}
+
 			$this->registerForm->validate(Input::all());
 
 			$user = $this->user->create(Input::all());
