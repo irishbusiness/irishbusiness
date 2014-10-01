@@ -81,3 +81,5 @@ Stack trace:
 2014/06/04 10:19:14 [error] [exception.CDbException] SQLSTATE[28000] [1045] Access denied for user 'user'@'localhost' (using password: YES)
 2014/06/04 10:19:16 [error] [exception.CDbException] SQLSTATE[28000] [1045] Access denied for user 'user'@'localhost' (using password: YES)
 2014/06/04 10:19:17 [error] [exception.CDbException] SQLSTATE[28000] [1045] Access denied for user 'user'@'localhost' (using password: YES)
+2014/09/27 15:23:50 [error] [exception.CDbException] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+

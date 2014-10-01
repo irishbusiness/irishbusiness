@@ -37,7 +37,12 @@ class SalesPersonsController extends \BaseController {
 	{
 		$commissions = $this->salesperson->getCommissions();
 
-		return View::make('sales.invite_new')->withTitle('Invite')->withCommissions($commissions);
+		$time = time();
+		Session::push( 'veri', array( $time => array('x' => rand(0,20), 'y' => rand(0,20) ) ));
+		Session::put('time', $time);
+
+		return View::make('sales.invite_new')->withTitle('Invite')->withCommissions($commissions)
+			->with('time', $time)->with('veri', Session::get('veri'));
 	}
 
 	/**
@@ -74,6 +79,14 @@ class SalesPersonsController extends \BaseController {
 			// 	}
 			// }
 
+			// dd(Input::get('captcha_id')."___".Input::get('catcha')."__".$value2['x']." + ".$value2['y']);
+
+			$isHuman = validateCaptcha(Session::get('veri'), Input::get('captcha_id'), Input::get('captcha'));
+
+			if( !$isHuman ){
+				return Redirect::back()->with('flash_message', "Sorry, your captcha code is incorrect. Please prove to us you're not a robot.")
+					->with('title', 'IrishBusiness.ie | Invite');
+			}
 
 			$user = $this->salesperson->create(Input::all());
 			

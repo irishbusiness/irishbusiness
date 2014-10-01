@@ -71,34 +71,34 @@
 </head>
 
 <body>
-@include('admin.partials._admin_header')
-		<section class="section content boxed">
+    @include('admin.partials._admin_header')
+        <section class="section content boxed">
 
             @include('client.partials._searchbar')
-			<div class="industries-tabs-wrapper">
-				<div class="zone-industries-tabs zone clearfix">
-				</div><!-- end of .zone-industries-tabs -->
-			</div><!-- end of .industries-tabs-wrapper -->
+            <div class="industries-tabs-wrapper">
+                <div class="zone-industries-tabs zone clearfix">
+                </div><!-- end of .zone-industries-tabs -->
+            </div><!-- end of .industries-tabs-wrapper -->
 
-			<div class="content-wrapper">
-				<div class="zone-content equalize zone clearfix">
+            <div class="content-wrapper">
+                <div class="zone-content equalize zone clearfix">
                     <div class="content-container container-16">
                     
-					@yield('actual-body-content')
+                    @yield('actual-body-content')
                     
 
-					</div><!-- end of .content-container -->
+                    </div><!-- end of .content-container -->
                     @yield('sidebar')
 
-				</div><!-- end of .zone-content -->
-				
-			</div><!-- end of .content-wrapper -->
+                </div><!-- end of .zone-content -->
+                
+            </div><!-- end of .content-wrapper -->
 
-		</section>
+        </section>
 
-		@include('client.partials._footer')
-		@include('admin.partials._includes')
+        @include('client.partials._footer')
+        @include('admin.partials._includes')
         @yield('scripts')
-	</body>
+</body>
 
 </html>

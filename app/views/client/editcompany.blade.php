@@ -183,6 +183,13 @@
 		            "placeholder" => "Google Link", "class"=>"text-input-grey full"]) }}
 		            {{$errors->first('google','<span class="alert alert-error block half">:message</span>')}}
 		        </div>
+		        <div class="form-group">
+		            {{ Form::label('google', "LinkedIn Link",
+		            ["class"=>"text-colorful"]) }}<br/>
+		            {{ Form::text('linkedin', $branch->linkedin, [
+		            "placeholder" => "LinkedIn Link", "class"=>"text-input-grey full"]) }}
+		            {{$errors->first('linkedin','<span class="alert alert-error block half">:message</span>')}}
+		        </div>
 		    </div>
 	        <div class="form-group align-right">
 	            {{ Form::submit('Save',['class' => 'button-2-colorful'])  }}

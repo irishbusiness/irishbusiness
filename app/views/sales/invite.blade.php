@@ -47,7 +47,7 @@
                         "placeholder"=>"Phone number"]) }}
                     {{$errors->first('phone','<span class="error">:message</span>')}}
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     {{ Form::label('type', "Type", ["required"=>"required", "class"=> "text-colorful"]) }}
                     <br>
                     {{ Form::select('type', $commissions, ["required"=>"required", "class"=>"text-input-grey half"]) }}

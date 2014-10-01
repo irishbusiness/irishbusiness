@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -21,9 +20,7 @@ Route::get('/', function()
 	return View::make('client.index');
 });
 
-// Route::get('/', 'HomeController@index');
-
-// 
+ 
 
 Route::get('blog', 'BlogController@index');
 
@@ -51,10 +48,6 @@ Route::get('contact-us', function(){
 	return View::make('client.contact-us');
 });
 
-
-/*Route::get('login', function(){
-	return View::make('client.login');
-});*/
 
 Route::get('searchresults', function(){
 	return View::make('client.searchresults');
@@ -84,11 +77,7 @@ Route::get('admin/settings/payment-gateway', function(){
 	return View::make('admin.admin_payment_gateway');
 });
 
-Route::get('admin/settings/invite', 'AdminController@invite'); /*function(){
-	return View::make('admin.admin_invite');
-});*/
-
-
+Route::get('admin/settings/invite', 'AdminController@invite');
 
 Route::get('admin/settings/socialmedia', function(){
     $social =   SocialMedia::first();
@@ -102,22 +91,17 @@ Route::post('admin/settings/blog', 'BlogController@store');
 Route::get('business/add', 'BusinessesController@addBusiness');
 Route::post('ajaxDeleteBusiness', 'BusinessesController@delete_business');
 
-// Route::get('business/{businessSlug}', 'BusinessesController@showBusiness');
 Route::post('ajaxSaveCoupon', 'BusinessesController@save_coupon');
 Route::post('ajaxDeleteCoupon', 'BusinessesController@delete_coupon');
 
 Route::post('ajaxUpdateKeywords', 'BusinessesController@update_business_keywords');
 
-//post create business
 Route::post('settings', 'BusinessesController@store');
 
-// Route::post('search','BusinessesController@search');
 Route::get('search', 'BusinessesController@search');
 Route::get('listings','BusinessesController@index');
-// Route::get('company-tab', 'BusinessesController@companytab');
 
 Route::get('company', 'BusinessesController@search');
-// Route::get('{slug}?', 'BusinessesController@companytab2');
 Route::post('company/{name}', 'ReviewsController@store');
 
 Route::get('edit/business/{slug}/{branchId}', 'BusinessesController@editcompany');
@@ -185,8 +169,6 @@ Route::get('clear',function(){
 Route::get('register/activate/{token}','UsersController@activate');
 
 
-//PASSWORD RESET FOR CLIENT
-
 Route::get('password/remind','ClientPasswordController@remind');
 
 Route::post('password/remind','ClientPasswordController@sendRemind');
@@ -195,7 +177,6 @@ Route::get('/password/reset/user/{token}','ClientPasswordController@reset');
 
 Route::post('/password/reset/user/{token}','ClientPasswordController@saveReset');
 
-//PASSWORD RESET FOR SALES
 
 Route::get('password/remind','SalesPasswordController@remind');
 
@@ -255,22 +236,16 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try',function(){
-	
-	$addresses = explode(' ', "Fermon");
-
-
-	 $query1 = 'and ';
-        /*$query1='';*/
-        foreach($addresses as $address)
-        {
-            $query1 .= '(';
-            $string = trim(preg_replace('/\*/', '', $address));
-            $query1 .= "branches.address like '%$string%' or branches.locations like '%$string%'"; 
-            $query1 .= ')and ';
-        }
-        $query1 .= "branches.locations like '%$string%'";
-
-        echo $query1;
+	pre(Session::get('veri'));
+	foreach (Session::get('veri') as $key => $value) {
+		foreach ($value as $key => $value2) {
+			pre($key);
+			if( $key == "1412140494" ){
+				echo "NA";
+				echo "<br>".$value2['x']." + ".$value2['y'];
+			}
+		}
+	}
 });
 
 Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');
@@ -289,3 +264,5 @@ Route::get('{slug}/blog/{id}', 'BusinessesController@specific_blog');
 
 Route::get('review/confirm/{token}', 'ReviewsController@confirm');
 
+
+?>

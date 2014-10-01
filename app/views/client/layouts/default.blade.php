@@ -1,6 +1,5 @@
 <!doctype html>
 <html class="" lang="en">
-
 	<head>
         
 		<meta charset="utf-8">
@@ -97,7 +96,7 @@
             @endif
 
             @yield('slider')
-        	<!-- actual body -->
+            <!-- actual body -->
                 
                 <div class="content-wrapper">
                     
@@ -120,14 +119,14 @@
                 @include('client.partials._footer')
             @endif
 
-        	@include('client.partials._includes')
-        	
+            @include('client.partials._includes')
+            
             @if(Session::has('errorNotify'))
-        		<script>
-        			$('#login-form').slideDown(500);
-        			$('#errordiv').text("{{Session::get('errorNotify')}}");
-        		</script>
-        	@endif
+                <script>
+                    $('#login-form').slideDown(500);
+                    $('#errordiv').text("{{Session::get('errorNotify')}}");
+                </script>
+            @endif
             
 
             @if(Session::has('flash_message'))
@@ -139,10 +138,9 @@
 
                 </script>
             @endif
-        	
+            
 
         </section>
-
-</body>
+    </body>
 
 </html>

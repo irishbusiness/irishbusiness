@@ -1,6 +1,7 @@
 @extends("client.layouts.default")
 
 @section("actual-body-content")
+
 <div class="content-container container-16">
     <div class="blog-post block">
         <div class="block-title marginize">
@@ -52,7 +53,7 @@
                     {{ Form::password('password_confirmation', ["required"=>"required", "class"=>"text-input-grey",
                         "placeholder"=>"*********"]) }}
                     {{$errors->first('password','<span class=" half block alert alert-error">:message</span>')}}
-                </div><br>
+                </div><br/>
                 <div class="form-group">
                     {{ Form::submit("Submit", ["required"=>"required", "class"=>"button-2-colorful", "id"=>"btn-register-submit"]) }}
                 </div>

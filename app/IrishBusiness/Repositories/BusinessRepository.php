@@ -133,6 +133,7 @@ class BusinessRepository {
         $branch->facebook   =   $input['facebook'];
         $branch->twitter  =   $input['twitter'];
         $branch->google  =   $input['google'];
+        $branch->linkedin = $input['linkedin'];
         $branch->address = $address;
         $branch->locations = $input["locations"];
         $branch->website = $input["website"];

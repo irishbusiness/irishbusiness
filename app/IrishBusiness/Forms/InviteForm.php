@@ -7,6 +7,7 @@ class InviteForm extends Form {
 		'lastname' => 'required|alpha_space',
 		'email' => 'required|email|unique:salespersons',
 		'phone' => 'required',
-		'coupon' => 'unique:salespersons'
+		'coupon' => 'unique:salespersons',
+		'captcha' => 'required'
 	];
 } 

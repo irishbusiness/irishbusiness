@@ -195,7 +195,7 @@ function isAdmin(){
 
 function pre($string){
     echo "<pre>";
-    echo $string;
+    print_r($string);
     echo "</pre>";
 }
 
@@ -348,4 +348,22 @@ function hashtag($keywordsraw){
     $keywordsraw = preg_replace('/-+/', '-', $keywordsraw);
 
     return $keywordsraw;
+}
+
+function validateCaptcha($captcha_session, $id, $input){
+    $sum = 0;
+    foreach ($captcha_session as $key => $value) {
+        foreach ($value as $key => $value2) {
+            if( $key == $id ){
+                $sum = $value2['x']+$value2['y'];
+            }
+        }
+    }
+
+    if( $sum == $input ){
+        return true;
+    }
+
+    return false;
+
 }

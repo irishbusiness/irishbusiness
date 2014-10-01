@@ -21,7 +21,12 @@ class AdminController extends \BaseController {
 		$commissions = $this->salesrepo->getCommissions();
 		// return View::make('admin.admin_invite')->withTitle('Invite')->withCommissions($commissions)
 		// ->with('salesteams',$salesteams)->with('teamleaders',$teamleaders);
+		// Session::put('veri_id', time());
+		$time = time();
+		Session::push( 'veri', array( $time => array('x' => rand(0,20), 'y' => rand(0,20) ) ));
+		Session::put('time', $time);
+		// $_SESSION['veri'] = array('x' => rand(0,20), 'y' => rand(0,20) );
 		return View::make('admin.admin_invite_new')->withTitle('Invite')->withCommissions($commissions)
-		->with('salesteams',$salesteams)->with('teamleaders',$teamleaders);
+			->with('salesteams',$salesteams)->with('teamleaders',$teamleaders)->with('time', $time);
 	}
 }
