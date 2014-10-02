@@ -79,6 +79,7 @@ Route::get('admin/settings/payment-gateway', function(){
 
 Route::get('admin/settings/invite', 'AdminController@invite');
 
+
 Route::get('admin/settings/socialmedia', function(){
     $social =   SocialMedia::first();
 	return View::make('admin.admin_settings_socialmedia', compact('social'));
@@ -236,6 +237,7 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try',function(){
+
 	return Hash::make("sales123");
 });
 
