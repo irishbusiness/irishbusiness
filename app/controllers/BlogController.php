@@ -13,7 +13,8 @@ class BlogController extends \BaseController {
 
     public function show($slug, $id)
     {
-        $blog = $this->blog->getBlog($id);
+        // $blog = $this->blog->getBlog($id);
+        $blog = $this->blog->getBlogById($id);
 
         return View::make('client.blogpost', compact('blog'));
     }

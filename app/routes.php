@@ -28,7 +28,7 @@ Route::get('bloglist', 'BlogController@bloglist');
 
 Route::get('blog/add', 'BlogController@add');
 
-// Route::get('blog/{id}', 'BlogController@show');
+Route::get('blog/{slug}/{id}', 'BlogController@show');
 
 Route::get('blog/{id}/edit', 'BlogController@edit');
 
