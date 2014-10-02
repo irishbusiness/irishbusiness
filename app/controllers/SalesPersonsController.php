@@ -92,7 +92,7 @@ class SalesPersonsController extends \BaseController {
 				->with('title','IrishBusiness.ie | Settings');
 			}
 
-			return Redirect::back()->with('flash_message', "Sorry, your custom coupon code is should be 6 characters long.")
+			return Redirect::back()->with('flash_message', "Sorry, your custom coupon code should be 6 characters long.")
 					->with('title', 'IrishBusiness.ie | Invite')->withInput();
 
 		}

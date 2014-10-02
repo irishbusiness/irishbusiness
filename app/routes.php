@@ -236,16 +236,7 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try',function(){
-	pre(Session::get('veri'));
-	foreach (Session::get('veri') as $key => $value) {
-		foreach ($value as $key => $value2) {
-			pre($key);
-			if( $key == "1412140494" ){
-				echo "NA";
-				echo "<br>".$value2['x']." + ".$value2['y'];
-			}
-		}
-	}
+	return Hash::make("sales123");
 });
 
 Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');
