@@ -119,13 +119,13 @@
 								<form action="" method="POST">
 									<input type="hidden" name="subscription" value="{{$subscription->id}}" />
 									<script
-									src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-									data-key="pk_live_DOS1YitEm71EoXBWIG7WIqUu"
-									data-amount="{{ ( $total_price )*100 }}"
-									data-name="IrishBusiness.ie"
-									data-description="{{$subscription->name}}"
-									data-image="{{ URL::asset('/images/logo/header/default.png') }}"
-									data-currency="{{ $subscription->currency }}" >
+										src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+										data-key="pk_live_DOS1YitEm71EoXBWIG7WIqUu"
+										data-amount="{{ ( $total_price )*100 }}"
+										data-name="IrishBusiness.ie"
+										data-description="{{$subscription->name}}"
+										data-image="{{ URL::asset('/images/logo/header/default.png') }}"
+										data-currency="{{ $subscription->currency }}" >
 									</script>
 								</form>
 								<!-- <div class="div-payment-options">

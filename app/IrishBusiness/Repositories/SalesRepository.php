@@ -41,6 +41,11 @@ class SalesRepository {
 		// 	$st = Salesperson::where('email','=',$input['tl'])->first()->st;
 		// }
 
+		if( $input['coupon'] != '' ){
+			if( strlen($input['coupon']) != 6 ){
+				return false;
+			}
+		}
 
 		$password = str_random(8);
 		$salesperson = new SalesPerson;

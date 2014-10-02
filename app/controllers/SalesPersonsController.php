@@ -85,10 +85,15 @@ class SalesPersonsController extends \BaseController {
 
 			$user = $this->salesperson->create(Input::all());
 			
-			Event::fire('salesperson.invite',[$user]);
+			if( $user ){
+				Event::fire('salesperson.invite',[$user]);
 
-			return Redirect::back()->with('flash_message',Input::get('email') .' has been invited!')
-			->with('title','IrishBusiness.ie | Settings');
+				return Redirect::back()->with('flash_message',Input::get('email') .' has been invited!')
+				->with('title','IrishBusiness.ie | Settings');
+			}
+
+			return Redirect::back()->with('flash_message', "Sorry, your custom coupon code is should be 6 characters long.")
+					->with('title', 'IrishBusiness.ie | Invite')->withInput();
 
 		}
 		catch(FormValidationException  $e)
