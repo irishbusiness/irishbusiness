@@ -25,7 +25,7 @@ $socialmedia = SocialMedia::first();
 
 $time = time();
 
-if( isset(Session::get('veri')) ){
+if( !empty(Session::get('veri')) ){
 	if( !array_key_exists($time, Session::get('veri') ) ){
 		$temp = $time;
 		$time = $time+1;
