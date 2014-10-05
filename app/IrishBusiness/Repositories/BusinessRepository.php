@@ -599,7 +599,11 @@ class BusinessRepository {
             // echo "<hr>";
             for($y=0; $y<count($selected_categories); $y++){
                 if($categories[$x] === $selected_categories[$y]["name"]){
-                    unset($notselected_categories[$x]);
+                    if( isset($notselected_categories[$x] ) ){
+                        unset($notselected_categories[$x]);
+                    }else{
+                        $notselected_categories[$x] = null;
+                    }
                 }
             }
             
