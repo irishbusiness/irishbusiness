@@ -598,11 +598,11 @@ class BusinessRepository {
         for($x=1; $x<count($categories); $x++){
             // echo "<hr>";
             for($y=0; $y<count($selected_categories); $y++){
-                if( isset($categories[$x]) ){
+                // if( isset($categories[$x]) ){
                     if($categories[$x] === $selected_categories[$y]["name"]){
                         unset($notselected_categories[$x]);
                     }
-                }
+                // }
             }
             
         }
