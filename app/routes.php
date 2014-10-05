@@ -166,6 +166,11 @@ Route::get('clear',function(){
 
 });
 
+Route::get('flush', function(){
+	Session::flush();
+	return Redirect::to('/');
+});
+
 
 Route::get('register/activate/{token}','UsersController@activate');
 
