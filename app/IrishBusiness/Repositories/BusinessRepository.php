@@ -602,8 +602,6 @@ class BusinessRepository {
                     if($categories[$x] === $selected_categories[$y]["name"]){
                         unset($notselected_categories[$x]);
                     }
-                }else{
-                    $categories[$x] = null;
                 }
             }
             
