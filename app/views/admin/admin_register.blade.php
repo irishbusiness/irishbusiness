@@ -61,7 +61,8 @@
                     <?php $x = 0; ?>
                         @foreach (Session::get('veri') as $key => $value)
                             @foreach ($value as $key => $value2) 
-                                @if( $key == $time )
+                                @if( $key == $time && $x == 0)
+                                    <?php $x = 1; ?>
                                     <img draggable="false" src="{{ URL::to('captcha?x='.$value2['x'].'&y='.$value2['y']) }}">
                                 @endif
                             @endforeach
