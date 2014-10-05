@@ -29,7 +29,7 @@ if( !array_key_exists($time, Session::get('veri') ) ){
 }
 Session::put('time', $time);
 
-View::share('time', Session::get('time') );
+View::share('time', $time );
 View::share('recentsettings', $recentsettings);
 View::share('header_categories', $header_categories);
 
