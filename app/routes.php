@@ -238,7 +238,7 @@ Route::post('addmap','BusinessesController@storeMap');
 
 Route::get('try',function(){
 
-	return Hash::make("sales123");
+	echo Session::get('time');
 });
 
 Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');

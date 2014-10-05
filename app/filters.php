@@ -27,7 +27,7 @@ $time = time();
 Session::push( 'veri', array( $time => array('x' => rand(0,20), 'y' => rand(0,20) ) ));
 Session::put('time', $time);
 
-View::share('time', $time );
+View::share('time', Session::get('time') );
 View::share('recentsettings', $recentsettings);
 View::share('header_categories', $header_categories);
 
