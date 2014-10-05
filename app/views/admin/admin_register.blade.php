@@ -60,7 +60,7 @@
                     <div id="divcaptcha" data-id="">
                       @foreach (Session::get('veri') as $key => $value)
                         @foreach ($value as $key => $value2) 
-                          @if( $key == Session::get('time') )
+                          @if( $key == time )
                             <img draggable="false" src="{{ URL::to('captcha?x='.$value2['x'].'&y='.$value2['y']) }}">
                           @endif
                         @endforeach
