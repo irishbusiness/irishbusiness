@@ -58,13 +58,15 @@
                     {{ Form::label('captcha', "Prove to us you're not a robot", [ "class"=> "text-colorful"]) }}
                     <br/>
                     <div id="divcaptcha" data-id="">
-                      @foreach (Session::get('veri') as $key => $value)
-                        @foreach ($value as $key => $value2) 
-                          @if( $key == $time )
-                            <img draggable="false" src="{{ URL::to('captcha?x='.$value2['x'].'&y='.$value2['y']) }}">
-                          @endif
+                    <?php $x = 0; ?>
+                        @foreach (Session::get('veri') as $key => $value)
+                            @foreach ($value as $key => $value2) 
+                              @if( $key == $time && $x == 0 )
+                                <img draggable="false" src="{{ URL::to('captcha?x='.$value2['x'].'&y='.$value2['y']) }}">
+                              @endif
+                              <?php $x++; ?>
+                            @endforeach
                         @endforeach
-                      @endforeach
                     </div>
                     {{ Form::hidden('captcha_id', $time ) }}
                     {{ Form::text('captcha', '', [ "class"=>"text-input-grey xxss",
