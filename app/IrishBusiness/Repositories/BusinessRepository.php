@@ -600,11 +600,7 @@ class BusinessRepository {
             for($y=0; $y<count($selected_categories); $y++){
                 if( isset($categories[$x]) ){
                     if($categories[$x] === $selected_categories[$y]["name"]){
-                        if( isset($notselected_categories[$x] ) ){
-                            unset($notselected_categories[$x]);
-                        }else{
-                            $notselected_categories[$x] = null;
-                        }
+                        unset($notselected_categories[$x]);
                     }
                 }else{
                     $categories[$x] = null;
