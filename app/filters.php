@@ -25,8 +25,8 @@ $socialmedia = SocialMedia::first();
 
 $time = time();
 if( !array_key_exists($time, Session::get('veri') ) ){
+	$time = $time+1;
 	Session::push( 'veri', array( $time => array('x' => rand(0,20), 'y' => rand(0,20) ) ));
-	$time = $time++;
 }
 Session::put('time', $time);
 
