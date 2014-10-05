@@ -24,7 +24,9 @@ $recentlyaddedblog	=	Blog::orderBy('created_at', 'desc')->limit(5)->get();
 $socialmedia = SocialMedia::first();
 
 $time = time();
-Session::push( 'veri', array( $time => array('x' => rand(0,20), 'y' => rand(0,20) ) ));
+if( !array_key_exists($time, Session::get('veri') ) ){
+	Session::push( 'veri', array( $time => array('x' => rand(0,20), 'y' => rand(0,20) ) ));
+}
 Session::put('time', $time);
 
 View::share('time', Session::get('time') );

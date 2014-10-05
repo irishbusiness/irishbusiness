@@ -238,7 +238,8 @@ Route::post('addmap','BusinessesController@storeMap');
 
 Route::get('try',function(){
 
-	echo Session::get('time');
+	pre(Session::get('veri'));
+
 });
 
 Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');
