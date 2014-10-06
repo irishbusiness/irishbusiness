@@ -145,6 +145,7 @@ class BusinessesController extends \BaseController {
 			$addresses = $this->business->explodeAddresses($branch);
 			$photos = $this->business->getPhotos($branch->id);
 			$branchID = $branch->id;
+			$json_categories = json_encode($notselected_categories);
 
 			return View::make('client.company-tab')
 				->with('branchID', $branchID)
@@ -155,6 +156,7 @@ class BusinessesController extends \BaseController {
 				->with('title', decode($branch->business->name)." - ".$branch->business->keywords)
 				->with('rating', $rating)
 				->with('categories', $notselected_categories)
+				->with('json_categories', $json_categories)
 				->with('selected_categories', $selected_categories)
 				->with('addresses', $addresses)
 				->with('coupons', $coupons)

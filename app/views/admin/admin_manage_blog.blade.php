@@ -29,7 +29,7 @@
                             </div>
                             <div class="blog-post-description clearfix">
                                 <div class="blog-post-title-comments">
-                                    <a href="{{ URL::to('blog/'.$blog->slug) }}" class="blog-post-title">{{ html_entity_decode(stripcslashes($blog->title)) }}</a>
+                                    <a href="{{ URL::to('blog/'.$blog->slug.'/'.$blog->id) }}" class="blog-post-title">{{ html_entity_decode(stripcslashes($blog->title)) }}</a>
                                 </div>
                                 <div class="blog-post-excerpt">{{ Str::limit(html_entity_decode(stripcslashes($blog->body)), 255) }}</div>
                                 <div class="blog-post-links">
@@ -37,7 +37,7 @@
                                     <a href="{{ URL::to('blog/'.$blog->id.'/delete') }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="read-more-link">Remove Blog</a>
                                     <a href="{{ URL::to('blog/'.$blog->slug.'/edit') }}" class="read-more-link">Edit Blog</a>
                                 @endif
-                                    <a href="{{ URL::to('blog/'.$blog->slug) }}" class="read-more-link">Read More</a>
+                                    <a href="{{ URL::to('blog/'.$blog->slug.'/'.$blog->id) }}" class="read-more-link">Read More</a>
                                 </div>
                             </div>
                         </div>
