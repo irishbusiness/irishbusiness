@@ -15,3 +15,4 @@
         {{ HTML::script('scripts/jssor.core.js') }}
         {{ HTML::script('scripts/jssor.utils.js') }}
         {{ HTML::script('scripts/jssor.slider.js') }}
+        

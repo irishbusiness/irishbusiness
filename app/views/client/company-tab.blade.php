@@ -90,11 +90,9 @@
 </div>
 @stop
 	@section('linksfirst')
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-		<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-		
 	@stop
+
 	@section('scripts2')
 		<script>
 		var map;
@@ -132,6 +130,7 @@
 
 		}
 		google.maps.event.addDomListener(window, 'load', initialize);
+
 		</script>
 	@include('client.tabcontents.tabcontent-scripts')
 	@stop
