@@ -25,15 +25,15 @@ $socialmedia = SocialMedia::first();
 
 $time = time();
 
-if( is_array(Session::get('veri')) && !empty(Session::get('veri')) ){
-	if( !array_key_exists($time, Session::get('veri') ) ){
+// if( is_array(Session::get('veri')) && !empty(Session::get('veri')) ){
+	// if( !array_key_exists($time, Session::get('veri') ) ){
 		$temp = $time;
 		$time = $time+1;
 		if( $temp != $time ){
 			Session::push( 'veri', array( $time => array('x' => rand(0,20), 'y' => rand(0,20) ) ));
 		}
-	}
-}
+	// }
+// }
 
 Session::put('time', $time);
 
