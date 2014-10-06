@@ -11,5 +11,6 @@
 {{ HTML::script('scripts/jquery.placeholder.min.js') }}
 {{ HTML::script('scripts/scripts.js') }}
 {{ HTML::script('scripts/redactor.js') }}
+{{ HTML::script('scripts/jquery-ui.js') }}
 
 

@@ -241,11 +241,13 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 
 Route::post('addmap','BusinessesController@storeMap');	
 
-Route::get('try',function(){
+Route::get('try/{id}', 'BusinessesController@showCategories');
+Route::get('test', function(){
+	?>
 
-	pre(Session::get('veri'));
-
+	<?php
 });
+
 
 Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');
 Route::post('/disapproveReviewAjax', 'ReviewsController@disapproveReviewAjax');
@@ -263,5 +265,6 @@ Route::get('{slug}/blog/{id}', 'BusinessesController@specific_blog');
 
 Route::get('review/confirm/{token}', 'ReviewsController@confirm');
 
+Route::get('get-categories/{id}', 'BusinessesController@showCategories');
 
 ?>

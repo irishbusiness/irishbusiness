@@ -31,8 +31,10 @@
 
 		    <div class="thin-separator"></div>
 		    <div class="form-group">
-		        {{ Form::select('categories', $categories, "", ['id' => 'categories',
-		        'class' => 'text-input-grey full-width select']) }}
+		    	<div class="ui-widget">
+			        {{ Form::select('categories', $categories, "", ['id' => 'categories',
+			        'class' => 'text-input-grey full-width select']) }}
+			    </div>
 		    </div>
 		    <div class="form-group">
 		        <div class="showCategory">

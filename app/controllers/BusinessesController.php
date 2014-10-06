@@ -446,4 +446,19 @@ class BusinessesController extends \BaseController {
 			return "false";
 		}
 	}
+
+	public function showCategories($id){
+		// if( Request::ajax() ){
+			$branch = $this->business->getBranchById($id);
+			$categories = $this->category->getCategories();
+			$selected_categories = $branch->business->categories;
+
+			$selected_categories = $selected_categories->toArray();
+
+			$notselected_categories = $this->business->getNotSelectedCategories($categories, $selected_categories);
+
+			return json_encode($notselected_categories);
+		// }
+
+	}
 }

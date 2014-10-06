@@ -10,6 +10,7 @@
         {{ HTML::style('css/responsive.css') }}
         {{ HTML::style("scripts/redactor.css") }}
         {{ HTML::style('css/iphone.css') }}
+        {{ HTML::style('css/jquery-ui.css') }}
 
 		<!--[if lt IE 9]>
             {{ HTML::style('css/styles-ie8-and-down.css') }}
