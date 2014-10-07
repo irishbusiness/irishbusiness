@@ -1,5 +1,4 @@
 <script>
-
 	$(window).ready(function(){
 		$("a[rel='dialog']").on("click", function(){
             var dialog = $(this).attr("data-rel");
@@ -12,6 +11,10 @@
                 fluid: true, //new option
                 resizable: true
                 });
+        });
+
+        $("#categories_autocomplete").autocomplete({
+            source : [<?php echo $json_categories; ?>]
         });
 
         $("a[data-rel='save-keywords-from-dialog']").on("click", function(){
@@ -238,6 +241,68 @@
         		
         	}
         });
+
+        var tagsToReplace = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;'
+        };
+
+        function replaceTag(tag) {
+            return tagsToReplace[tag] || tag;
+        }
+
+        function safe_tags_replace(str) {
+            return str.replace(/[&<>]/g, replaceTag);
+        }
+
+        $(document).on("click", "#btn_add_this_category", function(){
+            var id = 0;
+            id = {{ $businessinfo->id }};
+            var name = String($("#categories_autocomplete").val());
+            name = safe_tags_replace(name);
+            var token = $('#frm-business-settings input[name="_token"]').val();
+
+            console.log(name);
+            var category = 0;
+            $.ajax({
+                type : 'get',
+                url : '/ajaxCategoryId',
+                data : { name : name, _token: token }
+            }).done(function(data){
+                console.log("R_NAME="+data);
+                category = parseFloat(data);
+                console.log('categoryID = '+category);
+
+                // console.log('token='+token);
+                if (category > 0)
+                {
+
+                    $.ajax(
+                    {
+                        url: "/ajaxUpdateCategoryAdd",
+                        type: "post",
+                        data: { category: category, _token: token, bid: id, name: name}
+
+                    })
+                    .done(function(data)
+                    {
+                        // console.log(data);
+                        $('.showCategory').append('<span class="bs-btn btn-success category" data-id="'+category+'"> '+ name +
+                            '<span class="remove" data-id="'+category+'" data-text="'+name+'" title="remove this category">x</span></span>');
+                        // $('#categories').find('option:selected').remove();
+                    });
+                }else{
+                    alert("Oops!... Something went wrong. We can't process your request right now. Please try again later.");
+                }
+
+            });
+
+            // var name = $("#categories option:selected").text();
+            // console.log(name);
+            
+        });
+
     });
 
     

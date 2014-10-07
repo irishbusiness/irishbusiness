@@ -1368,9 +1368,19 @@ section.content {
 		}
 
 ul.ui-autocomplete {
-	background-color: #343434;
+	/*background-color: #343434;
+	border-radius: 3px;
+	margin-top: 10px;*/
+	/*ul.ui-autocomplete {*/
+	background-color: #96f226;
 	border-radius: 3px;
 	margin-top: 10px;
+	max-height: 400px;
+	overflow: scroll;
+	border-radius: 0px;
+	border: 1px solid #454545;
+	overflow-x: hidden;
+	/*}*/
 }
 
 	ul.ui-autocomplete li.ui-menu-item a {

@@ -367,3 +367,9 @@ function validateCaptcha($captcha_session, $id, $input){
     return false;
 
 }
+
+function getCategoryIdByName($name){
+    $name = htmlspecialchars_decode($name);
+    $category = Category::where('name', '=', $name)->first();
+    return $category->id;
+}

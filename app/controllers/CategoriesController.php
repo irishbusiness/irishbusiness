@@ -136,6 +136,18 @@ class CategoriesController extends \BaseController {
 		}
 	}
 
+	public function returnCategoryId(){
+		// if( Request::ajax() ){
+			$name = htmlspecialchars_decode( Input::get('name') );
+			$name = html_entity_decode($name);
+			// return $name;
+			if( $name != "" ){
+				$res =  getCategoryIdByName($name);
+				return $res;
+			}
+		// }
+	}
+
 
 	/**
 	 * Show the form for editing the specified resource.

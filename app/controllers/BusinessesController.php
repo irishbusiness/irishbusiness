@@ -146,6 +146,7 @@ class BusinessesController extends \BaseController {
 			$photos = $this->business->getPhotos($branch->id);
 			$branchID = $branch->id;
 			$json_categories = json_encode($notselected_categories);
+			$json_categories = substr($json_categories, 1, -1);
 
 			return View::make('client.company-tab')
 				->with('branchID', $branchID)
