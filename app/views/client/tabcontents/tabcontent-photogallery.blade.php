@@ -52,7 +52,7 @@
         <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow: hidden;" id="photoshere">
             @foreach($photos as $photo)
             <div>
-                <img u="image" src="{{ URL::asset('images/photogallery/'.$photo->filepath) }}" />
+                <img u="image" src="{{ URL::asset('images/photogallery/'.$photo->filepath) }}" class="gallery_photo" />
                 <!-- <img u="thumb" src="../img/photography/thumb-002.jpg" /> -->
             </div>
             @endforeach

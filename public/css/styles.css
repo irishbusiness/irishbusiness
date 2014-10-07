@@ -1372,7 +1372,8 @@ ul.ui-autocomplete {
 	border-radius: 3px;
 	margin-top: 10px;*/
 	/*ul.ui-autocomplete {*/
-	background-color: #96f226;
+	background-color: #98b709;
+	color: white;
 	border-radius: 3px;
 	margin-top: 10px;
 	max-height: 400px;
@@ -4846,4 +4847,10 @@ a.captionOrange:hover
 .custom-combobox-input {
 	margin: 0;
 	padding: 5px 10px;
+}
+
+.gallery_photo {
+	width: 68% !important;
+	height: auto !important;
+	left: 90px !important;
 }
