@@ -95,41 +95,41 @@
 
 	@section('scripts2')
 		<script>
-		var map;
-		var infowindow = new google.maps.InfoWindow();
-		var marker;
-		var lat;
-		var lng;
-		function initialize() {
-			console.log('haha');
-			var origlatlng = "{{$branch->latlng}}";
-			if(origlatlng!='')
-			{
-				origlatlng = origlatlng.replace(/[()]/g, '');
-				origlatlng = origlatlng.split(",");
-				lat = parseFloat(origlatlng[0].trim());
-				lng = parseFloat(origlatlng[1].trim());
-			}
-			else
-			{
-				lat = 53.270559;
-				lng = -9.056668;
-			}
+			var map;
+			var infowindow = new google.maps.InfoWindow();
+			var marker;
+			var lat;
+			var lng;
+			function initialize() {
+				console.log('haha');
+				var origlatlng = "{{$branch->latlng}}";
+				if(origlatlng!='')
+				{
+					origlatlng = origlatlng.replace(/[()]/g, '');
+					origlatlng = origlatlng.split(",");
+					lat = parseFloat(origlatlng[0].trim());
+					lng = parseFloat(origlatlng[1].trim());
+				}
+				else
+				{
+					lat = 53.270559;
+					lng = -9.056668;
+				}
 
-			var mapOptions = {
-				zoom: 15,
-				center: new google.maps.LatLng(lat,lng)
-			};
-			map = new google.maps.Map(document.getElementById('company-page-map'),
-				mapOptions);
-			marker = new google.maps.Marker({
-				map: map,
-				draggable:false,
-				position: {lat:lat, lng:lng}
-			});
+				var mapOptions = {
+					zoom: 15,
+					center: new google.maps.LatLng(lat,lng)
+				};
+				map = new google.maps.Map(document.getElementById('company-page-map'),
+					mapOptions);
+				marker = new google.maps.Marker({
+					map: map,
+					draggable:false,
+					position: {lat:lat, lng:lng}
+				});
 
-		}
-		google.maps.event.addDomListener(window, 'load', initialize);
+			}
+			google.maps.event.addDomListener(window, 'load', initialize);
 
 		</script>
 	@include('client.tabcontents.tabcontent-scripts')
