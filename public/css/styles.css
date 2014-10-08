@@ -4811,9 +4811,10 @@ a.captionOrange:hover
 
 .uploaded-img
 {
-	height:150px;
-	width:150px;
+	/*height:150px;
+	width:150px;*/
 	/*float:left;*/
+	width: 50%;
 	margin:5px;
 }
 
