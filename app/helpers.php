@@ -368,8 +368,20 @@ function validateCaptcha($captcha_session, $id, $input){
 
 }
 
+function validateHuman($captcha){
+    if( strtolower($captcha) == "dublin" ){
+        return true;
+    }
+    return false;
+}
+
 function getCategoryIdByName($name){
     $name = htmlspecialchars_decode($name);
     $category = Category::where('name', '=', $name)->first();
     return $category->id;
+}
+
+function getCategoryNameById($id){
+    $category = Category::find($id);
+    return $category->name;
 }

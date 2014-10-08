@@ -188,27 +188,45 @@
 
         $(document).on('click', '.remove', function(){
             var category = $(this).attr("data-id");
-            var id = 0;
-            id = {{ $business->id }};
-            // alert(id);
             var token = $('#frm-business-settings input[name="_token"]').val();
-            $('#categories').append('<option value="'+category+'">'+$(this).attr('data-text')+'</option>');
-            var c =false;
-            c = confirm("Are you sure? You are about to remove this category from your business.");
-			if( c == true ){
+            var name = "";
+            $.ajax({
+                url : '/ajaxCategoryName',
+                type : 'post',
+                data : { id : category, _token : token }
+            }).done(function(data){
+                name = data;
 
-	            $.ajax({
-	                url:"/ajaxUpdateCategoryRemove",
-	                type: "post",
-	                data: { category: category, _token: token, bid: id }
-	            })
-                .done(function(data){
-                	// console.log(data);
-                    $("span[data-id='"+category+"']").fadeOut(function(){
-                        $("span[data-id='"+category+"']").remove();
-                    });
-                })
-            }
+                console.log('remove '+name+' from categories');
+                var id = 0;
+                id = {{ $business->id }};
+                // alert(id);
+               
+                $('#categories').append('<option value="'+category+'">'+$(this).attr('data-text')+'</option>');
+                var c =false;
+                c = confirm("Are you sure? You are about to remove this category from your business.");
+                if( c == true ){
+
+                    $.ajax({
+                        url:"/ajaxUpdateCategoryRemove",
+                        type: "post",
+                        data: { category: category, _token: token, bid: id }
+                    }).done(function(data){
+                        // console.log(data);
+                        var lastID = $("ui.ui-autocomplete li:last-child").attr('id');
+                        console.log("ui-id-"+lastID);
+                        
+                        var newID = lastID+1;
+
+                        $("ui.ui-autocomplete").append('<li class="ui-menu-item" id="'+newID+'">'+name+'</li>');
+
+                        $("span[data-id='"+category+"']").fadeOut(function(){
+                            $("span[data-id='"+category+"']").remove();
+                        });
+                    })
+                }
+
+            });
         });
 
         $(document).on("click", "#show_hide_business_settings", function(){

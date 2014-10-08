@@ -76,11 +76,12 @@ class SalesPersonsController extends \BaseController {
 
 			// dd(Input::get('captcha_id')."___".Input::get('catcha')."__".$value2['x']." + ".$value2['y']);
 
-			$isHuman = validateCaptcha(Session::get('veri'), Input::get('captcha_id'), Input::get('captcha'));
+			// $isHuman = validateCaptcha(Session::get('veri'), Input::get('captcha_id'), Input::get('captcha'));
+			$isHuman = validateHuman(Input::get('captcha'));
 
 			if( !$isHuman ){
 				return Redirect::back()->with('flash_message', "Sorry, your captcha code is incorrect. Please prove to us you're not a robot.")
-					->with('title', 'IrishBusiness.ie | Invite');
+					->with('title', 'IrishBusiness.ie | Invite')->withInput();
 			}
 
 			$user = $this->salesperson->create(Input::all());

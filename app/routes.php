@@ -242,9 +242,10 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try', function(){
-	return getCategoryIdByName('Accounting &amp; Bookkeeping');
+	return getCategoryIdByName(10);
 });
 Route::get('/ajaxCategoryId', 'CategoriesController@returnCategoryId');
+Route::post('/ajaxCategoryName', 'CategoriesController@returnCategoryName');
 
 
 Route::post('/approveReviewAjax', 'ReviewsController@approveReviewAjax');

@@ -48,16 +48,31 @@
                     {{$errors->first('password','<span class="half block alert alert-error">:message</span>')}}
                 </div>
                 <div class="form-group">
-                    {{ Form::label('password_confirmation', "Confirm Password", ["class"=> "text-colorful"]) }}
+                    {{ Form::label('password_confirmation', "Confirm Password", ["required"=>"required", "class"=> "text-colorful"]) }}
                     <br>
                     {{ Form::password('password_confirmation', ["required"=>"required", "class"=>"text-input-grey",
                         "placeholder"=>"*********"]) }}
                     {{$errors->first('password','<span class=" half block alert alert-error">:message</span>')}}
                 </div>
                 <div class="form-group">
-                    {{ Form::label('captcha', "What is the capital of Ireland?", ["class" => "text-colorful"]) }}
-                    {{ Form::text('captcha', '', ["required"=>"required", "class"=>"text-input-grey",
-                        "placeholder"=>"What is the capital of Ireland?", "title" => "Prove to us you're not a robot."]) }}
+                    {{ Form::label('captcha', "Prove to us you're not a robot", [ "class"=> "text-colorful"]) }}
+                    <br/>
+                    <div id="divcaptcha" data-id="">
+                    <?php $x = 0; ?>
+                        @foreach (Session::get('veri') as $key => $value)
+                            @foreach ($value as $key => $value2) 
+                                @if( $key == $time && $x == 0)
+                                    <?php $x = 1; ?>
+                                    <img draggable="false" src="{{ URL::to('captcha?x='.$value2['x'].'&y='.$value2['y']) }}">
+                                @endif
+                            @endforeach
+                        @endforeach
+                    </div>
+                    {{ Form::hidden('captcha_id', $time ) }}
+                    {{ Form::text('captcha', '', [ "class"=>"text-input-grey xxss",
+                        "placeholder"=>"Enter sum",'id'=>'coupon','maxlength'=>"3",
+                        'maxlength'=>"3", 'required' => 'required']) }} 
+                    {{$errors->first('captcha','<span id="errorcaptcha" class="alert-error2">:message</span>')}}
                 </div>
                 <br/>
                 <div class="form-group">

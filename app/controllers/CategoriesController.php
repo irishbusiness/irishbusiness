@@ -142,10 +142,16 @@ class CategoriesController extends \BaseController {
 			$name = html_entity_decode($name);
 			// return $name;
 			if( $name != "" ){
-				$res =  getCategoryIdByName($name);
-				return $res;
+				return getCategoryIdByName($name);
 			}
 		// }
+	}
+
+	public function returnCategoryName(){
+		$id = Input::get('id');
+		
+		return getCategoryNameById($id);
+		
 	}
 
 

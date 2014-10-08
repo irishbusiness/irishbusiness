@@ -1562,11 +1562,11 @@ $(document).ready(function() {
 		var decision = confirm('Are you sure you want to delete this photo? This cannot be undone');
 		if(decision == true){
 			$.ajax({
-                      url: '/deletephoto',  //Server script to process data
-                      type: 'post',
-                      data: {id: id},
-                  }).done(function(data){
-                  		$('#'+photoid).fadeOut();
-                  });
+				url: '/deletephoto',  //Server script to process data
+				type: 'post',
+				data: {id: id},
+          	}).done(function(data){
+          		$('#'+photoid).fadeOut();
+          	});
 		}
 	}

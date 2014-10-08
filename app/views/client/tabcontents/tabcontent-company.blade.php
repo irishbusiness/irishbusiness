@@ -236,21 +236,9 @@
 											"placeholder"=>"Description", "class"=>"text-input-grey comment-message-main one-fourth", "required"=>"required"]) }}
 									</div>
 									<div class="detail">
-					                    {{ Form::label('captcha', "Prove to us you're not a robot", [ "class"=> "text-colorful"]) }}
-					                    <br/>
-					                    <div id="divcaptcha" data-id="">
-					                      @foreach (Session::get('veri') as $key => $value)
-					                        @foreach ($value as $key => $value2) 
-					                          @if( $key == Session::get('time') )
-					                            <img draggable="false" src="{{ URL::to('captcha?x='.$value2['x'].'&y='.$value2['y']) }}">
-					                          @endif
-					                        @endforeach
-					                      @endforeach
-					                    </div>
-					                    {{ Form::hidden('captcha_id', $time ) }}
-					                    {{ Form::text('captcha', '', [ "class"=>"text-input-grey xxss3",
-					                        "placeholder"=>"Enter sum",'id'=>'coupon','maxlength'=>"3",
-					                        'maxlength'=>"3", 'required' => 'required']) }} 
+					                    {{ Form::label('captcha', "What is the capital of Ireland?", ["class" => "text-colorful"]) }}
+					                    {{ Form::text('captcha', '', ["required"=>"required", "class"=>"text-input-grey",
+					                        "placeholder"=>"What is the capital of Ireland?", "title" => "Prove to us you're not a robot."]) }}
 					                    {{$errors->first('captcha','<span id="errorcaptcha" class="alert-error2">:message</span>')}}
 					                </div><br/>
 									{{ Form::hidden("br", $branch->branchslug) }}

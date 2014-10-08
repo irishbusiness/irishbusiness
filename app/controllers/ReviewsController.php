@@ -15,11 +15,12 @@ class ReviewsController extends \BaseController {
 
 	public function store($id)
 	{	
-		$isHuman = validateCaptcha(Session::get('veri'), Input::get('captcha_id'), Input::get('captcha'));
+		// $isHuman = validateCaptcha(Session::get('veri'), Input::get('captcha_id'), Input::get('captcha'));
+		$isHuman = validateHuman(Input::get('captcha'));
 
 		if( !$isHuman ){
 			return Redirect::back()->with('flash_message', "Sorry, your captcha code is incorrect. Please prove to us you're not a robot.")
-				->with('title', 'IrishBusiness.ie | Invite');
+				->with('title', 'IrishBusiness.ie | Invite')->withInput();
 		}
 		
 		if( Auth::user()->check() ){
