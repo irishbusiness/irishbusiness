@@ -1,5 +1,43 @@
 <script>
 	$(window).ready(function(){
+        // var oldkeywords = $("#edit-keywords").val();
+
+        // $(document).on("change", "#edit-keywords", function(){
+        //     var array1 = oldkeywords.split(',');
+        //     var newkeywords = $(this).val();
+        //     var array2 = newkeywords.split(',');
+
+        //     var array3 = [];
+
+        //     var flag = false;
+
+        //     var x = 1;
+
+        //     $.each( array1, function( index1, value1 ){
+
+        //     });
+
+        //     $.each( array1, function( index1, value1 ){
+        //         $.each( array2, function( index2, value2){
+        //             if( value1 === value2 ){
+        //                 if( x >= 3 ){
+        //                     flag = true;
+        //                     return false;
+        //                 }
+        //                 x++;
+        //             }
+        //         });
+        //     });
+
+        //     if( flag === true ){
+        //         alert("Opps...That keyword already exists. Please choose another keyword.");
+        //         $("#edit-keywords").val(oldkeywords);
+        //     }
+
+        //     console.log("oldkeywords="+oldkeywords);
+        //     console.log( $(this).val() );
+        // });
+
 		$("a[rel='dialog']").on("click", function(){
             var dialog = $(this).attr("data-rel");
 
