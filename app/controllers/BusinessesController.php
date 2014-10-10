@@ -154,8 +154,11 @@ class BusinessesController extends \BaseController {
 
 			$json_categories = substr($json_categories, 0, -1);
 
+			$br = $this->business->getBranchBySlug($name);
+			$brID = $br->id;
 
 			return View::make('client.company-tab')
+				->with('brID', $brID)
 				->with('branchID', $branchID)
 				->with('branch', $branch)
 				->with('business', $business)->with('businessinfo', $business)

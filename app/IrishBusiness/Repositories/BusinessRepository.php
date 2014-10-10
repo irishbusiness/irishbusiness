@@ -520,6 +520,11 @@ class BusinessRepository {
         return $branch;
     }
 
+    function getBranchBySlug($slug){
+        $branch = Branch::where('branchslug', '=', $slug)->first();
+        return $branch;
+    }
+
     function getBranchReviews($branch)
     {
         $reviews = $branch->business->reviews()->withTrashed()->where('confirmed', 1)->orderBy('created_at', 'desc')->get();
