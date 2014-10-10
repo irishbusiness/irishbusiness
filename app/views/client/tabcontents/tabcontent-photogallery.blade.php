@@ -11,7 +11,7 @@
 		
 			<div id="listofphotos">
             {{ Form::open([ 'method' => 'post', 'files' => true, 'multiple' => 'true', 'id' => 'photogalleryform']) }}
-                <input type="hidden" name="branch_id" value="{{ $branch->id}}">
+                <input type="hidden" name="branch_id" value="{{ $branchID }}">
                 <input type="file" name="choosefiles[]" id="choosefiles" multiple="" style="display:none">
                 <input type="submit" id="addphotosubmit" class="a-btn button-2-colorful addphoto" value="Save" style="display:none">
             {{ Form::close() }}

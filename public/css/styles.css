@@ -3977,8 +3977,8 @@ ul.entries-list {
 	margin-right: 4px;
 }
 .remove {
-	font-size: 8px;
-	margin-top: 0px;
+	font-size: 12px;
+	margin-top: -5px;
 	position: absolute;
 	padding-left: 4px;
 	font-weight: bolder;
