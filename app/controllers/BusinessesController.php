@@ -142,8 +142,11 @@ class BusinessesController extends \BaseController {
 				
 			// }
 
+			$br = $this->business->getBranchBySlug($name);
+			$brID = $br->id;
+
 			$addresses = $this->business->explodeAddresses($branch);
-			$photos = $this->business->getPhotos($branch->id);
+			$photos = $this->business->getPhotos($brID);
 			$branchID = $branch->id;
 			// $json_categories = json_encode($notselected_categories);
 			$json_categories = "";
@@ -154,8 +157,7 @@ class BusinessesController extends \BaseController {
 
 			$json_categories = substr($json_categories, 0, -1);
 
-			$br = $this->business->getBranchBySlug($name);
-			$brID = $br->id;
+			
 
 			return View::make('client.company-tab')
 				->with('brID', $brID)
