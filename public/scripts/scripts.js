@@ -1570,3 +1570,26 @@ $(document).ready(function() {
           	});
 		}
 	}
+
+
+window.setInterval(function(){
+	console.log("nam");
+	$("#slider2_container").css("overflow-y", "visible");
+	$(".gallery_photo").parent("div").css("overflow-y", "visible");
+	$('.gallery_photo_div').css("overflow-y", "visible");
+
+	var h  = 300;
+	$(".gallery_photo_div").children("div").children("img").each(function(index){
+		if( h < $(this).height() ){
+			h = $(this).height();
+			console.log("h="+h);
+		} 
+	});
+
+	$(".gallery_photo_div").css("height", h+"px");
+	$(".gallery_photo_div").children("div").css("height", h+"px");
+}, 2000);
+
+// $(document).ready(function(){
+
+// });

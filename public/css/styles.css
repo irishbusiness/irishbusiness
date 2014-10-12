@@ -4855,3 +4855,13 @@ a.captionOrange:hover
 	height: auto !important;
 	left: 90px !important;
 }
+
+.slider-no-image{
+	height: auto !important;
+	min-height: 300px !important;
+	top: 0px !important;
+	left: 0px !important;
+	transform: perspective(2000px);
+	position: relative !important;
+	width: auto !important;
+}

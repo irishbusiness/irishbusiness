@@ -36,7 +36,7 @@
   <center>
   @if(count($photos)>0)
     <!-- Jssor Slider Begin -->
-    <div id="slider2_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; ">
+    <div id="slider2_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 1000px; overflow: hidden; ">
 
         <!-- Loading Screen -->
         <div u="loading" style="position: absolute; top: 0px; left: 0px;">
@@ -49,7 +49,7 @@
         </div>
 
         <!-- Slides Container -->
-        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow: hidden;" id="photoshere">
+        <div u="slides" class="gallery_photo_div" style="cursor: move; position: absolute; left: 0px; top: 60px; width: 600px; height: 300px; overflow: hidden;" id="photoshere">
             @foreach($photos as $photo)
             <div>
                 <img u="image" src="{{ URL::asset('images/photogallery/'.$photo->filepath) }}" class="gallery_photo" />
@@ -66,8 +66,8 @@
         <!-- Arrow Navigator Skin End -->
         
         <!-- ThumbnailNavigator Skin Begin -->
-        <div u="thumbnavigator" class="jssort03" style="position: absolute; width: 600px; height: 60px; left:0px; bottom: 0px;">
-            <div style=" background-color: #000; filter:alpha(opacity=30); opacity:.3; width: 100%; height:100%;"></div>
+        <div u="thumbnavigator" class="jssort03" style="position: absolute; width: 600px; height: 60px; left:0; bottom: 0; top: 0;">
+            <div style=" background-color: #rgba(153, 143, 143, 0.16); filter:alpha(opacity=30); opacity:.3; width: 100%; height:100%;"></div>
             <div u="slides" style="cursor: move;">
                 <div u="prototype" class="p" style="POSITION: absolute; WIDTH: 62px; HEIGHT: 32px; TOP: 0; LEFT: 0;">
                     <div class=w><ThumbnailTemplate style=" WIDTH: 100%; HEIGHT: 100%; border: none;position:absolute; TOP: 0; LEFT: 0;"></ThumbnailTemplate></div>
@@ -83,11 +83,11 @@
     <!-- Jssor Slider End -->
     @else
     <!-- Jssor Slider Begin -->
-    <div id="slider2_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; ">
+    <div id="slider2_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px; ">
         <!-- Loading Screen -->
         <div u="loading" style="position: absolute; top: 0px; left: 0px;">
             <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
-                background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;">
+                background-color: #rgba(153, 143, 143, 0.16); top: 0px; left: 0px;width: 100%;height:100%;">
             </div>
             <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
                 top: 0px; left: 0px;width: 100%;height:100%;">
@@ -95,9 +95,9 @@
         </div>
 
         <!-- Slides Container -->
-        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow: hidden;" id="photoshere">
+        <div u="slides" class="gallery_photo_div" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;" id="photoshere">
             <div>
-                <img u="image" src="images/no_photo_available.jpg" />
+                <img class="slider-no-image" u="image" src="images/no_photo_available.jpg" />
             </div>
         </div>
     </div>
