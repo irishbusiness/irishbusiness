@@ -253,6 +253,7 @@ class BusinessRepository {
         $output = "";
 
         $keywordsraw = str_replace(" ", "-", $keywordsraw);
+        $keywordsraw = str_replace(",", "-", $keywordsraw);
         $keywordsraw = preg_replace('/[^A-Za-z0-9\-]/', '', $keywordsraw); // Removes special chars.
 
         $keywordsraw = preg_replace('/-+/', '-', $keywordsraw);

@@ -242,7 +242,7 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try', function(){
-	return getCategoryIdByName(10);
+	return keywordExplode('powerwashing galway,power  wash galway,power washer');
 });
 Route::get('/ajaxCategoryId', 'CategoriesController@returnCategoryId');
 Route::post('/ajaxCategoryName', 'CategoriesController@returnCategoryName');
