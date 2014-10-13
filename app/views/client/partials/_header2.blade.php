@@ -111,7 +111,7 @@
     						<li class="empty neighbour-left">
     							<div></div>
     						</li>
-                             @if(!subscribed())
+                            @if(!subscribed())
                             <li {{ (Request::is('buy*') ? ' class="first active"' : '') }}>
                                 <a href="{{ URL::to('/buy') }}">GET LISTED</a>
                             </li>
@@ -124,9 +124,11 @@
                                  <a href="{{ URL::to(businessSlug().'/branch') }}">BRANCH SETTINGS</a>
                             </li>
                             @else
-                            <li class="">
-                                <a href="{{ URL::to('business/add') }}">ADD BUSINESS</a>
-                            </li>
+                                @if(subscribed())
+                                <li class="">
+                                    <a href="{{ URL::to('business/add') }}">ADD BUSINESS</a>
+                                </li>
+                                @endif
                             @endif
                             <li>
                                 <a href="javascript:void(0)">{{ strtoupper(Auth::user()->user()->firstname) }} &#x25BC</a>

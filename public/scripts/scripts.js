@@ -1573,7 +1573,6 @@ $(document).ready(function() {
 
 
 window.setInterval(function(){
-	console.log("nam");
 	$("#slider2_container").css("overflow-y", "visible");
 	$(".gallery_photo").parent("div").css("overflow-y", "visible");
 	$('.gallery_photo_div').css("overflow-y", "visible");
