@@ -116,7 +116,7 @@
                                 <a href="{{ URL::to('/buy') }}">GET LISTED</a>
                             </li>
                             @endif
-                            @if(hasBusiness())
+                            @if(hasBusiness() || isAdmin())
                             <li class="">
                                  <a href="{{ URL::to(branchSlug()) }}">BUSINESS SETTINGS</a>
                             </li>

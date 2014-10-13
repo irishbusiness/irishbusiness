@@ -4865,3 +4865,23 @@ a.captionOrange:hover
 	position: relative !important;
 	width: auto !important;
 }
+
+.tab-link {
+	list-style: none;
+	background-color: #fff;
+	border-top: 1px solid #e7e7e7;
+	border-left: 1px solid #e7e7e7;
+	border-right: 1px solid #e7e7e7;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	margin-right: 2px;
+}
+
+.tab-link li {
+	float: right;
+	display: block;
+	line-height: 42px;
+	font-family: "Patua One";
+	font-size: 14px;
+	padding: 0 19px;
+}
