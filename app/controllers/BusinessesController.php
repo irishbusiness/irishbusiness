@@ -157,10 +157,13 @@ class BusinessesController extends \BaseController {
 
 			$json_categories = substr($json_categories, 0, -1);
 
+			$array_keyword = explode(",", $business->keywords);
+
 			
 
 			return View::make('client.company-tab')
 				->with('brID', $brID)
+				->with('array_keyword', $array_keyword)
 				->with('branchID', $branchID)
 				->with('branch', $branch)
 				->with('business', $business)->with('businessinfo', $business)
@@ -451,11 +454,10 @@ class BusinessesController extends \BaseController {
 
 	public function update_business_keywords(){
 		if(Request::ajax()){
-			$keywords = $this->business->update_branch_keywords(Input::get("oldbr"), Input::get("keywords"), Input::get("bid"));
+			$keywords = $this->business->update_branch_keywords(Input::get("oldbr"), Input::get("keywords"), Input::get("bid"), Input::get('op'));
 			if( $keywords != false ){
 				return $keywords;
 			}
-
 			return "false";
 		}
 	}

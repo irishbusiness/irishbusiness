@@ -31,8 +31,11 @@
 
 		    <div class="thin-separator"></div>
 		    <div class="form-group">
-		        {{ Form::select('categories', $categories, "", ['id' => 'categories',
-		        'class' => 'text-input-grey full-width select']) }}
+		     	{{ Form::label('categories', "Categories",
+		        ["class"=>"text-colorful"]) }}<br/>
+		    	{{ Form::text('categories', '', ["id" => "categories_autocomplete", 
+		    		'class' => 'text-input-grey half-width select']) }}
+		    	<button class="button-2-colorful" type="button" id="btn_add_this_category">Add</button>
 		    </div>
 		    <div class="form-group">
 		        <div class="showCategory">

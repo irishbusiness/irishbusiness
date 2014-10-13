@@ -358,6 +358,70 @@
             // console.log(name);
             
         });
+        
+        var token = $("input[name='_token']").val();
+       
+
+        $(document).on("click", "#btn_add_this_keyword", function(){
+            var el = $("#add_new_keyword");
+            var bid = el.attr("data-bid");
+            var br = el.attr("data-br");
+            var newkeyword = el.val();
+           
+
+            $.ajax({
+                url : "ajaxUpdateKeywords",
+                type : "post",
+                data : { oldbr : br, bid : bid, keywords : newkeyword, op : 'add', _token : token }
+            }).done(function(data){
+                console.log(data);
+                if( data != "false" ){
+                    $("#add_new_keyword").attr("data-br", data);
+                    $(".keywords-list").append('<span class="bs-btn btn-success category" data-id="remove_'+newkeyword+'">'+
+                            newkeyword+
+                            '<span class="remove" data-id="'+newkeyword+'" data-text="'+newkeyword+'" title="remove this keyword">x</span>'+
+                        '</span>');
+                    $("#frm-business-settings").attr("action", "{{ URL::to('/edit/company/'.$business->slug.'/') }}"+"/"+newkeyword);
+                    history.pushState('data', '', '/'+data+'#company-tabs-settings');
+                }else{
+                    alert("Opps! Something's not right. Please try again later.");
+                }
+            });
+
+        }); 
+
+        $(document).on("click", ".remove-keyword", function(){
+            var res = confirm("You are about to remove this keyword. Are you sure to continue?");
+            if( res ){
+                var key = $(this).attr("data-id");
+                var el = $("#add_new_keyword");
+                var bid = el.attr("data-bid");
+                var br = el.attr("data-br");
+
+                $.ajax({
+                    url : 'ajaxUpdateKeywords',
+                    type : 'post',
+                    data : { oldbr : br, bid : bid, keywords : key, op : 'delete', _token : token }
+                }).done(function(data){
+                    if( data != 'false' ){
+                        $(".remove-keyword[data-id='"+key+"']").parent('span').fadeOut(function(){
+                            $(this).remove();
+                            $("#add_new_keyword").attr("data-br", data);
+                            history.pushState('data', '', '/'+data+'#company-tabs-settings');
+                        });
+                    }else{
+                        alert("Opps! Something's not right. Please try again later.");
+                    }
+                });
+            }
+        });
+
+        $(document).on("keydown", "#add_new_keyword", function(event){
+            if( event.keyCode == 13 ){
+                event.preventDefault();
+                return false;
+            }
+        });
 
     });
 

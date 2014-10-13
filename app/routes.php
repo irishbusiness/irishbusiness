@@ -96,6 +96,7 @@ Route::post('ajaxSaveCoupon', 'BusinessesController@save_coupon');
 Route::post('ajaxDeleteCoupon', 'BusinessesController@delete_coupon');
 
 Route::post('ajaxUpdateKeywords', 'BusinessesController@update_business_keywords');
+Route::post('ajaxDeleteKeywords', 'BusinessesController@delete_business_keywords');
 
 Route::post('settings', 'BusinessesController@store');
 
@@ -241,8 +242,25 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 
 Route::post('addmap','BusinessesController@storeMap');	
 
-Route::get('try', function(){
-	return keywordExplode('powerwashing galway,power  wash galway,power washer');
+Route::get('try/{slug}/{key}', function($slug, $key){
+
+	$branch = Branch::where('branchslug', $slug)->first();
+    $business = Business::find($branch->business_id);
+    $old_keyword = $business->keywords;
+    $keyw = "";
+	
+	$old_keyword = explode(",", $old_keyword);
+
+	$new_keywords = $key;
+
+	foreach ($old_keyword as $key => $value) {
+        if( $value != $new_keywords ){
+            $keyw.= $value.',';
+        }
+    }
+    $keyw = substr( $keyw, 0, strlen($keyw)-1 );
+
+	return $keyw;
 });
 Route::get('/ajaxCategoryId', 'CategoriesController@returnCategoryId');
 Route::post('/ajaxCategoryName', 'CategoriesController@returnCategoryName');

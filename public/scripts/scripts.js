@@ -1581,6 +1581,7 @@ window.setInterval(function(){
 	$(".gallery_photo_div").children("div").children("img").each(function(index){
 		if( h < $(this).height() ){
 			h = $(this).height();
+			h = h+10;
 			console.log("h="+h);
 		} 
 	});
