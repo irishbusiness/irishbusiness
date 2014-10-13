@@ -4885,3 +4885,7 @@ a.captionOrange:hover
 	font-size: 14px;
 	padding: 0 19px;
 }
+
+td.detail a {
+	word-break: break-all;
+}
