@@ -10,7 +10,7 @@
         </div>
     	</div>
 		@if(Auth::user()->check())
-			<a href="{{ URL::to('business/'.businessSlug().'/branch/add') }}" class="a-btn button-2-colorful add-coupon">Add new Branch</a><br>
+			<a href="{{ URL::to('business/'.$business->slug.'/branch/add') }}" class="a-btn button-2-colorful add-coupon">Add new Branch</a><br>
 		@endif
 		<?php
 		$x=0; 
