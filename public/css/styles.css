@@ -3976,7 +3976,7 @@ ul.entries-list {
 	padding-bottom: 0px  !important;
 	margin-right: 4px;
 }
-.remove {
+.remove, .remove-keyword {
 	font-size: 12px;
 	margin-top: -5px;
 	position: absolute;
