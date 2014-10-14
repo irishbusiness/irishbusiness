@@ -60,7 +60,7 @@
 		        <br/>
 		        {{ Form::text('keywords', '', [
 		        	"placeholder" => "Primary keyphase ", "class"=>"text-input-grey half-width", 
-		        	'id' => 'add_new_keyword', 'data-br' => $branch->branchslug, 'data-bid' => $business->id, 'required']) }}
+		        	'id' => 'add_new_keyword', 'data-br' => $branch->branchslug, 'data-bid' => $business->id]) }}
 		        <button class="button-2-colorful" type="button" id="btn_add_this_keyword">Add</button>
 		        <br/>
 		        <div class="keywords-list">
