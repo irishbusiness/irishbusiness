@@ -43,7 +43,7 @@
 					<tr class="detail">
 						<td class="detail-label"> Website </td>
 						<td class="detail">
-							<a href="{{ filter_var($business->website, FILTER_VALIDATE_URL)? URL::to($branch->website) : 'http://'.$branch->website }}" class="text-green" target="_blank">{{ $branch->website }}</a>
+							<a href="{{ filter_var($branch->website, FILTER_VALIDATE_URL)? $branch->website : 'http://'.$branch->website }}" class="text-green" target="_blank">{{ $branch->website }}</a>
 						</td>
 					</tr>
 					<tr class="detail">
