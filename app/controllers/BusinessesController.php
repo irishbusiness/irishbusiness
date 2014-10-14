@@ -299,6 +299,9 @@ class BusinessesController extends \BaseController {
 			$this->updatebusiness->validate(Input::all());
 
 			$slug = $this->business->update($slug, Input::all(), $branchId);
+
+			// $branch_new =  $this->business->getBranchById($branchId);
+			// $new_slug = $branch_new->branchslug;
 			
 			return Redirect::to($slug);
 		}

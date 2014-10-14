@@ -101,6 +101,8 @@ class BusinessRepository {
         // $branch = Branch::find($branchId);
         $branch = Branch::where('branchslug', $branchId)->first();
 
+        $branch_ID = $branch->id;
+
         $address = $input['address1'] ;
         if(trim($input['address2'])!='')
         $address .= '*' . $input['address2'];
@@ -123,7 +125,7 @@ class BusinessRepository {
         // }
 
 
-        $branch->business->keywords = $input['keywords'];
+        // $branch->business->keywords = $input['keywords'];
         
         $business->business_description    =   $input['business_description'];
         // $business->profile_description   =   $input['profile_description'];
@@ -140,14 +142,14 @@ class BusinessRepository {
         $branch->phone = $input["phone"];
         $branch->email = $input["email"];
         
-        $branchslug = keywordExplode($input['keywords']);
+        // $branchslug = keywordExplode($input['keywords']);
         
-        $branch->branchslug = $branchslug;
+        // $branch->branchslug = $branchslug;
         
 
         if(!$branch->save()){
-            $branchslug = keywordExplode($input['keywords']).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
-            $branch->branchslug = $branchslug;
+            // $branchslug = keywordExplode($input['keywords']).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
+            // $branch->branchslug = $branchslug;
             $branch->save();
         }
 
@@ -208,6 +210,11 @@ class BusinessRepository {
 
         
         $business->save();
+
+        // return true;
+
+        $branch = Branch::find($branch_ID);
+        return $branch->branchslug;
 
         // $id = $old_businessinfo->id;
 
