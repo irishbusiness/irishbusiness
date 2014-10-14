@@ -379,7 +379,7 @@
                     $("#add_new_keyword").attr("data-br", data);
                     $(".keywords-list").append('<span class="bs-btn btn-success category" data-id="remove_'+newkeyword+'">'+
                             newkeyword+
-                            '<span class="remove" data-id="'+newkeyword+'" data-text="'+newkeyword+'" title="remove this keyword">x</span>'+
+                            '<span class=".remove-keyword" data-id="'+newkeyword+'" data-text="'+newkeyword+'" title="remove this keyword">x</span>'+
                         '</span>');
                     $("#frm-business-settings").attr("action", "{{ URL::to('/edit/company/'.$business->slug.'/') }}"+"/"+newkeyword);
                     history.pushState('data', '', '/'+data+'#company-tabs-settings');
