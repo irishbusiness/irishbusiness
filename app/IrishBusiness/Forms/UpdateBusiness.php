@@ -5,7 +5,7 @@ class UpdateBusiness extends Form {
 	protected $rules = [
 		'address1' => 'required',
 		'name' => 'required',
-		'keywords' => 'required',
+		// 'keywords' => 'required',
 		'locations' => 'required',
 		'phone' => 'required',
 		'email' => 'required',
