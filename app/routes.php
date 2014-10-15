@@ -242,25 +242,9 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 
 Route::post('addmap','BusinessesController@storeMap');	
 
-Route::get('try/{slug}/{key}', function($slug, $key){
+Route::get('try', function(){
 
-	$branch = Branch::where('branchslug', $slug)->first();
-    $business = Business::find($branch->business_id);
-    $old_keyword = $business->keywords;
-    $keyw = "";
-	
-	$old_keyword = explode(",", $old_keyword);
-
-	$new_keywords = $key;
-
-	foreach ($old_keyword as $key => $value) {
-        if( $value != $new_keywords ){
-            $keyw.= $value.',';
-        }
-    }
-    $keyw = substr( $keyw, 0, strlen($keyw)-1 );
-
-	return $keyw;
+	return removeCommonWords('led,lighting,galway,energy saving,light bulbs,galway');
 });
 Route::get('/ajaxCategoryId', 'CategoriesController@returnCategoryId');
 Route::post('/ajaxCategoryName', 'CategoriesController@returnCategoryName');

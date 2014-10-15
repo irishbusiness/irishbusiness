@@ -1590,6 +1590,11 @@ window.setInterval(function(){
 	$(".gallery_photo_div").children("div").css("height", h+"px");
 }, 2000);
 
+
+$('.with-tooltip').tooltip();
+$('a[data-toggle="reload-page"]').click(function() {
+    location.reload();
+});
 // $(document).ready(function(){
 
 // });

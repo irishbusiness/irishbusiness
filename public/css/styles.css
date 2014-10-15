@@ -4889,3 +4889,7 @@ a.captionOrange:hover
 td.detail a {
 	word-break: break-all;
 }
+
+.float-right{
+	float: right;
+}

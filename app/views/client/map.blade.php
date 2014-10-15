@@ -11,7 +11,12 @@
 				<h1>Branch Map</h1>
 			</div>
 		    <div class="comments block">
-				<p>(Please drag marker to the location of your business in the map.)</p>
+				<p>(Please drag marker to the location of your business in the map.)
+					<span class="text-coloful with-tooltip float-right" title="Make sure you're connected with internet.">
+						<a href="javascript:void()" data-toggle="reload-page">Map not showing? Click to reload.</a>
+					</span>
+				</p>
+
 				<div id="map-canvas" style="height:500px"></div>
 				<div id="current"></div>
 

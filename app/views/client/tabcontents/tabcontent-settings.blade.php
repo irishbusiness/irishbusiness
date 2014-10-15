@@ -56,10 +56,14 @@
 
 		    <div class="thin-separator"></div>
 		    <div class="form-group">
+		    	{{ Form::label('target-keyphrase', "Target Key Phrase", ["class" => "text-colorful"]) }}
+		    	{{ Form::text('keyphrase', $branch->branchslug, ["class"=>"text-input-grey half-width", 'readonly']) }}
+		    </div>
+		    <div class="form-group">
 		    	<a href="javascript:void(0)" data-rel="#edit-keywords-dialog" rel="dialog" class="text-colorful" title="Keywords">Keywords</a>	
 		        <br/>
 		        {{ Form::text('keywords', '', [
-		        	"placeholder" => "Primary keyphase ", "class"=>"text-input-grey half-width", 
+		        	"placeholder" => "Additional keywords ", "class"=>"text-input-grey half-width", 
 		        	'id' => 'add_new_keyword', 'data-br' => $branch->branchslug, 'data-bid' => $business->id]) }}
 		        <button class="button-2-colorful" type="button" id="btn_add_this_keyword">Add</button>
 		        <br/>

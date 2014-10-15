@@ -43,12 +43,14 @@
 				</li>
 				@endif
 
-				@if( isAdmin() || isOwner($branch->business->slug) )
+				@if( isAdmin() )
 				<a href="{{ URL::to($business->slug.'/branch') }}" class="tab-link">
 					<li class="" style="float: right;">
 						BRANCH SETTINGS
 					</li>
 				</a>
+				@endif
+				@if( isAdmin() || isOwner($branch->business->slug) )
 				<li class="" style="float: right;">
 					<a class="company-tabs-settings" href="javascript:void(0)">SETTINGS</a>
 				</li>

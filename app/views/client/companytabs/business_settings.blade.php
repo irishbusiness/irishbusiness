@@ -54,10 +54,15 @@
         
         <div class="thin-separator"></div>
         <div class="form-group">
-            {{ Form::label('keywords', "Keywords (please separate keywords by a comma.)",
-            ["class"=>"text-colorful"]) }}<br/>
+            {{ Form::label('keywords', "Primary key phrase (please separate key phrase with a comma.)",
+                ["class"=>"text-colorful with-tooltip", "title" => "Note: Some words will be automatically removed because they are 
+                ignored by search engines(ex. a,in,at,of, for, first, etc..)
+                    and please separate words with a comma(ex. my keyword1, my keyword2, my location)" ]) }}<br/>
             {{ Form::text('keywords','', [
-            "placeholder" => "office, airplane, house", "class"=>"text-input-grey full"]) }}
+                "placeholder" => "Choose 2 keywords + your location", "class"=>"text-input-grey full with-tooltip",
+                "title" => "Please be careful in choosing your primary key phrase. This can not be changed after saving. 
+                    Also, this is what will appear to your business url. (ex. www.irishbusiness.ie/my-keyword1-my-keyword2-my-location)"
+            ]) }}
             {{$errors->first('keywords','<span class="alert alert-error block half">:message</span>')}}
         </div>
         
