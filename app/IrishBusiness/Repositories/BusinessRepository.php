@@ -461,54 +461,6 @@ class BusinessRepository {
 
             }
 
-
-
-            // $new_keywords_raw = $new_keywords;
-
-            // $old_additional_keyword = $business->additional_keywords;
-
-            // $old_keyword_raw = $business->keywords;
-
-            // $keyw = "";
-            // $additional_keyw = "";
-            // $new_branch_slug = "";
-            // $old_keyword = "";
-
-            // if( trim($old_additional_keyword) != "" ){
-            //     $old_keyword = $old_additional_keyword.",".$old_keyword_raw;
-            // }else{
-            //     $old_keyword = $old_keyword_raw;
-            // }
-
-            // if( $operation == "add" ){
-                
-            //     $new_branch_slug = $old_keyword_raw.",".$old_additional_keyword.','.$new_keywords;
-            //     $additional_keyw = $old_additional_keyword.",".$new_keywords_raw;
-
-            //     $branch->branchslug = keywordExplode($new_branch_slug);
-            //     // $business->keywords = $new_keywords;
-            //     $business->additional_keywords = $additional_keyw;
-                
-            // }else{
-
-            //     $old_keywordarr = explode(",", $old_keyword);
-            //     $old_additional_keyword = explode(",", $old_additional_keyword);
-
-            //     foreach ($old_keywordarr as $key => $value) {
-            //         if( $value != $new_keywords_raw ){
-            //             $new_branch_slug .= $value.',';
-            //         }
-            //     }
-
-            //     foreach ($old_additional_keyword as $key => $value) {
-            //         if( $value != $new_keywords_raw ){
-            //             $additional_keyw .= $value.',';
-            //         }
-            //     }
-            //     $branch->branchslug = $keywordExplode($new_branch_slug);
-            //     $business->additional_keywords = $additional_keyw;
-            // }
-
             if( $branch->save() && $business->save() ){
                 return keywordExplode($new_branch_slug);
             }

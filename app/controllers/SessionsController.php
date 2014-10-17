@@ -20,9 +20,13 @@ class SessionsController extends \BaseController {
 
 	public function store()
 	{
+		$email = Input::get('email');
 		
+		if( $this->user->userExists($email) && !$this->user->isConfirmed($email) ){
+			return Redirect::back()->withInput()->with('errorNotify','Please confirm your email first.');
+		}
 
-		if(!$this->user->isConfirmed(Input::get('email')))
+		if(!$this->user->isConfirmed($email))
 			return Redirect::back()->withInput()->with('errorNotify','wrong email/password combination');
 			
 		try

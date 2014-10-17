@@ -65,6 +65,14 @@ class UserRepository {
 		return true;
 	}
 
+	public function userExists($email){
+		$user = User::whereEmail($email)->first();
+		if(!is_null($user)){	
+			return true;
+		}
+		return false;
+	}
+
 	public function update($password)
 	{
 		$user = Auth::user()->user();
