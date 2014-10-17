@@ -431,34 +431,86 @@ class BusinessRepository {
 
             $branch = Branch::where('branchslug', $old_branchslug)->first();
             $business = Business::find($business_id);
-            $old_keyword = $business->keywords;
+
+
+            $old_keywords = $business->keywords;
+            $old_additional_keywords = $business->additional_keywords;
+
+            $new_branch_slug = "";
+            $new_additional_keywords = "";
 
             if( $operation == "add" ){
-                
-                $new_keywords = $old_keyword.",".$new_keywords;
-
-                $branch->branchslug = keywordExplode($new_keywords);
-                $business->keywords = $new_keywords;
+                $new_branch_slug = keywordExplode( $old_keywords.','.$old_additional_keywords.','.$new_keywords );
+                $branch->branchslug = $new_branch_slug;
+                $business->additional_keywords = $old_additional_keywords.','.$new_keywords;
             }else{
-                $keyw = "";
 
-                $old_keywordarr = explode(",", $old_keyword);
+                $old_additional_keywords_arr = explode(",", $old_additional_keywords);
 
-                foreach ($old_keywordarr as $key => $value) {
+                foreach ($old_additional_keywords_arr as $key => $value) {
                     if( $value != $new_keywords ){
-                        $keyw .= $value.',';
+                        $new_additional_keywords .= $value.',';
                     }
                 }
 
-                $keyw = substr( $keyw, 0, strlen($keyw)-1 );
-                $branch->branchslug = keywordExplode($keyw);
-                $business->keywords = $keyw;
+                $new_additional_keywords = substr($new_additional_keywords, 0, strlen($new_additional_keywords)-1);
 
-                $new_keywords = keywordExplode($keyw);
+                $new_branch_slug = keywordExplode( $old_keywords.','.$new_additional_keywords );
+                $branch->branchslug = $new_branch_slug;
+                $business->additional_keywords = $new_additional_keywords;
+
             }
 
+
+
+            // $new_keywords_raw = $new_keywords;
+
+            // $old_additional_keyword = $business->additional_keywords;
+
+            // $old_keyword_raw = $business->keywords;
+
+            // $keyw = "";
+            // $additional_keyw = "";
+            // $new_branch_slug = "";
+            // $old_keyword = "";
+
+            // if( trim($old_additional_keyword) != "" ){
+            //     $old_keyword = $old_additional_keyword.",".$old_keyword_raw;
+            // }else{
+            //     $old_keyword = $old_keyword_raw;
+            // }
+
+            // if( $operation == "add" ){
+                
+            //     $new_branch_slug = $old_keyword_raw.",".$old_additional_keyword.','.$new_keywords;
+            //     $additional_keyw = $old_additional_keyword.",".$new_keywords_raw;
+
+            //     $branch->branchslug = keywordExplode($new_branch_slug);
+            //     // $business->keywords = $new_keywords;
+            //     $business->additional_keywords = $additional_keyw;
+                
+            // }else{
+
+            //     $old_keywordarr = explode(",", $old_keyword);
+            //     $old_additional_keyword = explode(",", $old_additional_keyword);
+
+            //     foreach ($old_keywordarr as $key => $value) {
+            //         if( $value != $new_keywords_raw ){
+            //             $new_branch_slug .= $value.',';
+            //         }
+            //     }
+
+            //     foreach ($old_additional_keyword as $key => $value) {
+            //         if( $value != $new_keywords_raw ){
+            //             $additional_keyw .= $value.',';
+            //         }
+            //     }
+            //     $branch->branchslug = $keywordExplode($new_branch_slug);
+            //     $business->additional_keywords = $additional_keyw;
+            // }
+
             if( $branch->save() && $business->save() ){
-                return keywordExplode($new_keywords);
+                return keywordExplode($new_branch_slug);
             }
 
             return false;
@@ -466,26 +518,6 @@ class BusinessRepository {
         } catch (\Exception $e) {
             return false;
         }
-        // try {
-        //     $branch = Branch::where('branchslug', $old_branchslug)->first();
-        //     $business = Business::find($business_id);
-        //     $business->keywords = $new_keywords;
-        //     $branch->branchslug = clean_str($new_keywords);
-        //     if( $branch->save() && $business->save() ){
-        //         $keywords = "";
-        //         $arr = explode(",", $new_keywords);
-        //         foreach ($arr as $keyword) {
-        //             if( trim($keyword) != "" ){
-        //                 $keywords.= "<li>".$keyword."</li>";
-        //             }
-        //         }
-
-        //         return $keywords;
-        //     }
-        // } catch (\Exception $e) {
-        //     return false;
-            
-        // }
     }
 
     function getBranches($category, $query1)

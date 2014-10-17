@@ -95,9 +95,9 @@
 		</div>
 			@if(!$branch->business->profilebanner == "")
 				<div class="photo">
-				<div class="company-photo-container profile-description-img-thumbnail">
-					<img src="{{ URL::asset($branch->business->profilebanner) }}">
-				</div>
+					<div class="company-photo-container profile-description-img-thumbnail">
+						<img src="{{ URL::asset($branch->business->profilebanner) }}">
+					</div>
 				</div>
 			@endif
 			<!-- <div class="company-info clearfix">
@@ -129,6 +129,28 @@
 		</div>
 		<div class="clearfix"></div>
 		<div class="separator"></div>
+
+		<div class="range-of-services company-page-center-block">
+			<div class="divkeywords">
+				<h2>Keyphrase </h2>
+			</div>
+			<div class="block-content">
+				<ul>
+					<?php 
+						$keywords = $branch->business->keywords;
+						$arr = explode(",", $keywords);
+						foreach ($arr as $keyword) {
+							if( trim($keyword) != "" ){
+								echo "<li>".$keyword."</li>";
+							}
+						}
+					?>
+				</ul>
+				<div class="clear">
+				</div>
+			</div>
+		</div>
+		<div class="thin-separator"></div>
 		<div class="range-of-services company-page-center-block">
 			<div class="divkeywords">
 				<h2>Keywords</h2>
@@ -136,7 +158,7 @@
 			<div class="block-content">
 				<ul>
 					<?php 
-						$keywords = $branch->business->keywords;
+						$keywords = $branch->business->additional_keywords;
 						$arr = explode(",", $keywords);
 						foreach ($arr as $keyword) {
 							if( trim($keyword) != "" ){

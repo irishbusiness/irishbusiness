@@ -16,7 +16,7 @@ class CreateBusinessesTable extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->string('keywords');
-			$table->string('additional_keywords');
+			$table->string('additional_keywords')->nullable();
 			/*$table->string('locations');
 			$table->string('phone');
 			$table->string('website');

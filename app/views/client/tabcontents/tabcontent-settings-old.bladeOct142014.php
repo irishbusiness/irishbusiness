@@ -57,10 +57,10 @@
 		    <div class="thin-separator"></div>
 		    <div class="form-group">
 		    	{{ Form::label('target-keyphrase', "Target Key Phrase", ["class" => "text-colorful"]) }}
-		    	{{ Form::text('keyphrase', $primary_keyphrase, ["class"=>"text-input-grey half-width", 'readonly']) }}
+		    	{{ Form::text('keyphrase', $branch->branchslug, ["class"=>"text-input-grey half-width", 'readonly']) }}
 		    </div>
 		    <div class="form-group">
-		    	<a href="javascript:void(0)" data-rel="#edit-keywords-dialog" rel="dialog" class="text-colorful" title="Keywords">Additional Keywords</a>	
+		    	<a href="javascript:void(0)" data-rel="#edit-keywords-dialog" rel="dialog" class="text-colorful" title="Keywords">Keywords</a>	
 		        <br/>
 		        {{ Form::text('keywords', '', [
 		        	"placeholder" => "Additional keywords ", "class"=>"text-input-grey half-width", 
@@ -69,12 +69,10 @@
 		        <br/>
 		        <div class="keywords-list">
 			        @foreach($array_keyword as $index => $value)
-			        	@if( trim($value) != "" )
-			        		<span class="bs-btn btn-success category" data-id="{{ 'k'.$value }}">
-			        			{{ $value }}
-			        			<span class="remove-keyword" data-id="{{$value}}" data-text="{{ $value }}" title="remove this keyword">x</span>
-			        		</span>
-			        	@endif
+			        	<span class="bs-btn btn-success category" data-id="{{ 'k'.$value }}">
+		        			{{ $value }}
+		        			<span class="remove-keyword" data-id="{{$value}}" data-text="{{ $value }}" title="remove this keyword">x</span>
+		        		</span>
 			        @endforeach
 		        </div>
 		        {{$errors->first('keywords','<span class="alert alert-error block half">:message</span>') }}
