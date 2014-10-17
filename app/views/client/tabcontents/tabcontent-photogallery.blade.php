@@ -65,19 +65,7 @@
         </span>
         <!-- Arrow Navigator Skin End -->
         
-        <!-- ThumbnailNavigator Skin Begin -->
-        <div u="thumbnavigator" class="jssort03" style="position: absolute; width: 600px; height: 60px; left:0; bottom: 0; top: 0;">
-            <div style=" background-color: #rgba(153, 143, 143, 0.16); filter:alpha(opacity=30); opacity:.3; width: 100%; height:100%;"></div>
-            <div u="slides" style="cursor: move;">
-                <div u="prototype" class="p" style="POSITION: absolute; WIDTH: 62px; HEIGHT: 32px; TOP: 0; LEFT: 0;">
-                    <div class=w><ThumbnailTemplate style=" WIDTH: 100%; HEIGHT: 100%; border: none;position:absolute; TOP: 0; LEFT: 0;"></ThumbnailTemplate></div>
-                    <div class=c style="POSITION: absolute; BACKGROUND-COLOR: #000; TOP: 0; LEFT: 0">
-                    </div>
-                </div>
-            </div>
-            <!-- Thumbnail Item Skin End -->
-        </div>
-        <!-- ThumbnailNavigator Skin End -->
+        
         <a style="display: none" href="http://www.jssor.com">javascript</a>
     </div>
     <!-- Jssor Slider End -->
