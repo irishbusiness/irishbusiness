@@ -159,7 +159,7 @@ class BusinessesController extends \BaseController {
 
 			$array_keyword = explode(",", $business->additional_keywords);
 
-			$primary_keyphrase = keywordExplode($business->keywords);
+			$primary_keyphrase = str_replace(',', ' ', $business->keywords);
 			
 
 			return View::make('client.company-tab')

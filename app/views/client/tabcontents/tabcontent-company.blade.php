@@ -129,10 +129,9 @@
 		</div>
 		<div class="clearfix"></div>
 		<div class="separator"></div>
-
 		<div class="range-of-services company-page-center-block">
 			<div class="divkeywords">
-				<h2>Keyphrase </h2>
+				<h2>Keywords</h2>
 			</div>
 			<div class="block-content">
 				<ul>
@@ -144,20 +143,7 @@
 								echo "<li>".$keyword."</li>";
 							}
 						}
-					?>
-				</ul>
-				<div class="clear">
-				</div>
-			</div>
-		</div>
-		<div class="thin-separator"></div>
-		<div class="range-of-services company-page-center-block">
-			<div class="divkeywords">
-				<h2>Keywords</h2>
-			</div>
-			<div class="block-content">
-				<ul>
-					<?php 
+
 						$keywords = $branch->business->additional_keywords;
 						$arr = explode(",", $keywords);
 						foreach ($arr as $keyword) {
