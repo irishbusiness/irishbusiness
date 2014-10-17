@@ -36,7 +36,7 @@
                     <div class="form-group">
                         {{ Form::label('google', "Google+ Link",
                         ["class"=>"text-colorful"]) }}<br>
-                        {{ Form::text('google',$blog->facebook, [
+                        {{ Form::text('google',$blog->google, [
                         "placeholder" => "Google", "class"=>"text-input-grey full", 'id' => 'googleedit']) }}
                     </div>
                     <div class="form-group">
@@ -64,7 +64,7 @@
                     </div>
                     <br>
                     <p><input type="submit" value="Save" name="send" class="button-2-colorful"/>
-                    <a href="{{ URL::to('blog/'.$blog->id.'/delete') }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="read-more-link">Remove Blog</a>
+                    <a href="{{ URL::to('blog/'.$blog->slug.'/delete/'.$blog->id) }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="read-more-link">Remove Blog</a>
                     {{ Form::close() }}
             </p>
         </div>

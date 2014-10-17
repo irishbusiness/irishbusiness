@@ -30,9 +30,9 @@ Route::get('blog/add', 'BlogController@add');
 
 Route::get('blog/{slug}/{id}', 'BlogController@show');
 
-Route::get('blog/{id}/edit', 'BlogController@edit');
+Route::get('blog/{slug}/edit/{id}', 'BlogController@edit');
 
-Route::get('blog/{id}/delete', 'BlogController@destroy');
+Route::get('blog/{slug}/delete/{id}', 'BlogController@destroy');
 
 Route::resource('blog', 'BlogController');
 

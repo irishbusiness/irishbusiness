@@ -68,9 +68,9 @@
 							</div>
 							<div class="blog-post-excerpt">{{ html_entity_decode(stripcslashes($blog->body)) }}</div>
 							<div class="blog-post-links">
-							@if(isOwner($blog->business->slug))
-								<a href="{{ URL::to('blog/'.$blog->id.'/delete') }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="read-more-link">Remove Blog</a>
-								<a href="{{ URL::to('blog/'.$blog->slug.'/edit') }}" class="read-more-link">Edit Blog</a>
+							@if(isOwner($blog->business->slug) || isAdmin())
+								<a href="{{ URL::to('blog/'.$blog->slug.'/delete/'.$blog->id) }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="read-more-link">Remove Blog</a>
+								<a href="{{ URL::to('blog/'.$blog->slug.'/edit/'.$blog->id) }}" class="read-more-link">Edit Blog</a>
 							@endif
 								<a href="{{ URL::to('blog/'.$blog->slug.'/'.$blog->id) }}" class="read-more-link">Read More</a>
 							</div>

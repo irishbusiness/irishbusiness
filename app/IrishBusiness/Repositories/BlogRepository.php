@@ -19,6 +19,12 @@ class BlogRepository {
 		return $blog;
 	}
 
+    function getBlogBySlug($slug){
+        $blog = Blog::whereSlug($slug)->first();
+
+        return $blog;
+    }
+
 	function getAll()
 	{
         $blogs = Blog::orderBy('created_at', 'desc')->get();
@@ -70,34 +76,40 @@ class BlogRepository {
         return $blog;
 	}
 
-	function update($id)
+	function update($id, $input)
 	{
 		// files storage folder
         $dir = public_path().'/images/blog/';
-        $image = Input::file('blogheaderimage');
+        // if( Input::hasFile('blogheaderimage') ){
+        //     $image = Input::file('blogheaderimage');
+        // }else{
+        //     $image = "";
+        // }
 
         $blog = Blog::findOrFail($id);
-        $blog->title = Input::get('title');
-        $blog->body = Input::get('content');
-        $blog->facebook = Input::get('facebook');
-        $blog->google = Input::get('google');
-        $blog->twitter = Input::get('twitter');
-        $blog->linkedin = Input::get('linkedin');
-        $blog->business_id  =   Auth::user()->user()->business->id;
+        $blog->title = $input['title'];
+        $blog->body = $input['content'];
+        $blog->facebook = isset($input['facebook']) ? $input['facebook'] : '';
+        $blog->google = isset($input['google']) ? $input['google'] : '';
+        $blog->twitter = isset($input['twitter']) ? $input['twitter'] : '';
+        $blog->linkedin = isset($input['linkedin']) ? $input['linkedin'] : '';
+        if( !isAdmin() ){ 
+            $blog->business_id  =   Auth::user()->user()->business->id;
+        }
         // $blog->business_id = 2;
 
-        if(Input::get('blogurl') == null){
-            $title = stripcslashes(strtolower(Input::get('title')));
+        if($input['blogurl'] == null){
+            $title = stripcslashes(strtolower($input['title']));
             $tempSlug = trim(preg_replace("/[\']/", "", $title));
             $blog->slug = strtolower(preg_replace("/[\s_\']/", "-", $tempSlug));
         } else {
-            $blog->slug = strtolower(Input::get('blogurl'));
+            $blog->slug = strtolower($input['blogurl']);
         }
 
         //check if the file isset
-        if( Input::hasFile('blogheaderimageedit'))
+        if( isset( $input['blogheaderimageedit'] ) )
         {
-            $image  =   Input::file('blogheaderimageedit');
+            $image  =   $input['blogheaderimageedit'];
             $imagename = md5(date('YmdHis')).'.jpg';
             $filename = $dir.$imagename;
 

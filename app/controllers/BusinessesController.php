@@ -221,11 +221,30 @@ class BusinessesController extends \BaseController {
 				
 			}
 
+			$br = $this->business->getBranchBySlug($name);
+			$brID = $br->id;
+
+
 			$addresses = $branch->address;
 			$addresses = explode("*", $addresses);
 			$photos = $this->business->getPhotos($branch->id);
+			$array_keyword = explode(",", $business->additional_keywords);
+
+			$primary_keyphrase = str_replace(',', ' ', $business->keywords);
+
+			$json_categories = "";
+
+			foreach ($notselected_categories as $key => $value) {
+				$json_categories.= '"'.$value.'",';
+			}
+
+			$json_categories = substr($json_categories, 0, -1);
 
 			return View::make('client.company-tab')
+				->with('brID', $brID)
+				->with('primary_keyphrase', $primary_keyphrase)
+				->with('array_keyword', $array_keyword)
+				->with('json_categories', $json_categories)
 				->with('branch', $branch)
 				->with('business', $business)
 				->with('blogs', $blogs)

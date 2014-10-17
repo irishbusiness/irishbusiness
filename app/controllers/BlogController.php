@@ -19,19 +19,18 @@ class BlogController extends \BaseController {
         return View::make('client.blogpost', compact('blog'));
     }
 
-    public function edit($id)
+    public function edit($slug, $id)
     {
-        $blog = $this->blog->getBlog($id);
+         $blog = $this->blog->getBlogById($id);
 
         return View::make('client.editblogpost', compact('blog'))->with("title", "Client - Edit Blog");
     }
 
-    public function destroy($id)
+    public function destroy($slug, $id)
     {
         $blog = $this->blog->getBlogById($id);
         $blog->delete();
-
-        return Redirect::to('/blog');
+        return Redirect::back();
     }
 
     public function index()
@@ -67,9 +66,11 @@ class BlogController extends \BaseController {
 
     public function update($id)
     {
-        $blog = $this->blog->update($id);
+        $blog = $this->blog->update($id, Input::all());
+        $business_id = $blog->business_id;
+        $branch = Branch::whereBusiness_id($business_id)->first();
 
-        return Redirect::to(Auth::user()->user()->business->branches()->first()->branchslug.'/blog/'.$blog->slug.'#company-tabs-blog');
+        return Redirect::to($branch->branchslug.'/blog/'.$blog->slug.'#company-tabs-blog');
     }
 
     public function blogAjax(){

@@ -50,9 +50,9 @@
 					</div>
 				</div>
 
-				@if(isOwner($blog->business->slug))
-                    <a href="{{ URL::to('blog/'.$blog->slug.'/edit') }}"><input type="button" value="Edit" name="edit" class="button-2-blue"/></a>
-                    <a href="{{ URL::to('blog/'.$blog->id.'/delete') }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="button-2-red paditup">Remove Blog</a>
+				@if(isOwner($blog->business->slug) || isAdmin())
+                    <a href="{{ URL::to('blog/'.$blog->slug.'/edit/'.$blog->id) }}"><input type="button" value="Edit" name="edit" class="button-2-blue"/></a>
+                    <a href="{{ URL::to('blog/'.$blog->slug.'/delete/'.$blog->id) }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="button-2-red paditup">Remove Blog</a>
 				@endif
 			</div><!-- end of .content-container -->
 		</div><!-- end of .zone-content -->
