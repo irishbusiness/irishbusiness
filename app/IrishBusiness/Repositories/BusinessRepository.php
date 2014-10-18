@@ -20,6 +20,7 @@ class BusinessRepository {
 		/*$address = $input['address1'] . ',' . $input['address2'] . ',' . $input['address3']  . ',' .$input['address4'];*/
 		$business->name = $input['name'];
 		/*$business->address = $address;*/
+        
 		$business->keywords = trim(removeCommonWords($input['keywords']));
 		/*$business->locations = $input['locations'];*/
 		/*$business->phone    =   $input['phone'];

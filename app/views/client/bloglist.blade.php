@@ -23,7 +23,7 @@
 							<div class="blog-post-description clearfix">
 								<div class="blog-post-title-comments">
 									<a href="#" class="blog-post-comments">0</a>
-									<a href="{{ URL::to($blog->business->branches->first()->branchslug.'blog/'.$blog->slug.'#company-tabs-blog') }}" class="blog-post-title">{{ $blog->title }}</a>
+									<a href="{{ URL::to('blog/'.$blog->slug.'/'.$blog->id) }}" class="blog-post-title">{{ $blog->title }}</a>
 								</div>
 								<div class="blog-post-excerpt">
                                     <div class="blog-post-image">
@@ -32,10 +32,10 @@
                                 </div>
                                 <div class="blog-post-links">
 								@if(isOwner($blog->business->slug))
-									<a href="{{ URL::to('blog/'.$blog->id.'/delete') }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="read-more-link">Remove Blog</a>
-									<a href="{{ URL::to('blog/'.$blog->slug.'/edit') }}" class="read-more-link">Edit Blog</a>
+									<a href="{{ URL::to('blog/'.$blog->slug.'/delete/'.$blog->id) }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="read-more-link">Remove Blog</a>
+									<a href="{{ URL::to('blog/'.$blog->slug.'/edit/'.$blog->id) }}" class="read-more-link">Edit Blog</a>
 								@endif
-									<a href="{{ URL::to($blog->business->branches->first()->branchslug.'blog/'.$blog->slug.'#company-tabs-blog') }}" class="read-more-link">Read More</a>
+									<a href="{{ URL::to('blog/'.$blog->slug.'/'.$blog->id) }}" class="read-more-link">Read More</a>
 								</div>
 							</div>
 						</div>

@@ -32,6 +32,10 @@ class BlogRepository {
 		return $blogs;
 	}
 
+    function getAllAdminBlog(){
+        // $blogs = Blog::
+    }
+
 	function create($input)
 	{
         $blog = new Blog;
