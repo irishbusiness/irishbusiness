@@ -249,10 +249,9 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try', function(){
-	$x= "B&B  Clarecheap, accommodationennis hotels, Shannon hotels";
-	// return removeCommonWords($x);
-	 $x= "Bamp;B";
-	// return preg_replace('/amp;/', replacement, subject)($x);
+	$new_branch_slug = "BB-Clarecheap-accommodationennis-hotels-Shannon-hotels-ampersand-";
+	return substr($new_branch_slug, strlen($new_branch_slug)-1, strlen($new_branch_slug))."";
+
 	
 });
 Route::get('/ajaxCategoryId', 'CategoriesController@returnCategoryId');

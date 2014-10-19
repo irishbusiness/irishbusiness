@@ -455,6 +455,13 @@ class BusinessRepository {
                 $new_additional_keywords = substr($new_additional_keywords, 0, strlen($new_additional_keywords)-1);
 
                 $new_branch_slug = keywordExplode( $old_keywords.','.$new_additional_keywords );
+
+                $last_char = substr($new_branch_slug, strlen($new_branch_slug)-1, strlen($new_branch_slug));
+
+                if( $last_char == "-"){
+                    $new_branch_slug = substr($new_branch_slug, 0, strlen($new_branch_slug)-1);
+                }
+
                 $branch->branchslug = $new_branch_slug;
                 $business->additional_keywords = $new_additional_keywords;
 
