@@ -16,10 +16,10 @@ Route::get('gettweets', function()
 });
 
 Route::get('/', function()
-{
-	return View::make('client.index');
+{	
+	$branches = Branch::all();
+	return View::make('client.index')->with('branch', $branches);
 });
-
  
 
 Route::get('blog', 'AdminBlogController@index');

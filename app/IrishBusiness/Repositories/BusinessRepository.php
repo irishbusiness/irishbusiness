@@ -43,8 +43,7 @@ class BusinessRepository {
         }
 
         // logo
-        if( !is_null($input['logo']))
-        {
+        if( !is_null($input['logo'])){
             // $dir = public_path().'public/images/companylogos/';
             $image  =   $input['logo'];
             $imagename = md5(date('YmdHis')).'.jpg';
@@ -114,20 +113,8 @@ class BusinessRepository {
         $business = $branch->business;
 
         $business->name = $input['name'];
-
-        // if($input['slug'] == null){
-        //     $name = stripcslashes(strtolower($input['name']));
-        //     $name = str_replace("'", "", $name);
-        //     $business->slug =  preg_replace("/[\s_]/", "-", $name).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
-        // } else {
-        //     $business->slug = strtolower($input['slug']);
-        // }
-
-
-        // $branch->business->keywords = $input['keywords'];
         
         $business->business_description    =   $input['business_description'];
-        // $business->profile_description   =   $input['profile_description'];
 
         $branch->mon_fri   =   $input['mon_fri'];
         // $branch->sat   =   $input['sat'];
@@ -141,24 +128,16 @@ class BusinessRepository {
         $branch->phone = $input["phone"];
         $branch->email = $input["email"];
         
-        // $branchslug = keywordExplode($input['keywords']);
-        
-        // $branch->branchslug = $branchslug;
-        
 
         if(!$branch->save()){
-            // $branchslug = keywordExplode($input['keywords']).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
-            // $branch->branchslug = $branchslug;
             $branch->save();
         }
 
         // logo
         if( !is_null($input["logo"]) )
         {
-            // $dir = $dir = public_path().'/images/companylogos/';
             $image  =   $input['logo'];
             $imagename = md5(date('YmdHis')).'.jpg';
-            // $filename = $dir.$imagename;
 
             if ($image->getMimeType() == 'image/png'
                 || $image->getMimeType() == 'image/jpg'
@@ -166,7 +145,6 @@ class BusinessRepository {
                 || $image->getMimeType() == 'image/jpeg'
                 || $image->getMimeType() == 'image/pjpeg')
             {
-                // $image->move($dir, $filename);
                 $path = public_path('images/companylogos/' . $imagename);
                 Image::make($image->getRealPath())->resize(150, 150)->save($path);
                 
@@ -191,7 +169,6 @@ class BusinessRepository {
                 || $image->getMimeType() == 'image/jpeg'
                 || $image->getMimeType() == 'image/pjpeg')
             {
-                // $image->move($dir, $filename);
                 $path = public_path('images/companylogos/' . $imagename);
                 Image::make($image->getRealPath())->save($path);
                 $business->profilebanner  =   'images/companylogos/'.$imagename;
@@ -215,12 +192,7 @@ class BusinessRepository {
         $branch = Branch::find($branch_ID);
         return $branch->branchslug;
 
-        // $id = $old_businessinfo->id;
-
-        // $business = Business::findOrFail($id);
-        // $branch = Branch::find($branchId);
         $branch = Branch::where('branchslug', $branchslug)->first();
-        // return keywordExplode($input['keywords']);
         return $branch->branchslug;
 
 
@@ -245,7 +217,6 @@ class BusinessRepository {
         $branch->google  =   $input['google'];
         $branch->linkedin  =   $input['linkedin'];
         
-        // $branch->branchslug = $slug."-".str_replace(" ", "-", $input['address1'].'-'.$input['address2'])."-".substr(md5(uniqid(rand(1,6))), 0, 5);
         $branch->branchslug = preg_replace('/amp;/', '', $input['branchslug']);
         $business->branches()->save($branch);
 
@@ -268,7 +239,6 @@ class BusinessRepository {
         $count = count($keywords);
         foreach($keywords as $index => $keyword)
         {
-            // $rawwords = explode(" ", $keyword);
             $rawwords = str_replace(" ", "-", $keyword);
             $rawwords = explode(" ", $keyword);
             $count2 = count($rawwords);
@@ -277,7 +247,6 @@ class BusinessRepository {
                 $output.= trim($word);
                     if($index2+1 !=$count2) $output.= '-';    
             }    
-             /*if($index+1!=$count) $output.= '-';      */
         }
         return $output;
     
@@ -439,7 +408,13 @@ class BusinessRepository {
             $new_additional_keywords = "";
 
             if( $operation == "add" ){
+
+                if( strpos($new_keywords, $old_additional_keywords) ){
+                    return false;
+                }
+
                 $new_branch_slug = keywordExplode( $old_keywords.','.$old_additional_keywords.','.$new_keywords );
+
                 $branch->branchslug = $new_branch_slug;
                 $business->additional_keywords = $old_additional_keywords.','.$new_keywords;
             }else{
