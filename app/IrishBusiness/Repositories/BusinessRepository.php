@@ -409,9 +409,9 @@ class BusinessRepository {
 
             if( $operation == "add" ){
 
-                if( strpos($new_keywords, $old_additional_keywords) ){
-                    return false;
-                }
+                // if( strpos($new_keywords, $old_additional_keywords) ){
+                //     return false;
+                // }
 
                 $new_branch_slug = keywordExplode( $old_keywords.','.$old_additional_keywords.','.$new_keywords );
 
