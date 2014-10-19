@@ -1,49 +1,42 @@
 <?php namespace IrishBusiness\Repositories;
 
-use Blog;
+use AdminBlog;
 use Auth;
 
-class BlogRepository {
+class AdminBlogRepository {
 
 	function getBlog($id)
 	{
-        $blog = Blog::where('slug', '=', $id)->first();
+        $blog = AdminBlog::where('slug', '=', $id)->first();
 
 		return $blog;
 	}
 	
 	function getBlogById($id)
 	{
-        $blog = Blog::findOrFail($id);
+        $blog = AdminBlog::findOrFail($id);
 
 		return $blog;
 	}
 
     function getBlogBySlug($slug){
-        $blog = Blog::whereSlug($slug)->first();
+        $blog = AdminBlog::whereSlug($slug)->first();
 
         return $blog;
     }
 
 	function getAll()
 	{
-        $blogs = Blog::orderBy('created_at', 'desc')->get();
+        $blogs = AdminBlog::orderBy('created_at', 'desc')->get();
 
 		return $blogs;
 	}
 
-    function getAllAdminBlog(){
-        $blogs = Blog::where('isAdmin', '1')->orderBy('created_at', 'desc')->get();
-        return $blogs;
-    }
-
 	function create($input)
 	{
-        $blog = new Blog;
+        $blog = new AdminBlog;
         $blog->title = $input['title'];
         $blog->body = $input['content'];
-        
-        $blog->business_id  =  Auth::user()->user()->business->id;
 
         // files storage folder
         $dir = public_path().'/images/blog/';
@@ -93,7 +86,7 @@ class BlogRepository {
         //     $image = "";
         // }
 
-        $blog = Blog::findOrFail($id);
+        $blog = AdminBlog::findOrFail($id);
         $blog->title = $input['title'];
         $blog->body = $input['content'];
         $blog->facebook = isset($input['facebook']) ? $input['facebook'] : '';
@@ -143,7 +136,7 @@ class BlogRepository {
 
 	function getDecodedBlogById($id)
 	{
-        $blog = Blog::findOrFail($id);
+        $blog = AdminBlog::findOrFail($id);
 
         $blog->body = html_entity_decode(stripcslashes($blog->body));
 

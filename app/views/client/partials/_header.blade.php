@@ -23,6 +23,12 @@
             <span id="closeflash"> x </span>
         </div>
       @endif
+       @if(Session::has('flashInfo_message'))  
+        <div id="flashInfomessage" class="alert alert-info">    
+                {{Session::get('flash_message')}}
+            <span id="closeInfoflash"> x </span>
+        </div>
+      @endif
         
     	<div class="header-top-wrapper">
     		<div class="zone-header-top zone clearfix">

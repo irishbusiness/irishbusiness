@@ -7,6 +7,9 @@
 					<div class="block-title marginize">
 						<h1>Blog</h1>
 					</div>
+					<div>
+						<h3>Coming <span class="text-colorful">Soon...</span></h3>
+					</div>
                     @foreach($blogs as $blog)
 					<div class="blog-post-preview">
 						<div class="blog-post-preview-left">

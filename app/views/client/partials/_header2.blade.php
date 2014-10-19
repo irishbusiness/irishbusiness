@@ -120,9 +120,9 @@
                             <li class="">
                                  <a href="{{ URL::to(branchSlug()) }}">BUSINESS SETTINGS</a>
                             </li>
-                            <li class="">
+                            <!-- <li class="">
                                  <a href="{{ URL::to(businessSlug().'/branch') }}">BRANCH SETTINGS</a>
-                            </li>
+                            </li> -->
                             @else
                                 @if(subscribed())
                                 <li class="">

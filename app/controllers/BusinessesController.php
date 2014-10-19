@@ -84,11 +84,22 @@ class BusinessesController extends \BaseController {
 
 		try
 		{
+			$hasCommonWordsNoti = "";
+
 			$this->registerbusiness->validate(Input::all());
+			$business_keywords = trim( Input::get('keywords') );
 
-			$business = $this->business->create(Input::all());
+			$business_keywords = htmlspecialchars($business_keywords);
 
-			/*$business = Business::findOrFail($business_id);*/
+			$keywordlen_temp = strlen( $business_keywords );
+
+	        $new_keywords = removeCommonWords($business_keywords);
+
+	        if( $keywordlen_temp > strlen($new_keywords) ){
+	            $hasCommonWordsNoti = "Certain words in your keywords have been removed because they are ignored by search engines.";
+	        }
+
+			$business = $this->business->create( Input::all() );
 
 			$categories = Session::get('categories');
 			Session::forget('categories');
@@ -100,7 +111,8 @@ class BusinessesController extends \BaseController {
 				}
 			}
 
-			return Redirect::to('business/'.$business->slug .'/branch/add')->with('flash_message','Thank you for adding your business! Please fill up the branch information. <br> You can add more branches later.');
+			return Redirect::to('business/'.$business->slug .'/branch/add')
+				->with('flash_message','Thank you for adding your business! Please fill up your business information below.<br/>'.$hasCommonWordsNoti);
 		}
 		catch(FormValidationException  $e)
 		{
@@ -131,16 +143,6 @@ class BusinessesController extends \BaseController {
 			// $notselected_categories = $this->category->getCategories();
 
 			$notselected_categories = $this->business->getNotSelectedCategories($categories, $selected_categories);
-
-			// for($x=1; $x<count($categories); $x++){
-			// 	// echo "<hr>";
-			// 	for($y=0; $y<count($selected_categories); $y++){
-			// 		if($categories[$x] === $selected_categories[$y]["name"]){
-			// 			unset($notselected_categories[$x]);
-			// 		}
-			// 	}
-				
-			// }
 
 			$br = $this->business->getBranchBySlug($name);
 			$brID = $br->id;
@@ -302,7 +304,7 @@ class BusinessesController extends \BaseController {
 		
 		if(is_null($branch))
 		{
-			$branchSlug = $this->business->keywordExplode($business->keywords);
+			$branchSlug = $this->business->keywordExplode( preg_replace('/amp[;?]/', '', $business->keywords ) );
 			return View::make('client.branch_add')->withTitle('Add Branch')->withSlug($businessSlug)->with('branchSlug', $branchSlug);
 		}
 

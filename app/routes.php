@@ -22,11 +22,12 @@ Route::get('/', function()
 
  
 
-Route::get('blog', 'BlogController@index');
+Route::get('blog', 'AdminBlogController@index');
 
 Route::get('bloglist', 'BlogController@bloglist');
 
-Route::get('blog/add', 'BlogController@add');
+Route::get('blog/add', 'AdminBlogController@add');
+// Route::get('blog/add', 'BlogController@add');
 
 Route::get('blog/{slug}/{id}', 'BlogController@show');
 
@@ -85,9 +86,14 @@ Route::get('admin/settings/socialmedia', function(){
 	return View::make('admin.admin_settings_socialmedia', compact('social'));
 });
 
-Route::get('admin/settings/blog', 'BlogController@manageblog');
+// Route::get('admin/settings/blog', 'BlogController@manageblog');
 
-Route::post('admin/settings/blog', 'BlogController@store');
+// Route::post('admin/settings/blog', 'BlogController@store');
+
+Route::get('admin/settings/blog', 'AdminBlogController@manageblog');
+
+Route::post('admin/settings/blog', 'AdminBlogController@store');
+
 
 Route::get('business/add', 'BusinessesController@addBusiness');
 Route::post('ajaxDeleteBusiness', 'BusinessesController@delete_business');
@@ -243,6 +249,11 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try', function(){
+	$x= "B&B  Clarecheap, accommodationennis hotels, Shannon hotels";
+	// return removeCommonWords($x);
+	 $x= "Bamp;B";
+	// return preg_replace('/amp;/', replacement, subject)($x);
+	
 });
 Route::get('/ajaxCategoryId', 'CategoriesController@returnCategoryId');
 Route::post('/ajaxCategoryName', 'CategoriesController@returnCategoryName');

@@ -138,6 +138,16 @@
 
                 </script>
             @endif
+
+            @if(Session::has('flashInfo_message'))
+                <script>
+                    $('#flashInfomessage').delay(20000).slideUp(50);
+                    $(document).on('click','#closeInfoflash',function(){
+                        $(this).parent().hide();
+                    });
+
+                </script>
+            @endif
             
 
         </section>

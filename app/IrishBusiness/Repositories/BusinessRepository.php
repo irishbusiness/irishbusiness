@@ -15,32 +15,28 @@ class BusinessRepository {
 	}	
 
 	function create($input){
+        $hasCommonWords = false;
 
 		$business = new Business;
-		/*$address = $input['address1'] . ',' . $input['address2'] . ',' . $input['address3']  . ',' .$input['address4'];*/
 		$business->name = $input['name'];
-		/*$business->address = $address;*/
-        
-		$business->keywords = trim(removeCommonWords($input['keywords']));
-		/*$business->locations = $input['locations'];*/
-		/*$business->phone    =   $input['phone'];
-		$business->website    =   $input['website'];
-		$business->email    =   $input['email'];*/
+
+        $business_keywords = trim($input['keywords']);
+        $business_keywords = preg_replace("/[&]/", " and ", $business_keywords);
+
+        $new_keywords = removeCommonWords($business_keywords);
+
+        $new_keywords = preg_replace('/amp[;]/', '', $new_keywords );
+
+		$business->keywords = $new_keywords;
+
+
+
         $business->business_description    =   $input['business_description'];
-		// $business->profile_description   =   $input['profile_description'];
-		/*$business->mon_fri   =   $input['mon_fri'];
-		$business->sat   =   $input['sat'];
-		$business->facebook   =   $input['facebook'];
-		$business->twitter  =   $input['twitter'];
-		$business->google  =   $input['google'];*/
         $business->user_id = Auth::user()->user()->id;
         // $business->user_id = 1;
 
         if($input['slug'] == null){
             $name = clean_str(decode($input['name']));
-            // $name = stripcslashes(strtolower($input['name']));
-            // $name = str_replace("'", "", $name);
-            // $business->slug =  preg_replace("/[\s_]/", "-", $name).'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
             $business->slug = $name.'-'.substr(md5(uniqid(rand(1,6))), 0, 5);
         } else {
             $business->slug = clean_str($input['slug']);
@@ -62,6 +58,7 @@ class BusinessRepository {
             {
                 // $image->move($dir, $filename);
                 $path = public_path('images/companylogos/' . $imagename);
+                $path = str_replace('\\', '/', $path);
                 Image::make($image->getRealPath())->resize(150, 150)->save($path);
                 $business->logo  =   'images/companylogos/'.$imagename;
             } else {
@@ -85,6 +82,7 @@ class BusinessRepository {
             {
                 // $image->move($dir, $filename);
                 $path = public_path('images/companylogos/' . $imagename);
+                $path = str_replace('\\', '/', $path);
                 Image::make($image->getRealPath())->save($path);
                 $business->profilebanner  =   'images/companylogos/'.$imagename;
             }
@@ -248,7 +246,7 @@ class BusinessRepository {
         $branch->linkedin  =   $input['linkedin'];
         
         // $branch->branchslug = $slug."-".str_replace(" ", "-", $input['address1'].'-'.$input['address2'])."-".substr(md5(uniqid(rand(1,6))), 0, 5);
-        $branch->branchslug = $input['branchslug'];
+        $branch->branchslug = preg_replace('/amp;/', '', $input['branchslug']);
         $business->branches()->save($branch);
 
 

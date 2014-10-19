@@ -1,11 +1,11 @@
 <div id="company-tabs-blog" class="company-tabs-content">
 	<div class="blog block">
 		@if(Auth::user()->check())
-		<a id="add_new_blog" class="a-btn button-2-colorful add-coupon">Add new blog</a><br>
+		<a id="add_new_blog" class="a-btn button-2-colorful add-coupon">Add new blog post</a><br>
         <div class="content-container" id="add_blog_block" style="display:none">
 		    <div class="blog-post block">
 		        <div class="block-title marginize">
-		            <h1>Add Blog</h1>
+		            <h1>Add Blog Post</h1>
 		        </div>
 
 		    </div>
@@ -69,8 +69,8 @@
 							<div class="blog-post-excerpt">{{ html_entity_decode(stripcslashes($blog->body)) }}</div>
 							<div class="blog-post-links">
 							@if(isOwner($blog->business->slug) || isAdmin())
-								<a href="{{ URL::to('blog/'.$blog->slug.'/delete/'.$blog->id) }}" onclick = "return confirm('Are you sure you want to remove this blog?')" class="read-more-link">Remove Blog</a>
-								<a href="{{ URL::to('blog/'.$blog->slug.'/edit/'.$blog->id) }}" class="read-more-link">Edit Blog</a>
+								<a href="{{ URL::to('blog/'.$blog->slug.'/delete/'.$blog->id) }}" onclick = "return confirm('Are you sure you want to remove this blog post?')" class="read-more-link">Remove Blog Post</a>
+								<a href="{{ URL::to('blog/'.$blog->slug.'/edit/'.$blog->id) }}" class="read-more-link">Edit</a>
 							@endif
 								<a href="{{ URL::to('blog/'.$blog->slug.'/'.$blog->id) }}" class="read-more-link">Read More</a>
 							</div>

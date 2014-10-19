@@ -1,12 +1,12 @@
 <?php
 
-use IrishBusiness\Repositories\BlogRepository;
+use IrishBusiness\Repositories\AdminBlogRepository;
 
-class BlogController extends \BaseController {
+class AdminBlogController extends \BaseController {
 
     protected $blog;
 
-    function __construct(BlogRepository $blog) {
+    function __construct(AdminBlogRepository $blog) {
         $this->blog = $blog;
         $this->beforeFilter('csrf', ['on' => 'post']);
     }
@@ -35,7 +35,7 @@ class BlogController extends \BaseController {
 
     public function index()
     {
-        $blogs = $this->blog->getAllAdminBlog();
+        $blogs = $this->blog->getAll();
 
         return View::make('client.bloglist', compact('blogs'))->with("title", "Blogs");
     }

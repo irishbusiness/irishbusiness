@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateBlogsTable extends Migration {
+class CreateAdminblogs extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,8 @@ class CreateBlogsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('blogs', function(Blueprint $table) {
+		Schema::create('adminblogs', function(Blueprint $table)
+		{
 			$table->increments('id');
 			$table->string('title');
 			$table->string('blogheaderimage');
@@ -22,8 +23,6 @@ class CreateBlogsTable extends Migration {
             $table->string('twitter');
             $table->string('linkedin');
             $table->string('slug');
-			$table->integer('business_id')->unsigned()->index()->nullable();
-            $table->foreign('business_id')->references('id')->on('businesses')->onUpdate('cascade')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}
@@ -36,7 +35,7 @@ class CreateBlogsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('blogs');
+		Schema::drop('adminblogs');
 	}
 
 }
