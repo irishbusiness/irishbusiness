@@ -10,7 +10,11 @@
 				@if(!empty($recentcompany->branches->first()->id))
 					<li class="clearfix">
 						<a href="{{ URL::to($recentcompany->branches->first()->branchslug) }}" class="thumbnail">
-							<img src="{{ ($recentcompany->logo == '') ? URL::asset('images/image-not-available.png') : URL::asset($recentcompany->logo) }}" alt="" />
+							@if( $recentcompany->logo == "" && $recentcompany->profilebanner != "" )
+								<img src="{{ ($recentcompany->profilebanner == '') ? URL::asset('images/image-not-available.png') : URL::asset($recentcompany->profilebanner) }}" alt="" />
+							@else
+								<img src="{{ ($recentcompany->logo == '') ? URL::asset('images/image-not-available.png') : URL::asset($recentcompany->logo) }}" alt="" />
+							@endif
 						</a>
 						<a href="{{ URL::to($recentcompany->branches->first()->branchslug) }}" class="entry-title">
 							{{ decode($recentcompany->name) }}
