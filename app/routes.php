@@ -249,9 +249,17 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try', function(){
-	$new_branch_slug = "BB-Clarecheap-accommodationennis-hotels-Shannon-hotels-ampersand-";
-	return substr($new_branch_slug, strlen($new_branch_slug)-1, strlen($new_branch_slug))."";
+	$old_additional_keywords = ",dexter,dexter-gwapo";
+	$old_additional_keywords = explode(',', $old_additional_keywords);
+	$new_keywords = "dexter123";
+	foreach ($old_additional_keywords as $key => $value) {
+		if( $new_keywords == $value ){
+			return 'false';
+		}
+	}
 
+	
+    	return 'true';
 	
 });
 Route::get('/ajaxCategoryId', 'CategoriesController@returnCategoryId');

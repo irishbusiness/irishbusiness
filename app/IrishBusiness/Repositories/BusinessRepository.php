@@ -408,10 +408,14 @@ class BusinessRepository {
             $new_additional_keywords = "";
 
             if( $operation == "add" ){
+                $old_additional_keywords_arr = explode(',', $old_additional_keywords);
 
-                // if( strpos($new_keywords, $old_additional_keywords) ){
-                //     return false;
-                // }
+                foreach ($old_additional_keywords_arr as $key => $value) {
+                    if( $new_keywords == $value ){
+                        throw new \Exception("This keyword already exists!", 1);
+                        
+                    }
+                }
 
                 $new_branch_slug = keywordExplode( $old_keywords.','.$old_additional_keywords.','.$new_keywords );
 

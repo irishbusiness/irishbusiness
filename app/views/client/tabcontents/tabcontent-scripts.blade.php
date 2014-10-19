@@ -384,7 +384,7 @@
                     $("#frm-business-settings").attr("action", "{{ URL::to('/edit/company/'.$business->slug.'/') }}"+"/"+newkeyword);
                     history.pushState('data', '', '/'+data+'#company-tabs-settings');
                 }else{
-                    alert("Opps! Something's not right. Please try again later.");
+                    alert("Opps! Something's not right. Maybe your keyword already exists. Please try another.");
                 }
             });
 
@@ -410,7 +410,7 @@
                             history.pushState('data', '', '/'+data+'#company-tabs-settings');
                         });
                     }else{
-                        alert("Opps! Something's not right. Maybe your keyword already exists. Please try again another.");
+                        alert("Opps! Something's not right. Please try again later.");
                     }
                 });
             }
