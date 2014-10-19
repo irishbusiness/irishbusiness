@@ -34,7 +34,7 @@
 				<div class="company-listing clearfix">
 					<a href="{{ URL::to($branch->branchslug) }}" class="listing-image">
 						<!-- <img src="{{ URL::asset($branch->logo) }}" alt="" /> -->
-						@if( $branch->business->logo == "" && $branch->business->profilebanner != "" )
+						@if( ($branch->business->logo == "" || $branch->business->logo == "images/companylogos/sample_company.jpg") && $branch->business->profilebanner != "" )
 							<img src="{{ ($branch->business->profilebanner == '') ? URL::asset('images/image-not-available.png') : URL::asset($branch->business->profilebanner) }}" alt="" />
 						@else
 							<img src="{{ ($branch->business->logo == '') ? URL::asset('images/image-not-available.png') : URL::asset($branch->business->logo) }}" alt="" />
