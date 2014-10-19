@@ -15,8 +15,11 @@ class BlogController extends \BaseController {
     {
         // $blog = $this->blog->getBlog($id);
         $blog = $this->blog->getBlogById($id);
+        $branch = $this->blog->getBranchByBlogId($id);
 
-        return View::make('client.blogpost', compact('blog'));
+        $branchslug = $branch->branchslug;
+
+        return View::make('client.blogpost', compact('blog'))->withBranch($branch);
     }
 
     public function edit($slug, $id)

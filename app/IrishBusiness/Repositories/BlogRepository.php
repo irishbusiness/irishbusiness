@@ -2,6 +2,7 @@
 
 use Blog;
 use Auth;
+use Branch;
 
 class BlogRepository {
 
@@ -149,4 +150,11 @@ class BlogRepository {
 
         return $blog;
 	}
+
+    function getBranchByBlogId($id){
+       $blog = Blog::findOrFail($id);
+       $branch = Branch::where('business_id', '=', $blog->business_id)->first();
+
+       return $branch;
+    }
 }

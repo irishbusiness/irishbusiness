@@ -5,7 +5,9 @@
 	<div class="content-wrapper">
 		<div class="zone-content equalize zone clearfix">
 			<div class="content-container container-16">
-
+				<div>
+					<h3><a href="{{ URL::to($branch->branchslug) }}">Go <span class="text-colorful">back</span></a></h3>
+				</div>
 				<div class="blog-post block">
 					<div class="block-title">
 						<h1>{{ decode($blog->title) }}</h1>
