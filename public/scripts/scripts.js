@@ -1617,12 +1617,3 @@ $(document).on("change", "#keywords", function(){
 	$(this).val(new_array);
 
 });
-
-function removeKey(arrayName,key){
-	var x;
-	var tmpArray = new Array();
-	for(x in arrayName){
-		if(x!=key) { tmpArray[x] = arrayName[x]; }
-	}
-	return tmpArray;
-}

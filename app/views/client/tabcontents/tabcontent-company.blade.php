@@ -13,11 +13,11 @@
 				<div id="company-page-map">
 				
 				</div>
-				<div>
+				<div class="marginTop-10">
 				@if( isAdmin() || isOwner($branch->business->slug) )
-					<a href="{{ URL::to('business/'.$business->slug.'/branch/'.$branch->branchslug.'/map') }}">Edit Map</a>
+					<a href="{{ URL::to('business/'.$business->slug.'/branch/'.$branch->branchslug.'/map') }}" class="align-right send-rating a-btn button-2-green">Edit Map</a>
 				@endif
-					<a href="" id="get-direction" target="_blank" class="align-right">Get Directions</a>
+					<a href="" id="get-direction" target="_blank" class="align-right send-rating a-btn button-2-green">Get Directions</a>
 				</div>
 			</div>
 		</div>

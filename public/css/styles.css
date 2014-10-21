@@ -4893,3 +4893,7 @@ td.detail a {
 .float-right{
 	float: right;
 }
+
+.marginTop-10 {
+	margin-top: 10px;
+}
