@@ -34,13 +34,6 @@
             {{$errors->first('business_description','<span class="alert alert-error block half">:message</span>')}}
         </div>
 
-        <!-- profile description here must be a wysiwyg -->
-        <!-- <div class="form-group">
-            {{ Form::label('profile_description', "Profile Description",
-            ["class"=>"text-colorful"]) }}<br/>
-            {{ Form::textarea('profile_description', '<h2>Profile Description</h2>', ["id" => "redactor"]) }}
-            {{$errors->first('profile_description','<span class="alert alert-error block half">:message</span>')}}
-        </div> -->
         <div class="form-group">
             {{ Form::label('logo', "Logo",
             ["class"=>"text-colorful"]) }}<br/>
@@ -67,8 +60,6 @@
         </div>
         
         <div class="form-group">
-            <!-- {{ Form::label('slug', "Business URL (".Request::root()."/company/your-business-name)",
-            ["class"=>"text-colorful"]) }}<br/> -->
             {{ Form::hidden('slug','', [
             "placeholder" => "(Skip this part, if this is foreign to you)", "class"=>"text-input-grey full"]) }}
             {{$errors->first('slug','<span class="alert alert-error block half">:message</span>')}}

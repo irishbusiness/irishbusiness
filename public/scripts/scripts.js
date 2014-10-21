@@ -1595,6 +1595,34 @@ $('.with-tooltip').tooltip();
 $('a[data-toggle="reload-page"]').click(function() {
     location.reload();
 });
-// $(document).ready(function(){
 
-// });
+
+$(document).on("change", "#keywords", function(){
+	var keywords = $(this).val();
+	var array = keywords.split(/,/);
+
+	var new_array = [];
+
+	for( i=0; i<array.length; i++){
+		if( /\S/.test(array[i]) == true ){
+			array[i] = $.trim(array[i]);
+		}
+	}
+
+	array.forEach(function(value){
+		if (new_array.indexOf(value)==-1) new_array.push(value);
+	});
+
+
+	$(this).val(new_array);
+
+});
+
+function removeKey(arrayName,key){
+	var x;
+	var tmpArray = new Array();
+	for(x in arrayName){
+		if(x!=key) { tmpArray[x] = arrayName[x]; }
+	}
+	return tmpArray;
+}

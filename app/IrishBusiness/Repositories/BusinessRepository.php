@@ -415,7 +415,6 @@ class BusinessRepository {
 
                 foreach ($old_keywords_arr as $key => $value) {
                     if( $new_keywords == $value ){
-                        // throw new \Exception("This keyword already exists!", 1);
                         $flag  = 1;
                         
                     }
@@ -423,7 +422,6 @@ class BusinessRepository {
 
                 foreach ($old_additional_keywords_arr as $key => $value) {
                     if( $new_keywords == $value ){
-                        // throw new \Exception("This keyword already exists!", 1);
                          $flag  = 1;
                         
                     }
