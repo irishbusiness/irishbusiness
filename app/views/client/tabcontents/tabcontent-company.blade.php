@@ -13,6 +13,12 @@
 				<div id="company-page-map">
 				
 				</div>
+				<div>
+				@if( isAdmin() || isOwner($branch->business->slug) )
+					<a href="{{ URL::to('business/'.$business->slug.'/branch/'.$branch->branchslug.'/map') }}">Edit Map</a>
+				@endif
+					<a href="" id="get-direction" target="_blank" class="align-right">Get Directions</a>
+				</div>
 			</div>
 		</div>
 		<div class="contact-details company-page-block">

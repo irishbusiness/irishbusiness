@@ -43,12 +43,12 @@
 				</li>
 				@endif
 
-				@if( isAdmin() )
-				<!-- <a href="{{ URL::to($business->slug.'/branch') }}" class="tab-link">
+				@if( isAdmin() || isOwner($branch->business->slug) )
+				<a href="{{ URL::to($business->slug.'/branch') }}" class="tab-link">
 					<li class="" style="float: right;">
 						BRANCH SETTINGS
 					</li>
-				</a> -->
+				</a>
 				@endif
 				@if( isAdmin() || isOwner($branch->business->slug) )
 				<li class="" style="float: right;">
@@ -107,9 +107,10 @@
 			var marker;
 			var lat;
 			var lng;
+
 			function initialize() {
-				console.log('haha');
 				var origlatlng = "{{$branch->latlng}}";
+
 				if(origlatlng!='')
 				{
 					origlatlng = origlatlng.replace(/[()]/g, '');
@@ -129,13 +130,19 @@
 				};
 				map = new google.maps.Map(document.getElementById('company-page-map'),
 					mapOptions);
+
 				marker = new google.maps.Marker({
 					map: map,
 					draggable:false,
 					position: {lat:lat, lng:lng}
 				});
 
+				document.getElementById('get-direction').href="https://maps.google.com?saddr=Current+Location&daddr="+lat+","+lng;
+
 			}
+
+
+
 			google.maps.event.addDomListener(window, 'load', initialize);
 
 		</script>

@@ -393,7 +393,7 @@ class BusinessesController extends \BaseController {
 	public function setMap($slug, $branchslug)
 	{
 		$q = "0";
-		if(!isOwner($slug))
+		if(!isOwner($slug) && !isAdmin() )
 		{
 			return Redirect::to('/');
 		}
@@ -408,18 +408,20 @@ class BusinessesController extends \BaseController {
 
 	public function storeMap()
 	{
-		if(!isOwner(Input::get('slug')))
+		if( !isOwner(Input::get('slug')) && !isAdmin() )
 		{
 			return Redirect::to('/');
 		}
 
-		if(!$this->business->isOwnder(Input::get('slug')))
+		if( !$this->business->isOwnder(Input::get('slug')) && !isAdmin() )
 			return Response::make('pagenotfound');
+
+		$noti = isAdmin() ? 'You have successfully updated this business.' : 'Congratulations! You have completed your profile.';
 
 		$this->business->storeMap(Input::get('latlng'),Input::get('branchSlug'));
 
 		return Redirect::to(Input::get('branchSlug'))
-			->with('flash_message','Congratulations! You have completed your profile.');	
+			->with('flash_message', $noti);	
 	}
 
 	public function save_coupon(){
