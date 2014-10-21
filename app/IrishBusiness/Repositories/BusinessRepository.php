@@ -409,12 +409,28 @@ class BusinessRepository {
 
             if( $operation == "add" ){
                 $old_additional_keywords_arr = explode(',', $old_additional_keywords);
+                $old_keywords_arr = explode(',', $old_keywords);
+
+                $flag = 0;
+
+                foreach ($old_keywords_arr as $key => $value) {
+                    if( $new_keywords == $value ){
+                        // throw new \Exception("This keyword already exists!", 1);
+                        $flag  = 1;
+                        
+                    }
+                }
 
                 foreach ($old_additional_keywords_arr as $key => $value) {
                     if( $new_keywords == $value ){
-                        throw new \Exception("This keyword already exists!", 1);
+                        // throw new \Exception("This keyword already exists!", 1);
+                         $flag  = 1;
                         
                     }
+                }
+
+                if( $flag === 1 ){
+                    throw new \Exception("This keyword already exists!", 1);
                 }
 
                 $new_branch_slug = keywordExplode( $old_keywords.','.$old_additional_keywords.','.$new_keywords );
