@@ -11,7 +11,7 @@
 									@endforeach
 								</select>
 								{{ Form::text('category',isResult(Session::get('category')), ["placeholder" => "What are you looking for?", 'id' => 'search-what', 'class' => 'text-input-black input-text']) }}
-								{{ Form::text('location',isResult(Session::get('location')), ["placeholder" => "Where are you looking for it?", 'id' => 'search-what', 'class' => 'text-input-black input-text']) }}
+								{{ Form::text('location',isResult(Session::get('location')), ["placeholder" => "Where are you looking for it?", 'class' => 'text-input-black input-text']) }}
 								<input type="submit" class="submit" value="search" name="submit" />
 							</form>
 						</div>
