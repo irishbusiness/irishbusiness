@@ -1,18 +1,11 @@
 <div id="company-tabs-page" class="company-tabs-content">
-	<div class="edit-company">
-		@if( isOwner($branch->business->slug) || isAdmin() )
-			
-			<a class="tablink-toggle a-btn button-2-green"  data-href="company-tabs-settings" href="#company-tabs-settings">
-				Edit
-			</a> 
-			<!-- <a href="javascript:void(0)" title="Delete this business" id="btn-delete-business">Delete business</a> -->
-		@endif
-	</div>
+	@if( isOwner($branch->business->slug) || isAdmin() )
 	<div class="floatRight edit-company">
 		<a class="tablink-toggle a-btn button-2-green paddingBottom-5" data-href="company-tabs-settings" href="#company-tabs-settings">
 			Edit
 		</a> 
 	</div>
+	@endif
 	<div class="sidebar-container container-8 show" id="tabs-sidebar">
 		<div class="company-page-map">
 			<div class="company-page-map-container">
