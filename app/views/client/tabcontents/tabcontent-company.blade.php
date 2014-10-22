@@ -1,10 +1,11 @@
 <div id="company-tabs-page" class="company-tabs-content">
 	<div class="edit-company">
 		@if( isOwner($branch->business->slug) || isAdmin() )
-			<!-- <a id="editbusiness-link" href="#{{ Request::root().'/edit/business/'.$branch->business->slug.'/'.$branch->branchslug }}">
-				Edit your business
-			</a> | 
-			<a href="javascript:void(0)" title="Delete this business" id="btn-delete-business">Delete business</a> -->
+			
+			<a class="tablink-toggle a-btn button-2-green"  data-href="company-tabs-settings" href="#company-tabs-settings">
+				Edit
+			</a> 
+			<!-- <a href="javascript:void(0)" title="Delete this business" id="btn-delete-business">Delete business</a> -->
 		@endif
 	</div>
 	<div class="sidebar-container container-8 show" id="tabs-sidebar">

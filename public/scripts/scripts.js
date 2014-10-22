@@ -346,6 +346,13 @@ jQuery(window).load(function(){
 		return false;
 	});
 
+	$(".tablink-toggle").click(function(e){
+		e.preventDefault();
+		var href = $(this).attr('data-href');
+		$('.company-tabs-content').slideUp(500);
+		$('#' + href).delay(500).slideDown(500);
+	});	
+
 	var hash = window.location.hash;
 	if ( $(hash).length ) {
 		$('.company-tabs-content').slideUp(500);

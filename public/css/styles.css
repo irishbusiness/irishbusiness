@@ -4897,3 +4897,11 @@ td.detail a {
 .marginTop-10 {
 	margin-top: 10px;
 }
+
+.floatRight{
+	float: right !important;
+}
+
+.paddingBottom-8{
+	padding-bottom: 8px;
+}

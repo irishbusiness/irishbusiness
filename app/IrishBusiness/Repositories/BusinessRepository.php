@@ -675,4 +675,9 @@ class BusinessRepository {
 
         return $photos;
     }
+
+    function getRecentlyAddedBusiness(){
+        $branches = Branch::orderBy('id', 'DESC')->limit(10)->get();
+        return $branches;
+    }
 }

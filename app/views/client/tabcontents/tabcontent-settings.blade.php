@@ -1,5 +1,10 @@
 <div id="company-tabs-settings" class="company-tabs-content">
     <div class="portfolio-container container-24">	
+	    <div class="floatRight">
+	    	<a class="tablink-toggle a-btn button-2-green paddingBottom-8"  data-href="company-tabs-page" href="#company-tabs-page">
+				Preview
+			</a>
+		</div>
 		{{ Form::open(array('action' => ['BusinessesController@update', $branch->business->slug, $branch->branchslug], 'files' => true, 'id' => 'frm-business-settings')) }}		   
 		<div id="update-business-settings" class="">  
 		     <div class="form-group">
