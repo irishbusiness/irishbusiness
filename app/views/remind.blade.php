@@ -13,7 +13,7 @@
 				<span class="alert-error status">{{Session::get('error')}} </span>
         	@elseif(Session::has('status'))
 				<br/>
-                <span class="status">{{Session::get('status')}} </span>
+                <span class="status">We have sent a link to your email where you can reset your password.</span>
         	@endif
             {{ Form::open(array('action' => 'ClientPasswordController@sendRemind', "id"=>"form-register")) }}
                 <div class="form-group">

@@ -4,13 +4,13 @@ class ClientPasswordController extends \BaseController {
 
 	public function remind()
 	{
-		return View::make('remind')->withTitle('Password Remind');
+		return View::make('remind')->withTitle('IrishBusiness Password Reset');
 	}
 
 	public function sendRemind()
 	{
 		switch ($response = Password::user()->remind(Input::only('email'), function($message) {
-			    $message->subject('Password reminder');
+			    $message->subject('IrishBusiness Password Reset');
 			}))
 	    {
 	      case Password::INVALID_USER:
@@ -26,7 +26,7 @@ class ClientPasswordController extends \BaseController {
 		$type = 'user';
 		if(is_null($token)) App::abort(404);
 
-		return View::make('reset')->withTitle('Password Reset')->with('token', $token)->with('type',$type);
+		return View::make('reset')->withTitle('IrishBusiness Password Reset')->with('token', $token)->with('type',$type);
 	}
 
 	public function saveReset()
