@@ -9,7 +9,7 @@
 		<div class="company-tabs-container container-24">
 			<ul id="company-tabs-active" class="company-tabs">
 				<li class="active">
-					<a class="company-tabs-page" href="#">BUSINESS</a>
+					<a class="company-tabs-page" href="#">PREVIEW</a>
 				</li>
 				@if(count($blogs) || isOwner($branch->business->slug) || isAdmin() )
 				<li class="">
@@ -52,7 +52,7 @@
 				@endif
 				@if( isAdmin() || isOwner($branch->business->slug) )
 				<li class="" style="float: right;">
-					<a class="company-tabs-settings" href="javascript:void(0)">SETTINGS</a>
+					<a class="company-tabs-settings" href="javascript:void(0)">BUSINESS</a>
 				</li>
 				@endif
 			</ul>
