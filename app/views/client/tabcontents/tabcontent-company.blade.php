@@ -8,6 +8,11 @@
 			<!-- <a href="javascript:void(0)" title="Delete this business" id="btn-delete-business">Delete business</a> -->
 		@endif
 	</div>
+	<div class="floatRight edit-company">
+		<a class="tablink-toggle a-btn button-2-green paddingBottom-5" data-href="company-tabs-settings" href="#company-tabs-settings">
+			Edit
+		</a> 
+	</div>
 	<div class="sidebar-container container-8 show" id="tabs-sidebar">
 		<div class="company-page-map">
 			<div class="company-page-map-container">

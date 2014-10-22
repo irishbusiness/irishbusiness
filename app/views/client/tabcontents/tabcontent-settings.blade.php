@@ -1,7 +1,7 @@
 <div id="company-tabs-settings" class="company-tabs-content">
     <div class="portfolio-container container-24">	
 	    <div class="floatRight">
-	    	<a class="tablink-toggle a-btn button-2-green paddingBottom-8"  data-href="company-tabs-page" href="#company-tabs-page">
+	    	<a class="tablink-toggle a-btn button-2-green paddingBottom-5"  data-href="company-tabs-page" href="#company-tabs-page">
 				Preview
 			</a>
 		</div>

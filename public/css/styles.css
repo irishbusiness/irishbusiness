@@ -4503,10 +4503,11 @@ td.detail {
 }
 
 .edit-company {
-	float: right;
+	/*float: right;
 	font-size: large;
-	cursor: pointer;
-	padding-bottom: 10px;
+	cursor: pointer;*/
+	margin-top: -6px;
+    margin-bottom: 16px;
 }
 
 .block {
@@ -4902,6 +4903,6 @@ td.detail a {
 	float: right !important;
 }
 
-.paddingBottom-8{
-	padding-bottom: 8px;
+.paddingBottom-5{
+	padding-bottom: 5px;
 }
