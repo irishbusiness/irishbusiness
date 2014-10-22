@@ -15,11 +15,7 @@ Route::get('gettweets', function()
     return Twitter::getUserTimeline(array('screen_name' => '_IrishBusiness', 'count' => 3, 'format' => 'json'));
 });
 
-Route::get('/', function()
-{	
-	$branches = Branch::all();
-	return View::make('client.index')->with('branch', $branches);
-});
+Route::get('/', 'BusinessesController@homepage');
  
 
 Route::get('blog', 'AdminBlogController@index');

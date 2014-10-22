@@ -505,4 +505,9 @@ class BusinessesController extends \BaseController {
 		// }
 
 	}
+
+	public function homepage(){
+		$branches = Branch::all();
+		return View::make('client.index')->with('branch', $branches);
+	}
 }
