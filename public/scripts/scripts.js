@@ -1598,7 +1598,7 @@ $('a[data-toggle="reload-page"]').click(function() {
 
 
 $(document).on("change", "#keywords", function(){
-	var keywords = $(this).val();
+	var keywords = ($(this).val()).toLowerCase();
 	var array = keywords.split(/,/);
 
 	var new_array = [];
@@ -1610,10 +1610,67 @@ $(document).on("change", "#keywords", function(){
 	}
 
 	array.forEach(function(value){
-		if (new_array.indexOf(value)==-1) new_array.push(value);
+		if (new_array.indexOf(value)==-1)
+			new_array.push(value);
 	});
 
-
-	$(this).val(new_array);
+	eliminateArrayValueDuplicates(new_array);
+	$(this).val("");
+	console.log("new_array="+new_array);
+	$(this).val(new_array[new_array.length-1]);
 
 });
+
+
+function eliminateArrayValueDuplicates(arr) {
+	var new_arr = [];
+	var new_arr1 = [];
+	var new_arr2 = [];
+	if( arr.length > 1 ){
+		for( i = 1; i < arr.length; i++ ){
+			new_arr1 = arr[i-1].split(' ');
+			new_arr2 = arr[i].split(' ');
+
+			console.log('new_arr1');
+			console.log(new_arr1);
+			console.log('new_arr2');
+			console.log(new_arr2);
+			console.log('-----------');
+
+			for( j = 0; j < new_arr1.length; j++ ){
+				for( h = 0; h < new_arr2.length; h++ ){
+					if( $.trim(new_arr1[j]) == $.trim(new_arr2[h]) ){
+						new_arr2[h] = "";
+					}
+				}
+			}
+			console.log('new_arr1');
+			console.log(new_arr1);
+			console.log('new_arr2');
+			console.log(new_arr2);
+
+			var x = "";
+			var y = "";
+
+			new_arr1.forEach(function(value){
+				x += value+" ";
+			});
+
+			new_arr2.forEach(function(value){
+				y += value+" ";
+			});
+			
+
+			arr[i] = $.trim(x+","+y);
+
+			// x = (  );
+			// arr[i] = $.trim( x );
+		}
+		// var x =  $.trim( (new_arr1+" "+new_arr2).replace(',', ' ') );
+		// console.log('x='+arr[arr.length-1]);
+		// return arr[arr.length-1];
+		return arr;
+		
+	}
+	return arr;
+}
