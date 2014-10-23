@@ -511,6 +511,6 @@ class BusinessesController extends \BaseController {
 		$businesses = $this->business->getAllwithLimit(0,14);
 		// $rating = $this->business->getRatings($recentbranches);
 		return View::make('client.index')->with('branch', $branches)
-			->with('recentlyaddedcompany', $businesses);
+			->with('recentlyaddedcompany2', $businesses);
 	}
 }
