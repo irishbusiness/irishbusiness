@@ -10,7 +10,7 @@
 	<div class="videoWrapper">
 		<iframe style="width:650px; height=393px; frameborder=0;" src="http://www.youtube.com/embed/k8GJ1vRRSPI?vq=hd720&amp;rel=0&amp;autohide=2&amp;modestbranding=1" allowfullscreen></iframe>
 	</div>
-	<div class="entries-list">
+	<!-- <div class="entries-list">
 		<div class="separator"></div>
 		<div><h3>Recently <span class="text-colorful">Added</span></h3></div><br/>
 		@foreach($recentlyaddedcompany2 as $recentcompany)
@@ -27,12 +27,12 @@
 						{{ decode($recentcompany->name) }}
 					</a>
 					<div class="entry-excerpt">
-						{{ decode( Str::limit( $recentcompany->business_description, 255) ) }}
+						{{ decode( $recentcompany->business_description ) }}
 					</div>
 				</div>
 			@endif	
 		@endforeach
-	</div>
+	</div> -->
 </div>
 	
 	<!-- end of .content-container -->
