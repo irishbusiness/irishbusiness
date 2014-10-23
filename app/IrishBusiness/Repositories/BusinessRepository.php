@@ -12,7 +12,12 @@ class BusinessRepository {
 
 	function getAll(){
 		return $businesses = Business::all();
-	}	
+	}
+
+    function getAllwithLimit($starting, $limit){
+        return $businesses = Business::limit($starting, $limit)->get();
+        // return $businesses = Business:skip($starting)->take($limit)->get();
+    }	
 
 	function create($input){
         $hasCommonWords = false;
@@ -677,7 +682,7 @@ class BusinessRepository {
     }
 
     function getRecentlyAddedBusiness(){
-        $branches = Branch::orderBy('id', 'DESC')->limit(10)->get();
+        $branches = Branch::orderBy('id', 'DESC')->limit(14)->get();
         return $branches;
     }
 }

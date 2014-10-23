@@ -4906,3 +4906,36 @@ td.detail a {
 .paddingBottom-5{
 	padding-bottom: 5px;
 }
+
+div.entries-list {
+	margin: 0;
+}
+
+	div.entries-list div {
+		margin-top: 18px;
+	}
+
+		div.entries-list div .thumbnail {
+			float: left;
+			display: block;
+			margin-right: 10px;
+		}
+
+			div.entries-list div .thumbnail img {
+				display: block;
+				max-width: 52px;
+				height: auto;
+				background-color: #ffffff;
+				padding: 3px;
+				border: 1px solid #e7e7e7;
+			}
+
+		div.entries-list div .entry-title {
+			font-family: "Patua One";
+		}
+
+		div.entries-list div .entry-excerpt {
+			line-height: 18px;
+			word-wrap: break-word;
+			padding-left: 71px;
+		}

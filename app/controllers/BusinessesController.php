@@ -508,8 +508,9 @@ class BusinessesController extends \BaseController {
 
 	public function homepage(){
 		$branches = Branch::all();
-		$recentbranches = $this->business->getRecentlyAddedBusiness();
+		$businesses = $this->business->getAllwithLimit(0,14);
+		// $rating = $this->business->getRatings($recentbranches);
 		return View::make('client.index')->with('branch', $branches)
-			->with('recentlyAddedBusiness', $recentbranches);
+			->with('recentlyaddedcompany', $businesses);
 	}
 }
