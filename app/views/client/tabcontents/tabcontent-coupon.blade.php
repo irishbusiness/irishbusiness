@@ -135,9 +135,11 @@
             </div>
 
         @else
-            <div class="comment-message-title">
-				<span class="text-colorful">Nothing </span>to show here...
-			</div>
+            @if( !isAdmin() && isOwner($branch->business->slug) )
+            	<div class="comment-message-title">
+					<span class="text-colorful">Nothing </span>to show here...
+				</div>
+            @endif
         @endif
 	</div>
 </div>

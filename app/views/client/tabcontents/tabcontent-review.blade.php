@@ -38,7 +38,7 @@
 						@endforeach
 					@else
 						<div class="comment-message-title">
-							<span class="text-colorful">No </span>Reviews
+							<span class="text-colorful">No Reviews Yet</span>
 						</div>
 					@endif
 				</div>

@@ -85,7 +85,9 @@
         <!-- Slides Container -->
         <div u="slides" class="gallery_photo_div" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;" id="photoshere">
             <div>
-                <img class="slider-no-image" u="image" src="images/no_photo_available.jpg" />
+                @if( !isAdmin() && isOwner($branch->business->slug) )
+                    <img class="slider-no-image" u="image" src="images/no_photo_available.jpg" />
+                @endif
             </div>
         </div>
     </div>
