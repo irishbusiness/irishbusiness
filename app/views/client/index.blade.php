@@ -27,7 +27,7 @@
 						{{ decode($recentcompany->name) }}
 					</a>
 					<div class="entry-excerpt">
-						{{ decode( Str::limit( $recentcompany->business_description ), 50) }}
+						{{ decode( $recentcompany->business_description ) }}
 					</div>
 				</div>
 			@endif	

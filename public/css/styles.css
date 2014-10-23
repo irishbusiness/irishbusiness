@@ -4938,4 +4938,6 @@ div.entries-list {
 			line-height: 18px;
 			word-wrap: break-word;
 			padding-left: 71px;
+			max-height: 195px;
+			overflow: hidden;
 		}
