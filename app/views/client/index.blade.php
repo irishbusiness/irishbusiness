@@ -15,7 +15,7 @@
 		<div><h3>Recently <span class="text-colorful">Added</span></h3></div><br/>
 		@foreach($recentlyaddedcompany as $recentcompany)
 			@if(!empty($recentcompany->branches->first()->id))
-				<div class="clearfix content-container container-10">
+				<div class="content-container container-10">
 					<a href="{{ URL::to($recentcompany->branches->first()->branchslug) }}" class="thumbnail">
 						@if( ($recentcompany->logo == "" || $recentcompany->logo == "images/companylogos/sample_company.jpg") && $recentcompany->profilebanner != "" )
 							<img src="{{ ($recentcompany->profilebanner == '') ? URL::asset('images/image-not-available.png') : URL::asset($recentcompany->profilebanner) }}" alt="" />
