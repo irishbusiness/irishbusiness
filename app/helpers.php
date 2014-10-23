@@ -160,7 +160,9 @@ function showAddressfull($address){
 }
 
 function decode($string){
-    return stripcslashes(stripcslashes(html_entity_decode($string)));
+    $str = stripcslashes(stripcslashes(html_entity_decode($string)));
+    $str = preg_replace('/<iframe.*?\/iframe>/i','', $str);
+    return $str;
 }
 
 function subscribed(){
