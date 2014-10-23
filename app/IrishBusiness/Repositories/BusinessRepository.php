@@ -14,8 +14,8 @@ class BusinessRepository {
 		return $businesses = Business::all();
 	}
 
-    function getAllwithLimit($starting, $limit){
-        return $businesses = Business::limit($starting, $limit)->orderBy('id', 'DESC')->get();
+    function getAllwithLimit(){
+        return $businesses = Business::take(14)->orderBy('id', 'DESC')->get();
         // return $businesses = Business:skip($starting)->take($limit)->get();
     }	
 
