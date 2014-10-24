@@ -50,11 +50,10 @@
 					</li>
 				</a> -->
 				@endif
-				@if( isAdmin() || isOwner($branch->business->slug) )
 				<li class="" style="float: right;">
-					<a class="company-tabs-settings" href="javascript:void(0)"></a>
+					<!-- <a class="company-tabs-settings" href="javascript:void(0)"></a> -->
+					
 				</li>
-				@endif
 			</ul>
 		</div>
 		<!-- end of .company-tabs-container -->
