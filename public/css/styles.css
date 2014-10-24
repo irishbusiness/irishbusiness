@@ -4937,7 +4937,7 @@ div.entries-list {
 		div.entries-list div .entry-excerpt {
 			line-height: 18px;
 			word-wrap: break-word;
-			max-height: 123px;
+			max-height: 100px;
 			overflow: hidden;
 			margin-bottom: 26px;
 		}
