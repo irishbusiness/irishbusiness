@@ -68,7 +68,7 @@ class UsersController extends \BaseController {
 			
 			Event::fire('user.signup',[$user]);
 
-			return Redirect::to('/')->withFlashMessage('Thank you for registering ' . ucwords(Input::get('firstname')) .'! Please confirm your email.');
+			return Redirect::to('/')->withFlashMessage('Thank you for registering ' . ucwords(Input::get('firstname')) .'! Please check your email to activate your account.');
 		}
 		catch(FormValidationException  $e)
 		{
