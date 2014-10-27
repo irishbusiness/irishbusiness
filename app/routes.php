@@ -280,4 +280,6 @@ Route::get('review/confirm/{token}', 'ReviewsController@confirm');
 
 Route::get('get-categories/{id}', 'BusinessesController@showCategories');
 
+Route::get('business-reviews/{slug}/{id}', 'ReviewsController@showSpecificReview');
+
 ?>

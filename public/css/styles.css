@@ -4941,3 +4941,41 @@ div.entries-list {
 			overflow: hidden;
 			margin-bottom: 26px;
 		}
+
+
+span.facebook{
+	background: url(../images/facebook-icon.png) no-repeat center center;
+}
+
+span.twitter{
+	background: url(../images/twitter-icon.png) no-repeat center center;
+}
+
+span.google{
+	background: url(../images/google-icon.png) no-repeat center center;
+}
+
+span.linkedin{
+	background: url(../images/linkedin-icon.png) no-repeat center center;
+}
+
+.social-sharer a span{
+	position: absolute;
+	height: 50px;
+	width: 50px;
+}
+
+.social-sharer>a.share.twitter{
+	float: left;
+	margin-left: 27px;
+}
+
+.social-sharer>a.share.google{
+	float: left;
+	margin-left: 55px;
+}
+
+.social-sharer>a.share.linkedin{
+	float: left;
+	margin-left: 81px;
+}

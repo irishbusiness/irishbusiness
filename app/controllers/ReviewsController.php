@@ -115,4 +115,12 @@ class ReviewsController extends \BaseController {
 		return Redirect::to("/")->with('flash_message', 'Sorry, the link you followed may have been removed or expired.');
 	}
 
+	function showSpecificReview($business_slug, $id){
+		$review = $this->reviews->getReviewById($id);
+		$business = $this->reviews->getBusiness($business_slug);
+		$branch = getBranchBySlug($business_slug);
+
+		return View::make('client.specific-review')->withReview($review)->withBusiness($business)->withBranch($branch);
+	}
+
 }

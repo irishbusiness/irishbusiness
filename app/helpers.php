@@ -396,3 +396,7 @@ function removeCommonWords($input){
  
     return preg_replace('/\b('.implode('|',$commonWords).')\b/','',$input);
 }
+
+function getBranchBySlug($slug){
+    return Branch::where('branchslug', '=', $slug)->first();
+}

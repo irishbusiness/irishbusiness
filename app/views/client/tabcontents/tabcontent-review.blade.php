@@ -23,6 +23,20 @@
 									</div>
 									<div class="review-text">
 										{{ decode($review->description) }}
+										<div class="social-sharer">
+											<a href="https://www.facebook.com/sharer/sharer.php?u={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}" class="share facebook" title="Share on Facebook">
+												<span class="facebook"></span>
+											</a>
+											<a href="https://twitter.com/intent/tweet?url={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}" class="share twitter" title="Share on Twitter">
+												<span class="twitter"></span>
+											</a>
+											<a href="https://plus.google.com/share?url={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}" class="share google" title="Share on Google Plus">
+												<span class="google"></span>
+											</a>
+											<a href="http://www.linkedin.com/shareArticle?mini=true&url={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}&source=IrishBusiness.ie" class="share linkedin" title="Share on LinkedIn">
+												<span class="linkedin"></span>
+											</a>
+										</div>
 									</div>
 								</div>
 							@endif
