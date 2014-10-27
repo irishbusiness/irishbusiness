@@ -6,7 +6,7 @@
 			<div class="zone-content equalize zone clearfix">
 				<div class="content-container container-16">
 					<h2><a href="{{ URL::to($branch->branchslug) }}">{{ decode($business->name) }}</a></h2>
-					<div class="review last">
+					<div class="review last marginLeft-15">
 						<div class="review-author">
 							<span class="author">{{ $review->name }}</span> - <span class="date">{{ date("F j, Y",strtotime($review->created_at))." at ".date("g:i a",strtotime($review->created_at)) }}</span>
 						</div>
