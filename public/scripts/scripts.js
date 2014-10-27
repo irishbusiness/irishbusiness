@@ -1686,3 +1686,8 @@ function eliminateArrayValueDuplicates(arr) {
 $("#company-contact").click(function(e){
 	e.preventDefault();
 });
+
+$('span.social-link').click(function(){
+	var id = $(this).attr('data-id');
+	$("a.share[data-id='"+id+"']").click();	
+});

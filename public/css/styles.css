@@ -4945,18 +4945,40 @@ div.entries-list {
 
 span.facebook{
 	background: url(../images/facebook-icon.png) no-repeat center center;
+	width: 50px;
+	height: 50px;
+	position: absolute;
 }
 
 span.twitter{
 	background: url(../images/twitter-icon.png) no-repeat center center;
+	float: left;
+	margin-left: 27px;
+	width: 50px;
+	height: 50px;
+	position: absolute;
 }
 
 span.google{
 	background: url(../images/google-icon.png) no-repeat center center;
+	float: left;
+	margin-left: 55px;
+	width: 50px;
+	height: 50px;
+	position: absolute;
 }
 
 span.linkedin{
 	background: url(../images/linkedin-icon.png) no-repeat center center;
+	float: left;
+	margin-left: 81px;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+}
+
+.social-link{
+	cursor: pointer;
 }
 
 .social-sharer a span{
@@ -4965,17 +4987,17 @@ span.linkedin{
 	width: 50px;
 }
 
-.social-sharer>a.share.twitter{
+.social-sharer>a.share1.twitter{
 	float: left;
 	margin-left: 27px;
 }
 
-.social-sharer>a.share.google{
+.social-sharer>a.share1.google{
 	float: left;
 	margin-left: 55px;
 }
 
-.social-sharer>a.share.linkedin{
+.social-sharer>a.share1.linkedin{
 	float: left;
 	margin-left: 81px;
 }

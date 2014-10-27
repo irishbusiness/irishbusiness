@@ -24,17 +24,21 @@
 									<div class="review-text">
 										{{ decode($review->description) }}
 										<div class="social-sharer">
-											<a href="https://www.facebook.com/sharer/sharer.php?u={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}" class="share facebook" title="Share on Facebook">
-												<span class="facebook"></span>
+											<span class="social-link facebook" data-id="facebook"></span>
+											<span class="social-link twitter" data-id="twitter"></span>
+											<span class="social-link google" data-id="google"></span>
+											<span class="social-link linkedin" data-id="linkedin"></span>
+
+											<a href="https://www.facebook.com/sharer/sharer.php?u={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}" class="share facebook" data-id="facebook" title="Share on Facebook">
 											</a>
-											<a href="https://twitter.com/intent/tweet?url={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}" class="share twitter" title="Share on Twitter">
-												<span class="twitter"></span>
+
+											<a href="https://twitter.com/intent/tweet?url={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}" class="share twitter" data-id="twitter" title="Share on Twitter">
 											</a>
-											<a href="https://plus.google.com/share?url={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}" class="share google" title="Share on Google Plus">
-												<span class="google"></span>
+
+											<a href="https://plus.google.com/share?url={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}" class="share google" data-id="google" title="Share on Google Plus">
 											</a>
-											<a href="http://www.linkedin.com/shareArticle?mini=true&url={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}&source=IrishBusiness.ie" class="share linkedin" title="Share on LinkedIn">
-												<span class="linkedin"></span>
+
+											<a href="http://www.linkedin.com/shareArticle?mini=true&url={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}&source=IrishBusiness.ie" class="share linkedin" data-id="linkedin" title="Share on LinkedIn">
 											</a>
 										</div>
 									</div>
@@ -60,50 +64,3 @@
 		</div>
 	</div>
 </div>
-@section('scripts')
-	<script type="text/javascript">
-		$(window).ready(function(){
-
-		// create social networking pop-ups
-		  (function() {
-		    
-			var Config = {
-		      Link: "a.share",
-		      Width: 500,
-		      Height: 500
-			}
-		        ;
-		  
-		  // add handler links
-		  var slink = document.querySelectorAll(Config.Link);
-		  for (var a = 0; a < slink.length; a++) {
-		    slink[a].onclick = PopupHandler;
-		  }
-		  
-		  // create popup
-		  function PopupHandler(e) {
-		    
-		    e = (e ? e : window.event);
-		    var t = (e.target ? e.target : e.srcElement);
-		    
-		    // popup position
-		    var
-		        px = Math.floor(((screen.availWidth || 1024) - Config.Width) / 2),
-		        py = Math.floor(((screen.availHeight || 700) - Config.Height) / 2);
-		    
-		    // open popup
-		    var popup = window.open(t.href, "social", "width="+Config.Width+",height="+Config.Height+",left="+px+",top="+py+",location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1");
-		    if (popup) {
-		      popup.focus();
-		      if (e.preventDefault) e.preventDefault();
-		      e.returnValue = false;
-		    }
-		    
-		    return !!popup;
-		  }
-		  
-		}
-		 ());
-	});
-	</script>
-@stop
