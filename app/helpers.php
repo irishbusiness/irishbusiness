@@ -400,3 +400,7 @@ function removeCommonWords($input){
 function getBranchBySlug($slug){
     return Branch::where('branchslug', '=', $slug)->first();
 }
+
+function removehtml($str){
+    return strip_tags($str);
+}
