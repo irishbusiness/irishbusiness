@@ -50,10 +50,12 @@
 					</li>
 				</a> -->
 				@endif
-				<li class="" style="float: right;">
-					<!-- <a class="company-tabs-settings" href="javascript:void(0)"></a> -->
-					
-				</li>
+				<a href="javascript:void(0);" class="tab-link">
+					<li style="float:right;">
+						<span class="phone">Call</span>
+						{{ substr($branch->phone, 0, 3)." ".substr($branch->phone, 3, strlen($branch->phone)) }}
+					</li>
+				</a>
 			</ul>
 		</div>
 		<!-- end of .company-tabs-container -->

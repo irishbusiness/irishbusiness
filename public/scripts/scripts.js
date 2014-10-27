@@ -1681,3 +1681,8 @@ function eliminateArrayValueDuplicates(arr) {
 	}
 	return arr;
 }
+
+
+$("#company-contact").click(function(e){
+	e.preventDefault();
+});
