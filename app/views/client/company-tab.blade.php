@@ -53,7 +53,7 @@
 				<a href="javascript:void(0);" class="tab-link">
 					<li style="float:right;">
 						<span class="phone">Call</span>
-						{{ substr($branch->phone, 0, 3)." ".substr($branch->phone, 3, strlen($branch->phone)) }}
+						<span>{{ substr($branch->phone, 0, 3)." ".substr($branch->phone, 3, strlen($branch->phone)) }}</span>
 					</li>
 				</a>
 			</ul>
