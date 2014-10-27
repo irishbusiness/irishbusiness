@@ -11,9 +11,11 @@
 		<iframe style="width:650px; height=393px; frameborder=0;" src="http://www.youtube.com/embed/k8GJ1vRRSPI?vq=hd720&amp;rel=0&amp;autohide=2&amp;modestbranding=1" allowfullscreen></iframe>
 	</div>
 </div>
-<div class="entries-list">
+<!-- <div class="content-container container-16 entries-list">
 	<div class="separator"></div>
 	<div><h3>Recently <span class="text-colorful">Added</span></h3></div><br/>
+</div>
+<div class="content-container container-16 entries-list">
 	@foreach($recentlyaddedcompany2 as $recentcompany)
 		@if(!empty($recentcompany->branches->first()->id))
 			<div class="content-container container-16">
@@ -33,7 +35,7 @@
 			</div>
 		@endif	
 	@endforeach
-</div>
+</div> -->
 	
 	<!-- end of .content-container -->
 <!-- </div> -->
