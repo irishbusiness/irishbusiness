@@ -3,7 +3,7 @@
 
 		<div class="comments block">
 			<div class="review-messages">
-				<div class="blog block spacer">
+				<div class="blog block">
 					@if(count($reviews))
 						<div class="block-title">
 							<h1>Reviews</h1>
