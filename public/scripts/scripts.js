@@ -1580,9 +1580,9 @@ $(document).ready(function() {
 
 
 window.setInterval(function(){
-	$("#slider2_container").css("overflow-y", "visible");
-	$(".gallery_photo").parent("div").css("overflow-y", "visible");
-	$('.gallery_photo_div').css("overflow-y", "visible");
+	// $("#slider2_container").css("overflow-y", "visible");
+	// $(".gallery_photo").parent("div").css("overflow-y", "visible");
+	// $('.gallery_photo_div').css("overflow-y", "visible");
 
 	var h  = 300;
 	$(".gallery_photo_div").children("div").children("img").each(function(index){
@@ -1669,13 +1669,7 @@ function eliminateArrayValueDuplicates(arr) {
 			
 
 			arr[i] = $.trim(x+","+y);
-
-			// x = (  );
-			// arr[i] = $.trim( x );
 		}
-		// var x =  $.trim( (new_arr1+" "+new_arr2).replace(',', ' ') );
-		// console.log('x='+arr[arr.length-1]);
-		// return arr[arr.length-1];
 		return arr;
 		
 	}
