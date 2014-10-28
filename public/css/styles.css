@@ -4981,6 +4981,10 @@ span.linkedin{
 	cursor: pointer;
 }
 
+.social-sharer {
+	margin-left: -12px;
+}
+
 .social-sharer a span{
 	position: absolute;
 	height: 50px;
