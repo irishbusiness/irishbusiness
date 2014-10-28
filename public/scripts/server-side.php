@@ -13,7 +13,13 @@ $emailAddress = $_GET["emailAddress"];
 $siteUrl = $_GET["siteUrl"];
 $template = $_GET['template'];
 
-$handle = imagecreatefrompng( 'templates/'.getTemplate($template).'.png' ); 
+if( $template == 1 ){
+    $template_name = 'template';
+}else if( $template == 2 ){
+    $template_name = 'template1';
+}
+
+$handle = imagecreatefrompng( 'templates/'.$template_name.'.png' ); 
 $brown = ImageColorAllocate ($handle, 84, 48, 26);
 $lightBrown = ImageColorAllocate ($handle, 145, 116, 94);
 $white = ImageColorAllocate ($handle, 255, 255, 255);
@@ -23,10 +29,6 @@ $companyName_FontSize = 18;
 $companySlogan_FontSize = 9;
 $fullName_FontSize = 14;
 $businessAddress_FontSize = 10;
-
-
-
-
 
 if( $template == 1 ){
 	//company name
@@ -46,29 +48,19 @@ if( $template == 1 ){
 	//email address
 	ImageTTFText ($handle, 9, 0, 275, 190, $brown, "fonts/GOTHIC.TTF", $emailAddress);
 }else if( $template == 2 ){
+
 	$companyName_FontSize = 40;
 	$companySlogan_FontSize = 9;
 	$fullName_FontSize = 14;
-	// $businessAddress_FontSize = 10;
 
 	$fontStyle = "fonts/GOTHIC.ttf";
 
 	//company name
 	ImageTTFText ($handle, $companyName_FontSize, 0, 40, 100, $white, $fontStyle, $companyName);
-	//company slogan
-	// ImageTTFText ($handle, $companySlogan_FontSize, 0, 20, 85, $white, $fontStyle, $companySlogan);
 	//full name
 	ImageTTFText ($handle, $fullName_FontSize, 0, 40, 140, $white, $fontStyle, $fullName);
 	//job title
 	ImageTTFText ($handle, $companySlogan_FontSize, 0, 40, 300, $white, $fontStyle, $companySlogan);
-	//business address
-	// ImageTTFText ($handle, $businessAddress_FontSize, 0, 20, 160, $white, $fontStyle, $businessAddress);
-	//phone number #1
-	// ImageTTFText ($handle, 9, 0, 110, 175, $white, $fontStyle, $phoneOne); 
-	//phone number #2
-	// ImageTTFText ($handle, 9, 0, 130, 175, $white, $fontStyle, $phoneTwo);
-	//email address
-	// ImageTTFText ($handle, 9, 0, 275, 190, $white, $fontStyle, $emailAddress);
 }
 
 
