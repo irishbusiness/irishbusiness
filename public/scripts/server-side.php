@@ -61,7 +61,7 @@ if( $template == 1 ){
 	$companySlogan_FontSize = 9;
 	$fullName_FontSize = 14;
 
-	$fontStyle = "fonts/GOTHIC.ttf";
+	$fontStyle = "fonts/GOTHIC.TTF";
 
 	//company name
 	ImageTTFText ($handle, $companyName_FontSize, 0, 40, 100, $white, $fontStyle, $companyName);

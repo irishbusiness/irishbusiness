@@ -341,7 +341,7 @@ class BusinessRepository {
                 $companySlogan_FontSize = 9;
                 $fullName_FontSize = 14;
 
-                $fontStyle = public_path()."/scripts/fonts/GOTHIC.ttf";
+                $fontStyle = public_path()."/scripts/fonts/GOTHIC.TTF";
 
                 //company name
                 ImageTTFText ($handle, $companyName_FontSize, 0, 40, 100, $white, $fontStyle, $companyName);
