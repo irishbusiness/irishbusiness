@@ -326,6 +326,15 @@ class BusinessRepository {
                 ImageTTFText ($handle, 9, 0, 317, 175, $brown, public_path()."/scripts/fonts/GOTHIC.TTF", $phoneTwo);
                 //email address
                 ImageTTFText ($handle, 9, 0, 275, 190, $brown, public_path()."/scripts/fonts/GOTHIC.TTF", $emailAddress);
+                
+                //site url (exmple of how to center copy)
+
+                $fontSize = "10";
+                $width = "420";
+                $textWidth = $fontSize * strlen($siteUrl);
+                $position_center = $width / 2 - $textWidth / 2.6;
+                ImageTTFText ($handle, 9, 0, $position_center, 240, $brown, public_path()."/scripts/fonts/GOTHIC.TTF", $siteUrl);
+
             }else if( $template == 2 ){
 
                 $companyName_FontSize = 40;
@@ -341,16 +350,6 @@ class BusinessRepository {
                 //job title
                 ImageTTFText ($handle, $companySlogan_FontSize, 0, 40, 300, $white, $fontStyle, $companySlogan);
             }
-
-
-
-            //site url (exmple of how to center copy)
-
-            $fontSize = "10";
-            $width = "420";
-            $textWidth = $fontSize * strlen($siteUrl);
-            $position_center = $width / 2 - $textWidth / 2.6;
-            ImageTTFText ($handle, 9, 0, $position_center, 240, $brown, public_path()."/scripts/fonts/GOTHIC.TTF", $siteUrl);
 
             imagealphablending( $handle, false );
             imagesavealpha( $handle, true );
