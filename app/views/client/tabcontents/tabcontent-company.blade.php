@@ -145,7 +145,7 @@
 						$arr = explode(",", $keywords);
 						foreach ($arr as $keyword) {
 							if( trim($keyword) != "" ){
-								echo "<li>".$keyword."</li>";
+								echo "<li><h1 class='keywordh1'>".$keyword."</h1></li>";
 							}
 						}
 
@@ -153,7 +153,7 @@
 						$arr = explode(",", $keywords);
 						foreach ($arr as $keyword) {
 							if( trim($keyword) != "" ){
-								echo "<li>".$keyword."</li>";
+								echo "<li><h1 class='keywordh1'>".$keyword."</h1></li>";
 							}
 						}
 					?>
