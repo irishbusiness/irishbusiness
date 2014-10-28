@@ -32,13 +32,13 @@
 											<a href="https://www.facebook.com/sharer/sharer.php?u={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}" class="share facebook" data-id="facebook" title="Share on Facebook">
 											</a>
 
-											<a href="https://twitter.com/intent/tweet?url={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}" class="share twitter" data-id="twitter" title="Share on Twitter">
+											<a href="https://twitter.com/intent/tweet?url={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}&text={{ $review->description.' -'.$review->name }}&hashtags={{ hashtag($business->name) }}Reviews" class="share twitter" data-id="twitter" title="Share on Twitter">
 											</a>
 
 											<a href="https://plus.google.com/share?url={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}" class="share google" data-id="google" title="Share on Google Plus">
 											</a>
 
-											<a href="http://www.linkedin.com/shareArticle?mini=true&url={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}&source=IrishBusiness.ie" class="share linkedin" data-id="linkedin" title="Share on LinkedIn">
+											<a href="http://www.linkedin.com/shareArticle?mini=true&url={{ URL::to('business-reviews/'.$branch->branchslug.'/'.$review->id) }}&source=IrishBusiness.ie&title={{ $review->description.' -'.$review->name }}" class="share linkedin" data-id="linkedin" title="Share on LinkedIn">
 											</a>
 										</div>
 									</div>
