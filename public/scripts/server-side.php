@@ -79,14 +79,5 @@ ImagePng ($handle);
 
 imagedestroy( $handle );
 
-
-function getTemplate($id){
-	if( $id == 1 ){
-		return 'template';
-	}else if( $id == 2 ){
-		return 'template1';
-	}
-}
-
 ?>
 
