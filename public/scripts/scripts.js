@@ -1580,10 +1580,6 @@ $(document).ready(function() {
 
 
 window.setInterval(function(){
-	// $("#slider2_container").css("overflow-y", "visible");
-	// $(".gallery_photo").parent("div").css("overflow-y", "visible");
-	// $('.gallery_photo_div').css("overflow-y", "visible");
-
 	var h  = 300;
 	$(".gallery_photo_div").children("div").children("img").each(function(index){
 		if( h < $(this).height() ){

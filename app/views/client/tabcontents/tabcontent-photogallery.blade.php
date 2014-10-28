@@ -71,7 +71,7 @@
     <!-- Jssor Slider End -->
     @else
     <!-- Jssor Slider Begin -->
-    <div id="slider2_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px; ">
+    <div id="slider2_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow:hidden; ">
         <!-- Loading Screen -->
         <div u="loading" style="position: absolute; top: 0px; left: 0px;">
             <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
@@ -83,7 +83,7 @@
         </div>
 
         <!-- Slides Container -->
-        <div u="slides" class="gallery_photo_div" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;" id="photoshere">
+        <div u="slides" class="gallery_photo_div" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow:hidden;" id="photoshere">
             <div>
                 @if( !isAdmin() && isOwner($branch->business->slug) )
                     <img class="slider-no-image" u="image" src="images/no_photo_available.jpg" />
