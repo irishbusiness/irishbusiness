@@ -4572,13 +4572,14 @@ td.detail {
 		width:280px;
 	}
 		#realtime-form textarea {
-			height:140px;
+			height:100px;
 			max-height:140px
 		}
 	#realtime-form fieldset {
 		border:none;
 		margin:0;
 		padding:0;
+		margin-bottom: 10px;
 	}
 		#realtime-form legend {
 			font-size:1.4em;
@@ -5011,6 +5012,6 @@ span.linkedin{
 }
 
 h1.keywordh1 {
-	font-size: small;
+	font-size: 14px;
 	font-weight: normal;
 }

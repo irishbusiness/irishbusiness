@@ -9,6 +9,22 @@ $(document).ready(function(){
 	$("#realtime-form input,textarea").stop().keyup(function(){
 		$(".preview img").attr("src",base+'?'+$("#realtime-form").serialize());	
 	});
+
+	$('#realtime-form select').change(function(){
+		if( $(this).val() == 2 ){
+			$('.temp1').fadeOut();
+			$('#realtime-form textarea[name="companyName"]').val("FREE");
+			$('#realtime-form textarea[name="companySlogan"]').val("Add another text here...");
+			$('#realtime-form textarea[name="fullName"]').parent('li').css('marginTop', '50px');
+		}else{
+			$('.temp1').fadeIn();
+			$('#realtime-form textarea[name="companyName"]').val("SALE UPTO 70% DISCOUNT");
+			$('#realtime-form textarea[name="companySlogan"]').val("GREAT SAVINGS!");
+			$('#realtime-form textarea[name="fullName"]').parent('li').css('marginTop', '0px');
+		}
+
+		$(".preview img").attr("src",base+'?'+$("#realtime-form").serialize());	
+	});
 		
 	//GIVE URL TO USER
 	$("#getResults").click(function(){

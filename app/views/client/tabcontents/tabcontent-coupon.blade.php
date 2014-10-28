@@ -35,17 +35,26 @@
 			                        <li class="left">
 			                            <fieldset>
 			                                <ol>
+			                                	<li>
+			                                		<label for="template">Choose Template</label>
+			                                		<select name="template" class="text-input-grey three-fourth">
+			                                			<option value="1">Template 1</option>
+			                                			<option value="2">Template 2</option>
+			                                		</select>
+			                                	</li>
 			                                    <li>
 			                                        <label for="company-name">Text 1:</label>
-			                                        <input type="text" id="company-name" name="companyName" value="SALE UPTO 70% DISCOUNT" class="text-input-grey three-fourth" />
+			                                        <!-- <input type="text" id="company-name" name="companyName" value="SALE UPTO 70% DISCOUNT" class="text-input-grey three-fourth" /> -->
+			                                    	<textarea name="companyName" id="company-name" class="text-input-grey three-fourth">SALE UPTO 70% DISCOUNT</textarea>
 			                                    </li>
 			                                    <li>
 			                                        <label for="company-slogan">Text 2:</label>
-			                                        <input type="text" id="company-slogan" name="companySlogan" value="GREAT SAVINGS!" class="text-input-grey three-fourth" />
+			                                        <!-- <input type="text" id="company-slogan" name="companySlogan" value="GREAT SAVINGS!" class="text-input-grey three-fourth" /> -->
+			                                    	<textarea name="companySlogan" id="company-slogan" class="text-input-grey three-fourth">GREAT SAVINGS!</textarea>
 			                                    </li>
-			                                    <li>
+			                                    <li class="temp1">
 			                                        <label for="business-address">Business address</label>
-			                                        <textarea id="business-address" name="businessAddress" class="text-input-grey three-fourth" >{{str_toAddress($branch->address)}}</textarea>
+			                                        <textarea id="business-address" name="businessAddress" class="text-input-grey three-fourth">{{str_toAddress($branch->address)}}</textarea>
 			                                    </li>
 			                                </ol>
 			                            </fieldset>
@@ -56,26 +65,27 @@
 			                                <ol>
 			                                    <li>
 			                                        <label for="full-name">Company name:</label>
-			                                        <input type="text" id="full-name" name="fullName" value="{{ decode($branch->business->name) }}" class="text-input-grey three-fourth" />
+			                                        <!-- <input type="text" id="full-name" name="fullName" value="{{ decode($branch->business->name) }}" class="text-input-grey thre	e-fourth" /> -->
+			                                    	<textarea id="full-name" name="fullName" class="text-input-grey three-fourth">{{ decode($branch->business->name) }}</textarea>
 			                                    </li>
-			                                    <li>
+			                                    <li class="temp1">
 			                                        <label for="job-title">Company description</label>
 			                                        <!-- <input type="text" id="job-title" name="jobTitle" value="{{ Str::limit(decode($branch->business->business_description), 50 ) }}" class="text-input-grey three-fourth" /> -->
-			                                    	<textarea name="jobTitle" id="job-title" class="">{{ Str::limit(trim(strip_tags(decode($branch->business->business_description), 50 ))) }}</textarea>
+			                                    	<textarea name="jobTitle" id="job-title" class="text-input-grey three-fourth">{{ Str::limit(trim(strip_tags(decode($branch->business->business_description), 50 ))) }}</textarea>
 			                                    </li>
-			                                    <li>
+			                                    <li class="temp1">
 			                                        <label for="primary-phone">Primary phone</label>
 			                                        <input type="text" id="primary-phone" name="phoneOne" value="P: 954-555-1234" class="text-input-grey three-fourth" />
 			                                    </li>
-			                                    <li>
+			                                    <li class="temp1">
 			                                        <label for="secondary-phone">Secondary phone</label>
 			                                        <input type="text" id="secondary-phone" name="phoneTwo" value="P: 954-555-5678" class="text-input-grey three-fourth" />
 			                                    </li>
-			                                    <li>
+			                                    <li class="temp1">
 			                                        <label for="email-address">Email address</label>
 			                                        <input type="text" id="email-address" name="emailAddress" value="john@company.com" class="text-input-grey three-fourth" />
 			                                    </li>
-			                                    <li>
+			                                    <li class="temp1">
 			                                        <label for="web-address">Web address</label>
 			                                        <input type="text" id="web-address" name="siteUrl" value="{{ !is_null($branch->website) ? $branch->website : '' }}" class="text-input-grey three-fourth" />
 			                                    </li>
