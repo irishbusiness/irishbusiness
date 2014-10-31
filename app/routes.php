@@ -100,6 +100,9 @@ Route::post('ajaxDeleteCoupon', 'BusinessesController@delete_coupon');
 Route::post('ajaxUpdateKeywords', 'BusinessesController@update_business_keywords');
 Route::post('ajaxDeleteKeywords', 'BusinessesController@delete_business_keywords');
 
+Route::post('ajaxUpdateKeyphrase', 'BusinessesController@update_business_keyphrase');
+
+
 Route::post('settings', 'BusinessesController@store');
 
 Route::get('search', 'BusinessesController@search');

@@ -222,7 +222,7 @@ class BusinessRepository {
         $branch->google  =   $input['google'];
         $branch->linkedin  =   $input['linkedin'];
         
-        $branch->branchslug = preg_replace('/amp;/', '', $input['branchslug']);
+        $branch->branchslug = removeCommonWords( preg_replace('/amp;/', '', $input['branchslug']) );
         $business->branches()->save($branch);
 
 
@@ -442,21 +442,23 @@ class BusinessRepository {
             $new_additional_keywords = "";
 
             if( $operation == "add" ){
+                $new_keywords = trim( removeCommonWords( $new_keywords ) );
+
                 $old_additional_keywords_arr = explode(',', $old_additional_keywords);
                 $old_keywords_arr = explode(',', $old_keywords);
 
                 $flag = 0;
 
                 foreach ($old_keywords_arr as $key => $value) {
-                    if( $new_keywords == $value ){
+                    if( $new_keywords == trim( $value ) ){
                         $flag  = 1;
                         
                     }
                 }
 
                 foreach ($old_additional_keywords_arr as $key => $value) {
-                    if( $new_keywords == $value ){
-                         $flag  = 1;
+                    if( $new_keywords == ( $value ) ){
+                        $flag  = 1;
                         
                     }
                 }
@@ -496,6 +498,89 @@ class BusinessRepository {
 
             if( $branch->save() && $business->save() ){
                 return keywordExplode($new_branch_slug);
+            }
+
+            return false;
+
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+
+    function update_branch_keyphrase($old_branchslug, $keyphrase, $business_id, $operation){
+        try {
+            $branch = Branch::where('branchslug', $old_branchslug)->first();
+            $business = Business::find($business_id);
+
+
+            $old_keyphrase = $business->keywords;
+            $old_additional_keywords = $business->additional_keywords;
+
+            $new_branch_slug = "";
+            $new_keyphrase = "";
+
+            if( $operation == 'add' ){
+                $keyphrase = trim(removeCommonWords($keyphrase));
+
+                $old_keyphrase_arr = explode(',', $old_keyphrase);
+                $old_additional_keywords_arr = explode(',', $old_additional_keywords);
+
+                $flag = 0;
+
+                foreach ($old_keyphrase_arr as $key => $value) {
+                    if( $keyphrase == trim($value) ){
+                        $flag  = 1;
+                    }
+                }
+
+                foreach ($old_additional_keywords_arr as $key => $value) {
+                    if( $keyphrase == trim($value) ){
+                        $flag  = 1;
+                    }
+                }
+
+                if( $flag === 1 ){
+                    throw new \Exception("This keyphrase already exists!", 1);
+                }
+
+                $new_branch_slug = keywordExplode( removeCommonWords( $old_keyphrase.','.trim($keyphrase).','.$old_additional_keywords ) );
+                $keyphrase = removeCommonWords( $keyphrase );
+                $branch->branchslug = $new_branch_slug;
+                $business->keywords = $old_keyphrase.','.$keyphrase;
+
+            }else if( $operation == 'delete' ){
+                $old_keyphrase_arr = explode(",", $old_keyphrase);
+
+                foreach ($old_keyphrase_arr as $key => $value) {
+                    if( trim($value) != trim($keyphrase) ){
+                        $new_keyphrase .= trim($value).',';
+                    }
+                }
+
+                $new_keyphrase = substr($new_keyphrase, 0, strlen($new_keyphrase)-1);
+
+                $new_branch_slug = keywordExplode( $new_keyphrase.','.$old_additional_keywords );
+
+                $last_char = substr($new_branch_slug, strlen($new_branch_slug)-1, strlen($new_branch_slug));
+
+                if( $last_char == "-"){
+                    $new_branch_slug = substr($new_branch_slug, 0, strlen($new_branch_slug)-1);
+                }
+
+                $first_char = substr($new_branch_slug, 0, 1);
+
+                if( $first_char == "-"){
+                    $new_branch_slug = substr($new_branch_slug, 1, strlen($new_branch_slug)-1);
+                }
+
+
+                $branch->branchslug = removeCommonWords( $new_branch_slug );
+                $business->keywords = $new_keyphrase;
+            }
+
+            if( $branch->save() && $business->save() ){
+                return removeCommonWords( keywordExplode($new_branch_slug) );
             }
 
             return false;

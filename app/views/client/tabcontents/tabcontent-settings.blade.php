@@ -62,7 +62,26 @@
 		    <div class="thin-separator"></div>
 		    <div class="form-group">
 		    	{{ Form::label('target-keyphrase', "Target Key Phrase", ["class" => "text-colorful"]) }}
-		    	{{ Form::text('keyphrase', $primary_keyphrase, ["class"=>"text-input-grey half-width", 'readonly']) }}
+		    	@if( isAdmin() )
+		    		{{ Form::text('keywords', '', [
+			        	"placeholder" => "Additional keywords ", "class"=>"text-input-grey half-width", 
+			        	'id' => 'add_new_keyphrase', 'data-br' => $branch->branchslug, 'data-bid' => $business->id]) }}
+			        <button class="button-2-colorful" type="button" id="btn_add_this_keyphrase">Add</button>
+			        <br/>
+			        <div class="keyphrase-list">
+				        @foreach($array_keyphrase as $index => $value)
+				        	@if( trim($value) != "" )
+				        		<span class="bs-btn btn-success category" data-id="{{ 'k'.$value }}">
+				        			{{ $value }}
+				        			<span class="remove-keyphrase" data-id="{{$value}}" data-text="{{ $value }}" title="remove this keyphrase">x</span>
+				        		</span>
+				        	@endif
+				        @endforeach
+			        </div>
+			        {{$errors->first('keywords','<span class="alert alert-error block half">:message</span>') }}
+		    	@else
+		    		{{ Form::text('keyphrase', $primary_keyphrase, ["class"=>"text-input-grey half-width", 'readonly']) }}
+		    	@endif
 		    </div>
 		    <div class="form-group">
 		    	<a href="javascript:void(0)" data-rel="#edit-keywords-dialog" rel="dialog" class="text-colorful" title="Keywords">Additional Keywords</a>	
