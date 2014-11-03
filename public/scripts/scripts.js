@@ -26,19 +26,19 @@ Equal Heights function.
 		}
 
 
-		if( (is_corporate == "true" || is_corporate == true) && corporate_counter == 0 ){
-			console.log("nisulod");
-			console.log(corporate_counter);
-			// Equalizing heights of columns.
-			// if (jQuery('body').width() > browserWidth - scrollbar) {
-			// 	jQuery(this).children().css('min-height', equalHeight + additionalHeight);
-			// } else {
-			// 	jQuery(this).children().css('min-height', 'auto');
-			// }
-			jQuery('.content-wrapper').css('min-height', $( window ).height());
+		// if( (is_corporate == "true" || is_corporate == true) && corporate_counter == 0 ){
+		// 	console.log("nisulod");
+		// 	console.log(corporate_counter);
+		// 	// Equalizing heights of columns.
+		// 	// if (jQuery('body').width() > browserWidth - scrollbar) {
+		// 	// 	jQuery(this).children().css('min-height', equalHeight + additionalHeight);
+		// 	// } else {
+		// 	// 	jQuery(this).children().css('min-height', 'auto');
+		// 	// }
+		// 	jQuery('.content-wrapper').css('min-height', $( window ).height());
 
-			corporate_counter++;
-		}
+		// 	corporate_counter++;
+		// }
 	};
 })(jQuery);
 
