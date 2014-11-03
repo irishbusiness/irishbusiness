@@ -101,32 +101,12 @@
 				</div>
 				</div>
 			@endif
-			<!-- <div class="company-info clearfix">
-				<div class="company-info-social">
-					<div class="compnay-photo">
-						<img width="500" height="302" src="{{ URL::asset($branch->business->logo) }}" class="attachment-post-thumbnail wp-post-image" alt="{{ $branch->business->name }}-logo">
-					</div>
-					@if(!is_null(trim($branch->facebook)))
-					<a href="{{ $branch->facebook }}" class="facebook" target="_blank"></a>
-					@endif
-					@if(!is_null(trim($branch->facebook)))
-					<a href="{{ $branch->twitter }}" class="twitter" target="_blank"></a>
-					@endif
-					@if(!is_null(trim($branch->facebook)))
-					<a href="{{ $branch->google }}" class="google" target="_blank"></a>
-					@endif
-				</div> -->
-				<!-- <div class="company-info-description">
-					{{ html_entity_decode(stripcslashes($branch->business->business_description)) }}
-				</div> -->
-			<!-- </div> -->
 		</div>
 		<div class="separator"></div>
 		<div class="profile-description company-page-center-block">
 			<h2>Profile Description</h2>
 			<div class="block-content">
 				{{ decode($branch->business->business_description) }}
-				<!-- {{ str_replace("\\r\\n","<br/>", stripcslashes(html_entity_decode($branch->business->profile_description))) }} -->
 			</div>
 		</div>
 		<div class="clearfix"></div>

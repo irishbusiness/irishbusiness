@@ -38,9 +38,7 @@
 	</div>
 </div>
 
-	
-	<!-- end of .content-container -->
-<!-- </div> -->
+<!-- end of .content-container -->
 @stop
 
 

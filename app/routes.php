@@ -82,10 +82,6 @@ Route::get('admin/settings/socialmedia', function(){
 	return View::make('admin.admin_settings_socialmedia', compact('social'));
 });
 
-// Route::get('admin/settings/blog', 'BlogController@manageblog');
-
-// Route::post('admin/settings/blog', 'BlogController@store');
-
 Route::get('admin/settings/blog', 'AdminBlogController@manageblog');
 
 Route::post('admin/settings/blog', 'AdminBlogController@store');

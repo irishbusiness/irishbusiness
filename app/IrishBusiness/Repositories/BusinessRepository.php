@@ -467,7 +467,12 @@ class BusinessRepository {
                     throw new \Exception("This keyword already exists!", 1);
                 }
 
-                $new_branch_slug = keywordExplode( $old_keywords.','.$old_additional_keywords.','.$new_keywords );
+                $new_branch_slug = $old_keywords.','.$old_additional_keywords.','.$new_keywords;
+                // $new_branch_slug = implode(',',array_unique(explode(',', $new_branch_slug)));
+                $new_branch_slug = preg_replace("/\b(\w+)\s+\\1\b/i", "$1", $new_branch_slug);
+                $new_branch_slug = keywordExplode($new_branch_slug);
+
+                // $new_branch_slug = keywordExplode( $old_keywords.','.$old_additional_keywords.','.$new_keywords );
 
                 $branch->branchslug = $new_branch_slug;
                 $business->additional_keywords = $old_additional_keywords.','.$new_keywords;
@@ -544,8 +549,16 @@ class BusinessRepository {
                     throw new \Exception("This keyphrase already exists!", 1);
                 }
 
-                $new_branch_slug = keywordExplode( removeCommonWords( $old_keyphrase.','.trim($keyphrase).','.$old_additional_keywords ) );
+                $new_branch_slug = $old_keyphrase.','.trim($keyphrase).','.$old_additional_keywords;
+
+                // $new_branch_slug = implode(',',array_unique(explode(',', $new_branch_slug)));
+                $new_branch_slug = preg_replace("/\b(\w+)\s+\\1\b/i", "$1", $new_branch_slug);
+
+                $new_branch_slug = keywordExplode( removeCommonWords( $new_branch_slug ) );
+
+                // $new_branch_slug = keywordExplode( removeCommonWords( $old_keyphrase.','.trim($keyphrase).','.$old_additional_keywords ) );
                 $keyphrase = removeCommonWords( $keyphrase );
+
                 $branch->branchslug = $new_branch_slug;
                 $business->keywords = $old_keyphrase.','.$keyphrase;
 

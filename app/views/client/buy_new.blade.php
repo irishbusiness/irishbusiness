@@ -195,12 +195,6 @@
 	$('.stripe-button-el').removeClass('stripe-button-el').addClass('btn-stripe button-2-colorful');
 	$('.button-2-colorful span').attr('style','');
 
-	// $(document).on("click", "#showEnterCouponCode", function(){
-	// 	$("#subscribenow").fadeOut(function(){
-	// 		$("#i-have-discount-code").fadeIn();
-	// 	});
-	// });
-
 	$(document).on("click", ".ihavediscountcode", function(){
 		$("#subscribenow").fadeOut(function(){
 			$("#i-have-discount-code").fadeIn();
@@ -262,17 +256,6 @@
 			    }
 			});
         });
-
-
-		// $.each(data, function(i, v){
-		//     if(i === code){
-		//         $('span.currency').html(v.symbol);
-
-
-		//         // #result is an empty tag which receive the symbol
-		//         return;
-		//     }
-		// });
 	});
 </script>
 @stop

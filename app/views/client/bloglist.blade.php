@@ -44,9 +44,6 @@
 						</div>
 					</div>
                     @endforeach
-<!--					<div class="older-posts">-->
-<!--						<input type="submit" class="button-2-colorful" value="Older Entries" />-->
-<!--					</div>-->
 				</div>
 </div>
 @stop

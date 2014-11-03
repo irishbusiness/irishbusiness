@@ -1,42 +1,5 @@
 <script>
 	$(window).ready(function(){
-        // var oldkeywords = $("#edit-keywords").val();
-
-        // $(document).on("change", "#edit-keywords", function(){
-        //     var array1 = oldkeywords.split(',');
-        //     var newkeywords = $(this).val();
-        //     var array2 = newkeywords.split(',');
-
-        //     var array3 = [];
-
-        //     var flag = false;
-
-        //     var x = 1;
-
-        //     $.each( array1, function( index1, value1 ){
-
-        //     });
-
-        //     $.each( array1, function( index1, value1 ){
-        //         $.each( array2, function( index2, value2){
-        //             if( value1 === value2 ){
-        //                 if( x >= 3 ){
-        //                     flag = true;
-        //                     return false;
-        //                 }
-        //                 x++;
-        //             }
-        //         });
-        //     });
-
-        //     if( flag === true ){
-        //         alert("Opps...That keyword already exists. Please choose another keyword.");
-        //         $("#edit-keywords").val(oldkeywords);
-        //     }
-
-        //     console.log("oldkeywords="+oldkeywords);
-        //     console.log( $(this).val() );
-        // });
 
 		$("a[rel='dialog']").on("click", function(){
             var dialog = $(this).attr("data-rel");
@@ -343,19 +306,14 @@
                     })
                     .done(function(data)
                     {
-                        // console.log(data);
                         $('.showCategory').append('<span class="bs-btn btn-success category" data-id="'+category+'"> '+ name +
                             '<span class="remove" data-id="'+category+'" data-text="'+name+'" title="remove this category">x</span></span>');
-                        // $('#categories').find('option:selected').remove();
                     });
                 }else{
                     alert("Oops!... Something went wrong. We can't process your request right now. Please try again later.");
                 }
 
             });
-
-            // var name = $("#categories option:selected").text();
-            // console.log(name);
             
         });
         

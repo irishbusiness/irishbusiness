@@ -42,14 +42,6 @@
 					<a class="company-tabs-photogallery" href="javascript:void(0)">GALLERY</a>
 				</li>
 				@endif
-
-				@if( isAdmin() || isOwner($branch->business->slug) )
-				<!-- <a href="{{ URL::to($business->slug.'/branch') }}" class="tab-link">
-					<li class="" style="float: right;">
-						BRANCH SETTINGS
-					</li>
-				</a> -->
-				@endif
 				<a href="javascript:void(0);" class="tab-link">
 					<li style="float:right;">
 						<span class="phone">Call</span>

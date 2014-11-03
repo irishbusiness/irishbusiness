@@ -10,13 +10,6 @@
 				<div class="block-title" >
 					<h1>Search Results</h1>
 				</div>
-				<!-- <div class="pagination">
-					<div class="pagination-buttons">
-						<a href="#" class="current-page">1</a>
-						<a href="#">2</a>
-						<a href="#">3</a>
-					</div>
-				</div> -->
 
 				<?php
 					$x=0; 
@@ -33,7 +26,6 @@
 			
 				<div class="company-listing clearfix">
 					<a href="{{ URL::to($branch->branchslug) }}" class="listing-image">
-						<!-- <img src="{{ URL::asset($branch->logo) }}" alt="" /> -->
 						@if( ($branch->business->logo == "" || $branch->business->logo == "images/companylogos/sample_company.jpg") && $branch->business->profilebanner != "" )
 							<img src="{{ ($branch->business->profilebanner == '') ? URL::asset('images/image-not-available.png') : URL::asset($branch->business->profilebanner) }}" alt="" />
 						@else
