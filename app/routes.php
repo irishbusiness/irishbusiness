@@ -244,17 +244,8 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try', function(){
-	$old_additional_keywords = ",dexter,dexter-gwapo";
-	$old_additional_keywords = explode(',', $old_additional_keywords);
-	$new_keywords = "dexter123";
-	foreach ($old_additional_keywords as $key => $value) {
-		if( $new_keywords == $value ){
-			return 'false';
-		}
-	}
-
-	
-    	return 'true';
+	$str = "-The-The-the-Hello-Truck-Hello-The-the-Fantastic-bear-";
+	return ( remove_duplicate( cleanSlug( $str ) ) );
 	
 });
 Route::get('/ajaxCategoryId', 'CategoriesController@returnCategoryId');

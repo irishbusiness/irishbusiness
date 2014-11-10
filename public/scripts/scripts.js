@@ -822,22 +822,6 @@ $('.social-link').click(function(e){
     var placeholder = $(this).attr('data-placeholder');
     var value   =   $(this).attr('data-value');
     var socialtype = $(this).data('socialtype');
-    // console.log(socialtype);
-
-    //place the data-socialtype to the appended input
-    // if( value == "" ){
-    //     $('.social-textfield').html('<input type="url" class="text-input-grey full" name="socialinput" placeholder="'+placeholder+'" required> <button type="submit" class="bs-btn btn-info save-social">Save</button>');
-    // 	$('.save-social').click(function(e){
-    //         e.preventDefault();
-    //         socialaction($(this));
-    //     });
-    // } else {
-    //     $('.social-textfield').html('<input type="url" class="text-input-grey full" name="socialinput" placeholder="'+placeholder+'" value="'+value+'" required> <a href = "#" class="bs-btn btn-info save-social" data-socialtype="'+socialtype+'">Save</a>');
-    //     $('a.save-social').click(function(e){
-    //         e.preventDefault();
-    //         socialaction($(this));
-    //     });
-    // }
 
     $('.social-textfield').html('<input type="url" class="text-input-grey full" name="socialinput" placeholder="'+placeholder+'" value="'+value+'" required> <a href = "#" class="bs-btn btn-info save-social" data-socialtype="'+socialtype+'">Save</a>');
     $('a.save-social').click(function(e){
@@ -1616,8 +1600,6 @@ $(document).on("change", "#keywords", function(){
 		if (new_array.indexOf(value)==-1)
 			new_array.push(value);
 	});
-
-	eliminateArrayValueDuplicates(new_array);
 	$(this).val("");
 	console.log("new_array="+new_array);
 	$(this).val(new_array[new_array.length-1]);

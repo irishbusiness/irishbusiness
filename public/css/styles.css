@@ -5019,3 +5019,11 @@ h1.keywordh1 {
 a.thumbnail {
 	height: 60px;
 }
+
+a.listing-image {
+	min-height: 120px;
+}
+
+span.remove-keyphrase:hover {
+	color: red;
+}

@@ -15,7 +15,6 @@ class BusinessRepository {
 	}
 
     function getAllwithLimit(){
-        // return $businesses = Business::take(14)->orderBy('id', 'DESC')->get();
         return $businesses = Business::orderBy('id','DESC')->limit(12)->get();
     }	
 
@@ -38,7 +37,6 @@ class BusinessRepository {
 
         $business->business_description    =   $input['business_description'];
         $business->user_id = Auth::user()->user()->id;
-        // $business->user_id = 1;
 
         if($input['slug'] == null){
             $name = clean_str(decode($input['name']));
@@ -49,10 +47,8 @@ class BusinessRepository {
 
         // logo
         if( !is_null($input['logo'])){
-            // $dir = public_path().'public/images/companylogos/';
             $image  =   $input['logo'];
             $imagename = md5(date('YmdHis')).'.jpg';
-            // $filename = $dir.$imagename;
 
             if ($image->getMimeType() == 'image/png'
                 || $image->getMimeType() == 'image/jpg'
@@ -60,7 +56,6 @@ class BusinessRepository {
                 || $image->getMimeType() == 'image/jpeg'
                 || $image->getMimeType() == 'image/pjpeg')
             {
-                // $image->move($dir, $filename);
                 $path = public_path('images/companylogos/' . $imagename);
                 $path = str_replace('\\', '/', $path);
                 Image::make($image->getRealPath())->resize(150, 150)->save($path);
@@ -84,7 +79,6 @@ class BusinessRepository {
                 || $image->getMimeType() == 'image/jpeg'
                 || $image->getMimeType() == 'image/pjpeg')
             {
-                // $image->move($dir, $filename);
                 $path = public_path('images/companylogos/' . $imagename);
                 $path = str_replace('\\', '/', $path);
                 Image::make($image->getRealPath())->save($path);
@@ -101,7 +95,6 @@ class BusinessRepository {
 
     function update($slug, $input, $branchId){
         $old_businessinfo = Business::where('slug', $slug)->first();
-        // $branch = Branch::find($branchId);
         $branch = Branch::where('branchslug', $branchId)->first();
 
         $branch_ID = $branch->id;
@@ -122,7 +115,6 @@ class BusinessRepository {
         $business->business_description    =   $input['business_description'];
 
         $branch->mon_fri   =   $input['mon_fri'];
-        // $branch->sat   =   $input['sat'];
         $branch->facebook   =   $input['facebook'];
         $branch->twitter  =   $input['twitter'];
         $branch->google  =   $input['google'];
@@ -192,8 +184,6 @@ class BusinessRepository {
         
         $business->save();
 
-        // return true;
-
         $branch = Branch::find($branch_ID);
         return $branch->branchslug;
 
@@ -222,9 +212,11 @@ class BusinessRepository {
         $branch->google  =   $input['google'];
         $branch->linkedin  =   $input['linkedin'];
         
-        $branch->branchslug = removeCommonWords( preg_replace('/amp;/', '', $input['branchslug']) );
+        $branchslug =  remove_duplicate( $input['branchslug'] );
+        
+        $branch->branchslug = removeCommonWords( preg_replace('/amp;/', '', $branchslug ) );
         $business->branches()->save($branch);
-
+    
 
         return $branch->branchslug;
         
@@ -468,11 +460,8 @@ class BusinessRepository {
                 }
 
                 $new_branch_slug = $old_keywords.','.$old_additional_keywords.','.$new_keywords;
-                // $new_branch_slug = implode(',',array_unique(explode(',', $new_branch_slug)));
                 $new_branch_slug = preg_replace("/\b(\w+)\s+\\1\b/i", "$1", $new_branch_slug);
-                $new_branch_slug = keywordExplode($new_branch_slug);
-
-                // $new_branch_slug = keywordExplode( $old_keywords.','.$old_additional_keywords.','.$new_keywords );
+                $new_branch_slug = remove_duplicate( cleanSlug( keywordExplode( $new_branch_slug ) ) );
 
                 $branch->branchslug = $new_branch_slug;
                 $business->additional_keywords = $old_additional_keywords.','.$new_keywords;
@@ -488,13 +477,7 @@ class BusinessRepository {
 
                 $new_additional_keywords = substr($new_additional_keywords, 0, strlen($new_additional_keywords)-1);
 
-                $new_branch_slug = keywordExplode( $old_keywords.','.$new_additional_keywords );
-
-                $last_char = substr($new_branch_slug, strlen($new_branch_slug)-1, strlen($new_branch_slug));
-
-                if( $last_char == "-"){
-                    $new_branch_slug = substr($new_branch_slug, 0, strlen($new_branch_slug)-1);
-                }
+                $new_branch_slug = remove_duplicate( cleanSlug( keywordExplode( $old_keywords.','.$new_additional_keywords ) ) );
 
                 $branch->branchslug = $new_branch_slug;
                 $business->additional_keywords = $new_additional_keywords;
@@ -502,7 +485,7 @@ class BusinessRepository {
             }
 
             if( $branch->save() && $business->save() ){
-                return keywordExplode($new_branch_slug);
+                return remove_duplicate( cleanSlug( keywordExplode($new_branch_slug) ) );
             }
 
             return false;
@@ -551,15 +534,13 @@ class BusinessRepository {
 
                 $new_branch_slug = $old_keyphrase.','.trim($keyphrase).','.$old_additional_keywords;
 
-                // $new_branch_slug = implode(',',array_unique(explode(',', $new_branch_slug)));
                 $new_branch_slug = preg_replace("/\b(\w+)\s+\\1\b/i", "$1", $new_branch_slug);
 
                 $new_branch_slug = keywordExplode( removeCommonWords( $new_branch_slug ) );
 
-                // $new_branch_slug = keywordExplode( removeCommonWords( $old_keyphrase.','.trim($keyphrase).','.$old_additional_keywords ) );
-                $keyphrase = removeCommonWords( $keyphrase );
+                $keyphrase = remove_duplicate( cleanSlug( removeCommonWords( $keyphrase ) ) );
 
-                $branch->branchslug = $new_branch_slug;
+                $branch->branchslug = cleanSlug( remove_duplicate( $new_branch_slug ) );
                 $business->keywords = $old_keyphrase.','.$keyphrase;
 
             }else if( $operation == 'delete' ){
@@ -573,27 +554,14 @@ class BusinessRepository {
 
                 $new_keyphrase = substr($new_keyphrase, 0, strlen($new_keyphrase)-1);
 
-                $new_branch_slug = keywordExplode( $new_keyphrase.','.$old_additional_keywords );
-
-                $last_char = substr($new_branch_slug, strlen($new_branch_slug)-1, strlen($new_branch_slug));
-
-                if( $last_char == "-"){
-                    $new_branch_slug = substr($new_branch_slug, 0, strlen($new_branch_slug)-1);
-                }
-
-                $first_char = substr($new_branch_slug, 0, 1);
-
-                if( $first_char == "-"){
-                    $new_branch_slug = substr($new_branch_slug, 1, strlen($new_branch_slug)-1);
-                }
-
+                $new_branch_slug = cleanSlug( keywordExplode( $new_keyphrase.",".$old_additional_keywords ) );
 
                 $branch->branchslug = removeCommonWords( $new_branch_slug );
                 $business->keywords = $new_keyphrase;
             }
 
             if( $branch->save() && $business->save() ){
-                return removeCommonWords( keywordExplode($new_branch_slug) );
+                return  remove_duplicate( cleanSlug( removeCommonWords( keywordExplode($new_branch_slug) ) ) );
             }
 
             return false;
@@ -768,9 +736,7 @@ class BusinessRepository {
             for($y=0; $y<count($selected_categories); $y++){
                 if( isset($categories[$x]) ){
                     if($categories[$x] === $selected_categories[$y]["name"]){
-                    // if( is_array($selected_categories[$y]['name']) && array_key_exists($selected_categories[$y]['name'], $categories[$x]) ){
                         unset($notselected_categories[$x]);
-                    // }
                     }
                 }
             }

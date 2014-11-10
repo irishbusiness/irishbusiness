@@ -140,8 +140,6 @@ class BusinessesController extends \BaseController {
 			$selected_categories = $selected_categories->toArray();
 			$selected_categoriesraw = $branch->business->categories;
 
-			// $notselected_categories = $this->category->getCategories();
-
 			$notselected_categories = $this->business->getNotSelectedCategories($categories, $selected_categories);
 
 			$br = $this->business->getBranchBySlug($name);
@@ -150,7 +148,6 @@ class BusinessesController extends \BaseController {
 			$addresses = $this->business->explodeAddresses($branch);
 			$photos = $this->business->getPhotos($brID);
 			$branchID = $branch->id;
-			// $json_categories = json_encode($notselected_categories);
 			$json_categories = "";
 
 			foreach ($notselected_categories as $key => $value) {

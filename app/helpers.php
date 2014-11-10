@@ -404,3 +404,37 @@ function getBranchBySlug($slug){
 function removehtml($str){
     return strip_tags($str);
 }
+
+function remove_duplicate($str){ 
+    $words = explode( "-", strtolower($str) );
+
+    $newwords = array_unique($words);
+    $output = "";
+
+    foreach ($newwords as $word => $value) {
+        $output.= $value."-";
+    }
+
+    return substr($output, 0, -1); 
+}
+
+function cleanSlug($str){
+    $first = substr($str, 0, 1);
+    $last = substr($str, strlen($str)-1, strlen($str));
+
+    if( $first == "-" ){
+        $str = substr($str, 1, strlen($str));
+        $first = substr($str, 0, 1);
+    }
+
+    if( $last == "-" ){
+        $str = substr($str, 0, strlen($str)-1);
+        $last = substr($str, strlen($str)-1, strlen($str));
+    }
+
+    if( $first != "-" && $last != "-" ){
+        return $str;
+    }
+    cleanSlug($str);
+    
+}
