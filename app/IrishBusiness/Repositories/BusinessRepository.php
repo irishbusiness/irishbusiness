@@ -628,6 +628,16 @@ class BusinessRepository {
         return $rating;
     }
 
+    function getNumOfReviews($branches){
+        $numOfReviews = array();
+        foreach ($branches as $branch) {
+            $review = Review::where('business_id', '=', $branch->bid)->where('confirmed', '=', 1)->get();
+            array_push( $numOfReviews, $review->count() );
+        }
+
+        return $numOfReviews;
+    }
+
     function getBusiness($businessSlug)
     {
         $business = Business::whereSlug($businessSlug)->first();     

@@ -37,40 +37,40 @@
     					<div class="login">
     						<?php /*dd(Auth::salesperson()->user())*/ ?>
     						@if(Auth::user()->check())
-    						<a href="javascript:void(0)" id="login-link" class="login-link">Switch to Sales</a>
-    						{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
-    						{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
-    						{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
-    						<span id="errordiv" >
-    						</span>
-    						<a href="/password/remind" class="password-restore">Forgot Password?</a>
-    						<input class="button-2-colorful" type="submit" value="Login">
-    						{{Form::close()}}
+        						<a href="javascript:void(0)" id="login-link" class="login-link">Switch to Sales</a>
+        						{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
+        						{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
+        						{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
+        						<span id="errordiv" >
+        						</span>
+        						<a href="/password/remind" class="password-restore">Forgot Password?</a>
+        						<input class="button-2-colorful" type="submit" value="Login">
+        						{{Form::close()}}
 
     						@elseif(Auth::salesperson()->check())
-    						@if(isClient(Auth::salesperson()->user()->email))
+        						@if(isClient(Auth::salesperson()->user()->email))
 
-    						<a href="javascript:void(0)" id="login-link" class="login-link">Switch to Client</a>
-    						{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
-    						{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
-    						{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
-    						<span id="errordiv" >
-    						</span>
-    						<a href="/password/remind" class="password-restore">Forgot Password?</a>
-    						<input class="button-2-colorful" type="submit" value="Login">
-    						{{Form::close()}}
-    						@endif
-    						@else
-    						<a href="javascript:void(0)" id="login-link" class="login-link">Login</a>
-    						{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
-    						{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
-    						{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
-    						<span id="errordiv" >
-    						</span>
-    						<a href="/password/remind" class="password-restore">Forgot Password?</a>
-    						<input class="button-2-colorful" type="submit" value="Login">
-    						{{Form::close()}}	
-    						@endif			
+            						<a href="javascript:void(0)" id="login-link" class="login-link">Switch to Client</a>
+            						{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
+            						{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
+            						{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
+            						<span id="errordiv" >
+            						</span>
+            						<a href="/password/remind" class="password-restore">Forgot Password?</a>
+            						<input class="button-2-colorful" type="submit" value="Login">
+            						{{Form::close()}}
+        						@endif
+        					@else
+        						<a href="javascript:void(0)" id="login-link" class="login-link">Login</a>
+        						{{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
+        						{{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
+        						{{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
+        						<span id="errordiv" >
+        						</span>
+        						<a href="/password/remind" class="password-restore">Forgot Password?</a>
+        						<input class="button-2-colorful" type="submit" value="Login">
+        						{{Form::close()}}	
+        					@endif			
     					</div>
     				</div>
 
@@ -142,12 +142,6 @@
     						<li {{ (Request::is('blog*') ? ' class="first active"' : '') }}>
     							<a href="{{ URL::to('blog') }}">BLOG</a>
     						</li>
-    						<li {{ (Request::is('contact-us*') ? ' class="first active"' : '') }}>
-    							<a href="{{ URL::to('contact-us')}}">CONTACT US</a>
-    						</li>
-    						<li {{ (Request::is('register*') ? ' class="first active"' : '') }}>
-                                <a href="{{ URL::to('register') }}">REGISTER</a>
-    						</li>
     						<li class="empty">
     							<div></div>
     						</li>
@@ -172,39 +166,38 @@
                 <div class="login">
                     <?php /*dd(Auth::salesperson()->user())*/ ?>
                     @if(Auth::user()->check())
-                    <a href="javascript:void(0)" id="login-link" class="login-link">Switch to Sales</a>
-                    {{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
-                    {{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
-                    {{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
-                    <span id="errordiv" >
-                    </span>
-                    <a href="/password/remind" class="password-restore">Forgot Password?</a>
-                    <input class="button-2-colorful" type="submit" value="Login">
-                    {{Form::close()}}
+                        <a href="javascript:void(0)" id="login-link" class="login-link">Switch to Sales</a>
+                        {{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
+                        {{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
+                        {{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
+                        <span id="errordiv" >
+                        </span>
+                        <a href="/password/remind" class="password-restore">Forgot Password?</a>
+                        <input class="button-2-colorful" type="submit" value="Login">
+                        {{Form::close()}}
 
                     @elseif(Auth::salesperson()->check())
-                    @if(isClient(Auth::salesperson()->user()->email))
-
-                    <a href="javascript:void(0)" id="login-link" class="login-link">Switch to Client</a>
-                    {{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
-                    {{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
-                    {{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
-                    <span id="errordiv" >
-                    </span>
-                    <a href="/password/remind" class="password-restore">Forgot Password?</a>
-                    <input class="button-2-colorful" type="submit" value="Login">
-                    {{Form::close()}}
-                    @endif
+                        @if(isClient(Auth::salesperson()->user()->email))
+                            <a href="javascript:void(0)" id="login-link" class="login-link">Switch to Client</a>
+                            {{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
+                            {{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
+                            {{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
+                            <span id="errordiv" >
+                            </span>
+                            <a href="/password/remind" class="password-restore">Forgot Password?</a>
+                            <input class="button-2-colorful" type="submit" value="Login">
+                            {{Form::close()}}
+                        @endif
                     @else
-                    <a href="javascript:void(0)" id="login-link" class="login-link">Login</a>
-                    {{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
-                    {{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
-                    {{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
-                    <span id="errordiv" >
-                    </span>
-                    <a href="/password/remind" class="password-restore">Forgot Password?</a>
-                    <input class="button-2-colorful" type="submit" value="Login">
-                    {{Form::close()}}   
+                        <a href="javascript:void(0)" id="login-link" class="login-link">Login</a>
+                        {{Form::open(['action'=>'SessionsController@store', 'id' =>'login-form', 'class' => 'login-form'])}}
+                        {{Form::email('email','',['class' => 'text-input-grey', 'placeholder' => 'email'])}}
+                        {{Form::password('password',['class' => 'text-input-grey', 'placeholder' => '********'])}}
+                        <span id="errordiv" >
+                        </span>
+                        <a href="/password/remind" class="password-restore">Forgot Password?</a>
+                        <input class="button-2-colorful" type="submit" value="Login">
+                        {{Form::close()}}   
                     @endif          
                 </div>
             </div>

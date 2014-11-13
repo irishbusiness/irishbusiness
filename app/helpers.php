@@ -422,12 +422,12 @@ function cleanSlug($str){
     $first = substr($str, 0, 1);
     $last = substr($str, strlen($str)-1, strlen($str));
 
-    if( $first == "-" ){
+    if( $first == "-" || $first == "," ){
         $str = substr($str, 1, strlen($str));
         $first = substr($str, 0, 1);
     }
 
-    if( $last == "-" ){
+    if( $last == "-" || $last == "," ){
         $str = substr($str, 0, strlen($str)-1);
         $last = substr($str, strlen($str)-1, strlen($str));
     }

@@ -56,6 +56,7 @@ class BusinessesController extends \BaseController {
 		
 
 		$rating = $this->business->getRatings($branches);
+		$numOfReviews = $this->business->getNumOfReviews($branches);
 		
 		Session::put('category', Input::get('category'));
 		Session::put('location', Input::get('location'));
@@ -64,7 +65,8 @@ class BusinessesController extends \BaseController {
 			->with('category', $category)
 			->with('location', Input::get('location'))
 			->with('selected', $selected)
-			->with('rating', $rating)->with("title", "Search results");
+			->with('rating', $rating)
+			->with('numOfReviews', $numOfReviews)->with("title", "Search results");
 
 	}
 
@@ -172,7 +174,7 @@ class BusinessesController extends \BaseController {
 				->with('business', $business)->with('businessinfo', $business)
 				->with('blogs', $blogs)
 				->with('reviews', $reviews)
-				->with('title', decode($branch->business->name)." - ".$branch->business->keywords)
+				->with('title', decode($branch->business->name)." - ".cleanSlug( $branch->business->keywords ) )
 				->with('rating', $rating)
 				->with('categories', $notselected_categories)
 				->with('json_categories', $json_categories)

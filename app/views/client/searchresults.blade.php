@@ -15,6 +15,7 @@
 					$x=0; 
 					if(!isset($rating)){
 						$rating = array(0);
+						$numOfReviews = array(0);
 					}
 				?>
 
@@ -40,6 +41,12 @@
 								<div class="star star-3 {{ ( isset($rating[$x])? (round($rating[$x]) == 3 ? 'current' : '') : '') }}"></div>
 								<div class="star star-4 {{ ( isset($rating[$x])? (round($rating[$x]) == 4 ? 'current' : '') : '') }}"></div>
 								<div class="star star-5 {{ ( isset($rating[$x])? (round($rating[$x]) == 5 ? 'current' : '') : '') }}"></div>
+							</div>
+							<div>
+								{{ $numOfReviews[$x] > 0 ? $numOfReviews[$x] : 'no review yet' }}
+								@if($numOfReviews[$x] != 0)
+									{{ $numOfReviews[$x] > 1 ? 'reviews' : 'review' }}
+								@endif
 							</div>
 						</div>
 						<div class="listing-title">

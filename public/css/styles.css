@@ -5027,3 +5027,7 @@ a.listing-image {
 span.remove-keyphrase:hover {
 	color: red;
 }
+
+.review {
+	margin-left: 14px;
+}
