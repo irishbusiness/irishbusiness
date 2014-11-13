@@ -42,6 +42,7 @@
 											</a>
 										</div>
 									</div>
+									<br/>
 								</div>
 							@endif
 							@if(isOwner($branch->business->slug))
