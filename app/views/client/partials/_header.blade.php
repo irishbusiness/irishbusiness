@@ -133,17 +133,11 @@
 
     				<div class="main-menu block">
     					<ul id="sf-menu">
-    						<li class="empty neighbour-left">
-    							<div></div>
-    						</li>
     						<li {{ (Request::is('/') ? ' class="first active"' : '') }}>
     							<a href="{{ URL::to('/') }}">HOME</a>
     						</li>
     						<li {{ (Request::is('blog*') ? ' class="first active"' : '') }}>
     							<a href="{{ URL::to('blog') }}">BLOG</a>
-    						</li>
-    						<li class="empty">
-    							<div></div>
     						</li>
     					</ul>
     				</div>
