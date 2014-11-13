@@ -145,7 +145,7 @@
 		        {{ Form::label('locations', "Locations Served (please separate keywords by a comma.)",
 		        ["class"=>"text-colorful"]) }}<br/>
 		        {{ Form::text('locations', $branch->locations, [
-		        	"placeholder" => "", "class"=>"text-input-grey full-width", 'required']) }}
+		        	"placeholder" => "location 1, location 2, location 3", "class"=>"text-input-grey full-width", 'required']) }}
 		        {{$errors->first('locations','<span class="alert alert-error block half">:message</span>')}}
 		    </div>
 		    <div class="form-group">
