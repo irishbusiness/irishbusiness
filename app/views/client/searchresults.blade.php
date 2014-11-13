@@ -42,7 +42,7 @@
 								<div class="star star-4 {{ ( isset($rating[$x])? (round($rating[$x]) == 4 ? 'current' : '') : '') }}"></div>
 								<div class="star star-5 {{ ( isset($rating[$x])? (round($rating[$x]) == 5 ? 'current' : '') : '') }}"></div>
 							</div>
-							<div>
+							<div class="num-reviews">
 								{{ $numOfReviews[$x] > 0 ? $numOfReviews[$x] : 'no review yet' }}
 								@if($numOfReviews[$x] != 0)
 									{{ $numOfReviews[$x] > 1 ? 'reviews' : 'review' }}

@@ -5031,3 +5031,8 @@ span.remove-keyphrase:hover {
 .review {
 	margin-left: 14px;
 }
+
+.num-reviews {
+	font-size: smaller;
+	margin-top: -33px;
+}
