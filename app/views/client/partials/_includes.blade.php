@@ -16,4 +16,8 @@
         {{ HTML::script('scripts/jssor.utils.js') }}
         {{ HTML::script('scripts/jssor.slider.js') }}
         {{ HTML::script('scripts/jquery-ui.js') }}
+        {{ HTML::script('scripts/colorpicker/colorpicker.js') }}
+        {{ HTML::script('scripts/colorpicker/eye.js') }}
+        {{ HTML::script('scripts/colorpicker/layout.js') }}
+        {{ HTML::script('scripts/colorpicker/utils.js') }}
         

@@ -1663,3 +1663,26 @@ $('span.social-link').click(function(){
 	var id = $(this).attr('data-id');
 	$("a.share[data-id='"+id+"']").click();	
 });
+
+$(document).ready(function(){
+	$('#colorpickerHolder').ColorPicker({flat: true});
+	
+	var new_color = $(".colorpicker_new_color").css('background-color');
+	$('.coupon-image-handler').css('background-color', new_color);
+
+	$("#colorpickerHolder, .colorpicker_color, .colorpicker").focusin(function(){
+		var new_color = $(".colorpicker_new_color").css('background-color');
+		$('.coupon-image-handler').css('background-color', new_color);
+	});
+});
+
+$(document).on("keyup", "#coupon_canvas_width, #coupon_canvas_height", function(){
+	$('.coupon-image-handler').css('width', $("#coupon_canvas_width").val());
+	$('.coupon-image-handler').css('height', $("#coupon_canvas_height").val());
+});
+
+$(document).on("click", "#btn_addtext", function(){
+	$(".coupon-image-handler").append('<p class="draggable">'+$("#add-text").val()+'</p>');
+	$(".draggable").draggable();
+});
+

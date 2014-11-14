@@ -5010,6 +5010,9 @@ span.linkedin{
 .marginLeft-15{
 	margin-left: 15px;
 }
+.marginLeftn23{
+	margin-left: -23px;
+}
 
 h1.keywordh1 {
 	font-size: 14px;
@@ -5036,3 +5039,25 @@ span.remove-keyphrase:hover {
 	font-size: smaller;
 	margin-top: -33px;
 }
+
+.coupon-image-handler{
+	width: 278px;
+	height: 368px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#coupon-generator {
+	margin-top: 30px;
+}
+
+.draggable {
+	cursor: move;
+}
+
+/*This where we declare colors to be used in coupon texts*/
+.red{color: red;}
+.blue{color: blue;}
+.white{color: white;}
+.yellow{color:yellow;}
+.green{color:green;}

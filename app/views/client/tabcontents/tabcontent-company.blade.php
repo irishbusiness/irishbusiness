@@ -164,7 +164,7 @@
 			</div>
 		</div>
 		<div class="separator"></div>
-		<div class="comment-message block">
+		<div class="comment-message block marginLeftn23">
 			<div id="uou-stars-system" class="rating-system" data-post-id="362">
 				<div class="comment-respond">
 					<h3 class="comment-reply-title" id="reply-title"><span class="comment-message-title your-rating">Your <span class="text-green">Rating</span></span></h3>
