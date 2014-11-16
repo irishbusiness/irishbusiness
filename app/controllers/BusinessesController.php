@@ -437,6 +437,18 @@ class BusinessesController extends \BaseController {
 		return Redirect::to($branch->branchslug."#company-tabs-coupon")->with("flash_message", $response)->withTitle($response);	
 	}
 
+	public function save_couponVersion2(){
+		if(Request::ajax()){
+			$response = $this->business->createCouponVersion2(Input::all(), "ajax");
+			return $response;
+		}
+
+		$branch = $this->business->getBranchById(Input::get("br"));
+		$response = $this->business->createCoupon(Input::all(), "other");
+
+		return Redirect::to($branch->branchslug."#company-tabs-coupon")->with("flash_message", $response)->withTitle($response);
+	}
+
 	public function delete_coupon(){
 		if(Request::ajax()){
 			$coupon_id = Input::get("coupon");

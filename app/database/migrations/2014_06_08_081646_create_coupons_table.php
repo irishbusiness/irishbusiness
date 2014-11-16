@@ -16,6 +16,7 @@ class CreateCouponsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name');
+			$table->string('expiry_date');
 			$table->integer('business_id')->unsigned()->index();
 			$table->foreign('business_id')->references('id')->on('businesses')->onUpdate('cascade')->onDelete('cascade');
 			$table->timestamps();

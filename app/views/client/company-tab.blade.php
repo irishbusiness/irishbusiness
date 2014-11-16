@@ -71,7 +71,7 @@
 
 			@if(count($coupons) || isOwner($branch->business->slug) || isAdmin() )               
 				<!-- coupon tab -->
-				@include('client.tabcontents.tabcontent-coupon')
+				@include('client.tabcontents.tabcontent-coupon-latest')
 			@endif
 
 			@if(count($photos) || isOwner($branch->business->slug) || isAdmin() )               

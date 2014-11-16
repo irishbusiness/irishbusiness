@@ -1664,8 +1664,11 @@ $('span.social-link').click(function(){
 	$("a.share[data-id='"+id+"']").click();	
 });
 
+
+// scripts for coupon builer starts here
+
 $(document).ready(function(){
-	$('#colorpickerHolder').ColorPicker({flat: true});
+	$('#colorpickerHolder').ColorPicker({flat : true, color : '#4f0163'});
 	
 	var new_color = $(".colorpicker_new_color").css('background-color');
 	$('.coupon-image-handler').css('background-color', new_color);
@@ -1674,15 +1677,142 @@ $(document).ready(function(){
 		var new_color = $(".colorpicker_new_color").css('background-color');
 		$('.coupon-image-handler').css('background-color', new_color);
 	});
+	var dateToday = new Date(); 
+	$(".datepicker").datepicker({
+		showButtonPanel: true,
+		minDate: dateToday
+	});
+
+	$(".coupon-image-handler").resizable({
+		ghost: true,
+		animate: true
+	});
+	$(".draggable").draggable();
+	$('.draggable').bind('click', function() {
+	    $("#current_text_selected").val($(this).attr('id'));
+	    $("#edit-text").val( $.trim( $(this).clone().children().remove().end().text() ) );
+	});
+
 });
 
-$(document).on("keyup", "#coupon_canvas_width, #coupon_canvas_height", function(){
-	$('.coupon-image-handler').css('width', $("#coupon_canvas_width").val());
-	$('.coupon-image-handler').css('height', $("#coupon_canvas_height").val());
-});
 
 $(document).on("click", "#btn_addtext", function(){
-	$(".coupon-image-handler").append('<p class="draggable">'+$("#add-text").val()+'</p>');
+	$(".coupon-image-handler").append('<p class="draggable"  title="Click to customize this text." style="font-size:'+$("#coupon_fontsize").val()+
+				'px; font-family:'+$("#coupon_fontfamily").val()+'; color : '+$("#coupon_fontcolor").val()+
+				';font-style : '+$("#coupon_fontstyle").val()+'" id="'+$.trim(generateString(40))+'">'+
+				$("#add-text").val()+'<span class="coupon_removetxt"  title="remove text">x</span></p>');
 	$(".draggable").draggable();
+	$('.draggable').bind('click', function() {
+	    $("#current_text_selected").val($(this).attr('id'));
+	    $("#edit-text").val( $.trim( $(this).clone().children().remove().end().text() ) );
+	});
 });
 
+$(document).on("change", "input[name='expires_at']", function(){
+	var expirydate = $.trim( $("input[name='expires_at']").val() );
+	if( expirydate != "" ){
+		$(".coupon-image-handler").append('<p class="draggable sticktobottom"  title="Click to customize this text." style="font-size:'+$("#coupon_fontsize").val()+
+				'px; font-family:'+$("#coupon_fontfamily").val()+'; color : '+$("#coupon_fontcolor").val()+
+				';font-style : 12px;" id="'+$.trim(generateString(40))+'">'+
+				'*Valid until '+
+				expirydate+'<span class="coupon_removetxt"  title="remove text">x</span></p>');
+		$(".draggable").draggable();
+		$('.draggable').bind('click', function() {
+		    $("#current_text_selected").val($(this).attr('id'));
+		    $("#edit-text").val( $.trim( $(this).clone().children().remove().end().text() ) );
+		});
+	}
+});
+
+$(document).on("keyup", "#edit-text", function(){
+	var id = $("#current_text_selected").val();
+	var child = $("#"+id).clone().children();
+	$("#"+id).text( $(this).val() ).append(child); 
+});
+
+$(document).on("keyup", "#coupon_fontsize", function(){
+	var id = $("#current_text_selected").val();
+	var fontsize = $("#coupon_fontsize").val();
+	$("#"+id).css("font-size", fontsize+"px");
+});
+
+$(document).on("change", "#coupon_fontsize", function(){
+	var id = $("#current_text_selected").val();
+	var fontsize = $("#coupon_fontsize").val();
+	$("#"+id).css("font-size", fontsize+"px");
+});
+
+$(document).on("change", "#coupon_fontfamily", function(){
+	var id = $("#current_text_selected").val();
+	var fontfamily = $("#coupon_fontfamily").val();
+	$("#"+id).css("font-family", fontfamily);
+});
+
+$(document).on("change", "#coupon_fontstyle", function(){
+	var id = $("#current_text_selected").val();
+	var fontstyle = $("#coupon_fontstyle").val();
+	if(fontstyle!="bold" && fontstyle!="bolder"){
+		$("#"+id).css("font-style", fontstyle);
+	}else{
+		$("#"+id).css("font-weight", fontstyle);
+	}
+});
+
+$(document).on("change", "#coupon_fontcolor", function(){
+	var id = $("#current_text_selected").val();
+	var fontcolor = $("#coupon_fontcolor").val();
+	$("#"+id).css("color", fontcolor);
+});
+
+$(document).on("mouseenter", ".draggable", function(){
+	var id = $(this).attr('id');
+	$("#"+id+'>span.coupon_removetxt').show();
+});
+
+$(document).on("mouseleave", ".draggable", function(){
+	var id = $(this).attr('id');
+	$("#"+id+'>span.coupon_removetxt').hide();
+});
+
+$(document).on("click", ".coupon_removetxt", function(){
+	$(this).parent("p").remove();
+});
+
+$(document).on("click", "#coupon_updatebackground", function(){
+	var new_color = $(".colorpicker_new_color").css('background-color');
+	$('.coupon-image-handler').css('background-color', new_color);
+});
+
+$("#btn_coupon_save").click(function(e){
+	e.preventDefault();
+	html2canvas($("#coupon-image-handler"), {
+        onrendered: function(canvas) {
+            theCanvas = canvas;
+            var dataURL = canvas.toDataURL();
+            var expirydate = $.trim( $("input[name='expires_at']").val() );
+
+            if( expirydate != "" ){
+            	$.ajax({
+					type : "POST",
+					url : "ajaxSaveCouponVersion2",
+					dataType : 'json',
+					data : { 
+						img : dataURL,
+						_token : $('input[name="_token"]').val(),
+						bid : $("input[name='b']").val(),
+						expires_at : expirydate
+					}
+				}).done(function(data) {
+					if(data.responseCode == "ok"){
+						location.reload();
+					}else if(data.responseCode == "failed"){
+						alert(data.message);
+					}
+				});
+            }else{
+            	alert("Please set the expiry date of this coupon.");
+            	$("input[name='expires_at']").focus();
+            }
+        }
+    });
+});

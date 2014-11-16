@@ -264,6 +264,34 @@ class BusinessRepository {
         return false;
     }
 
+    function createCouponVersion2($input, $type){
+        if( $type == "ajax" ){
+            $bid = $input["bid"];
+            $expiry_date = $input['expires_at'];
+
+            $business = Business::find($bid);
+            $filename = keywordExplode($business->name);
+
+            $img = $input['img'];
+            $img = str_replace('data:image/png;base64,', '', $img);
+            $img = str_replace(' ', '+', $img);
+            $data = base64_decode($img);
+            $filename = strtolower( keywordExplode($business->name).uniqid().'.png' );
+            $success = file_put_contents(public_path()."/images/coupons/temp/".$filename, $data);
+
+            $coupon = new Coupon;
+            $coupon->name = '/images/coupons/temp/'.$filename;
+            $coupon->expiry_date = $expiry_date;
+            $coupon->business_id = $bid;
+            
+            if( $coupon->save() ){
+                return json_encode( array( 'responseCode' => 'ok', 'message' => 'New coupon has been successfully added!.' ) );
+            }
+
+            return json_encode( array( 'responseCode' => 'failed', 'message' => "Sorry, we can't save your coupon right now." ) );;
+        }
+    }
+
     function createCoupon($input, $type){
         if( $type == "ajax" ){    
 

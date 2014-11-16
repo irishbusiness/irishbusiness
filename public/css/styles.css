@@ -3976,13 +3976,14 @@ ul.entries-list {
 	padding-bottom: 0px  !important;
 	margin-right: 4px;
 }
-.remove, .remove-keyword, .remove-keyphrase {
+.remove, .remove-keyword, .remove-keyphrase, .coupon_removetxt {
 	font-size: 12px;
 	margin-top: -5px;
 	position: absolute;
 	padding-left: 4px;
 	font-weight: bolder;
 }
+
 .remove:hover {
 	color: red;
 	cursor: pointer;
@@ -5045,6 +5046,10 @@ span.remove-keyphrase:hover {
 	height: 368px;
 	margin-left: auto;
 	margin-right: auto;
+	text-align: center;
+	border-collapse: collapse;
+	display: table;
+	margin-bottom: 50px;
 }
 
 #coupon-generator {
@@ -5053,6 +5058,18 @@ span.remove-keyphrase:hover {
 
 .draggable {
 	cursor: move;
+	padding-top: 10px;
+}
+
+.coupon_removetxt{
+	cursor: pointer;
+	display: none;
+}
+
+.sticktobottom{
+	vertical-align: bottom;
+	height: 1px;
+	display: table-row;
 }
 
 /*This where we declare colors to be used in coupon texts*/

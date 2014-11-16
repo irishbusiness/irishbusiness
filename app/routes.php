@@ -93,6 +93,9 @@ Route::post('ajaxDeleteBusiness', 'BusinessesController@delete_business');
 Route::post('ajaxSaveCoupon', 'BusinessesController@save_coupon');
 Route::post('ajaxDeleteCoupon', 'BusinessesController@delete_coupon');
 
+Route::post('ajaxSaveCouponVersion2', 'BusinessesController@save_couponVersion2');
+
+
 Route::post('ajaxUpdateKeywords', 'BusinessesController@update_business_keywords');
 Route::post('ajaxDeleteKeywords', 'BusinessesController@delete_business_keywords');
 

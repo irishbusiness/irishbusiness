@@ -20,4 +20,5 @@
         {{ HTML::script('scripts/colorpicker/eye.js') }}
         {{ HTML::script('scripts/colorpicker/layout.js') }}
         {{ HTML::script('scripts/colorpicker/utils.js') }}
+        {{ HTML::script('scripts/html2canvas.js') }}
         
