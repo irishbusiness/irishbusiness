@@ -33,7 +33,7 @@ class SettingsController extends \BaseController {
             "tax" => ""
        );
 
-       return View::make('admin.admin_settings_general')->with('settings', $settings);
+       return View::make('admin.admin_settings_general')->with('settings', $settings)->withTitle('IrishBusiness.ie | General Settings');
 
 	}
 
@@ -121,9 +121,11 @@ class SettingsController extends \BaseController {
 
         if($mainsettings->save()){
            $settings = MainSetting::orderBy('created_at', 'desc')->first();
-            return Redirect::to("/admin/settings/general")->with("flash_message", "Your new settings has been updated.");
+            return Redirect::to("/admin/settings/general")->with("flash_message", "Your new settings has been updated.")
+                ->withTitle('IrishBusiness.ie | General Settings');
         }else {
-        	return Redirect::to('/admin/settings/general')->with("flash_message", "Sorry, we can't update your settings right now.")->withInput();
+        	return Redirect::to('/admin/settings/general')->with("flash_message", "Sorry, we can't update your settings right now.")
+                ->withInput()->withTitle('IrishBusiness.ie | General Settings');
         }
 
         echo "filename=".$filename."<br>";
@@ -132,7 +134,7 @@ class SettingsController extends \BaseController {
     public function show_commission(){
         $commissions = Commission::all();
         return View::make("admin.admin_settings_commission")->with('commissions', $commissions)
-            ->withTitle("Admin - Manage Commission");
+            ->withTitle("IrishBusiness.ie | Manage Commission");
     }
 
     public function edit_commission(){

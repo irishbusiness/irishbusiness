@@ -62,9 +62,7 @@ Route::get('admin/settings/clients', function(){
 	return View::make('admin.admin_manage_clients');
 });
 
-Route::get('admin/settings/regions', function(){
-	return View::make('admin.admin_manage_regions');
-});
+Route::get('admin/settings/regions', 'RegionsController@index');
 
 Route::get('admin/settings/staff', function(){
 	return View::make('admin.admin_manage_staff');
@@ -247,7 +245,7 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try', function(){
-	
+	return Hash::make('ninya');
 });
 Route::get('/ajaxCategoryId', 'CategoriesController@returnCategoryId');
 Route::post('/ajaxCategoryName', 'CategoriesController@returnCategoryName');

@@ -54,7 +54,7 @@
             {{ Form::text('keywords','', [
                 "placeholder" => "Choose 2 keywords + your location", "class"=>"text-input-grey full with-tooltip",
                 "title" => "Please be careful in choosing your primary key phrase. This can not be changed after saving. 
-                    Also, this is what will appear to your business url. (ex. www.irishbusiness.ie/my-keyword1-my-keyword2-my-location)"
+                    Also, this is what will appear to your business url. (ex. www.irishbusiness.ie/my-keyword1, my-keyword2, my-location)"
             ]) }}
             {{$errors->first('keywords','<span class="alert alert-error block half">:message</span>')}}
         </div>
