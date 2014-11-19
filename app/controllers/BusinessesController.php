@@ -162,6 +162,12 @@ class BusinessesController extends \BaseController {
 
 			$primary_keyphrase = str_replace(',', ' ', $business->keywords);
 			$array_keyphrase = explode(',', $business->keywords);
+
+			$raw_regions = Region::all();
+			$regions = array();
+			foreach ($raw_regions as $raw_region) {
+				$regions[$raw_region->id] = $raw_region->name;
+			}
 			
 
 			return View::make('client.company-tab')
@@ -179,7 +185,7 @@ class BusinessesController extends \BaseController {
 				->with('categories', $notselected_categories)
 				->with('json_categories', $json_categories)
 				->with('selected_categories', $selected_categories)
-				->with('addresses', $addresses)
+				->with('addresses', $addresses)->with('regions', $regions)
 				->with('coupons', $coupons)
 				->with('photos', $photos);
 	}
