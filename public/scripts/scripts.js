@@ -1781,6 +1781,11 @@ $(document).on("click", ".coupon_removetxt", function(){
 
 window.setInterval(function(){
   $("#coupon-image-handler").css('background-color', $(".colorpicker_new_color").css('background-color') );
+  if( $(".colorpicker_new_color").css("background-color") != "rgb(255, 255, 255)" && $(".colorpicker_new_color").css("background-color") != "#ffffff" ){
+  	$("#coupon-image-handler").css("border", "none");
+  }else{
+  	$("#coupon-image-handler").css("border", "2px black dashed");
+  }
 }, 1000);
 
 $("#btn_coupon_save").click(function(e){
