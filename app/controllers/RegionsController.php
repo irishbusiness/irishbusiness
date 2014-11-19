@@ -16,7 +16,8 @@ class RegionsController extends \BaseController {
 	public function index()
 	{
 		$regions = Region::all();
-		$subregions = Subregion::where('region_id', '=', $regions->first()->id)->get();
+		$first = Region::take(1)->get();
+		$subregions = Subregion::where('region_id', '=', $first->id)->get();
 		return View::make('admin.admin_manage_regions')->withRegions($regions)->withSubregions($subregions)
 			->withTitle('IrishBusiness.ie | Manage Regions');
 	}

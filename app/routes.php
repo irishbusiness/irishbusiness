@@ -245,7 +245,8 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try', function(){
-	return Hash::make('ninya');
+	$first = Region::all()->take(1);
+	var_dump(pre($first));
 });
 Route::get('/ajaxCategoryId', 'CategoriesController@returnCategoryId');
 Route::post('/ajaxCategoryName', 'CategoriesController@returnCategoryName');
