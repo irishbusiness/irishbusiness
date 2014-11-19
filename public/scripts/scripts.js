@@ -1709,9 +1709,14 @@ $(document).on("click", "#btn_addtext", function(){
 
 $(document).on("change", "input[name='expires_at']", function(){
 	var expirydate = $.trim( $("input[name='expires_at']").val() );
-	if( expirydate != "" ){
+	if( expirydate != "" && $("#coupon_validityperiod").is(":visible") ){
 		var child = $("#coupon_validityperiod").clone().children();
 		$("#coupon_validityperiod").text("Coupon Offer Expires  "+expirydate).append(child);
+	}else{
+		$(".coupon-image-handler").append('<p class="draggable"  title="Click to customize this text." style="font-size:'+$("#coupon_fontsize").val()+
+				'px; font-family:'+$("#coupon_fontfamily").val()+'; color : '+$("#coupon_fontcolor").val()+
+				';font-style : '+$("#coupon_fontstyle").val()+'" id="coupon_validityperiod">Coupon Offer Expires '+
+				expirydate+'<span class="coupon_removetxt"  title="remove text">x</span></p>');
 	}
 });
 
@@ -1777,10 +1782,6 @@ $(document).on("click", ".coupon_removetxt", function(){
 window.setInterval(function(){
   $("#coupon-image-handler").css('background-color', $(".colorpicker_new_color").css('background-color') );
 }, 1000);
-
-$("#btn_coupon_cancel").click(function(){
-	$("#btn-add-coupon").trigger("click");
-})
 
 $("#btn_coupon_save").click(function(e){
 	e.preventDefault();
