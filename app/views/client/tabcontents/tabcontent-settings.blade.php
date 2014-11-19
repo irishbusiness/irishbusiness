@@ -80,7 +80,7 @@
 			        </div>
 			        {{$errors->first('keywords','<span class="alert alert-error block half">:message</span>') }}
 		    	@else
-		    		{{ Form::text('keyphrase', $primary_keyphrase, ["class"=>"text-input-grey half-width", 'readonly']) }}
+		    		{{ Form::text('keyphrase', decode($primary_keyphrase), ["class"=>"text-input-grey half-width", 'readonly']) }}
 		    	@endif
 		    </div>
 		    <div class="form-group">

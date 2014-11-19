@@ -247,8 +247,6 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try', function(){
-	$str = "-The-The-the-Hello-Truck-Hello-The-the-Fantastic-bear-";
-	return ( remove_duplicate( cleanSlug( $str ) ) );
 	
 });
 Route::get('/ajaxCategoryId', 'CategoriesController@returnCategoryId');

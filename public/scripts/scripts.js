@@ -1602,7 +1602,7 @@ $(document).on("change", "#keywords", function(){
 	});
 	$(this).val("");
 	console.log("new_array="+new_array);
-	$(this).val(new_array[new_array.length-1]);
+	$(this).val(new_array);
 
 });
 
@@ -1668,7 +1668,7 @@ $('span.social-link').click(function(){
 // scripts for coupon builer starts here
 
 $(document).ready(function(){
-	$('#colorpickerHolder').ColorPicker({flat : true, color : '#4f0163'});
+	$('#colorpickerHolder').ColorPicker({flat : true, color : '#ffffff'});
 	
 	var new_color = $(".colorpicker_new_color").css('background-color');
 	$('.coupon-image-handler').css('background-color', new_color);
@@ -1683,10 +1683,8 @@ $(document).ready(function(){
 		minDate: dateToday
 	});
 
-	$(".coupon-image-handler").resizable({
-		ghost: true,
-		animate: true
-	});
+	$(".coupon-image-handler").resizable();
+	$(".resizable").resizable();
 	$(".draggable").draggable();
 	$('.draggable').bind('click', function() {
 	    $("#current_text_selected").val($(this).attr('id'));
@@ -1711,16 +1709,8 @@ $(document).on("click", "#btn_addtext", function(){
 $(document).on("change", "input[name='expires_at']", function(){
 	var expirydate = $.trim( $("input[name='expires_at']").val() );
 	if( expirydate != "" ){
-		$(".coupon-image-handler").append('<p class="draggable sticktobottom"  title="Click to customize this text." style="font-size:'+$("#coupon_fontsize").val()+
-				'px; font-family:'+$("#coupon_fontfamily").val()+'; color : '+$("#coupon_fontcolor").val()+
-				';font-style : 12px;" id="'+$.trim(generateString(40))+'">'+
-				'*Valid until '+
-				expirydate+'<span class="coupon_removetxt"  title="remove text">x</span></p>');
-		$(".draggable").draggable();
-		$('.draggable').bind('click', function() {
-		    $("#current_text_selected").val($(this).attr('id'));
-		    $("#edit-text").val( $.trim( $(this).clone().children().remove().end().text() ) );
-		});
+		var child = $("#coupon_validityperiod").clone().children();
+		$("#coupon_validityperiod").text("Coupon Offer Expires  "+expirydate).append(child);
 	}
 });
 
@@ -1761,7 +1751,12 @@ $(document).on("change", "#coupon_fontstyle", function(){
 $(document).on("change", "#coupon_fontcolor", function(){
 	var id = $("#current_text_selected").val();
 	var fontcolor = $("#coupon_fontcolor").val();
-	$("#"+id).css("color", fontcolor);
+	if(id == ""){
+		$("p.draggable").css("color", fontcolor);
+	}else{
+		
+		$("#"+id).css("color", fontcolor);
+	}
 });
 
 $(document).on("mouseenter", ".draggable", function(){
@@ -1778,10 +1773,13 @@ $(document).on("click", ".coupon_removetxt", function(){
 	$(this).parent("p").remove();
 });
 
-$(document).on("click", "#coupon_updatebackground", function(){
-	var new_color = $(".colorpicker_new_color").css('background-color');
-	$('.coupon-image-handler').css('background-color', new_color);
-});
+window.setInterval(function(){
+  $("#coupon-image-handler").css('background-color', $(".colorpicker_new_color").css('background-color') );
+}, 1000);
+
+$("#btn_coupon_cancel").click(function(){
+	$("#btn-add-coupon").trigger("click");
+})
 
 $("#btn_coupon_save").click(function(e){
 	e.preventDefault();

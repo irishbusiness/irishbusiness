@@ -33,23 +33,6 @@
 								{{ $price }}
 								@if(!is_null($couponCode) && (trim($couponCode) != "") )<br/>
 									@if(couponOwner_isSalesTeam($couponCode))
-										<!-- <span>
-											<span class="text-colorful">Discounted Price: </span>
-											{{ $subscription->currency }}
-											<?php $price = number_format($subscription->st_discounted_price, 2, '.', '');?>
-											{{ $price }}
-										</span><br/>
-										<span>
-											<span class="text-colorful">VAT: </span>
-											{{ $subscription->currency }}
-											<?php $vat = number_format(($subscription->st_discounted_price*(($recentsettings->tax)*(0.01))), 2, '.', ''); ?>
-											{{ $vat }}
-											<?php $total_price = $price + $vat; ?>
-										</span><br/>
-										<span>
-											<span class="text-colorful">Total: </span>
-											{{ $subscription->currency." ".$total_price }}
-										</span> -->
 									<!-- start temporary solution -->
 										<span>
 											<span class="text-colorful">Discounted Price: </span>
@@ -106,21 +89,21 @@
 									</span>						
 								@endif
 							</div>
-							<!-- <div class="btn-subscription-option">
+							<div class="btn-subscription-option">
 								<a href="javascript:void" style="display: none;" class="payment-option" data-type="paywithcard" data-number="{{$x}}">Use <span class="text-colorful">Card</span></a>
 							</div>
-							<div class="btn-subscription-option">
+							<!-- <div class="btn-subscription-option">
 								<a href="javascript:void" class="payment-option" data-type="paywithcash" data-number="{{$x}}">Use <span class="text-colorful">Cash</span></a>
-							</div>
+							</div> -->
 							<div class="btn-subscription-option">
 								<a href="javascript:void(0);" class="payment-option" data-type="paywithcheque" data-number="{{$x}}">Use <span class="text-colorful">Cheque</span></a>
-							</div> -->
+							</div>
 							<div class="subscription-option">
 								<form action="" method="POST">
 									<input type="hidden" name="subscription" value="{{$subscription->id}}" />
 									<script
 										src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-										data-key="pk_live_DOS1YitEm71EoXBWIG7WIqUu"
+										data-key="pk_live_NRK68iTbtUdKXKFbSORmwKn6"
 										data-amount="{{ ( $total_price )*100 }}"
 										data-name="IrishBusiness.ie"
 										data-description="{{$subscription->name}}"
@@ -128,10 +111,10 @@
 										data-currency="{{ $subscription->currency }}" >
 									</script>
 								</form>
-								<!-- <div class="div-payment-options">
-									<a id="btn-paywithcash{{$x}}" href="javascript:void(0);" data-subid="{{$subscription->id}}" data-value="cash" class="btn-payment-option a-btn button-2-colorful" style="display: none;">Pay with Cash</a>
-									<a id="btn-paywithcheque{{$x}}" href="javascript:void(0);" data-subid="{{$subscription->id}}" data-value="cheque" class="btn-payment-option a-btn button-2-colorful" style="display: none;">Pay with Cheque</a>
-								</div> -->
+								<div class="div-payment-options">
+									<!-- <a id="btn-paywithcash{{$x}}" href="javascript:void(0);" data-subid="{{$subscription->id}}" data-value="cash" class="btn-payment-option a-btn button-2-colorful" style="display: none;">Pay with Cash</a> -->
+									<a id="btn-paywithcheque{{$x}}" href="#" data-subid="{{$subscription->id}}" data-value="cheque" class="btn-payment-option a-btn button-2-colorful" style="display: none;">Pay with Cheque</a>
+								</div>
 								@if( is_null( $couponCode ) || (trim($couponCode) == "") )
 									<a href="javascript:void(0);" class="ihavediscountcode" data-subid="{{$subscription->id}}" id="showEnterCouponCode{{$x}}">I have a discount code</a>
 								@endif

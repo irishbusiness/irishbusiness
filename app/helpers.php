@@ -162,6 +162,7 @@ function showAddressfull($address){
 function decode($string){
     $str = stripcslashes(stripcslashes(html_entity_decode($string)));
     $str = preg_replace('/<iframe.*?\/iframe>/i','', $str);
+    $str = stripslashes($str);
     return $str;
 }
 

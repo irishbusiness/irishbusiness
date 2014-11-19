@@ -174,7 +174,7 @@ class BusinessesController extends \BaseController {
 				->with('business', $business)->with('businessinfo', $business)
 				->with('blogs', $blogs)
 				->with('reviews', $reviews)
-				->with('title', decode($branch->business->name)." - ".cleanSlug( $branch->business->keywords ) )
+				->with('title', decode($branch->business->name)." - ".cleanSlug( decode($branch->business->keywords) ) )
 				->with('rating', $rating)
 				->with('categories', $notselected_categories)
 				->with('json_categories', $json_categories)

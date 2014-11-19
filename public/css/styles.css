@@ -5041,15 +5041,17 @@ span.remove-keyphrase:hover {
 	margin-top: -33px;
 }
 
-.coupon-image-handler{
-	width: 278px;
-	height: 368px;
+#coupon-image-handler{
+	width: 566px;
+	height: 350px;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
 	border-collapse: collapse;
 	display: table;
 	margin-bottom: 50px;
+	border: 2px black dashed;
+	font-family: Patua One;
 }
 
 #coupon-generator {
@@ -5072,9 +5074,80 @@ span.remove-keyphrase:hover {
 	display: table-row;
 }
 
+.coupon-companylogo img{
+	display: block;
+	max-width: 15%;
+	height: auto;
+	background-color: #ffffff;
+	padding: 3px;
+	border: 1px solid #e7e7e7;
+	position: absolute;
+}
+
+p.draggable{
+	height: 10px;
+}
+
 /*This where we declare colors to be used in coupon texts*/
 .red{color: red;}
 .blue{color: blue;}
 .white{color: white;}
 .yellow{color:yellow;}
 .green{color:green;}
+
+/*Set default style on coupon image details*/
+#coupon_business_name {
+	display: inline-block;
+	padding: 0 20px;
+	font-family: "Patua One";
+	font-size: 44px;
+	position: relative;
+	left: 5px;
+	top: -37px;
+}
+
+#coupon_business_address{
+	position: relative;
+	left: 34px;
+	top: -60px;
+}
+
+#coupon_business_phone{
+	position: relative;
+	left: 2px;
+	top: -69px;
+}
+
+#coupon_offer{
+	font-size: 90px;
+	color: black;
+	margin-top: -10px;
+	position: relative;
+	left: 9px;
+	top: -65px;
+}
+
+#coupon_fineprint, #coupon_validityperiod{
+	font-family: 'Times New Roman';
+}
+
+#coupon_fineprint{
+	left: 2px;
+	top: -29px;
+}
+
+#coupon_validyperiod{
+	position: relative;
+	left: -11px;
+	top: -12px;
+}
+
+#coupon-companylogo{
+	left: 5px;
+	top: 5px;
+}
+
+.coupon-inner-functions{
+	margin-left: auto;
+	margin-right: auto;
+}

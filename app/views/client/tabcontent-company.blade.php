@@ -116,7 +116,7 @@
 						<div class="block-content">
 							<ul>
 								<?php 
-									$keywords = $businessinfo->keywords;
+									$keywords = cleanSlug( decode( $businessinfo->keywords ) );
 									$arr = explode(",", $keywords);
 									foreach ($arr as $keyword) {
 										echo "<li>".$keyword."</li>";

@@ -16,7 +16,7 @@
           <input type="hidden" name="subscription" value="{{$subscription->id}}" />
           <script
           src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="pk_live_NRK68iTbtUdKXKFbSORmwKn6"
+          data-key="pk_live_DOS1YitEm71EoXBWIG7WIqUu"
           data-amount="{{ ($subscription->price)*100 }}"
           data-name="IrishBusiness.ie"
           data-description="{{$subscription->name}}"
