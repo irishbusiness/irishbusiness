@@ -5151,3 +5151,7 @@ p.draggable{
 	margin-left: auto;
 	margin-right: auto;
 }
+
+p.draggable:hover {
+	border: 1px solid;
+}

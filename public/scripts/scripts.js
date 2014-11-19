@@ -1684,7 +1684,7 @@ $(document).ready(function(){
 	});
 
 	$(".coupon-image-handler").resizable();
-	$(".resizable").resizable();
+	$(".resizable, .draggable").resizable();
 	$(".draggable").draggable();
 	$('.draggable').bind('click', function() {
 	    $("#current_text_selected").val($(this).attr('id'));
@@ -1700,6 +1700,7 @@ $(document).on("click", "#btn_addtext", function(){
 				';font-style : '+$("#coupon_fontstyle").val()+'" id="'+$.trim(generateString(40))+'">'+
 				$("#add-text").val()+'<span class="coupon_removetxt"  title="remove text">x</span></p>');
 	$(".draggable").draggable();
+	$(".draggable").resizable();
 	$('.draggable').bind('click', function() {
 	    $("#current_text_selected").val($(this).attr('id'));
 	    $("#edit-text").val( $.trim( $(this).clone().children().remove().end().text() ) );
