@@ -155,7 +155,7 @@
 						$arr = explode(",", $locations);
 						foreach ($arr as $location) {
 							if( trim($location) != "" ){
-								echo "<li>".$location."</li>";
+								echo "<li>".ucwords($location)."</li>";
 							}
 						}
 					?>
