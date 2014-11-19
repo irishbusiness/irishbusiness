@@ -119,6 +119,10 @@
 
 
 		<div id="update-branches-settings" class="">
+			<div class="form-group">
+				{{ Form::label('region', 'Region', ["class"=>"text-colorful"] ) }}
+				{{ Form::select('region', $regions, '', ["class"=>"select2 select2-chosen half-width", "id"=>"regions"]) }}
+			</div>
 		    <div class="form-group">
 		        {{ Form::label('address1', 'Business Address1', ["class"=>"text-colorful"]) }}<br/>
 		        {{ Form::text('address1', $addresses[0], [

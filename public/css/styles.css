@@ -5155,3 +5155,7 @@ p.draggable{
 p.draggable:hover {
 	border: 1px solid;
 }
+
+.select2{
+	width: 20%;
+}

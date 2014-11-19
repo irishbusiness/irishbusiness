@@ -481,6 +481,7 @@ jQuery(window).resize(function() {
 
 // js for General Settings
 $(document).ready(function() {
+	$(".select2").select2();
 	$("#btn-cancel-edit").hide();
 	validate_prices();
     $("#settings_search_result_per_page, input[data-type='number']").keydown(function(event) {
@@ -1686,6 +1687,7 @@ $(document).ready(function(){
 	$(".coupon-image-handler").resizable();
 	$(".resizable, .draggable").resizable();
 	$(".draggable").draggable();
+
 	$('.draggable').bind('click', function() {
 	    $("#current_text_selected").val($(this).attr('id'));
 	    $("#edit-text").val( $.trim( $(this).clone().children().remove().end().text() ) );
