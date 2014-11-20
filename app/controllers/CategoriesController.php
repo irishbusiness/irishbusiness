@@ -27,8 +27,6 @@ class CategoriesController extends \BaseController {
 			Session::push('categories', $id);
 			$category = \Category::findOrFail($id);
 
-			// $_SESSION['katigories'] = array_push($_SESSIO['katigories'], $id);
-
 			return $category;	
 		}
 		
@@ -60,17 +58,7 @@ class CategoriesController extends \BaseController {
 	{
 		$categories = \Category::whereNull('deleted_at')->orderBy('name', 'ASC')->get();
 		return View::make("admin.admin_manage_categories")->with('categories', $categories)
-			->withTitle("Admin - Manage Categories");
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
+			->withTitle("IrishBusiness.ie | Manage Categories");
 	}
 
 	/**
@@ -89,7 +77,7 @@ class CategoriesController extends \BaseController {
 			$categories = \Category::all();
 
 			return Redirect::to('settings')->withFlashMessage('Added  new category <em>' . ucwords(Input::get('category')) .'</em>! ')
-			->withTitle('Settings')
+			->withTitle("IrishBusiness.ie | Manage Categories")
 			->with('categories',$categories);
 		}
 		catch(FormValidationException  $e)
@@ -152,40 +140,6 @@ class CategoriesController extends \BaseController {
 		
 		return getCategoryNameById($id);
 		
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
 	}
 
 }

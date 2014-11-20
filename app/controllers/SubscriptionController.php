@@ -15,7 +15,7 @@ class SubscriptionController extends \BaseController {
 	{
 		$subscriptions = $this->subscriptions->whereIs_deleted(0)->orderBy('price', 'ASC')->get();
 		return View::make("admin.admin_settings_subscription")->with("subscriptions", $subscriptions)
-			->withTitle("Admin - Subscription Settings");
+			->withTitle("IrishBusiness.ie | Manage Subscription");
 		
 	}
 
@@ -63,11 +63,12 @@ class SubscriptionController extends \BaseController {
         if($success){
         	$subscriptions = $this->subscriptions->whereIs_deleted(0)->orderBy('price', 'ASC')->get();
         	return View::make("admin.admin_settings_subscription")
-        		->with("flash_message", "New Subscription has been added.")->with('subscriptions', $subscriptions)->withTitle("Admin - Subscription Settings");
+        		->with("flash_message", "New Subscription has been added.")->with('subscriptions', $subscriptions)
+        		->withTitle("IrishBusiness.ie | Manage Subscription");
         }
 
         return Redirect::back()->withInput()->with('msgerror', "Sorry, we can't process your request right now.")
-        	->with('subscriptions', $subscriptions);
+        	->with('subscriptions', $subscriptions)->withTitle("IrishBusiness.ie | Manage Subscription");
 	}
 
 

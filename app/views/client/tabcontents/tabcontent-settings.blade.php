@@ -71,9 +71,9 @@
 			        <div class="keyphrase-list">
 				        @foreach($array_keyphrase as $index => $value)
 				        	@if( trim($value) != "" )
-				        		<span class="bs-btn btn-success category" data-id="{{ 'k'.$value }}">
-				        			{{ $value }}
-				        			<span class="remove-keyphrase" data-id="{{$value}}" data-text="{{ $value }}" title="remove this keyphrase">x</span>
+				        		<span class="bs-btn btn-success category" data-id="{{ 'k'.decode($value) }}">
+				        			{{ decode($value) }}
+				        			<span class="remove-keyphrase" data-id="{{decode($value)}}" data-text="{{ decode($value) }}" title="remove this keyphrase">x</span>
 				        		</span>
 				        	@endif
 				        @endforeach
@@ -94,9 +94,9 @@
 		        <div class="keywords-list">
 			        @foreach($array_keyword as $index => $value)
 			        	@if( trim($value) != "" )
-			        		<span class="bs-btn btn-success category" data-id="{{ 'k'.$value }}">
-			        			{{ $value }}
-			        			<span class="remove-keyword" data-id="{{$value}}" data-text="{{ $value }}" title="remove this keyword">x</span>
+			        		<span class="bs-btn btn-success category" data-id="{{ 'k'.decode($value) }}">
+			        			{{ decode($value) }}
+			        			<span class="remove-keyword" data-id="{{decode($value)}}" data-text="{{ decode($value) }}" title="remove this keyword">x</span>
 			        		</span>
 			        	@endif
 			        @endforeach
@@ -119,10 +119,10 @@
 
 
 		<div id="update-branches-settings" class="">
-			<div class="form-group">
+			<!-- <div class="form-group">
 				{{ Form::label('region', 'Region', ["class"=>"text-colorful"] ) }}
 				{{ Form::select('region', $regions, '', ["class"=>"select2 select2-chosen half-width", "id"=>"regions"]) }}
-			</div>
+			</div> -->
 		    <div class="form-group">
 		        {{ Form::label('address1', 'Business Address1', ["class"=>"text-colorful"]) }}<br/>
 		        {{ Form::text('address1', $addresses[0], [

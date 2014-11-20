@@ -11,7 +11,7 @@
 	<div class="comments block">						
 		<div class="comment-message">
 			<div class="comment-message-title"></div>
-			<table class="table" id="table-categories">
+			<table class="table datatable" id="table-categories">
 				<thead>
 					<tr>
 						<th>Name</th>
@@ -27,6 +27,7 @@
 							<a href="javascript:void(0)" class="bs-btn btn-info btn-edit-category" onclick="editCategory($(this))" data-id="{{$category->id}}">Edit</a>
 							<a href="javascript:void(0)" class="bs-btn btn-danger btn-delete-category" data-id="{{$category->id}}">Delete</a>
 						</td>
+						<td></td>
 					</tr>
 					@endforeach
 				</tbody>

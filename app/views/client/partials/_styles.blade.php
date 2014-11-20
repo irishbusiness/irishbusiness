@@ -11,6 +11,7 @@
         {{ HTML::style('css/iphone.css') }}
         {{ HTML::style('css/jquery-ui.css') }}
         {{ HTML::style('css/colorpicker.css') }}
+        {{ HTML::style('css/jquery.dataTables.min.css') }}
         
         {{ HTML::style('css/styles.css') }}
         {{ HTML::style('css/select2.css') }}

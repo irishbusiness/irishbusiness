@@ -2,9 +2,10 @@
 use IrishBusiness\Repositories\RegionRepository;
 
 class RegionsController extends \BaseController {
+	protected $region;
 
-	public function __contruct(){
-
+	public function __contruct(RegionRepository $region){
+		$this->region = $region;
 	}
 
 	/**
@@ -16,9 +17,7 @@ class RegionsController extends \BaseController {
 	public function index()
 	{
 		$regions = Region::all();
-		$first = Region::take(1)->get();
-		$subregions = Subregion::where('region_id', '=', $first->id)->get();
-		return View::make('admin.admin_manage_regions')->withRegions($regions)->withSubregions($subregions)
+		return View::make('admin.admin_manage_regions')->withRegions($regions)
 			->withTitle('IrishBusiness.ie | Manage Regions');
 	}
 
@@ -31,6 +30,24 @@ class RegionsController extends \BaseController {
 	public function create()
 	{
 		//
+	}
+
+
+	public function delete(){
+		if( Request::ajax() ){
+			$res = $this->region->delete(Input::get('id'));
+
+			if($res != false){
+				$regions = Regions::all();
+				$data_regions = [];
+
+				foreach ($regions as $region) {
+					$data_regions[$region->id] = $region->name;
+				}
+
+				return json_encode($data_regions);
+			}
+		}
 	}
 
 }

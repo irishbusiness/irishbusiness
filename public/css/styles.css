@@ -5159,3 +5159,12 @@ p.draggable:hover {
 .select2{
 	width: 20%;
 }
+
+#table-regions_paginate, #table-regions_filter {
+	float: right;
+}
+
+.paginate_button {
+	padding: 4px;
+	cursor: pointer;
+}

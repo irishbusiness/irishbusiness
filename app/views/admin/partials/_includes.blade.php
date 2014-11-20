@@ -4,13 +4,24 @@
 {{ HTML::script('scripts/jquery.flexslider-min.js') }}
 {{ HTML::script('scripts/slider.js') }}
 {{ HTML::script('scripts/jquery.selectbox-0.6.1.js') }}
-{{ HTML::script('scripts/jquery.tweet.js') }}
+{{ HTML::script('scripts/twitter.js') }}
 {{ HTML::script('scripts/jflickrfeed.min.js') }}
 {{ HTML::script('scripts/superfish.js') }}
 {{ HTML::script('scripts/jquery.mobilemenu.min.js') }}
 {{ HTML::script('scripts/jquery.placeholder.min.js') }}
-{{ HTML::script('scripts/scripts.js') }}
 {{ HTML::script('scripts/redactor.js') }}
+{{ HTML::script('scripts/client-side.js') }}
+{{ HTML::script('scripts/jssor.core.js') }}
+{{ HTML::script('scripts/jssor.utils.js') }}
+{{ HTML::script('scripts/jssor.slider.js') }}
 {{ HTML::script('scripts/jquery-ui.js') }}
+{{ HTML::script('scripts/colorpicker/colorpicker.js') }}
+{{ HTML::script('scripts/colorpicker/eye.js') }}
+{{ HTML::script('scripts/colorpicker/layout.js') }}
+{{ HTML::script('scripts/colorpicker/utils.js') }}
+{{ HTML::script('scripts/html2canvas.js') }}
+{{ HTML::script('scripts/select2.js') }}
+{{ HTML::script('scripts/jquery.dataTables.min.js') }}
+{{ HTML::script('scripts/scripts.js') }}
 
 

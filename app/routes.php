@@ -63,6 +63,9 @@ Route::get('admin/settings/clients', function(){
 });
 
 Route::get('admin/settings/regions', 'RegionsController@index');
+Route::post('ajaxDeleteRegion', 'RegionsController@delete');
+
+
 
 Route::get('admin/settings/staff', function(){
 	return View::make('admin.admin_manage_staff');
@@ -245,8 +248,7 @@ Route::post('business/{slug}/settings', 'BusinessesController@save_coupon');
 Route::post('addmap','BusinessesController@storeMap');	
 
 Route::get('try', function(){
-	$first = Region::all()->take(1);
-	var_dump(pre($first));
+	return URL::to('');
 });
 Route::get('/ajaxCategoryId', 'CategoriesController@returnCategoryId');
 Route::post('/ajaxCategoryName', 'CategoriesController@returnCategoryName');

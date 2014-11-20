@@ -341,7 +341,11 @@
                             newkeyword+
                             '<span class="remove-keyword" data-id="'+newkeyword+'" data-text="'+newkeyword+'" title="remove this keyword">x</span>'+
                         '</span>');
-                    $("#frm-business-settings").attr("action", "{{ URL::to('/edit/company/'.$business->slug.'/') }}"+"/"+newkeyword);
+
+                    var new_action =  "{{ URL::to('')}}/edit/company/{{$business->slug}}/"+data;
+                    console.log("new_action="+new_action);
+                    $("#frm-business-settings").attr("action", new_action);
+
                     history.pushState('data', '', '/'+data+'#company-tabs-settings');
                 }else{
                     alert("Opps! Something's not right. Maybe your keyword already exists. Please try another.");
@@ -368,6 +372,10 @@
                             $(this).remove();
                             $("#add_new_keyword").attr("data-br", data);
                             $("#add_new_keyphrase").attr("data-br", data);
+                            var new_action =  "{{ URL::to('')}}/edit/company/{{$business->slug}}/"+data;
+                            console.log("new_action="+new_action);
+                            $("#frm-business-settings").attr("action", new_action);
+
                             history.pushState('data', '', '/'+data+'#company-tabs-settings');
                         });
                     }else{
@@ -400,7 +408,9 @@
                             $.trim( newkeyword )+
                             '<span class="remove-keyphrase" data-id="'+$.trim( newkeyword )+'" data-text="'+$.trim( newkeyword )+'" title="remove this keyphrase">x</span>'+
                         '</span>');
-                    $("#frm-business-settings").attr("action", "{{ URL::to('/edit/company/'.$business->slug.'/') }}"+"/"+$.trim( newkeyword ));
+                    var new_action =  "{{ URL::to('')}}/edit/company/{{$business->slug}}/"+data;
+                    console.log("new_action="+new_action);
+                    $("#frm-business-settings").attr("action", new_action);
                     history.pushState('data', '', '/'+data+'#company-tabs-settings');
                 }else{
                     alert("Opps! Something's not right. Maybe your keyphrase already exists. Please try another.");
@@ -427,6 +437,11 @@
                             $(this).remove();
                             $("#add_new_keyphrase").attr("data-br", data);
                             $("#add_new_keyword").attr("data-br", data);
+
+                            var new_action =  "{{ URL::to('')}}/edit/company/{{$business->slug}}/"+data;
+                            console.log("new_action="+new_action);
+                            $("#frm-business-settings").attr("action", new_action);
+                            
                             history.pushState('data', '', '/'+data+'#company-tabs-settings');
                         });
                     }else{
